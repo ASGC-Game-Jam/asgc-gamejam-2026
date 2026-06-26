@@ -1,40 +1,63 @@
-name: Bug Report
+name: 🐛 Bug Report
 description: File a structured report to help us reproduce and fix the bug.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees: []
 
 body:
-- type: input
-  id: summary
-  attributes:
-    label: Summary
-    placeholder: "A brief description of the bug that is occurring"
-  validations:
-    required: true
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! 
+        Please provide as much clear detail as possible.
 
-body:
-- type: input
-  id: build
-  attributes:
-    label: Build
-    placeholder: "What build was being tested"
+  - type: input
+    id: version
+    attributes:
+      label: Software Version
+      description: What version of the software are you using?
+      placeholder: e.g., v2.4.1
+    validations:
+      required: true
 
-body:
-- type: input
-  id: environment
-  attributes:
-    label: Environment
-    placeholder: "What environment was being used"
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Other
+    validations:
+      required: true
 
-body:
-- type: textarea
-  id: repro
-  attributes:
-    label: Reproduction steps
-    description: "How do you trigger this bug? Please walk us through it step by step."
-    value: |
-      1.
-      2.
-      3.
-      ...
-    render: bash
-  validations:
-    required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Share clear steps on how we can encounter this bug.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Logs or Code Snippets
+      description: Please paste any relevant error traces or terminal logs here.
+      render: shell
+
+  - type: checkboxes
+    id: validation-checks
+    attributes:
+      label: Code of Conduct & Verification
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate.
+          required: true
+        - label: I agree to follow this project's Code of Conduct.
+          required: true
