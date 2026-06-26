@@ -15,7 +15,7 @@ body:
     id: summary
     attributes:
       label: Summary
-      placeholder: Please provide a description of the issue
+      description: A brief description of the issue.
     validations:
       required: true
 
@@ -43,6 +43,17 @@ body:
         4. See error
     validations:
       required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low  
+
 
   - type: textarea
     id: logs
