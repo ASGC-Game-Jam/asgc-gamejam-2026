@@ -1,38 +1,48 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+title: "[Bug]: "
+about: Report a reproducible problem
+labels: bug
 assignees: ''
-
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+<!-- Thanks for taking the time to report a bug! Please fill the sections below. -->
 
-**To Reproduce**
+## Summary
+
+A clear and concise description of the bug.
+
+## Environment
+
+- Package version: (e.g. 3.2.1)
+- OS:
+
+## Reproduction
+
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+1.
+2.
+3.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+### Minimal snippet
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+```js
+// Provide the smallest reproducible example.
+```
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+## Expected behavior
 
-**Additional context**
-Add any other context about the problem here.
+What did you expect to happen?
+
+## Actual behavior
+
+What actually happened?
+
+## Screenshots / Logs
+
+If applicable, add screenshots or console logs.
+
+## Additional context
+
+Add any other context or links (PRs, issues, references) here.
