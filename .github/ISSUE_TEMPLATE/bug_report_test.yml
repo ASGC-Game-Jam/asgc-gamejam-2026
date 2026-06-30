@@ -5,6 +5,11 @@ labels: ["bug", "triage"]
 assignees: []
 
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! 
+        Please provide as much detail as possible.
 
   - type: input
     id: summary
@@ -14,7 +19,7 @@ body:
     validations:
       required: true
 
-   - type: dropdown
+  - type: dropdown
     id: build
     attributes:
       label: Build
