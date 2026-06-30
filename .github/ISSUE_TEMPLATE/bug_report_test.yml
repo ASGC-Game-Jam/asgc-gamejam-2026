@@ -9,7 +9,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report! 
-        Please provide as much clear detail as possible.
+        Please provide as much detail as possible.
 
   - type: input
     id: summary
@@ -18,6 +18,22 @@ body:
       description: A brief description of the issue.
     validations:
       required: true
+
+   - type: dropdown
+    id: build
+    attributes:
+      label: Build
+      options:
+    validations:
+      required: false
+
+  - type: dropdown
+    id: enviro
+    attributes:
+      label: Environment
+      options:
+    validations:
+      required: false
 
   - type: dropdown
     id: repro-rate
@@ -49,17 +65,34 @@ body:
     attributes:
       label: Severity
       options:
-        - Critical
-        - High
-        - Medium
-        - Low  
+        - S1 - Critical
+        - S2 - High
+        - S3 - Medium
+        - S4 - Low
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P1 - Immediate
+        - P2 - Next Release
+        - P3 - Standard
+        - P4 - Backlog
 
+  - type: upload
+    id: attachments
+    attributes:
+      label: Upload Attachments
+      description: "Drag and drop any relevant screenshots, videos or log files here. 10mb limit for Media, 25mb for Text."
+    validations:
+      required: false
+      accept: ".png,.jpg,.jpeg,.gif,.log,.txt,.zip,.mov,.mp4,.webm"       
 
   - type: textarea
-    id: logs
+    id: addinfo
     attributes:
-      label: Error Logs or Code Snippets
-      description: Please paste any relevant error traces or terminal logs here.
+      label: Additional Info
+      description: Please include any additional information you may have here.
       render: shell
 
   - type: checkboxes
