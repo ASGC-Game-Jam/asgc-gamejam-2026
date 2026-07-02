@@ -82,6 +82,26 @@ body:
     validations:
       required: false
 
+  - type: input
+    id: feature
+    attributes:
+      label: Feature
+    validations:
+      required: false
+
+  - type: dropdown
+    id: discipline
+    attributes:
+      label: Discipline
+      options:
+        - Tech
+        - Art
+        - Design
+        - Narrative
+        - Audio
+    validations:
+      required: false
+
   - type: upload
     id: attachments
     attributes:
@@ -97,6 +117,7 @@ body:
       label: Additional Info
       description: Please include any additional information you may have here.
       render: shell
+      required: false
 
   - type: checkboxes
     id: validation-checks
