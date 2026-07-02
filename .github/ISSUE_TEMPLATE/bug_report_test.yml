@@ -12,14 +12,6 @@ body:
         Please provide as much detail as possible.
 
   - type: input
-    id: summary
-    attributes:
-      label: Summary
-      description: A brief description of the issue.
-    validations:
-      required: true
-
-  - type: input
     id: build
     attributes:
       label: Build
@@ -67,18 +59,6 @@ body:
         - S2 - High
         - S3 - Medium
         - S4 - Low
-    validations:
-      required: false
-        
-  - type: dropdown
-    id: priority
-    attributes:
-      label: Priority
-      options:
-        - P1 - Immediate
-        - P2 - Next Release
-        - P3 - Standard
-        - P4 - Backlog
     validations:
       required: false
 
