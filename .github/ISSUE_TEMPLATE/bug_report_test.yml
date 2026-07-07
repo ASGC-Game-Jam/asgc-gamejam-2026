@@ -1,6 +1,6 @@
 name: Bug Report
 description: File a structured report to help us reproduce and fix issues.
-title: "[Bug]: "
+title: ""
 labels: ["bug", "triage"]
 assignees: []
 
@@ -10,11 +10,19 @@ body:
       value: |
         Thanks for taking the time to fill out this bug report! 
         Please provide as much detail as possible.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: "A summary of the issue that is occurring."
+    validations:
+      required: false
 
   - type: input
     id: build
     attributes:
       label: Build
+      description: "The build that was being used when the defect was encountered."
     validations:
       required: false
 
@@ -22,6 +30,7 @@ body:
     id: enviro
     attributes:
       label: Environment
+      description: "The environment that was being used when the defect was encountered."
     validations:
       required: false
 
@@ -46,7 +55,8 @@ body:
         1. Go to '...'
         2. Click on '...'
         3. Scroll down to '...'
-        4. See error
+        ---> Actual Result
+        Expected Result:
     validations:
       required: true
 
@@ -59,13 +69,6 @@ body:
         - S2 - High
         - S3 - Medium
         - S4 - Low
-    validations:
-      required: false
-
-  - type: input
-    id: feature
-    attributes:
-      label: Feature
     validations:
       required: false
 
