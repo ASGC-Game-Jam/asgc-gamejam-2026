@@ -20,7 +20,8 @@ This project exists to give people a chance to build something real together. Wh
 
 The project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
 
-The intent is simple: this project should remain open. Contributors should always be able to point to their work, learn from each other, and build on what came before without the project disappearing behind closed doors.
+The intent is simple, this project should remain open.
+Contributors should always be able to point to their work, learn from each other, and build on what came before without the project disappearing behind closed doors.
 
 See the `LICENSE` file for the full license.
 
