@@ -1,2 +1,29 @@
-# asgc-gamejam-2026
-The ASGC 2026 game jam!
+# ASGC Game Jam 2026
+
+Welcome to the official repo for the ASGC Game Jam 2026!
+
+This project exists to give people a chance to build something real together. Whether you're a programmer, artist, designer, writer, composer, or QA tester, the goal is to collaborate, learn, and leave with something you're proud to put in your portfolio.
+
+## Getting Started
+
+- Read `SETUP.md` to get your development environment ready.
+- Read `CONTRIBUTING.md` before making your first contribution.
+
+## Technology
+
+- Unreal Engine 5.7.4
+- C++ & Blueprints
+- GitHub
+- Git LFS (Gitea)
+
+## License
+
+The project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
+
+The intent is simple: this project should remain open. Contributors should always be able to point to their work, learn from each other, and build on what came before without the project disappearing behind closed doors.
+
+See the `LICENSE` file for the full license.
+
+## Questions
+
+If you're unsure about anything, join the ASGC discord.
