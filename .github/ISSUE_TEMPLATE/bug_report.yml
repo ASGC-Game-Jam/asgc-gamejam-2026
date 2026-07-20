@@ -2,6 +2,7 @@ name: Bug Report
 description: File a structured report to help us reproduce and fix issues.
 labels: ["bug", "triage"]
 assignees: []
+projects: ["ASGC-Game-Jam/1"]
 
 body:
   - type: markdown
@@ -9,6 +10,7 @@ body:
       value: |
         Thanks for taking the time to fill out this bug report! 
         Please provide as much detail as possible.
+  
   - type: input
     id: summary
     attributes:
@@ -22,14 +24,6 @@ body:
     attributes:
       label: Build
       description: "The build that was being used when the defect was encountered."
-    validations:
-      required: false
-
-  - type: input
-    id: enviro
-    attributes:
-      label: Environment
-      description: "The environment that was being used when the defect was encountered."
     validations:
       required: false
 
