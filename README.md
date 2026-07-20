@@ -6,8 +6,8 @@ This project exists to give people a chance to build something real together. Wh
 
 ## Getting Started
 
-- Read `SETUP.md` to get your development environment ready.
-- Read `CONTRIBUTING.md` before making your first contribution.
+- Read `SETUP.md` to get your development environment ready
+- Read `CONTRIBUTING.md` before making your first contribution
 
 ## Technology
 
@@ -15,6 +15,11 @@ This project exists to give people a chance to build something real together. Wh
 - C++ & Blueprints
 - GitHub
 - Git LFS (Gitea)
+
+## Style and Coding Standards
+
+- [Epic’s Unreal Engine coding standard](https://dev.epicgames.com/documentation/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine?application_version=5.7)
+- [Allar UE5 Style Guide](https://github.com/Allar/ue5-style-guide)
 
 ## License
 
@@ -27,4 +32,4 @@ See the `LICENSE` file for the full license.
 
 ## Questions
 
-If you're unsure about anything, join the ASGC discord.
+If you're unsure about anything, join the ASGC discord!
