@@ -37,8 +37,8 @@ git clone https://github.com/ASGC-Game-Jam/asgc-gamejam-2026.git
 cd asgc-gamejam-2026
 ```
 
-Git LFS should automatically download the project assets. If needed,
-pull them manually
+Git LFS should automatically download the project assets
+If needed, pull them manually
 
 ``` bash
 git lfs pull
@@ -64,12 +64,12 @@ true
 
 ## Open the Project
 
-Open `ProjectAtlantis.uproject`.
+Open `ProjectAtlantis.uproject`
 
-If Unreal prompts you to build the project files, select **Yes**.
+If Unreal prompts you to build the project files, select **Yes**
 
 The first launch may take several minutes while Unreal generates project
-files, compiles shaders, and prepares the project.
+files, compiles shaders, and prepares the project
 
 ## Verify Your Setup
 
