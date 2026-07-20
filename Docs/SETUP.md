@@ -37,8 +37,7 @@ git clone https://github.com/ASGC-Game-Jam/asgc-gamejam-2026.git
 cd asgc-gamejam-2026
 ```
 
-Git LFS should automatically download the project assets
-If needed, pull them manually
+Git LFS should automatically download the project assets, but if needed, pull them manually
 
 ``` bash
 git lfs pull
