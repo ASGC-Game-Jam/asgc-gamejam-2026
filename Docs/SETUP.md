@@ -1,62 +1,100 @@
 # Development Setup
 
-This guide walks through setting up your development environment for the ASGC Game Jam 2026 project.
+This guide walks through setting up your development environment for the
+ASGC Game Jam 2026 project.
 
 ## Requirements
 
-Install the following before cloning the repository:
-- Git
-- Git LFS
-- Unreal Engine 5.7.4
-- Visual Studio 2022 or some other IDE for Game Development with C++
-  - MSVC
-  - Windows SDK
-  - C++ profiling tools (recommended)
+Install the following before cloning the repository
+
+-   Git
+-   Git LFS
+-   Unreal Engine 5.7.4
+-   Visual Studio 2022 or another IDE configured for Game Development
+    with C++
+    -   MSVC
+    -   Windows SDK
+    -   C++ profiling tools (recommended)
+
+Verify that Git LFS is installed
+
+``` bash
+git lfs version
+```
+
+If needed, initialize Git LFS
+
+``` bash
+git lfs install
+```
 
 ## Clone the Repository
 
-Clone the repository normally.
+Clone the repository
 
-```bash
+``` bash
 git clone https://github.com/ASGC-Game-Jam/asgc-gamejam-2026.git
 cd asgc-gamejam-2026
 ```
 
-Git LFS will automatically download project assets.
+Git LFS should automatically download the project assets. If needed,
+pull them manually
 
-Verify LFS is installed:
-
-```bash
-git lfs version
+``` bash
+git lfs pull
 ```
 
-If needed:
+Enable Git LFS lock verification for this repository
 
-```bash
-git lfs install
+``` bash
+git config lfs.locksverify true
+```
+
+Verify it is enabled
+
+``` bash
+git config --get lfs.locksverify
+```
+
+Expected output
+
+``` text
+true
 ```
 
 ## Open the Project
 
 Open `ProjectAtlantis.uproject`.
 
-If Unreal asks to build project files, select **Yes**.
+If Unreal prompts you to build the project files, select **Yes**.
 
-The first launch may take several minutes while Unreal generates project files and shaders.
+The first launch may take several minutes while Unreal generates project
+files, compiles shaders, and prepares the project.
 
 ## Verify Your Setup
 
-Before making changes, confirm that:
-- The project opens without errors
-- The project compiles successfully
-- You can launch the editor
-- You can load the default map
+Before making changes, verify that
 
-If any of these steps fail, ask for help before continuing.
+-   The project opens without errors
+-   The project compiles successfully
+-   You can launch the editor
+-   You can load the default map
+-   Git LFS assets downloaded successfully
+
+You can verify the lock server is reachable with
+
+``` bash
+git lfs locks
+```
+
+If anything fails, ask for help before continuing
 
 ## Next Steps
 
-Once your environment is working:
-- Read `CONTRIBUTING.md`
-- Create a feature branch
-- Start working
+Once your environment is working
+
+-   Read `CONTRIBUTING.md`
+-   Pull the latest changes from `main`
+-   Create a feature branch
+-   Lock shared binary assets before editing them
+-   Start working
