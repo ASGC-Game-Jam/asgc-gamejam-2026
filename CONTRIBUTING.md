@@ -4,7 +4,7 @@ Thanks for contributing to the ASGC Game Jam 2026 project.
 
 ## Before You Start
 
-- Complete the setup in `SETUP.md`
+- Complete the setup in `/Docs/SETUP.md`
 - Check the existing Issues to see what needs to be done
 - If you're unsure where to start, ask in Discord or open a Discussion
 
@@ -22,6 +22,7 @@ Please keep Pull Requests focused on a single feature or fix whenever possible.
 ## Pull Requests
 
 Before submitting a Pull Request, make sure:
+
 - The project builds successfully
 - Your changes have been tested
 - Unrelated files are not included
@@ -38,6 +39,7 @@ If Git LFS is installed correctly, asset management should happen automatically.
 ## Reporting Issues
 
 If you find a bug:
+
 - Search existing Issues first
 - If one doesn't exist, create a new Issue with as much detail as possible (use the Bug template)
 - Include steps to reproduce the problem whenever possible
