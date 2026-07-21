@@ -19,7 +19,7 @@ This project exists to give people a chance to build something real together. Wh
 ## Style and Coding Standards
 
 - [Epic’s Unreal Engine coding standard](https://dev.epicgames.com/documentation/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine?application_version=5.7)
-- [Allar UE5 Style Guide](https://github.com/Allar/ue5-style-guide)
+- [ClickUp Wiki - Adapted from Allar UE5 Style Guide](https://app.clickup.com/90141389150/v/dc/2kydgway-3994/2kydgway-2794?block=block-07cf45ee-629b-434c-8328-b6556af42992)
 
 ## License
 
