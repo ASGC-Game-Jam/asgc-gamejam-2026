@@ -2,4 +2,4 @@
 
 ## Getting Started
 
-- Read [Docs/SETUP.md](./Docs/SETUP.md) to get your development environment read
+- Read [SETUP.md](./SETUP.md) to get your development environment read
