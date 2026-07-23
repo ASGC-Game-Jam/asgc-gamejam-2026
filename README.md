@@ -32,4 +32,4 @@ See the [LICENSE](./LICENSE) file for the full license.
 
 ## Questions
 
-If you're unsure about anything, join the [ASGC discord](https://discord.gg/asgc)!
+If you're unsure about anything, join the ASGC discord!
