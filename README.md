@@ -6,7 +6,7 @@ This project exists to give people a chance to build something real together. Wh
 
 ## Getting Started
 
-- Read [SETUP.md](./Docs/SETUP.md) to get your development environment ready
+- Read [Docs/SETUP.md](./Docs/SETUP.md) to get your development environment ready
 - Read [CONTRIBUTING.md](./CONTRIBUTING.md) before making your first contribution
 
 ## Technology
