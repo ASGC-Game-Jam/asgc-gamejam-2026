@@ -8,7 +8,7 @@ ASGC Game Jam 2026 project.
 Install the following before cloning the repository
 
 -   Git
--   Git LFS
+-   [Git LFS](https://git-lfs.com/)
 -   Unreal Engine 5.7.4
 -   Visual Studio 2022 or another IDE configured for Game Development
     with C++
@@ -63,7 +63,7 @@ true
 
 ## Open the Project
 
-Open `ProjectAtlantis.uproject`
+Open [`ProjectAtlantis.uproject`](../ProjectAtlantis.uproject)
 
 If Unreal prompts you to build the project files, select **Yes**
 
@@ -92,7 +92,7 @@ If anything fails, ask for help before continuing
 
 Once your environment is working
 
--   Read `CONTRIBUTING.md`
+-   Read [CONTRIBUTING.md](../CONTRIBUTING.md)
 -   Pull the latest changes from `main`
 -   Create a feature branch
 -   Lock shared binary assets before editing them
