@@ -6,15 +6,15 @@ This project exists to give people a chance to build something real together. Wh
 
 ## Getting Started
 
-- Read `/Docs/SETUP.md` to get your development environment ready
-- Read `CONTRIBUTING.md` before making your first contribution
+- Read [Docs/SETUP.md](./Docs/SETUP.md) to get your development environment ready
+- Read [CONTRIBUTING.md](./CONTRIBUTING.md) before making your first contribution
 
 ## Technology
 
 - Unreal Engine 5.7.4
 - C++ & Blueprints
 - GitHub
-- Git LFS (Gitea)
+- [Git LFS](https://git-lfs.com/) ([Gitea](https://gittea.dev/))
 
 ## Style and Coding Standards
 
@@ -28,7 +28,7 @@ The project is licensed under the GNU Affero General Public License v3.0 (AGPL-3
 The intent is simple, this project should remain open.
 Contributors should always be able to point to their work, learn from each other, and build on what came before without the project disappearing behind closed doors.
 
-See the `LICENSE` file for the full license.
+See the [LICENSE](./LICENSE) file for the full license.
 
 ## Questions
 
