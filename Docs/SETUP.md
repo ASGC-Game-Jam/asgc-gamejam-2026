@@ -45,7 +45,7 @@ git lfs pull
 
 If Git prompts for Git LFS credentials
 
-1. Log into Gitea using **Sign in with GitHub**
+1. Log into [Gitea](https://asgc.freemyip.com/) using **Sign in with GitHub**
 2. Go to **Settings → Account**
 3. Set a local Gitea password
 4. Retry using
