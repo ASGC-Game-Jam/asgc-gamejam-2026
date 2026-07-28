@@ -67,6 +67,8 @@ e.g. `ProjectAtlantis-1.2.0-Windows.zip`.
 Follow [GitHub's release documentation](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)
 and attach the build archive from the previous step to a [new release](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/releases/new).
 
+**Note:** there is a GitHub action in place that should auto-generate a *draft* release when the repository is tagged.
+
 Some tips:
 * everything starts from that git tag - make sure you're pointed at the right one
 * use release drafts to ensure that you have all assets attached and descriptions before publishing
