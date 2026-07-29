@@ -8,18 +8,28 @@ on:
     
 
 jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print the branch name
+        # short name of branch
+        run: echo "BRANCH=${{ github.ref_name }}" >> $GITHUB_ENV
+      - name: Set current time variable
+        # Formats time as YYYY-MM-DD_HH-MM-SS
+        run: echo "NOW=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
+
   zip-repo:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create ZIP archive
+        #- name: Create ZIP archive
         # Excludes the .git folder and the .github workflows folder to keep the zip clean
-        run: zip -r repo.zip ./dist -x "*.git*" ".github/*"
+      #  run: zip -r repo.zip . -x "*.git*" ".github/*"
 
-      - name: Upload ZIP as Artifact
+      - name: Archive repository
         uses: actions/upload-artifact@v4
         with:
-          name: zipped-repo
-          path: repo.zip
+          name: repo_${{ env.BRANCH }}_${{ env.NOW }}
+          path: . -x "*.git*" ".github/*"
