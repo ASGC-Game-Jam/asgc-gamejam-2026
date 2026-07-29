@@ -1,9 +1,11 @@
 name: Package Repo
 
 on:
-  push:
-    tags:
-      - "v*"          # push a v* tag to trigger action
+  workflow_dispatch: # allows for manual testing
+  #push:
+    #tags:
+      #- "v*"          # push a v* tag to trigger action
+    
 
 jobs:
   zip-repo:
