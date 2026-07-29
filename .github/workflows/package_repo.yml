@@ -16,7 +16,7 @@ jobs:
 
       - name: Create ZIP archive
         # Excludes the .git folder and the .github workflows folder to keep the zip clean
-        run: zip -r repo.zip . -x "*.git*" ".github/*"
+        run: zip -r repo.zip ./dist -x "*.git*" ".github/*"
 
       - name: Upload ZIP as Artifact
         uses: actions/upload-artifact@v4
