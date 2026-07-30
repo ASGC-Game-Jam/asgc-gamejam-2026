@@ -1,3 +1,11 @@
+---
+name: Feature
+about: New capability for the project
+title: ""
+labels: ["type: feature"]
+assignees: []
+
+---
 ## Description
 
 <!--
