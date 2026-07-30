@@ -2,7 +2,7 @@
 name: Feature
 about: New capability for the project
 title: ""
-labels: ["type: feature"]
+type: "feature"
 assignees: []
 
 ---
