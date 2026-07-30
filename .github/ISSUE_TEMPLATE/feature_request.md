@@ -1,20 +1,44 @@
----
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
+## Description
 
----
+<!--
+Describe the capability this feature introduces.
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+A Feature represents a complete capability delivered to the project.
+Use this section to explain:
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+- What capability is being added?
+- Why is it needed?
+- What is in scope?
+- What is explicitly out of scope (if applicable)?
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+Implementation work should be decomposed into child issues.
+-->
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+## Acceptance Criteria
+
+<!--
+List the observable outcomes that define completion.
+
+Acceptance criteria should answer:
+- What must be true when this feature is finished?
+- How will we know it is complete?
+
+Avoid implementation details whenever possible.
+-->
+
+- [ ]
+
+## Notes & Context
+
+<!--
+Optional background information that provides additional context for contributors.
+
+Examples:
+- Design decisions
+- Architecture Decision Records (ADRs)
+- Discord discussions
+- Documentation
+- External references
+- Related features or issues
+- Open questions or future considerations
+-->
