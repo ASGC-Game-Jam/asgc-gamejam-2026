@@ -1,18 +1,22 @@
-## Summary
+# Summary
 
-Briefly describe what this PR changes.
+Briefly describe the changes being introduced.
+This summary is used for squash commits and release notes.
 
-## Related Issue
+# Related Issue
+Related to #
+Closes #
 
-
-## Testing
+# Testing
 
 - [ ] Built successfully
 - [ ] Tested locally
 - [ ] No known regressions
 
-## Checklist
+# Checklist
 
+- [ ] PR title accurately summarizes the final change
+- [ ] Summary reflects what was actually implemented
 - [ ] Follows the project style guide
 - [ ] Documentation updated if needed
 - [ ] No unrelated changes included
