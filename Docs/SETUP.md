@@ -32,7 +32,7 @@ git lfs install
 Clone the repository
 
 ```bash
-git clone https//github.com/ASGC-Game-Jam/asgc-gamejam-2026.git
+git clone https://github.com/ASGC-Game-Jam/asgc-gamejam-2026.git
 cd asgc-gamejam-2026
 ```
 
