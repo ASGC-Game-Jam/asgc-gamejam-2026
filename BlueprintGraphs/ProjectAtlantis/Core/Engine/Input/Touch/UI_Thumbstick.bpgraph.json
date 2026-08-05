@@ -1,0 +1,3034 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick",
+	"asset": "UI_Thumbstick",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "Stick Input",
+			"type": "Delegate",
+			"nodes": [
+				{
+					"guid": "148abc1944dca23ad7517d90eaf703a9",
+					"class": "K2Node_FunctionEntry",
+					"title": "Stick Input",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "148abc1944dca23ad7517d90eaf703a9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "148abc1944dca23ad7517d90eaf703a9:o:NewParam",
+							"name": "NewParam",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "Touch Input Check",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "10a4f2174ba530e680101caeb56f56e6",
+					"class": "K2Node_VariableGet",
+					"title": "Get Position",
+					"x": 1312,
+					"y": 2256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "10a4f2174ba530e680101caeb56f56e6:o:Position",
+							"name": "Position",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"cbb5ae1349e37e8bcd1cd8a7ed655c76:i:V2"
+							]
+						},
+						{
+							"id": "10a4f2174ba530e680101caeb56f56e6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "48aaa5c844017ab412025e868bc4fff7",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 2176,
+					"y": 1968,
+					"comment": null,
+					"pins": [
+						{
+							"id": "48aaa5c844017ab412025e868bc4fff7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d322c60e4a1f282b003256bb5f36b3d9:o:then"
+							]
+						},
+						{
+							"id": "48aaa5c844017ab412025e868bc4fff7:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d322c60e4a1f282b003256bb5f36b3d9:o:Output_Get"
+							]
+						},
+						{
+							"id": "48aaa5c844017ab412025e868bc4fff7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"91b9ee3f4af1afe0cd34bea361223a01:i:execute"
+							]
+						},
+						{
+							"id": "48aaa5c844017ab412025e868bc4fff7:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "566a2af14d8b88238c7717a285398c55",
+					"class": "K2Node_FunctionEntry",
+					"title": "Touch Input Check",
+					"x": 928,
+					"y": 1968,
+					"comment": null,
+					"pins": [
+						{
+							"id": "566a2af14d8b88238c7717a285398c55:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"884061834b325a2913f959ac718775b1:i:execute"
+							]
+						},
+						{
+							"id": "566a2af14d8b88238c7717a285398c55:o:FingerIndex",
+							"name": "FingerIndex",
+							"direction": "output",
+							"type": "byte:/Script/InputCore.ETouchIndex",
+							"defaultValue": null,
+							"links": [
+								"91b9ee3f4af1afe0cd34bea361223a01:i:Touch Target",
+								"a409a1114b7545e547b56da39195bc54:i:FingerIndex"
+							]
+						}
+					]
+				},
+				{
+					"guid": "590eced54c871846cc7486b23d406454",
+					"class": "K2Node_PromotableOperator",
+					"title": "float <= float",
+					"x": 1728,
+					"y": 2256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "590eced54c871846cc7486b23d406454:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"cbb5ae1349e37e8bcd1cd8a7ed655c76:o:ReturnValue"
+							]
+						},
+						{
+							"id": "590eced54c871846cc7486b23d406454:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b47d48be426495534f33e08eb339bcc4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "590eced54c871846cc7486b23d406454:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"9a8c843f478769044ade59b7c4e91d8f:i:B"
+							]
+						},
+						{
+							"id": "590eced54c871846cc7486b23d406454:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "884061834b325a2913f959ac718775b1",
+					"class": "K2Node_VariableSet",
+					"title": "Set",
+					"x": 1712,
+					"y": 1984,
+					"comment": null,
+					"pins": [
+						{
+							"id": "884061834b325a2913f959ac718775b1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"566a2af14d8b88238c7717a285398c55:o:then"
+							]
+						},
+						{
+							"id": "884061834b325a2913f959ac718775b1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d322c60e4a1f282b003256bb5f36b3d9:i:execute"
+							]
+						},
+						{
+							"id": "884061834b325a2913f959ac718775b1:i:Initial Touch Location",
+							"name": "Initial Touch Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "884061834b325a2913f959ac718775b1:i:Initial Touch Location_X",
+							"name": "Initial Touch Location_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a409a1114b7545e547b56da39195bc54:o:LocationX"
+							]
+						},
+						{
+							"id": "884061834b325a2913f959ac718775b1:i:Initial Touch Location_Y",
+							"name": "Initial Touch Location_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a409a1114b7545e547b56da39195bc54:o:LocationY"
+							]
+						},
+						{
+							"id": "884061834b325a2913f959ac718775b1:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "884061834b325a2913f959ac718775b1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "91b9ee3f4af1afe0cd34bea361223a01",
+					"class": "K2Node_VariableSet",
+					"title": "Set Touch Target",
+					"x": 2384,
+					"y": 1984,
+					"comment": null,
+					"pins": [
+						{
+							"id": "91b9ee3f4af1afe0cd34bea361223a01:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"48aaa5c844017ab412025e868bc4fff7:o:then"
+							]
+						},
+						{
+							"id": "91b9ee3f4af1afe0cd34bea361223a01:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "91b9ee3f4af1afe0cd34bea361223a01:i:Touch Target",
+							"name": "Touch Target",
+							"direction": "input",
+							"type": "byte:/Script/InputCore.ETouchIndex",
+							"defaultValue": null,
+							"links": [
+								"566a2af14d8b88238c7717a285398c55:o:FingerIndex"
+							]
+						},
+						{
+							"id": "91b9ee3f4af1afe0cd34bea361223a01:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "byte:/Script/InputCore.ETouchIndex",
+							"defaultValue": "Touch1",
+							"links": []
+						},
+						{
+							"id": "91b9ee3f4af1afe0cd34bea361223a01:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9a8c843f478769044ade59b7c4e91d8f",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "AND Boolean",
+					"x": 1984,
+					"y": 2134,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a8c843f478769044ade59b7c4e91d8f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "9a8c843f478769044ade59b7c4e91d8f:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"a409a1114b7545e547b56da39195bc54:o:bIsCurrentlyPressed"
+							]
+						},
+						{
+							"id": "9a8c843f478769044ade59b7c4e91d8f:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"590eced54c871846cc7486b23d406454:o:ReturnValue"
+							]
+						},
+						{
+							"id": "9a8c843f478769044ade59b7c4e91d8f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d322c60e4a1f282b003256bb5f36b3d9:i:TrackInput"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a409a1114b7545e547b56da39195bc54",
+					"class": "K2Node_CallFunction",
+					"title": "Get Input Touch State",
+					"x": 1168,
+					"y": 2112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a409a1114b7545e547b56da39195bc54:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"a71cec3f426b019ca889998058590250:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a409a1114b7545e547b56da39195bc54:i:FingerIndex",
+							"name": "FingerIndex",
+							"direction": "input",
+							"type": "byte:/Script/InputCore.ETouchIndex",
+							"defaultValue": null,
+							"links": [
+								"566a2af14d8b88238c7717a285398c55:o:FingerIndex"
+							]
+						},
+						{
+							"id": "a409a1114b7545e547b56da39195bc54:o:LocationX",
+							"name": "LocationX",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"884061834b325a2913f959ac718775b1:i:Initial Touch Location_X",
+								"cbb5ae1349e37e8bcd1cd8a7ed655c76:i:V1_X"
+							]
+						},
+						{
+							"id": "a409a1114b7545e547b56da39195bc54:o:LocationY",
+							"name": "LocationY",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"884061834b325a2913f959ac718775b1:i:Initial Touch Location_Y",
+								"cbb5ae1349e37e8bcd1cd8a7ed655c76:i:V1_Y"
+							]
+						},
+						{
+							"id": "a409a1114b7545e547b56da39195bc54:o:bIsCurrentlyPressed",
+							"name": "bIsCurrentlyPressed",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"9a8c843f478769044ade59b7c4e91d8f:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a71cec3f426b019ca889998058590250",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 912,
+					"y": 2128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a71cec3f426b019ca889998058590250:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "a71cec3f426b019ca889998058590250:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a71cec3f426b019ca889998058590250:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "a71cec3f426b019ca889998058590250:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"a409a1114b7545e547b56da39195bc54:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b47d48be426495534f33e08eb339bcc4",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "Max (Float)",
+					"x": 1328,
+					"y": 2352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b47d48be426495534f33e08eb339bcc4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "b47d48be426495534f33e08eb339bcc4:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"eaa476184c84cdf786229495d6f313da:o:Thumbstick Size_X"
+							]
+						},
+						{
+							"id": "b47d48be426495534f33e08eb339bcc4:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"eaa476184c84cdf786229495d6f313da:o:Thumbstick Size_Y"
+							]
+						},
+						{
+							"id": "b47d48be426495534f33e08eb339bcc4:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"590eced54c871846cc7486b23d406454:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cbb5ae1349e37e8bcd1cd8a7ed655c76",
+					"class": "K2Node_CallFunction",
+					"title": "Distance 2D",
+					"x": 1483,
+					"y": 2176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cbb5ae1349e37e8bcd1cd8a7ed655c76:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "cbb5ae1349e37e8bcd1cd8a7ed655c76:i:V1",
+							"name": "V1",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cbb5ae1349e37e8bcd1cd8a7ed655c76:i:V1_X",
+							"name": "V1_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a409a1114b7545e547b56da39195bc54:o:LocationX"
+							]
+						},
+						{
+							"id": "cbb5ae1349e37e8bcd1cd8a7ed655c76:i:V1_Y",
+							"name": "V1_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a409a1114b7545e547b56da39195bc54:o:LocationY"
+							]
+						},
+						{
+							"id": "cbb5ae1349e37e8bcd1cd8a7ed655c76:i:V2",
+							"name": "V2",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"10a4f2174ba530e680101caeb56f56e6:o:Position"
+							]
+						},
+						{
+							"id": "cbb5ae1349e37e8bcd1cd8a7ed655c76:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"590eced54c871846cc7486b23d406454:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d322c60e4a1f282b003256bb5f36b3d9",
+					"class": "K2Node_VariableSet",
+					"title": "Set TrackInput",
+					"x": 1984,
+					"y": 1984,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d322c60e4a1f282b003256bb5f36b3d9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"884061834b325a2913f959ac718775b1:o:then"
+							]
+						},
+						{
+							"id": "d322c60e4a1f282b003256bb5f36b3d9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"48aaa5c844017ab412025e868bc4fff7:i:execute"
+							]
+						},
+						{
+							"id": "d322c60e4a1f282b003256bb5f36b3d9:i:TrackInput",
+							"name": "TrackInput",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"9a8c843f478769044ade59b7c4e91d8f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d322c60e4a1f282b003256bb5f36b3d9:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"48aaa5c844017ab412025e868bc4fff7:i:Condition"
+							]
+						},
+						{
+							"id": "d322c60e4a1f282b003256bb5f36b3d9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "eaa476184c84cdf786229495d6f313da",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 1144,
+					"y": 2349,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eaa476184c84cdf786229495d6f313da:o:Thumbstick Size",
+							"name": "Thumbstick Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eaa476184c84cdf786229495d6f313da:o:Thumbstick Size_X",
+							"name": "Thumbstick Size_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b47d48be426495534f33e08eb339bcc4:i:A"
+							]
+						},
+						{
+							"id": "eaa476184c84cdf786229495d6f313da:o:Thumbstick Size_Y",
+							"name": "Thumbstick Size_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b47d48be426495534f33e08eb339bcc4:i:B"
+							]
+						},
+						{
+							"id": "eaa476184c84cdf786229495d6f313da:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "078a4fc4426a2e9e956787af43ddf8c0",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 1200,
+					"y": 912,
+					"comment": null,
+					"pins": [
+						{
+							"id": "078a4fc4426a2e9e956787af43ddf8c0:o:Initial Touch Location",
+							"name": "Initial Touch Location",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "078a4fc4426a2e9e956787af43ddf8c0:o:Initial Touch Location_X",
+							"name": "Initial Touch Location_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ed9dd787401ac25163209496a7bb6b55:i:B"
+							]
+						},
+						{
+							"id": "078a4fc4426a2e9e956787af43ddf8c0:o:Initial Touch Location_Y",
+							"name": "Initial Touch Location_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"6907a43e44801da0de4611940aad8285:i:B"
+							]
+						},
+						{
+							"id": "078a4fc4426a2e9e956787af43ddf8c0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "118040e645570350edfdce86e191694c",
+					"class": "K2Node_CallFunction",
+					"title": "Touch Input Check",
+					"x": 1616,
+					"y": 1376,
+					"comment": null,
+					"pins": [
+						{
+							"id": "118040e645570350edfdce86e191694c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"96626dee42537c6028ec85b7049deaf2:o:else"
+							]
+						},
+						{
+							"id": "118040e645570350edfdce86e191694c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "118040e645570350edfdce86e191694c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "118040e645570350edfdce86e191694c:i:FingerIndex",
+							"name": "FingerIndex",
+							"direction": "input",
+							"type": "byte:/Script/InputCore.ETouchIndex",
+							"defaultValue": "Touch2",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "14d18bb44bec241fae4bea8d2f4a7dcd",
+					"class": "K2Node_CallFunction",
+					"title": "Set Render Translation",
+					"x": 2208,
+					"y": 672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "14d18bb44bec241fae4bea8d2f4a7dcd:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"80cfd3984a204a75f4a9bbb5ac501918:o:then"
+							]
+						},
+						{
+							"id": "14d18bb44bec241fae4bea8d2f4a7dcd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"55b8df44436ebdb2af77b19985d11290:i:execute"
+							]
+						},
+						{
+							"id": "14d18bb44bec241fae4bea8d2f4a7dcd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"501c3d434a5d44b61d0ff389333b1223:o:Stick"
+							]
+						},
+						{
+							"id": "14d18bb44bec241fae4bea8d2f4a7dcd:i:Translation",
+							"name": "Translation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "14d18bb44bec241fae4bea8d2f4a7dcd:i:Translation_X",
+							"name": "Translation_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"794308544216e75065ee3681e91fb5ca:o:ReturnValue"
+							]
+						},
+						{
+							"id": "14d18bb44bec241fae4bea8d2f4a7dcd:i:Translation_Y",
+							"name": "Translation_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c00089464c92fc8253455b8cfffbb942:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1735e6e9448bf01929c02b91cbf85e28",
+					"class": "K2Node_CallFunction",
+					"title": "Local to Viewport",
+					"x": -464,
+					"y": 1200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1735e6e9448bf01929c02b91cbf85e28:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.SlateBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__SlateBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "1735e6e9448bf01929c02b91cbf85e28:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1735e6e9448bf01929c02b91cbf85e28:i:Geometry",
+							"name": "Geometry",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.Geometry",
+							"defaultValue": null,
+							"links": [
+								"bfeea2a0459cf14ade502d8070652368:o:MyGeometry"
+							]
+						},
+						{
+							"id": "1735e6e9448bf01929c02b91cbf85e28:i:LocalCoordinate",
+							"name": "LocalCoordinate",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"28d776b2489d3e77afb4b68423cbb648:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1735e6e9448bf01929c02b91cbf85e28:o:PixelPosition",
+							"name": "PixelPosition",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1735e6e9448bf01929c02b91cbf85e28:o:ViewportPosition",
+							"name": "ViewportPosition",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"49c5f9b64ea2ac6909b5748e5057f55a:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1a4f231340572168442fd18f814ba87d",
+					"class": "K2Node_VariableGet",
+					"title": "Get TrackInput",
+					"x": 3568,
+					"y": 1040,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1a4f231340572168442fd18f814ba87d:o:TrackInput",
+							"name": "TrackInput",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"796b426a4d4045ee4e2953bc1e17da63:i:bPickA",
+								"c5b2692f44e4374367ba52ad154daa14:i:bPickA"
+							]
+						},
+						{
+							"id": "1a4f231340572168442fd18f814ba87d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1f13667c4986064b083c349e4d53c585",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 3312,
+					"y": 936,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1f13667c4986064b083c349e4d53c585:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3ad578f843f187f588b48d85eed9f61b:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1f13667c4986064b083c349e4d53c585:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3b8814fd442818fc54956db7ffccf297:o:Scale Output"
+							]
+						},
+						{
+							"id": "1f13667c4986064b083c349e4d53c585:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c5b2692f44e4374367ba52ad154daa14:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "22146c264094d8adf4e1ae93356dd4b3",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": -192,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "22146c264094d8adf4e1ae93356dd4b3:o:Thumbstick Size",
+							"name": "Thumbstick Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "22146c264094d8adf4e1ae93356dd4b3:o:Thumbstick Size_X",
+							"name": "Thumbstick Size_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"2644a14b43598ee4ddf048b3d79dd957:i:InWidthOverride"
+							]
+						},
+						{
+							"id": "22146c264094d8adf4e1ae93356dd4b3:o:Thumbstick Size_Y",
+							"name": "Thumbstick Size_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c140d78e47b6105cf25d3fab2e489c3a:i:InHeightOverride"
+							]
+						},
+						{
+							"id": "22146c264094d8adf4e1ae93356dd4b3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2644a14b43598ee4ddf048b3d79dd957",
+					"class": "K2Node_CallFunction",
+					"title": "Set Width Override",
+					"x": 80,
+					"y": 672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2644a14b43598ee4ddf048b3d79dd957:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c140d78e47b6105cf25d3fab2e489c3a:o:then"
+							]
+						},
+						{
+							"id": "2644a14b43598ee4ddf048b3d79dd957:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2644a14b43598ee4ddf048b3d79dd957:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.SizeBox",
+							"defaultValue": null,
+							"links": [
+								"48347e13414975d47af206a6dc1f1a68:o:Container"
+							]
+						},
+						{
+							"id": "2644a14b43598ee4ddf048b3d79dd957:i:InWidthOverride",
+							"name": "InWidthOverride",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"22146c264094d8adf4e1ae93356dd4b3:o:Thumbstick Size_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "28d776b2489d3e77afb4b68423cbb648",
+					"class": "K2Node_PromotableOperator",
+					"title": "vector2d / vector2d",
+					"x": -384,
+					"y": 1312,
+					"comment": null,
+					"pins": [
+						{
+							"id": "28d776b2489d3e77afb4b68423cbb648:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"84e3bf9c4f713adcc6e1b68c98f058d3:o:Thumbstick Size"
+							]
+						},
+						{
+							"id": "28d776b2489d3e77afb4b68423cbb648:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": "(X=2.000000,Y=2.000000)",
+							"links": []
+						},
+						{
+							"id": "28d776b2489d3e77afb4b68423cbb648:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"1735e6e9448bf01929c02b91cbf85e28:i:LocalCoordinate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2dd5a8674cc3f88e313d0588c9ef4e74",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 2272,
+					"y": 992,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2dd5a8674cc3f88e313d0588c9ef4e74:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"794308544216e75065ee3681e91fb5ca:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2dd5a8674cc3f88e313d0588c9ef4e74:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c0e68b2142990f968d6d3ebe2c7b4793:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2dd5a8674cc3f88e313d0588c9ef4e74:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3ad578f843f187f588b48d85eed9f61b:i:B",
+								"994ceaae4a07cb65b371d98335ba8eec:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "306d37d8498025b8f357bcaab7928e7c",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 816,
+					"y": 720,
+					"comment": null,
+					"pins": [
+						{
+							"id": "306d37d8498025b8f357bcaab7928e7c:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f774bc9a41ae6309665021963aef186b:o:then"
+							]
+						},
+						{
+							"id": "306d37d8498025b8f357bcaab7928e7c:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"80cfd3984a204a75f4a9bbb5ac501918:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3ad578f843f187f588b48d85eed9f61b",
+					"class": "K2Node_CallFunction",
+					"title": "Select Float",
+					"x": 2991,
+					"y": 902,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3ad578f843f187f588b48d85eed9f61b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "3ad578f843f187f588b48d85eed9f61b:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"994ceaae4a07cb65b371d98335ba8eec:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3ad578f843f187f588b48d85eed9f61b:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"2dd5a8674cc3f88e313d0588c9ef4e74:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3ad578f843f187f588b48d85eed9f61b:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"632250914559d4912348c18dc3e862ac:o:Invert X"
+							]
+						},
+						{
+							"id": "3ad578f843f187f588b48d85eed9f61b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"1f13667c4986064b083c349e4d53c585:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3b8814fd442818fc54956db7ffccf297",
+					"class": "K2Node_VariableGet",
+					"title": "Get Scale Output",
+					"x": 3312,
+					"y": 1040,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3b8814fd442818fc54956db7ffccf297:o:Scale Output",
+							"name": "Scale Output",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"1f13667c4986064b083c349e4d53c585:i:B",
+								"42f4f7f74a60875de366149f6f03ecf3:i:B"
+							]
+						},
+						{
+							"id": "3b8814fd442818fc54956db7ffccf297:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "40f64998472e6ae5e8ae6fb2a50680f6",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 2751,
+					"y": 1126,
+					"comment": null,
+					"pins": [
+						{
+							"id": "40f64998472e6ae5e8ae6fb2a50680f6:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d8915b4a4555fbc575eda0a568e05d43:o:ReturnValue"
+							]
+						},
+						{
+							"id": "40f64998472e6ae5e8ae6fb2a50680f6:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-1.000000",
+							"links": []
+						},
+						{
+							"id": "40f64998472e6ae5e8ae6fb2a50680f6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e7ed9f734dc91e36dc229e987204dd3d:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "42f4f7f74a60875de366149f6f03ecf3",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 3308,
+					"y": 1134,
+					"comment": null,
+					"pins": [
+						{
+							"id": "42f4f7f74a60875de366149f6f03ecf3:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e7ed9f734dc91e36dc229e987204dd3d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "42f4f7f74a60875de366149f6f03ecf3:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3b8814fd442818fc54956db7ffccf297:o:Scale Output"
+							]
+						},
+						{
+							"id": "42f4f7f74a60875de366149f6f03ecf3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"796b426a4d4045ee4e2953bc1e17da63:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "48347e13414975d47af206a6dc1f1a68",
+					"class": "K2Node_VariableGet",
+					"title": "Get Container",
+					"x": -336,
+					"y": 736,
+					"comment": null,
+					"pins": [
+						{
+							"id": "48347e13414975d47af206a6dc1f1a68:o:Container",
+							"name": "Container",
+							"direction": "output",
+							"type": "object:/Script/UMG.SizeBox",
+							"defaultValue": null,
+							"links": [
+								"2644a14b43598ee4ddf048b3d79dd957:i:self",
+								"c140d78e47b6105cf25d3fab2e489c3a:i:self"
+							]
+						},
+						{
+							"id": "48347e13414975d47af206a6dc1f1a68:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "49c5f9b64ea2ac6909b5748e5057f55a",
+					"class": "K2Node_PromotableOperator",
+					"title": "vector2d * vector2d",
+					"x": -112,
+					"y": 1264,
+					"comment": null,
+					"pins": [
+						{
+							"id": "49c5f9b64ea2ac6909b5748e5057f55a:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"1735e6e9448bf01929c02b91cbf85e28:o:ViewportPosition"
+							]
+						},
+						{
+							"id": "49c5f9b64ea2ac6909b5748e5057f55a:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"cec69d654d86f13f7de50ca73c6d7125:o:ReturnValue"
+							]
+						},
+						{
+							"id": "49c5f9b64ea2ac6909b5748e5057f55a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"4bc5db32476ccacc43f0ec8c2f77d696:i:Position"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4bc5db32476ccacc43f0ec8c2f77d696",
+					"class": "K2Node_VariableSet",
+					"title": "Set Position",
+					"x": 64,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4bc5db32476ccacc43f0ec8c2f77d696:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bfeea2a0459cf14ade502d8070652368:o:then"
+							]
+						},
+						{
+							"id": "4bc5db32476ccacc43f0ec8c2f77d696:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f774bc9a41ae6309665021963aef186b:i:execute"
+							]
+						},
+						{
+							"id": "4bc5db32476ccacc43f0ec8c2f77d696:i:Position",
+							"name": "Position",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"49c5f9b64ea2ac6909b5748e5057f55a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4bc5db32476ccacc43f0ec8c2f77d696:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4bc5db32476ccacc43f0ec8c2f77d696:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4fbb9700455ad9b39eb2e99764e30c3b",
+					"class": "K2Node_Event",
+					"title": "Event Pre Construct",
+					"x": -592,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4fbb9700455ad9b39eb2e99764e30c3b:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4fbb9700455ad9b39eb2e99764e30c3b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c140d78e47b6105cf25d3fab2e489c3a:i:execute"
+							]
+						},
+						{
+							"id": "4fbb9700455ad9b39eb2e99764e30c3b:o:IsDesignTime",
+							"name": "IsDesignTime",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "501c3d434a5d44b61d0ff389333b1223",
+					"class": "K2Node_VariableGet",
+					"title": "Get Stick",
+					"x": 2224,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "501c3d434a5d44b61d0ff389333b1223:o:Stick",
+							"name": "Stick",
+							"direction": "output",
+							"type": "object:/Script/UMG.Image",
+							"defaultValue": null,
+							"links": [
+								"14d18bb44bec241fae4bea8d2f4a7dcd:i:self"
+							]
+						},
+						{
+							"id": "501c3d434a5d44b61d0ff389333b1223:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "50cb59894cfb877ae35e1fb3e98353bb",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 1536,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "50cb59894cfb877ae35e1fb3e98353bb:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e3b7b8bc44061b059d7bc58ed3fc82fc:o:ReturnValue"
+							]
+						},
+						{
+							"id": "50cb59894cfb877ae35e1fb3e98353bb:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-1.000000",
+							"links": []
+						},
+						{
+							"id": "50cb59894cfb877ae35e1fb3e98353bb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c00089464c92fc8253455b8cfffbb942:i:Min"
+							]
+						}
+					]
+				},
+				{
+					"guid": "55b8df44436ebdb2af77b19985d11290",
+					"class": "K2Node_CallDelegate",
+					"title": "Call Stick Input",
+					"x": 3936,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "55b8df44436ebdb2af77b19985d11290:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"14d18bb44bec241fae4bea8d2f4a7dcd:o:then"
+							]
+						},
+						{
+							"id": "55b8df44436ebdb2af77b19985d11290:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "55b8df44436ebdb2af77b19985d11290:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "55b8df44436ebdb2af77b19985d11290:i:NewParam",
+							"name": "NewParam",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "55b8df44436ebdb2af77b19985d11290:i:NewParam_X",
+							"name": "NewParam_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c5b2692f44e4374367ba52ad154daa14:o:ReturnValue"
+							]
+						},
+						{
+							"id": "55b8df44436ebdb2af77b19985d11290:i:NewParam_Y",
+							"name": "NewParam_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"796b426a4d4045ee4e2953bc1e17da63:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "61a4e6194df59dcee0ac499ea4435481",
+					"class": "K2Node_CallFunction",
+					"title": "Set Render Translation",
+					"x": 816,
+					"y": 1376,
+					"comment": null,
+					"pins": [
+						{
+							"id": "61a4e6194df59dcee0ac499ea4435481:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f774bc9a41ae6309665021963aef186b:o:else"
+							]
+						},
+						{
+							"id": "61a4e6194df59dcee0ac499ea4435481:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d3e890e9421075fa5c4f54a4afda22bb:i:execute"
+							]
+						},
+						{
+							"id": "61a4e6194df59dcee0ac499ea4435481:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"d1993ce14892454e0e5b669646b44b1f:o:Stick"
+							]
+						},
+						{
+							"id": "61a4e6194df59dcee0ac499ea4435481:i:Translation",
+							"name": "Translation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "61a4e6194df59dcee0ac499ea4435481:i:Translation_X",
+							"name": "Translation_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "61a4e6194df59dcee0ac499ea4435481:i:Translation_Y",
+							"name": "Translation_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "632250914559d4912348c18dc3e862ac",
+					"class": "K2Node_VariableGet",
+					"title": "Get Invert X",
+					"x": 2991,
+					"y": 1046,
+					"comment": null,
+					"pins": [
+						{
+							"id": "632250914559d4912348c18dc3e862ac:o:Invert X",
+							"name": "Invert X",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"3ad578f843f187f588b48d85eed9f61b:i:bPickA"
+							]
+						},
+						{
+							"id": "632250914559d4912348c18dc3e862ac:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6907a43e44801da0de4611940aad8285",
+					"class": "K2Node_PromotableOperator",
+					"title": "float - float",
+					"x": 1536,
+					"y": 912,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6907a43e44801da0de4611940aad8285:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"bda0db064617aadecafc0ba2096256f7:o:LocationY"
+							]
+						},
+						{
+							"id": "6907a43e44801da0de4611940aad8285:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"078a4fc4426a2e9e956787af43ddf8c0:o:Initial Touch Location_Y"
+							]
+						},
+						{
+							"id": "6907a43e44801da0de4611940aad8285:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c00089464c92fc8253455b8cfffbb942:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6d9b19a34bbd0741742e9c86d93f7552",
+					"class": "K2Node_VariableGet",
+					"title": "Get TrackInput",
+					"x": 1408,
+					"y": 1504,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6d9b19a34bbd0741742e9c86d93f7552:o:TrackInput",
+							"name": "TrackInput",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"96626dee42537c6028ec85b7049deaf2:i:Condition"
+							]
+						},
+						{
+							"id": "6d9b19a34bbd0741742e9c86d93f7552:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "794308544216e75065ee3681e91fb5ca",
+					"class": "K2Node_CallFunction",
+					"title": "Clamp (Float)",
+					"x": 1824,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "794308544216e75065ee3681e91fb5ca:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "794308544216e75065ee3681e91fb5ca:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ed9dd787401ac25163209496a7bb6b55:o:ReturnValue"
+							]
+						},
+						{
+							"id": "794308544216e75065ee3681e91fb5ca:i:Min",
+							"name": "Min",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"da4be77743c319392e516dbcac8c6bcc:o:ReturnValue"
+							]
+						},
+						{
+							"id": "794308544216e75065ee3681e91fb5ca:i:Max",
+							"name": "Max",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c0e68b2142990f968d6d3ebe2c7b4793:o:ReturnValue"
+							]
+						},
+						{
+							"id": "794308544216e75065ee3681e91fb5ca:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"14d18bb44bec241fae4bea8d2f4a7dcd:i:Translation_X",
+								"2dd5a8674cc3f88e313d0588c9ef4e74:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "796b426a4d4045ee4e2953bc1e17da63",
+					"class": "K2Node_CallFunction",
+					"title": "Select Float",
+					"x": 3552,
+					"y": 1102,
+					"comment": null,
+					"pins": [
+						{
+							"id": "796b426a4d4045ee4e2953bc1e17da63:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "796b426a4d4045ee4e2953bc1e17da63:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"42f4f7f74a60875de366149f6f03ecf3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "796b426a4d4045ee4e2953bc1e17da63:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "796b426a4d4045ee4e2953bc1e17da63:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"1a4f231340572168442fd18f814ba87d:o:TrackInput"
+							]
+						},
+						{
+							"id": "796b426a4d4045ee4e2953bc1e17da63:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"55b8df44436ebdb2af77b19985d11290:i:NewParam_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7e3a3cad455243c6e92b11baa2fe82c7",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 832,
+					"y": 784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7e3a3cad455243c6e92b11baa2fe82c7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "7e3a3cad455243c6e92b11baa2fe82c7:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7e3a3cad455243c6e92b11baa2fe82c7:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "7e3a3cad455243c6e92b11baa2fe82c7:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"bda0db064617aadecafc0ba2096256f7:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "80cfd3984a204a75f4a9bbb5ac501918",
+					"class": "K2Node_VariableSet",
+					"title": "Set TrackInput",
+					"x": 1552,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "80cfd3984a204a75f4a9bbb5ac501918:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"306d37d8498025b8f357bcaab7928e7c:o:OutputPin"
+							]
+						},
+						{
+							"id": "80cfd3984a204a75f4a9bbb5ac501918:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"14d18bb44bec241fae4bea8d2f4a7dcd:i:execute"
+							]
+						},
+						{
+							"id": "80cfd3984a204a75f4a9bbb5ac501918:i:TrackInput",
+							"name": "TrackInput",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"bda0db064617aadecafc0ba2096256f7:o:bIsCurrentlyPressed"
+							]
+						},
+						{
+							"id": "80cfd3984a204a75f4a9bbb5ac501918:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "80cfd3984a204a75f4a9bbb5ac501918:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "84e3bf9c4f713adcc6e1b68c98f058d3",
+					"class": "K2Node_VariableGet",
+					"title": "Get Thumbstick Size",
+					"x": -544,
+					"y": 1312,
+					"comment": null,
+					"pins": [
+						{
+							"id": "84e3bf9c4f713adcc6e1b68c98f058d3:o:Thumbstick Size",
+							"name": "Thumbstick Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"28d776b2489d3e77afb4b68423cbb648:i:A"
+							]
+						},
+						{
+							"id": "84e3bf9c4f713adcc6e1b68c98f058d3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8eea2e2a4d133a1ec0e7d1b55ecdc660",
+					"class": "K2Node_VariableGet",
+					"title": "Get TrackInput",
+					"x": 384,
+					"y": 1232,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8eea2e2a4d133a1ec0e7d1b55ecdc660:o:TrackInput",
+							"name": "TrackInput",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f774bc9a41ae6309665021963aef186b:i:Condition"
+							]
+						},
+						{
+							"id": "8eea2e2a4d133a1ec0e7d1b55ecdc660:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8fe9958b4492efb419d76c9c440b3ea1",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 1136,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8fe9958b4492efb419d76c9c440b3ea1:o:Thumbstick Size",
+							"name": "Thumbstick Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8fe9958b4492efb419d76c9c440b3ea1:o:Thumbstick Size_X",
+							"name": "Thumbstick Size_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c0e68b2142990f968d6d3ebe2c7b4793:i:A"
+							]
+						},
+						{
+							"id": "8fe9958b4492efb419d76c9c440b3ea1:o:Thumbstick Size_Y",
+							"name": "Thumbstick Size_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e3b7b8bc44061b059d7bc58ed3fc82fc:i:A"
+							]
+						},
+						{
+							"id": "8fe9958b4492efb419d76c9c440b3ea1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "96626dee42537c6028ec85b7049deaf2",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1408,
+					"y": 1392,
+					"comment": null,
+					"pins": [
+						{
+							"id": "96626dee42537c6028ec85b7049deaf2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d3e890e9421075fa5c4f54a4afda22bb:o:then"
+							]
+						},
+						{
+							"id": "96626dee42537c6028ec85b7049deaf2:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"6d9b19a34bbd0741742e9c86d93f7552:o:TrackInput"
+							]
+						},
+						{
+							"id": "96626dee42537c6028ec85b7049deaf2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "96626dee42537c6028ec85b7049deaf2:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"118040e645570350edfdce86e191694c:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "994ceaae4a07cb65b371d98335ba8eec",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 2783,
+					"y": 918,
+					"comment": null,
+					"pins": [
+						{
+							"id": "994ceaae4a07cb65b371d98335ba8eec:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"2dd5a8674cc3f88e313d0588c9ef4e74:o:ReturnValue"
+							]
+						},
+						{
+							"id": "994ceaae4a07cb65b371d98335ba8eec:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-1.000000",
+							"links": []
+						},
+						{
+							"id": "994ceaae4a07cb65b371d98335ba8eec:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3ad578f843f187f588b48d85eed9f61b:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bda0db064617aadecafc0ba2096256f7",
+					"class": "K2Node_CallFunction",
+					"title": "Get Input Touch State",
+					"x": 1104,
+					"y": 767,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bda0db064617aadecafc0ba2096256f7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"7e3a3cad455243c6e92b11baa2fe82c7:o:ReturnValue"
+							]
+						},
+						{
+							"id": "bda0db064617aadecafc0ba2096256f7:i:FingerIndex",
+							"name": "FingerIndex",
+							"direction": "input",
+							"type": "byte:/Script/InputCore.ETouchIndex",
+							"defaultValue": null,
+							"links": [
+								"c51f51e64ed2562c50ec34ab96417b8b:o:Touch Target"
+							]
+						},
+						{
+							"id": "bda0db064617aadecafc0ba2096256f7:o:LocationX",
+							"name": "LocationX",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"ed9dd787401ac25163209496a7bb6b55:i:A"
+							]
+						},
+						{
+							"id": "bda0db064617aadecafc0ba2096256f7:o:LocationY",
+							"name": "LocationY",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"6907a43e44801da0de4611940aad8285:i:A"
+							]
+						},
+						{
+							"id": "bda0db064617aadecafc0ba2096256f7:o:bIsCurrentlyPressed",
+							"name": "bIsCurrentlyPressed",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"80cfd3984a204a75f4a9bbb5ac501918:i:TrackInput"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bfeea2a0459cf14ade502d8070652368",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": -800,
+					"y": 1120,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bfeea2a0459cf14ade502d8070652368:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bfeea2a0459cf14ade502d8070652368:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4bc5db32476ccacc43f0ec8c2f77d696:i:execute"
+							]
+						},
+						{
+							"id": "bfeea2a0459cf14ade502d8070652368:o:MyGeometry",
+							"name": "MyGeometry",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.Geometry",
+							"defaultValue": null,
+							"links": [
+								"1735e6e9448bf01929c02b91cbf85e28:i:Geometry"
+							]
+						},
+						{
+							"id": "bfeea2a0459cf14ade502d8070652368:o:InDeltaTime",
+							"name": "InDeltaTime",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c00089464c92fc8253455b8cfffbb942",
+					"class": "K2Node_CallFunction",
+					"title": "Clamp (Float)",
+					"x": 1824,
+					"y": 1072,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c00089464c92fc8253455b8cfffbb942:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "c00089464c92fc8253455b8cfffbb942:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"6907a43e44801da0de4611940aad8285:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c00089464c92fc8253455b8cfffbb942:i:Min",
+							"name": "Min",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"50cb59894cfb877ae35e1fb3e98353bb:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c00089464c92fc8253455b8cfffbb942:i:Max",
+							"name": "Max",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e3b7b8bc44061b059d7bc58ed3fc82fc:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c00089464c92fc8253455b8cfffbb942:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"14d18bb44bec241fae4bea8d2f4a7dcd:i:Translation_Y",
+								"d8915b4a4555fbc575eda0a568e05d43:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c0e68b2142990f968d6d3ebe2c7b4793",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 1344,
+					"y": 1088,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0e68b2142990f968d6d3ebe2c7b4793:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"8fe9958b4492efb419d76c9c440b3ea1:o:Thumbstick Size_X"
+							]
+						},
+						{
+							"id": "c0e68b2142990f968d6d3ebe2c7b4793:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "c0e68b2142990f968d6d3ebe2c7b4793:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"2dd5a8674cc3f88e313d0588c9ef4e74:i:B",
+								"794308544216e75065ee3681e91fb5ca:i:Max",
+								"da4be77743c319392e516dbcac8c6bcc:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c140d78e47b6105cf25d3fab2e489c3a",
+					"class": "K2Node_CallFunction",
+					"title": "Set Height Override",
+					"x": -192,
+					"y": 672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c140d78e47b6105cf25d3fab2e489c3a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4fbb9700455ad9b39eb2e99764e30c3b:o:then"
+							]
+						},
+						{
+							"id": "c140d78e47b6105cf25d3fab2e489c3a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2644a14b43598ee4ddf048b3d79dd957:i:execute"
+							]
+						},
+						{
+							"id": "c140d78e47b6105cf25d3fab2e489c3a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.SizeBox",
+							"defaultValue": null,
+							"links": [
+								"48347e13414975d47af206a6dc1f1a68:o:Container"
+							]
+						},
+						{
+							"id": "c140d78e47b6105cf25d3fab2e489c3a:i:InHeightOverride",
+							"name": "InHeightOverride",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"22146c264094d8adf4e1ae93356dd4b3:o:Thumbstick Size_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c51f51e64ed2562c50ec34ab96417b8b",
+					"class": "K2Node_VariableGet",
+					"title": "Get Touch Target",
+					"x": 944,
+					"y": 864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c51f51e64ed2562c50ec34ab96417b8b:o:Touch Target",
+							"name": "Touch Target",
+							"direction": "output",
+							"type": "byte:/Script/InputCore.ETouchIndex",
+							"defaultValue": null,
+							"links": [
+								"bda0db064617aadecafc0ba2096256f7:i:FingerIndex"
+							]
+						},
+						{
+							"id": "c51f51e64ed2562c50ec34ab96417b8b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c5b2692f44e4374367ba52ad154daa14",
+					"class": "K2Node_CallFunction",
+					"title": "Select Float",
+					"x": 3552,
+					"y": 912,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c5b2692f44e4374367ba52ad154daa14:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "c5b2692f44e4374367ba52ad154daa14:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"1f13667c4986064b083c349e4d53c585:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c5b2692f44e4374367ba52ad154daa14:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "c5b2692f44e4374367ba52ad154daa14:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"1a4f231340572168442fd18f814ba87d:o:TrackInput"
+							]
+						},
+						{
+							"id": "c5b2692f44e4374367ba52ad154daa14:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"55b8df44436ebdb2af77b19985d11290:i:NewParam_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cec69d654d86f13f7de50ca73c6d7125",
+					"class": "K2Node_CallFunction",
+					"title": "Get Viewport Scale",
+					"x": -144,
+					"y": 1344,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cec69d654d86f13f7de50ca73c6d7125:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetLayoutLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetLayoutLibrary",
+							"links": []
+						},
+						{
+							"id": "cec69d654d86f13f7de50ca73c6d7125:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cec69d654d86f13f7de50ca73c6d7125:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"49c5f9b64ea2ac6909b5748e5057f55a:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d1993ce14892454e0e5b669646b44b1f",
+					"class": "K2Node_VariableGet",
+					"title": "Get Stick",
+					"x": 816,
+					"y": 1568,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d1993ce14892454e0e5b669646b44b1f:o:Stick",
+							"name": "Stick",
+							"direction": "output",
+							"type": "object:/Script/UMG.Image",
+							"defaultValue": null,
+							"links": [
+								"61a4e6194df59dcee0ac499ea4435481:i:self"
+							]
+						},
+						{
+							"id": "d1993ce14892454e0e5b669646b44b1f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d3e890e9421075fa5c4f54a4afda22bb",
+					"class": "K2Node_CallFunction",
+					"title": "Touch Input Check",
+					"x": 1072,
+					"y": 1376,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d3e890e9421075fa5c4f54a4afda22bb:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"61a4e6194df59dcee0ac499ea4435481:o:then"
+							]
+						},
+						{
+							"id": "d3e890e9421075fa5c4f54a4afda22bb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"96626dee42537c6028ec85b7049deaf2:i:execute"
+							]
+						},
+						{
+							"id": "d3e890e9421075fa5c4f54a4afda22bb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d3e890e9421075fa5c4f54a4afda22bb:i:FingerIndex",
+							"name": "FingerIndex",
+							"direction": "input",
+							"type": "byte:/Script/InputCore.ETouchIndex",
+							"defaultValue": "Touch1",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d8915b4a4555fbc575eda0a568e05d43",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 2272,
+					"y": 1168,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d8915b4a4555fbc575eda0a568e05d43:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c00089464c92fc8253455b8cfffbb942:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d8915b4a4555fbc575eda0a568e05d43:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e3b7b8bc44061b059d7bc58ed3fc82fc:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d8915b4a4555fbc575eda0a568e05d43:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"40f64998472e6ae5e8ae6fb2a50680f6:i:A",
+								"e7ed9f734dc91e36dc229e987204dd3d:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "da4be77743c319392e516dbcac8c6bcc",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 1520,
+					"y": 992,
+					"comment": null,
+					"pins": [
+						{
+							"id": "da4be77743c319392e516dbcac8c6bcc:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c0e68b2142990f968d6d3ebe2c7b4793:o:ReturnValue"
+							]
+						},
+						{
+							"id": "da4be77743c319392e516dbcac8c6bcc:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-1.000000",
+							"links": []
+						},
+						{
+							"id": "da4be77743c319392e516dbcac8c6bcc:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"794308544216e75065ee3681e91fb5ca:i:Min"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3b7b8bc44061b059d7bc58ed3fc82fc",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 1344,
+					"y": 1184,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3b7b8bc44061b059d7bc58ed3fc82fc:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"8fe9958b4492efb419d76c9c440b3ea1:o:Thumbstick Size_Y"
+							]
+						},
+						{
+							"id": "e3b7b8bc44061b059d7bc58ed3fc82fc:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "e3b7b8bc44061b059d7bc58ed3fc82fc:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"50cb59894cfb877ae35e1fb3e98353bb:i:A",
+								"c00089464c92fc8253455b8cfffbb942:i:Max",
+								"d8915b4a4555fbc575eda0a568e05d43:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e7ed9f734dc91e36dc229e987204dd3d",
+					"class": "K2Node_CallFunction",
+					"title": "Select Float",
+					"x": 2975,
+					"y": 1110,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e7ed9f734dc91e36dc229e987204dd3d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "e7ed9f734dc91e36dc229e987204dd3d:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"40f64998472e6ae5e8ae6fb2a50680f6:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e7ed9f734dc91e36dc229e987204dd3d:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d8915b4a4555fbc575eda0a568e05d43:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e7ed9f734dc91e36dc229e987204dd3d:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f46411494a739e90f98935895b9a27cc:o:Invert Y"
+							]
+						},
+						{
+							"id": "e7ed9f734dc91e36dc229e987204dd3d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"42f4f7f74a60875de366149f6f03ecf3:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ed9dd787401ac25163209496a7bb6b55",
+					"class": "K2Node_PromotableOperator",
+					"title": "float - float",
+					"x": 1536,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ed9dd787401ac25163209496a7bb6b55:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"bda0db064617aadecafc0ba2096256f7:o:LocationX"
+							]
+						},
+						{
+							"id": "ed9dd787401ac25163209496a7bb6b55:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"078a4fc4426a2e9e956787af43ddf8c0:o:Initial Touch Location_X"
+							]
+						},
+						{
+							"id": "ed9dd787401ac25163209496a7bb6b55:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"794308544216e75065ee3681e91fb5ca:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f46411494a739e90f98935895b9a27cc",
+					"class": "K2Node_VariableGet",
+					"title": "Get Invert Y",
+					"x": 2975,
+					"y": 1254,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f46411494a739e90f98935895b9a27cc:o:Invert Y",
+							"name": "Invert Y",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e7ed9f734dc91e36dc229e987204dd3d:i:bPickA"
+							]
+						},
+						{
+							"id": "f46411494a739e90f98935895b9a27cc:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_Thumbstick.UI_Thumbstick_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f774bc9a41ae6309665021963aef186b",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 384,
+					"y": 1120,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f774bc9a41ae6309665021963aef186b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4bc5db32476ccacc43f0ec8c2f77d696:o:then"
+							]
+						},
+						{
+							"id": "f774bc9a41ae6309665021963aef186b:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8eea2e2a4d133a1ec0e7d1b55ecdc660:o:TrackInput"
+							]
+						},
+						{
+							"id": "f774bc9a41ae6309665021963aef186b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"306d37d8498025b8f357bcaab7928e7c:i:InputPin"
+							]
+						},
+						{
+							"id": "f774bc9a41ae6309665021963aef186b:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"61a4e6194df59dcee0ac499ea4435481:i:execute"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "0ffb7cd743dc6c787249d187c790b518",
+					"text": "Scale Input By Exposed Value",
+					"x": 3248,
+					"y": 816,
+					"width": 256,
+					"height": 528
+				},
+				{
+					"guid": "2429a73c40cf760ac5da40b48113f14e",
+					"text": "Normalize Inputs",
+					"x": 2230,
+					"y": 934,
+					"width": 224,
+					"height": 336
+				},
+				{
+					"guid": "40b7573e4e40aa74a31b3e9815f9a235",
+					"text": "Compare Stored Initial touch location to current touch location. Limit to Thumbstick size.",
+					"x": 752,
+					"y": 640,
+					"width": 1308,
+					"height": 652
+				},
+				{
+					"guid": "470092384204a1eadd9dc19d7fff029c",
+					"text": "Invert inputs by exposed Bool",
+					"x": 2528,
+					"y": 816,
+					"width": 704,
+					"height": 512
+				},
+				{
+					"guid": "4ace86bd49944b740d5899a96aeca227",
+					"text": "Store Position of Thumbstick on screen.",
+					"x": -608,
+					"y": 1072,
+					"width": 861,
+					"height": 368
+				},
+				{
+					"guid": "adfc7131408c06459a90be9644217dc5",
+					"text": "Wait for input",
+					"x": 752,
+					"y": 1312,
+					"width": 1190,
+					"height": 330
+				},
+				{
+					"guid": "ba8cb7c243953324874e0faa37960276",
+					"text": "Zero input if input stops being detected",
+					"x": 3520,
+					"y": 816,
+					"width": 272,
+					"height": 528
+				},
+				{
+					"guid": "d843f6394950fe85e74eefb85301f053",
+					"text": "Modify Input",
+					"x": 2464,
+					"y": 752,
+					"width": 1364,
+					"height": 628
+				}
+			]
+		}
+	]
+}

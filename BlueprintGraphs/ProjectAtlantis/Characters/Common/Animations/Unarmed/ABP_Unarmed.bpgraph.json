@@ -1,0 +1,1760 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed",
+	"asset": "ABP_Unarmed",
+	"parentClass": "AnimInstance",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "AnimGraph",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "225929434d10442114b9619bce666a10",
+					"class": "AnimGraphNode_Slot",
+					"title": "Slot 'DefaultSlot'",
+					"x": -576,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "225929434d10442114b9619bce666a10:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"522947644d164b12cc7f14b433900011:o:Pose"
+							]
+						},
+						{
+							"id": "225929434d10442114b9619bce666a10:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"bde61ffc4e653ce138e8e8bb38aa415c:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "522947644d164b12cc7f14b433900011",
+					"class": "AnimGraphNode_StateMachine",
+					"title": "Main States",
+					"x": -768,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "522947644d164b12cc7f14b433900011:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"225929434d10442114b9619bce666a10:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bde61ffc4e653ce138e8e8bb38aa415c",
+					"class": "AnimGraphNode_ControlRig",
+					"title": "Control Rig",
+					"x": -352,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bde61ffc4e653ce138e8e8bb38aa415c:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"225929434d10442114b9619bce666a10:o:Pose"
+							]
+						},
+						{
+							"id": "bde61ffc4e653ce138e8e8bb38aa415c:i:Alpha",
+							"name": "Alpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "bde61ffc4e653ce138e8e8bb38aa415c:i:bAlphaBoolEnabled",
+							"name": "bAlphaBoolEnabled",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "True",
+							"links": []
+						},
+						{
+							"id": "bde61ffc4e653ce138e8e8bb38aa415c:i:AlphaCurveName",
+							"name": "AlphaCurveName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "bde61ffc4e653ce138e8e8bb38aa415c:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"e570645d48a8ad10cbdff3b10df080e3:i:Result"
+							]
+						},
+						{
+							"id": "bde61ffc4e653ce138e8e8bb38aa415c:i:ShouldDoIKTrace",
+							"name": "ShouldDoIKTrace",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d894933a42e52759831718a9100d8499:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bfe5ef664d6ba9e88d30a7b3d8c028db",
+					"class": "AnimGraphNode_SaveCachedPose",
+					"title": "Save cached pose 'Locomotion'",
+					"x": -576,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bfe5ef664d6ba9e88d30a7b3d8c028db:i:Pose",
+							"name": "Pose",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"c8aa021d402fc7ccabb7ca8625cf9d5e:o:Pose"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c8aa021d402fc7ccabb7ca8625cf9d5e",
+					"class": "AnimGraphNode_StateMachine",
+					"title": "Locomotion",
+					"x": -768,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c8aa021d402fc7ccabb7ca8625cf9d5e:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"bfe5ef664d6ba9e88d30a7b3d8c028db:i:Pose"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d894933a42e52759831718a9100d8499",
+					"class": "K2Node_CallFunction",
+					"title": "NOT Boolean",
+					"x": -320,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d894933a42e52759831718a9100d8499:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "d894933a42e52759831718a9100d8499:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f97e55a74f17297369ff42b70572c528:o:IsFalling"
+							]
+						},
+						{
+							"id": "d894933a42e52759831718a9100d8499:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"bde61ffc4e653ce138e8e8bb38aa415c:i:ShouldDoIKTrace"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e570645d48a8ad10cbdff3b10df080e3",
+					"class": "AnimGraphNode_Root",
+					"title": "Output Pose",
+					"x": -64,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e570645d48a8ad10cbdff3b10df080e3:i:Result",
+							"name": "Result",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"bde61ffc4e653ce138e8e8bb38aa415c:o:Pose"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f97e55a74f17297369ff42b70572c528",
+					"class": "K2Node_VariableGet",
+					"title": "Get IsFalling",
+					"x": -320,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f97e55a74f17297369ff42b70572c528:o:IsFalling",
+							"name": "IsFalling",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d894933a42e52759831718a9100d8499:i:A"
+							]
+						},
+						{
+							"id": "f97e55a74f17297369ff42b70572c528:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0890d4344a08ba2f07dc83934d067291",
+					"class": "K2Node_VariableGet",
+					"title": "Get Velocity",
+					"x": 1248,
+					"y": -128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0890d4344a08ba2f07dc83934d067291:o:Velocity",
+							"name": "Velocity",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"d5c8a62f4f30da651707cca6559c35a5:i:Velocity"
+							]
+						},
+						{
+							"id": "0890d4344a08ba2f07dc83934d067291:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1f5ff1764918aece5a9d948f3f0b8f52",
+					"class": "K2Node_VariableGet",
+					"title": "Get CharacterMovement",
+					"x": -448,
+					"y": -560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1f5ff1764918aece5a9d948f3f0b8f52:o:CharacterMovement",
+							"name": "CharacterMovement",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"6d1b74b0430e07949a9648b339239594:i:MovementComponent"
+							]
+						},
+						{
+							"id": "1f5ff1764918aece5a9d948f3f0b8f52:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"b933f21d42f09f880aa13892b5bf428d:o:Output_Get"
+							]
+						}
+					]
+				},
+				{
+					"guid": "205fbb2141df350a890580b651c62142",
+					"class": "K2Node_PromotableOperator",
+					"title": "Not Equal (Vector)",
+					"x": 256,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "205fbb2141df350a890580b651c62142:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"8549e80b4a8e0601bf3e92a8f5dde8bb:o:ReturnValue"
+							]
+						},
+						{
+							"id": "205fbb2141df350a890580b651c62142:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "205fbb2141df350a890580b651c62142:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"91423472465bff1f9aebffae9555d725:i:B"
+							]
+						},
+						{
+							"id": "205fbb2141df350a890580b651c62142:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "23fab2764cc016f3d763558c7fc61ce8",
+					"class": "K2Node_CallFunction",
+					"title": "Get Owning Actor",
+					"x": -1216,
+					"y": -576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "23fab2764cc016f3d763558c7fc61ce8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.AnimInstance",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "23fab2764cc016f3d763558c7fc61ce8:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"f83b1190492df16c27725f86140aa505:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "31092e8c477fb1e30815f1bd9b6855b3",
+					"class": "K2Node_CallFunction",
+					"title": "Vector Length XY",
+					"x": 320,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "31092e8c477fb1e30815f1bd9b6855b3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "31092e8c477fb1e30815f1bd9b6855b3:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"eb7c997947872223e6b1fb8d0af984be:o:Output_Get"
+							]
+						},
+						{
+							"id": "31092e8c477fb1e30815f1bd9b6855b3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"454ea064492a35091ffbf1bcf163610c:i:GroundSpeed"
+							]
+						}
+					]
+				},
+				{
+					"guid": "339c7e80414adb1e2bebd5aacf950d2d",
+					"class": "K2Node_Event",
+					"title": "Event Blueprint Initialize Animation",
+					"x": -1264,
+					"y": -640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "339c7e80414adb1e2bebd5aacf950d2d:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "339c7e80414adb1e2bebd5aacf950d2d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f83b1190492df16c27725f86140aa505:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "454ea064492a35091ffbf1bcf163610c",
+					"class": "K2Node_VariableSet",
+					"title": "Set GroundSpeed",
+					"x": 528,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "454ea064492a35091ffbf1bcf163610c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eb7c997947872223e6b1fb8d0af984be:o:then"
+							]
+						},
+						{
+							"id": "454ea064492a35091ffbf1bcf163610c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bcbd703348373be5a799dd9ff9cb569e:i:execute"
+							]
+						},
+						{
+							"id": "454ea064492a35091ffbf1bcf163610c:i:GroundSpeed",
+							"name": "GroundSpeed",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"31092e8c477fb1e30815f1bd9b6855b3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "454ea064492a35091ffbf1bcf163610c:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "454ea064492a35091ffbf1bcf163610c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6638184b417c5f55463ba78c5a03f010",
+					"class": "K2Node_CallFunction",
+					"title": "Is Falling",
+					"x": -32,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6638184b417c5f55463ba78c5a03f010:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.NavMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"81063a8b4637b78cab14e481eeef8e65:o:MovementComponent"
+							]
+						},
+						{
+							"id": "6638184b417c5f55463ba78c5a03f010:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"774ae07941bff488f72c24b3b276208a:i:IsFalling"
+							]
+						}
+					]
+				},
+				{
+					"guid": "68c189e4499fcdd2a6d94c94a55b46eb",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": -880,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "68c189e4499fcdd2a6d94c94a55b46eb:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"98d0bb544e19dcf9ad0daaa0c832f6d0:o:then"
+							]
+						},
+						{
+							"id": "68c189e4499fcdd2a6d94c94a55b46eb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da1dbdcf4012fa38e5018bacadcc84b2:i:execute"
+							]
+						},
+						{
+							"id": "68c189e4499fcdd2a6d94c94a55b46eb:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "68c189e4499fcdd2a6d94c94a55b46eb:o:Character",
+							"name": "Character",
+							"direction": "output",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "68c189e4499fcdd2a6d94c94a55b46eb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6d1b74b0430e07949a9648b339239594",
+					"class": "K2Node_VariableSet",
+					"title": "Set MovementComponent",
+					"x": -144,
+					"y": -624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6d1b74b0430e07949a9648b339239594:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b933f21d42f09f880aa13892b5bf428d:o:then"
+							]
+						},
+						{
+							"id": "6d1b74b0430e07949a9648b339239594:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6d1b74b0430e07949a9648b339239594:i:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "input",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"1f5ff1764918aece5a9d948f3f0b8f52:o:CharacterMovement"
+							]
+						},
+						{
+							"id": "6d1b74b0430e07949a9648b339239594:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6d1b74b0430e07949a9648b339239594:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "76e9e64d4dac69ef3aa0648f44a2c57b",
+					"class": "K2Node_CallFunction",
+					"title": "Clamp (Float)",
+					"x": 1680,
+					"y": -96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "76e9e64d4dac69ef3aa0648f44a2c57b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "76e9e64d4dac69ef3aa0648f44a2c57b:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d5c8a62f4f30da651707cca6559c35a5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "76e9e64d4dac69ef3aa0648f44a2c57b:i:Min",
+							"name": "Min",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-45.000000",
+							"links": []
+						},
+						{
+							"id": "76e9e64d4dac69ef3aa0648f44a2c57b:i:Max",
+							"name": "Max",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "45.000000",
+							"links": []
+						},
+						{
+							"id": "76e9e64d4dac69ef3aa0648f44a2c57b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"daa123e34ee8fe97e7ece1a035fbdb63:i:Option 1"
+							]
+						}
+					]
+				},
+				{
+					"guid": "774ae07941bff488f72c24b3b276208a",
+					"class": "K2Node_VariableSet",
+					"title": "Set IsFalling",
+					"x": 272,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "774ae07941bff488f72c24b3b276208a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a642f22344e86023662f388418815d49:o:OutputPin"
+							]
+						},
+						{
+							"id": "774ae07941bff488f72c24b3b276208a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "774ae07941bff488f72c24b3b276208a:i:IsFalling",
+							"name": "IsFalling",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"6638184b417c5f55463ba78c5a03f010:o:ReturnValue"
+							]
+						},
+						{
+							"id": "774ae07941bff488f72c24b3b276208a:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "774ae07941bff488f72c24b3b276208a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7da3135846703afec164adbfb3164e73",
+					"class": "K2Node_VariableGet",
+					"title": "Get Character",
+					"x": 1040,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7da3135846703afec164adbfb3164e73:o:Character",
+							"name": "Character",
+							"direction": "output",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"9bf5a206492d5e0e153581aabf93ee0c:i:self"
+							]
+						},
+						{
+							"id": "7da3135846703afec164adbfb3164e73:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7e838dbe4e664f51e389899658e13632",
+					"class": "K2Node_VariableSet",
+					"title": "Set ShouldMove",
+					"x": 768,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7e838dbe4e664f51e389899658e13632:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dba4829d47d793019f696aaaefce981f:o:OutputPin"
+							]
+						},
+						{
+							"id": "7e838dbe4e664f51e389899658e13632:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7e838dbe4e664f51e389899658e13632:i:ShouldMove",
+							"name": "ShouldMove",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"91423472465bff1f9aebffae9555d725:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7e838dbe4e664f51e389899658e13632:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "7e838dbe4e664f51e389899658e13632:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "81063a8b4637b78cab14e481eeef8e65",
+					"class": "K2Node_VariableGet",
+					"title": "Get MovementComponent",
+					"x": -240,
+					"y": 464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "81063a8b4637b78cab14e481eeef8e65:o:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"6638184b417c5f55463ba78c5a03f010:i:self"
+							]
+						},
+						{
+							"id": "81063a8b4637b78cab14e481eeef8e65:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8549e80b4a8e0601bf3e92a8f5dde8bb",
+					"class": "K2Node_CallFunction",
+					"title": "Get Current Acceleration",
+					"x": -64,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8549e80b4a8e0601bf3e92a8f5dde8bb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"ebe527b842ed713cada7c8932a7fabd9:o:MovementComponent"
+							]
+						},
+						{
+							"id": "8549e80b4a8e0601bf3e92a8f5dde8bb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"205fbb2141df350a890580b651c62142:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8f0f23fc44118ff69ee347878b363cb7",
+					"class": "K2Node_VariableGet",
+					"title": "Get Velocity",
+					"x": -48,
+					"y": -176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8f0f23fc44118ff69ee347878b363cb7:o:Velocity",
+							"name": "Velocity",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"eb7c997947872223e6b1fb8d0af984be:i:Velocity"
+							]
+						},
+						{
+							"id": "8f0f23fc44118ff69ee347878b363cb7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.MovementComponent",
+							"defaultValue": null,
+							"links": [
+								"e43afc7045224eb804f96b8d7e12fb58:o:MovementComponent"
+							]
+						}
+					]
+				},
+				{
+					"guid": "91423472465bff1f9aebffae9555d725",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "AND Boolean",
+					"x": 576,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "91423472465bff1f9aebffae9555d725:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "91423472465bff1f9aebffae9555d725:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c8363c90486cd63ea8b887a21b139eeb:o:ReturnValue"
+							]
+						},
+						{
+							"id": "91423472465bff1f9aebffae9555d725:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"205fbb2141df350a890580b651c62142:o:ReturnValue"
+							]
+						},
+						{
+							"id": "91423472465bff1f9aebffae9555d725:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7e838dbe4e664f51e389899658e13632:i:ShouldMove"
+							]
+						}
+					]
+				},
+				{
+					"guid": "98d0bb544e19dcf9ad0daaa0c832f6d0",
+					"class": "K2Node_Event",
+					"title": "Event Blueprint Update Animation",
+					"x": -1264,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "98d0bb544e19dcf9ad0daaa0c832f6d0:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "98d0bb544e19dcf9ad0daaa0c832f6d0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"68c189e4499fcdd2a6d94c94a55b46eb:i:execute"
+							]
+						},
+						{
+							"id": "98d0bb544e19dcf9ad0daaa0c832f6d0:o:DeltaTimeX",
+							"name": "DeltaTimeX",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9bf5a206492d5e0e153581aabf93ee0c",
+					"class": "K2Node_CallFunction",
+					"title": "Get Actor Rotation",
+					"x": 1184,
+					"y": -80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9bf5a206492d5e0e153581aabf93ee0c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"7da3135846703afec164adbfb3164e73:o:Character"
+							]
+						},
+						{
+							"id": "9bf5a206492d5e0e153581aabf93ee0c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": null,
+							"links": [
+								"d5c8a62f4f30da651707cca6559c35a5:i:BaseRotation"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a642f22344e86023662f388418815d49",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -256,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a642f22344e86023662f388418815d49:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da1dbdcf4012fa38e5018bacadcc84b2:o:then_2"
+							]
+						},
+						{
+							"id": "a642f22344e86023662f388418815d49:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"774ae07941bff488f72c24b3b276208a:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "afdd75ff44b30c9bc4067ca8d8540db4",
+					"class": "K2Node_VariableGet",
+					"title": "Get bOrientRotationToMovement",
+					"x": 1617,
+					"y": 56,
+					"comment": null,
+					"pins": [
+						{
+							"id": "afdd75ff44b30c9bc4067ca8d8540db4:o:bOrientRotationToMovement",
+							"name": "bOrientRotationToMovement",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"daa123e34ee8fe97e7ece1a035fbdb63:i:Index"
+							]
+						},
+						{
+							"id": "afdd75ff44b30c9bc4067ca8d8540db4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"fcbf9ddc4652815cab5fb5923f2c87e5:o:MovementComponent"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b933f21d42f09f880aa13892b5bf428d",
+					"class": "K2Node_VariableSet",
+					"title": "Set Character",
+					"x": -656,
+					"y": -624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b933f21d42f09f880aa13892b5bf428d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f83b1190492df16c27725f86140aa505:o:then"
+							]
+						},
+						{
+							"id": "b933f21d42f09f880aa13892b5bf428d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6d1b74b0430e07949a9648b339239594:i:execute"
+							]
+						},
+						{
+							"id": "b933f21d42f09f880aa13892b5bf428d:i:Character",
+							"name": "Character",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"f83b1190492df16c27725f86140aa505:o:AsCharacter"
+							]
+						},
+						{
+							"id": "b933f21d42f09f880aa13892b5bf428d:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"1f5ff1764918aece5a9d948f3f0b8f52:i:self"
+							]
+						},
+						{
+							"id": "b933f21d42f09f880aa13892b5bf428d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bcbd703348373be5a799dd9ff9cb569e",
+					"class": "K2Node_VariableSet",
+					"title": "Set Direction",
+					"x": 2176,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bcbd703348373be5a799dd9ff9cb569e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"454ea064492a35091ffbf1bcf163610c:o:then"
+							]
+						},
+						{
+							"id": "bcbd703348373be5a799dd9ff9cb569e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bcbd703348373be5a799dd9ff9cb569e:i:Direction",
+							"name": "Direction",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"daa123e34ee8fe97e7ece1a035fbdb63:o:ReturnValue"
+							]
+						},
+						{
+							"id": "bcbd703348373be5a799dd9ff9cb569e:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "bcbd703348373be5a799dd9ff9cb569e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c8363c90486cd63ea8b887a21b139eeb",
+					"class": "K2Node_PromotableOperator",
+					"title": "float > float",
+					"x": 384,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c8363c90486cd63ea8b887a21b139eeb:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d86f06f84dfe201ad23833b40aceaab2:o:GroundSpeed"
+							]
+						},
+						{
+							"id": "c8363c90486cd63ea8b887a21b139eeb:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.010000",
+							"links": []
+						},
+						{
+							"id": "c8363c90486cd63ea8b887a21b139eeb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"91423472465bff1f9aebffae9555d725:i:A"
+							]
+						},
+						{
+							"id": "c8363c90486cd63ea8b887a21b139eeb:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d5c8a62f4f30da651707cca6559c35a5",
+					"class": "K2Node_CallFunction",
+					"title": "Calculate Direction",
+					"x": 1408,
+					"y": -176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d5c8a62f4f30da651707cca6559c35a5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.AnimInstance",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d5c8a62f4f30da651707cca6559c35a5:i:Velocity",
+							"name": "Velocity",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"0890d4344a08ba2f07dc83934d067291:o:Velocity"
+							]
+						},
+						{
+							"id": "d5c8a62f4f30da651707cca6559c35a5:i:BaseRotation",
+							"name": "BaseRotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": null,
+							"links": [
+								"9bf5a206492d5e0e153581aabf93ee0c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d5c8a62f4f30da651707cca6559c35a5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"76e9e64d4dac69ef3aa0648f44a2c57b:i:Value",
+								"daa123e34ee8fe97e7ece1a035fbdb63:i:Option 0"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d86f06f84dfe201ad23833b40aceaab2",
+					"class": "K2Node_VariableGet",
+					"title": "Get GroundSpeed",
+					"x": 240,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d86f06f84dfe201ad23833b40aceaab2:o:GroundSpeed",
+							"name": "GroundSpeed",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c8363c90486cd63ea8b887a21b139eeb:i:A"
+							]
+						},
+						{
+							"id": "d86f06f84dfe201ad23833b40aceaab2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "da1dbdcf4012fa38e5018bacadcc84b2",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": -528,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "da1dbdcf4012fa38e5018bacadcc84b2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"68c189e4499fcdd2a6d94c94a55b46eb:o:then"
+							]
+						},
+						{
+							"id": "da1dbdcf4012fa38e5018bacadcc84b2:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f80a771d4cb48c86728ff28fcc42fce4:i:InputPin"
+							]
+						},
+						{
+							"id": "da1dbdcf4012fa38e5018bacadcc84b2:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dba4829d47d793019f696aaaefce981f:i:InputPin"
+							]
+						},
+						{
+							"id": "da1dbdcf4012fa38e5018bacadcc84b2:o:then_2",
+							"name": "then_2",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a642f22344e86023662f388418815d49:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "daa123e34ee8fe97e7ece1a035fbdb63",
+					"class": "K2Node_Select",
+					"title": "Select",
+					"x": 1936,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "daa123e34ee8fe97e7ece1a035fbdb63:i:Option 0",
+							"name": "Option 0",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d5c8a62f4f30da651707cca6559c35a5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "daa123e34ee8fe97e7ece1a035fbdb63:i:Option 1",
+							"name": "Option 1",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"76e9e64d4dac69ef3aa0648f44a2c57b:o:ReturnValue"
+							]
+						},
+						{
+							"id": "daa123e34ee8fe97e7ece1a035fbdb63:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"afdd75ff44b30c9bc4067ca8d8540db4:o:bOrientRotationToMovement"
+							]
+						},
+						{
+							"id": "daa123e34ee8fe97e7ece1a035fbdb63:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"bcbd703348373be5a799dd9ff9cb569e:i:Direction"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dba4829d47d793019f696aaaefce981f",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -256,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dba4829d47d793019f696aaaefce981f:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da1dbdcf4012fa38e5018bacadcc84b2:o:then_1"
+							]
+						},
+						{
+							"id": "dba4829d47d793019f696aaaefce981f:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7e838dbe4e664f51e389899658e13632:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e43afc7045224eb804f96b8d7e12fb58",
+					"class": "K2Node_VariableGet",
+					"title": "Get MovementComponent",
+					"x": -240,
+					"y": -176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e43afc7045224eb804f96b8d7e12fb58:o:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"8f0f23fc44118ff69ee347878b363cb7:i:self"
+							]
+						},
+						{
+							"id": "e43afc7045224eb804f96b8d7e12fb58:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "eb7c997947872223e6b1fb8d0af984be",
+					"class": "K2Node_VariableSet",
+					"title": "Set Velocity",
+					"x": 144,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eb7c997947872223e6b1fb8d0af984be:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f80a771d4cb48c86728ff28fcc42fce4:o:OutputPin"
+							]
+						},
+						{
+							"id": "eb7c997947872223e6b1fb8d0af984be:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"454ea064492a35091ffbf1bcf163610c:i:execute"
+							]
+						},
+						{
+							"id": "eb7c997947872223e6b1fb8d0af984be:i:Velocity",
+							"name": "Velocity",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"8f0f23fc44118ff69ee347878b363cb7:o:Velocity"
+							]
+						},
+						{
+							"id": "eb7c997947872223e6b1fb8d0af984be:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"31092e8c477fb1e30815f1bd9b6855b3:i:A"
+							]
+						},
+						{
+							"id": "eb7c997947872223e6b1fb8d0af984be:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ebe527b842ed713cada7c8932a7fabd9",
+					"class": "K2Node_VariableGet",
+					"title": "Get MovementComponent",
+					"x": -256,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ebe527b842ed713cada7c8932a7fabd9:o:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"8549e80b4a8e0601bf3e92a8f5dde8bb:i:self"
+							]
+						},
+						{
+							"id": "ebe527b842ed713cada7c8932a7fabd9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f80a771d4cb48c86728ff28fcc42fce4",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -256,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f80a771d4cb48c86728ff28fcc42fce4:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da1dbdcf4012fa38e5018bacadcc84b2:o:then_0"
+							]
+						},
+						{
+							"id": "f80a771d4cb48c86728ff28fcc42fce4:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eb7c997947872223e6b1fb8d0af984be:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f83b1190492df16c27725f86140aa505",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To Character",
+					"x": -912,
+					"y": -640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f83b1190492df16c27725f86140aa505:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"339c7e80414adb1e2bebd5aacf950d2d:o:then"
+							]
+						},
+						{
+							"id": "f83b1190492df16c27725f86140aa505:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b933f21d42f09f880aa13892b5bf428d:i:execute"
+							]
+						},
+						{
+							"id": "f83b1190492df16c27725f86140aa505:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f83b1190492df16c27725f86140aa505:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"23fab2764cc016f3d763558c7fc61ce8:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f83b1190492df16c27725f86140aa505:o:AsCharacter",
+							"name": "AsCharacter",
+							"direction": "output",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"b933f21d42f09f880aa13892b5bf428d:i:Character"
+							]
+						},
+						{
+							"id": "f83b1190492df16c27725f86140aa505:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "fcbf9ddc4652815cab5fb5923f2c87e5",
+					"class": "K2Node_VariableGet",
+					"title": "Get MovementComponent",
+					"x": 1409,
+					"y": 56,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fcbf9ddc4652815cab5fb5923f2c87e5:o:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"afdd75ff44b30c9bc4067ca8d8540db4:i:self"
+							]
+						},
+						{
+							"id": "fcbf9ddc4652815cab5fb5923f2c87e5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/ABP_Unarmed.ABP_Unarmed_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "1f77a4a54b9b1faf636d658af498ca5d",
+					"text": "Set velocity and ground speed from the movement components velocity. Ground speed is calculated from only the X and Y axis of the velocity, so moving up or down does not affect it.",
+					"x": -272,
+					"y": -336,
+					"width": 1232,
+					"height": 240
+				},
+				{
+					"guid": "4a3c50bc418ac5feb99558a287fe46ea",
+					"text": "Set references to owning character when this blueprint initializes.",
+					"x": -1296,
+					"y": -720,
+					"width": 1424,
+					"height": 256
+				},
+				{
+					"guid": "5fa2430f441076439f521fa1bef99e0f",
+					"text": "Set Is Falling from the movement components falling state.",
+					"x": -272,
+					"y": 304,
+					"width": 736,
+					"height": 224
+				},
+				{
+					"guid": "6e42958b4d22820fa8a02eb5e941ace6",
+					"text": "Calculate direction using the delta between the velocity and the actor rotation. When the character is not strafing, clamp the value between - and + 45 degrees so that backwards animations do not play when turning around, but running into wall looks better.",
+					"x": 1024,
+					"y": -336,
+					"width": 1344,
+					"height": 528
+				},
+				{
+					"guid": "93425fbe40aefa7fa572f0a927beaa0c",
+					"text": "Set Should Move to true only if ground speed is above a small threshold (to prevent incredibly small velocities from triggering animations) and if there is currently acceleration (input) applied.",
+					"x": -272,
+					"y": -80,
+					"width": 1248,
+					"height": 368
+				},
+				{
+					"guid": "df25198e4bfb40d711086582c76d12bd",
+					"text": "Only update values if the character is valid (character exists in the world and the reference is set).",
+					"x": -1296,
+					"y": -208,
+					"width": 608,
+					"height": 240
+				}
+			]
+		}
+	]
+}
