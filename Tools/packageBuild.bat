@@ -17,17 +17,17 @@ set /p UPROJECT="Enter the full path to your ProjectAtlantis.uproject: "
 echo UPROJECT IS (%UPROJECT%)
 echo.
 echo Where does your UAT.bat live?
-echo [default is C:\Program Files\Epic Games\UE_5.7\Engine\Build\BatchFiles\RunUAT.bat]
+echo [default is %UAT%]
 set /p UAT="Enter the full path to your RunUAT.bat: "
 echo UAT IS (%UAT%)
 echo.
 echo Where does your UnrealEditor-Cmd.exe live?
-echo [default is C:\Program Files\Epic Games\UE_5.7\Engine\Binaries\Win64\UnrealEditor-Cmd.exe]
+echo [default is %EDITOR%]
 set /p EDITOR="Enter the full path to your UnrealEditor-Cmd.exe: "
 echo EDITOR IS (%EDITOR%)
 echo.
 echo Where do you want to create the package? (must match default below)
-echo [default is C:\ASGC\GameJam2026\PackagedBuilds]
+echo [default is %BASEDIR%]
 set /p BASEDIR="Enter the full path to your package builds directory: "
 echo PACKAGE BUILDS DIR IS (%BASEDIR%)
 echo.
@@ -37,7 +37,7 @@ set PACKAGENAME=ProjectAtlantis-%VER%-Windows
 set FULLDIR=%BASEDIR%\%PACKAGENAME%
 echo FULL PATH FOR THIS PACKAGE IS (%FULLDIR%)
 echo.
-echo WARNING! If the directory above does not look correct, close this window!
+echo WARNING! If ANY of the info above does not look correct, close this window!
 echo.
 pause
 
