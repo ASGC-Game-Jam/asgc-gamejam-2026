@@ -1,0 +1,647 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/Engine/Input/Touch/UI_TouchSimple",
+	"asset": "UI_TouchSimple",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0d4f1c564580d2f902e6e182f382f24e",
+					"class": "K2Node_CallFunction",
+					"title": "Get Owning Player",
+					"x": -112,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0d4f1c564580d2f902e6e182f382f24e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0d4f1c564580d2f902e6e182f382f24e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"3e6d89da46d4ee973951c186284b1899:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0dca7b6e41421284d5a6d38637256d40",
+					"class": "K2Node_Message",
+					"title": "Primary Thumbstick",
+					"x": 400,
+					"y": 784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0dca7b6e41421284d5a6d38637256d40:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1adc252247e435966dd89e840b2e38d1:o:then"
+							]
+						},
+						{
+							"id": "0dca7b6e41421284d5a6d38637256d40:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0dca7b6e41421284d5a6d38637256d40:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"3e6d89da46d4ee973951c186284b1899:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0dca7b6e41421284d5a6d38637256d40:i:Axis",
+							"name": "Axis",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"1adc252247e435966dd89e840b2e38d1:o:NewParam"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1adc252247e435966dd89e840b2e38d1",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "Stick Input (Thumbstick_Move)",
+					"x": 112,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1adc252247e435966dd89e840b2e38d1:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1adc252247e435966dd89e840b2e38d1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0dca7b6e41421284d5a6d38637256d40:i:execute"
+							]
+						},
+						{
+							"id": "1adc252247e435966dd89e840b2e38d1:o:NewParam",
+							"name": "NewParam",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"0dca7b6e41421284d5a6d38637256d40:i:Axis"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1ee7050c4cad655d84db4ab53bf33722",
+					"class": "K2Node_VariableSet",
+					"title": "Set bShowMouseCursor",
+					"x": 202,
+					"y": 362,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1ee7050c4cad655d84db4ab53bf33722:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e615a7b2430de5787a22cc88139eb982:o:then"
+							]
+						},
+						{
+							"id": "1ee7050c4cad655d84db4ab53bf33722:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"afe5bf604b99ed397b63e8b5a42c1fdd:i:execute"
+							]
+						},
+						{
+							"id": "1ee7050c4cad655d84db4ab53bf33722:i:bShowMouseCursor",
+							"name": "bShowMouseCursor",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "1ee7050c4cad655d84db4ab53bf33722:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "1ee7050c4cad655d84db4ab53bf33722:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"7d08350f42b7ea519b8a6ca738c53897:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3e6d89da46d4ee973951c186284b1899",
+					"class": "K2Node_CallFunction",
+					"title": "Get Controlled Pawn",
+					"x": 144,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3e6d89da46d4ee973951c186284b1899:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Controller",
+							"defaultValue": null,
+							"links": [
+								"0d4f1c564580d2f902e6e182f382f24e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3e6d89da46d4ee973951c186284b1899:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": [
+								"0dca7b6e41421284d5a6d38637256d40:i:self",
+								"dd52361a4d1ef515a7bd978e109edae5:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7d08350f42b7ea519b8a6ca738c53897",
+					"class": "K2Node_CallFunction",
+					"title": "Get Owning Player",
+					"x": 186,
+					"y": 490,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7d08350f42b7ea519b8a6ca738c53897:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7d08350f42b7ea519b8a6ca738c53897:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"1ee7050c4cad655d84db4ab53bf33722:i:self",
+								"afe5bf604b99ed397b63e8b5a42c1fdd:i:PlayerController"
+							]
+						}
+					]
+				},
+				{
+					"guid": "86196a9848070d143457b08bfd648757",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "Stick Input (Thumbstick_Aim)",
+					"x": 128,
+					"y": 1040,
+					"comment": null,
+					"pins": [
+						{
+							"id": "86196a9848070d143457b08bfd648757:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "86196a9848070d143457b08bfd648757:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dd52361a4d1ef515a7bd978e109edae5:i:execute"
+							]
+						},
+						{
+							"id": "86196a9848070d143457b08bfd648757:o:NewParam",
+							"name": "NewParam",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"dd52361a4d1ef515a7bd978e109edae5:i:Axis"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8c1966e54d1258d4a21e289babc25b83",
+					"class": "K2Node_CallFunction",
+					"title": "Get Owning Player",
+					"x": -112,
+					"y": 1296,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8c1966e54d1258d4a21e289babc25b83:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8c1966e54d1258d4a21e289babc25b83:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"fd4c73d142568e3e020623b220072271:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9127f5364c3542196c8d0c99819180f5",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Released (Btn_Jump)",
+					"x": 155,
+					"y": 1391,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9127f5364c3542196c8d0c99819180f5:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9127f5364c3542196c8d0c99819180f5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b1e93807439d1578b6ee1084c5cd9c0e:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9dffcfa94b93ac6c064b048588cf219e",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Pressed (Btn_Jump)",
+					"x": 160,
+					"y": 1216,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9dffcfa94b93ac6c064b048588cf219e:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9dffcfa94b93ac6c064b048588cf219e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fe088a9b490cf64e0d1a74ad4c3cfb21:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "afe5bf604b99ed397b63e8b5a42c1fdd",
+					"class": "K2Node_CallFunction",
+					"title": "Set Input Mode Game And UI",
+					"x": 650,
+					"y": 346,
+					"comment": null,
+					"pins": [
+						{
+							"id": "afe5bf604b99ed397b63e8b5a42c1fdd:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1ee7050c4cad655d84db4ab53bf33722:o:then"
+							]
+						},
+						{
+							"id": "afe5bf604b99ed397b63e8b5a42c1fdd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "afe5bf604b99ed397b63e8b5a42c1fdd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "afe5bf604b99ed397b63e8b5a42c1fdd:i:PlayerController",
+							"name": "PlayerController",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"7d08350f42b7ea519b8a6ca738c53897:o:ReturnValue"
+							]
+						},
+						{
+							"id": "afe5bf604b99ed397b63e8b5a42c1fdd:i:InWidgetToFocus",
+							"name": "InWidgetToFocus",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "afe5bf604b99ed397b63e8b5a42c1fdd:i:InMouseLockMode",
+							"name": "InMouseLockMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EMouseLockMode",
+							"defaultValue": "DoNotLock",
+							"links": []
+						},
+						{
+							"id": "afe5bf604b99ed397b63e8b5a42c1fdd:i:bHideCursorDuringCapture",
+							"name": "bHideCursorDuringCapture",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "afe5bf604b99ed397b63e8b5a42c1fdd:i:bFlushInput",
+							"name": "bFlushInput",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b1e93807439d1578b6ee1084c5cd9c0e",
+					"class": "K2Node_Message",
+					"title": "Touch Jump End",
+					"x": 416,
+					"y": 1376,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b1e93807439d1578b6ee1084c5cd9c0e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9127f5364c3542196c8d0c99819180f5:o:then"
+							]
+						},
+						{
+							"id": "b1e93807439d1578b6ee1084c5cd9c0e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b1e93807439d1578b6ee1084c5cd9c0e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"fd4c73d142568e3e020623b220072271:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dd52361a4d1ef515a7bd978e109edae5",
+					"class": "K2Node_Message",
+					"title": "Secondary Thumbstick",
+					"x": 400,
+					"y": 1024,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dd52361a4d1ef515a7bd978e109edae5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"86196a9848070d143457b08bfd648757:o:then"
+							]
+						},
+						{
+							"id": "dd52361a4d1ef515a7bd978e109edae5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "dd52361a4d1ef515a7bd978e109edae5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"3e6d89da46d4ee973951c186284b1899:o:ReturnValue"
+							]
+						},
+						{
+							"id": "dd52361a4d1ef515a7bd978e109edae5:i:Axis",
+							"name": "Axis",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"86196a9848070d143457b08bfd648757:o:NewParam"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e615a7b2430de5787a22cc88139eb982",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": -102,
+					"y": 346,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e615a7b2430de5787a22cc88139eb982:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e615a7b2430de5787a22cc88139eb982:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1ee7050c4cad655d84db4ab53bf33722:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fd4c73d142568e3e020623b220072271",
+					"class": "K2Node_CallFunction",
+					"title": "Get Controlled Pawn",
+					"x": 157,
+					"y": 1296,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fd4c73d142568e3e020623b220072271:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Controller",
+							"defaultValue": null,
+							"links": [
+								"8c1966e54d1258d4a21e289babc25b83:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fd4c73d142568e3e020623b220072271:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": [
+								"b1e93807439d1578b6ee1084c5cd9c0e:i:self",
+								"fe088a9b490cf64e0d1a74ad4c3cfb21:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fe088a9b490cf64e0d1a74ad4c3cfb21",
+					"class": "K2Node_Message",
+					"title": "Touch Jump Start",
+					"x": 416,
+					"y": 1200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fe088a9b490cf64e0d1a74ad4c3cfb21:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9dffcfa94b93ac6c064b048588cf219e:o:then"
+							]
+						},
+						{
+							"id": "fe088a9b490cf64e0d1a74ad4c3cfb21:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fe088a9b490cf64e0d1a74ad4c3cfb21:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"fd4c73d142568e3e020623b220072271:o:ReturnValue"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "908c581e49d7faf9c59aa9aef464fc81",
+					"text": "Force Visible Input",
+					"x": -160,
+					"y": 256,
+					"width": 1136,
+					"height": 432
+				},
+				{
+					"guid": "e727142f4d245694bdebdab65a25e463",
+					"text": "Send inputs to pawn",
+					"x": -160,
+					"y": 720,
+					"width": 848,
+					"height": 848
+				}
+			]
+		}
+	]
+}

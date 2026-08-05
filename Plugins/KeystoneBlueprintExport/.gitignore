@@ -1,0 +1,8 @@
+# The project root .gitignore blanket-ignores every Binaries/ and Intermediate/ folder.
+# For this editor plugin we deliberately DO commit the compiled editor module so artists
+# never have to recompile ("compile once, commit binaries" — the Keystone install flow).
+# Re-include only the runtime binaries; keep the heavy debug .pdb and all build
+# intermediates out of version control.
+!Binaries/
+Binaries/**/*.pdb
+Intermediate/
