@@ -4,8 +4,8 @@ Thanks for contributing to the ASGC Game Jam 2026 project.
 
 ## Before You Start
 
-- Complete the setup in `/Docs/SETUP.md`
-- Check the existing Issues to see what needs to be done
+- Complete the setup in [Docs/SETUP.md](./Docs/SETUP.md)
+- Check the existing [Issues](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/issues) to see what needs to be done
 - If you're unsure where to start, ask in Discord or open a Discussion
 
 ## Workflow
@@ -32,7 +32,7 @@ A reviewer may request changes before the Pull Request is merged.
 
 ## Git LFS
 
-This project uses Git LFS for Unreal Engine assets.
+This project uses [Git LFS](https://git-lfs.com/) for Unreal Engine assets.
 
 If Git LFS is installed correctly, asset management should happen automatically. Do not remove or modify the repository's Git LFS configuration unless instructed by the Tech team.
 
@@ -41,7 +41,7 @@ If Git LFS is installed correctly, asset management should happen automatically.
 If you find a bug:
 
 - Search existing Issues first
-- If one doesn't exist, create a new Issue with as much detail as possible (use the Bug template)
+- If one doesn't exist, create a new Issue with as much detail as possible (use the [Bug template](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/issues/new/choose))
 - Include steps to reproduce the problem whenever possible
 
 ## Questions

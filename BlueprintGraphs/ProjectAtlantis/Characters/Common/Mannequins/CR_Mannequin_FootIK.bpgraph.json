@@ -1,0 +1,3498 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Characters/Common/Mannequins/CR_Mannequin_FootIK",
+	"asset": "CR_Mannequin_FootIK",
+	"parentClass": "ControlRig",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "FootTrace_SubGraph",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "319df38847c132cda3fc74955a9c7c76",
+					"class": "ControlRigGraphNode",
+					"title": "Entry",
+					"x": -752,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "319df38847c132cda3fc74955a9c7c76:o:Entry.ExecuteContext",
+							"name": "Entry.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"713c190c415ff03aa462e4a7a392928f:i:Return.ExecuteContext"
+							]
+						},
+						{
+							"id": "319df38847c132cda3fc74955a9c7c76:o:Entry.Item",
+							"name": "Entry.Item",
+							"direction": "output",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": [
+								"eb0a398b4b81385adb4f4c80e42cdf94:i:GetTransform.Item"
+							]
+						},
+						{
+							"id": "319df38847c132cda3fc74955a9c7c76:o:Entry.Item.Type",
+							"name": "Entry.Item.Type",
+							"direction": "output",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "319df38847c132cda3fc74955a9c7c76:o:Entry.Item.Name",
+							"name": "Entry.Item.Name",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "70627d6d4ff1a85569722c96b974b16c",
+					"class": "ControlRigGraphNode",
+					"title": "Subtract",
+					"x": -64,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:o:MathVectorSub.Result",
+							"name": "MathVectorSub.Result",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.End"
+							]
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:o:MathVectorSub.Result.X",
+							"name": "MathVectorSub.Result.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:o:MathVectorSub.Result.Y",
+							"name": "MathVectorSub.Result.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:o:MathVectorSub.Result.Z",
+							"name": "MathVectorSub.Result.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.A",
+							"name": "MathVectorSub.A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.A.X",
+							"name": "MathVectorSub.A.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Translation.X"
+							]
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.A.Y",
+							"name": "MathVectorSub.A.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a651a6da498292df4eeba98b810c149e:o:MathFloatAdd.Result"
+							]
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.A.Z",
+							"name": "MathVectorSub.A.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Translation.Z"
+							]
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.B",
+							"name": "MathVectorSub.B",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.B.X",
+							"name": "MathVectorSub.B.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.B.Y",
+							"name": "MathVectorSub.B.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.B.Z",
+							"name": "MathVectorSub.B.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "50.000000",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "713c190c415ff03aa462e4a7a392928f",
+					"class": "ControlRigGraphNode",
+					"title": "Return",
+					"x": 250,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "713c190c415ff03aa462e4a7a392928f:i:Return.ExecuteContext",
+							"name": "Return.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"319df38847c132cda3fc74955a9c7c76:o:Entry.ExecuteContext"
+							]
+						},
+						{
+							"id": "713c190c415ff03aa462e4a7a392928f:i:Return.Hit Location",
+							"name": "Return.Hit Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.HitLocation"
+							]
+						},
+						{
+							"id": "713c190c415ff03aa462e4a7a392928f:i:Return.Hit Location.X",
+							"name": "Return.Hit Location.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "713c190c415ff03aa462e4a7a392928f:i:Return.Hit Location.Y",
+							"name": "Return.Hit Location.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "713c190c415ff03aa462e4a7a392928f:i:Return.Hit Location.Z",
+							"name": "Return.Hit Location.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a5f2526749e2a888a62a00822f20cc47",
+					"class": "ControlRigGraphNode",
+					"title": "Add",
+					"x": -64,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:o:MathVectorAdd.Result",
+							"name": "MathVectorAdd.Result",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.Start"
+							]
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:o:MathVectorAdd.Result.X",
+							"name": "MathVectorAdd.Result.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:o:MathVectorAdd.Result.Y",
+							"name": "MathVectorAdd.Result.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:o:MathVectorAdd.Result.Z",
+							"name": "MathVectorAdd.Result.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.A",
+							"name": "MathVectorAdd.A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.A.X",
+							"name": "MathVectorAdd.A.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Translation.X"
+							]
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.A.Y",
+							"name": "MathVectorAdd.A.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a651a6da498292df4eeba98b810c149e:o:MathFloatAdd.Result"
+							]
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.A.Z",
+							"name": "MathVectorAdd.A.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Translation.Z"
+							]
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.B",
+							"name": "MathVectorAdd.B",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.B.X",
+							"name": "MathVectorAdd.B.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.B.Y",
+							"name": "MathVectorAdd.B.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.B.Z",
+							"name": "MathVectorAdd.B.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "30.000000",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a651a6da498292df4eeba98b810c149e",
+					"class": "ControlRigGraphNode",
+					"title": "Add",
+					"x": -272,
+					"y": 303,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a651a6da498292df4eeba98b810c149e:o:MathFloatAdd.Result",
+							"name": "MathFloatAdd.Result",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.A.Y",
+								"a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.A.Y"
+							]
+						},
+						{
+							"id": "a651a6da498292df4eeba98b810c149e:i:MathFloatAdd.A",
+							"name": "MathFloatAdd.A",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Translation.Y"
+							]
+						},
+						{
+							"id": "a651a6da498292df4eeba98b810c149e:i:MathFloatAdd.B",
+							"name": "MathFloatAdd.B",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "5.000000",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bbacc133418f59bebeaee3b2af472a5d",
+					"class": "ControlRigGraphNode",
+					"title": "Sphere Trace By Trace Channel",
+					"x": 144,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.bHit",
+							"name": "SphereTraceByTraceChannel_1.bHit",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.HitLocation",
+							"name": "SphereTraceByTraceChannel_1.HitLocation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"713c190c415ff03aa462e4a7a392928f:i:Return.Hit Location"
+							]
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.HitLocation.X",
+							"name": "SphereTraceByTraceChannel_1.HitLocation.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.HitLocation.Y",
+							"name": "SphereTraceByTraceChannel_1.HitLocation.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.HitLocation.Z",
+							"name": "SphereTraceByTraceChannel_1.HitLocation.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.HitNormal",
+							"name": "SphereTraceByTraceChannel_1.HitNormal",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.HitNormal.X",
+							"name": "SphereTraceByTraceChannel_1.HitNormal.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.HitNormal.Y",
+							"name": "SphereTraceByTraceChannel_1.HitNormal.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:o:SphereTraceByTraceChannel_1.HitNormal.Z",
+							"name": "SphereTraceByTraceChannel_1.HitNormal.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.Start",
+							"name": "SphereTraceByTraceChannel_1.Start",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"a5f2526749e2a888a62a00822f20cc47:o:MathVectorAdd.Result"
+							]
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.Start.X",
+							"name": "SphereTraceByTraceChannel_1.Start.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.Start.Y",
+							"name": "SphereTraceByTraceChannel_1.Start.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.Start.Z",
+							"name": "SphereTraceByTraceChannel_1.Start.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.End",
+							"name": "SphereTraceByTraceChannel_1.End",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"70627d6d4ff1a85569722c96b974b16c:o:MathVectorSub.Result"
+							]
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.End.X",
+							"name": "SphereTraceByTraceChannel_1.End.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.End.Y",
+							"name": "SphereTraceByTraceChannel_1.End.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.End.Z",
+							"name": "SphereTraceByTraceChannel_1.End.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.TraceChannel",
+							"name": "SphereTraceByTraceChannel_1.TraceChannel",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ETraceTypeQuery",
+							"defaultValue": "TraceTypeQuery1",
+							"links": []
+						},
+						{
+							"id": "bbacc133418f59bebeaee3b2af472a5d:i:SphereTraceByTraceChannel_1.Radius",
+							"name": "SphereTraceByTraceChannel_1.Radius",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "5.000000",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d05a6a0b4a9ebc0f80135e90b011d635",
+					"class": "ControlRigGraphNode",
+					"title": "Get Transform - Bone",
+					"x": -576,
+					"y": 432,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform",
+							"name": "GetTransform_1.Transform",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Rotation",
+							"name": "GetTransform_1.Transform.Rotation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Quat",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Translation",
+							"name": "GetTransform_1.Transform.Translation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Translation.X",
+							"name": "GetTransform_1.Transform.Translation.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Translation.Y",
+							"name": "GetTransform_1.Transform.Translation.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Translation.Z",
+							"name": "GetTransform_1.Transform.Translation.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.A.Z",
+								"a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.A.Z"
+							]
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Scale3D",
+							"name": "GetTransform_1.Transform.Scale3D",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Scale3D.X",
+							"name": "GetTransform_1.Transform.Scale3D.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Scale3D.Y",
+							"name": "GetTransform_1.Transform.Scale3D.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:o:GetTransform_1.Transform.Scale3D.Z",
+							"name": "GetTransform_1.Transform.Scale3D.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:i:GetTransform_1.Item",
+							"name": "GetTransform_1.Item",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:i:GetTransform_1.Item.Type",
+							"name": "GetTransform_1.Item.Type",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": "Bone",
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:i:GetTransform_1.Item.Name",
+							"name": "GetTransform_1.Item.Name",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "root",
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:i:GetTransform_1.Space",
+							"name": "GetTransform_1.Space",
+							"direction": "input",
+							"type": "byte:/Script/RigVM.ERigVMTransformSpace",
+							"defaultValue": "GlobalSpace",
+							"links": []
+						},
+						{
+							"id": "d05a6a0b4a9ebc0f80135e90b011d635:i:GetTransform_1.bInitial",
+							"name": "GetTransform_1.bInitial",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "eb0a398b4b81385adb4f4c80e42cdf94",
+					"class": "ControlRigGraphNode",
+					"title": "Get Transform - Bone",
+					"x": -576,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform",
+							"name": "GetTransform.Transform",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Rotation",
+							"name": "GetTransform.Transform.Rotation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Quat",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Translation",
+							"name": "GetTransform.Transform.Translation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Translation.X",
+							"name": "GetTransform.Transform.Translation.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"70627d6d4ff1a85569722c96b974b16c:i:MathVectorSub.A.X",
+								"a5f2526749e2a888a62a00822f20cc47:i:MathVectorAdd.A.X"
+							]
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Translation.Y",
+							"name": "GetTransform.Transform.Translation.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a651a6da498292df4eeba98b810c149e:i:MathFloatAdd.A"
+							]
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Translation.Z",
+							"name": "GetTransform.Transform.Translation.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Scale3D",
+							"name": "GetTransform.Transform.Scale3D",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Scale3D.X",
+							"name": "GetTransform.Transform.Scale3D.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Scale3D.Y",
+							"name": "GetTransform.Transform.Scale3D.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:o:GetTransform.Transform.Scale3D.Z",
+							"name": "GetTransform.Transform.Scale3D.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:i:GetTransform.Item",
+							"name": "GetTransform.Item",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": [
+								"319df38847c132cda3fc74955a9c7c76:o:Entry.Item"
+							]
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:i:GetTransform.Item.Type",
+							"name": "GetTransform.Item.Type",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": "Bone",
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:i:GetTransform.Item.Name",
+							"name": "GetTransform.Item.Name",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "animation_root",
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:i:GetTransform.Space",
+							"name": "GetTransform.Space",
+							"direction": "input",
+							"type": "byte:/Script/RigVM.ERigVMTransformSpace",
+							"defaultValue": "GlobalSpace",
+							"links": []
+						},
+						{
+							"id": "eb0a398b4b81385adb4f4c80e42cdf94:i:GetTransform.bInitial",
+							"name": "GetTransform.bInitial",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "Rig",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "032b19464f24bf29b5b5848c01707de2",
+					"class": "ControlRigGraphNode",
+					"title": "Get ZOffset_R",
+					"x": 2608,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "032b19464f24bf29b5b5848c01707de2:o:VariableNode_6_1.Value",
+							"name": "VariableNode_6_1.Value",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5d32e2a549423fe720c8968a65cdf050:i:If_DISPATCH_RigVMDispatch_If.False"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0a1fabb148c73bf0f6d0ab881d3660f7",
+					"class": "ControlRigGraphNode",
+					"title": "Alpha Interpolate",
+					"x": 1264,
+					"y": -336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:o:AlphaInterp.Result",
+							"name": "AlphaInterp.Result",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"12d9ab7f47acd64924e193a4f01fa09f:i:VariableNode_10.Value"
+							]
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.Value",
+							"name": "AlphaInterp.Value",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"132e8e4c46bc463d8a014795f955730f:o:VariableNode_12.Value"
+							]
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.Scale",
+							"name": "AlphaInterp.Scale",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.Bias",
+							"name": "AlphaInterp.Bias",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.bMapRange",
+							"name": "AlphaInterp.bMapRange",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.InRange",
+							"name": "AlphaInterp.InRange",
+							"direction": "input",
+							"type": "struct:/Script/Engine.InputRange",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.InRange.Min",
+							"name": "AlphaInterp.InRange.Min",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.InRange.Max",
+							"name": "AlphaInterp.InRange.Max",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.OutRange",
+							"name": "AlphaInterp.OutRange",
+							"direction": "input",
+							"type": "struct:/Script/Engine.InputRange",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.OutRange.Min",
+							"name": "AlphaInterp.OutRange.Min",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.OutRange.Max",
+							"name": "AlphaInterp.OutRange.Max",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.bClampResult",
+							"name": "AlphaInterp.bClampResult",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.ClampMin",
+							"name": "AlphaInterp.ClampMin",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.ClampMax",
+							"name": "AlphaInterp.ClampMax",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.bInterpResult",
+							"name": "AlphaInterp.bInterpResult",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.InterpSpeedIncreasing",
+							"name": "AlphaInterp.InterpSpeedIncreasing",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "15.000000",
+							"links": []
+						},
+						{
+							"id": "0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.InterpSpeedDecreasing",
+							"name": "AlphaInterp.InterpSpeedDecreasing",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "15.000000",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "12d9ab7f47acd64924e193a4f01fa09f",
+					"class": "ControlRigGraphNode",
+					"title": "Set ZOffset_L",
+					"x": 1520,
+					"y": -416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "12d9ab7f47acd64924e193a4f01fa09f:i:VariableNode_10.ExecuteContext",
+							"name": "VariableNode_10.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"66c3eb3945fcf23e27ba25a4cd76beb9:o:RerouteNode_3.Value"
+							]
+						},
+						{
+							"id": "12d9ab7f47acd64924e193a4f01fa09f:o:VariableNode_10.ExecuteContext",
+							"name": "VariableNode_10.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"322276a349d83f7157585dbf8ec55d23:i:VariableNode_11.ExecuteContext"
+							]
+						},
+						{
+							"id": "12d9ab7f47acd64924e193a4f01fa09f:i:VariableNode_10.Value",
+							"name": "VariableNode_10.Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0a1fabb148c73bf0f6d0ab881d3660f7:o:AlphaInterp.Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "132e8e4c46bc463d8a014795f955730f",
+					"class": "ControlRigGraphNode",
+					"title": "Get ZOffset_L_Target",
+					"x": 1056,
+					"y": -352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "132e8e4c46bc463d8a014795f955730f:o:VariableNode_12.Value",
+							"name": "VariableNode_12.Value",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0a1fabb148c73bf0f6d0ab881d3660f7:i:AlphaInterp.Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "21f41a274490e43a8f1e3b8ec081b80a",
+					"class": "ControlRigGraphNode",
+					"title": "Get ZOffset_Pelvis",
+					"x": 2096,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "21f41a274490e43a8f1e3b8ec081b80a:o:VariableNode_7.Value",
+							"name": "VariableNode_7.Value",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Translation.Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3001b2934a940a904a31a69dd2f91ec6",
+					"class": "ControlRigGraphNode",
+					"title": "Set ZOffset_L_Target",
+					"x": 1520,
+					"y": -624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3001b2934a940a904a31a69dd2f91ec6:i:VariableNode_9.ExecuteContext",
+							"name": "VariableNode_9.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"d597994d4b8fa23e5a135898b9761fe4:o:Branch_RigVMUnitNode.False"
+							]
+						},
+						{
+							"id": "3001b2934a940a904a31a69dd2f91ec6:o:VariableNode_9.ExecuteContext",
+							"name": "VariableNode_9.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"70c44f3e4cf193f802ba3aa37498a2e5:i:VariableNode_8_1.ExecuteContext"
+							]
+						},
+						{
+							"id": "3001b2934a940a904a31a69dd2f91ec6:i:VariableNode_9.Value",
+							"name": "VariableNode_9.Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3199410c469d6535503627b4ac7c1e04",
+					"class": "ControlRigGraphNode",
+					"title": "Sequence (OutDated)",
+					"x": 496,
+					"y": -320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3199410c469d6535503627b4ac7c1e04:o:SequenceExecution.A",
+							"name": "SequenceExecution.A",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"c13e5f3a40e70baeca8d21b043eca858:i:RerouteNode_2.Value"
+							]
+						},
+						{
+							"id": "3199410c469d6535503627b4ac7c1e04:o:SequenceExecution.B",
+							"name": "SequenceExecution.B",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"66c3eb3945fcf23e27ba25a4cd76beb9:i:RerouteNode_3.Value"
+							]
+						},
+						{
+							"id": "3199410c469d6535503627b4ac7c1e04:o:SequenceExecution.C",
+							"name": "SequenceExecution.C",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"c4f17ad744344825cff118a2cb46e965:i:RerouteNode.Value"
+							]
+						},
+						{
+							"id": "3199410c469d6535503627b4ac7c1e04:o:SequenceExecution.D",
+							"name": "SequenceExecution.D",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"d91a52ba4d17a7868ebc8aaef800056b:i:RerouteNode_1.Value"
+							]
+						},
+						{
+							"id": "3199410c469d6535503627b4ac7c1e04:i:SequenceExecution.ExecuteContext",
+							"name": "SequenceExecution.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"329f640f4fd68ae84fcf5fb340956a85:o:RigUnit_BeginExecution.ExecutePin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "322276a349d83f7157585dbf8ec55d23",
+					"class": "ControlRigGraphNode",
+					"title": "Set ZOffset_R",
+					"x": 2160,
+					"y": -416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "322276a349d83f7157585dbf8ec55d23:i:VariableNode_11.ExecuteContext",
+							"name": "VariableNode_11.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"12d9ab7f47acd64924e193a4f01fa09f:o:VariableNode_10.ExecuteContext"
+							]
+						},
+						{
+							"id": "322276a349d83f7157585dbf8ec55d23:o:VariableNode_11.ExecuteContext",
+							"name": "VariableNode_11.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"b78cac5943d07e7a8ba30a984bd936d1:i:VariableNode_4.ExecuteContext"
+							]
+						},
+						{
+							"id": "322276a349d83f7157585dbf8ec55d23:i:VariableNode_11.Value",
+							"name": "VariableNode_11.Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"8e6f465747481c6a153f8595098a1d37:o:AlphaInterp_1.Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "329f640f4fd68ae84fcf5fb340956a85",
+					"class": "ControlRigGraphNode",
+					"title": "Forwards Solve",
+					"x": 304,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "329f640f4fd68ae84fcf5fb340956a85:o:RigUnit_BeginExecution.ExecutePin",
+							"name": "RigUnit_BeginExecution.ExecutePin",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"3199410c469d6535503627b4ac7c1e04:i:SequenceExecution.ExecuteContext"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3729b1484774560e1c8aa1be38ba2454",
+					"class": "ControlRigGraphNode",
+					"title": "Get ZOffset_R_Target",
+					"x": 1696,
+					"y": -352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3729b1484774560e1c8aa1be38ba2454:o:VariableNode_13.Value",
+							"name": "VariableNode_13.Value",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3b1fb1204578d7206aadd898e6b99e6c",
+					"class": "ControlRigGraphNode",
+					"title": "Modify Transforms",
+					"x": 1264,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ExecutePin",
+							"name": "ModifyTransforms.ExecutePin",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"c4f17ad744344825cff118a2cb46e965:o:RerouteNode.Value"
+							]
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:o:ModifyTransforms.ExecutePin",
+							"name": "ModifyTransforms.ExecutePin",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ExecutePin"
+							]
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify",
+							"name": "ModifyTransforms.ItemToModify",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigUnit_ModifyTransforms_PerItem[]",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0",
+							"name": "ModifyTransforms.ItemToModify.0",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigUnit_ModifyTransforms_PerItem",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Item",
+							"name": "ModifyTransforms.ItemToModify.0.Item",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Item.Type",
+							"name": "ModifyTransforms.ItemToModify.0.Item.Type",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": "Bone",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Item.Name",
+							"name": "ModifyTransforms.ItemToModify.0.Item.Name",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "IK_foot_L",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform",
+							"name": "ModifyTransforms.ItemToModify.0.Transform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Rotation",
+							"name": "ModifyTransforms.ItemToModify.0.Transform.Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Quat",
+							"defaultValue": "(X=0.000000,Y=0.000000,Z=0.000000,W=1.000000)",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Translation",
+							"name": "ModifyTransforms.ItemToModify.0.Transform.Translation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Translation.X",
+							"name": "ModifyTransforms.ItemToModify.0.Transform.Translation.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Translation.Y",
+							"name": "ModifyTransforms.ItemToModify.0.Transform.Translation.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Translation.Z",
+							"name": "ModifyTransforms.ItemToModify.0.Transform.Translation.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"cb0d48f240ee4578d39fe8af2266f6ac:o:VariableNode_2.Value"
+							]
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Scale3D",
+							"name": "ModifyTransforms.ItemToModify.0.Transform.Scale3D",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Scale3D.X",
+							"name": "ModifyTransforms.ItemToModify.0.Transform.Scale3D.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Scale3D.Y",
+							"name": "ModifyTransforms.ItemToModify.0.Transform.Scale3D.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Scale3D.Z",
+							"name": "ModifyTransforms.ItemToModify.0.Transform.Scale3D.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.Weight",
+							"name": "ModifyTransforms.Weight",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.WeightMinimum",
+							"name": "ModifyTransforms.WeightMinimum",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.WeightMaximum",
+							"name": "ModifyTransforms.WeightMaximum",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.Mode",
+							"name": "ModifyTransforms.Mode",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.EControlRigModifyBoneMode",
+							"defaultValue": "AdditiveGlobal",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "59cf8eef418236a073f798ace4032111",
+					"class": "ControlRigGraphNode",
+					"title": "Modify Transforms",
+					"x": 1776,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ExecutePin",
+							"name": "ModifyTransforms_1.ExecutePin",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"3b1fb1204578d7206aadd898e6b99e6c:o:ModifyTransforms.ExecutePin"
+							]
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:o:ModifyTransforms_1.ExecutePin",
+							"name": "ModifyTransforms_1.ExecutePin",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ExecutePin"
+							]
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify",
+							"name": "ModifyTransforms_1.ItemToModify",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigUnit_ModifyTransforms_PerItem[]",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0",
+							"name": "ModifyTransforms_1.ItemToModify.0",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigUnit_ModifyTransforms_PerItem",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Item",
+							"name": "ModifyTransforms_1.ItemToModify.0.Item",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Item.Type",
+							"name": "ModifyTransforms_1.ItemToModify.0.Item.Type",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": "Bone",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Item.Name",
+							"name": "ModifyTransforms_1.ItemToModify.0.Item.Name",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "IK_foot_R",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Rotation",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform.Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Quat",
+							"defaultValue": "(X=0.000000,Y=0.000000,Z=0.000000,W=1.000000)",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Translation",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform.Translation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Translation.X",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform.Translation.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Translation.Y",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform.Translation.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Translation.Z",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform.Translation.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"81cf51a54a6d9d2283aab3adcceb53b8:o:VariableNode_3.Value"
+							]
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Scale3D",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform.Scale3D",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Scale3D.X",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform.Scale3D.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Scale3D.Y",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform.Scale3D.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Scale3D.Z",
+							"name": "ModifyTransforms_1.ItemToModify.0.Transform.Scale3D.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.Weight",
+							"name": "ModifyTransforms_1.Weight",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.WeightMinimum",
+							"name": "ModifyTransforms_1.WeightMinimum",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.WeightMaximum",
+							"name": "ModifyTransforms_1.WeightMaximum",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.Mode",
+							"name": "ModifyTransforms_1.Mode",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.EControlRigModifyBoneMode",
+							"defaultValue": "AdditiveGlobal",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5d32e2a549423fe720c8968a65cdf050",
+					"class": "ControlRigGraphNode",
+					"title": "If",
+					"x": 2800,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5d32e2a549423fe720c8968a65cdf050:o:If_DISPATCH_RigVMDispatch_If.Result",
+							"name": "If_DISPATCH_RigVMDispatch_If.Result",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b78cac5943d07e7a8ba30a984bd936d1:i:VariableNode_4.Value"
+							]
+						},
+						{
+							"id": "5d32e2a549423fe720c8968a65cdf050:i:If_DISPATCH_RigVMDispatch_If.Condition",
+							"name": "If_DISPATCH_RigVMDispatch_If.Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"bd3f85ac4193276f56232e996dbbb058:o:MathFloatLess.Result"
+							]
+						},
+						{
+							"id": "5d32e2a549423fe720c8968a65cdf050:i:If_DISPATCH_RigVMDispatch_If.True",
+							"name": "If_DISPATCH_RigVMDispatch_If.True",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d8c8cef84740001eb5357f8914c1f8a0:o:VariableNode_5_1.Value"
+							]
+						},
+						{
+							"id": "5d32e2a549423fe720c8968a65cdf050:i:If_DISPATCH_RigVMDispatch_If.False",
+							"name": "If_DISPATCH_RigVMDispatch_If.False",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"032b19464f24bf29b5b5848c01707de2:o:VariableNode_6_1.Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "66c3eb3945fcf23e27ba25a4cd76beb9",
+					"class": "ControlRigGraphNode",
+					"title": "Execute Context",
+					"x": 1024,
+					"y": -368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "66c3eb3945fcf23e27ba25a4cd76beb9:i:RerouteNode_3.Value",
+							"name": "RerouteNode_3.Value",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"3199410c469d6535503627b4ac7c1e04:o:SequenceExecution.B"
+							]
+						},
+						{
+							"id": "66c3eb3945fcf23e27ba25a4cd76beb9:o:RerouteNode_3.Value",
+							"name": "RerouteNode_3.Value",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"12d9ab7f47acd64924e193a4f01fa09f:i:VariableNode_10.ExecuteContext"
+							]
+						}
+					]
+				},
+				{
+					"guid": "70c44f3e4cf193f802ba3aa37498a2e5",
+					"class": "ControlRigGraphNode",
+					"title": "Set ZOffset_R_Target",
+					"x": 1776,
+					"y": -624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "70c44f3e4cf193f802ba3aa37498a2e5:i:VariableNode_8_1.ExecuteContext",
+							"name": "VariableNode_8_1.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"3001b2934a940a904a31a69dd2f91ec6:o:VariableNode_9.ExecuteContext"
+							]
+						},
+						{
+							"id": "70c44f3e4cf193f802ba3aa37498a2e5:o:VariableNode_8_1.ExecuteContext",
+							"name": "VariableNode_8_1.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "70c44f3e4cf193f802ba3aa37498a2e5:i:VariableNode_8_1.Value",
+							"name": "VariableNode_8_1.Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "805ae3304c34bbe4d00f658a67f0c041",
+					"class": "ControlRigGraphNode",
+					"title": "Get Transform - Bone",
+					"x": 1056,
+					"y": 767,
+					"comment": null,
+					"pins": [
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform",
+							"name": "GetTransform.Transform",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform"
+							]
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform.Rotation",
+							"name": "GetTransform.Transform.Rotation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Quat",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform.Translation",
+							"name": "GetTransform.Transform.Translation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform.Translation.X",
+							"name": "GetTransform.Transform.Translation.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform.Translation.Y",
+							"name": "GetTransform.Transform.Translation.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform.Translation.Z",
+							"name": "GetTransform.Transform.Translation.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform.Scale3D",
+							"name": "GetTransform.Transform.Scale3D",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform.Scale3D.X",
+							"name": "GetTransform.Transform.Scale3D.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform.Scale3D.Y",
+							"name": "GetTransform.Transform.Scale3D.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform.Scale3D.Z",
+							"name": "GetTransform.Transform.Scale3D.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:i:GetTransform.Item",
+							"name": "GetTransform.Item",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:i:GetTransform.Item.Type",
+							"name": "GetTransform.Item.Type",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": "Bone",
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:i:GetTransform.Item.Name",
+							"name": "GetTransform.Item.Name",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "IK_foot_L",
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:i:GetTransform.Space",
+							"name": "GetTransform.Space",
+							"direction": "input",
+							"type": "byte:/Script/RigVM.ERigVMTransformSpace",
+							"defaultValue": "GlobalSpace",
+							"links": []
+						},
+						{
+							"id": "805ae3304c34bbe4d00f658a67f0c041:i:GetTransform.bInitial",
+							"name": "GetTransform.bInitial",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "81cf51a54a6d9d2283aab3adcceb53b8",
+					"class": "ControlRigGraphNode",
+					"title": "Get ZOffset_R",
+					"x": 1600,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "81cf51a54a6d9d2283aab3adcceb53b8:o:VariableNode_3.Value",
+							"name": "VariableNode_3.Value",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"59cf8eef418236a073f798ace4032111:i:ModifyTransforms_1.ItemToModify.0.Transform.Translation.Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "83c46b394f59d3ff622b05851b48e4ea",
+					"class": "ControlRigGraphNode",
+					"title": "Get ZOffset_R",
+					"x": 2436,
+					"y": -265,
+					"comment": null,
+					"pins": [
+						{
+							"id": "83c46b394f59d3ff622b05851b48e4ea:o:VariableNode_6.Value",
+							"name": "VariableNode_6.Value",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"bd3f85ac4193276f56232e996dbbb058:i:MathFloatLess.B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "83f5b9af48dc7c0aca2c7eb9877b571a",
+					"class": "ControlRigGraphNode",
+					"title": "FootTrace",
+					"x": 1520,
+					"y": -864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "83f5b9af48dc7c0aca2c7eb9877b571a:i:FootTrace.ExecuteContext",
+							"name": "FootTrace.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"d597994d4b8fa23e5a135898b9761fe4:o:Branch_RigVMUnitNode.True"
+							]
+						},
+						{
+							"id": "83f5b9af48dc7c0aca2c7eb9877b571a:o:FootTrace.ExecuteContext",
+							"name": "FootTrace.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"e2f89d274ac0e37d366fa9b4d90db00f:i:VariableNode.ExecuteContext"
+							]
+						},
+						{
+							"id": "83f5b9af48dc7c0aca2c7eb9877b571a:o:FootTrace.Hit Location",
+							"name": "FootTrace.Hit Location",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "83f5b9af48dc7c0aca2c7eb9877b571a:o:FootTrace.Hit Location.X",
+							"name": "FootTrace.Hit Location.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "83f5b9af48dc7c0aca2c7eb9877b571a:o:FootTrace.Hit Location.Y",
+							"name": "FootTrace.Hit Location.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "83f5b9af48dc7c0aca2c7eb9877b571a:o:FootTrace.Hit Location.Z",
+							"name": "FootTrace.Hit Location.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e2f89d274ac0e37d366fa9b4d90db00f:i:VariableNode.Value"
+							]
+						},
+						{
+							"id": "83f5b9af48dc7c0aca2c7eb9877b571a:i:FootTrace.Item",
+							"name": "FootTrace.Item",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "83f5b9af48dc7c0aca2c7eb9877b571a:i:FootTrace.Item.Type",
+							"name": "FootTrace.Item.Type",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": "Bone",
+							"links": []
+						},
+						{
+							"id": "83f5b9af48dc7c0aca2c7eb9877b571a:i:FootTrace.Item.Name",
+							"name": "FootTrace.Item.Name",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "ik_foot_l",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8e6f465747481c6a153f8595098a1d37",
+					"class": "ControlRigGraphNode",
+					"title": "Alpha Interpolate",
+					"x": 1904,
+					"y": -336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:o:AlphaInterp_1.Result",
+							"name": "AlphaInterp_1.Result",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"322276a349d83f7157585dbf8ec55d23:i:VariableNode_11.Value"
+							]
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.Value",
+							"name": "AlphaInterp_1.Value",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"3729b1484774560e1c8aa1be38ba2454:o:VariableNode_13.Value"
+							]
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.Scale",
+							"name": "AlphaInterp_1.Scale",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.Bias",
+							"name": "AlphaInterp_1.Bias",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.bMapRange",
+							"name": "AlphaInterp_1.bMapRange",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.InRange",
+							"name": "AlphaInterp_1.InRange",
+							"direction": "input",
+							"type": "struct:/Script/Engine.InputRange",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.InRange.Min",
+							"name": "AlphaInterp_1.InRange.Min",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.InRange.Max",
+							"name": "AlphaInterp_1.InRange.Max",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.OutRange",
+							"name": "AlphaInterp_1.OutRange",
+							"direction": "input",
+							"type": "struct:/Script/Engine.InputRange",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.OutRange.Min",
+							"name": "AlphaInterp_1.OutRange.Min",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.OutRange.Max",
+							"name": "AlphaInterp_1.OutRange.Max",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.bClampResult",
+							"name": "AlphaInterp_1.bClampResult",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.ClampMin",
+							"name": "AlphaInterp_1.ClampMin",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.ClampMax",
+							"name": "AlphaInterp_1.ClampMax",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.bInterpResult",
+							"name": "AlphaInterp_1.bInterpResult",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.InterpSpeedIncreasing",
+							"name": "AlphaInterp_1.InterpSpeedIncreasing",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "15.000000",
+							"links": []
+						},
+						{
+							"id": "8e6f465747481c6a153f8595098a1d37:i:AlphaInterp_1.InterpSpeedDecreasing",
+							"name": "AlphaInterp_1.InterpSpeedDecreasing",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "15.000000",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a15e37c4413b6ae1ebfe2588527fb6b1",
+					"class": "ControlRigGraphNode",
+					"title": "Get Transform - Bone",
+					"x": 1056,
+					"y": 975,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform",
+							"name": "GetTransform_1.Transform",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform"
+							]
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform.Rotation",
+							"name": "GetTransform_1.Transform.Rotation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Quat",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform.Translation",
+							"name": "GetTransform_1.Transform.Translation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform.Translation.X",
+							"name": "GetTransform_1.Transform.Translation.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform.Translation.Y",
+							"name": "GetTransform_1.Transform.Translation.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform.Translation.Z",
+							"name": "GetTransform_1.Transform.Translation.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform.Scale3D",
+							"name": "GetTransform_1.Transform.Scale3D",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform.Scale3D.X",
+							"name": "GetTransform_1.Transform.Scale3D.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform.Scale3D.Y",
+							"name": "GetTransform_1.Transform.Scale3D.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform.Scale3D.Z",
+							"name": "GetTransform_1.Transform.Scale3D.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:i:GetTransform_1.Item",
+							"name": "GetTransform_1.Item",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:i:GetTransform_1.Item.Type",
+							"name": "GetTransform_1.Item.Type",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": "Bone",
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:i:GetTransform_1.Item.Name",
+							"name": "GetTransform_1.Item.Name",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "IK_foot_R",
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:i:GetTransform_1.Space",
+							"name": "GetTransform_1.Space",
+							"direction": "input",
+							"type": "byte:/Script/RigVM.ERigVMTransformSpace",
+							"defaultValue": "GlobalSpace",
+							"links": []
+						},
+						{
+							"id": "a15e37c4413b6ae1ebfe2588527fb6b1:i:GetTransform_1.bInitial",
+							"name": "GetTransform_1.bInitial",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a91cf5b0492b207d30471ca2d3acf28c",
+					"class": "ControlRigGraphNode",
+					"title": "Full Body IK",
+					"x": 1392,
+					"y": 703,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.ExecutePin",
+							"name": "PBIK.ExecutePin",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"d91a52ba4d17a7868ebc8aaef800056b:o:RerouteNode_1.Value"
+							]
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:o:PBIK.ExecutePin",
+							"name": "PBIK.ExecutePin",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Root",
+							"name": "PBIK.Root",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "pelvis",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors",
+							"name": "PBIK.Effectors",
+							"direction": "input",
+							"type": "struct:/Script/PBIK.PBIKEffector[]",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0",
+							"name": "PBIK.Effectors.0",
+							"direction": "input",
+							"type": "struct:/Script/PBIK.PBIKEffector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Bone",
+							"name": "PBIK.Effectors.0.Bone",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "foot_l",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform",
+							"name": "PBIK.Effectors.0.Transform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"805ae3304c34bbe4d00f658a67f0c041:o:GetTransform.Transform"
+							]
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform.Rotation",
+							"name": "PBIK.Effectors.0.Transform.Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Quat",
+							"defaultValue": "(X=0.000000,Y=0.000000,Z=0.000000,W=1.000000)",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform.Translation",
+							"name": "PBIK.Effectors.0.Transform.Translation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform.Translation.X",
+							"name": "PBIK.Effectors.0.Transform.Translation.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform.Translation.Y",
+							"name": "PBIK.Effectors.0.Transform.Translation.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform.Translation.Z",
+							"name": "PBIK.Effectors.0.Transform.Translation.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform.Scale3D",
+							"name": "PBIK.Effectors.0.Transform.Scale3D",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform.Scale3D.X",
+							"name": "PBIK.Effectors.0.Transform.Scale3D.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform.Scale3D.Y",
+							"name": "PBIK.Effectors.0.Transform.Scale3D.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.Transform.Scale3D.Z",
+							"name": "PBIK.Effectors.0.Transform.Scale3D.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.PositionAlpha",
+							"name": "PBIK.Effectors.0.PositionAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.RotationAlpha",
+							"name": "PBIK.Effectors.0.RotationAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.StrengthAlpha",
+							"name": "PBIK.Effectors.0.StrengthAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.PullChainAlpha",
+							"name": "PBIK.Effectors.0.PullChainAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.PinRotation",
+							"name": "PBIK.Effectors.0.PinRotation",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.0.ChainDepth",
+							"name": "PBIK.Effectors.0.ChainDepth",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1",
+							"name": "PBIK.Effectors.1",
+							"direction": "input",
+							"type": "struct:/Script/PBIK.PBIKEffector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Bone",
+							"name": "PBIK.Effectors.1.Bone",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "foot_r",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform",
+							"name": "PBIK.Effectors.1.Transform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"a15e37c4413b6ae1ebfe2588527fb6b1:o:GetTransform_1.Transform"
+							]
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform.Rotation",
+							"name": "PBIK.Effectors.1.Transform.Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Quat",
+							"defaultValue": "(X=0.000000,Y=0.000000,Z=0.000000,W=1.000000)",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform.Translation",
+							"name": "PBIK.Effectors.1.Transform.Translation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform.Translation.X",
+							"name": "PBIK.Effectors.1.Transform.Translation.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform.Translation.Y",
+							"name": "PBIK.Effectors.1.Transform.Translation.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform.Translation.Z",
+							"name": "PBIK.Effectors.1.Transform.Translation.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform.Scale3D",
+							"name": "PBIK.Effectors.1.Transform.Scale3D",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform.Scale3D.X",
+							"name": "PBIK.Effectors.1.Transform.Scale3D.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform.Scale3D.Y",
+							"name": "PBIK.Effectors.1.Transform.Scale3D.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.Transform.Scale3D.Z",
+							"name": "PBIK.Effectors.1.Transform.Scale3D.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.PositionAlpha",
+							"name": "PBIK.Effectors.1.PositionAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.RotationAlpha",
+							"name": "PBIK.Effectors.1.RotationAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.StrengthAlpha",
+							"name": "PBIK.Effectors.1.StrengthAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.PullChainAlpha",
+							"name": "PBIK.Effectors.1.PullChainAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.PinRotation",
+							"name": "PBIK.Effectors.1.PinRotation",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Effectors.1.ChainDepth",
+							"name": "PBIK.Effectors.1.ChainDepth",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.BoneSettings",
+							"name": "PBIK.BoneSettings",
+							"direction": "input",
+							"type": "struct:/Script/PBIK.PBIKBoneSetting[]",
+							"defaultValue": "()",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.ExcludedBones",
+							"name": "PBIK.ExcludedBones",
+							"direction": "input",
+							"type": "name[]",
+							"defaultValue": "()",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings",
+							"name": "PBIK.Settings",
+							"direction": "input",
+							"type": "struct:/Script/PBIK.PBIKSolverSettings",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.Iterations",
+							"name": "PBIK.Settings.Iterations",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "20",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.MassMultiplier",
+							"name": "PBIK.Settings.MassMultiplier",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.bAllowStretch",
+							"name": "PBIK.Settings.bAllowStretch",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.RootBehavior",
+							"name": "PBIK.Settings.RootBehavior",
+							"direction": "input",
+							"type": "byte:/Script/PBIK.EPBIKRootBehavior",
+							"defaultValue": "PinToInput",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.SubIterations",
+							"name": "PBIK.Settings.SubIterations",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.PrePullRootSettings",
+							"name": "PBIK.Settings.PrePullRootSettings",
+							"direction": "input",
+							"type": "struct:/Script/PBIK.RootPrePullSettings",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.PrePullRootSettings.RotationAlpha",
+							"name": "PBIK.Settings.PrePullRootSettings.RotationAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.PrePullRootSettings.RotationAlphaX",
+							"name": "PBIK.Settings.PrePullRootSettings.RotationAlphaX",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.PrePullRootSettings.RotationAlphaY",
+							"name": "PBIK.Settings.PrePullRootSettings.RotationAlphaY",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.PrePullRootSettings.RotationAlphaZ",
+							"name": "PBIK.Settings.PrePullRootSettings.RotationAlphaZ",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.PrePullRootSettings.PositionAlpha",
+							"name": "PBIK.Settings.PrePullRootSettings.PositionAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.PrePullRootSettings.PositionAlphaX",
+							"name": "PBIK.Settings.PrePullRootSettings.PositionAlphaX",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.PrePullRootSettings.PositionAlphaY",
+							"name": "PBIK.Settings.PrePullRootSettings.PositionAlphaY",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.PrePullRootSettings.PositionAlphaZ",
+							"name": "PBIK.Settings.PrePullRootSettings.PositionAlphaZ",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.GlobalPullChainAlpha",
+							"name": "PBIK.Settings.GlobalPullChainAlpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.MaxAngle",
+							"name": "PBIK.Settings.MaxAngle",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "30.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Settings.OverRelaxation",
+							"name": "PBIK.Settings.OverRelaxation",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.300000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Debug",
+							"name": "PBIK.Debug",
+							"direction": "input",
+							"type": "struct:/Script/PBIK.PBIKDebug",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Debug.DrawScale",
+							"name": "PBIK.Debug.DrawScale",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.Debug.bDrawDebug",
+							"name": "PBIK.Debug.bDrawDebug",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a9ffb67443cecf8f44281cb409970b66",
+					"class": "ControlRigGraphNode",
+					"title": "Set ZOffset_R_Target",
+					"x": 2544,
+					"y": -864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a9ffb67443cecf8f44281cb409970b66:i:VariableNode_8.ExecuteContext",
+							"name": "VariableNode_8.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"efa15b8d4ce10b13e9ff64bda1f2127f:o:FootTrace_1.ExecuteContext"
+							]
+						},
+						{
+							"id": "a9ffb67443cecf8f44281cb409970b66:o:VariableNode_8.ExecuteContext",
+							"name": "VariableNode_8.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a9ffb67443cecf8f44281cb409970b66:i:VariableNode_8.Value",
+							"name": "VariableNode_8.Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"efa15b8d4ce10b13e9ff64bda1f2127f:o:FootTrace_1.Hit Location.Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b78cac5943d07e7a8ba30a984bd936d1",
+					"class": "ControlRigGraphNode",
+					"title": "Set ZOffset_Pelvis",
+					"x": 3008,
+					"y": -416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b78cac5943d07e7a8ba30a984bd936d1:i:VariableNode_4.ExecuteContext",
+							"name": "VariableNode_4.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"322276a349d83f7157585dbf8ec55d23:o:VariableNode_11.ExecuteContext"
+							]
+						},
+						{
+							"id": "b78cac5943d07e7a8ba30a984bd936d1:o:VariableNode_4.ExecuteContext",
+							"name": "VariableNode_4.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b78cac5943d07e7a8ba30a984bd936d1:i:VariableNode_4.Value",
+							"name": "VariableNode_4.Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5d32e2a549423fe720c8968a65cdf050:o:If_DISPATCH_RigVMDispatch_If.Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bd3f85ac4193276f56232e996dbbb058",
+					"class": "ControlRigGraphNode",
+					"title": "Less",
+					"x": 2608,
+					"y": -304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bd3f85ac4193276f56232e996dbbb058:o:MathFloatLess.Result",
+							"name": "MathFloatLess.Result",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"5d32e2a549423fe720c8968a65cdf050:i:If_DISPATCH_RigVMDispatch_If.Condition"
+							]
+						},
+						{
+							"id": "bd3f85ac4193276f56232e996dbbb058:i:MathFloatLess.A",
+							"name": "MathFloatLess.A",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"bef9b13a46d77756e4a2219d87a10c50:o:VariableNode_5.Value"
+							]
+						},
+						{
+							"id": "bd3f85ac4193276f56232e996dbbb058:i:MathFloatLess.B",
+							"name": "MathFloatLess.B",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"83c46b394f59d3ff622b05851b48e4ea:o:VariableNode_6.Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bef9b13a46d77756e4a2219d87a10c50",
+					"class": "ControlRigGraphNode",
+					"title": "Get ZOffset_L",
+					"x": 2432,
+					"y": -336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bef9b13a46d77756e4a2219d87a10c50:o:VariableNode_5.Value",
+							"name": "VariableNode_5.Value",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"bd3f85ac4193276f56232e996dbbb058:i:MathFloatLess.A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c13e5f3a40e70baeca8d21b043eca858",
+					"class": "ControlRigGraphNode",
+					"title": "Execute Context",
+					"x": 1040,
+					"y": -784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c13e5f3a40e70baeca8d21b043eca858:i:RerouteNode_2.Value",
+							"name": "RerouteNode_2.Value",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"3199410c469d6535503627b4ac7c1e04:o:SequenceExecution.A"
+							]
+						},
+						{
+							"id": "c13e5f3a40e70baeca8d21b043eca858:o:RerouteNode_2.Value",
+							"name": "RerouteNode_2.Value",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"d597994d4b8fa23e5a135898b9761fe4:i:Branch_RigVMUnitNode.ExecuteContext"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c375465e40dcec823ec497ae9beee443",
+					"class": "ControlRigGraphNode",
+					"title": "Get ShouldDoIKTrace",
+					"x": 1056,
+					"y": -752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c375465e40dcec823ec497ae9beee443:o:VariableNode_1.Value",
+							"name": "VariableNode_1.Value",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d597994d4b8fa23e5a135898b9761fe4:i:Branch_RigVMUnitNode.Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c4f17ad744344825cff118a2cb46e965",
+					"class": "ControlRigGraphNode",
+					"title": "Execute Context",
+					"x": 1024,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c4f17ad744344825cff118a2cb46e965:i:RerouteNode.Value",
+							"name": "RerouteNode.Value",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"3199410c469d6535503627b4ac7c1e04:o:SequenceExecution.C"
+							]
+						},
+						{
+							"id": "c4f17ad744344825cff118a2cb46e965:o:RerouteNode.Value",
+							"name": "RerouteNode.Value",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ExecutePin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cb0d48f240ee4578d39fe8af2266f6ac",
+					"class": "ControlRigGraphNode",
+					"title": "Get ZOffset_L",
+					"x": 1088,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cb0d48f240ee4578d39fe8af2266f6ac:o:VariableNode_2.Value",
+							"name": "VariableNode_2.Value",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3b1fb1204578d7206aadd898e6b99e6c:i:ModifyTransforms.ItemToModify.0.Transform.Translation.Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d597994d4b8fa23e5a135898b9761fe4",
+					"class": "ControlRigGraphNode",
+					"title": "Branch",
+					"x": 1264,
+					"y": -816,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d597994d4b8fa23e5a135898b9761fe4:o:Branch_RigVMUnitNode.True",
+							"name": "Branch_RigVMUnitNode.True",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"83f5b9af48dc7c0aca2c7eb9877b571a:i:FootTrace.ExecuteContext"
+							]
+						},
+						{
+							"id": "d597994d4b8fa23e5a135898b9761fe4:o:Branch_RigVMUnitNode.False",
+							"name": "Branch_RigVMUnitNode.False",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"3001b2934a940a904a31a69dd2f91ec6:i:VariableNode_9.ExecuteContext"
+							]
+						},
+						{
+							"id": "d597994d4b8fa23e5a135898b9761fe4:o:Branch_RigVMUnitNode.Completed",
+							"name": "Branch_RigVMUnitNode.Completed",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d597994d4b8fa23e5a135898b9761fe4:i:Branch_RigVMUnitNode.ExecuteContext",
+							"name": "Branch_RigVMUnitNode.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"c13e5f3a40e70baeca8d21b043eca858:o:RerouteNode_2.Value"
+							]
+						},
+						{
+							"id": "d597994d4b8fa23e5a135898b9761fe4:i:Branch_RigVMUnitNode.Condition",
+							"name": "Branch_RigVMUnitNode.Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c375465e40dcec823ec497ae9beee443:o:VariableNode_1.Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d8c8cef84740001eb5357f8914c1f8a0",
+					"class": "ControlRigGraphNode",
+					"title": "Get ZOffset_L",
+					"x": 2608,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d8c8cef84740001eb5357f8914c1f8a0:o:VariableNode_5_1.Value",
+							"name": "VariableNode_5_1.Value",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5d32e2a549423fe720c8968a65cdf050:i:If_DISPATCH_RigVMDispatch_If.True"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d91a52ba4d17a7868ebc8aaef800056b",
+					"class": "ControlRigGraphNode",
+					"title": "Execute Context",
+					"x": 1024,
+					"y": 735,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d91a52ba4d17a7868ebc8aaef800056b:i:RerouteNode_1.Value",
+							"name": "RerouteNode_1.Value",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"3199410c469d6535503627b4ac7c1e04:o:SequenceExecution.D"
+							]
+						},
+						{
+							"id": "d91a52ba4d17a7868ebc8aaef800056b:o:RerouteNode_1.Value",
+							"name": "RerouteNode_1.Value",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"a91cf5b0492b207d30471ca2d3acf28c:i:PBIK.ExecutePin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e039dcd44982977c3feeab9474a45194",
+					"class": "ControlRigGraphNode",
+					"title": "Modify Transforms",
+					"x": 2288,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ExecutePin",
+							"name": "ModifyTransforms_1_1.ExecutePin",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"59cf8eef418236a073f798ace4032111:o:ModifyTransforms_1.ExecutePin"
+							]
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:o:ModifyTransforms_1_1.ExecutePin",
+							"name": "ModifyTransforms_1_1.ExecutePin",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify",
+							"name": "ModifyTransforms_1_1.ItemToModify",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigUnit_ModifyTransforms_PerItem[]",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0",
+							"name": "ModifyTransforms_1_1.ItemToModify.0",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigUnit_ModifyTransforms_PerItem",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Item",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Item",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Item.Type",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Item.Type",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": "Bone",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Item.Name",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Item.Name",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "pelvis",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Rotation",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform.Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Quat",
+							"defaultValue": "(X=0.000000,Y=0.000000,Z=0.000000,W=1.000000)",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Translation",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform.Translation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Translation.X",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform.Translation.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Translation.Y",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform.Translation.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Translation.Z",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform.Translation.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"21f41a274490e43a8f1e3b8ec081b80a:o:VariableNode_7.Value"
+							]
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Scale3D",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform.Scale3D",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Scale3D.X",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform.Scale3D.X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Scale3D.Y",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform.Scale3D.Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.ItemToModify.0.Transform.Scale3D.Z",
+							"name": "ModifyTransforms_1_1.ItemToModify.0.Transform.Scale3D.Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.Weight",
+							"name": "ModifyTransforms_1_1.Weight",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.WeightMinimum",
+							"name": "ModifyTransforms_1_1.WeightMinimum",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.WeightMaximum",
+							"name": "ModifyTransforms_1_1.WeightMaximum",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "e039dcd44982977c3feeab9474a45194:i:ModifyTransforms_1_1.Mode",
+							"name": "ModifyTransforms_1_1.Mode",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.EControlRigModifyBoneMode",
+							"defaultValue": "AdditiveGlobal",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e2f89d274ac0e37d366fa9b4d90db00f",
+					"class": "ControlRigGraphNode",
+					"title": "Set ZOffset_L_Target",
+					"x": 1904,
+					"y": -864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e2f89d274ac0e37d366fa9b4d90db00f:i:VariableNode.ExecuteContext",
+							"name": "VariableNode.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"83f5b9af48dc7c0aca2c7eb9877b571a:o:FootTrace.ExecuteContext"
+							]
+						},
+						{
+							"id": "e2f89d274ac0e37d366fa9b4d90db00f:o:VariableNode.ExecuteContext",
+							"name": "VariableNode.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"efa15b8d4ce10b13e9ff64bda1f2127f:i:FootTrace_1.ExecuteContext"
+							]
+						},
+						{
+							"id": "e2f89d274ac0e37d366fa9b4d90db00f:i:VariableNode.Value",
+							"name": "VariableNode.Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"83f5b9af48dc7c0aca2c7eb9877b571a:o:FootTrace.Hit Location.Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "efa15b8d4ce10b13e9ff64bda1f2127f",
+					"class": "ControlRigGraphNode",
+					"title": "FootTrace",
+					"x": 2144,
+					"y": -864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "efa15b8d4ce10b13e9ff64bda1f2127f:i:FootTrace_1.ExecuteContext",
+							"name": "FootTrace_1.ExecuteContext",
+							"direction": "input",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"e2f89d274ac0e37d366fa9b4d90db00f:o:VariableNode.ExecuteContext"
+							]
+						},
+						{
+							"id": "efa15b8d4ce10b13e9ff64bda1f2127f:o:FootTrace_1.ExecuteContext",
+							"name": "FootTrace_1.ExecuteContext",
+							"direction": "output",
+							"type": "struct:/Script/RigVM.RigVMExecuteContext",
+							"defaultValue": null,
+							"links": [
+								"a9ffb67443cecf8f44281cb409970b66:i:VariableNode_8.ExecuteContext"
+							]
+						},
+						{
+							"id": "efa15b8d4ce10b13e9ff64bda1f2127f:o:FootTrace_1.Hit Location",
+							"name": "FootTrace_1.Hit Location",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "efa15b8d4ce10b13e9ff64bda1f2127f:o:FootTrace_1.Hit Location.X",
+							"name": "FootTrace_1.Hit Location.X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "efa15b8d4ce10b13e9ff64bda1f2127f:o:FootTrace_1.Hit Location.Y",
+							"name": "FootTrace_1.Hit Location.Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "efa15b8d4ce10b13e9ff64bda1f2127f:o:FootTrace_1.Hit Location.Z",
+							"name": "FootTrace_1.Hit Location.Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a9ffb67443cecf8f44281cb409970b66:i:VariableNode_8.Value"
+							]
+						},
+						{
+							"id": "efa15b8d4ce10b13e9ff64bda1f2127f:i:FootTrace_1.Item",
+							"name": "FootTrace_1.Item",
+							"direction": "input",
+							"type": "struct:/Script/ControlRig.RigElementKey",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "efa15b8d4ce10b13e9ff64bda1f2127f:i:FootTrace_1.Item.Type",
+							"name": "FootTrace_1.Item.Type",
+							"direction": "input",
+							"type": "byte:/Script/ControlRig.ERigElementType",
+							"defaultValue": "Bone",
+							"links": []
+						},
+						{
+							"id": "efa15b8d4ce10b13e9ff64bda1f2127f:i:FootTrace_1.Item.Name",
+							"name": "FootTrace_1.Item.Name",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "ik_foot_r",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "0956caad4012340265d7e2bfd9471c5c",
+					"text": "Step 5: Use a Full Body IK node to solve the IK, and use the IK foot bones as the effector targets for each foot.",
+					"x": 1008,
+					"y": 608,
+					"width": 768,
+					"height": 864
+				},
+				{
+					"guid": "097d9abe46c1dfa6c9271ca422d94166",
+					"text": "Step 3: Use the lowest foot offset for the pelvis to prevent overextension.",
+					"x": 2400,
+					"y": -480,
+					"width": 800,
+					"height": 512
+				},
+				{
+					"guid": "2cf7fea84b92a08b5bcd9a809983f22b",
+					"text": "Step 2: Interpolate the Z offsets toward their target values.",
+					"x": 1008,
+					"y": -480,
+					"width": 1360,
+					"height": 512
+				},
+				{
+					"guid": "492caffb471e25230fd6639b577c0357",
+					"text": "Step 4: Add the interpolated Z offsets to the IK foot bones and pelvis. This will move them up or down.",
+					"x": 1008,
+					"y": 64,
+					"width": 1616,
+					"height": 512
+				},
+				{
+					"guid": "bfce5b0441a20d6875f6d49fc7071081",
+					"text": "Step 1: If Should Do IK Trace is true, do traces on both feet (using custom trace function) and set the Z offset targets from the trace result. If Should Do IK Trace is false, reset targets to 0.",
+					"x": 1008,
+					"y": -960,
+					"width": 1792,
+					"height": 448
+				}
+			]
+		}
+	]
+}
