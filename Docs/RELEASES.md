@@ -14,10 +14,17 @@ Examples:
 These tags represent immutable points in the git history of our `main` branch and can be referenced as a common
 point of knowledge when describing tasks.
 
+**Note:** Unreal also maintains a project version in the `Config/DefaultGame.ini` (Editor: Project Settings >
+Project > Description > Project Version). This should be updated in a commit as a last step before adding the
+git tag to ensure that the git tag and project version always match.
+
 ## Build the project
 
 Unreal packages can be built from the Editor, or from the UAT command-line tool. At the end of either process, there
 will be a folder with a built binary and data files.
+
+By default Unreal will create a Development build, which is fine for tests and debugging, but for a release you 
+**must** use a Shipping build.
 
 ### Build with Editor
 
@@ -34,7 +41,7 @@ without needing to load the full Unreal Editor.
 
 Assuming that your Unreal Engine path, project path and output path are defined as environment variables, a build may look like:
 ```ps
-$env:UE_PATH\Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="$env:PROJECT_PATH" -noP4 -platform=Win64 -clientconfig=Development -serverconfig=Development -cook -allmaps -build -stage -pak -archive -archivedirectory="$env:OUTPUT_PATH"
+$env:UE_PATH\Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="$env:PROJECT_PATH" -noP4 -platform=Win64 -clientconfig=Shipping -serverconfig=Shipping -nodebuginfo -nocompileeditor -skipbuildeditor -cook -allmaps -build -stage -pak -archive -archivedirectory="$env:OUTPUT_PATH"
 ```
 
 There are a lot of options and awesome things that the UAT can do. Please [read the docs](https://dev.epicgames.com/documentation/unreal-engine/unreal-automation-tool-for-unreal-engine?application_version=5.7).
@@ -109,3 +116,22 @@ credentials and triggering Steam Guard authorization) and will *not* upload the 
 doing even for a routine build upload to make sure the output makes sense.
 
 Once happy with the dry run output, adjust the "preview" flag to "0" and re-run the `steamcmd.exe` utility command.
+
+The SDK also includes a 'SteamPipe Build Uploader' program if you prefer to manage the updated descriptions and upload
+process via GUI rather than command line.
+
+### Release the build
+
+1. Go to the Builds page in Steamworks
+    * `Steamworks > App Admin > ASGC 2026 Game Jam Playtest`
+    * `Technical tools > Edit Steamworks Settings`
+    * `SteamPipe > Builds`
+2. Here is a list of builds ordered by upload date and an indication of which build is released in the 'Current' column
+    * The new build that was uploaded in the previous step should be listed above the build marked as released to 'default'
+3. In the drop-down on the right, select 'default' and then click the "Preview Change" button
+    * If the build hasn't changed since the last time, Steamworks will tell you and won't let you progress to releasing it
+4. Review the build changes
+    * Check the differences in disk size (including the update download size) to ensure it's the correct build
+5. Add the version tag as a comment and click "Set Build Live Now"
+    * While adding a comment to the release is considered optional for Steamworks, using the version helps track on other pages
+    * Steamworks has a confirmation prompt even after you click the button to make doubly sure you want to release it
