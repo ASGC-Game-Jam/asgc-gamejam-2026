@@ -188,7 +188,7 @@ final
 final2
 ```
 
-Ordinary Pull Requests are squash-merged, so temporary development commits do not need to be individually perfect. 
+Ordinary Pull Requests are squash-merged, so temporary development commits do not need to be individually perfect 
 
 ---
 
