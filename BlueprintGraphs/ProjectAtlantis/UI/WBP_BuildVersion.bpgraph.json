@@ -1,0 +1,532 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_BuildVersion",
+	"asset": "WBP_BuildVersion",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "GetVersionText",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "0156f3514eb38c0b49b83ab2a804767e",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (String)",
+					"x": 384,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0156f3514eb38c0b49b83ab2a804767e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "0156f3514eb38c0b49b83ab2a804767e:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"c1f8fe2a490f252e0be6cb8c60db1851:o:version"
+							]
+						},
+						{
+							"id": "0156f3514eb38c0b49b83ab2a804767e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"9a37fbb74e9d1cf30914b490c4eaf136:i:GameVersion"
+							]
+						}
+					]
+				},
+				{
+					"guid": "07e42adc400d71880ef2cf83f98c4f94",
+					"class": "K2Node_CallFunction",
+					"title": "Is Packaged for Distribution",
+					"x": 80,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "07e42adc400d71880ef2cf83f98c4f94:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "07e42adc400d71880ef2cf83f98c4f94:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f0f226be42678c49bdcbebb560db5757:i:Index"
+							]
+						}
+					]
+				},
+				{
+					"guid": "32afcc0e4d359bc209102eb4c8b732c7",
+					"class": "K2Node_CallFunction",
+					"title": "Parse Into Array",
+					"x": -112,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "32afcc0e4d359bc209102eb4c8b732c7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "32afcc0e4d359bc209102eb4c8b732c7:i:SourceString",
+							"name": "SourceString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"6fa169004f0dd5da9ac235ab3aac3803:o:ReturnValue"
+							]
+						},
+						{
+							"id": "32afcc0e4d359bc209102eb4c8b732c7:i:Delimiter",
+							"name": "Delimiter",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "+",
+							"links": []
+						},
+						{
+							"id": "32afcc0e4d359bc209102eb4c8b732c7:i:CullEmptyStrings",
+							"name": "CullEmptyStrings",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "32afcc0e4d359bc209102eb4c8b732c7:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"64be962c436e6e0a298fc4ad63b1a23e:i:Array"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3e9e86bd48fe71161970ffa7e26bd04b",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (String)",
+					"x": 400,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3e9e86bd48fe71161970ffa7e26bd04b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "3e9e86bd48fe71161970ffa7e26bd04b:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"64be962c436e6e0a298fc4ad63b1a23e:o:Output"
+							]
+						},
+						{
+							"id": "3e9e86bd48fe71161970ffa7e26bd04b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"9a37fbb74e9d1cf30914b490c4eaf136:i:UnrealVersion"
+							]
+						}
+					]
+				},
+				{
+					"guid": "64be962c436e6e0a298fc4ad63b1a23e",
+					"class": "K2Node_GetArrayItem",
+					"title": "Get (a copy)",
+					"x": 192,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "64be962c436e6e0a298fc4ad63b1a23e:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"32afcc0e4d359bc209102eb4c8b732c7:o:ReturnValue"
+							]
+						},
+						{
+							"id": "64be962c436e6e0a298fc4ad63b1a23e:i:Dimension 1",
+							"name": "Dimension 1",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "64be962c436e6e0a298fc4ad63b1a23e:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"3e9e86bd48fe71161970ffa7e26bd04b:i:InString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6fa169004f0dd5da9ac235ab3aac3803",
+					"class": "K2Node_CallFunction",
+					"title": "Get Engine Version",
+					"x": -304,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6fa169004f0dd5da9ac235ab3aac3803:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "6fa169004f0dd5da9ac235ab3aac3803:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"32afcc0e4d359bc209102eb4c8b732c7:i:SourceString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9a37fbb74e9d1cf30914b490c4eaf136",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 656,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a37fbb74e9d1cf30914b490c4eaf136:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Project Atlantis v{GameVersion} - {ReleaseChannel} Build\r\nMade with Unreal v{UnrealVersion}\r\nCopyright © 2026 ASGC",
+							"links": []
+						},
+						{
+							"id": "9a37fbb74e9d1cf30914b490c4eaf136:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cf2db0a94309dd71b01192979567cb94:i:ReturnValue"
+							]
+						},
+						{
+							"id": "9a37fbb74e9d1cf30914b490c4eaf136:i:GameVersion",
+							"name": "GameVersion",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"0156f3514eb38c0b49b83ab2a804767e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "9a37fbb74e9d1cf30914b490c4eaf136:i:ReleaseChannel",
+							"name": "ReleaseChannel",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"f0f226be42678c49bdcbebb560db5757:o:ReturnValue"
+							]
+						},
+						{
+							"id": "9a37fbb74e9d1cf30914b490c4eaf136:i:UnrealVersion",
+							"name": "UnrealVersion",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"3e9e86bd48fe71161970ffa7e26bd04b:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ab94e3e3464954d545fb23911f5f35d0",
+					"class": "K2Node_FunctionEntry",
+					"title": "GetVersionText",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ab94e3e3464954d545fb23911f5f35d0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cf2db0a94309dd71b01192979567cb94:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c1f8fe2a490f252e0be6cb8c60db1851",
+					"class": "K2Node_CallFunction",
+					"title": "GetProjectVersion",
+					"x": 176,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c1f8fe2a490f252e0be6cb8c60db1851:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.UsefulHelpers",
+							"defaultValue": "/Script/ProjectAtlantis.Default__UsefulHelpers",
+							"links": []
+						},
+						{
+							"id": "c1f8fe2a490f252e0be6cb8c60db1851:o:version",
+							"name": "version",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"0156f3514eb38c0b49b83ab2a804767e:i:InString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cf2db0a94309dd71b01192979567cb94",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 1200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cf2db0a94309dd71b01192979567cb94:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ab94e3e3464954d545fb23911f5f35d0:o:then"
+							]
+						},
+						{
+							"id": "cf2db0a94309dd71b01192979567cb94:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"9a37fbb74e9d1cf30914b490c4eaf136:o:Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f0f226be42678c49bdcbebb560db5757",
+					"class": "K2Node_Select",
+					"title": "Select",
+					"x": 336,
+					"y": 167,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f0f226be42678c49bdcbebb560db5757:i:Option 0",
+							"name": "Option 0",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Beta",
+							"links": []
+						},
+						{
+							"id": "f0f226be42678c49bdcbebb560db5757:i:Option 1",
+							"name": "Option 1",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Release",
+							"links": []
+						},
+						{
+							"id": "f0f226be42678c49bdcbebb560db5757:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"07e42adc400d71880ef2cf83f98c4f94:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f0f226be42678c49bdcbebb560db5757:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"9a37fbb74e9d1cf30914b490c4eaf136:i:ReleaseChannel"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "804df3a541b39d362ceb159f5300c0c5",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "804df3a541b39d362ceb159f5300c0c5:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "804df3a541b39d362ceb159f5300c0c5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "804df3a541b39d362ceb159f5300c0c5:o:MyGeometry",
+							"name": "MyGeometry",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.Geometry",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "804df3a541b39d362ceb159f5300c0c5:o:InDeltaTime",
+							"name": "InDeltaTime",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d093da6043f818160dcfeeb2202ae3ec",
+					"class": "K2Node_Event",
+					"title": "Event Pre Construct",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "d093da6043f818160dcfeeb2202ae3ec:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d093da6043f818160dcfeeb2202ae3ec:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d093da6043f818160dcfeeb2202ae3ec:o:IsDesignTime",
+							"name": "IsDesignTime",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f35d01ce4ab805bd067526b7cbdab72e",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "f35d01ce4ab805bd067526b7cbdab72e:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f35d01ce4ab805bd067526b7cbdab72e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}
