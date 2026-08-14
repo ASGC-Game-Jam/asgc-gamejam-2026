@@ -50,7 +50,7 @@ Before creating a task branch, make sure your local `main` is current
 ```bash
 git switch main
 git pull
-git switch -c 87-footstep-system
+git switch -c issue#-branch-name
 ```
 
 Do not reuse an old merged branch for unrelated work
