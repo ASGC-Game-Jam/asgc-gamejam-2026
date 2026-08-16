@@ -1,3 +1,10 @@
+---
+name: Test
+about: Implementation tasks for the project
+title: ""
+type: "task"
+assignees: []
+---
 ## Description
 
 <!--
