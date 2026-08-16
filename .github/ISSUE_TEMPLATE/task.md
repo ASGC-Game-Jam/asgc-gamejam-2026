@@ -1,5 +1,5 @@
 ---
-name: Test
+name: Task
 about: Implementation tasks for the project
 title: ""
 type: "task"
