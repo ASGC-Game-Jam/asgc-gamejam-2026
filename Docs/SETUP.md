@@ -7,13 +7,12 @@ ASGC Game Jam 2026 project
 
 Install the following before cloning the repository
 
-- Git
+- [Git](https://git-scm.com/install/)
 - [Git LFS](https://git-lfs.com/)
 - Unreal Engine 5.7.4
-- Visual Studio 2022 (or another IDE configured for Unreal Engine C++ development)
-  - MSVC
-  - Windows SDK
-  - C++ profiling tools (recommended)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/older-downloads/) or [Rider](https://www.jetbrains.com/rider/download/) (or another IDE configured for Unreal Engine C++ development)
+  - [Setting up Visual Studio](https://dev.epicgames.com/documentation/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)
+  - [Setting up Rider](https://tomlooman.com/setup-unreal-engine-cpp-rider/)
 
 Verify Git LFS is installed
 
@@ -114,3 +113,9 @@ Once your environment is working
 - Create a feature branch
 - Lock shared binary assets before editing them
 - Start building
+
+## In Case You Enabled 2FA on Gitea
+
+If you enabled 2FA on Gitea, plain username/password Git authentication stops
+working. See [Gitea 2FA.md](./Gitea%202FA.md) for how to set up an access
+token instead, for both Bash (WSL) and PowerShell.
