@@ -1,5 +1,6 @@
 ---
-title: "[TDD ### - Name v0.1] "
+name: Technical Design Document
+title: "[TDD ###] - Name v0.1"
 about: Technical Design Document for a feature
 labels: "feature"
 Source FDS: "[FDS ###](Insert link to FDS)"
