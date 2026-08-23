@@ -3,6 +3,8 @@
 #include "Engine/Engine.h"
 #include "Engine/World.h"
 #include "GameAnalytics.h"
+#include "Analytics.h"
+#include "Interfaces/IAnalyticsProvider.h"
 #include "HAL/PlatformTime.h"
 #include "Misc/PackageName.h"
 #include "UObject/UObjectGlobals.h"
@@ -13,6 +15,26 @@ void UScenePerformanceAnalyticsSubsystem::Initialize(FSubsystemCollectionBase& C
 {
 	Super::Initialize(Collection);
 	GameInstanceStartSeconds = FPlatformTime::Seconds();
+
+#if !WITH_EDITOR
+
+	if (TSharedPtr<IAnalyticsProvider> AnalyticsProvider = FAnalytics::Get().GetDefaultConfiguredProvider())
+	{
+		if (AnalyticsProvider->StartSession())
+		{
+			UE_LOG(LogScenePerformanceAnalytics, Display, TEXT("GameAnalytics session started"));
+		}
+		else
+		{
+			UE_LOG(LogScenePerformanceAnalytics, Warning, TEXT("GameAnalytics session failed to start"));
+		}
+	}
+	else
+	{
+		UE_LOG(LogScenePerformanceAnalytics, Warning, TEXT("GameAnalytics provider unavailable"));
+	}
+#endif
+
 	PreLoadMapHandle = FCoreUObjectDelegates::PreLoadMapWithContext.AddUObject (this, &UScenePerformanceAnalyticsSubsystem::HandlePreLoadMap);
 	PostLoadMapHandle = FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject (this, &UScenePerformanceAnalyticsSubsystem::HandlePostLoadMap);
 	WorldPostActorTickHandle = FWorldDelegates::OnWorldPostActorTick.AddUObject(this, &UScenePerformanceAnalyticsSubsystem::HandleWorldPostActorTick);
@@ -126,6 +148,7 @@ void UScenePerformanceAnalyticsSubsystem::SubmitTiming(const FString& EventId, f
 		return;
 
 #if !WITH_EDITOR
+
 	if (UGameAnalytics* GameAnalytics = UGameAnalytics::GetInstance())
 		GameAnalytics->AddDesignEventWithValue(EventId, Milliseconds);
 #endif
