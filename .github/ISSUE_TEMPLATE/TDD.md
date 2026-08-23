@@ -1,9 +1,9 @@
 ---
 name: Technical Design Document
-title: "[TDD ###] - Name v0.1"
+title: "[TDD-###] Name v0.1"
 about: Technical Design Document for a feature
 labels: "feature"
-Source FDS: "[FDS ###](Insert link to FDS)"
+Source FDS: "[FDS-###](Insert link to FDS)"
 Owner / Reviewers: "[Author / Technical Designer] | [Tech Design / Engineering / Design reviewers]"
 ---
 
