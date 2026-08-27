@@ -22,12 +22,12 @@ public:
 	virtual void Deinitialize() override;
 
 private:
-	void HandlePreLoadMap(const FWorldContext& WorldContext, const FString& MapName);
-	void HandlePostLoadMap(UWorld* LoadedWorld);
-	void HandleWorldPostActorTick(UWorld* World, ELevelTick TickType, float DeltaSeconds);
+	void OnPreLoadMap(const FWorldContext& WorldContext, const FString& MapName);
+	void OnPostLoadMap(UWorld* LoadedWorld);
+	void OnWorldPostActorTick(UWorld* World, const ELevelTick TickType, const float DeltaSeconds);
 
 	bool IsTrackedWorld(const UWorld* World) const;
-	void SubmitTiming(const FString& EventId, float Milliseconds) const;
+	void SubmitTiming(const FString& EventId, const float Milliseconds) const;
 
 	static FString GetSceneName(const UWorld* World);
 	static FString GetSceneName(const FString& MapName);

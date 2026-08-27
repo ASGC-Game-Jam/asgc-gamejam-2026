@@ -35,41 +35,54 @@ void UScenePerformanceAnalyticsSubsystem::Initialize(FSubsystemCollectionBase& C
 	}
 #endif
 
-	PreLoadMapHandle = FCoreUObjectDelegates::PreLoadMapWithContext.AddUObject (this, &UScenePerformanceAnalyticsSubsystem::HandlePreLoadMap);
-	PostLoadMapHandle = FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject (this, &UScenePerformanceAnalyticsSubsystem::HandlePostLoadMap);
-	WorldPostActorTickHandle = FWorldDelegates::OnWorldPostActorTick.AddUObject(this, &UScenePerformanceAnalyticsSubsystem::HandleWorldPostActorTick);
+	PreLoadMapHandle = FCoreUObjectDelegates::PreLoadMapWithContext.AddUObject(this, &UScenePerformanceAnalyticsSubsystem::OnPreLoadMap);
+	PostLoadMapHandle = FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &UScenePerformanceAnalyticsSubsystem::OnPostLoadMap);
+	WorldPostActorTickHandle = FWorldDelegates::OnWorldPostActorTick.AddUObject(this, &UScenePerformanceAnalyticsSubsystem::OnWorldPostActorTick);
 
 	if (const UWorld* World = GetGameInstance() ? GetGameInstance()->GetWorld() : nullptr)
+	{
 		CurrentSceneName = GetSceneName(World);
-
+	}
 }
 
 void UScenePerformanceAnalyticsSubsystem::Deinitialize()
 {
 	if (PreLoadMapHandle.IsValid())
+	{
 		FCoreUObjectDelegates::PreLoadMapWithContext.Remove(PreLoadMapHandle);
+	}
 
 	if (PostLoadMapHandle.IsValid())
+	{
 		FCoreUObjectDelegates::PostLoadMapWithWorld.Remove(PostLoadMapHandle);
+	}
 
 	if (WorldPostActorTickHandle.IsValid())
+	{
 		FWorldDelegates::OnWorldPostActorTick.Remove(WorldPostActorTickHandle);
+	}
 
 	Super::Deinitialize();
 }
 
-void UScenePerformanceAnalyticsSubsystem::HandlePreLoadMap(const FWorldContext& WorldContext, const FString& MapName)
+void UScenePerformanceAnalyticsSubsystem::OnPreLoadMap(const FWorldContext& WorldContext, const FString& MapName)
 {
 	if (WorldContext.OwningGameInstance != GetGameInstance())
+	{
 		return;
+	}
 
 	const UWorld* CurrentWorld = WorldContext.World();
 	FromSceneName = GetSceneName(CurrentWorld);
 
 	if (!bStartupReported)
+	{
 		FromSceneName = TEXT("Startup");
+	}
 	else if (FromSceneName.IsEmpty())
+	{
 		FromSceneName = CurrentSceneName;
+	}
 
 	ToSceneName = GetSceneName(MapName);
 	LoadStartSeconds = FPlatformTime::Seconds();
@@ -81,25 +94,31 @@ void UScenePerformanceAnalyticsSubsystem::HandlePreLoadMap(const FWorldContext& 
 	UE_LOG(LogScenePerformanceAnalytics, Display, TEXT("Scene load started: %s -> %s"), FromSceneName.IsEmpty() ? TEXT("Startup") : *FromSceneName, *ToSceneName);
 }
 
-void UScenePerformanceAnalyticsSubsystem::HandlePostLoadMap(UWorld* LoadedWorld)
+void UScenePerformanceAnalyticsSubsystem::OnPostLoadMap(UWorld* LoadedWorld)
 {
 	if (!IsTrackedWorld(LoadedWorld))
+	{
 		return;
+	}
 
 	CurrentSceneName = GetSceneName(LoadedWorld);
 
 	if (!bLoadInProgress)
+	{
 		return;
+	}
 
 	LoadCompleteSeconds = FPlatformTime::Seconds();
 	PendingWorld = LoadedWorld;
 	bWaitingForFirstTick = true;
 }
 
-void UScenePerformanceAnalyticsSubsystem::HandleWorldPostActorTick(UWorld* World, ELevelTick TickType, float DeltaSeconds)
+void UScenePerformanceAnalyticsSubsystem::OnWorldPostActorTick(UWorld* World, const ELevelTick TickType, const float DeltaSeconds)
 {
 	if (!IsTrackedWorld(World))
+	{
 		return;
+	}
 
 	const double NowSeconds = FPlatformTime::Seconds();
 	const FString SceneName = GetSceneName(World);
@@ -113,7 +132,9 @@ void UScenePerformanceAnalyticsSubsystem::HandleWorldPostActorTick(UWorld* World
 	}
 
 	if (!bLoadInProgress || !bWaitingForFirstTick || PendingWorld.Get() != World)
+	{
 		return;
+	}
 
 	const FString LoadedSceneName = ToSceneName.IsEmpty() ? SceneName : ToSceneName;
 	const float MapLoadMilliseconds = static_cast<float>((LoadCompleteSeconds - LoadStartSeconds) * 1000.0);
@@ -122,10 +143,17 @@ void UScenePerformanceAnalyticsSubsystem::HandleWorldPostActorTick(UWorld* World
 	SubmitTiming(FString::Printf(TEXT("Performance:SceneReady:%s"), *LoadedSceneName), SceneReadyMilliseconds);
 
 	if (!FromSceneName.IsEmpty())
+	{
 		SubmitTiming(FString::Printf(TEXT("Performance:Transition:%s:%s"), *FromSceneName, *LoadedSceneName), SceneReadyMilliseconds);
+	}
 
-	UE_LOG(LogScenePerformanceAnalytics, Display, TEXT("Scene ready: %s -> %s | map load %.2f ms | ready %.2f ms"),
-		FromSceneName.IsEmpty() ? TEXT("Startup") : *FromSceneName,	*LoadedSceneName, MapLoadMilliseconds, SceneReadyMilliseconds);
+	UE_LOG(LogScenePerformanceAnalytics,
+		Display,
+		TEXT("Scene ready: %s -> %s | map load %.2f ms | ready %.2f ms"),
+		FromSceneName.IsEmpty() ? TEXT("Startup") : *FromSceneName,
+		*LoadedSceneName,
+		MapLoadMilliseconds,
+		SceneReadyMilliseconds);
 
 	CurrentSceneName = LoadedSceneName;
 	FromSceneName.Reset();
@@ -142,15 +170,19 @@ bool UScenePerformanceAnalyticsSubsystem::IsTrackedWorld(const UWorld* World) co
 	return World && World->IsGameWorld() && World->GetGameInstance() == GetGameInstance();
 }
 
-void UScenePerformanceAnalyticsSubsystem::SubmitTiming(const FString& EventId, float Milliseconds) const
+void UScenePerformanceAnalyticsSubsystem::SubmitTiming(const FString& EventId, const float Milliseconds) const
 {
 	if (EventId.IsEmpty() || Milliseconds < 0.0f)
+	{
 		return;
+	}
 
 #if !WITH_EDITOR
 
 	if (UGameAnalytics* GameAnalytics = UGameAnalytics::GetInstance())
+	{
 		GameAnalytics->AddDesignEventWithValue(EventId, Milliseconds);
+	}
 #endif
 }
 
@@ -162,7 +194,9 @@ FString UScenePerformanceAnalyticsSubsystem::GetSceneName(const UWorld* World)
 FString UScenePerformanceAnalyticsSubsystem::GetSceneName(const FString& MapName)
 {
 	if (MapName.IsEmpty())
+	{
 		return FString();
+	}
 
 	FString ShortName = FPackageName::GetShortName(MapName);
 	ShortName = UWorld::RemovePIEPrefix(ShortName, nullptr);
@@ -190,7 +224,9 @@ FString UScenePerformanceAnalyticsSubsystem::SanitizeEventSegment(const FString&
 	}
 
 	if (Sanitized.IsEmpty())
+	{
 		Sanitized = TEXT("Unknown");
+	}
 
 	// GameAnalytics limits each event hierarchy segment to 32 characters.
 	// Left(32) truncates longer map/scene names so generated event IDs stay within that limit instead of relying on GameAnalytics to truncate them after submission.
