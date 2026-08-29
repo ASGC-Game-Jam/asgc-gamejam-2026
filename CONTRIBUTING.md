@@ -6,7 +6,6 @@ Thanks for contributing to the ASGC Game Jam 2026 project.
 
 - Complete the setup in [Docs/SETUP.md](./Docs/SETUP.md)
 - Check the existing [Issues](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/issues) to see what needs to be done
-- Make sure you use proper [Git Hygiene](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/blob/main/Docs/Git%20Hygiene.md) for this code base
 - If you're unsure where to start, ask in Discord or open a Discussion
 
 ## Workflow
@@ -18,7 +17,9 @@ Thanks for contributing to the ASGC Game Jam 2026 project.
 5. Commit your work
 6. Open a Pull Request
 
-Please keep Pull Requests focused on a single feature or fix whenever possible.
+Please keep Pull Requests focused on a single feature or fix whenever possible
+
+For more details refer to [Git Hygiene](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/blob/main/Docs/Git%20Hygiene.md)
 
 ## Pull Requests
 
