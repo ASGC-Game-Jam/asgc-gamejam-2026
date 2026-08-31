@@ -62,7 +62,7 @@ What behavior from the FDS must be preserved?
 | `CFG-01` | ... |
 
 
-### 3.2 Validation
+## 3.2 Validation
 <!-- What observable results prove the feature-level behavior is working? -->
 
 - It should ...
