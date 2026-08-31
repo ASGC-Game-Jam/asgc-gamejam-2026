@@ -19,10 +19,17 @@ labels: "Task"
 ## 1.1 Outcome
 <!-- What should exist when this is done? -->
 
-## 1.2 Scope & Boundaries
+## 1.2 Operation Flow
+<!-- What is the expected runtime sequence? -->
+
+1. ...
+2. ...
+3. ...
+
+## 1.3 Scope & Boundaries
 <!-- What does this TDS own and NOT own? -->
 
-## 1.3 Dependencies & Prerequisites
+## 1.4 Dependencies & Prerequisites
 <!-- What does this need from other systems, TDSs, or design decisions? -->
 
 ---
@@ -43,13 +50,6 @@ If an item becomes independently assignable work, make it a child issue.
 - [ ] ...
 - [ ] ...
 - [ ] ...
-
-## 2.3 Operation Flow
-<!-- What is the expected runtime sequence? -->
-
-1. ...
-2. ...
-3. ...
 
 ---
 
