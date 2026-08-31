@@ -19,7 +19,7 @@ labels: "Feature"
 ## 1.1 Technical Purpose
 <!-- What does Tech need to make? -->
 
-## 1.2 System Boundaries
+## 1.2 Scope & Boundaries
 <!-- What does this feature own and **NOT** own? -->
 
 ---
