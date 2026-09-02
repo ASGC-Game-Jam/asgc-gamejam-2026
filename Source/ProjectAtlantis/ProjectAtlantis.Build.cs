@@ -10,7 +10,7 @@ public class ProjectAtlantis : ModuleRules
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EngineSettings" });
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "GameAnalytics" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics" });
 
 		PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
 
