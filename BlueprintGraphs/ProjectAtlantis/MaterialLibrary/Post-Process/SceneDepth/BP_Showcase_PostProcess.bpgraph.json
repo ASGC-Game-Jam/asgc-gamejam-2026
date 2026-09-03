@@ -1,0 +1,408 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/MaterialLibrary/Post-Process/SceneDepth/BP_Showcase_PostProcess",
+	"asset": "BP_Showcase_PostProcess",
+	"parentClass": "Actor",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "2e805961471c80bd6cb18fb4ea85c7b9",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Weighted Blendables",
+					"x": 672,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2e805961471c80bd6cb18fb4ea85c7b9:o:WeightedBlendables",
+							"name": "WeightedBlendables",
+							"direction": "output",
+							"type": "struct:/Script/Engine.WeightedBlendables",
+							"defaultValue": null,
+							"links": [
+								"b716e8e849b884151016f29df04e7184:i:WeightedBlendables"
+							]
+						},
+						{
+							"id": "2e805961471c80bd6cb18fb4ea85c7b9:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "struct:/Script/Engine.WeightedBlendable[]",
+							"defaultValue": null,
+							"links": [
+								"5e8c9b1b4b94bd96f2b4e88132d5b02f:o:Array"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5d5722e64f04dc60e1fb989cdcd06228",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1200,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5d5722e64f04dc60e1fb989cdcd06228:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8db567704c14156e273ba1ac857007e0:o:then"
+							]
+						},
+						{
+							"id": "5d5722e64f04dc60e1fb989cdcd06228:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7d6f68d743e1957089e59baf35327a79:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5e8c9b1b4b94bd96f2b4e88132d5b02f",
+					"class": "K2Node_MakeArray",
+					"title": "Make Array",
+					"x": 496,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5e8c9b1b4b94bd96f2b4e88132d5b02f:o:Array",
+							"name": "Array",
+							"direction": "output",
+							"type": "struct:/Script/Engine.WeightedBlendable[]",
+							"defaultValue": null,
+							"links": [
+								"2e805961471c80bd6cb18fb4ea85c7b9:i:Array"
+							]
+						},
+						{
+							"id": "5e8c9b1b4b94bd96f2b4e88132d5b02f:i:[0]",
+							"name": "[0]",
+							"direction": "input",
+							"type": "struct:/Script/Engine.WeightedBlendable",
+							"defaultValue": null,
+							"links": [
+								"e7365be8465e795e2e77c1ae14a47ec5:o:WeightedBlendable"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7d6f68d743e1957089e59baf35327a79",
+					"class": "K2Node_VariableSet",
+					"title": "Set Settings",
+					"x": 1312,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7d6f68d743e1957089e59baf35327a79:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5d5722e64f04dc60e1fb989cdcd06228:o:OutputPin"
+							]
+						},
+						{
+							"id": "7d6f68d743e1957089e59baf35327a79:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7d6f68d743e1957089e59baf35327a79:i:Settings",
+							"name": "Settings",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PostProcessSettings",
+							"defaultValue": null,
+							"links": [
+								"b716e8e849b884151016f29df04e7184:o:PostProcessSettings"
+							]
+						},
+						{
+							"id": "7d6f68d743e1957089e59baf35327a79:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PostProcessComponent",
+							"defaultValue": null,
+							"links": [
+								"f8445c774b17c4604b08cbacf7b64bb3:o:PostProcess"
+							]
+						},
+						{
+							"id": "7d6f68d743e1957089e59baf35327a79:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PostProcessSettings",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8db567704c14156e273ba1ac857007e0",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 128,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8db567704c14156e273ba1ac857007e0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5d5722e64f04dc60e1fb989cdcd06228:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b716e8e849b884151016f29df04e7184",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Post Process Settings",
+					"x": 928,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b716e8e849b884151016f29df04e7184:o:PostProcessSettings",
+							"name": "PostProcessSettings",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PostProcessSettings",
+							"defaultValue": null,
+							"links": [
+								"7d6f68d743e1957089e59baf35327a79:i:Settings"
+							]
+						},
+						{
+							"id": "b716e8e849b884151016f29df04e7184:i:WeightedBlendables",
+							"name": "WeightedBlendables",
+							"direction": "input",
+							"type": "struct:/Script/Engine.WeightedBlendables",
+							"defaultValue": null,
+							"links": [
+								"2e805961471c80bd6cb18fb4ea85c7b9:o:WeightedBlendables"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d0f0cad3455857b08f5ca29a7188a725",
+					"class": "K2Node_VariableGet",
+					"title": "Get PP Material",
+					"x": 32,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d0f0cad3455857b08f5ca29a7188a725:o:PP Material",
+							"name": "PP Material",
+							"direction": "output",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"e7365be8465e795e2e77c1ae14a47ec5:i:Object"
+							]
+						},
+						{
+							"id": "d0f0cad3455857b08f5ca29a7188a725:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/MaterialLibrary/Post-Process/SceneDepth/BP_Showcase_PostProcess.BP_Showcase_PostProcess_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e7365be8465e795e2e77c1ae14a47ec5",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Weighted Blendable",
+					"x": 192,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e7365be8465e795e2e77c1ae14a47ec5:o:WeightedBlendable",
+							"name": "WeightedBlendable",
+							"direction": "output",
+							"type": "struct:/Script/Engine.WeightedBlendable",
+							"defaultValue": null,
+							"links": [
+								"5e8c9b1b4b94bd96f2b4e88132d5b02f:i:[0]"
+							]
+						},
+						{
+							"id": "e7365be8465e795e2e77c1ae14a47ec5:i:Weight",
+							"name": "Weight",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "e7365be8465e795e2e77c1ae14a47ec5:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"d0f0cad3455857b08f5ca29a7188a725:o:PP Material"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f8445c774b17c4604b08cbacf7b64bb3",
+					"class": "K2Node_VariableGet",
+					"title": "Get PostProcess",
+					"x": 1328,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f8445c774b17c4604b08cbacf7b64bb3:o:PostProcess",
+							"name": "PostProcess",
+							"direction": "output",
+							"type": "object:/Script/Engine.PostProcessComponent",
+							"defaultValue": null,
+							"links": [
+								"7d6f68d743e1957089e59baf35327a79:i:self"
+							]
+						},
+						{
+							"id": "f8445c774b17c4604b08cbacf7b64bb3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/MaterialLibrary/Post-Process/SceneDepth/BP_Showcase_PostProcess.BP_Showcase_PostProcess_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "1293cab840eafb1318246aa9056a3df7",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "1293cab840eafb1318246aa9056a3df7:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1293cab840eafb1318246aa9056a3df7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1293cab840eafb1318246aa9056a3df7:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "638faf85458d292283fca49f113bca90",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "638faf85458d292283fca49f113bca90:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "638faf85458d292283fca49f113bca90:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f931536f49b5cdaba2046bbc55cfa2d1",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "f931536f49b5cdaba2046bbc55cfa2d1:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f931536f49b5cdaba2046bbc55cfa2d1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f931536f49b5cdaba2046bbc55cfa2d1:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}
