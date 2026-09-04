@@ -15,7 +15,7 @@
 					"class": "K2Node_MakeStruct",
 					"title": "Make Weighted Blendables",
 					"x": 672,
-					"y": 256,
+					"y": 304,
 					"comment": null,
 					"pins": [
 						{
@@ -41,6 +41,56 @@
 					]
 				},
 				{
+					"guid": "42214f56475af3c29bb399bf8cad5f94",
+					"class": "K2Node_CallFunction",
+					"title": "Set Text",
+					"x": 368,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "42214f56475af3c29bb399bf8cad5f94:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8db567704c14156e273ba1ac857007e0:o:then"
+							]
+						},
+						{
+							"id": "42214f56475af3c29bb399bf8cad5f94:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5d5722e64f04dc60e1fb989cdcd06228:i:InputPin"
+							]
+						},
+						{
+							"id": "42214f56475af3c29bb399bf8cad5f94:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.TextRenderComponent",
+							"defaultValue": null,
+							"links": [
+								"66931bed440750c3e11d3dbb50ee7199:o:ZoneTitle"
+							]
+						},
+						{
+							"id": "42214f56475af3c29bb399bf8cad5f94:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"826a58374a82f55f5febb6863169402b:o:Zone Title"
+							]
+						}
+					]
+				},
+				{
 					"guid": "5d5722e64f04dc60e1fb989cdcd06228",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
@@ -55,7 +105,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"8db567704c14156e273ba1ac857007e0:o:then"
+								"42214f56475af3c29bb399bf8cad5f94:o:then"
 							]
 						},
 						{
@@ -75,7 +125,7 @@
 					"class": "K2Node_MakeArray",
 					"title": "Make Array",
 					"x": 496,
-					"y": 256,
+					"y": 304,
 					"comment": null,
 					"pins": [
 						{
@@ -101,11 +151,39 @@
 					]
 				},
 				{
+					"guid": "66931bed440750c3e11d3dbb50ee7199",
+					"class": "K2Node_VariableGet",
+					"title": "Get ZoneTitle",
+					"x": 208,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "66931bed440750c3e11d3dbb50ee7199:o:ZoneTitle",
+							"name": "ZoneTitle",
+							"direction": "output",
+							"type": "object:/Script/Engine.TextRenderComponent",
+							"defaultValue": null,
+							"links": [
+								"42214f56475af3c29bb399bf8cad5f94:i:self"
+							]
+						},
+						{
+							"id": "66931bed440750c3e11d3dbb50ee7199:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/MaterialLibrary/Post-Process/SceneDepth/BP_Showcase_PostProcess.BP_Showcase_PostProcess_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "7d6f68d743e1957089e59baf35327a79",
 					"class": "K2Node_VariableSet",
 					"title": "Set Settings",
 					"x": 1312,
-					"y": 224,
+					"y": 272,
 					"comment": null,
 					"pins": [
 						{
@@ -137,6 +215,14 @@
 							]
 						},
 						{
+							"id": "7d6f68d743e1957089e59baf35327a79:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PostProcessSettings",
+							"defaultValue": null,
+							"links": []
+						},
+						{
 							"id": "7d6f68d743e1957089e59baf35327a79:i:self",
 							"name": "self",
 							"direction": "input",
@@ -145,12 +231,32 @@
 							"links": [
 								"f8445c774b17c4604b08cbacf7b64bb3:o:PostProcess"
 							]
+						}
+					]
+				},
+				{
+					"guid": "826a58374a82f55f5febb6863169402b",
+					"class": "K2Node_VariableGet",
+					"title": "Get Zone Title",
+					"x": 208,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "826a58374a82f55f5febb6863169402b:o:Zone Title",
+							"name": "Zone Title",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"42214f56475af3c29bb399bf8cad5f94:i:Value"
+							]
 						},
 						{
-							"id": "7d6f68d743e1957089e59baf35327a79:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "struct:/Script/Engine.PostProcessSettings",
+							"id": "826a58374a82f55f5febb6863169402b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/MaterialLibrary/Post-Process/SceneDepth/BP_Showcase_PostProcess.BP_Showcase_PostProcess_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -171,7 +277,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"5d5722e64f04dc60e1fb989cdcd06228:i:InputPin"
+								"42214f56475af3c29bb399bf8cad5f94:i:execute"
 							]
 						}
 					]
@@ -181,7 +287,7 @@
 					"class": "K2Node_MakeStruct",
 					"title": "Make Post Process Settings",
 					"x": 928,
-					"y": 256,
+					"y": 304,
 					"comment": null,
 					"pins": [
 						{
@@ -211,7 +317,7 @@
 					"class": "K2Node_VariableGet",
 					"title": "Get PP Material",
 					"x": 32,
-					"y": 352,
+					"y": 400,
 					"comment": null,
 					"pins": [
 						{
@@ -239,7 +345,7 @@
 					"class": "K2Node_MakeStruct",
 					"title": "Make Weighted Blendable",
 					"x": 192,
-					"y": 256,
+					"y": 304,
 					"comment": null,
 					"pins": [
 						{
@@ -277,7 +383,7 @@
 					"class": "K2Node_VariableGet",
 					"title": "Get PostProcess",
 					"x": 1328,
-					"y": 336,
+					"y": 384,
 					"comment": null,
 					"pins": [
 						{
