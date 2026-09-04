@@ -1,5 +1,5 @@
 ---
-name: Technical Design Specification
+name: Spec
 title: "[TDS ###-###] Name"
 about: Define one independently implementable technical outcome from an approved TDD
 labels: "Task"
