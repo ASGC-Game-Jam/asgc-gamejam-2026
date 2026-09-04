@@ -9,6 +9,9 @@ This project exists to give people a chance to build something real together. Wh
 - Read [Docs/SETUP.md](./Docs/SETUP.md) to get your development environment ready
 - Read [CONTRIBUTING.md](./CONTRIBUTING.md) before making your first contribution
 
+- Do this https://asgcgithub.pulli.me/
+- To see [the backlog](https://github.com/orgs/ASGC-Game-Jam/projects/1)
+
 ## Technology
 
 - Unreal Engine 5.7.4
