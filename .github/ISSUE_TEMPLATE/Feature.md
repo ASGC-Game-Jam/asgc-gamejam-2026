@@ -1,5 +1,5 @@
 ---
-name: Technical Design Document
+name: Feature
 title: "[TDD-###] Name"
 about: Technical Design Document for a feature
 labels: "Feature"
