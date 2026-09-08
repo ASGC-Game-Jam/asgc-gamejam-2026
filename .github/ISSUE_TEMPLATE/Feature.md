@@ -5,13 +5,6 @@ about: Technical Design Document for a feature
 labels: "Feature"
 ---
 
----
-name: Feature
-title: "[TDD-###] Name"
-about: Technical Design Document for a feature
-labels: "Feature"
----
-
 | Role | Reviewer | Status | Date | Notes |
 |---|---|---|---|---|
 | Design | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
@@ -61,7 +54,6 @@ inherited by QA for manual testing or Unreal Automation Specs.
 
 ## [TDS-000] Technical Deliverable
 
-- It should ...
 - It should ...
 - It should ...
 
