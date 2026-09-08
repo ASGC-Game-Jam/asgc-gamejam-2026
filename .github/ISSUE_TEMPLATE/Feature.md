@@ -5,6 +5,13 @@ about: Technical Design Document for a feature
 labels: "Feature"
 ---
 
+---
+name: Feature
+title: "[TDD-###] Name"
+about: Technical Design Document for a feature
+labels: "Feature"
+---
+
 | Role | Reviewer | Status | Date | Notes |
 |---|---|---|---|---|
 | Design | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
@@ -27,43 +34,38 @@ labels: "Feature"
 # 2. Technical Breakdown
 
 ## 2.1 TDS Index
-<!-- What are the major independently deliverable pieces?
-These should become subissues of this issue -->
+<!--
+What are the major independently deliverable pieces?
+These should become subissues of this issue.
+-->
 
 - [ ] [TDS-000] ...
 - [ ] [TDS-000] ...
 
 ## 2.2 Dependencies & Order
-<!-- What blocks what?
-Replace this with GitHub relationships between subissues when possible. -->
+<!--
+What blocks what?
+Replace this with GitHub relationships between subissues when possible.
+-->
 
 ---
 
 # 3. Acceptance Criteria
 
-## 3.1 Required Behavior & Rules
-<!-- 
-What behavior from the FDS must be preserved?
+<!--
+Group acceptance criteria by the TDS that owns them.
 
-`BHV` = Behavior
-`RULE` = Rule
-`INT` = Integration / cross-system contract
-`CFG` = Configuration / tunable requirement
+Write them as observable "It should..." statements so they can be
+inherited by QA for manual testing or Unreal Automation Specs.
 -->
 
-### Technical Deliverable 1
-<!-- Rename ^ this with the TDS from section 2 -->
+## [TDS-000] Technical Deliverable
 
-| ID | Requirement |
-|---|---|
-| `BHV-01` | ... |
-| `RULE-01` | ... |
-| `INT-01` | ... |
-| `CFG-01` | ... |
+- It should ...
+- It should ...
+- It should ...
 
-
-## 3.2 Validation
-<!-- What observable results prove the feature-level behavior is working? -->
+## [TDS-000] Technical Deliverable
 
 - It should ...
 - It should ...
@@ -72,4 +74,5 @@ What behavior from the FDS must be preserved?
 
 # 4. Open Questions
 <!-- What still needs to be learned, prototyped, or decided? -->
-- 
+
+-
