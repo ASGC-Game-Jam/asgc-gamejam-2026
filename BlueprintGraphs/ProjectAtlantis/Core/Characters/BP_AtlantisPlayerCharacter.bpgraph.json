@@ -1,0 +1,1766 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter",
+	"asset": "BP_AtlantisPlayerCharacter",
+	"parentClass": "Character",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "Aim",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "3c784bf84a29ef690bffa5bfee971bce",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 848,
+					"y": -1728,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3c784bf84a29ef690bffa5bfee971bce:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9d6453194abf968d189d5582fe739c57:o:OutputPin"
+							]
+						},
+						{
+							"id": "3c784bf84a29ef690bffa5bfee971bce:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d2f801aa49c02d64ed230389ec8a07c6:i:Val"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9c147b1740dba42fe18b42ad9c8d2250",
+					"class": "K2Node_FunctionEntry",
+					"title": "Aim",
+					"x": 384,
+					"y": -1920,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9c147b1740dba42fe18b42ad9c8d2250:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e812970f4c7bddb03bf4e6a118f7f823:i:execute"
+							]
+						},
+						{
+							"id": "9c147b1740dba42fe18b42ad9c8d2250:o:X Axis",
+							"name": "X Axis",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"e812970f4c7bddb03bf4e6a118f7f823:i:Val"
+							]
+						},
+						{
+							"id": "9c147b1740dba42fe18b42ad9c8d2250:o:Y Axis",
+							"name": "Y Axis",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9d6453194abf968d189d5582fe739c57:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9d6453194abf968d189d5582fe739c57",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 592,
+					"y": -1728,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9d6453194abf968d189d5582fe739c57:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9c147b1740dba42fe18b42ad9c8d2250:o:Y Axis"
+							]
+						},
+						{
+							"id": "9d6453194abf968d189d5582fe739c57:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3c784bf84a29ef690bffa5bfee971bce:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d2f801aa49c02d64ed230389ec8a07c6",
+					"class": "K2Node_CallFunction",
+					"title": "Add Controller Pitch Input",
+					"x": 960,
+					"y": -1936,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d2f801aa49c02d64ed230389ec8a07c6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e812970f4c7bddb03bf4e6a118f7f823:o:then"
+							]
+						},
+						{
+							"id": "d2f801aa49c02d64ed230389ec8a07c6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d2f801aa49c02d64ed230389ec8a07c6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d2f801aa49c02d64ed230389ec8a07c6:i:Val",
+							"name": "Val",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"3c784bf84a29ef690bffa5bfee971bce:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e812970f4c7bddb03bf4e6a118f7f823",
+					"class": "K2Node_CallFunction",
+					"title": "Add Controller Yaw Input",
+					"x": 592,
+					"y": -1936,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e812970f4c7bddb03bf4e6a118f7f823:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9c147b1740dba42fe18b42ad9c8d2250:o:then"
+							]
+						},
+						{
+							"id": "e812970f4c7bddb03bf4e6a118f7f823:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d2f801aa49c02d64ed230389ec8a07c6:i:execute"
+							]
+						},
+						{
+							"id": "e812970f4c7bddb03bf4e6a118f7f823:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e812970f4c7bddb03bf4e6a118f7f823:i:Val",
+							"name": "Val",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"9c147b1740dba42fe18b42ad9c8d2250:o:X Axis"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "5b900e7d479a6f5127175aa712c0f05c",
+					"text": "Left/Right",
+					"x": 576,
+					"y": -1984,
+					"width": 256,
+					"height": 224
+				},
+				{
+					"guid": "e382e16f4a61358a8c48349465f5bae1",
+					"text": "Up/Down",
+					"x": 944,
+					"y": -1984,
+					"width": 256,
+					"height": 224
+				}
+			]
+		},
+		{
+			"name": "Move",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "00e0e72e4e6c93f8cb713aa6638f5642",
+					"class": "K2Node_CallFunction",
+					"title": "Get Right Vector",
+					"x": 864,
+					"y": -1101,
+					"comment": null,
+					"pins": [
+						{
+							"id": "00e0e72e4e6c93f8cb713aa6638f5642:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "00e0e72e4e6c93f8cb713aa6638f5642:i:InRot",
+							"name": "InRot",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "00e0e72e4e6c93f8cb713aa6638f5642:i:InRot_Roll",
+							"name": "InRot_Roll",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"4a4babd84e39cf5b9befb297d4da8f55:o:ReturnValue_Roll"
+							]
+						},
+						{
+							"id": "00e0e72e4e6c93f8cb713aa6638f5642:i:InRot_Pitch",
+							"name": "InRot_Pitch",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "00e0e72e4e6c93f8cb713aa6638f5642:i:InRot_Yaw",
+							"name": "InRot_Yaw",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"4a4babd84e39cf5b9befb297d4da8f55:o:ReturnValue_Yaw"
+							]
+						},
+						{
+							"id": "00e0e72e4e6c93f8cb713aa6638f5642:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"72eccd6444a4959c9fa5508ef9d063c9:i:WorldDirection"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0b73ffd943744a77420d07a47f376aab",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 592,
+					"y": -880,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0b73ffd943744a77420d07a47f376aab:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e3969e85424e68368081e99a6fdff690:o:Y Axis"
+							]
+						},
+						{
+							"id": "0b73ffd943744a77420d07a47f376aab:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ba90edd147195ebe69421ca937f275e6:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1ebaf7444d149c5a83187ab43912d8be",
+					"class": "K2Node_CallFunction",
+					"title": "Add Movement Input",
+					"x": 2160,
+					"y": -1184,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1ebaf7444d149c5a83187ab43912d8be:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"72eccd6444a4959c9fa5508ef9d063c9:o:then"
+							]
+						},
+						{
+							"id": "1ebaf7444d149c5a83187ab43912d8be:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1ebaf7444d149c5a83187ab43912d8be:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1ebaf7444d149c5a83187ab43912d8be:i:WorldDirection",
+							"name": "WorldDirection",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"2d0a2bef4896a399016fc5a8cb39e2ac:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1ebaf7444d149c5a83187ab43912d8be:i:ScaleValue",
+							"name": "ScaleValue",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"ba90edd147195ebe69421ca937f275e6:o:OutputPin"
+							]
+						},
+						{
+							"id": "1ebaf7444d149c5a83187ab43912d8be:i:bForce",
+							"name": "bForce",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2d0a2bef4896a399016fc5a8cb39e2ac",
+					"class": "K2Node_CallFunction",
+					"title": "Get Forward Vector",
+					"x": 1776,
+					"y": -1102,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2d0a2bef4896a399016fc5a8cb39e2ac:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "2d0a2bef4896a399016fc5a8cb39e2ac:i:InRot",
+							"name": "InRot",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "2d0a2bef4896a399016fc5a8cb39e2ac:i:InRot_Roll",
+							"name": "InRot_Roll",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "2d0a2bef4896a399016fc5a8cb39e2ac:i:InRot_Pitch",
+							"name": "InRot_Pitch",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "2d0a2bef4896a399016fc5a8cb39e2ac:i:InRot_Yaw",
+							"name": "InRot_Yaw",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"8659e3f24cf492557122bc9a891dfd7a:o:ReturnValue_Yaw"
+							]
+						},
+						{
+							"id": "2d0a2bef4896a399016fc5a8cb39e2ac:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"1ebaf7444d149c5a83187ab43912d8be:i:WorldDirection"
+							]
+						}
+					]
+				},
+				{
+					"guid": "48acabda41539250c359db9b540ff044",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 576,
+					"y": -944,
+					"comment": null,
+					"pins": [
+						{
+							"id": "48acabda41539250c359db9b540ff044:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e3969e85424e68368081e99a6fdff690:o:X Axis"
+							]
+						},
+						{
+							"id": "48acabda41539250c359db9b540ff044:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9b29c51b47cf9074c9048e98ee2aa20a:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4a4babd84e39cf5b9befb297d4da8f55",
+					"class": "K2Node_CallFunction",
+					"title": "Get Control Rotation",
+					"x": 560,
+					"y": -1116,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4a4babd84e39cf5b9befb297d4da8f55:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4a4babd84e39cf5b9befb297d4da8f55:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "4a4babd84e39cf5b9befb297d4da8f55:o:ReturnValue_Roll",
+							"name": "ReturnValue_Roll",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"00e0e72e4e6c93f8cb713aa6638f5642:i:InRot_Roll"
+							]
+						},
+						{
+							"id": "4a4babd84e39cf5b9befb297d4da8f55:o:ReturnValue_Pitch",
+							"name": "ReturnValue_Pitch",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "4a4babd84e39cf5b9befb297d4da8f55:o:ReturnValue_Yaw",
+							"name": "ReturnValue_Yaw",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"00e0e72e4e6c93f8cb713aa6638f5642:i:InRot_Yaw"
+							]
+						}
+					]
+				},
+				{
+					"guid": "72eccd6444a4959c9fa5508ef9d063c9",
+					"class": "K2Node_CallFunction",
+					"title": "Add Movement Input",
+					"x": 1232,
+					"y": -1184,
+					"comment": null,
+					"pins": [
+						{
+							"id": "72eccd6444a4959c9fa5508ef9d063c9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e3969e85424e68368081e99a6fdff690:o:then"
+							]
+						},
+						{
+							"id": "72eccd6444a4959c9fa5508ef9d063c9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1ebaf7444d149c5a83187ab43912d8be:i:execute"
+							]
+						},
+						{
+							"id": "72eccd6444a4959c9fa5508ef9d063c9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "72eccd6444a4959c9fa5508ef9d063c9:i:WorldDirection",
+							"name": "WorldDirection",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"00e0e72e4e6c93f8cb713aa6638f5642:o:ReturnValue"
+							]
+						},
+						{
+							"id": "72eccd6444a4959c9fa5508ef9d063c9:i:ScaleValue",
+							"name": "ScaleValue",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"9b29c51b47cf9074c9048e98ee2aa20a:o:OutputPin"
+							]
+						},
+						{
+							"id": "72eccd6444a4959c9fa5508ef9d063c9:i:bForce",
+							"name": "bForce",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8659e3f24cf492557122bc9a891dfd7a",
+					"class": "K2Node_CallFunction",
+					"title": "Get Control Rotation",
+					"x": 1472,
+					"y": -1111,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8659e3f24cf492557122bc9a891dfd7a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8659e3f24cf492557122bc9a891dfd7a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "8659e3f24cf492557122bc9a891dfd7a:o:ReturnValue_Roll",
+							"name": "ReturnValue_Roll",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "8659e3f24cf492557122bc9a891dfd7a:o:ReturnValue_Pitch",
+							"name": "ReturnValue_Pitch",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "8659e3f24cf492557122bc9a891dfd7a:o:ReturnValue_Yaw",
+							"name": "ReturnValue_Yaw",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"2d0a2bef4896a399016fc5a8cb39e2ac:i:InRot_Yaw"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9b29c51b47cf9074c9048e98ee2aa20a",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1136,
+					"y": -944,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9b29c51b47cf9074c9048e98ee2aa20a:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"48acabda41539250c359db9b540ff044:o:OutputPin"
+							]
+						},
+						{
+							"id": "9b29c51b47cf9074c9048e98ee2aa20a:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"72eccd6444a4959c9fa5508ef9d063c9:i:ScaleValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba90edd147195ebe69421ca937f275e6",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2016,
+					"y": -880,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba90edd147195ebe69421ca937f275e6:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0b73ffd943744a77420d07a47f376aab:o:OutputPin"
+							]
+						},
+						{
+							"id": "ba90edd147195ebe69421ca937f275e6:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"1ebaf7444d149c5a83187ab43912d8be:i:ScaleValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3969e85424e68368081e99a6fdff690",
+					"class": "K2Node_FunctionEntry",
+					"title": "Move",
+					"x": 384,
+					"y": -1088,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3969e85424e68368081e99a6fdff690:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"72eccd6444a4959c9fa5508ef9d063c9:i:execute"
+							]
+						},
+						{
+							"id": "e3969e85424e68368081e99a6fdff690:o:X Axis",
+							"name": "X Axis",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"48acabda41539250c359db9b540ff044:i:InputPin"
+							]
+						},
+						{
+							"id": "e3969e85424e68368081e99a6fdff690:o:Y Axis",
+							"name": "Y Axis",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0b73ffd943744a77420d07a47f376aab:i:InputPin"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "1e5b1ac041c595a47c3bfd915c7cd1b5",
+					"text": "Forward / Backward",
+					"x": 1456,
+					"y": -1216,
+					"width": 912,
+					"height": 256
+				},
+				{
+					"guid": "cc1a26b1469b04ca82ed57acf767c729",
+					"text": "Left/Right",
+					"x": 544,
+					"y": -1216,
+					"width": 896,
+					"height": 256
+				}
+			]
+		},
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "74e04fbf4dabfc3a7e57c09f966c5c77",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": -128,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "74e04fbf4dabfc3a7e57c09f966c5c77:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [],
+			"comments": [
+				{
+					"guid": "49c6abe04906809378f73f8b383c9341",
+					"text": "A basic Character with a controllable, orbiting Third Person camera.",
+					"x": -2896,
+					"y": -2864,
+					"width": 416,
+					"height": 128
+				}
+			]
+		},
+		{
+			"name": "MovementControlls",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "05a1f815492cf9380cf2f088cd043a79",
+					"class": "K2Node_CallFunction",
+					"title": "Jump",
+					"x": 288,
+					"y": 816,
+					"comment": null,
+					"pins": [
+						{
+							"id": "05a1f815492cf9380cf2f088cd043a79:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"10609d0e429ca915b0592caa2aa97b7e:o:Started",
+								"ac2d8a4f475c98bed83d238f71d27f64:o:then"
+							]
+						},
+						{
+							"id": "05a1f815492cf9380cf2f088cd043a79:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "05a1f815492cf9380cf2f088cd043a79:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "10609d0e429ca915b0592caa2aa97b7e",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_Jump",
+					"x": -96,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Triggered",
+							"name": "Triggered",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Started",
+							"name": "Started",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"05a1f815492cf9380cf2f088cd043a79:i:execute"
+							]
+						},
+						{
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Ongoing",
+							"name": "Ongoing",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Canceled",
+							"name": "Canceled",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"13e99d724ae7ddaf0bbd52a5dbc5dace:i:execute"
+							]
+						},
+						{
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:ElapsedSeconds",
+							"name": "ElapsedSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:TriggeredSeconds",
+							"name": "TriggeredSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:InputAction",
+							"name": "InputAction",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Jump.IA_Jump",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1218c5f34eaf240033538d9327d5163e",
+					"class": "K2Node_Event",
+					"title": "Event Secondary Thumbstick",
+					"x": -128,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1218c5f34eaf240033538d9327d5163e:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1218c5f34eaf240033538d9327d5163e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a1208a7345c3a224111917a36958a758:i:execute"
+							]
+						},
+						{
+							"id": "1218c5f34eaf240033538d9327d5163e:o:Axis",
+							"name": "Axis",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1218c5f34eaf240033538d9327d5163e:o:Axis_X",
+							"name": "Axis_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a1208a7345c3a224111917a36958a758:i:X Axis"
+							]
+						},
+						{
+							"id": "1218c5f34eaf240033538d9327d5163e:o:Axis_Y",
+							"name": "Axis_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a1208a7345c3a224111917a36958a758:i:Y Axis"
+							]
+						}
+					]
+				},
+				{
+					"guid": "13e99d724ae7ddaf0bbd52a5dbc5dace",
+					"class": "K2Node_CallFunction",
+					"title": "Stop Jumping",
+					"x": 288,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "13e99d724ae7ddaf0bbd52a5dbc5dace:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"10609d0e429ca915b0592caa2aa97b7e:o:Completed",
+								"3a147b2b424d0103e520ea94db7e2b86:o:then"
+							]
+						},
+						{
+							"id": "13e99d724ae7ddaf0bbd52a5dbc5dace:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "13e99d724ae7ddaf0bbd52a5dbc5dace:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3a147b2b424d0103e520ea94db7e2b86",
+					"class": "K2Node_Event",
+					"title": "Event Touch Jump End",
+					"x": -80,
+					"y": 1120,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3a147b2b424d0103e520ea94db7e2b86:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3a147b2b424d0103e520ea94db7e2b86:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"13e99d724ae7ddaf0bbd52a5dbc5dace:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6004f173430db82107689eb0db8d7045",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_MouseLook",
+					"x": -128,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:Triggered",
+							"name": "Triggered",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7579ef1340e9eec3f06f649089cbc0a8:i:execute"
+							]
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:Started",
+							"name": "Started",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:Ongoing",
+							"name": "Ongoing",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:Canceled",
+							"name": "Canceled",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:ActionValue_X",
+							"name": "ActionValue_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"7579ef1340e9eec3f06f649089cbc0a8:i:X Axis"
+							]
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:ActionValue_Y",
+							"name": "ActionValue_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"7579ef1340e9eec3f06f649089cbc0a8:i:Y Axis"
+							]
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:ElapsedSeconds",
+							"name": "ElapsedSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:TriggeredSeconds",
+							"name": "TriggeredSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6004f173430db82107689eb0db8d7045:o:InputAction",
+							"name": "InputAction",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_MouseLook.IA_MouseLook",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7579ef1340e9eec3f06f649089cbc0a8",
+					"class": "K2Node_CallFunction",
+					"title": "Aim",
+					"x": 240,
+					"y": 400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6004f173430db82107689eb0db8d7045:o:Triggered"
+							]
+						},
+						{
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:i:X Axis",
+							"name": "X Axis",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"6004f173430db82107689eb0db8d7045:o:ActionValue_X"
+							]
+						},
+						{
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:i:Y Axis",
+							"name": "Y Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"6004f173430db82107689eb0db8d7045:o:ActionValue_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "788c162d41434957096cbfad115fe074",
+					"class": "K2Node_CallFunction",
+					"title": "Move",
+					"x": 1168,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "788c162d41434957096cbfad115fe074:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f983b920452502820afbcd8779bc6952:o:then"
+							]
+						},
+						{
+							"id": "788c162d41434957096cbfad115fe074:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "788c162d41434957096cbfad115fe074:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "788c162d41434957096cbfad115fe074:i:X Axis",
+							"name": "X Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"f983b920452502820afbcd8779bc6952:o:Axis_X"
+							]
+						},
+						{
+							"id": "788c162d41434957096cbfad115fe074:i:Y Axis",
+							"name": "Y Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"f983b920452502820afbcd8779bc6952:o:Axis_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a1208a7345c3a224111917a36958a758",
+					"class": "K2Node_CallFunction",
+					"title": "Aim",
+					"x": 240,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a1208a7345c3a224111917a36958a758:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1218c5f34eaf240033538d9327d5163e:o:then"
+							]
+						},
+						{
+							"id": "a1208a7345c3a224111917a36958a758:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a1208a7345c3a224111917a36958a758:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a1208a7345c3a224111917a36958a758:i:X Axis",
+							"name": "X Axis",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"1218c5f34eaf240033538d9327d5163e:o:Axis_X"
+							]
+						},
+						{
+							"id": "a1208a7345c3a224111917a36958a758:i:Y Axis",
+							"name": "Y Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"1218c5f34eaf240033538d9327d5163e:o:Axis_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ac2d8a4f475c98bed83d238f71d27f64",
+					"class": "K2Node_Event",
+					"title": "Event Touch Jump Start",
+					"x": -80,
+					"y": 1024,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ac2d8a4f475c98bed83d238f71d27f64:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ac2d8a4f475c98bed83d238f71d27f64:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"05a1f815492cf9380cf2f088cd043a79:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ae91baf14d812a60ef2ea298adef0c6f",
+					"class": "K2Node_CallFunction",
+					"title": "Move",
+					"x": 1168,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e573eb684fc7d2ab5c944aa7f985fde7:o:Triggered"
+							]
+						},
+						{
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:i:X Axis",
+							"name": "X Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue_X"
+							]
+						},
+						{
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:i:Y Axis",
+							"name": "Y Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ca1849864412b2cba67e88886133331f",
+					"class": "K2Node_CallFunction",
+					"title": "Aim",
+					"x": 240,
+					"y": -96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ca1849864412b2cba67e88886133331f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e835eb57445272c31c5c9c9295feafb7:o:Triggered"
+							]
+						},
+						{
+							"id": "ca1849864412b2cba67e88886133331f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ca1849864412b2cba67e88886133331f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ca1849864412b2cba67e88886133331f:i:X Axis",
+							"name": "X Axis",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"e835eb57445272c31c5c9c9295feafb7:o:ActionValue_X"
+							]
+						},
+						{
+							"id": "ca1849864412b2cba67e88886133331f:i:Y Axis",
+							"name": "Y Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e835eb57445272c31c5c9c9295feafb7:o:ActionValue_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e573eb684fc7d2ab5c944aa7f985fde7",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_Move",
+					"x": 784,
+					"y": -96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Triggered",
+							"name": "Triggered",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ae91baf14d812a60ef2ea298adef0c6f:i:execute"
+							]
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Started",
+							"name": "Started",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Ongoing",
+							"name": "Ongoing",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Canceled",
+							"name": "Canceled",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue_X",
+							"name": "ActionValue_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ae91baf14d812a60ef2ea298adef0c6f:i:X Axis"
+							]
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue_Y",
+							"name": "ActionValue_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ae91baf14d812a60ef2ea298adef0c6f:i:Y Axis"
+							]
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:ElapsedSeconds",
+							"name": "ElapsedSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:TriggeredSeconds",
+							"name": "TriggeredSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:InputAction",
+							"name": "InputAction",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Move.IA_Move",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e835eb57445272c31c5c9c9295feafb7",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_Look",
+					"x": -128,
+					"y": -80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Triggered",
+							"name": "Triggered",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ca1849864412b2cba67e88886133331f:i:execute"
+							]
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Started",
+							"name": "Started",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Ongoing",
+							"name": "Ongoing",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Canceled",
+							"name": "Canceled",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:ActionValue_X",
+							"name": "ActionValue_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ca1849864412b2cba67e88886133331f:i:X Axis"
+							]
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:ActionValue_Y",
+							"name": "ActionValue_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ca1849864412b2cba67e88886133331f:i:Y Axis"
+							]
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:ElapsedSeconds",
+							"name": "ElapsedSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:TriggeredSeconds",
+							"name": "TriggeredSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:InputAction",
+							"name": "InputAction",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Look.IA_Look",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f983b920452502820afbcd8779bc6952",
+					"class": "K2Node_Event",
+					"title": "Event Primary Thumbstick",
+					"x": 784,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"788c162d41434957096cbfad115fe074:i:execute"
+							]
+						},
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:Axis",
+							"name": "Axis",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:Axis_X",
+							"name": "Axis_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"788c162d41434957096cbfad115fe074:i:X Axis"
+							]
+						},
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:Axis_Y",
+							"name": "Axis_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"788c162d41434957096cbfad115fe074:i:Y Axis"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "490bd8af49aeb89b27692bb8114d7574",
+					"text": "Orbiting Camera Input. The CameraBoom component adopts the character's Control Rotation",
+					"x": -160,
+					"y": -224,
+					"width": 896,
+					"height": 848
+				},
+				{
+					"guid": "d109af2944248e1d67ebd98efbbe29f8",
+					"text": "Movement Input",
+					"x": 768,
+					"y": -208,
+					"width": 896,
+					"height": 832
+				},
+				{
+					"guid": "d9dceb7749407737d42c5695f3a2d7c7",
+					"text": "Jump Input - Jump properties such as height, press-and-hold and multi-jump can be customized on the Character Movement Component.",
+					"x": -144,
+					"y": 704,
+					"width": 880,
+					"height": 528
+				}
+			]
+		}
+	]
+}
