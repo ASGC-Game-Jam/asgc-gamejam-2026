@@ -15,6 +15,7 @@ struct FKeystoneExportResult
     int32 Written = 0;   // .bpgraph.json files created or updated
     int32 Unchanged = 0; // already up to date (byte-identical) — skipped
     int32 Failed = 0;    // load/serialize errors
+    int32 Pruned = 0;    // stale exports deleted (their Blueprint was renamed or removed)
     FString ManifestPath; // repo-relative path of the manifest written, or empty
 };
 
@@ -33,6 +34,19 @@ public:
      *  `<Project>/BlueprintGraphs/Characters/BP_Hero.bpgraph.json`. Mirrors the package path
      *  under /Game so a .uasset maps to its export by a deterministic rule (plus the manifest). */
     static FString ExportFileFor(UBlueprint* Blueprint);
+
+    /** Same path rule as `ExportFileFor`, but from a package name alone — the delete and rename
+     *  hooks need it after the Blueprint is already gone. */
+    static FString ExportFileForPackage(const FString& PackageName);
+
+    /** Delete the export belonging to a package whose Blueprint no longer exists. Returns false
+     *  and does nothing if the package is still on disk, so asset-registry churn (rescans,
+     *  unmounts) can never destroy the export of a live Blueprint. */
+    static bool RemoveExportForPackage(const FString& PackageName);
+
+    /** Delete every `.bpgraph.json` under the export folder that no live Blueprint maps to.
+     *  `ExpectedFiles` is the set of absolute paths a sweep just wrote. Returns how many went. */
+    static int32 PruneOrphanExports(const TSet<FString>& ExpectedFiles);
 
     /** Export a single Blueprint to disk (only rewrites if the JSON actually changed). Updates
      *  `InOutResult`. Used by the on-save hook for one asset. */

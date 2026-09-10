@@ -14,6 +14,8 @@
 #include "UObject/Package.h"
 #include "UObject/UObjectHash.h"
 #include "UObject/ObjectSaveContext.h"
+#include "AssetRegistry/AssetRegistryModule.h"
+#include "AssetRegistry/AssetData.h"
 #include "ToolMenus.h"
 #include "Misc/MessageDialog.h"
 
@@ -26,11 +28,13 @@ public:
     {
         UToolMenus::RegisterStartupCallback(
             FSimpleMulticastDelegate::FDelegate::CreateStatic(&FKeystoneBlueprintExportModule::RegisterMenus));
-        SetAutoCapture(true); // "artists do nothing": capture on save is on out of the box
+        SetAutoCapture(true);      // "artists do nothing": capture on save is on out of the box
+        SetLifecycleTracking(true); // …and the matching half: deleting or renaming clears the export
     }
 
     virtual void ShutdownModule() override
     {
+        SetLifecycleTracking(false);
         SetAutoCapture(false);
         UToolMenus::UnRegisterStartupCallback(this);
         if (UObjectInitialized()) UToolMenus::UnregisterOwner(MenuOwner());
@@ -38,6 +42,8 @@ public:
 
 private:
     static inline FDelegateHandle SaveHandle;
+    static inline FDelegateHandle AssetRemovedHandle;
+    static inline FDelegateHandle AssetRenamedHandle;
 
     /** Stable owner for the menu we add, so register and unregister match (a name owner, not a
      *  fabricated pointer — the latter doesn't convert to FToolMenuOwner in UE5.7). */
@@ -72,6 +78,53 @@ private:
         if (!BP) return;
         FKeystoneExportResult R;
         FKeystoneBlueprintExporter::ExportOne(BP, R);
+    }
+
+    // ── asset lifecycle ──────────────────────────────────────────────────────
+    // The save hook only ever *writes*, so without these a deleted Blueprint left its export
+    // behind forever, and a rename left the old path orphaned beside the new one.
+
+    static void SetLifecycleTracking(bool bOn)
+    {
+        if (bOn && !AssetRemovedHandle.IsValid())
+        {
+            IAssetRegistry& AR = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry").Get();
+            AssetRemovedHandle = AR.OnAssetRemoved().AddStatic(&FKeystoneBlueprintExportModule::OnAssetRemoved);
+            AssetRenamedHandle = AR.OnAssetRenamed().AddStatic(&FKeystoneBlueprintExportModule::OnAssetRenamed);
+        }
+        else if (!bOn && AssetRemovedHandle.IsValid())
+        {
+            // Do not force-load the module during shutdown just to unbind from it.
+            if (FAssetRegistryModule* ARM = FModuleManager::GetModulePtr<FAssetRegistryModule>("AssetRegistry"))
+            {
+                ARM->Get().OnAssetRemoved().Remove(AssetRemovedHandle);
+                ARM->Get().OnAssetRenamed().Remove(AssetRenamedHandle);
+            }
+            AssetRemovedHandle.Reset();
+            AssetRenamedHandle.Reset();
+        }
+    }
+
+    static void OnAssetRemoved(const FAssetData& AssetData)
+    {
+        // No Blueprint-class filter: checking it would mean loading an asset that is on its way
+        // out. If the package never had an export there is simply nothing to delete, and
+        // RemoveExportForPackage refuses to touch anything whose .uasset is still on disk.
+        FKeystoneBlueprintExporter::RemoveExportForPackage(AssetData.PackageName.ToString());
+    }
+
+    static void OnAssetRenamed(const FAssetData& AssetData, const FString& OldObjectPath)
+    {
+        // OldObjectPath is an object path (/Game/Path/BP_Name.BP_Name); the export rule is keyed
+        // on the package, so drop everything from the first dot.
+        FString OldPackage = OldObjectPath;
+        int32 DotIndex = INDEX_NONE;
+        if (OldPackage.FindChar(TEXT('.'), DotIndex))
+        {
+            OldPackage.LeftInline(DotIndex);
+        }
+
+        FKeystoneBlueprintExporter::RemoveExportForPackage(OldPackage);
     }
 
     // ── menu ─────────────────────────────────────────────────────────────────
@@ -121,6 +174,7 @@ private:
         FString Msg = FString::Printf(
             TEXT("Exported Blueprint graphs.\n\nScanned: %d\nWritten/updated: %d\nUnchanged: %d"),
             R.Scanned, R.Written, R.Unchanged);
+        if (R.Pruned > 0) Msg += FString::Printf(TEXT("\nRemoved (stale): %d"), R.Pruned);
         if (R.Failed > 0) Msg += FString::Printf(TEXT("\nFailed: %d (see the Output Log)"), R.Failed);
         Msg += TEXT("\n\nNext: Keystone ▸ Commit & Push Blueprint Graphs.");
         Info(Msg);

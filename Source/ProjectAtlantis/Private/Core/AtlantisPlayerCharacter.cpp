@@ -14,7 +14,7 @@ AAtlantisPlayerCharacter::AAtlantisPlayerCharacter()
 // Called when the game starts or when spawned
 void AAtlantisPlayerCharacter::BeginPlay()
 {
-	SpawnTransform = GetActorTransform();
+	StartTransform = GetActorTransform();
 	Super::BeginPlay();
 }
 

@@ -26,8 +26,12 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 	
+	/** Returns the character to the transform captured at BeginPlay. Authority only. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
 	void MoveToStart();
-	
+
+	/** Moves the character to an arbitrary transform. Authority only. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
 	void MoveToTransform(const FTransform& Transform);
 	
 private:
