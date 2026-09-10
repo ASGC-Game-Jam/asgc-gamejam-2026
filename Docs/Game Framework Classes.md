@@ -5,6 +5,10 @@ Character: a C++ base class per role, with a thin Blueprint leaf on top.
 
 Read this before adding a gameplay class, and follow the same split.
 
+Deciding *which* framework class a piece of state belongs on in the first place —
+GameMode vs GameState vs PlayerController vs PlayerState vs Pawn — is a separate question,
+covered in [Choosing a Gameplay Class.md](./Choosing%20a%20Gameplay%20Class.md).
+
 ---
 
 ## The shape
