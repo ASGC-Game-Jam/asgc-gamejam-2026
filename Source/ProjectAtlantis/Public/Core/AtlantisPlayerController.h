@@ -69,7 +69,7 @@ public:
 	bool AreControlsEnabled() const { return bControlsEnabled; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls")
-	const TArray<UInputMappingContext*> GetCurrentMappingContexts() const { return CurrentMappingContexts; }
+	const TArray<UInputMappingContext*>& GetCurrentMappingContexts() const { return CurrentMappingContexts; }
 
 protected:
 	/** Pushes every context in the desired set to the input subsystem. */
