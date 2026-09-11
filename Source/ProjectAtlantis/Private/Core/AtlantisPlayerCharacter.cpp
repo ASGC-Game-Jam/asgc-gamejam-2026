@@ -39,7 +39,7 @@ void AAtlantisPlayerCharacter::MoveToStart()
 
 void AAtlantisPlayerCharacter::MoveToTransform(const FTransform& Transform)
 {
-	SetActorTransform(Transform);	
+	SetActorTransform(Transform);
 }
 
 

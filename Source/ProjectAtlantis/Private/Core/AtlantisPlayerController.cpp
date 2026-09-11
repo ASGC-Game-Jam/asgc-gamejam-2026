@@ -7,6 +7,16 @@
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
 
+// Anonymous namespace: everything inside has internal linkage, so these helpers are private to
+// this .cpp. Another file can define its own MakeControlOptions without a duplicate-symbol link
+// error, and nothing outside this file can come to depend on them. Prefer it over marking each
+// function `static`: one block covers functions, constants, and helper types alike, and `static`
+// cannot be applied to a type at all.
+//
+// Unreal caveat: unity builds paste several .cpp files from a module into one translation unit,
+// where their anonymous namespaces merge into one. Two files defining the same helper name will
+// then collide at compile time, and because adaptive unity compiles files you are editing
+// separately, that often only surfaces on a clean or CI build. Keep names here file-specific.
 namespace
 {
 	/** Every context is applied at the same priority, matching the Blueprint this replaced. */

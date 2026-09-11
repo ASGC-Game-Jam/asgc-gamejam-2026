@@ -19,13 +19,13 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-	
+
 	/** Returns the character to the transform captured at BeginPlay. Authority only. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
 	void MoveToStart();
@@ -33,13 +33,8 @@ public:
 	/** Moves the character to an arbitrary transform. Authority only. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
 	void MoveToTransform(const FTransform& Transform);
-	
+
 private:
-	
 	UPROPERTY(BlueprintReadOnly, Category = "Atlantis|Movement", meta = (AllowPrivateAccess = "true"))
 	FTransform StartTransform;
-	
-	
-	
-	
 };
