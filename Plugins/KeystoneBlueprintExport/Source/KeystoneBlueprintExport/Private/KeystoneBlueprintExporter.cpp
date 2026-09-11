@@ -227,14 +227,41 @@ FString FKeystoneBlueprintExporter::ExportFileFor(UBlueprint* Blueprint)
     return ExportFileForPackage(Blueprint->GetOutermost()->GetName());
 }
 
-bool FKeystoneBlueprintExporter::RemoveExportForPackage(const FString& PackageName)
+FKeystoneBlueprintExporter::EPackageState FKeystoneBlueprintExporter::ClassifyPackage(const FString& PackageName)
+{
+    if (PackageName.IsEmpty()) return EPackageState::Unknown;
+
+    // A path under a root that is not mounted (e.g. /ProjectAtlantis/...) cannot hold a package.
+    // Checked first so DoesPackageExist is never asked about a root it does not know.
+    if (!FPackageName::IsValidLongPackageName(PackageName, /*bIncludeReadOnlyRoots=*/true))
+    {
+        return EPackageState::Stale;
+    }
+
+    // Gone from disk: a completed delete, or a rename's redirector that has since been fixed up.
+    if (!FPackageName::DoesPackageExist(PackageName)) return EPackageState::Stale;
+
+    // Still on disk, so ask the registry what is actually in it. On-disk assets only, so an
+    // object mid-deletion that is still in memory cannot vouch for a package that is going away.
+    IAssetRegistry& AR = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry").Get();
+    TArray<FAssetData> Assets;
+    AR.GetAssetsByPackageName(FName(*PackageName), Assets, /*bIncludeOnlyOnDiskAssets=*/true);
+
+    // The file exists but the registry knows nothing about it: an unmount or an unfinished scan.
+    if (Assets.IsEmpty()) return EPackageState::Unknown;
+
+    for (const FAssetData& Asset : Assets)
+    {
+        if (!Asset.IsRedirector()) return EPackageState::Live;
+    }
+
+    // Nothing but an ObjectRedirector: the stub a rename leaves at the old path.
+    return EPackageState::Stale;
+}
+
+bool FKeystoneBlueprintExporter::DeleteExportForPackage(const FString& PackageName)
 {
     if (PackageName.IsEmpty()) return false;
-
-    // The asset-registry hooks that call this also fire for churn that is not a deletion —
-    // directory unmounts and rescans among them. Confirm the .uasset is genuinely gone before
-    // deleting anything, so a live Blueprint can never lose its export.
-    if (FPackageName::DoesPackageExist(PackageName)) return false;
 
     const FString File = ExportFileForPackage(PackageName);
     if (!IFileManager::Get().FileExists(*File)) return false;
@@ -264,15 +291,15 @@ int32 FKeystoneBlueprintExporter::PruneOrphanExports(const TSet<FString>& Expect
         if (ExpectedFiles.Contains(Full)) continue;
 
         // The path rule is lossy: /Game/X collapses to X, while /Engine/X keeps its Engine/
-        // prefix. A sweep rooted at /Game therefore does not "expect" exports that came from
-        // another mount point. Reverse the rule both ways and keep the file if either reading
-        // still resolves to a real package, so only genuine orphans are deleted.
+        // prefix, so a file cannot be mapped back to exactly one package. Try both readings and
+        // delete only when every reading is conclusively stale — a live asset or an unknown
+        // under either reading keeps the file.
         FString Rel = Full;
         FPaths::MakePathRelativeTo(Rel, *(Root / TEXT("")));
         Rel.RemoveFromEnd(TEXT(".bpgraph.json"));
 
-        if (FPackageName::DoesPackageExist(TEXT("/Game/") + Rel)) continue;
-        if (FPackageName::DoesPackageExist(TEXT("/") + Rel)) continue;
+        if (ClassifyPackage(TEXT("/Game/") + Rel) != EPackageState::Stale) continue;
+        if (ClassifyPackage(TEXT("/") + Rel) != EPackageState::Stale) continue;
 
         if (IFileManager::Get().Delete(*Full))
         {
@@ -318,6 +345,15 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
     FKeystoneExportResult R;
 
     FAssetRegistryModule& ARM = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+
+    // If the editor's startup scan is still running the registry is incomplete: the export would
+    // miss Blueprints, and the prune would have to keep every file it cannot account for. This is
+    // a manual, one-off action, so blocking until the scan finishes is acceptable.
+    if (ARM.Get().IsLoadingAssets())
+    {
+        ARM.Get().WaitForCompletion();
+    }
+
     FARFilter Filter;
     Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
     Filter.bRecursiveClasses = true;

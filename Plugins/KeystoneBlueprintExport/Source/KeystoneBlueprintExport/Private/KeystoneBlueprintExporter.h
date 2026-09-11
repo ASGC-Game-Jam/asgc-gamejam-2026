@@ -39,10 +39,17 @@ public:
      *  hooks need it after the Blueprint is already gone. */
     static FString ExportFileForPackage(const FString& PackageName);
 
-    /** Delete the export belonging to a package whose Blueprint no longer exists. Returns false
-     *  and does nothing if the package is still on disk, so asset-registry churn (rescans,
-     *  unmounts) can never destroy the export of a live Blueprint. */
-    static bool RemoveExportForPackage(const FString& PackageName);
+    /** Whether a package still backs a live export. Registry-based, because the disk is wrong at
+     *  exactly the moments that matter: a deleted asset's .uasset is still on disk when
+     *  OnAssetRemoved fires, and a rename usually leaves an ObjectRedirector file at the old path.
+     *  `Unknown` means the file exists but the registry cannot account for it (an unmount, or a
+     *  scan still running) — callers must treat it as "keep", never as "delete". */
+    enum class EPackageState : uint8 { Live, Stale, Unknown };
+    static EPackageState ClassifyPackage(const FString& PackageName);
+
+    /** Delete the export file for a package, if one exists. Unconditional — decide with
+     *  ClassifyPackage first. Returns true only if a file was actually removed. */
+    static bool DeleteExportForPackage(const FString& PackageName);
 
     /** Delete every `.bpgraph.json` under the export folder that no live Blueprint maps to.
      *  `ExpectedFiles` is the set of absolute paths a sweep just wrote. Returns how many went. */
