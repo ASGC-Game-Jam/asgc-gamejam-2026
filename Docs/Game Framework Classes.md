@@ -19,7 +19,7 @@ Every framework role is two classes, not one.
         C++ base                      Blueprint leaf              lives in
   ──────────────────────────    ────────────────────────    ──────────────────────
   AAtlantisPlayerCharacter   ◄─ BP_AtlantisPlayerCharacter   Core/Characters
-  AAtlantisPlayerState       ◄─ BP_AtlantisPlayerState       Core/Characters
+  AAtlantisPlayerState       ◄─ BP_AtlantisPlayerState       Core/PlayerState
   AAtlantisPlayerController  ◄─ BP_AtlantisPlayerController   Core/PlayerControllers
   (AGameModeBase)            ◄─ BP_AtlantisGameMode          Core/GameModes
 ```
@@ -226,13 +226,16 @@ Empty this list as items land — it is a snapshot, not part of the convention.
   `AAtlantisPlayerCharacter::BeginPlay`. It works, but calling `Super` first is the convention.
 - **`AAtlantisPlayerState` properties are `protected`,** so a C++ subclass can write them
   directly and bypass the authority-guarded setters. Deliberate, but worth knowing.
-- **Orphaned graph exports** are tracked for assets that no longer exist:
-  `BP_PAPlayerCharacter.bpgraph.json` and `BP_ThirdPersonPlayerController.bpgraph.json`.
-- **`BP_ThirdPersonGameMode` still exists** and references `BP_AtlantisGameMode`. Delete it once
-  nothing depends on it.
-- **Framework Blueprints sit in `Core/Characters`.** `BP_AtlantisPlayerState` is not a character;
-  it and the other framework assets want a better home.
-- **None of the C++ has been compiled yet.**
+- **Six orphaned graph exports** are still tracked for Blueprints that were renamed, moved, or
+  deleted — among them `BP_PAPlayerCharacter`, `BP_ThirdPersonCharacter`, and the old
+  `Core/Characters/BP_AtlantisPlayerState`. The Keystone plugin now prunes these itself; they
+  clear on the first **Keystone ▸ Export Blueprint Graphs** after the plugin is rebuilt.
+- **`BP_ThirdPersonGameMode` is a redirector** left behind when it was renamed to
+  `BP_AtlantisGameMode`. Remove it with **Fix Up Redirectors** on `Core/GameModes` rather than
+  deleting it, so anything still pointing at the old name is repointed first.
+- **The Keystone plugin's orphan-pruning rework is not built yet.** The game module is built;
+  its only changes since the last build are comments and whitespace. Rebuild the plugin with the
+  editor closed.
 
 ---
 
