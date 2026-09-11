@@ -219,12 +219,28 @@ private:
         FToolMenuOwnerScoped OwnerScoped(MenuOwner());
         UToolMenu* MainMenu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu");
         if (!MainMenu) return;
-        FToolMenuSection& Section = MainMenu->FindOrAddSection("Keystone");
-        Section.AddSubMenu(
+
+        // The Keystone menu is shared with the Python source-art tool (Content/Python/keystone_menu.py),
+        // which adds a sub-menu entry named "Keystone" to the unnamed section of the menu bar, the
+        // same section that holds File and Edit. Register the identical entry in that identical
+        // section: a same-named entry in the same section is replaced rather than duplicated, so
+        // there is only ever one Keystone menu, and each tool adds its own section to the one
+        // sub-menu behind it ("LevelEditor.MainMenu.Keystone").
+        //
+        // Do not move this entry into its own section or give it a construct delegate. The menu
+        // system resolves a sub-menu by entry name and takes the *first* match, which is always the
+        // entry in the unnamed section, so a delegate on a second same-named entry is silently never
+        // called. That is exactly how Export Blueprint Graphs went missing from this menu.
+        UToolMenu* KeystoneMenu = MainMenu->AddSubMenu(
+            MenuOwner(),
+            NAME_None,
             "Keystone",
             LOCTEXT("KeystoneMenu", "Keystone"),
-            LOCTEXT("KeystoneMenuTip", "Export Blueprint graphs for Keystone visual diffs"),
-            FNewToolMenuChoice(FNewToolMenuDelegate::CreateStatic(&FKeystoneBlueprintExportModule::BuildMenu)));
+            LOCTEXT("KeystoneMenuTip", "Keystone tools: Blueprint graph export and source-art sync"));
+        if (KeystoneMenu)
+        {
+            BuildMenu(KeystoneMenu);
+        }
     }
 
     static void BuildMenu(UToolMenu* Menu)
@@ -240,7 +256,7 @@ private:
             LOCTEXT("CommitGraphsTip", "Stage, commit and push only the BlueprintGraphs/ folder"),
             FSlateIcon(),
             FUIAction(FExecuteAction::CreateStatic(&FKeystoneBlueprintExportModule::OnCommitClicked)));
-        S.AddMenuEntry("ToggleAutoCapture",
+        S.AddMenuEntry("ToggleGraphAutoCapture",
             LOCTEXT("ToggleAutoCapture", "Toggle Auto-Capture on Save"),
             LOCTEXT("ToggleAutoCaptureTip", "Re-export a Blueprint's graph automatically whenever it's saved"),
             FSlateIcon(),
