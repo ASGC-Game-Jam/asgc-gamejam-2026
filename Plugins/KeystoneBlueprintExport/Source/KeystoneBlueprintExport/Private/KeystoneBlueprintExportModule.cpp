@@ -14,6 +14,10 @@
 #include "UObject/Package.h"
 #include "UObject/UObjectHash.h"
 #include "UObject/ObjectSaveContext.h"
+#include "AssetRegistry/AssetRegistryModule.h"
+#include "AssetRegistry/AssetData.h"
+#include "Containers/Ticker.h"
+#include "Misc/ScopeLock.h"
 #include "ToolMenus.h"
 #include "Misc/MessageDialog.h"
 
@@ -26,11 +30,15 @@ public:
     {
         UToolMenus::RegisterStartupCallback(
             FSimpleMulticastDelegate::FDelegate::CreateStatic(&FKeystoneBlueprintExportModule::RegisterMenus));
-        SetAutoCapture(true); // "artists do nothing": capture on save is on out of the box
+        SetAutoCapture(true);      // "artists do nothing": capture on save is on out of the box
+        SetLifecycleTracking(true); // …and the matching half: deleting or renaming clears the export
+        ScheduleStartupSweep();     // …and whatever changed while the editor was closed
     }
 
     virtual void ShutdownModule() override
     {
+        CancelStartupSweep();
+        SetLifecycleTracking(false);
         SetAutoCapture(false);
         UToolMenus::UnRegisterStartupCallback(this);
         if (UObjectInitialized()) UToolMenus::UnregisterOwner(MenuOwner());
@@ -38,6 +46,8 @@ public:
 
 private:
     static inline FDelegateHandle SaveHandle;
+    static inline FDelegateHandle AssetRemovedHandle;
+    static inline FDelegateHandle AssetRenamedHandle;
 
     /** Stable owner for the menu we add, so register and unregister match (a name owner, not a
      *  fabricated pointer — the latter doesn't convert to FToolMenuOwner in UE5.7). */
@@ -74,18 +84,227 @@ private:
         FKeystoneBlueprintExporter::ExportOne(BP, R);
     }
 
+    // ── asset lifecycle ──────────────────────────────────────────────────────
+    // The save hook only ever *writes*, so without these a deleted Blueprint left its export
+    // behind forever, and a rename left the old path orphaned beside the new one.
+
+    static void SetLifecycleTracking(bool bOn)
+    {
+        if (bOn && !AssetRemovedHandle.IsValid())
+        {
+            IAssetRegistry& AR = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry").Get();
+            AssetRemovedHandle = AR.OnAssetRemoved().AddStatic(&FKeystoneBlueprintExportModule::OnAssetRemoved);
+            AssetRenamedHandle = AR.OnAssetRenamed().AddStatic(&FKeystoneBlueprintExportModule::OnAssetRenamed);
+        }
+        else if (!bOn && AssetRemovedHandle.IsValid())
+        {
+            // Do not force-load the module during shutdown just to unbind from it.
+            if (FAssetRegistryModule* ARM = FModuleManager::GetModulePtr<FAssetRegistryModule>("AssetRegistry"))
+            {
+                ARM->Get().OnAssetRemoved().Remove(AssetRemovedHandle);
+                ARM->Get().OnAssetRenamed().Remove(AssetRenamedHandle);
+            }
+            AssetRemovedHandle.Reset();
+            AssetRenamedHandle.Reset();
+
+            // A queued check must never fire into an unloaded module.
+            FScopeLock Lock(&PendingLock);
+            FTSTicker::RemoveTicker(PruneTicker);
+            PruneTicker.Reset();
+            PendingPrunes.Reset();
+        }
+    }
+
+    static void OnAssetRemoved(const FAssetData& AssetData)
+    {
+        // No Blueprint-class filter: checking it would mean loading an asset that is on its way
+        // out. If the package never had an export there is simply nothing to delete.
+        QueuePrune(AssetData.PackageName.ToString());
+    }
+
+    static void OnAssetRenamed(const FAssetData& AssetData, const FString& OldObjectPath)
+    {
+        // OldObjectPath is an object path (/Game/Path/BP_Name.BP_Name); the export rule is keyed
+        // on the package, so drop everything from the first dot.
+        FString OldPackage = OldObjectPath;
+        int32 DotIndex = INDEX_NONE;
+        if (OldPackage.FindChar(TEXT('.'), DotIndex))
+        {
+            OldPackage.LeftInline(DotIndex);
+        }
+
+        QueuePrune(OldPackage);
+    }
+
+    // Both events are raised *before* the operation they describe has landed: ObjectTools
+    // broadcasts OnAssetRemoved and only afterwards deletes the .uasset, so deciding inside the
+    // callback always sees the file and never prunes. They are also thread-safe delegates that
+    // may arrive off the game thread. So the callbacks only queue the package, and the decision
+    // is made on a later game-thread tick, once the delete or rename has actually finished.
+
+    static constexpr float PruneRetryDelaySeconds = 1.0f;
+    static constexpr int32 PruneMaxAttempts = 10;
+
+    static inline FCriticalSection PendingLock;
+    static inline TMap<FString, int32> PendingPrunes; // package -> attempts made so far
+    static inline FTSTicker::FDelegateHandle PruneTicker;
+
+    static void QueuePrune(const FString& PackageName)
+    {
+        if (PackageName.IsEmpty()) return;
+
+        FScopeLock Lock(&PendingLock);
+        PendingPrunes.FindOrAdd(PackageName, 0);
+        if (!PruneTicker.IsValid())
+        {
+            PruneTicker = FTSTicker::GetCoreTicker().AddTicker(
+                FTickerDelegate::CreateStatic(&FKeystoneBlueprintExportModule::ProcessPendingPrunes));
+        }
+    }
+
+    static bool ProcessPendingPrunes(float /*DeltaTime*/)
+    {
+        TMap<FString, int32> Batch;
+        {
+            FScopeLock Lock(&PendingLock);
+            Batch = MoveTemp(PendingPrunes);
+            PendingPrunes.Reset();
+            PruneTicker.Reset();
+        }
+
+        TMap<FString, int32> Retry;
+        for (const TPair<FString, int32>& Entry : Batch)
+        {
+            switch (FKeystoneBlueprintExporter::ClassifyPackage(Entry.Key))
+            {
+            case FKeystoneBlueprintExporter::EPackageState::Stale:
+                FKeystoneBlueprintExporter::DeleteExportForPackage(Entry.Key);
+                break;
+
+            case FKeystoneBlueprintExporter::EPackageState::Unknown:
+                // The file is still on disk but the registry cannot account for it — most likely
+                // a delete still in flight behind a modal prompt. Try again shortly, then give up
+                // and leave it to the Export Blueprint Graphs sweep.
+                if (Entry.Value + 1 < PruneMaxAttempts)
+                {
+                    Retry.Add(Entry.Key, Entry.Value + 1);
+                }
+                break;
+
+            case FKeystoneBlueprintExporter::EPackageState::Live:
+                break;
+            }
+        }
+
+        if (Retry.Num() > 0)
+        {
+            FScopeLock Lock(&PendingLock);
+            for (const TPair<FString, int32>& Entry : Retry)
+            {
+                int32& Attempts = PendingPrunes.FindOrAdd(Entry.Key, 0);
+                Attempts = FMath::Max(Attempts, Entry.Value);
+            }
+            if (!PruneTicker.IsValid())
+            {
+                PruneTicker = FTSTicker::GetCoreTicker().AddTicker(
+                    FTickerDelegate::CreateStatic(&FKeystoneBlueprintExportModule::ProcessPendingPrunes),
+                    PruneRetryDelaySeconds);
+            }
+        }
+
+        return false; // one-shot; re-armed above only while something is still pending
+    }
+
+    // ── startup sweep ────────────────────────────────────────────────────────
+    // The lifecycle hooks only see deletes and renames made in this editor while it runs.
+    // Anything that lands another way (a git pull or branch switch while the editor was closed,
+    // or orphans left from before these hooks existed) would otherwise stay forever. So once per
+    // session, as soon as the asset registry finishes its initial scan, prune every export that
+    // no live Blueprint backs. It asks the registry only and loads no Blueprints, so it is cheap
+    // enough to run silently on every launch.
+
+    static inline FDelegateHandle FilesLoadedHandle;
+    static inline FTSTicker::FDelegateHandle StartupSweepTicker;
+
+    static void ScheduleStartupSweep()
+    {
+        // Cooks and other commandlets are not editing sessions; the export commandlet sweeps itself.
+        if (IsRunningCommandlet()) return;
+
+        IAssetRegistry& AR = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry").Get();
+        if (AR.IsLoadingAssets())
+        {
+            FilesLoadedHandle = AR.OnFilesLoaded().AddStatic(&FKeystoneBlueprintExportModule::OnInitialScanComplete);
+        }
+        else
+        {
+            OnInitialScanComplete();
+        }
+    }
+
+    static void OnInitialScanComplete()
+    {
+        // OnFilesLoaded is a thread-safe delegate, so hop to a game-thread tick before touching the
+        // registry and the file system.
+        StartupSweepTicker = FTSTicker::GetCoreTicker().AddTicker(
+            FTickerDelegate::CreateStatic(&FKeystoneBlueprintExportModule::RunStartupSweep));
+    }
+
+    static bool RunStartupSweep(float /*DeltaTime*/)
+    {
+        StartupSweepTicker.Reset();
+
+        // An empty expected set makes every export on disk prove itself against the registry.
+        // PruneOrphanExports deletes a file only when every reading of its path is conclusively
+        // stale, and keeps anything live or unknown, so an incomplete registry can only under-prune.
+        const int32 Pruned = FKeystoneBlueprintExporter::PruneOrphanExports(TSet<FString>());
+        UE_LOG(LogTemp, Log, TEXT("[keystone] startup sweep: pruned %d stale export(s)"), Pruned);
+        return false; // one-shot
+    }
+
+    static void CancelStartupSweep()
+    {
+        if (FilesLoadedHandle.IsValid())
+        {
+            // Do not force-load the module during shutdown just to unbind from it.
+            if (FAssetRegistryModule* ARM = FModuleManager::GetModulePtr<FAssetRegistryModule>("AssetRegistry"))
+            {
+                ARM->Get().OnFilesLoaded().Remove(FilesLoadedHandle);
+            }
+            FilesLoadedHandle.Reset();
+        }
+        FTSTicker::RemoveTicker(StartupSweepTicker);
+        StartupSweepTicker.Reset();
+    }
+
     // ── menu ─────────────────────────────────────────────────────────────────
     static void RegisterMenus()
     {
         FToolMenuOwnerScoped OwnerScoped(MenuOwner());
         UToolMenu* MainMenu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu");
         if (!MainMenu) return;
-        FToolMenuSection& Section = MainMenu->FindOrAddSection("Keystone");
-        Section.AddSubMenu(
+
+        // The Keystone menu is shared with the Python source-art tool (Content/Python/keystone_menu.py),
+        // which adds a sub-menu entry named "Keystone" to the unnamed section of the menu bar, the
+        // same section that holds File and Edit. Register the identical entry in that identical
+        // section: a same-named entry in the same section is replaced rather than duplicated, so
+        // there is only ever one Keystone menu, and each tool adds its own section to the one
+        // sub-menu behind it ("LevelEditor.MainMenu.Keystone").
+        //
+        // Do not move this entry into its own section or give it a construct delegate. The menu
+        // system resolves a sub-menu by entry name and takes the *first* match, which is always the
+        // entry in the unnamed section, so a delegate on a second same-named entry is silently never
+        // called. That is exactly how Export Blueprint Graphs went missing from this menu.
+        UToolMenu* KeystoneMenu = MainMenu->AddSubMenu(
+            MenuOwner(),
+            NAME_None,
             "Keystone",
             LOCTEXT("KeystoneMenu", "Keystone"),
-            LOCTEXT("KeystoneMenuTip", "Export Blueprint graphs for Keystone visual diffs"),
-            FNewToolMenuChoice(FNewToolMenuDelegate::CreateStatic(&FKeystoneBlueprintExportModule::BuildMenu)));
+            LOCTEXT("KeystoneMenuTip", "Keystone tools: Blueprint graph export and source-art sync"));
+        if (KeystoneMenu)
+        {
+            BuildMenu(KeystoneMenu);
+        }
     }
 
     static void BuildMenu(UToolMenu* Menu)
@@ -101,7 +320,7 @@ private:
             LOCTEXT("CommitGraphsTip", "Stage, commit and push only the BlueprintGraphs/ folder"),
             FSlateIcon(),
             FUIAction(FExecuteAction::CreateStatic(&FKeystoneBlueprintExportModule::OnCommitClicked)));
-        S.AddMenuEntry("ToggleAutoCapture",
+        S.AddMenuEntry("ToggleGraphAutoCapture",
             LOCTEXT("ToggleAutoCapture", "Toggle Auto-Capture on Save"),
             LOCTEXT("ToggleAutoCaptureTip", "Re-export a Blueprint's graph automatically whenever it's saved"),
             FSlateIcon(),
@@ -121,6 +340,7 @@ private:
         FString Msg = FString::Printf(
             TEXT("Exported Blueprint graphs.\n\nScanned: %d\nWritten/updated: %d\nUnchanged: %d"),
             R.Scanned, R.Written, R.Unchanged);
+        if (R.Pruned > 0) Msg += FString::Printf(TEXT("\nRemoved (stale): %d"), R.Pruned);
         if (R.Failed > 0) Msg += FString::Printf(TEXT("\nFailed: %d (see the Output Log)"), R.Failed);
         Msg += TEXT("\n\nNext: Keystone ▸ Commit & Push Blueprint Graphs.");
         Info(Msg);

@@ -1,9 +1,9 @@
 {
 	"version": 1,
 	"generatedBy": "keystone-blueprint-export",
-	"package": "/Game/ProjectAtlantis/Core/Characters/BP_ThirdPersonCharacter",
-	"asset": "BP_ThirdPersonCharacter",
-	"parentClass": "Character",
+	"package": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter",
+	"asset": "BP_AtlantisPlayerCharacter",
+	"parentClass": "AtlantisPlayerCharacter",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
@@ -798,121 +798,69 @@
 		{
 			"name": "EventGraph",
 			"type": "Ubergraph",
+			"nodes": [],
+			"comments": [
+				{
+					"guid": "49c6abe04906809378f73f8b383c9341",
+					"text": "A basic Character with a controllable, orbiting Third Person camera.",
+					"x": -2896,
+					"y": -2864,
+					"width": 416,
+					"height": 128
+				}
+			]
+		},
+		{
+			"name": "MovementControlls",
+			"type": "Ubergraph",
 			"nodes": [
 				{
-					"guid": "039f4cb344c842b58fc15197f34b483b",
-					"class": "K2Node_EnhancedInputAction",
-					"title": "EnhancedInputAction IA_Look",
-					"x": -2832,
-					"y": -1360,
+					"guid": "05a1f815492cf9380cf2f088cd043a79",
+					"class": "K2Node_CallFunction",
+					"title": "Jump",
+					"x": 288,
+					"y": 816,
 					"comment": null,
 					"pins": [
 						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:Triggered",
-							"name": "Triggered",
-							"direction": "output",
+							"id": "05a1f815492cf9380cf2f088cd043a79:i:execute",
+							"name": "execute",
+							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"877f18c74b300a1680059793d4d2d6d4:i:execute"
+								"10609d0e429ca915b0592caa2aa97b7e:o:Started",
+								"ac2d8a4f475c98bed83d238f71d27f64:o:then"
 							]
 						},
 						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:Started",
-							"name": "Started",
+							"id": "05a1f815492cf9380cf2f088cd043a79:o:then",
+							"name": "then",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": []
 						},
 						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:Ongoing",
-							"name": "Ongoing",
-							"direction": "output",
-							"type": "exec",
+							"id": "05a1f815492cf9380cf2f088cd043a79:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
 							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:Canceled",
-							"name": "Canceled",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:Completed",
-							"name": "Completed",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:ActionValue",
-							"name": "ActionValue",
-							"direction": "output",
-							"type": "struct:/Script/CoreUObject.Vector2D",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:ActionValue_X",
-							"name": "ActionValue_X",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"877f18c74b300a1680059793d4d2d6d4:i:X Axis"
-							]
-						},
-						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:ActionValue_Y",
-							"name": "ActionValue_Y",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"877f18c74b300a1680059793d4d2d6d4:i:Y Axis"
-							]
-						},
-						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:ElapsedSeconds",
-							"name": "ElapsedSeconds",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:TriggeredSeconds",
-							"name": "TriggeredSeconds",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "039f4cb344c842b58fc15197f34b483b:o:InputAction",
-							"name": "InputAction",
-							"direction": "output",
-							"type": "object:/Script/EnhancedInput.InputAction",
-							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Look.IA_Look",
 							"links": []
 						}
 					]
 				},
 				{
-					"guid": "078d25a142a52e8ff09bfc95776d42ef",
+					"guid": "10609d0e429ca915b0592caa2aa97b7e",
 					"class": "K2Node_EnhancedInputAction",
 					"title": "EnhancedInputAction IA_Jump",
-					"x": -2800,
-					"y": -480,
+					"x": -96,
+					"y": 800,
 					"comment": null,
 					"pins": [
 						{
-							"id": "078d25a142a52e8ff09bfc95776d42ef:o:Triggered",
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Triggered",
 							"name": "Triggered",
 							"direction": "output",
 							"type": "exec",
@@ -920,17 +868,17 @@
 							"links": []
 						},
 						{
-							"id": "078d25a142a52e8ff09bfc95776d42ef:o:Started",
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Started",
 							"name": "Started",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"28393d754ef37dd87d756faa59b6fcfb:i:execute"
+								"05a1f815492cf9380cf2f088cd043a79:i:execute"
 							]
 						},
 						{
-							"id": "078d25a142a52e8ff09bfc95776d42ef:o:Ongoing",
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Ongoing",
 							"name": "Ongoing",
 							"direction": "output",
 							"type": "exec",
@@ -938,7 +886,7 @@
 							"links": []
 						},
 						{
-							"id": "078d25a142a52e8ff09bfc95776d42ef:o:Canceled",
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Canceled",
 							"name": "Canceled",
 							"direction": "output",
 							"type": "exec",
@@ -946,17 +894,17 @@
 							"links": []
 						},
 						{
-							"id": "078d25a142a52e8ff09bfc95776d42ef:o:Completed",
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:Completed",
 							"name": "Completed",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"d43a4da943470a7640eab9a26a7bd89d:i:execute"
+								"13e99d724ae7ddaf0bbd52a5dbc5dace:i:execute"
 							]
 						},
 						{
-							"id": "078d25a142a52e8ff09bfc95776d42ef:o:ActionValue",
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:ActionValue",
 							"name": "ActionValue",
 							"direction": "output",
 							"type": "bool",
@@ -964,7 +912,7 @@
 							"links": []
 						},
 						{
-							"id": "078d25a142a52e8ff09bfc95776d42ef:o:ElapsedSeconds",
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:ElapsedSeconds",
 							"name": "ElapsedSeconds",
 							"direction": "output",
 							"type": "real:double",
@@ -972,7 +920,7 @@
 							"links": []
 						},
 						{
-							"id": "078d25a142a52e8ff09bfc95776d42ef:o:TriggeredSeconds",
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:TriggeredSeconds",
 							"name": "TriggeredSeconds",
 							"direction": "output",
 							"type": "real:double",
@@ -980,7 +928,7 @@
 							"links": []
 						},
 						{
-							"id": "078d25a142a52e8ff09bfc95776d42ef:o:InputAction",
+							"id": "10609d0e429ca915b0592caa2aa97b7e:o:InputAction",
 							"name": "InputAction",
 							"direction": "output",
 							"type": "object:/Script/EnhancedInput.InputAction",
@@ -990,15 +938,15 @@
 					]
 				},
 				{
-					"guid": "17b77513400fc8776114f096a2f8b64a",
+					"guid": "1218c5f34eaf240033538d9327d5163e",
 					"class": "K2Node_Event",
-					"title": "Event Primary Thumbstick",
-					"x": -1920,
-					"y": -1136,
+					"title": "Event Secondary Thumbstick",
+					"x": -128,
+					"y": 160,
 					"comment": null,
 					"pins": [
 						{
-							"id": "17b77513400fc8776114f096a2f8b64a:o:OutputDelegate",
+							"id": "1218c5f34eaf240033538d9327d5163e:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -1006,17 +954,17 @@
 							"links": []
 						},
 						{
-							"id": "17b77513400fc8776114f096a2f8b64a:o:then",
+							"id": "1218c5f34eaf240033538d9327d5163e:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"1eb7ed5245736bdaa7052f9099a04fc5:i:execute"
+								"a1208a7345c3a224111917a36958a758:i:execute"
 							]
 						},
 						{
-							"id": "17b77513400fc8776114f096a2f8b64a:o:Axis",
+							"id": "1218c5f34eaf240033538d9327d5163e:o:Axis",
 							"name": "Axis",
 							"direction": "output",
 							"type": "struct:/Script/CoreUObject.Vector2D",
@@ -1024,75 +972,48 @@
 							"links": []
 						},
 						{
-							"id": "17b77513400fc8776114f096a2f8b64a:o:Axis_X",
+							"id": "1218c5f34eaf240033538d9327d5163e:o:Axis_X",
 							"name": "Axis_X",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"1eb7ed5245736bdaa7052f9099a04fc5:i:X Axis"
+								"a1208a7345c3a224111917a36958a758:i:X Axis"
 							]
 						},
 						{
-							"id": "17b77513400fc8776114f096a2f8b64a:o:Axis_Y",
+							"id": "1218c5f34eaf240033538d9327d5163e:o:Axis_Y",
 							"name": "Axis_Y",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"1eb7ed5245736bdaa7052f9099a04fc5:i:Y Axis"
+								"a1208a7345c3a224111917a36958a758:i:Y Axis"
 							]
 						}
 					]
 				},
 				{
-					"guid": "1b3f500d499ec8f8065f74b6bca51c51",
-					"class": "K2Node_Event",
-					"title": "Event Touch Jump End",
-					"x": -2784,
-					"y": -160,
-					"comment": null,
-					"pins": [
-						{
-							"id": "1b3f500d499ec8f8065f74b6bca51c51:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "1b3f500d499ec8f8065f74b6bca51c51:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"d43a4da943470a7640eab9a26a7bd89d:i:execute"
-							]
-						}
-					]
-				},
-				{
-					"guid": "1eb7ed5245736bdaa7052f9099a04fc5",
+					"guid": "13e99d724ae7ddaf0bbd52a5dbc5dace",
 					"class": "K2Node_CallFunction",
-					"title": "Move",
-					"x": -1536,
-					"y": -1136,
+					"title": "Stop Jumping",
+					"x": 288,
+					"y": 960,
 					"comment": null,
 					"pins": [
 						{
-							"id": "1eb7ed5245736bdaa7052f9099a04fc5:i:execute",
+							"id": "13e99d724ae7ddaf0bbd52a5dbc5dace:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"17b77513400fc8776114f096a2f8b64a:o:then"
+								"10609d0e429ca915b0592caa2aa97b7e:o:Completed",
+								"3a147b2b424d0103e520ea94db7e2b86:o:then"
 							]
 						},
 						{
-							"id": "1eb7ed5245736bdaa7052f9099a04fc5:o:then",
+							"id": "13e99d724ae7ddaf0bbd52a5dbc5dace:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -1100,64 +1021,7 @@
 							"links": []
 						},
 						{
-							"id": "1eb7ed5245736bdaa7052f9099a04fc5:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:self",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "1eb7ed5245736bdaa7052f9099a04fc5:i:X Axis",
-							"name": "X Axis",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"17b77513400fc8776114f096a2f8b64a:o:Axis_X"
-							]
-						},
-						{
-							"id": "1eb7ed5245736bdaa7052f9099a04fc5:i:Y Axis",
-							"name": "Y Axis",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"17b77513400fc8776114f096a2f8b64a:o:Axis_Y"
-							]
-						}
-					]
-				},
-				{
-					"guid": "28393d754ef37dd87d756faa59b6fcfb",
-					"class": "K2Node_CallFunction",
-					"title": "Jump",
-					"x": -2416,
-					"y": -464,
-					"comment": null,
-					"pins": [
-						{
-							"id": "28393d754ef37dd87d756faa59b6fcfb:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"078d25a142a52e8ff09bfc95776d42ef:o:Started",
-								"ca1f7c4f4268fcc957c764be832ae1ed:o:then"
-							]
-						},
-						{
-							"id": "28393d754ef37dd87d756faa59b6fcfb:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "28393d754ef37dd87d756faa59b6fcfb:i:self",
+							"id": "13e99d724ae7ddaf0bbd52a5dbc5dace:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Script/Engine.Character",
@@ -1167,71 +1031,15 @@
 					]
 				},
 				{
-					"guid": "3bca8174462d0b199b5dfdb08255698c",
-					"class": "K2Node_CallFunction",
-					"title": "Aim",
-					"x": -2464,
-					"y": -1120,
-					"comment": null,
-					"pins": [
-						{
-							"id": "3bca8174462d0b199b5dfdb08255698c:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"5d1ae27245e2bde85ab4bba60d2ae9e0:o:then"
-							]
-						},
-						{
-							"id": "3bca8174462d0b199b5dfdb08255698c:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "3bca8174462d0b199b5dfdb08255698c:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:self",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "3bca8174462d0b199b5dfdb08255698c:i:X Axis",
-							"name": "X Axis",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": null,
-							"links": [
-								"5d1ae27245e2bde85ab4bba60d2ae9e0:o:Axis_X"
-							]
-						},
-						{
-							"id": "3bca8174462d0b199b5dfdb08255698c:i:Y Axis",
-							"name": "Y Axis",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"5d1ae27245e2bde85ab4bba60d2ae9e0:o:Axis_Y"
-							]
-						}
-					]
-				},
-				{
-					"guid": "5d1ae27245e2bde85ab4bba60d2ae9e0",
+					"guid": "3a147b2b424d0103e520ea94db7e2b86",
 					"class": "K2Node_Event",
-					"title": "Event Secondary Thumbstick",
-					"x": -2832,
-					"y": -1120,
+					"title": "Event Touch Jump End",
+					"x": -80,
+					"y": 1120,
 					"comment": null,
 					"pins": [
 						{
-							"id": "5d1ae27245e2bde85ab4bba60d2ae9e0:o:OutputDelegate",
+							"id": "3a147b2b424d0103e520ea94db7e2b86:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -1239,65 +1047,37 @@
 							"links": []
 						},
 						{
-							"id": "5d1ae27245e2bde85ab4bba60d2ae9e0:o:then",
+							"id": "3a147b2b424d0103e520ea94db7e2b86:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"3bca8174462d0b199b5dfdb08255698c:i:execute"
-							]
-						},
-						{
-							"id": "5d1ae27245e2bde85ab4bba60d2ae9e0:o:Axis",
-							"name": "Axis",
-							"direction": "output",
-							"type": "struct:/Script/CoreUObject.Vector2D",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "5d1ae27245e2bde85ab4bba60d2ae9e0:o:Axis_X",
-							"name": "Axis_X",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"3bca8174462d0b199b5dfdb08255698c:i:X Axis"
-							]
-						},
-						{
-							"id": "5d1ae27245e2bde85ab4bba60d2ae9e0:o:Axis_Y",
-							"name": "Axis_Y",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"3bca8174462d0b199b5dfdb08255698c:i:Y Axis"
+								"13e99d724ae7ddaf0bbd52a5dbc5dace:i:execute"
 							]
 						}
 					]
 				},
 				{
-					"guid": "7ed068c845fdfed3899ff6a160a6ed92",
+					"guid": "6004f173430db82107689eb0db8d7045",
 					"class": "K2Node_EnhancedInputAction",
 					"title": "EnhancedInputAction IA_MouseLook",
-					"x": -2832,
-					"y": -864,
+					"x": -128,
+					"y": 416,
 					"comment": null,
 					"pins": [
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:Triggered",
+							"id": "6004f173430db82107689eb0db8d7045:o:Triggered",
 							"name": "Triggered",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"bd158ea4442db21e9cc966a7df62f441:i:execute"
+								"7579ef1340e9eec3f06f649089cbc0a8:i:execute"
 							]
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:Started",
+							"id": "6004f173430db82107689eb0db8d7045:o:Started",
 							"name": "Started",
 							"direction": "output",
 							"type": "exec",
@@ -1305,7 +1085,7 @@
 							"links": []
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:Ongoing",
+							"id": "6004f173430db82107689eb0db8d7045:o:Ongoing",
 							"name": "Ongoing",
 							"direction": "output",
 							"type": "exec",
@@ -1313,7 +1093,7 @@
 							"links": []
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:Canceled",
+							"id": "6004f173430db82107689eb0db8d7045:o:Canceled",
 							"name": "Canceled",
 							"direction": "output",
 							"type": "exec",
@@ -1321,7 +1101,7 @@
 							"links": []
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:Completed",
+							"id": "6004f173430db82107689eb0db8d7045:o:Completed",
 							"name": "Completed",
 							"direction": "output",
 							"type": "exec",
@@ -1329,7 +1109,7 @@
 							"links": []
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:ActionValue",
+							"id": "6004f173430db82107689eb0db8d7045:o:ActionValue",
 							"name": "ActionValue",
 							"direction": "output",
 							"type": "struct:/Script/CoreUObject.Vector2D",
@@ -1337,27 +1117,27 @@
 							"links": []
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:ActionValue_X",
+							"id": "6004f173430db82107689eb0db8d7045:o:ActionValue_X",
 							"name": "ActionValue_X",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"bd158ea4442db21e9cc966a7df62f441:i:X Axis"
+								"7579ef1340e9eec3f06f649089cbc0a8:i:X Axis"
 							]
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:ActionValue_Y",
+							"id": "6004f173430db82107689eb0db8d7045:o:ActionValue_Y",
 							"name": "ActionValue_Y",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"bd158ea4442db21e9cc966a7df62f441:i:Y Axis"
+								"7579ef1340e9eec3f06f649089cbc0a8:i:Y Axis"
 							]
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:ElapsedSeconds",
+							"id": "6004f173430db82107689eb0db8d7045:o:ElapsedSeconds",
 							"name": "ElapsedSeconds",
 							"direction": "output",
 							"type": "real:double",
@@ -1365,7 +1145,7 @@
 							"links": []
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:TriggeredSeconds",
+							"id": "6004f173430db82107689eb0db8d7045:o:TriggeredSeconds",
 							"name": "TriggeredSeconds",
 							"direction": "output",
 							"type": "real:double",
@@ -1373,7 +1153,7 @@
 							"links": []
 						},
 						{
-							"id": "7ed068c845fdfed3899ff6a160a6ed92:o:InputAction",
+							"id": "6004f173430db82107689eb0db8d7045:o:InputAction",
 							"name": "InputAction",
 							"direction": "output",
 							"type": "object:/Script/EnhancedInput.InputAction",
@@ -1383,25 +1163,25 @@
 					]
 				},
 				{
-					"guid": "877f18c74b300a1680059793d4d2d6d4",
+					"guid": "7579ef1340e9eec3f06f649089cbc0a8",
 					"class": "K2Node_CallFunction",
 					"title": "Aim",
-					"x": -2464,
-					"y": -1376,
+					"x": 240,
+					"y": 400,
 					"comment": null,
 					"pins": [
 						{
-							"id": "877f18c74b300a1680059793d4d2d6d4:i:execute",
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"039f4cb344c842b58fc15197f34b483b:o:Triggered"
+								"6004f173430db82107689eb0db8d7045:o:Triggered"
 							]
 						},
 						{
-							"id": "877f18c74b300a1680059793d4d2d6d4:o:then",
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -1409,7 +1189,7 @@
 							"links": []
 						},
 						{
-							"id": "877f18c74b300a1680059793d4d2d6d4:i:self",
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:self",
@@ -1417,47 +1197,47 @@
 							"links": []
 						},
 						{
-							"id": "877f18c74b300a1680059793d4d2d6d4:i:X Axis",
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:i:X Axis",
 							"name": "X Axis",
 							"direction": "input",
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"039f4cb344c842b58fc15197f34b483b:o:ActionValue_X"
+								"6004f173430db82107689eb0db8d7045:o:ActionValue_X"
 							]
 						},
 						{
-							"id": "877f18c74b300a1680059793d4d2d6d4:i:Y Axis",
+							"id": "7579ef1340e9eec3f06f649089cbc0a8:i:Y Axis",
 							"name": "Y Axis",
 							"direction": "input",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"039f4cb344c842b58fc15197f34b483b:o:ActionValue_Y"
+								"6004f173430db82107689eb0db8d7045:o:ActionValue_Y"
 							]
 						}
 					]
 				},
 				{
-					"guid": "9ebf51e443e0da0bdf1112935bb9b9dc",
+					"guid": "788c162d41434957096cbfad115fe074",
 					"class": "K2Node_CallFunction",
 					"title": "Move",
-					"x": -1536,
-					"y": -1392,
+					"x": 1168,
+					"y": 144,
 					"comment": null,
 					"pins": [
 						{
-							"id": "9ebf51e443e0da0bdf1112935bb9b9dc:i:execute",
+							"id": "788c162d41434957096cbfad115fe074:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"fb33504c42a13219755ffe905298be69:o:Triggered"
+								"f983b920452502820afbcd8779bc6952:o:then"
 							]
 						},
 						{
-							"id": "9ebf51e443e0da0bdf1112935bb9b9dc:o:then",
+							"id": "788c162d41434957096cbfad115fe074:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -1465,7 +1245,7 @@
 							"links": []
 						},
 						{
-							"id": "9ebf51e443e0da0bdf1112935bb9b9dc:i:self",
+							"id": "788c162d41434957096cbfad115fe074:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:self",
@@ -1473,47 +1253,47 @@
 							"links": []
 						},
 						{
-							"id": "9ebf51e443e0da0bdf1112935bb9b9dc:i:X Axis",
+							"id": "788c162d41434957096cbfad115fe074:i:X Axis",
 							"name": "X Axis",
 							"direction": "input",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"fb33504c42a13219755ffe905298be69:o:ActionValue_X"
+								"f983b920452502820afbcd8779bc6952:o:Axis_X"
 							]
 						},
 						{
-							"id": "9ebf51e443e0da0bdf1112935bb9b9dc:i:Y Axis",
+							"id": "788c162d41434957096cbfad115fe074:i:Y Axis",
 							"name": "Y Axis",
 							"direction": "input",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"fb33504c42a13219755ffe905298be69:o:ActionValue_Y"
+								"f983b920452502820afbcd8779bc6952:o:Axis_Y"
 							]
 						}
 					]
 				},
 				{
-					"guid": "bd158ea4442db21e9cc966a7df62f441",
+					"guid": "a1208a7345c3a224111917a36958a758",
 					"class": "K2Node_CallFunction",
 					"title": "Aim",
-					"x": -2464,
-					"y": -880,
+					"x": 240,
+					"y": 160,
 					"comment": null,
 					"pins": [
 						{
-							"id": "bd158ea4442db21e9cc966a7df62f441:i:execute",
+							"id": "a1208a7345c3a224111917a36958a758:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"7ed068c845fdfed3899ff6a160a6ed92:o:Triggered"
+								"1218c5f34eaf240033538d9327d5163e:o:then"
 							]
 						},
 						{
-							"id": "bd158ea4442db21e9cc966a7df62f441:o:then",
+							"id": "a1208a7345c3a224111917a36958a758:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -1521,7 +1301,7 @@
 							"links": []
 						},
 						{
-							"id": "bd158ea4442db21e9cc966a7df62f441:i:self",
+							"id": "a1208a7345c3a224111917a36958a758:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:self",
@@ -1529,37 +1309,37 @@
 							"links": []
 						},
 						{
-							"id": "bd158ea4442db21e9cc966a7df62f441:i:X Axis",
+							"id": "a1208a7345c3a224111917a36958a758:i:X Axis",
 							"name": "X Axis",
 							"direction": "input",
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"7ed068c845fdfed3899ff6a160a6ed92:o:ActionValue_X"
+								"1218c5f34eaf240033538d9327d5163e:o:Axis_X"
 							]
 						},
 						{
-							"id": "bd158ea4442db21e9cc966a7df62f441:i:Y Axis",
+							"id": "a1208a7345c3a224111917a36958a758:i:Y Axis",
 							"name": "Y Axis",
 							"direction": "input",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"7ed068c845fdfed3899ff6a160a6ed92:o:ActionValue_Y"
+								"1218c5f34eaf240033538d9327d5163e:o:Axis_Y"
 							]
 						}
 					]
 				},
 				{
-					"guid": "ca1f7c4f4268fcc957c764be832ae1ed",
+					"guid": "ac2d8a4f475c98bed83d238f71d27f64",
 					"class": "K2Node_Event",
 					"title": "Event Touch Jump Start",
-					"x": -2784,
-					"y": -256,
+					"x": -80,
+					"y": 1024,
 					"comment": null,
 					"pins": [
 						{
-							"id": "ca1f7c4f4268fcc957c764be832ae1ed:o:OutputDelegate",
+							"id": "ac2d8a4f475c98bed83d238f71d27f64:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -1567,38 +1347,37 @@
 							"links": []
 						},
 						{
-							"id": "ca1f7c4f4268fcc957c764be832ae1ed:o:then",
+							"id": "ac2d8a4f475c98bed83d238f71d27f64:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"28393d754ef37dd87d756faa59b6fcfb:i:execute"
+								"05a1f815492cf9380cf2f088cd043a79:i:execute"
 							]
 						}
 					]
 				},
 				{
-					"guid": "d43a4da943470a7640eab9a26a7bd89d",
+					"guid": "ae91baf14d812a60ef2ea298adef0c6f",
 					"class": "K2Node_CallFunction",
-					"title": "Stop Jumping",
-					"x": -2416,
-					"y": -320,
+					"title": "Move",
+					"x": 1168,
+					"y": -112,
 					"comment": null,
 					"pins": [
 						{
-							"id": "d43a4da943470a7640eab9a26a7bd89d:i:execute",
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"078d25a142a52e8ff09bfc95776d42ef:o:Completed",
-								"1b3f500d499ec8f8065f74b6bca51c51:o:then"
+								"e573eb684fc7d2ab5c944aa7f985fde7:o:Triggered"
 							]
 						},
 						{
-							"id": "d43a4da943470a7640eab9a26a7bd89d:o:then",
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -1606,35 +1385,111 @@
 							"links": []
 						},
 						{
-							"id": "d43a4da943470a7640eab9a26a7bd89d:i:self",
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Script/Engine.Character",
+							"type": "object:self",
 							"defaultValue": null,
 							"links": []
+						},
+						{
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:i:X Axis",
+							"name": "X Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue_X"
+							]
+						},
+						{
+							"id": "ae91baf14d812a60ef2ea298adef0c6f:i:Y Axis",
+							"name": "Y Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue_Y"
+							]
 						}
 					]
 				},
 				{
-					"guid": "fb33504c42a13219755ffe905298be69",
-					"class": "K2Node_EnhancedInputAction",
-					"title": "EnhancedInputAction IA_Move",
-					"x": -1920,
-					"y": -1376,
+					"guid": "ca1849864412b2cba67e88886133331f",
+					"class": "K2Node_CallFunction",
+					"title": "Aim",
+					"x": 240,
+					"y": -96,
 					"comment": null,
 					"pins": [
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:Triggered",
+							"id": "ca1849864412b2cba67e88886133331f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e835eb57445272c31c5c9c9295feafb7:o:Triggered"
+							]
+						},
+						{
+							"id": "ca1849864412b2cba67e88886133331f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ca1849864412b2cba67e88886133331f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ca1849864412b2cba67e88886133331f:i:X Axis",
+							"name": "X Axis",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"e835eb57445272c31c5c9c9295feafb7:o:ActionValue_X"
+							]
+						},
+						{
+							"id": "ca1849864412b2cba67e88886133331f:i:Y Axis",
+							"name": "Y Axis",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e835eb57445272c31c5c9c9295feafb7:o:ActionValue_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e573eb684fc7d2ab5c944aa7f985fde7",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_Move",
+					"x": 784,
+					"y": -96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Triggered",
 							"name": "Triggered",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"9ebf51e443e0da0bdf1112935bb9b9dc:i:execute"
+								"ae91baf14d812a60ef2ea298adef0c6f:i:execute"
 							]
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:Started",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Started",
 							"name": "Started",
 							"direction": "output",
 							"type": "exec",
@@ -1642,7 +1497,7 @@
 							"links": []
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:Ongoing",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Ongoing",
 							"name": "Ongoing",
 							"direction": "output",
 							"type": "exec",
@@ -1650,7 +1505,7 @@
 							"links": []
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:Canceled",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Canceled",
 							"name": "Canceled",
 							"direction": "output",
 							"type": "exec",
@@ -1658,7 +1513,7 @@
 							"links": []
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:Completed",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:Completed",
 							"name": "Completed",
 							"direction": "output",
 							"type": "exec",
@@ -1666,7 +1521,7 @@
 							"links": []
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:ActionValue",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue",
 							"name": "ActionValue",
 							"direction": "output",
 							"type": "struct:/Script/CoreUObject.Vector2D",
@@ -1674,27 +1529,27 @@
 							"links": []
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:ActionValue_X",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue_X",
 							"name": "ActionValue_X",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"9ebf51e443e0da0bdf1112935bb9b9dc:i:X Axis"
+								"ae91baf14d812a60ef2ea298adef0c6f:i:X Axis"
 							]
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:ActionValue_Y",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:ActionValue_Y",
 							"name": "ActionValue_Y",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"9ebf51e443e0da0bdf1112935bb9b9dc:i:Y Axis"
+								"ae91baf14d812a60ef2ea298adef0c6f:i:Y Axis"
 							]
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:ElapsedSeconds",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:ElapsedSeconds",
 							"name": "ElapsedSeconds",
 							"direction": "output",
 							"type": "real:double",
@@ -1702,7 +1557,7 @@
 							"links": []
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:TriggeredSeconds",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:TriggeredSeconds",
 							"name": "TriggeredSeconds",
 							"direction": "output",
 							"type": "real:double",
@@ -1710,7 +1565,7 @@
 							"links": []
 						},
 						{
-							"id": "fb33504c42a13219755ffe905298be69:o:InputAction",
+							"id": "e573eb684fc7d2ab5c944aa7f985fde7:o:InputAction",
 							"name": "InputAction",
 							"direction": "output",
 							"type": "object:/Script/EnhancedInput.InputAction",
@@ -1718,40 +1573,192 @@
 							"links": []
 						}
 					]
+				},
+				{
+					"guid": "e835eb57445272c31c5c9c9295feafb7",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_Look",
+					"x": -128,
+					"y": -80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Triggered",
+							"name": "Triggered",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ca1849864412b2cba67e88886133331f:i:execute"
+							]
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Started",
+							"name": "Started",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Ongoing",
+							"name": "Ongoing",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Canceled",
+							"name": "Canceled",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:ActionValue_X",
+							"name": "ActionValue_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ca1849864412b2cba67e88886133331f:i:X Axis"
+							]
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:ActionValue_Y",
+							"name": "ActionValue_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ca1849864412b2cba67e88886133331f:i:Y Axis"
+							]
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:ElapsedSeconds",
+							"name": "ElapsedSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:TriggeredSeconds",
+							"name": "TriggeredSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e835eb57445272c31c5c9c9295feafb7:o:InputAction",
+							"name": "InputAction",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Look.IA_Look",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f983b920452502820afbcd8779bc6952",
+					"class": "K2Node_Event",
+					"title": "Event Primary Thumbstick",
+					"x": 784,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"788c162d41434957096cbfad115fe074:i:execute"
+							]
+						},
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:Axis",
+							"name": "Axis",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:Axis_X",
+							"name": "Axis_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"788c162d41434957096cbfad115fe074:i:X Axis"
+							]
+						},
+						{
+							"id": "f983b920452502820afbcd8779bc6952:o:Axis_Y",
+							"name": "Axis_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"788c162d41434957096cbfad115fe074:i:Y Axis"
+							]
+						}
+					]
 				}
 			],
 			"comments": [
 				{
-					"guid": "1504756c4988f498d103a59938620775",
-					"text": "Jump Input - Jump properties such as height, press-and-hold and multi-jump can be customized on the Character Movement Component.",
-					"x": -2848,
-					"y": -576,
-					"width": 880,
-					"height": 528
+					"guid": "490bd8af49aeb89b27692bb8114d7574",
+					"text": "Orbiting Camera Input. The CameraBoom component adopts the character's Control Rotation",
+					"x": -160,
+					"y": -224,
+					"width": 896,
+					"height": 848
 				},
 				{
-					"guid": "49c6abe04906809378f73f8b383c9341",
-					"text": "A basic Character with a controllable, orbiting Third Person camera.",
-					"x": -2896,
-					"y": -2864,
-					"width": 416,
-					"height": 128
-				},
-				{
-					"guid": "53e502014fb2603b6050b687ea0a9739",
+					"guid": "d109af2944248e1d67ebd98efbbe29f8",
 					"text": "Movement Input",
-					"x": -1936,
-					"y": -1488,
+					"x": 768,
+					"y": -208,
 					"width": 896,
 					"height": 832
 				},
 				{
-					"guid": "a63813834121d07e2f17de9bcc103816",
-					"text": "Orbiting Camera Input. The CameraBoom component adopts the character's Control Rotation",
-					"x": -2864,
-					"y": -1504,
-					"width": 896,
-					"height": 848
+					"guid": "d9dceb7749407737d42c5695f3a2d7c7",
+					"text": "Jump Input - Jump properties such as height, press-and-hold and multi-jump can be customized on the Character Movement Component.",
+					"x": -144,
+					"y": 704,
+					"width": 880,
+					"height": 528
 				}
 			]
 		}
