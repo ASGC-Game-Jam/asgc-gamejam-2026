@@ -32,10 +32,12 @@ public:
             FSimpleMulticastDelegate::FDelegate::CreateStatic(&FKeystoneBlueprintExportModule::RegisterMenus));
         SetAutoCapture(true);      // "artists do nothing": capture on save is on out of the box
         SetLifecycleTracking(true); // …and the matching half: deleting or renaming clears the export
+        ScheduleStartupSweep();     // …and whatever changed while the editor was closed
     }
 
     virtual void ShutdownModule() override
     {
+        CancelStartupSweep();
         SetLifecycleTracking(false);
         SetAutoCapture(false);
         UToolMenus::UnRegisterStartupCallback(this);
@@ -211,6 +213,68 @@ private:
         }
 
         return false; // one-shot; re-armed above only while something is still pending
+    }
+
+    // ── startup sweep ────────────────────────────────────────────────────────
+    // The lifecycle hooks only see deletes and renames made in this editor while it runs.
+    // Anything that lands another way (a git pull or branch switch while the editor was closed,
+    // or orphans left from before these hooks existed) would otherwise stay forever. So once per
+    // session, as soon as the asset registry finishes its initial scan, prune every export that
+    // no live Blueprint backs. It asks the registry only and loads no Blueprints, so it is cheap
+    // enough to run silently on every launch.
+
+    static inline FDelegateHandle FilesLoadedHandle;
+    static inline FTSTicker::FDelegateHandle StartupSweepTicker;
+
+    static void ScheduleStartupSweep()
+    {
+        // Cooks and other commandlets are not editing sessions; the export commandlet sweeps itself.
+        if (IsRunningCommandlet()) return;
+
+        IAssetRegistry& AR = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry").Get();
+        if (AR.IsLoadingAssets())
+        {
+            FilesLoadedHandle = AR.OnFilesLoaded().AddStatic(&FKeystoneBlueprintExportModule::OnInitialScanComplete);
+        }
+        else
+        {
+            OnInitialScanComplete();
+        }
+    }
+
+    static void OnInitialScanComplete()
+    {
+        // OnFilesLoaded is a thread-safe delegate, so hop to a game-thread tick before touching the
+        // registry and the file system.
+        StartupSweepTicker = FTSTicker::GetCoreTicker().AddTicker(
+            FTickerDelegate::CreateStatic(&FKeystoneBlueprintExportModule::RunStartupSweep));
+    }
+
+    static bool RunStartupSweep(float /*DeltaTime*/)
+    {
+        StartupSweepTicker.Reset();
+
+        // An empty expected set makes every export on disk prove itself against the registry.
+        // PruneOrphanExports deletes a file only when every reading of its path is conclusively
+        // stale, and keeps anything live or unknown, so an incomplete registry can only under-prune.
+        const int32 Pruned = FKeystoneBlueprintExporter::PruneOrphanExports(TSet<FString>());
+        UE_LOG(LogTemp, Log, TEXT("[keystone] startup sweep: pruned %d stale export(s)"), Pruned);
+        return false; // one-shot
+    }
+
+    static void CancelStartupSweep()
+    {
+        if (FilesLoadedHandle.IsValid())
+        {
+            // Do not force-load the module during shutdown just to unbind from it.
+            if (FAssetRegistryModule* ARM = FModuleManager::GetModulePtr<FAssetRegistryModule>("AssetRegistry"))
+            {
+                ARM->Get().OnFilesLoaded().Remove(FilesLoadedHandle);
+            }
+            FilesLoadedHandle.Reset();
+        }
+        FTSTicker::RemoveTicker(StartupSweepTicker);
+        StartupSweepTicker.Reset();
     }
 
     // ── menu ─────────────────────────────────────────────────────────────────

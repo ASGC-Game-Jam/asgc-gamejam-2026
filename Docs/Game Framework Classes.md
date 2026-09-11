@@ -228,14 +228,15 @@ Empty this list as items land — it is a snapshot, not part of the convention.
   directly and bypass the authority-guarded setters. Deliberate, but worth knowing.
 - **Six orphaned graph exports** are still tracked for Blueprints that were renamed, moved, or
   deleted — among them `BP_PAPlayerCharacter`, `BP_ThirdPersonCharacter`, and the old
-  `Core/Characters/BP_AtlantisPlayerState`. The Keystone plugin now prunes these itself; they
-  clear on the first **Keystone ▸ Export Blueprint Graphs** after the plugin is rebuilt.
+  `Core/Characters/BP_AtlantisPlayerState`. The Keystone plugin now prunes these itself: they
+  clear automatically the first time the editor starts with the rebuilt plugin, with no menu
+  action needed.
 - **`BP_ThirdPersonGameMode` is a redirector** left behind when it was renamed to
   `BP_AtlantisGameMode`. Remove it with **Fix Up Redirectors** on `Core/GameModes` rather than
   deleting it, so anything still pointing at the old name is repointed first.
-- **The Keystone plugin's orphan-pruning rework is not built yet.** The game module is built;
-  its only changes since the last build are comments and whitespace. Rebuild the plugin with the
-  editor closed.
+- **The Keystone plugin's latest changes are not built yet** — the automatic orphan cleanup, the
+  startup sweep, and the shared Keystone menu. The game module is built; its only changes since
+  the last build are comments and whitespace. Rebuild with the editor closed.
 
 ---
 
