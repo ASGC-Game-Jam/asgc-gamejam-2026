@@ -1,0 +1,102 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/GameModes/BP_MainMenuGameMode",
+	"asset": "BP_MainMenuGameMode",
+	"parentClass": "GameModeBase",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "49edd6ad4dfa6a12c7739c94f4638017",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "49edd6ad4dfa6a12c7739c94f4638017:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "1684583b4d3f0f84da990b936baaf231",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "1684583b4d3f0f84da990b936baaf231:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1684583b4d3f0f84da990b936baaf231:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1684583b4d3f0f84da990b936baaf231:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c9b2aab9426889db88b85a91c84b49d9",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "c9b2aab9426889db88b85a91c84b49d9:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c9b2aab9426889db88b85a91c84b49d9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}

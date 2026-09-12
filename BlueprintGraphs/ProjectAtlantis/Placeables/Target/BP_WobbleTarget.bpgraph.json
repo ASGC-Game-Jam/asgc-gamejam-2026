@@ -1,0 +1,279 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Placeables/Target/BP_WobbleTarget",
+	"asset": "BP_WobbleTarget",
+	"parentClass": "Actor",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "53550c8443c01473912b2ba419758eb7",
+					"class": "K2Node_VariableGet",
+					"title": "Get Dummy",
+					"x": 48,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "53550c8443c01473912b2ba419758eb7:o:Dummy",
+							"name": "Dummy",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"a5bc458e4f4a9d043ffa09a3f0f626a4:i:Component2"
+							]
+						},
+						{
+							"id": "53550c8443c01473912b2ba419758eb7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Target/BP_WobbleTarget.BP_WobbleTarget_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "647a016a4862bba362c534b6fac83940",
+					"class": "K2Node_VariableGet",
+					"title": "Get BasePlate",
+					"x": 32,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "647a016a4862bba362c534b6fac83940:o:BasePlate",
+							"name": "BasePlate",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"a5bc458e4f4a9d043ffa09a3f0f626a4:i:Component1"
+							]
+						},
+						{
+							"id": "647a016a4862bba362c534b6fac83940:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Target/BP_WobbleTarget.BP_WobbleTarget_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6ca54fae40882c8333cb33a51919b92a",
+					"class": "K2Node_VariableGet",
+					"title": "Get PhysicsConstraint",
+					"x": 16,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6ca54fae40882c8333cb33a51919b92a:o:PhysicsConstraint",
+							"name": "PhysicsConstraint",
+							"direction": "output",
+							"type": "object:/Script/Engine.PhysicsConstraintComponent",
+							"defaultValue": null,
+							"links": [
+								"a5bc458e4f4a9d043ffa09a3f0f626a4:i:self"
+							]
+						},
+						{
+							"id": "6ca54fae40882c8333cb33a51919b92a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Target/BP_WobbleTarget.BP_WobbleTarget_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "95a1f90544e56bec306fc2a18c41de27",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "95a1f90544e56bec306fc2a18c41de27:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a5bc458e4f4a9d043ffa09a3f0f626a4:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a5bc458e4f4a9d043ffa09a3f0f626a4",
+					"class": "K2Node_CallFunction",
+					"title": "Set Constrained Components",
+					"x": 240,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a5bc458e4f4a9d043ffa09a3f0f626a4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"95a1f90544e56bec306fc2a18c41de27:o:then"
+							]
+						},
+						{
+							"id": "a5bc458e4f4a9d043ffa09a3f0f626a4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a5bc458e4f4a9d043ffa09a3f0f626a4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PhysicsConstraintComponent",
+							"defaultValue": null,
+							"links": [
+								"6ca54fae40882c8333cb33a51919b92a:o:PhysicsConstraint"
+							]
+						},
+						{
+							"id": "a5bc458e4f4a9d043ffa09a3f0f626a4:i:Component1",
+							"name": "Component1",
+							"direction": "input",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": [
+								"647a016a4862bba362c534b6fac83940:o:BasePlate"
+							]
+						},
+						{
+							"id": "a5bc458e4f4a9d043ffa09a3f0f626a4:i:BoneName1",
+							"name": "BoneName1",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "a5bc458e4f4a9d043ffa09a3f0f626a4:i:Component2",
+							"name": "Component2",
+							"direction": "input",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": [
+								"53550c8443c01473912b2ba419758eb7:o:Dummy"
+							]
+						},
+						{
+							"id": "a5bc458e4f4a9d043ffa09a3f0f626a4:i:BoneName2",
+							"name": "BoneName2",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "7d5b7f2747e96e374e3b0cad04be72e6",
+					"text": "Set a constraint between the base plate (no physics enabled) and the dummy (physics enabled).",
+					"x": -32,
+					"y": -112,
+					"width": 624,
+					"height": 368
+				}
+			]
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "03b3991f4dbff51c3fee919f07834e04",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": 224,
+					"y": 464,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "03b3991f4dbff51c3fee919f07834e04:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "03b3991f4dbff51c3fee919f07834e04:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "03b3991f4dbff51c3fee919f07834e04:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "adb4fdda4a0d81fefb9ddb933153c90e",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 224,
+					"y": 672,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "adb4fdda4a0d81fefb9ddb933153c90e:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "adb4fdda4a0d81fefb9ddb933153c90e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "adb4fdda4a0d81fefb9ddb933153c90e:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}

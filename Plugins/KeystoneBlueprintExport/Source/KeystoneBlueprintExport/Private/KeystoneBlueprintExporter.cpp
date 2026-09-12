@@ -9,6 +9,7 @@
 #include "AssetRegistry/ARFilter.h"
 #include "Misc/Paths.h"
 #include "Misc/FileHelper.h"
+#include "Misc/PackageName.h"
 #include "HAL/FileManager.h"
 #include "Serialization/JsonWriter.h"
 #include "Serialization/JsonSerializer.h"
@@ -211,15 +212,107 @@ FString FKeystoneBlueprintExporter::BuildJson(UBlueprint* Blueprint)
     return Out;
 }
 
-FString FKeystoneBlueprintExporter::ExportFileFor(UBlueprint* Blueprint)
+FString FKeystoneBlueprintExporter::ExportFileForPackage(const FString& PackageName)
 {
     // /Game/Characters/BP_Hero  ->  <Project>/BlueprintGraphs/Characters/BP_Hero.bpgraph.json
-    FString Pkg = Blueprint->GetOutermost()->GetName();
-    FString Rel = Pkg;
+    FString Rel = PackageName;
     if (Rel.StartsWith(TEXT("/Game/"))) { Rel = Rel.RightChop(6); }
     else { Rel = Rel.TrimChar(TEXT('/')); }
     const FString Abs = FPaths::Combine(FPaths::ProjectDir(), ExportSubdir(), Rel + TEXT(".bpgraph.json"));
     return FPaths::ConvertRelativePathToFull(Abs);
+}
+
+FString FKeystoneBlueprintExporter::ExportFileFor(UBlueprint* Blueprint)
+{
+    return ExportFileForPackage(Blueprint->GetOutermost()->GetName());
+}
+
+FKeystoneBlueprintExporter::EPackageState FKeystoneBlueprintExporter::ClassifyPackage(const FString& PackageName)
+{
+    if (PackageName.IsEmpty()) return EPackageState::Unknown;
+
+    // A path under a root that is not mounted (e.g. /ProjectAtlantis/...) cannot hold a package.
+    // Checked first so DoesPackageExist is never asked about a root it does not know.
+    if (!FPackageName::IsValidLongPackageName(PackageName, /*bIncludeReadOnlyRoots=*/true))
+    {
+        return EPackageState::Stale;
+    }
+
+    // Gone from disk: a completed delete, or a rename's redirector that has since been fixed up.
+    if (!FPackageName::DoesPackageExist(PackageName)) return EPackageState::Stale;
+
+    // Still on disk, so ask the registry what is actually in it. On-disk assets only, so an
+    // object mid-deletion that is still in memory cannot vouch for a package that is going away.
+    IAssetRegistry& AR = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry").Get();
+    TArray<FAssetData> Assets;
+    AR.GetAssetsByPackageName(FName(*PackageName), Assets, /*bIncludeOnlyOnDiskAssets=*/true);
+
+    // The file exists but the registry knows nothing about it: an unmount or an unfinished scan.
+    if (Assets.IsEmpty()) return EPackageState::Unknown;
+
+    for (const FAssetData& Asset : Assets)
+    {
+        if (!Asset.IsRedirector()) return EPackageState::Live;
+    }
+
+    // Nothing but an ObjectRedirector: the stub a rename leaves at the old path.
+    return EPackageState::Stale;
+}
+
+bool FKeystoneBlueprintExporter::DeleteExportForPackage(const FString& PackageName)
+{
+    if (PackageName.IsEmpty()) return false;
+
+    const FString File = ExportFileForPackage(PackageName);
+    if (!IFileManager::Get().FileExists(*File)) return false;
+
+    if (IFileManager::Get().Delete(*File))
+    {
+        UE_LOG(LogTemp, Log, TEXT("[keystone] pruned stale export for %s"), *PackageName);
+        return true;
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("[keystone] failed to prune %s"), *File);
+    return false;
+}
+
+int32 FKeystoneBlueprintExporter::PruneOrphanExports(const TSet<FString>& ExpectedFiles)
+{
+    const FString Root = FPaths::ConvertRelativePathToFull(
+        FPaths::Combine(FPaths::ProjectDir(), ExportSubdir()));
+
+    TArray<FString> OnDisk;
+    IFileManager::Get().FindFilesRecursive(OnDisk, *Root, TEXT("*.bpgraph.json"), /*Files=*/true, /*Directories=*/false);
+
+    int32 Removed = 0;
+    for (const FString& Found : OnDisk)
+    {
+        const FString Full = FPaths::ConvertRelativePathToFull(Found);
+        if (ExpectedFiles.Contains(Full)) continue;
+
+        // The path rule is lossy: /Game/X collapses to X, while /Engine/X keeps its Engine/
+        // prefix, so a file cannot be mapped back to exactly one package. Try both readings and
+        // delete only when every reading is conclusively stale — a live asset or an unknown
+        // under either reading keeps the file.
+        FString Rel = Full;
+        FPaths::MakePathRelativeTo(Rel, *(Root / TEXT("")));
+        Rel.RemoveFromEnd(TEXT(".bpgraph.json"));
+
+        if (ClassifyPackage(TEXT("/Game/") + Rel) != EPackageState::Stale) continue;
+        if (ClassifyPackage(TEXT("/") + Rel) != EPackageState::Stale) continue;
+
+        if (IFileManager::Get().Delete(*Full))
+        {
+            UE_LOG(LogTemp, Log, TEXT("[keystone] pruned orphaned export %s"), *Rel);
+            Removed++;
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("[keystone] failed to prune %s"), *Full);
+        }
+    }
+
+    return Removed;
 }
 
 bool FKeystoneBlueprintExporter::ExportOne(UBlueprint* Blueprint, FKeystoneExportResult& InOutResult)
@@ -252,6 +345,15 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
     FKeystoneExportResult R;
 
     FAssetRegistryModule& ARM = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+
+    // If the editor's startup scan is still running the registry is incomplete: the export would
+    // miss Blueprints, and the prune would have to keep every file it cannot account for. This is
+    // a manual, one-off action, so blocking until the scan finishes is acceptable.
+    if (ARM.Get().IsLoadingAssets())
+    {
+        ARM.Get().WaitForCompletion();
+    }
+
     FARFilter Filter;
     Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
     Filter.bRecursiveClasses = true;
@@ -271,6 +373,11 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
     MW->WriteValue(TEXT("project"), FApp::GetProjectName());
     MW->WriteArrayStart(TEXT("entries"));
 
+    // Every export a live Blueprint maps to. Anything else under the folder is an orphan left
+    // behind by a rename or a delete, which the sweep prunes below.
+    TSet<FString> ExpectedFiles;
+    ExpectedFiles.Reserve(Assets.Num());
+
     Assets.Sort([](const FAssetData& A, const FAssetData& B) { return A.PackageName.LexicalLess(B.PackageName); });
     for (const FAssetData& AD : Assets)
     {
@@ -279,6 +386,8 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
         ExportOne(BP, R);
 
         const FString File = ExportFileFor(BP);
+        ExpectedFiles.Add(File);
+
         FString RepoRel = File;
         FPaths::MakePathRelativeTo(RepoRel, *(FPaths::ProjectDir())); // e.g. BlueprintGraphs/Characters/BP_Hero.bpgraph.json
         MW->WriteObjectStart();
@@ -299,7 +408,12 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
         R.ManifestPath = ManifestFile;
     }
 
-    UE_LOG(LogTemp, Log, TEXT("[keystone] export: scanned=%d written=%d unchanged=%d failed=%d"),
-        R.Scanned, R.Written, R.Unchanged, R.Failed);
+    // Catch-all for orphans the live hooks missed — exports written before pruning existed, or
+    // renames made while the editor was closed. The sweep is the only place with a complete
+    // picture of what *should* be on disk, so it is the only place this can be done safely.
+    R.Pruned = PruneOrphanExports(ExpectedFiles);
+
+    UE_LOG(LogTemp, Log, TEXT("[keystone] export: scanned=%d written=%d unchanged=%d failed=%d pruned=%d"),
+        R.Scanned, R.Written, R.Unchanged, R.Failed, R.Pruned);
     return R;
 }

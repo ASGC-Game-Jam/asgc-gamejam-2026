@@ -11,100 +11,6 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
-					"guid": "1e1d47a745623983b375eaa74960c7eb",
-					"class": "K2Node_CallFunction",
-					"title": "Print String",
-					"x": 768,
-					"y": 176,
-					"comment": null,
-					"pins": [
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"a7ad20de4abe8456f8b014a961fd43d6:o:else"
-							]
-						},
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"c70bd77b4e12ed004d13cea31a8f0174:i:execute"
-							]
-						},
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetSystemLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
-							"links": []
-						},
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:i:WorldContextObject",
-							"name": "WorldContextObject",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:i:InString",
-							"name": "InString",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": "Analytics Failed to Start",
-							"links": []
-						},
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:i:bPrintToScreen",
-							"name": "bPrintToScreen",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:i:bPrintToLog",
-							"name": "bPrintToLog",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:i:TextColor",
-							"name": "TextColor",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.LinearColor",
-							"defaultValue": "(R=0.660000,G=0.000000,B=0.000000,A=1.000000)",
-							"links": []
-						},
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:i:Duration",
-							"name": "Duration",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": "2.000000",
-							"links": []
-						},
-						{
-							"id": "1e1d47a745623983b375eaa74960c7eb:i:Key",
-							"name": "Key",
-							"direction": "input",
-							"type": "name",
-							"defaultValue": "None",
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "445ac30945752fad03fe51a3c920a7c8",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
@@ -127,55 +33,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"5328a30541f1a99e927e04a31ebbc666:i:execute"
-							]
-						}
-					]
-				},
-				{
-					"guid": "5328a30541f1a99e927e04a31ebbc666",
-					"class": "K2Node_CallFunction",
-					"title": "Start Session",
-					"x": 320,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "5328a30541f1a99e927e04a31ebbc666:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"445ac30945752fad03fe51a3c920a7c8:o:then"
-							]
-						},
-						{
-							"id": "5328a30541f1a99e927e04a31ebbc666:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"a7ad20de4abe8456f8b014a961fd43d6:i:execute"
-							]
-						},
-						{
-							"id": "5328a30541f1a99e927e04a31ebbc666:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary",
-							"defaultValue": "/Script/AnalyticsBlueprintLibrary.Default__AnalyticsBlueprintLibrary",
-							"links": []
-						},
-						{
-							"id": "5328a30541f1a99e927e04a31ebbc666:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": null,
-							"links": [
-								"a7ad20de4abe8456f8b014a961fd43d6:i:Condition"
+								"c70bd77b4e12ed004d13cea31a8f0174:i:execute"
 							]
 						}
 					]
@@ -295,56 +153,6 @@
 					]
 				},
 				{
-					"guid": "a7ad20de4abe8456f8b014a961fd43d6",
-					"class": "K2Node_IfThenElse",
-					"title": "Branch",
-					"x": 512,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "a7ad20de4abe8456f8b014a961fd43d6:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"5328a30541f1a99e927e04a31ebbc666:o:then"
-							]
-						},
-						{
-							"id": "a7ad20de4abe8456f8b014a961fd43d6:i:Condition",
-							"name": "Condition",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": null,
-							"links": [
-								"5328a30541f1a99e927e04a31ebbc666:o:ReturnValue"
-							]
-						},
-						{
-							"id": "a7ad20de4abe8456f8b014a961fd43d6:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"e3810b7d4ca609fb4328bd8f9bf23ecd:i:execute"
-							]
-						},
-						{
-							"id": "a7ad20de4abe8456f8b014a961fd43d6:o:else",
-							"name": "else",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"1e1d47a745623983b375eaa74960c7eb:i:execute"
-							]
-						}
-					]
-				},
-				{
 					"guid": "c70bd77b4e12ed004d13cea31a8f0174",
 					"class": "K2Node_CreateWidget",
 					"title": "Create Widget",
@@ -359,8 +167,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"1e1d47a745623983b375eaa74960c7eb:o:then",
-								"e3810b7d4ca609fb4328bd8f9bf23ecd:o:then"
+								"445ac30945752fad03fe51a3c920a7c8:o:then"
 							]
 						},
 						{
@@ -397,100 +204,6 @@
 							"direction": "input",
 							"type": "object:/Script/Engine.PlayerController",
 							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "e3810b7d4ca609fb4328bd8f9bf23ecd",
-					"class": "K2Node_CallFunction",
-					"title": "Print String",
-					"x": 768,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"a7ad20de4abe8456f8b014a961fd43d6:o:then"
-							]
-						},
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"c70bd77b4e12ed004d13cea31a8f0174:i:execute"
-							]
-						},
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetSystemLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
-							"links": []
-						},
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:i:WorldContextObject",
-							"name": "WorldContextObject",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:i:InString",
-							"name": "InString",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": "Analytics Started",
-							"links": []
-						},
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:i:bPrintToScreen",
-							"name": "bPrintToScreen",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:i:bPrintToLog",
-							"name": "bPrintToLog",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:i:TextColor",
-							"name": "TextColor",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.LinearColor",
-							"defaultValue": "(R=0.000000,G=0.660000,B=0.000000,A=1.000000)",
-							"links": []
-						},
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:i:Duration",
-							"name": "Duration",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": "2.000000",
-							"links": []
-						},
-						{
-							"id": "e3810b7d4ca609fb4328bd8f9bf23ecd:i:Key",
-							"name": "Key",
-							"direction": "input",
-							"type": "name",
-							"defaultValue": "None",
 							"links": []
 						}
 					]

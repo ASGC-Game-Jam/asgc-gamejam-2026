@@ -1,0 +1,235 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_MainMenu",
+	"asset": "WBP_MainMenu",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "25b6529c4e4a8275190d1abc1698e124",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (QuitButton)",
+					"x": 0,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "25b6529c4e4a8275190d1abc1698e124:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "25b6529c4e4a8275190d1abc1698e124:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"adfdee3245249006d1175dbbbe0a1126:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4eca25934c3c6b831d953e9fd57e7464",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (NewGameButton)",
+					"x": 0,
+					"y": 448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4eca25934c3c6b831d953e9fd57e7464:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4eca25934c3c6b831d953e9fd57e7464:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"936e06fa4c0133ddbe7e03a973d6c829:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "549402a64e022033052f4b827d80a5e2",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (OptionsButton)",
+					"x": 0,
+					"y": 720,
+					"comment": null,
+					"pins": [
+						{
+							"id": "549402a64e022033052f4b827d80a5e2:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "549402a64e022033052f4b827d80a5e2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "936e06fa4c0133ddbe7e03a973d6c829",
+					"class": "K2Node_CallFunction",
+					"title": "Open Level (by Name)",
+					"x": 288,
+					"y": 448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "936e06fa4c0133ddbe7e03a973d6c829:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4eca25934c3c6b831d953e9fd57e7464:o:then"
+							]
+						},
+						{
+							"id": "936e06fa4c0133ddbe7e03a973d6c829:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "936e06fa4c0133ddbe7e03a973d6c829:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "936e06fa4c0133ddbe7e03a973d6c829:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "936e06fa4c0133ddbe7e03a973d6c829:i:LevelName",
+							"name": "LevelName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "Lvl_ThirdPerson",
+							"links": []
+						},
+						{
+							"id": "936e06fa4c0133ddbe7e03a973d6c829:i:bAbsolute",
+							"name": "bAbsolute",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "936e06fa4c0133ddbe7e03a973d6c829:i:Options",
+							"name": "Options",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "adfdee3245249006d1175dbbbe0a1126",
+					"class": "K2Node_CallFunction",
+					"title": "Quit Game",
+					"x": 240,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "adfdee3245249006d1175dbbbe0a1126:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"25b6529c4e4a8275190d1abc1698e124:o:then"
+							]
+						},
+						{
+							"id": "adfdee3245249006d1175dbbbe0a1126:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "adfdee3245249006d1175dbbbe0a1126:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "adfdee3245249006d1175dbbbe0a1126:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "adfdee3245249006d1175dbbbe0a1126:i:SpecificPlayer",
+							"name": "SpecificPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "adfdee3245249006d1175dbbbe0a1126:i:QuitPreference",
+							"name": "QuitPreference",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EQuitPreference",
+							"defaultValue": "Quit",
+							"links": []
+						},
+						{
+							"id": "adfdee3245249006d1175dbbbe0a1126:i:bIgnorePlatformRestrictions",
+							"name": "bIgnorePlatformRestrictions",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}
