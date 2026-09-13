@@ -1,0 +1,7167 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame",
+	"asset": "BP_DoorFrame",
+	"parentClass": "Actor",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "Set Mesh",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "0d45d5fb4eea8378394baba8e8c87a0e",
+					"class": "K2Node_CallFunction",
+					"title": "Set Mobility",
+					"x": 3744,
+					"y": -560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0d45d5fb4eea8378394baba8e8c87a0e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dfd2f36642a991a646cf64beb2d0580c:o:then"
+							]
+						},
+						{
+							"id": "0d45d5fb4eea8378394baba8e8c87a0e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0d45d5fb4eea8378394baba8e8c87a0e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SceneComponent",
+							"defaultValue": null,
+							"links": [
+								"db9b1e294719ed5de55453b088a7c1c4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0d45d5fb4eea8378394baba8e8c87a0e:i:NewMobility",
+							"name": "NewMobility",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EComponentMobility",
+							"defaultValue": null,
+							"links": [
+								"78a74389445d690ccd3c2283e9bb4b31:o:NewMobility"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3d6c5d7f406dc938705fbba9694a4978",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": 2832,
+					"y": -544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3d6c5d7f406dc938705fbba9694a4978:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7c2a26054a428d083cdf19a2c3350b74:o:then"
+							]
+						},
+						{
+							"id": "3d6c5d7f406dc938705fbba9694a4978:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"db9b1e294719ed5de55453b088a7c1c4:i:execute"
+							]
+						},
+						{
+							"id": "3d6c5d7f406dc938705fbba9694a4978:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"af2771c6423ee18d6edb73b082bed3c1:i:exec"
+							]
+						}
+					]
+				},
+				{
+					"guid": "432153af41d7d64e07dc65b89c0eb432",
+					"class": "K2Node_VariableGet",
+					"title": "Get Material",
+					"x": 3104,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "432153af41d7d64e07dc65b89c0eb432:o:Material",
+							"name": "Material",
+							"direction": "output",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"af2771c6423ee18d6edb73b082bed3c1:i:InputObject",
+								"c2b3fdfb490166931e340ea77fc16b09:i:Material"
+							]
+						}
+					]
+				},
+				{
+					"guid": "62c6843e44e4c175aa30e691d03d0080",
+					"class": "K2Node_VariableGet",
+					"title": "Get NewMesh",
+					"x": 3408,
+					"y": -416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "62c6843e44e4c175aa30e691d03d0080:o:NewMesh",
+							"name": "NewMesh",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMesh",
+							"defaultValue": null,
+							"links": [
+								"dfd2f36642a991a646cf64beb2d0580c:i:NewMesh"
+							]
+						}
+					]
+				},
+				{
+					"guid": "78a74389445d690ccd3c2283e9bb4b31",
+					"class": "K2Node_VariableGet",
+					"title": "Get NewMobility",
+					"x": 3744,
+					"y": -416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "78a74389445d690ccd3c2283e9bb4b31:o:NewMobility",
+							"name": "NewMobility",
+							"direction": "output",
+							"type": "byte:/Script/Engine.EComponentMobility",
+							"defaultValue": null,
+							"links": [
+								"0d45d5fb4eea8378394baba8e8c87a0e:i:NewMobility"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7c2a26054a428d083cdf19a2c3350b74",
+					"class": "K2Node_FunctionEntry",
+					"title": "Set Mesh",
+					"x": 2560,
+					"y": -544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7c2a26054a428d083cdf19a2c3350b74:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3d6c5d7f406dc938705fbba9694a4978:i:execute"
+							]
+						},
+						{
+							"id": "7c2a26054a428d083cdf19a2c3350b74:o:NewMesh",
+							"name": "NewMesh",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMesh",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7c2a26054a428d083cdf19a2c3350b74:o:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"db9b1e294719ed5de55453b088a7c1c4:i:RelativeTransform"
+							]
+						},
+						{
+							"id": "7c2a26054a428d083cdf19a2c3350b74:o:Material",
+							"name": "Material",
+							"direction": "output",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7c2a26054a428d083cdf19a2c3350b74:o:NewMobility",
+							"name": "NewMobility",
+							"direction": "output",
+							"type": "byte:/Script/Engine.EComponentMobility",
+							"defaultValue": "Static",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "af2771c6423ee18d6edb73b082bed3c1",
+					"class": "K2Node_MacroInstance",
+					"title": "Is Valid",
+					"x": 3088,
+					"y": -336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "af2771c6423ee18d6edb73b082bed3c1:i:exec",
+							"name": "exec",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3d6c5d7f406dc938705fbba9694a4978:o:then_1"
+							]
+						},
+						{
+							"id": "af2771c6423ee18d6edb73b082bed3c1:i:InputObject",
+							"name": "InputObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"432153af41d7d64e07dc65b89c0eb432:o:Material"
+							]
+						},
+						{
+							"id": "af2771c6423ee18d6edb73b082bed3c1:o:Is Valid",
+							"name": "Is Valid",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c2b3fdfb490166931e340ea77fc16b09:i:execute"
+							]
+						},
+						{
+							"id": "af2771c6423ee18d6edb73b082bed3c1:o:Is Not Valid",
+							"name": "Is Not Valid",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c2b3fdfb490166931e340ea77fc16b09",
+					"class": "K2Node_CallFunction",
+					"title": "Set Material",
+					"x": 3392,
+					"y": -352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c2b3fdfb490166931e340ea77fc16b09:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"af2771c6423ee18d6edb73b082bed3c1:o:Is Valid"
+							]
+						},
+						{
+							"id": "c2b3fdfb490166931e340ea77fc16b09:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c2b3fdfb490166931e340ea77fc16b09:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": [
+								"db9b1e294719ed5de55453b088a7c1c4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c2b3fdfb490166931e340ea77fc16b09:i:ElementIndex",
+							"name": "ElementIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "c2b3fdfb490166931e340ea77fc16b09:i:Material",
+							"name": "Material",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"432153af41d7d64e07dc65b89c0eb432:o:Material"
+							]
+						}
+					]
+				},
+				{
+					"guid": "db9b1e294719ed5de55453b088a7c1c4",
+					"class": "K2Node_AddComponent",
+					"title": "Add Static Mesh Component [Static Mesh SM_DoorFrame_Corner]",
+					"x": 3072,
+					"y": -560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "db9b1e294719ed5de55453b088a7c1c4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3d6c5d7f406dc938705fbba9694a4978:o:then_0"
+							]
+						},
+						{
+							"id": "db9b1e294719ed5de55453b088a7c1c4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dfd2f36642a991a646cf64beb2d0580c:i:execute"
+							]
+						},
+						{
+							"id": "db9b1e294719ed5de55453b088a7c1c4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "db9b1e294719ed5de55453b088a7c1c4:i:TemplateName",
+							"name": "TemplateName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "NODE_AddStaticMeshComponent-1",
+							"links": []
+						},
+						{
+							"id": "db9b1e294719ed5de55453b088a7c1c4:i:bManualAttachment",
+							"name": "bManualAttachment",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "db9b1e294719ed5de55453b088a7c1c4:i:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"7c2a26054a428d083cdf19a2c3350b74:o:RelativeTransform"
+							]
+						},
+						{
+							"id": "db9b1e294719ed5de55453b088a7c1c4:i:ComponentTemplateContext",
+							"name": "ComponentTemplateContext",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "db9b1e294719ed5de55453b088a7c1c4:i:bDeferredFinish",
+							"name": "bDeferredFinish",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "db9b1e294719ed5de55453b088a7c1c4:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"0d45d5fb4eea8378394baba8e8c87a0e:i:self",
+								"c2b3fdfb490166931e340ea77fc16b09:i:self",
+								"dfd2f36642a991a646cf64beb2d0580c:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dfd2f36642a991a646cf64beb2d0580c",
+					"class": "K2Node_CallFunction",
+					"title": "Set Static Mesh",
+					"x": 3408,
+					"y": -560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dfd2f36642a991a646cf64beb2d0580c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"db9b1e294719ed5de55453b088a7c1c4:o:then"
+							]
+						},
+						{
+							"id": "dfd2f36642a991a646cf64beb2d0580c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0d45d5fb4eea8378394baba8e8c87a0e:i:execute"
+							]
+						},
+						{
+							"id": "dfd2f36642a991a646cf64beb2d0580c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"db9b1e294719ed5de55453b088a7c1c4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "dfd2f36642a991a646cf64beb2d0580c:i:NewMesh",
+							"name": "NewMesh",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMesh",
+							"defaultValue": null,
+							"links": [
+								"62c6843e44e4c175aa30e691d03d0080:o:NewMesh"
+							]
+						},
+						{
+							"id": "dfd2f36642a991a646cf64beb2d0580c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "f60504984b3e629ce58725a5e952694b",
+					"text": "Create a static mesh component. Define mesh, material, transform and mobility.",
+					"x": 2768,
+					"y": -624,
+					"width": 1225,
+					"height": 481
+				}
+			]
+		},
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "01dd5e95440d410bf997d5ad86bad9e9",
+					"class": "K2Node_CallFunction",
+					"title": "Make Transform",
+					"x": 4202,
+					"y": -254,
+					"comment": null,
+					"pins": [
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:Location",
+							"name": "Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:Location_X",
+							"name": "Location_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d6ac4a6e4315bd7a61c9f2beeab50b7c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:Location_Y",
+							"name": "Location_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:Location_Z",
+							"name": "Location_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"8c6d57a748fbf01b1359aeb64de1bddf:o:ReturnValue"
+							]
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:Rotation",
+							"name": "Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "90.000000,0.000000,0.000000",
+							"links": []
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:Scale",
+							"name": "Scale",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "1.000000,1.000000,1.000000",
+							"links": []
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:Scale_X",
+							"name": "Scale_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"da36ef464ba15dff4f0013a5707cfe8a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:Scale_Y",
+							"name": "Scale_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b78c75894272a5985c8b60be60df2de2:o:ReturnValue"
+							]
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:i:Scale_Z",
+							"name": "Scale_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ac90e98940a179f0787d6baf407c921d:o:Door Frame Scale"
+							]
+						},
+						{
+							"id": "01dd5e95440d410bf997d5ad86bad9e9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"84adea494bb545440e20b1b7b73c3b97:i:RelativeTransform"
+							]
+						}
+					]
+				},
+				{
+					"guid": "029c11e64cf6af7338c79e9b194f41c0",
+					"class": "K2Node_VariableSet",
+					"title": "Set Door",
+					"x": 4064,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "029c11e64cf6af7338c79e9b194f41c0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3dcd9ccb4f5f732929c4c69cc8b42fda:o:then"
+							]
+						},
+						{
+							"id": "029c11e64cf6af7338c79e9b194f41c0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"87771a4547af4f61475cc1873ecf799c:i:execute"
+							]
+						},
+						{
+							"id": "029c11e64cf6af7338c79e9b194f41c0:i:Door",
+							"name": "Door",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"3dcd9ccb4f5f732929c4c69cc8b42fda:o:ReturnValue"
+							]
+						},
+						{
+							"id": "029c11e64cf6af7338c79e9b194f41c0:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "029c11e64cf6af7338c79e9b194f41c0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "04a706cb4a99ea55f1ce94a6be2c5d3d",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3989,
+					"y": -446,
+					"comment": null,
+					"pins": [
+						{
+							"id": "04a706cb4a99ea55f1ce94a6be2c5d3d:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5cef4bdf4bef3e7af323b7b14a72146a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "04a706cb4a99ea55f1ce94a6be2c5d3d:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "04a706cb4a99ea55f1ce94a6be2c5d3d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4fbe655a4cc996eb7d7af1b0aed39340:i:Location_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "07d8cee64d8f03943476368bd1759c3c",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 16,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "07d8cee64d8f03943476368bd1759c3c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35a898ef49cc2cc35535f9aaf59e1e8e:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0a7a272e415902aa90e394b4a656a27c",
+					"class": "K2Node_CallFunction",
+					"title": "Vector Get Abs",
+					"x": 3248,
+					"y": 672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0a7a272e415902aa90e394b4a656a27c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "0a7a272e415902aa90e394b4a656a27c:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"369aad3e424ef063865a6096f5b02b9a:o:Door Size"
+							]
+						},
+						{
+							"id": "0a7a272e415902aa90e394b4a656a27c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"bb214d444717d57383bb87b12a4ee5b2:i:InVec"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0e5e20e2444ec2c069422fa652e4229f",
+					"class": "K2Node_CallFunction",
+					"title": "Vector Get Abs",
+					"x": 1568,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0e5e20e2444ec2c069422fa652e4229f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "0e5e20e2444ec2c069422fa652e4229f:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"9088e5984841918237b04ebb37a4311f:o:Door Size"
+							]
+						},
+						{
+							"id": "0e5e20e2444ec2c069422fa652e4229f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"c1f3194546ac05f0846bed9a4992d203:i:InVec"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0f0772434673b5e433a7e089a6d815d0",
+					"class": "K2Node_CallFunction",
+					"title": "Make Transform",
+					"x": 3680,
+					"y": 1110,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:Location",
+							"name": "Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:Location_X",
+							"name": "Location_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:Location_Y",
+							"name": "Location_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:Location_Z",
+							"name": "Location_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"2c9465554ba7893b742566837fe15e6a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:Rotation",
+							"name": "Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:Scale",
+							"name": "Scale",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "1.000000,1.000000,1.000000",
+							"links": []
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:Scale_X",
+							"name": "Scale_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9f83afa248c57e32e084aeb246ea0539:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:Scale_Y",
+							"name": "Scale_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9a3015634608438360c01ea57548a168:o:Door Thickness"
+							]
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:i:Scale_Z",
+							"name": "Scale_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a75d0fd1478bbafa33202ea4cdcaed31:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0f0772434673b5e433a7e089a6d815d0:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"ba53c7de4ef8a172041100a52e7f6c64:i:RelativeTransform"
+							]
+						}
+					]
+				},
+				{
+					"guid": "113ce0314b3f9cb8a5ab9880a837ef50",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame Scale",
+					"x": 3594,
+					"y": -718,
+					"comment": null,
+					"pins": [
+						{
+							"id": "113ce0314b3f9cb8a5ab9880a837ef50:o:Door Frame Scale",
+							"name": "Door Frame Scale",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5547d5ff4802d1dddb171e8ff7ade48e:i:A"
+							]
+						},
+						{
+							"id": "113ce0314b3f9cb8a5ab9880a837ef50:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "124860314a4e34d0d7e30587e0d2d90d",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 2544,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "124860314a4e34d0d7e30587e0d2d90d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f3472f694d516edc5f8c818e1ad6c031:o:then"
+							]
+						},
+						{
+							"id": "124860314a4e34d0d7e30587e0d2d90d:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"64df5e5848b43bf5201384a769a71e71:o:Split Door"
+							]
+						},
+						{
+							"id": "124860314a4e34d0d7e30587e0d2d90d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bdb445904bf3b05c2e0f5bbbc6ca9b91:i:InputPin"
+							]
+						},
+						{
+							"id": "124860314a4e34d0d7e30587e0d2d90d:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"edf2dc1240a65e6853cc949c057ea2b1:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "12a7ddf7415afa7d7f3f5ea359b1b8d4",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3216,
+					"y": 976,
+					"comment": null,
+					"pins": [
+						{
+							"id": "12a7ddf7415afa7d7f3f5ea359b1b8d4:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"edf2dc1240a65e6853cc949c057ea2b1:o:OutputPin"
+							]
+						},
+						{
+							"id": "12a7ddf7415afa7d7f3f5ea359b1b8d4:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ba53c7de4ef8a172041100a52e7f6c64:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1343235d44d7e0186cf186a75270d43d",
+					"class": "K2Node_CallFunction",
+					"title": "Make Transform",
+					"x": 2256,
+					"y": -624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1343235d44d7e0186cf186a75270d43d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "1343235d44d7e0186cf186a75270d43d:i:Location",
+							"name": "Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "1343235d44d7e0186cf186a75270d43d:i:Location_X",
+							"name": "Location_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3b7a19e542697660d815c1ba35c08a2d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1343235d44d7e0186cf186a75270d43d:i:Location_Y",
+							"name": "Location_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "1343235d44d7e0186cf186a75270d43d:i:Location_Z",
+							"name": "Location_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3ca830044e0dc03b4243c38a9b7cf684:o:OutputPin"
+							]
+						},
+						{
+							"id": "1343235d44d7e0186cf186a75270d43d:i:Rotation",
+							"name": "Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "1343235d44d7e0186cf186a75270d43d:i:Scale",
+							"name": "Scale",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"1e8187cc4f780bebb5f6ed82c0961127:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1343235d44d7e0186cf186a75270d43d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"d865094249f23264659e128f647253d6:i:RelativeTransform"
+							]
+						}
+					]
+				},
+				{
+					"guid": "134ecde04a1edb66c89afda434b051db",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Thickness",
+					"x": 3502,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "134ecde04a1edb66c89afda434b051db:o:Door Thickness",
+							"name": "Door Thickness",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b874c03f4654eaf6070be88ccb59af54:i:Scale_Y",
+								"c0c966104b56dfaaec768dbf1ae0943f:i:Scale_Y"
+							]
+						},
+						{
+							"id": "134ecde04a1edb66c89afda434b051db:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "199950744ed54fa8447dc68fd4f5d3d9",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 1904,
+					"y": 1044,
+					"comment": null,
+					"pins": [
+						{
+							"id": "199950744ed54fa8447dc68fd4f5d3d9:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c1f3194546ac05f0846bed9a4992d203:o:Z"
+							]
+						},
+						{
+							"id": "199950744ed54fa8447dc68fd4f5d3d9:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "199950744ed54fa8447dc68fd4f5d3d9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b741fd6044efe463d28da0bf3f7d9b6a:i:Z",
+								"f3472f694d516edc5f8c818e1ad6c031:i:NewLocation_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1de3c9de469c80cdf4874990cbef9a43",
+					"class": "K2Node_PromotableOperator",
+					"title": "vector + vector",
+					"x": 2256,
+					"y": 1024,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1de3c9de469c80cdf4874990cbef9a43:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"b741fd6044efe463d28da0bf3f7d9b6a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1de3c9de469c80cdf4874990cbef9a43:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"825710af41a28c0bd4a2869ace063f59:o:Door Detection Adjust"
+							]
+						},
+						{
+							"id": "1de3c9de469c80cdf4874990cbef9a43:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"6023cca640350f75095d3b8568dc1ed7:i:InBoxExtent"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1e8187cc4f780bebb5f6ed82c0961127",
+					"class": "K2Node_CallFunction",
+					"title": "Make Vector",
+					"x": 1997,
+					"y": -464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1e8187cc4f780bebb5f6ed82c0961127:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "1e8187cc4f780bebb5f6ed82c0961127:i:X",
+							"name": "X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"91ba46f2482f73cea47065846f480ab5:o:Door Frame Scale"
+							]
+						},
+						{
+							"id": "1e8187cc4f780bebb5f6ed82c0961127:i:Y",
+							"name": "Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c763d85343ee1748e6a6efbf4bf99041:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1e8187cc4f780bebb5f6ed82c0961127:i:Z",
+							"name": "Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"91ba46f2482f73cea47065846f480ab5:o:Door Frame Scale"
+							]
+						},
+						{
+							"id": "1e8187cc4f780bebb5f6ed82c0961127:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"1343235d44d7e0186cf186a75270d43d:i:Scale",
+								"9cf3e56e4a2ebb1ee08efdaf88b4376f:i:Scale"
+							]
+						}
+					]
+				},
+				{
+					"guid": "244d20ea4343d97f1581e39bcdc298d9",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3232,
+					"y": -1088,
+					"comment": null,
+					"pins": [
+						{
+							"id": "244d20ea4343d97f1581e39bcdc298d9:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d865094249f23264659e128f647253d6:o:then"
+							]
+						},
+						{
+							"id": "244d20ea4343d97f1581e39bcdc298d9:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"50946f2e45fd5efec58fa0843323bb61:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "26b3f9434b732bad29e106b441512d52",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 4048,
+					"y": 464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "26b3f9434b732bad29e106b441512d52:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9f02eb43420757aa2be5cc8798a809a5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "26b3f9434b732bad29e106b441512d52:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-1.000000",
+							"links": []
+						},
+						{
+							"id": "26b3f9434b732bad29e106b441512d52:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b874c03f4654eaf6070be88ccb59af54:i:Location_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2c9465554ba7893b742566837fe15e6a",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3472,
+					"y": 1200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2c9465554ba7893b742566837fe15e6a:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"756b90fc4e9e207fd6afcabce886ffd7:o:Z"
+							]
+						},
+						{
+							"id": "2c9465554ba7893b742566837fe15e6a:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "2c9465554ba7893b742566837fe15e6a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0f0772434673b5e433a7e089a6d815d0:i:Location_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "31776f18417ad63d6ff5bcb59bd1d77e",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3974,
+					"y": -382,
+					"comment": null,
+					"pins": [
+						{
+							"id": "31776f18417ad63d6ff5bcb59bd1d77e:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5cef4bdf4bef3e7af323b7b14a72146a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "31776f18417ad63d6ff5bcb59bd1d77e:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "200.000000",
+							"links": []
+						},
+						{
+							"id": "31776f18417ad63d6ff5bcb59bd1d77e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4fbe655a4cc996eb7d7af1b0aed39340:i:Scale_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "342feea449e8940ade483f90304999aa",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1408,
+					"y": -1056,
+					"comment": null,
+					"pins": [
+						{
+							"id": "342feea449e8940ade483f90304999aa:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f95087524dccd37acdd125b597ad0682:o:then"
+							]
+						},
+						{
+							"id": "342feea449e8940ade483f90304999aa:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4e753e06495034b461c4b791c6e014d0:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "35a898ef49cc2cc35535f9aaf59e1e8e",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": 288,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "35a898ef49cc2cc35535f9aaf59e1e8e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"07d8cee64d8f03943476368bd1759c3c:o:then"
+							]
+						},
+						{
+							"id": "35a898ef49cc2cc35535f9aaf59e1e8e:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f95087524dccd37acdd125b597ad0682:i:execute"
+							]
+						},
+						{
+							"id": "35a898ef49cc2cc35535f9aaf59e1e8e:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d39118c64ee2be8a46f270aff5245a42:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "369aad3e424ef063865a6096f5b02b9a",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Size",
+					"x": 3296,
+					"y": 736,
+					"comment": null,
+					"pins": [
+						{
+							"id": "369aad3e424ef063865a6096f5b02b9a:o:Door Size",
+							"name": "Door Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"0a7a272e415902aa90e394b4a656a27c:i:A"
+							]
+						},
+						{
+							"id": "369aad3e424ef063865a6096f5b02b9a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3899b44c4e69d4bf0a3db5a26a9b9135",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame Overide Material",
+					"x": 4666,
+					"y": -158,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3899b44c4e69d4bf0a3db5a26a9b9135:o:Door Frame Overide Material",
+							"name": "Door Frame Overide Material",
+							"direction": "output",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"84adea494bb545440e20b1b7b73c3b97:i:Material",
+								"c6c7e9e647dc18528b58718d20332cb9:i:Material",
+								"dcba4eb649d78d78118c758ba3584ef2:i:Material"
+							]
+						},
+						{
+							"id": "3899b44c4e69d4bf0a3db5a26a9b9135:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "39ee7b6341dd258e42b5ce8c26945cd0",
+					"class": "K2Node_CallFunction",
+					"title": "Absolute (Float)",
+					"x": 3642,
+					"y": -142,
+					"comment": null,
+					"pins": [
+						{
+							"id": "39ee7b6341dd258e42b5ce8c26945cd0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "39ee7b6341dd258e42b5ce8c26945cd0:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"669bb13047651bd0e85f9a98699d652c:o:Door Size_Z"
+							]
+						},
+						{
+							"id": "39ee7b6341dd258e42b5ce8c26945cd0:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4491d82a4d1512ce3b3d0ab274c48354:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3b7a19e542697660d815c1ba35c08a2d",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 2016,
+					"y": -608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3b7a19e542697660d815c1ba35c08a2d:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"7b927ad6478b039fac6008a2f4fe59bf:o:X"
+							]
+						},
+						{
+							"id": "3b7a19e542697660d815c1ba35c08a2d:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-1.000000",
+							"links": []
+						},
+						{
+							"id": "3b7a19e542697660d815c1ba35c08a2d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"1343235d44d7e0186cf186a75270d43d:i:Location_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3b9f9feb40b5aaa02a2cbcae239171e1",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3232,
+					"y": 304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3b9f9feb40b5aaa02a2cbcae239171e1:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bdb445904bf3b05c2e0f5bbbc6ca9b91:o:OutputPin"
+							]
+						},
+						{
+							"id": "3b9f9feb40b5aaa02a2cbcae239171e1:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3dcd9ccb4f5f732929c4c69cc8b42fda:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3ca830044e0dc03b4243c38a9b7cf684",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2016,
+					"y": -528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3ca830044e0dc03b4243c38a9b7cf684:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"7b927ad6478b039fac6008a2f4fe59bf:o:Z"
+							]
+						},
+						{
+							"id": "3ca830044e0dc03b4243c38a9b7cf684:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"1343235d44d7e0186cf186a75270d43d:i:Location_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3dcd9ccb4f5f732929c4c69cc8b42fda",
+					"class": "K2Node_AddComponent",
+					"title": "Add Static Mesh Component [Static Mesh SM_Door]",
+					"x": 3744,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3dcd9ccb4f5f732929c4c69cc8b42fda:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3b9f9feb40b5aaa02a2cbcae239171e1:o:OutputPin"
+							]
+						},
+						{
+							"id": "3dcd9ccb4f5f732929c4c69cc8b42fda:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"029c11e64cf6af7338c79e9b194f41c0:i:execute"
+							]
+						},
+						{
+							"id": "3dcd9ccb4f5f732929c4c69cc8b42fda:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3dcd9ccb4f5f732929c4c69cc8b42fda:i:TemplateName",
+							"name": "TemplateName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "NODE_AddStaticMeshComponent-6",
+							"links": []
+						},
+						{
+							"id": "3dcd9ccb4f5f732929c4c69cc8b42fda:i:bManualAttachment",
+							"name": "bManualAttachment",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "3dcd9ccb4f5f732929c4c69cc8b42fda:i:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"c0c966104b56dfaaec768dbf1ae0943f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3dcd9ccb4f5f732929c4c69cc8b42fda:i:ComponentTemplateContext",
+							"name": "ComponentTemplateContext",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3dcd9ccb4f5f732929c4c69cc8b42fda:i:bDeferredFinish",
+							"name": "bDeferredFinish",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "3dcd9ccb4f5f732929c4c69cc8b42fda:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"029c11e64cf6af7338c79e9b194f41c0:i:Door"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4229bf874c2bdbbc98fd0da0fc1c8481",
+					"class": "K2Node_VariableSet",
+					"title": "Set Door",
+					"x": 4016,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4229bf874c2bdbbc98fd0da0fc1c8481:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ba53c7de4ef8a172041100a52e7f6c64:o:then"
+							]
+						},
+						{
+							"id": "4229bf874c2bdbbc98fd0da0fc1c8481:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4229bf874c2bdbbc98fd0da0fc1c8481:i:Door",
+							"name": "Door",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"ba53c7de4ef8a172041100a52e7f6c64:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4229bf874c2bdbbc98fd0da0fc1c8481:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4229bf874c2bdbbc98fd0da0fc1c8481:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4491d82a4d1512ce3b3d0ab274c48354",
+					"class": "K2Node_PromotableOperator",
+					"title": "float - float",
+					"x": 3818,
+					"y": -142,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4491d82a4d1512ce3b3d0ab274c48354:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"39ee7b6341dd258e42b5ce8c26945cd0:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4491d82a4d1512ce3b3d0ab274c48354:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"aa9d8d964b8e52ce83c43988c7b23c24:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4491d82a4d1512ce3b3d0ab274c48354:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"8c6d57a748fbf01b1359aeb64de1bddf:i:A",
+								"da36ef464ba15dff4f0013a5707cfe8a:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4e753e06495034b461c4b791c6e014d0",
+					"class": "K2Node_CallFunction",
+					"title": "Set Mesh",
+					"x": 2816,
+					"y": -1104,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4e753e06495034b461c4b791c6e014d0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"342feea449e8940ade483f90304999aa:o:OutputPin"
+							]
+						},
+						{
+							"id": "4e753e06495034b461c4b791c6e014d0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d865094249f23264659e128f647253d6:i:execute"
+							]
+						},
+						{
+							"id": "4e753e06495034b461c4b791c6e014d0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4e753e06495034b461c4b791c6e014d0:i:NewMesh",
+							"name": "NewMesh",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMesh",
+							"defaultValue": "/Game/ProjectAtlantis/Placeables/Door/SM_DoorFrame_Corner.SM_DoorFrame_Corner",
+							"links": []
+						},
+						{
+							"id": "4e753e06495034b461c4b791c6e014d0:i:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"9cf3e56e4a2ebb1ee08efdaf88b4376f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4e753e06495034b461c4b791c6e014d0:i:Material",
+							"name": "Material",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"5a23f49c4f92f4716e477fa20d891555:o:Door Frame Overide Material"
+							]
+						},
+						{
+							"id": "4e753e06495034b461c4b791c6e014d0:i:NewMobility",
+							"name": "NewMobility",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EComponentMobility",
+							"defaultValue": "Static",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4fbe655a4cc996eb7d7af1b0aed39340",
+					"class": "K2Node_CallFunction",
+					"title": "Make Transform",
+					"x": 4202,
+					"y": -581,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:Location",
+							"name": "Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:Location_X",
+							"name": "Location_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"730311064465daf7bd7d0db30874829e:o:Door Size_X"
+							]
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:Location_Y",
+							"name": "Location_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:Location_Z",
+							"name": "Location_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"04a706cb4a99ea55f1ce94a6be2c5d3d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:Rotation",
+							"name": "Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "-90.000000,0.000000,0.000000",
+							"links": []
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:Scale",
+							"name": "Scale",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "1.000000,1.000000,1.000000",
+							"links": []
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:Scale_X",
+							"name": "Scale_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"31776f18417ad63d6ff5bcb59bd1d77e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:Scale_Y",
+							"name": "Scale_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"cc5dde214dd7d5afa66f14b702dc2f0d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:i:Scale_Z",
+							"name": "Scale_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e705b5074fe8989d720d85b96ce00dca:o:Door Frame Scale"
+							]
+						},
+						{
+							"id": "4fbe655a4cc996eb7d7af1b0aed39340:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"c6c7e9e647dc18528b58718d20332cb9:i:RelativeTransform"
+							]
+						}
+					]
+				},
+				{
+					"guid": "50946f2e45fd5efec58fa0843323bb61",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 4528,
+					"y": -1088,
+					"comment": null,
+					"pins": [
+						{
+							"id": "50946f2e45fd5efec58fa0843323bb61:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"244d20ea4343d97f1581e39bcdc298d9:o:OutputPin"
+							]
+						},
+						{
+							"id": "50946f2e45fd5efec58fa0843323bb61:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dcba4eb649d78d78118c758ba3584ef2:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5547d5ff4802d1dddb171e8ff7ade48e",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 3578,
+					"y": -798,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5547d5ff4802d1dddb171e8ff7ade48e:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"113ce0314b3f9cb8a5ab9880a837ef50:o:Door Frame Scale"
+							]
+						},
+						{
+							"id": "5547d5ff4802d1dddb171e8ff7ade48e:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "100.000000",
+							"links": []
+						},
+						{
+							"id": "5547d5ff4802d1dddb171e8ff7ade48e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c77f426d459f7bd7e57022bd70048eb1:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "55e574a842cd07d163adf3a77ded7247",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame Scale",
+					"x": 3658,
+					"y": -14,
+					"comment": null,
+					"pins": [
+						{
+							"id": "55e574a842cd07d163adf3a77ded7247:o:Door Frame Scale",
+							"name": "Door Frame Scale",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"aa9d8d964b8e52ce83c43988c7b23c24:i:A"
+							]
+						},
+						{
+							"id": "55e574a842cd07d163adf3a77ded7247:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "574d2a1b4ee8163c54bae5aa4950826c",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3962,
+					"y": -766,
+					"comment": null,
+					"pins": [
+						{
+							"id": "574d2a1b4ee8163c54bae5aa4950826c:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"6d5a92714a79198a7a981f8280b9351d:o:Y"
+							]
+						},
+						{
+							"id": "574d2a1b4ee8163c54bae5aa4950826c:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "100.000000",
+							"links": []
+						},
+						{
+							"id": "574d2a1b4ee8163c54bae5aa4950826c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"aacd76fc44b2f703bcf187a74e0704a5:i:Scale_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "57e668c447e95eac4b1d5dbf7c09c2c5",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3962,
+					"y": -846,
+					"comment": null,
+					"pins": [
+						{
+							"id": "57e668c447e95eac4b1d5dbf7c09c2c5:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c77f426d459f7bd7e57022bd70048eb1:o:ReturnValue"
+							]
+						},
+						{
+							"id": "57e668c447e95eac4b1d5dbf7c09c2c5:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "100.000000",
+							"links": []
+						},
+						{
+							"id": "57e668c447e95eac4b1d5dbf7c09c2c5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"aacd76fc44b2f703bcf187a74e0704a5:i:Scale_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5a23f49c4f92f4716e477fa20d891555",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame Overide Material",
+					"x": 2448,
+					"y": -976,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5a23f49c4f92f4716e477fa20d891555:o:Door Frame Overide Material",
+							"name": "Door Frame Overide Material",
+							"direction": "output",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"4e753e06495034b461c4b791c6e014d0:i:Material",
+								"d865094249f23264659e128f647253d6:i:Material"
+							]
+						},
+						{
+							"id": "5a23f49c4f92f4716e477fa20d891555:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5cef4bdf4bef3e7af323b7b14a72146a",
+					"class": "K2Node_PromotableOperator",
+					"title": "float - float",
+					"x": 3818,
+					"y": -430,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5cef4bdf4bef3e7af323b7b14a72146a:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5fd980b6462ad14988290cbbfd32792c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5cef4bdf4bef3e7af323b7b14a72146a:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"75217845496b07afd44235a37766c668:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5cef4bdf4bef3e7af323b7b14a72146a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"04a706cb4a99ea55f1ce94a6be2c5d3d:i:A",
+								"31776f18417ad63d6ff5bcb59bd1d77e:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5fd980b6462ad14988290cbbfd32792c",
+					"class": "K2Node_CallFunction",
+					"title": "Absolute (Float)",
+					"x": 3640,
+					"y": -447,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5fd980b6462ad14988290cbbfd32792c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "5fd980b6462ad14988290cbbfd32792c:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"730311064465daf7bd7d0db30874829e:o:Door Size_Z"
+							]
+						},
+						{
+							"id": "5fd980b6462ad14988290cbbfd32792c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5cef4bdf4bef3e7af323b7b14a72146a:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6023cca640350f75095d3b8568dc1ed7",
+					"class": "K2Node_CallFunction",
+					"title": "Set Box Extent",
+					"x": 1824,
+					"y": 640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6023cca640350f75095d3b8568dc1ed7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d39118c64ee2be8a46f270aff5245a42:o:then"
+							]
+						},
+						{
+							"id": "6023cca640350f75095d3b8568dc1ed7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f3472f694d516edc5f8c818e1ad6c031:i:execute"
+							]
+						},
+						{
+							"id": "6023cca640350f75095d3b8568dc1ed7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.BoxComponent",
+							"defaultValue": null,
+							"links": [
+								"cdf12d204f250461a9ff369e10e59443:o:Box"
+							]
+						},
+						{
+							"id": "6023cca640350f75095d3b8568dc1ed7:i:InBoxExtent",
+							"name": "InBoxExtent",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"1de3c9de469c80cdf4874990cbef9a43:o:ReturnValue"
+							]
+						},
+						{
+							"id": "6023cca640350f75095d3b8568dc1ed7:i:bUpdateOverlaps",
+							"name": "bUpdateOverlaps",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "64df5e5848b43bf5201384a769a71e71",
+					"class": "K2Node_VariableGet",
+					"title": "Get Split Door",
+					"x": 2592,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "64df5e5848b43bf5201384a769a71e71:o:Split Door",
+							"name": "Split Door",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"124860314a4e34d0d7e30587e0d2d90d:i:Condition"
+							]
+						},
+						{
+							"id": "64df5e5848b43bf5201384a769a71e71:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "669bb13047651bd0e85f9a98699d652c",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 3466,
+					"y": -254,
+					"comment": null,
+					"pins": [
+						{
+							"id": "669bb13047651bd0e85f9a98699d652c:o:Door Size",
+							"name": "Door Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "669bb13047651bd0e85f9a98699d652c:o:Door Size_X",
+							"name": "Door Size_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d6ac4a6e4315bd7a61c9f2beeab50b7c:i:A"
+							]
+						},
+						{
+							"id": "669bb13047651bd0e85f9a98699d652c:o:Door Size_Y",
+							"name": "Door Size_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b78c75894272a5985c8b60be60df2de2:i:A"
+							]
+						},
+						{
+							"id": "669bb13047651bd0e85f9a98699d652c:o:Door Size_Z",
+							"name": "Door Size_Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"39ee7b6341dd258e42b5ce8c26945cd0:i:A"
+							]
+						},
+						{
+							"id": "669bb13047651bd0e85f9a98699d652c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "67b51ae84cfeaf051d106d9eaff9cfb4",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Size",
+					"x": 3279,
+					"y": 1479,
+					"comment": null,
+					"pins": [
+						{
+							"id": "67b51ae84cfeaf051d106d9eaff9cfb4:o:Door Size",
+							"name": "Door Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"c17ed6994daf96642fe3fd885477ead9:i:A"
+							]
+						},
+						{
+							"id": "67b51ae84cfeaf051d106d9eaff9cfb4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "69255c9140a5a161c516a3ae07179ec4",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Size",
+					"x": 1376,
+					"y": -841,
+					"comment": null,
+					"pins": [
+						{
+							"id": "69255c9140a5a161c516a3ae07179ec4:o:Door Size",
+							"name": "Door Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"7b927ad6478b039fac6008a2f4fe59bf:i:InVec"
+							]
+						},
+						{
+							"id": "69255c9140a5a161c516a3ae07179ec4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6d5a92714a79198a7a981f8280b9351d",
+					"class": "K2Node_CallFunction",
+					"title": "Break Vector",
+					"x": 3450,
+					"y": -974,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6d5a92714a79198a7a981f8280b9351d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "6d5a92714a79198a7a981f8280b9351d:i:InVec",
+							"name": "InVec",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"b5e8583f4548a2216e570386c1055f8c:o:Door Size"
+							]
+						},
+						{
+							"id": "6d5a92714a79198a7a981f8280b9351d:o:X",
+							"name": "X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ad80c8a840763ca194d0f4979db7a490:i:A"
+							]
+						},
+						{
+							"id": "6d5a92714a79198a7a981f8280b9351d:o:Y",
+							"name": "Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"574d2a1b4ee8163c54bae5aa4950826c:i:A"
+							]
+						},
+						{
+							"id": "6d5a92714a79198a7a981f8280b9351d:o:Z",
+							"name": "Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"aacd76fc44b2f703bcf187a74e0704a5:i:Location_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "730311064465daf7bd7d0db30874829e",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 3466,
+					"y": -558,
+					"comment": null,
+					"pins": [
+						{
+							"id": "730311064465daf7bd7d0db30874829e:o:Door Size",
+							"name": "Door Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "730311064465daf7bd7d0db30874829e:o:Door Size_X",
+							"name": "Door Size_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4fbe655a4cc996eb7d7af1b0aed39340:i:Location_X"
+							]
+						},
+						{
+							"id": "730311064465daf7bd7d0db30874829e:o:Door Size_Y",
+							"name": "Door Size_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"cc5dde214dd7d5afa66f14b702dc2f0d:i:A"
+							]
+						},
+						{
+							"id": "730311064465daf7bd7d0db30874829e:o:Door Size_Z",
+							"name": "Door Size_Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5fd980b6462ad14988290cbbfd32792c:i:A"
+							]
+						},
+						{
+							"id": "730311064465daf7bd7d0db30874829e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "75217845496b07afd44235a37766c668",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 3638,
+					"y": -398,
+					"comment": null,
+					"pins": [
+						{
+							"id": "75217845496b07afd44235a37766c668:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"925ca685419586b1c4eb16a053bc3438:o:Door Frame Scale"
+							]
+						},
+						{
+							"id": "75217845496b07afd44235a37766c668:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "100.000000",
+							"links": []
+						},
+						{
+							"id": "75217845496b07afd44235a37766c668:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5cef4bdf4bef3e7af323b7b14a72146a:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "756b90fc4e9e207fd6afcabce886ffd7",
+					"class": "K2Node_CallFunction",
+					"title": "Break Vector",
+					"x": 3264,
+					"y": 1264,
+					"comment": null,
+					"pins": [
+						{
+							"id": "756b90fc4e9e207fd6afcabce886ffd7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "756b90fc4e9e207fd6afcabce886ffd7:i:InVec",
+							"name": "InVec",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"c17ed6994daf96642fe3fd885477ead9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "756b90fc4e9e207fd6afcabce886ffd7:o:X",
+							"name": "X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9f83afa248c57e32e084aeb246ea0539:i:A"
+							]
+						},
+						{
+							"id": "756b90fc4e9e207fd6afcabce886ffd7:o:Y",
+							"name": "Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "756b90fc4e9e207fd6afcabce886ffd7:o:Z",
+							"name": "Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"2c9465554ba7893b742566837fe15e6a:i:A",
+								"a75d0fd1478bbafa33202ea4cdcaed31:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7b927ad6478b039fac6008a2f4fe59bf",
+					"class": "K2Node_CallFunction",
+					"title": "Break Vector",
+					"x": 1584,
+					"y": -864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7b927ad6478b039fac6008a2f4fe59bf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "7b927ad6478b039fac6008a2f4fe59bf:i:InVec",
+							"name": "InVec",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"69255c9140a5a161c516a3ae07179ec4:o:Door Size"
+							]
+						},
+						{
+							"id": "7b927ad6478b039fac6008a2f4fe59bf:o:X",
+							"name": "X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3b7a19e542697660d815c1ba35c08a2d:i:A",
+								"9cf3e56e4a2ebb1ee08efdaf88b4376f:i:Location_X"
+							]
+						},
+						{
+							"id": "7b927ad6478b039fac6008a2f4fe59bf:o:Y",
+							"name": "Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c763d85343ee1748e6a6efbf4bf99041:i:A"
+							]
+						},
+						{
+							"id": "7b927ad6478b039fac6008a2f4fe59bf:o:Z",
+							"name": "Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3ca830044e0dc03b4243c38a9b7cf684:i:InputPin",
+								"9cf3e56e4a2ebb1ee08efdaf88b4376f:i:Location_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8123247642bb0fa5c653f4a8ec114567",
+					"class": "K2Node_VariableGet",
+					"title": "Get Box",
+					"x": 1008,
+					"y": 1056,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8123247642bb0fa5c653f4a8ec114567:o:Box",
+							"name": "Box",
+							"direction": "output",
+							"type": "object:/Script/Engine.BoxComponent",
+							"defaultValue": null,
+							"links": [
+								"b4acd1ee45f961ffccd1c5b0d4437915:i:self"
+							]
+						},
+						{
+							"id": "8123247642bb0fa5c653f4a8ec114567:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "825710af41a28c0bd4a2869ace063f59",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Detection Adjust",
+					"x": 2080,
+					"y": 1088,
+					"comment": null,
+					"pins": [
+						{
+							"id": "825710af41a28c0bd4a2869ace063f59:o:Door Detection Adjust",
+							"name": "Door Detection Adjust",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"1de3c9de469c80cdf4874990cbef9a43:i:B"
+							]
+						},
+						{
+							"id": "825710af41a28c0bd4a2869ace063f59:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "84adea494bb545440e20b1b7b73c3b97",
+					"class": "K2Node_CallFunction",
+					"title": "Set Mesh",
+					"x": 4666,
+					"y": -478,
+					"comment": null,
+					"pins": [
+						{
+							"id": "84adea494bb545440e20b1b7b73c3b97:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c6c7e9e647dc18528b58718d20332cb9:o:then"
+							]
+						},
+						{
+							"id": "84adea494bb545440e20b1b7b73c3b97:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "84adea494bb545440e20b1b7b73c3b97:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "84adea494bb545440e20b1b7b73c3b97:i:NewMesh",
+							"name": "NewMesh",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMesh",
+							"defaultValue": "/Game/ProjectAtlantis/Placeables/Door/SM_DoorFrame_Edge.SM_DoorFrame_Edge",
+							"links": []
+						},
+						{
+							"id": "84adea494bb545440e20b1b7b73c3b97:i:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"01dd5e95440d410bf997d5ad86bad9e9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "84adea494bb545440e20b1b7b73c3b97:i:Material",
+							"name": "Material",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"3899b44c4e69d4bf0a3db5a26a9b9135:o:Door Frame Overide Material"
+							]
+						},
+						{
+							"id": "84adea494bb545440e20b1b7b73c3b97:i:NewMobility",
+							"name": "NewMobility",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EComponentMobility",
+							"defaultValue": "Static",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "87771a4547af4f61475cc1873ecf799c",
+					"class": "K2Node_AddComponent",
+					"title": "Add Static Mesh Component [Static Mesh SM_Door]",
+					"x": 4256,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "87771a4547af4f61475cc1873ecf799c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"029c11e64cf6af7338c79e9b194f41c0:o:then"
+							]
+						},
+						{
+							"id": "87771a4547af4f61475cc1873ecf799c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fd93423e4d615e7874560cb862fad44b:i:execute"
+							]
+						},
+						{
+							"id": "87771a4547af4f61475cc1873ecf799c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "87771a4547af4f61475cc1873ecf799c:i:TemplateName",
+							"name": "TemplateName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "NODE_AddStaticMeshComponent-7",
+							"links": []
+						},
+						{
+							"id": "87771a4547af4f61475cc1873ecf799c:i:bManualAttachment",
+							"name": "bManualAttachment",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "87771a4547af4f61475cc1873ecf799c:i:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"b874c03f4654eaf6070be88ccb59af54:o:ReturnValue"
+							]
+						},
+						{
+							"id": "87771a4547af4f61475cc1873ecf799c:i:ComponentTemplateContext",
+							"name": "ComponentTemplateContext",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "87771a4547af4f61475cc1873ecf799c:i:bDeferredFinish",
+							"name": "bDeferredFinish",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "87771a4547af4f61475cc1873ecf799c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"fd93423e4d615e7874560cb862fad44b:i:Door2"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8c6d57a748fbf01b1359aeb64de1bddf",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3984,
+					"y": -174,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8c6d57a748fbf01b1359aeb64de1bddf:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4491d82a4d1512ce3b3d0ab274c48354:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8c6d57a748fbf01b1359aeb64de1bddf:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "8c6d57a748fbf01b1359aeb64de1bddf:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"01dd5e95440d410bf997d5ad86bad9e9:i:Location_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9088e5984841918237b04ebb37a4311f",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Size",
+					"x": 1424,
+					"y": 983,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9088e5984841918237b04ebb37a4311f:o:Door Size",
+							"name": "Door Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"0e5e20e2444ec2c069422fa652e4229f:i:A"
+							]
+						},
+						{
+							"id": "9088e5984841918237b04ebb37a4311f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "91ba46f2482f73cea47065846f480ab5",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame Scale",
+					"x": 1808,
+					"y": -448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "91ba46f2482f73cea47065846f480ab5:o:Door Frame Scale",
+							"name": "Door Frame Scale",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"1e8187cc4f780bebb5f6ed82c0961127:i:X",
+								"1e8187cc4f780bebb5f6ed82c0961127:i:Z"
+							]
+						},
+						{
+							"id": "91ba46f2482f73cea47065846f480ab5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "925ca685419586b1c4eb16a053bc3438",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame Scale",
+					"x": 3658,
+					"y": -320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "925ca685419586b1c4eb16a053bc3438:o:Door Frame Scale",
+							"name": "Door Frame Scale",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"75217845496b07afd44235a37766c668:i:A"
+							]
+						},
+						{
+							"id": "925ca685419586b1c4eb16a053bc3438:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9a3015634608438360c01ea57548a168",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Thickness",
+					"x": 3488,
+					"y": 1370,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a3015634608438360c01ea57548a168:o:Door Thickness",
+							"name": "Door Thickness",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0f0772434673b5e433a7e089a6d815d0:i:Scale_Y"
+							]
+						},
+						{
+							"id": "9a3015634608438360c01ea57548a168:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9cf3e56e4a2ebb1ee08efdaf88b4376f",
+					"class": "K2Node_CallFunction",
+					"title": "Make Transform",
+					"x": 2240,
+					"y": -864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9cf3e56e4a2ebb1ee08efdaf88b4376f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "9cf3e56e4a2ebb1ee08efdaf88b4376f:i:Location",
+							"name": "Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "9cf3e56e4a2ebb1ee08efdaf88b4376f:i:Location_X",
+							"name": "Location_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"7b927ad6478b039fac6008a2f4fe59bf:o:X"
+							]
+						},
+						{
+							"id": "9cf3e56e4a2ebb1ee08efdaf88b4376f:i:Location_Y",
+							"name": "Location_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "9cf3e56e4a2ebb1ee08efdaf88b4376f:i:Location_Z",
+							"name": "Location_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"7b927ad6478b039fac6008a2f4fe59bf:o:Z"
+							]
+						},
+						{
+							"id": "9cf3e56e4a2ebb1ee08efdaf88b4376f:i:Rotation",
+							"name": "Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0.000000,180.000000,0.000000",
+							"links": []
+						},
+						{
+							"id": "9cf3e56e4a2ebb1ee08efdaf88b4376f:i:Scale",
+							"name": "Scale",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"1e8187cc4f780bebb5f6ed82c0961127:o:ReturnValue"
+							]
+						},
+						{
+							"id": "9cf3e56e4a2ebb1ee08efdaf88b4376f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"4e753e06495034b461c4b791c6e014d0:i:RelativeTransform"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9f02eb43420757aa2be5cc8798a809a5",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3486,
+					"y": 461,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9f02eb43420757aa2be5cc8798a809a5:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"bb214d444717d57383bb87b12a4ee5b2:o:X"
+							]
+						},
+						{
+							"id": "9f02eb43420757aa2be5cc8798a809a5:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "9f02eb43420757aa2be5cc8798a809a5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"26b3f9434b732bad29e106b441512d52:i:A",
+								"c0c966104b56dfaaec768dbf1ae0943f:i:Location_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9f83afa248c57e32e084aeb246ea0539",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3458,
+					"y": 1287,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9f83afa248c57e32e084aeb246ea0539:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"756b90fc4e9e207fd6afcabce886ffd7:o:X"
+							]
+						},
+						{
+							"id": "9f83afa248c57e32e084aeb246ea0539:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "100.000000",
+							"links": []
+						},
+						{
+							"id": "9f83afa248c57e32e084aeb246ea0539:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0f0772434673b5e433a7e089a6d815d0:i:Scale_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a6ab45314e73a4bb8682d69ed08fc45e",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame Scale",
+					"x": 3978,
+					"y": -686,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a6ab45314e73a4bb8682d69ed08fc45e:o:Door Frame Scale",
+							"name": "Door Frame Scale",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"aacd76fc44b2f703bcf187a74e0704a5:i:Scale_Z"
+							]
+						},
+						{
+							"id": "a6ab45314e73a4bb8682d69ed08fc45e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a75d0fd1478bbafa33202ea4cdcaed31",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3458,
+					"y": 1418,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a75d0fd1478bbafa33202ea4cdcaed31:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"756b90fc4e9e207fd6afcabce886ffd7:o:Z"
+							]
+						},
+						{
+							"id": "a75d0fd1478bbafa33202ea4cdcaed31:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "200.000000",
+							"links": []
+						},
+						{
+							"id": "a75d0fd1478bbafa33202ea4cdcaed31:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0f0772434673b5e433a7e089a6d815d0:i:Scale_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a8549527456d35976e5b1ab2cbae6efd",
+					"class": "K2Node_VariableGet",
+					"title": "Get Add Door",
+					"x": 1040,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a8549527456d35976e5b1ab2cbae6efd:o:Add Door",
+							"name": "Add Door",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d39118c64ee2be8a46f270aff5245a42:i:Condition"
+							]
+						},
+						{
+							"id": "a8549527456d35976e5b1ab2cbae6efd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "aa9d8d964b8e52ce83c43988c7b23c24",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 3626,
+					"y": -94,
+					"comment": null,
+					"pins": [
+						{
+							"id": "aa9d8d964b8e52ce83c43988c7b23c24:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"55e574a842cd07d163adf3a77ded7247:o:Door Frame Scale"
+							]
+						},
+						{
+							"id": "aa9d8d964b8e52ce83c43988c7b23c24:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "100.000000",
+							"links": []
+						},
+						{
+							"id": "aa9d8d964b8e52ce83c43988c7b23c24:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4491d82a4d1512ce3b3d0ab274c48354:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "aacd76fc44b2f703bcf187a74e0704a5",
+					"class": "K2Node_CallFunction",
+					"title": "Make Transform",
+					"x": 4186,
+					"y": -990,
+					"comment": null,
+					"pins": [
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:Location",
+							"name": "Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:Location_X",
+							"name": "Location_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:Location_Y",
+							"name": "Location_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:Location_Z",
+							"name": "Location_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"6d5a92714a79198a7a981f8280b9351d:o:Z"
+							]
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:Rotation",
+							"name": "Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:Scale",
+							"name": "Scale",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "1.000000,1.000000,1.000000",
+							"links": []
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:Scale_X",
+							"name": "Scale_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"57e668c447e95eac4b1d5dbf7c09c2c5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:Scale_Y",
+							"name": "Scale_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"574d2a1b4ee8163c54bae5aa4950826c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:i:Scale_Z",
+							"name": "Scale_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a6ab45314e73a4bb8682d69ed08fc45e:o:Door Frame Scale"
+							]
+						},
+						{
+							"id": "aacd76fc44b2f703bcf187a74e0704a5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"dcba4eb649d78d78118c758ba3584ef2:i:RelativeTransform"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ac90e98940a179f0787d6baf407c921d",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame Scale",
+					"x": 3989,
+					"y": 66,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ac90e98940a179f0787d6baf407c921d:o:Door Frame Scale",
+							"name": "Door Frame Scale",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"01dd5e95440d410bf997d5ad86bad9e9:i:Scale_Z"
+							]
+						},
+						{
+							"id": "ac90e98940a179f0787d6baf407c921d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ad80c8a840763ca194d0f4979db7a490",
+					"class": "K2Node_CallFunction",
+					"title": "Absolute (Float)",
+					"x": 3626,
+					"y": -958,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ad80c8a840763ca194d0f4979db7a490:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "ad80c8a840763ca194d0f4979db7a490:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"6d5a92714a79198a7a981f8280b9351d:o:X"
+							]
+						},
+						{
+							"id": "ad80c8a840763ca194d0f4979db7a490:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c77f426d459f7bd7e57022bd70048eb1:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b2b33f954d032ad3fdb71c8d69b075b1",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3472,
+					"y": 624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b2b33f954d032ad3fdb71c8d69b075b1:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"bb214d444717d57383bb87b12a4ee5b2:o:X"
+							]
+						},
+						{
+							"id": "b2b33f954d032ad3fdb71c8d69b075b1:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "200.000000",
+							"links": []
+						},
+						{
+							"id": "b2b33f954d032ad3fdb71c8d69b075b1:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b874c03f4654eaf6070be88ccb59af54:i:Scale_X",
+								"c0c966104b56dfaaec768dbf1ae0943f:i:Scale_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b4acd1ee45f961ffccd1c5b0d4437915",
+					"class": "K2Node_CallFunction",
+					"title": "Set Collision Enabled",
+					"x": 1024,
+					"y": 880,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b4acd1ee45f961ffccd1c5b0d4437915:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d39118c64ee2be8a46f270aff5245a42:o:else"
+							]
+						},
+						{
+							"id": "b4acd1ee45f961ffccd1c5b0d4437915:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b4acd1ee45f961ffccd1c5b0d4437915:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": [
+								"8123247642bb0fa5c653f4a8ec114567:o:Box"
+							]
+						},
+						{
+							"id": "b4acd1ee45f961ffccd1c5b0d4437915:i:NewType",
+							"name": "NewType",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ECollisionEnabled",
+							"defaultValue": "NoCollision",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b5d658c64b2368978e0ebfa4b72f9e32",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3486,
+					"y": 544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b5d658c64b2368978e0ebfa4b72f9e32:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"bb214d444717d57383bb87b12a4ee5b2:o:Z"
+							]
+						},
+						{
+							"id": "b5d658c64b2368978e0ebfa4b72f9e32:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "b5d658c64b2368978e0ebfa4b72f9e32:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b874c03f4654eaf6070be88ccb59af54:i:Location_Z",
+								"c0c966104b56dfaaec768dbf1ae0943f:i:Location_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b5e8583f4548a2216e570386c1055f8c",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Size",
+					"x": 3274,
+					"y": -951,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b5e8583f4548a2216e570386c1055f8c:o:Door Size",
+							"name": "Door Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"6d5a92714a79198a7a981f8280b9351d:i:InVec"
+							]
+						},
+						{
+							"id": "b5e8583f4548a2216e570386c1055f8c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b741fd6044efe463d28da0bf3f7d9b6a",
+					"class": "K2Node_CallFunction",
+					"title": "Make Vector",
+					"x": 2064,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b741fd6044efe463d28da0bf3f7d9b6a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "b741fd6044efe463d28da0bf3f7d9b6a:i:X",
+							"name": "X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c1f3194546ac05f0846bed9a4992d203:o:X"
+							]
+						},
+						{
+							"id": "b741fd6044efe463d28da0bf3f7d9b6a:i:Y",
+							"name": "Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c1f3194546ac05f0846bed9a4992d203:o:Y"
+							]
+						},
+						{
+							"id": "b741fd6044efe463d28da0bf3f7d9b6a:i:Z",
+							"name": "Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"199950744ed54fa8447dc68fd4f5d3d9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b741fd6044efe463d28da0bf3f7d9b6a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"1de3c9de469c80cdf4874990cbef9a43:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b78c75894272a5985c8b60be60df2de2",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3969,
+					"y": -14,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b78c75894272a5985c8b60be60df2de2:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"669bb13047651bd0e85f9a98699d652c:o:Door Size_Y"
+							]
+						},
+						{
+							"id": "b78c75894272a5985c8b60be60df2de2:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "100.000000",
+							"links": []
+						},
+						{
+							"id": "b78c75894272a5985c8b60be60df2de2:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"01dd5e95440d410bf997d5ad86bad9e9:i:Scale_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b874c03f4654eaf6070be88ccb59af54",
+					"class": "K2Node_CallFunction",
+					"title": "Make Transform",
+					"x": 4240,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:Location",
+							"name": "Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:Location_X",
+							"name": "Location_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"26b3f9434b732bad29e106b441512d52:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:Location_Y",
+							"name": "Location_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:Location_Z",
+							"name": "Location_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b5d658c64b2368978e0ebfa4b72f9e32:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:Rotation",
+							"name": "Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:Scale",
+							"name": "Scale",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "1.000000,1.000000,1.000000",
+							"links": []
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:Scale_X",
+							"name": "Scale_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b2b33f954d032ad3fdb71c8d69b075b1:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:Scale_Y",
+							"name": "Scale_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"134ecde04a1edb66c89afda434b051db:o:Door Thickness"
+							]
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:i:Scale_Z",
+							"name": "Scale_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ba9319a64d380845a2495a9325ce94b9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b874c03f4654eaf6070be88ccb59af54:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"87771a4547af4f61475cc1873ecf799c:i:RelativeTransform"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba53c7de4ef8a172041100a52e7f6c64",
+					"class": "K2Node_AddComponent",
+					"title": "Add Static Mesh Component [Static Mesh SM_Door]",
+					"x": 3696,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba53c7de4ef8a172041100a52e7f6c64:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"12a7ddf7415afa7d7f3f5ea359b1b8d4:o:OutputPin"
+							]
+						},
+						{
+							"id": "ba53c7de4ef8a172041100a52e7f6c64:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4229bf874c2bdbbc98fd0da0fc1c8481:i:execute"
+							]
+						},
+						{
+							"id": "ba53c7de4ef8a172041100a52e7f6c64:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ba53c7de4ef8a172041100a52e7f6c64:i:TemplateName",
+							"name": "TemplateName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "NODE_AddStaticMeshComponent-5",
+							"links": []
+						},
+						{
+							"id": "ba53c7de4ef8a172041100a52e7f6c64:i:bManualAttachment",
+							"name": "bManualAttachment",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba53c7de4ef8a172041100a52e7f6c64:i:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"0f0772434673b5e433a7e089a6d815d0:o:ReturnValue"
+							]
+						},
+						{
+							"id": "ba53c7de4ef8a172041100a52e7f6c64:i:ComponentTemplateContext",
+							"name": "ComponentTemplateContext",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ba53c7de4ef8a172041100a52e7f6c64:i:bDeferredFinish",
+							"name": "bDeferredFinish",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba53c7de4ef8a172041100a52e7f6c64:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"4229bf874c2bdbbc98fd0da0fc1c8481:i:Door"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba9319a64d380845a2495a9325ce94b9",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3472,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba9319a64d380845a2495a9325ce94b9:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"bb214d444717d57383bb87b12a4ee5b2:o:Z"
+							]
+						},
+						{
+							"id": "ba9319a64d380845a2495a9325ce94b9:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "200.000000",
+							"links": []
+						},
+						{
+							"id": "ba9319a64d380845a2495a9325ce94b9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b874c03f4654eaf6070be88ccb59af54:i:Scale_Z",
+								"c0c966104b56dfaaec768dbf1ae0943f:i:Scale_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bb214d444717d57383bb87b12a4ee5b2",
+					"class": "K2Node_CallFunction",
+					"title": "Break Vector",
+					"x": 3280,
+					"y": 544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bb214d444717d57383bb87b12a4ee5b2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "bb214d444717d57383bb87b12a4ee5b2:i:InVec",
+							"name": "InVec",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"0a7a272e415902aa90e394b4a656a27c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "bb214d444717d57383bb87b12a4ee5b2:o:X",
+							"name": "X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9f02eb43420757aa2be5cc8798a809a5:i:A",
+								"b2b33f954d032ad3fdb71c8d69b075b1:i:A"
+							]
+						},
+						{
+							"id": "bb214d444717d57383bb87b12a4ee5b2:o:Y",
+							"name": "Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "bb214d444717d57383bb87b12a4ee5b2:o:Z",
+							"name": "Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b5d658c64b2368978e0ebfa4b72f9e32:i:A",
+								"ba9319a64d380845a2495a9325ce94b9:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bdb445904bf3b05c2e0f5bbbc6ca9b91",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2976,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bdb445904bf3b05c2e0f5bbbc6ca9b91:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"124860314a4e34d0d7e30587e0d2d90d:o:then"
+							]
+						},
+						{
+							"id": "bdb445904bf3b05c2e0f5bbbc6ca9b91:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3b9f9feb40b5aaa02a2cbcae239171e1:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c0c966104b56dfaaec768dbf1ae0943f",
+					"class": "K2Node_CallFunction",
+					"title": "Make Transform",
+					"x": 3728,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:Location",
+							"name": "Location",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:Location_X",
+							"name": "Location_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"9f02eb43420757aa2be5cc8798a809a5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:Location_Y",
+							"name": "Location_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:Location_Z",
+							"name": "Location_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b5d658c64b2368978e0ebfa4b72f9e32:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:Rotation",
+							"name": "Rotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:Scale",
+							"name": "Scale",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "1.000000,1.000000,1.000000",
+							"links": []
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:Scale_X",
+							"name": "Scale_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b2b33f954d032ad3fdb71c8d69b075b1:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:Scale_Y",
+							"name": "Scale_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"134ecde04a1edb66c89afda434b051db:o:Door Thickness"
+							]
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:i:Scale_Z",
+							"name": "Scale_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ba9319a64d380845a2495a9325ce94b9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c0c966104b56dfaaec768dbf1ae0943f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"3dcd9ccb4f5f732929c4c69cc8b42fda:i:RelativeTransform"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c17ed6994daf96642fe3fd885477ead9",
+					"class": "K2Node_CallFunction",
+					"title": "Vector Get Abs",
+					"x": 3234,
+					"y": 1399,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c17ed6994daf96642fe3fd885477ead9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "c17ed6994daf96642fe3fd885477ead9:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"67b51ae84cfeaf051d106d9eaff9cfb4:o:Door Size"
+							]
+						},
+						{
+							"id": "c17ed6994daf96642fe3fd885477ead9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"756b90fc4e9e207fd6afcabce886ffd7:i:InVec"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c1f3194546ac05f0846bed9a4992d203",
+					"class": "K2Node_CallFunction",
+					"title": "Break Vector",
+					"x": 1760,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c1f3194546ac05f0846bed9a4992d203:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "c1f3194546ac05f0846bed9a4992d203:i:InVec",
+							"name": "InVec",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"0e5e20e2444ec2c069422fa652e4229f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c1f3194546ac05f0846bed9a4992d203:o:X",
+							"name": "X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b741fd6044efe463d28da0bf3f7d9b6a:i:X"
+							]
+						},
+						{
+							"id": "c1f3194546ac05f0846bed9a4992d203:o:Y",
+							"name": "Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b741fd6044efe463d28da0bf3f7d9b6a:i:Y"
+							]
+						},
+						{
+							"id": "c1f3194546ac05f0846bed9a4992d203:o:Z",
+							"name": "Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"199950744ed54fa8447dc68fd4f5d3d9:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c6c7e9e647dc18528b58718d20332cb9",
+					"class": "K2Node_CallFunction",
+					"title": "Set Mesh",
+					"x": 4666,
+					"y": -798,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c6c7e9e647dc18528b58718d20332cb9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dcba4eb649d78d78118c758ba3584ef2:o:then"
+							]
+						},
+						{
+							"id": "c6c7e9e647dc18528b58718d20332cb9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"84adea494bb545440e20b1b7b73c3b97:i:execute"
+							]
+						},
+						{
+							"id": "c6c7e9e647dc18528b58718d20332cb9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c6c7e9e647dc18528b58718d20332cb9:i:NewMesh",
+							"name": "NewMesh",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMesh",
+							"defaultValue": "/Game/ProjectAtlantis/Placeables/Door/SM_DoorFrame_Edge.SM_DoorFrame_Edge",
+							"links": []
+						},
+						{
+							"id": "c6c7e9e647dc18528b58718d20332cb9:i:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"4fbe655a4cc996eb7d7af1b0aed39340:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c6c7e9e647dc18528b58718d20332cb9:i:Material",
+							"name": "Material",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"3899b44c4e69d4bf0a3db5a26a9b9135:o:Door Frame Overide Material"
+							]
+						},
+						{
+							"id": "c6c7e9e647dc18528b58718d20332cb9:i:NewMobility",
+							"name": "NewMobility",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EComponentMobility",
+							"defaultValue": "Static",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c763d85343ee1748e6a6efbf4bf99041",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 1792,
+					"y": -400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c763d85343ee1748e6a6efbf4bf99041:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"7b927ad6478b039fac6008a2f4fe59bf:o:Y"
+							]
+						},
+						{
+							"id": "c763d85343ee1748e6a6efbf4bf99041:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "100.000000",
+							"links": []
+						},
+						{
+							"id": "c763d85343ee1748e6a6efbf4bf99041:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"1e8187cc4f780bebb5f6ed82c0961127:i:Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c77f426d459f7bd7e57022bd70048eb1",
+					"class": "K2Node_PromotableOperator",
+					"title": "float - float",
+					"x": 3786,
+					"y": -846,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c77f426d459f7bd7e57022bd70048eb1:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ad80c8a840763ca194d0f4979db7a490:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c77f426d459f7bd7e57022bd70048eb1:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5547d5ff4802d1dddb171e8ff7ade48e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c77f426d459f7bd7e57022bd70048eb1:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"57e668c447e95eac4b1d5dbf7c09c2c5:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cc5dde214dd7d5afa66f14b702dc2f0d",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3974,
+					"y": -526,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cc5dde214dd7d5afa66f14b702dc2f0d:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"730311064465daf7bd7d0db30874829e:o:Door Size_Y"
+							]
+						},
+						{
+							"id": "cc5dde214dd7d5afa66f14b702dc2f0d:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "100.000000",
+							"links": []
+						},
+						{
+							"id": "cc5dde214dd7d5afa66f14b702dc2f0d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4fbe655a4cc996eb7d7af1b0aed39340:i:Scale_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cdf12d204f250461a9ff369e10e59443",
+					"class": "K2Node_VariableGet",
+					"title": "Get Box",
+					"x": 1808,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cdf12d204f250461a9ff369e10e59443:o:Box",
+							"name": "Box",
+							"direction": "output",
+							"type": "object:/Script/Engine.BoxComponent",
+							"defaultValue": null,
+							"links": [
+								"6023cca640350f75095d3b8568dc1ed7:i:self",
+								"f3472f694d516edc5f8c818e1ad6c031:i:self"
+							]
+						},
+						{
+							"id": "cdf12d204f250461a9ff369e10e59443:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d39118c64ee2be8a46f270aff5245a42",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1040,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d39118c64ee2be8a46f270aff5245a42:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35a898ef49cc2cc35535f9aaf59e1e8e:o:then_1"
+							]
+						},
+						{
+							"id": "d39118c64ee2be8a46f270aff5245a42:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"a8549527456d35976e5b1ab2cbae6efd:o:Add Door"
+							]
+						},
+						{
+							"id": "d39118c64ee2be8a46f270aff5245a42:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6023cca640350f75095d3b8568dc1ed7:i:execute"
+							]
+						},
+						{
+							"id": "d39118c64ee2be8a46f270aff5245a42:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b4acd1ee45f961ffccd1c5b0d4437915:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d453bd314892bdda691137bc3c1296a5",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame",
+					"x": 1085,
+					"y": -972,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d453bd314892bdda691137bc3c1296a5:o:Door Frame",
+							"name": "Door Frame",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f95087524dccd37acdd125b597ad0682:i:Condition"
+							]
+						},
+						{
+							"id": "d453bd314892bdda691137bc3c1296a5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d6ac4a6e4315bd7a61c9f2beeab50b7c",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 3978,
+					"y": -254,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d6ac4a6e4315bd7a61c9f2beeab50b7c:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"669bb13047651bd0e85f9a98699d652c:o:Door Size_X"
+							]
+						},
+						{
+							"id": "d6ac4a6e4315bd7a61c9f2beeab50b7c:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-1.000000",
+							"links": []
+						},
+						{
+							"id": "d6ac4a6e4315bd7a61c9f2beeab50b7c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"01dd5e95440d410bf997d5ad86bad9e9:i:Location_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d865094249f23264659e128f647253d6",
+					"class": "K2Node_CallFunction",
+					"title": "Set Mesh",
+					"x": 2816,
+					"y": -800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d865094249f23264659e128f647253d6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4e753e06495034b461c4b791c6e014d0:o:then"
+							]
+						},
+						{
+							"id": "d865094249f23264659e128f647253d6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"244d20ea4343d97f1581e39bcdc298d9:i:InputPin"
+							]
+						},
+						{
+							"id": "d865094249f23264659e128f647253d6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d865094249f23264659e128f647253d6:i:NewMesh",
+							"name": "NewMesh",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMesh",
+							"defaultValue": "/Game/ProjectAtlantis/Placeables/Door/SM_DoorFrame_Corner.SM_DoorFrame_Corner",
+							"links": []
+						},
+						{
+							"id": "d865094249f23264659e128f647253d6:i:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"1343235d44d7e0186cf186a75270d43d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d865094249f23264659e128f647253d6:i:Material",
+							"name": "Material",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"5a23f49c4f92f4716e477fa20d891555:o:Door Frame Overide Material"
+							]
+						},
+						{
+							"id": "d865094249f23264659e128f647253d6:i:NewMobility",
+							"name": "NewMobility",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EComponentMobility",
+							"defaultValue": "Static",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "da36ef464ba15dff4f0013a5707cfe8a",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 3969,
+					"y": -94,
+					"comment": null,
+					"pins": [
+						{
+							"id": "da36ef464ba15dff4f0013a5707cfe8a:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4491d82a4d1512ce3b3d0ab274c48354:o:ReturnValue"
+							]
+						},
+						{
+							"id": "da36ef464ba15dff4f0013a5707cfe8a:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "200.000000",
+							"links": []
+						},
+						{
+							"id": "da36ef464ba15dff4f0013a5707cfe8a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"01dd5e95440d410bf997d5ad86bad9e9:i:Scale_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dcba4eb649d78d78118c758ba3584ef2",
+					"class": "K2Node_CallFunction",
+					"title": "Set Mesh",
+					"x": 4666,
+					"y": -1102,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dcba4eb649d78d78118c758ba3584ef2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"50946f2e45fd5efec58fa0843323bb61:o:OutputPin"
+							]
+						},
+						{
+							"id": "dcba4eb649d78d78118c758ba3584ef2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c6c7e9e647dc18528b58718d20332cb9:i:execute"
+							]
+						},
+						{
+							"id": "dcba4eb649d78d78118c758ba3584ef2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "dcba4eb649d78d78118c758ba3584ef2:i:NewMesh",
+							"name": "NewMesh",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMesh",
+							"defaultValue": "/Game/ProjectAtlantis/Placeables/Door/SM_DoorFrame_Edge.SM_DoorFrame_Edge",
+							"links": []
+						},
+						{
+							"id": "dcba4eb649d78d78118c758ba3584ef2:i:RelativeTransform",
+							"name": "RelativeTransform",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Transform",
+							"defaultValue": null,
+							"links": [
+								"aacd76fc44b2f703bcf187a74e0704a5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "dcba4eb649d78d78118c758ba3584ef2:i:Material",
+							"name": "Material",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"3899b44c4e69d4bf0a3db5a26a9b9135:o:Door Frame Overide Material"
+							]
+						},
+						{
+							"id": "dcba4eb649d78d78118c758ba3584ef2:i:NewMobility",
+							"name": "NewMobility",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EComponentMobility",
+							"defaultValue": "Static",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e705b5074fe8989d720d85b96ce00dca",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door Frame Scale",
+					"x": 3994,
+					"y": -302,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e705b5074fe8989d720d85b96ce00dca:o:Door Frame Scale",
+							"name": "Door Frame Scale",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4fbe655a4cc996eb7d7af1b0aed39340:i:Scale_Z"
+							]
+						},
+						{
+							"id": "e705b5074fe8989d720d85b96ce00dca:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "edf2dc1240a65e6853cc949c057ea2b1",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2976,
+					"y": 720,
+					"comment": null,
+					"pins": [
+						{
+							"id": "edf2dc1240a65e6853cc949c057ea2b1:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"124860314a4e34d0d7e30587e0d2d90d:o:else"
+							]
+						},
+						{
+							"id": "edf2dc1240a65e6853cc949c057ea2b1:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"12a7ddf7415afa7d7f3f5ea359b1b8d4:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f3472f694d516edc5f8c818e1ad6c031",
+					"class": "K2Node_CallFunction",
+					"title": "Set Relative Location",
+					"x": 2080,
+					"y": 640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6023cca640350f75095d3b8568dc1ed7:o:then"
+							]
+						},
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"124860314a4e34d0d7e30587e0d2d90d:i:execute"
+							]
+						},
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SceneComponent",
+							"defaultValue": null,
+							"links": [
+								"cdf12d204f250461a9ff369e10e59443:o:Box"
+							]
+						},
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:i:NewLocation",
+							"name": "NewLocation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:i:NewLocation_X",
+							"name": "NewLocation_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:i:NewLocation_Y",
+							"name": "NewLocation_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:i:NewLocation_Z",
+							"name": "NewLocation_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"199950744ed54fa8447dc68fd4f5d3d9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:i:bSweep",
+							"name": "bSweep",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:o:SweepHitResult",
+							"name": "SweepHitResult",
+							"direction": "output",
+							"type": "struct:/Script/Engine.HitResult",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f3472f694d516edc5f8c818e1ad6c031:i:bTeleport",
+							"name": "bTeleport",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f95087524dccd37acdd125b597ad0682",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1085,
+					"y": -1084,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f95087524dccd37acdd125b597ad0682:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35a898ef49cc2cc35535f9aaf59e1e8e:o:then_0"
+							]
+						},
+						{
+							"id": "f95087524dccd37acdd125b597ad0682:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d453bd314892bdda691137bc3c1296a5:o:Door Frame"
+							]
+						},
+						{
+							"id": "f95087524dccd37acdd125b597ad0682:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"342feea449e8940ade483f90304999aa:i:InputPin"
+							]
+						},
+						{
+							"id": "f95087524dccd37acdd125b597ad0682:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "fd93423e4d615e7874560cb862fad44b",
+					"class": "K2Node_VariableSet",
+					"title": "Set Door2",
+					"x": 4592,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fd93423e4d615e7874560cb862fad44b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"87771a4547af4f61475cc1873ecf799c:o:then"
+							]
+						},
+						{
+							"id": "fd93423e4d615e7874560cb862fad44b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fd93423e4d615e7874560cb862fad44b:i:Door2",
+							"name": "Door2",
+							"direction": "input",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"87771a4547af4f61475cc1873ecf799c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fd93423e4d615e7874560cb862fad44b:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fd93423e4d615e7874560cb862fad44b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "071382894ccf20025e81548e5909d3ea",
+					"text": "Should we create two doors that part or a single door that drops",
+					"x": 2480,
+					"y": 544,
+					"width": 544,
+					"height": 320
+				},
+				{
+					"guid": "162bc690418f5df9ea5d69a169f47963",
+					"text": "Create two meshes to use as a door.",
+					"x": 3184,
+					"y": 192,
+					"width": 1582,
+					"height": 667
+				},
+				{
+					"guid": "1874e2de4e69084d9c532fabe96e7000",
+					"text": "Set Bounds for box detection",
+					"x": 1360,
+					"y": 576,
+					"width": 1073,
+					"height": 586
+				},
+				{
+					"guid": "4defdd4247f58e74050cc0ab985e9793",
+					"text": "Draw Door Frame?",
+					"x": 1024,
+					"y": -1168,
+					"width": 304,
+					"height": 880
+				},
+				{
+					"guid": "5041f9f44ddbeff9b406f7bc5b77349c",
+					"text": "Create a single mesh to use as a door.",
+					"x": 3184,
+					"y": 864,
+					"width": 1014,
+					"height": 688
+				},
+				{
+					"guid": "6efa06034a3bef052396e8b3564385f8",
+					"text": "Get Door Size Vector (Exposed to viewport) and set corner meshes to each it's position and the inverse position.",
+					"x": 1353,
+					"y": -933,
+					"width": 1248,
+					"height": 640
+				},
+				{
+					"guid": "7b2677b54f81da9ca272d3b532654546",
+					"text": "Find mid point between corners and place edge mesh. Stretch to fit.",
+					"x": 3210,
+					"y": -1054,
+					"width": 1331,
+					"height": 411
+				},
+				{
+					"guid": "824cb82c4f087026630df8b00938999e",
+					"text": "Place Corner Meshes",
+					"x": 1344,
+					"y": -1168,
+					"width": 1798,
+					"height": 876
+				},
+				{
+					"guid": "a2ef14b04c8fa25c5ebe85869a446e19",
+					"text": "Draw Door Mesh",
+					"x": 976,
+					"y": 592,
+					"width": 278,
+					"height": 250
+				},
+				{
+					"guid": "ef6ed32c4e2ec8ea814146a60c62e9ba",
+					"text": "Place Edge Meshes",
+					"x": 3168,
+					"y": -1168,
+					"width": 1824,
+					"height": 1312
+				},
+				{
+					"guid": "fa46909d4132463e676e18af3d5f0dc4",
+					"text": "Logic assumes mesh is a fixed size. Use the same size with your own meshes or update the scale accordingly.",
+					"x": 1344,
+					"y": -1296,
+					"width": 1136,
+					"height": 112
+				},
+				{
+					"guid": "fbc700f34e1c50c23714318e98705ef6",
+					"text": "Find mid point between door size and floor for each corner. Stretch the edge mesh to fit",
+					"x": 3216,
+					"y": -627,
+					"width": 1344,
+					"height": 752
+				}
+			]
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "004b03794f632a389e2a52b9cf2f1871",
+					"class": "K2Node_VariableSet",
+					"title": "Set Closed Position",
+					"x": 240,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "004b03794f632a389e2a52b9cf2f1871:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9f78709f4fd64c1f84a0e8b28738a8df:o:then"
+							]
+						},
+						{
+							"id": "004b03794f632a389e2a52b9cf2f1871:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5689b8914149f839163f9880e1de9830:i:execute"
+							]
+						},
+						{
+							"id": "004b03794f632a389e2a52b9cf2f1871:i:Closed Position",
+							"name": "Closed Position",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"1d8579f7450df656a1dc4fa33d3c019f:o:RelativeLocation"
+							]
+						},
+						{
+							"id": "004b03794f632a389e2a52b9cf2f1871:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "004b03794f632a389e2a52b9cf2f1871:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0286bfe44e5f7cb847b250aa36e6df62",
+					"class": "K2Node_VariableGet",
+					"title": "Get RelativeLocation",
+					"x": 736,
+					"y": -96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0286bfe44e5f7cb847b250aa36e6df62:o:RelativeLocation",
+							"name": "RelativeLocation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"3010e9b5447c5d37f2d70cbd1f1f6b3e:i:Closed Position_0"
+							]
+						},
+						{
+							"id": "0286bfe44e5f7cb847b250aa36e6df62:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SceneComponent",
+							"defaultValue": null,
+							"links": [
+								"5689b8914149f839163f9880e1de9830:o:Door2"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0318b0fc446353e334b2b282c1a20b50",
+					"class": "K2Node_Event",
+					"title": "Event ActorEndOverlap",
+					"x": -336,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0318b0fc446353e334b2b282c1a20b50:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0318b0fc446353e334b2b282c1a20b50:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f92a66af466970296880e4b00bbe1cad:i:execute"
+							]
+						},
+						{
+							"id": "0318b0fc446353e334b2b282c1a20b50:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0ba4291847f00529155b13bbe21b65b1",
+					"class": "K2Node_CallFunction",
+					"title": "Lerp",
+					"x": 1472,
+					"y": 350,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0ba4291847f00529155b13bbe21b65b1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "0ba4291847f00529155b13bbe21b65b1:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"51da78f94f09ab796bc655ab4a5e1f2b:o:Closed Position_Z"
+							]
+						},
+						{
+							"id": "0ba4291847f00529155b13bbe21b65b1:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"78764a0c4324df9cd8186bb89434cc0f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0ba4291847f00529155b13bbe21b65b1:i:Alpha",
+							"name": "Alpha",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"df9163b64c036208213f45886f41016b:o:NewTrack_0"
+							]
+						},
+						{
+							"id": "0ba4291847f00529155b13bbe21b65b1:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"add36aad442a557755bf54af694f38be:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0bb37a7441202f7e8f39388e63a2ee89",
+					"class": "K2Node_CustomEvent",
+					"title": "Close Door",
+					"x": 672,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0bb37a7441202f7e8f39388e63a2ee89:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0bb37a7441202f7e8f39388e63a2ee89:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"df9163b64c036208213f45886f41016b:i:Reverse"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1d8579f7450df656a1dc4fa33d3c019f",
+					"class": "K2Node_VariableGet",
+					"title": "Get RelativeLocation",
+					"x": 208,
+					"y": -80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1d8579f7450df656a1dc4fa33d3c019f:o:RelativeLocation",
+							"name": "RelativeLocation",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"004b03794f632a389e2a52b9cf2f1871:i:Closed Position"
+							]
+						},
+						{
+							"id": "1d8579f7450df656a1dc4fa33d3c019f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SceneComponent",
+							"defaultValue": null,
+							"links": [
+								"9f78709f4fd64c1f84a0e8b28738a8df:o:Door"
+							]
+						}
+					]
+				},
+				{
+					"guid": "22180a46440a1637c201349b46b20584",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 2608,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "22180a46440a1637c201349b46b20584:o:Closed Position",
+							"name": "Closed Position",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "22180a46440a1637c201349b46b20584:o:Closed Position_X",
+							"name": "Closed Position_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "22180a46440a1637c201349b46b20584:o:Closed Position_Y",
+							"name": "Closed Position_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ec3d102d4c330fb618ad838042d31776:i:NewLocation_Y"
+							]
+						},
+						{
+							"id": "22180a46440a1637c201349b46b20584:o:Closed Position_Z",
+							"name": "Closed Position_Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ec3d102d4c330fb618ad838042d31776:i:NewLocation_Z"
+							]
+						},
+						{
+							"id": "22180a46440a1637c201349b46b20584:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "26116952412956c5fdd3968a6d3dd4ca",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 938,
+					"y": 525,
+					"comment": null,
+					"pins": [
+						{
+							"id": "26116952412956c5fdd3968a6d3dd4ca:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4ff108654ab43a2df66ef89d3089de99:o:Door Size_Z"
+							]
+						},
+						{
+							"id": "26116952412956c5fdd3968a6d3dd4ca:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-0.500000",
+							"links": []
+						},
+						{
+							"id": "26116952412956c5fdd3968a6d3dd4ca:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"78764a0c4324df9cd8186bb89434cc0f:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "26d868a14402f1eba75252aeaccea2df",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 2400,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "26d868a14402f1eba75252aeaccea2df:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cbc92cd449b7ff325484cabc2f821f13:o:then"
+							]
+						},
+						{
+							"id": "26d868a14402f1eba75252aeaccea2df:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ec3d102d4c330fb618ad838042d31776:i:execute"
+							]
+						},
+						{
+							"id": "26d868a14402f1eba75252aeaccea2df:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "26d868a14402f1eba75252aeaccea2df:o:Door2",
+							"name": "Door2",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"ec3d102d4c330fb618ad838042d31776:i:self"
+							]
+						},
+						{
+							"id": "26d868a14402f1eba75252aeaccea2df:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2e31ce0e42561819440fd680db044071",
+					"class": "K2Node_VariableGet",
+					"title": "Get Split Door",
+					"x": 1791,
+					"y": 448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2e31ce0e42561819440fd680db044071:o:Split Door",
+							"name": "Split Door",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"add36aad442a557755bf54af694f38be:i:bPickA",
+								"fe13469f40015ba33a5758adb6ab372f:i:bPickA"
+							]
+						},
+						{
+							"id": "2e31ce0e42561819440fd680db044071:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3010e9b5447c5d37f2d70cbd1f1f6b3e",
+					"class": "K2Node_VariableSet",
+					"title": "Set Closed Position_0",
+					"x": 784,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3010e9b5447c5d37f2d70cbd1f1f6b3e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5689b8914149f839163f9880e1de9830:o:then"
+							]
+						},
+						{
+							"id": "3010e9b5447c5d37f2d70cbd1f1f6b3e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3010e9b5447c5d37f2d70cbd1f1f6b3e:i:Closed Position_0",
+							"name": "Closed Position_0",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"0286bfe44e5f7cb847b250aa36e6df62:o:RelativeLocation"
+							]
+						},
+						{
+							"id": "3010e9b5447c5d37f2d70cbd1f1f6b3e:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "3010e9b5447c5d37f2d70cbd1f1f6b3e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "33719744422bed36930d85ae73b86ac4",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1792,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "33719744422bed36930d85ae73b86ac4:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"df9163b64c036208213f45886f41016b:o:NewTrack_0"
+							]
+						},
+						{
+							"id": "33719744422bed36930d85ae73b86ac4:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"ff0941e646a8b52468f335b18db1c666:i:Alpha"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3c193ac342bf178c062bff84fbbfc5ed",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 944,
+					"y": 445,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3c193ac342bf178c062bff84fbbfc5ed:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4ff108654ab43a2df66ef89d3089de99:o:Door Size_X"
+							]
+						},
+						{
+							"id": "3c193ac342bf178c062bff84fbbfc5ed:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.500000",
+							"links": []
+						},
+						{
+							"id": "3c193ac342bf178c062bff84fbbfc5ed:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"769834ae4d7cc15bbf5daca0af34cc71:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "47469ed54d71e6ea76436d99d8285e35",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Length",
+					"x": -192,
+					"y": 547,
+					"comment": null,
+					"pins": [
+						{
+							"id": "47469ed54d71e6ea76436d99d8285e35:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "47469ed54d71e6ea76436d99d8285e35:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor[]",
+							"defaultValue": null,
+							"links": [
+								"edec52254f254fb7c291a8adf8e3fc5d:o:OverlappingActors"
+							]
+						},
+						{
+							"id": "47469ed54d71e6ea76436d99d8285e35:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"71a769674ad9ef672a2402b19680a446:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4ff108654ab43a2df66ef89d3089de99",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 746,
+					"y": 464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4ff108654ab43a2df66ef89d3089de99:o:Door Size",
+							"name": "Door Size",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "4ff108654ab43a2df66ef89d3089de99:o:Door Size_X",
+							"name": "Door Size_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3c193ac342bf178c062bff84fbbfc5ed:i:A"
+							]
+						},
+						{
+							"id": "4ff108654ab43a2df66ef89d3089de99:o:Door Size_Y",
+							"name": "Door Size_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "4ff108654ab43a2df66ef89d3089de99:o:Door Size_Z",
+							"name": "Door Size_Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"26116952412956c5fdd3968a6d3dd4ca:i:A"
+							]
+						},
+						{
+							"id": "4ff108654ab43a2df66ef89d3089de99:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "51da78f94f09ab796bc655ab4a5e1f2b",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 1344,
+					"y": 183,
+					"comment": null,
+					"pins": [
+						{
+							"id": "51da78f94f09ab796bc655ab4a5e1f2b:o:Closed Position",
+							"name": "Closed Position",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "51da78f94f09ab796bc655ab4a5e1f2b:o:Closed Position_X",
+							"name": "Closed Position_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e26dcfa548843af90db03bb68992ad68:i:A"
+							]
+						},
+						{
+							"id": "51da78f94f09ab796bc655ab4a5e1f2b:o:Closed Position_Y",
+							"name": "Closed Position_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"cbc92cd449b7ff325484cabc2f821f13:i:NewLocation_Y"
+							]
+						},
+						{
+							"id": "51da78f94f09ab796bc655ab4a5e1f2b:o:Closed Position_Z",
+							"name": "Closed Position_Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0ba4291847f00529155b13bbe21b65b1:i:A",
+								"add36aad442a557755bf54af694f38be:i:A"
+							]
+						},
+						{
+							"id": "51da78f94f09ab796bc655ab4a5e1f2b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "55deb9744f7af19fe35c6da12e92070d",
+					"class": "K2Node_VariableGet",
+					"title": "Get Box",
+					"x": -656,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "55deb9744f7af19fe35c6da12e92070d:o:Box",
+							"name": "Box",
+							"direction": "output",
+							"type": "object:/Script/Engine.BoxComponent",
+							"defaultValue": null,
+							"links": [
+								"edec52254f254fb7c291a8adf8e3fc5d:i:self"
+							]
+						},
+						{
+							"id": "55deb9744f7af19fe35c6da12e92070d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5689b8914149f839163f9880e1de9830",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 560,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5689b8914149f839163f9880e1de9830:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"004b03794f632a389e2a52b9cf2f1871:o:then"
+							]
+						},
+						{
+							"id": "5689b8914149f839163f9880e1de9830:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3010e9b5447c5d37f2d70cbd1f1f6b3e:i:execute"
+							]
+						},
+						{
+							"id": "5689b8914149f839163f9880e1de9830:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5689b8914149f839163f9880e1de9830:o:Door2",
+							"name": "Door2",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"0286bfe44e5f7cb847b250aa36e6df62:i:self"
+							]
+						},
+						{
+							"id": "5689b8914149f839163f9880e1de9830:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5e7157a542f3049f534c80a79c5d83df",
+					"class": "K2Node_CallFunction",
+					"title": "Open Door",
+					"x": 176,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5e7157a542f3049f534c80a79c5d83df:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ed8b35b14795d4c31ef7d79dafeb12c4:o:then"
+							]
+						},
+						{
+							"id": "5e7157a542f3049f534c80a79c5d83df:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5e7157a542f3049f534c80a79c5d83df:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6ab508aa4224e2bfa1a869a1188e6b52",
+					"class": "K2Node_CallFunction",
+					"title": "Close Door",
+					"x": 240,
+					"y": 400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6ab508aa4224e2bfa1a869a1188e6b52:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f92a66af466970296880e4b00bbe1cad:o:then"
+							]
+						},
+						{
+							"id": "6ab508aa4224e2bfa1a869a1188e6b52:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6ab508aa4224e2bfa1a869a1188e6b52:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "71a769674ad9ef672a2402b19680a446",
+					"class": "K2Node_PromotableOperator",
+					"title": "Equal (Integer)",
+					"x": 32,
+					"y": 567,
+					"comment": null,
+					"pins": [
+						{
+							"id": "71a769674ad9ef672a2402b19680a446:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"47469ed54d71e6ea76436d99d8285e35:o:ReturnValue"
+							]
+						},
+						{
+							"id": "71a769674ad9ef672a2402b19680a446:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "71a769674ad9ef672a2402b19680a446:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f92a66af466970296880e4b00bbe1cad:i:Condition"
+							]
+						},
+						{
+							"id": "71a769674ad9ef672a2402b19680a446:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "769834ae4d7cc15bbf5daca0af34cc71",
+					"class": "K2Node_PromotableOperator",
+					"title": "float + float",
+					"x": 1136,
+					"y": 448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "769834ae4d7cc15bbf5daca0af34cc71:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3c193ac342bf178c062bff84fbbfc5ed:o:ReturnValue"
+							]
+						},
+						{
+							"id": "769834ae4d7cc15bbf5daca0af34cc71:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-10.000000",
+							"links": []
+						},
+						{
+							"id": "769834ae4d7cc15bbf5daca0af34cc71:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b1f4117e47a7485383a71b9054a8cabe:i:A",
+								"e26dcfa548843af90db03bb68992ad68:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "78764a0c4324df9cd8186bb89434cc0f",
+					"class": "K2Node_PromotableOperator",
+					"title": "float + float",
+					"x": 1152,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "78764a0c4324df9cd8186bb89434cc0f:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"26116952412956c5fdd3968a6d3dd4ca:o:ReturnValue"
+							]
+						},
+						{
+							"id": "78764a0c4324df9cd8186bb89434cc0f:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "5.000000",
+							"links": []
+						},
+						{
+							"id": "78764a0c4324df9cd8186bb89434cc0f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0ba4291847f00529155b13bbe21b65b1:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9f78709f4fd64c1f84a0e8b28738a8df",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 32,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9f78709f4fd64c1f84a0e8b28738a8df:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e81d09fa4d12ad8f50eef9a3656a3095:o:then"
+							]
+						},
+						{
+							"id": "9f78709f4fd64c1f84a0e8b28738a8df:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"004b03794f632a389e2a52b9cf2f1871:i:execute"
+							]
+						},
+						{
+							"id": "9f78709f4fd64c1f84a0e8b28738a8df:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9f78709f4fd64c1f84a0e8b28738a8df:o:Door",
+							"name": "Door",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"1d8579f7450df656a1dc4fa33d3c019f:i:self"
+							]
+						},
+						{
+							"id": "9f78709f4fd64c1f84a0e8b28738a8df:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ac5d070542bd9b57b1ebb89d688a9d8e",
+					"class": "K2Node_VariableGet",
+					"title": "Get Door",
+					"x": 2000,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ac5d070542bd9b57b1ebb89d688a9d8e:o:Door",
+							"name": "Door",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"cbc92cd449b7ff325484cabc2f821f13:i:self"
+							]
+						},
+						{
+							"id": "ac5d070542bd9b57b1ebb89d688a9d8e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "add36aad442a557755bf54af694f38be",
+					"class": "K2Node_CallFunction",
+					"title": "Select Float",
+					"x": 1713,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "add36aad442a557755bf54af694f38be:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "add36aad442a557755bf54af694f38be:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"51da78f94f09ab796bc655ab4a5e1f2b:o:Closed Position_Z"
+							]
+						},
+						{
+							"id": "add36aad442a557755bf54af694f38be:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0ba4291847f00529155b13bbe21b65b1:o:ReturnValue"
+							]
+						},
+						{
+							"id": "add36aad442a557755bf54af694f38be:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2e31ce0e42561819440fd680db044071:o:Split Door"
+							]
+						},
+						{
+							"id": "add36aad442a557755bf54af694f38be:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"cbc92cd449b7ff325484cabc2f821f13:i:NewLocation_Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b1f4117e47a7485383a71b9054a8cabe",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 1982,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b1f4117e47a7485383a71b9054a8cabe:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"769834ae4d7cc15bbf5daca0af34cc71:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b1f4117e47a7485383a71b9054a8cabe:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-1.000000",
+							"links": []
+						},
+						{
+							"id": "b1f4117e47a7485383a71b9054a8cabe:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ff0941e646a8b52468f335b18db1c666:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cbc92cd449b7ff325484cabc2f821f13",
+					"class": "K2Node_CallFunction",
+					"title": "Set Relative Location",
+					"x": 2016,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"df9163b64c036208213f45886f41016b:o:Update"
+							]
+						},
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"26d868a14402f1eba75252aeaccea2df:i:execute"
+							]
+						},
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SceneComponent",
+							"defaultValue": null,
+							"links": [
+								"ac5d070542bd9b57b1ebb89d688a9d8e:o:Door"
+							]
+						},
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:i:NewLocation",
+							"name": "NewLocation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:i:NewLocation_X",
+							"name": "NewLocation_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"fe13469f40015ba33a5758adb6ab372f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:i:NewLocation_Y",
+							"name": "NewLocation_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"51da78f94f09ab796bc655ab4a5e1f2b:o:Closed Position_Y"
+							]
+						},
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:i:NewLocation_Z",
+							"name": "NewLocation_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"add36aad442a557755bf54af694f38be:o:ReturnValue"
+							]
+						},
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:i:bSweep",
+							"name": "bSweep",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:o:SweepHitResult",
+							"name": "SweepHitResult",
+							"direction": "output",
+							"type": "struct:/Script/Engine.HitResult",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cbc92cd449b7ff325484cabc2f821f13:i:bTeleport",
+							"name": "bTeleport",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "df9163b64c036208213f45886f41016b",
+					"class": "K2Node_Timeline",
+					"title": "Door Control",
+					"x": 1024,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "df9163b64c036208213f45886f41016b:i:Play",
+							"name": "Play",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fe9d60dc48026c19f64751988bb41c69:o:then"
+							]
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:i:PlayFromStart",
+							"name": "PlayFromStart",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:i:Stop",
+							"name": "Stop",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:i:Reverse",
+							"name": "Reverse",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0bb37a7441202f7e8f39388e63a2ee89:o:then"
+							]
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:i:ReverseFromEnd",
+							"name": "ReverseFromEnd",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:o:Update",
+							"name": "Update",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cbc92cd449b7ff325484cabc2f821f13:i:execute"
+							]
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:o:Finished",
+							"name": "Finished",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:i:SetNewTime",
+							"name": "SetNewTime",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:i:NewTime",
+							"name": "NewTime",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:o:Direction",
+							"name": "Direction",
+							"direction": "output",
+							"type": "byte:/Script/Engine.ETimelineDirection",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "df9163b64c036208213f45886f41016b:o:NewTrack_0",
+							"name": "NewTrack_0",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"0ba4291847f00529155b13bbe21b65b1:i:Alpha",
+								"33719744422bed36930d85ae73b86ac4:i:InputPin",
+								"e26dcfa548843af90db03bb68992ad68:i:Alpha"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e26dcfa548843af90db03bb68992ad68",
+					"class": "K2Node_CallFunction",
+					"title": "Lerp",
+					"x": 1520,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e26dcfa548843af90db03bb68992ad68:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "e26dcfa548843af90db03bb68992ad68:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"51da78f94f09ab796bc655ab4a5e1f2b:o:Closed Position_X"
+							]
+						},
+						{
+							"id": "e26dcfa548843af90db03bb68992ad68:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"769834ae4d7cc15bbf5daca0af34cc71:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e26dcfa548843af90db03bb68992ad68:i:Alpha",
+							"name": "Alpha",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"df9163b64c036208213f45886f41016b:o:NewTrack_0"
+							]
+						},
+						{
+							"id": "e26dcfa548843af90db03bb68992ad68:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"fe13469f40015ba33a5758adb6ab372f:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e81d09fa4d12ad8f50eef9a3656a3095",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": -240,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e81d09fa4d12ad8f50eef9a3656a3095:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e81d09fa4d12ad8f50eef9a3656a3095:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9f78709f4fd64c1f84a0e8b28738a8df:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ec3d102d4c330fb618ad838042d31776",
+					"class": "K2Node_CallFunction",
+					"title": "Set Relative Location",
+					"x": 2608,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"26d868a14402f1eba75252aeaccea2df:o:then"
+							]
+						},
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SceneComponent",
+							"defaultValue": null,
+							"links": [
+								"26d868a14402f1eba75252aeaccea2df:o:Door2"
+							]
+						},
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:i:NewLocation",
+							"name": "NewLocation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:i:NewLocation_X",
+							"name": "NewLocation_X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ff0941e646a8b52468f335b18db1c666:o:ReturnValue"
+							]
+						},
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:i:NewLocation_Y",
+							"name": "NewLocation_Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"22180a46440a1637c201349b46b20584:o:Closed Position_Y"
+							]
+						},
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:i:NewLocation_Z",
+							"name": "NewLocation_Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"22180a46440a1637c201349b46b20584:o:Closed Position_Z"
+							]
+						},
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:i:bSweep",
+							"name": "bSweep",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:o:SweepHitResult",
+							"name": "SweepHitResult",
+							"direction": "output",
+							"type": "struct:/Script/Engine.HitResult",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ec3d102d4c330fb618ad838042d31776:i:bTeleport",
+							"name": "bTeleport",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ed8b35b14795d4c31ef7d79dafeb12c4",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": -96,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ed8b35b14795d4c31ef7d79dafeb12c4:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ed8b35b14795d4c31ef7d79dafeb12c4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5e7157a542f3049f534c80a79c5d83df:i:execute"
+							]
+						},
+						{
+							"id": "ed8b35b14795d4c31ef7d79dafeb12c4:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "edec52254f254fb7c291a8adf8e3fc5d",
+					"class": "K2Node_CallFunction",
+					"title": "Get Overlapping Actors",
+					"x": -528,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "edec52254f254fb7c291a8adf8e3fc5d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": [
+								"55deb9744f7af19fe35c6da12e92070d:o:Box"
+							]
+						},
+						{
+							"id": "edec52254f254fb7c291a8adf8e3fc5d:o:OverlappingActors",
+							"name": "OverlappingActors",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor[]",
+							"defaultValue": null,
+							"links": [
+								"47469ed54d71e6ea76436d99d8285e35:i:TargetArray"
+							]
+						},
+						{
+							"id": "edec52254f254fb7c291a8adf8e3fc5d:i:ClassFilter",
+							"name": "ClassFilter",
+							"direction": "input",
+							"type": "class:/Script/Engine.Actor",
+							"defaultValue": "/Script/Engine.Character",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f4919eb94a6ea9d49dce2480bca2252a",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 1984,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f4919eb94a6ea9d49dce2480bca2252a:o:Closed Position_0",
+							"name": "Closed Position_0",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": "0, 0, 0",
+							"links": []
+						},
+						{
+							"id": "f4919eb94a6ea9d49dce2480bca2252a:o:Closed Position_0_X",
+							"name": "Closed Position_0_X",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ff0941e646a8b52468f335b18db1c666:i:A"
+							]
+						},
+						{
+							"id": "f4919eb94a6ea9d49dce2480bca2252a:o:Closed Position_0_Y",
+							"name": "Closed Position_0_Y",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "f4919eb94a6ea9d49dce2480bca2252a:o:Closed Position_0_Z",
+							"name": "Closed Position_0_Z",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "f4919eb94a6ea9d49dce2480bca2252a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f92a66af466970296880e4b00bbe1cad",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 16,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f92a66af466970296880e4b00bbe1cad:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0318b0fc446353e334b2b282c1a20b50:o:then"
+							]
+						},
+						{
+							"id": "f92a66af466970296880e4b00bbe1cad:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"71a769674ad9ef672a2402b19680a446:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f92a66af466970296880e4b00bbe1cad:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6ab508aa4224e2bfa1a869a1188e6b52:i:execute"
+							]
+						},
+						{
+							"id": "f92a66af466970296880e4b00bbe1cad:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "fe13469f40015ba33a5758adb6ab372f",
+					"class": "K2Node_CallFunction",
+					"title": "Select Float",
+					"x": 1760,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fe13469f40015ba33a5758adb6ab372f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "fe13469f40015ba33a5758adb6ab372f:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e26dcfa548843af90db03bb68992ad68:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fe13469f40015ba33a5758adb6ab372f:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "fe13469f40015ba33a5758adb6ab372f:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2e31ce0e42561819440fd680db044071:o:Split Door"
+							]
+						},
+						{
+							"id": "fe13469f40015ba33a5758adb6ab372f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"cbc92cd449b7ff325484cabc2f821f13:i:NewLocation_X"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fe9d60dc48026c19f64751988bb41c69",
+					"class": "K2Node_CustomEvent",
+					"title": "Open Door",
+					"x": 672,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fe9d60dc48026c19f64751988bb41c69:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fe9d60dc48026c19f64751988bb41c69:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"df9163b64c036208213f45886f41016b:i:Play"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ff0941e646a8b52468f335b18db1c666",
+					"class": "K2Node_CallFunction",
+					"title": "Lerp",
+					"x": 2192,
+					"y": 512,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ff0941e646a8b52468f335b18db1c666:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "ff0941e646a8b52468f335b18db1c666:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"f4919eb94a6ea9d49dce2480bca2252a:o:Closed Position_0_X"
+							]
+						},
+						{
+							"id": "ff0941e646a8b52468f335b18db1c666:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b1f4117e47a7485383a71b9054a8cabe:o:ReturnValue"
+							]
+						},
+						{
+							"id": "ff0941e646a8b52468f335b18db1c666:i:Alpha",
+							"name": "Alpha",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"33719744422bed36930d85ae73b86ac4:o:OutputPin"
+							]
+						},
+						{
+							"id": "ff0941e646a8b52468f335b18db1c666:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ec3d102d4c330fb618ad838042d31776:i:NewLocation_X"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "086eb65341f880c01e39c39c9acd5934",
+					"text": "Close Door if no characters are in the box area",
+					"x": -656,
+					"y": 368,
+					"width": 880,
+					"height": 336
+				},
+				{
+					"guid": "3d0b15f64e428713cd42e699c17c5e9d",
+					"text": "If using a second door mesh, store that position too.",
+					"x": 496,
+					"y": -272,
+					"width": 528,
+					"height": 272
+				},
+				{
+					"guid": "43242ea54e38b95c721ac3b6b591b85f",
+					"text": "Store Door Position",
+					"x": -32,
+					"y": -272,
+					"width": 513,
+					"height": 266
+				},
+				{
+					"guid": "4d8b6ab94117522e2ffc30ad0760d7b7",
+					"text": "Open and Close Door Using Timeline to animate",
+					"x": 581,
+					"y": 15,
+					"width": 2368,
+					"height": 688
+				}
+			]
+		}
+	]
+}

@@ -8,6 +8,18 @@ This project exists to give people a chance to build something real together. Wh
 
 - Read [Docs/SETUP.md](./Docs/SETUP.md) to get your development environment ready
 - Read [CONTRIBUTING.md](./CONTRIBUTING.md) before making your first contribution
+- Do this https://asgcgithub.pulli.me/ to see [the backlog](https://github.com/orgs/ASGC-Game-Jam/projects/1)
+
+## Documentation
+
+- [Tech Standards](./Docs/Tech%20Standards.md) — naming conventions, content structure, and Blueprint rules
+- [Game Development Patterns & Principles](./Docs/Game%20Development%20Patterns%20&%20Principles.md) — general patterns reference
+- [Choosing a Gameplay Class](./Docs/Choosing%20a%20Gameplay%20Class.md) — GameMode vs GameState vs PlayerController vs PlayerState vs Pawn, and where a given piece of state belongs
+- [Spawning the Player](./Docs/Spawning%20the%20Player.md) — how the player character actually gets into the level, and why it sometimes doesn't
+- [Game Framework Classes](./Docs/Game%20Framework%20Classes.md) — how GameMode, PlayerController, PlayerState, and Character are split between C++ and Blueprint
+- [Replicated State Pattern](./Docs/Replicated%20State%20Pattern.md) — how server-authoritative state broadcasts changes to the rest of the game
+- [Git Hygiene](./Docs/Git%20Hygiene.md) — branching and commit practice
+- [Releases](./Docs/RELEASES.md) — build and versioning process
 
 ## Technology
 
