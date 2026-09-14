@@ -5,6 +5,15 @@ about: Define one independently deliverable technical outcome from an approved F
 labels: "Feature"
 ---
 
+| Role | Reviewer | Status | Date | Notes |
+|---|---|---|---|---|
+| Design | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
+| Tech Design | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
+| Tech | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
+| [Discipline] | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
+
+---
+
 # 1. Description
 
 ## 1.1 Outcome & Operation Flow
