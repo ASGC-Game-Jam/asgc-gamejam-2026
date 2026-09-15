@@ -1,9 +1,9 @@
 {
 	"version": 1,
 	"generatedBy": "keystone-blueprint-export",
-	"package": "/Game/ProjectAtlantis/Core/Characters/BP_EnemyBase",
-	"asset": "BP_EnemyBase",
-	"parentClass": "Character",
+	"package": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter",
+	"asset": "BP_AtlantisAICharacter",
+	"parentClass": "AtlantisAICharacter",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
@@ -11,7 +11,7 @@
 			"type": "Function",
 			"nodes": [
 				{
-					"guid": "ff8e01eb424cd65c7d81c1aed18cbed9",
+					"guid": "9162139846d150e291bc42b0a04f96a1",
 					"class": "K2Node_FunctionEntry",
 					"title": "Construction Script",
 					"x": 0,
@@ -19,7 +19,7 @@
 					"comment": null,
 					"pins": [
 						{
-							"id": "ff8e01eb424cd65c7d81c1aed18cbed9:o:then",
+							"id": "9162139846d150e291bc42b0a04f96a1:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -36,15 +36,15 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
-					"guid": "0ff02c874193d82b5c33c19f52216dab",
+					"guid": "46545aba4cc247d0823800822994bff5",
 					"class": "K2Node_Event",
-					"title": "Event Tick",
+					"title": "Event BeginPlay",
 					"x": 0,
-					"y": 416,
+					"y": 0,
 					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
 					"pins": [
 						{
-							"id": "0ff02c874193d82b5c33c19f52216dab:o:OutputDelegate",
+							"id": "46545aba4cc247d0823800822994bff5:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -52,7 +52,33 @@
 							"links": []
 						},
 						{
-							"id": "0ff02c874193d82b5c33c19f52216dab:o:then",
+							"id": "46545aba4cc247d0823800822994bff5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5fca2621462b3e6b0dcb7ba9db02c1db",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "5fca2621462b3e6b0dcb7ba9db02c1db:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5fca2621462b3e6b0dcb7ba9db02c1db:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -60,7 +86,7 @@
 							"links": []
 						},
 						{
-							"id": "0ff02c874193d82b5c33c19f52216dab:o:DeltaSeconds",
+							"id": "5fca2621462b3e6b0dcb7ba9db02c1db:o:DeltaSeconds",
 							"name": "DeltaSeconds",
 							"direction": "output",
 							"type": "real:float",
@@ -70,33 +96,7 @@
 					]
 				},
 				{
-					"guid": "16ee029047c40b659913b5b45c7f08fe",
-					"class": "K2Node_Event",
-					"title": "Event BeginPlay",
-					"x": 0,
-					"y": 0,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
-					"pins": [
-						{
-							"id": "16ee029047c40b659913b5b45c7f08fe:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "16ee029047c40b659913b5b45c7f08fe:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "b60b0a8442d2c2fafc55c3af349ab967",
+					"guid": "c419523145e62ab67d201daeb4c458a9",
 					"class": "K2Node_Event",
 					"title": "Event ActorBeginOverlap",
 					"x": 0,
@@ -104,7 +104,7 @@
 					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
 					"pins": [
 						{
-							"id": "b60b0a8442d2c2fafc55c3af349ab967:o:OutputDelegate",
+							"id": "c419523145e62ab67d201daeb4c458a9:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -112,7 +112,7 @@
 							"links": []
 						},
 						{
-							"id": "b60b0a8442d2c2fafc55c3af349ab967:o:then",
+							"id": "c419523145e62ab67d201daeb4c458a9:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -120,7 +120,7 @@
 							"links": []
 						},
 						{
-							"id": "b60b0a8442d2c2fafc55c3af349ab967:o:OtherActor",
+							"id": "c419523145e62ab67d201daeb4c458a9:o:OtherActor",
 							"name": "OtherActor",
 							"direction": "output",
 							"type": "object:/Script/Engine.Actor",
