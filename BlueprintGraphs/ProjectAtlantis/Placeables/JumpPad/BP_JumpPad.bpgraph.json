@@ -1,0 +1,951 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Placeables/JumpPad/BP_JumpPad",
+	"asset": "BP_JumpPad",
+	"parentClass": "Actor",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "0a8bb2fd40d016b9cd208a98890b9195",
+					"class": "K2Node_VariableGet",
+					"title": "Get PointLight",
+					"x": 656,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0a8bb2fd40d016b9cd208a98890b9195:o:PointLight",
+							"name": "PointLight",
+							"direction": "output",
+							"type": "object:/Script/Engine.PointLightComponent",
+							"defaultValue": null,
+							"links": [
+								"cb43e010495232e290faebafb182a5a6:i:self"
+							]
+						},
+						{
+							"id": "0a8bb2fd40d016b9cd208a98890b9195:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/JumpPad/BP_JumpPad.BP_JumpPad_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "37113c514aefb0caa1679c8eedc7289d",
+					"class": "K2Node_CallFunction",
+					"title": "Set Niagara Variable (LinearColor)",
+					"x": 256,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "37113c514aefb0caa1679c8eedc7289d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4dd5d2434eba56aa0e628b9a25870266:o:then"
+							]
+						},
+						{
+							"id": "37113c514aefb0caa1679c8eedc7289d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cb43e010495232e290faebafb182a5a6:i:execute"
+							]
+						},
+						{
+							"id": "37113c514aefb0caa1679c8eedc7289d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Niagara.NiagaraComponent",
+							"defaultValue": null,
+							"links": [
+								"4ec0ff074baca6e63aa76383fd49d599:o:NS_JumpDemo"
+							]
+						},
+						{
+							"id": "37113c514aefb0caa1679c8eedc7289d:i:InVariableName",
+							"name": "InVariableName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "Color",
+							"links": []
+						},
+						{
+							"id": "37113c514aefb0caa1679c8eedc7289d:i:InValue",
+							"name": "InValue",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"f5635b5245bc8b4e25e9798681acb2d7:o:Color Target"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3ea3e28b47eaab158be37d98999f2b52",
+					"class": "K2Node_CallFunction",
+					"title": "Make Vector 4",
+					"x": 1008,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3ea3e28b47eaab158be37d98999f2b52:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "3ea3e28b47eaab158be37d98999f2b52:i:X",
+							"name": "X",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5e3f4cc9479c9df550b65589e9a2582a:o:R"
+							]
+						},
+						{
+							"id": "3ea3e28b47eaab158be37d98999f2b52:i:Y",
+							"name": "Y",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5e3f4cc9479c9df550b65589e9a2582a:o:G"
+							]
+						},
+						{
+							"id": "3ea3e28b47eaab158be37d98999f2b52:i:Z",
+							"name": "Z",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5e3f4cc9479c9df550b65589e9a2582a:o:B"
+							]
+						},
+						{
+							"id": "3ea3e28b47eaab158be37d98999f2b52:i:W",
+							"name": "W",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5e3f4cc9479c9df550b65589e9a2582a:o:A"
+							]
+						},
+						{
+							"id": "3ea3e28b47eaab158be37d98999f2b52:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector4",
+							"defaultValue": null,
+							"links": [
+								"4908f98e43f4df031cc9ad9542080bee:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4908f98e43f4df031cc9ad9542080bee",
+					"class": "K2Node_CallFunction",
+					"title": "Set Default Custom Primitive Data Vector 4",
+					"x": 1264,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4908f98e43f4df031cc9ad9542080bee:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"905e1ef04533ce5d95d8268f8070b1b1:o:then"
+							]
+						},
+						{
+							"id": "4908f98e43f4df031cc9ad9542080bee:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4908f98e43f4df031cc9ad9542080bee:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": [
+								"99096827488434f9097565aa0956b7f1:o:Cylinder1"
+							]
+						},
+						{
+							"id": "4908f98e43f4df031cc9ad9542080bee:i:DataIndex",
+							"name": "DataIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "4908f98e43f4df031cc9ad9542080bee:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector4",
+							"defaultValue": null,
+							"links": [
+								"3ea3e28b47eaab158be37d98999f2b52:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4dd5d2434eba56aa0e628b9a25870266",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 25,
+					"y": -1,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4dd5d2434eba56aa0e628b9a25870266:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"37113c514aefb0caa1679c8eedc7289d:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4ec0ff074baca6e63aa76383fd49d599",
+					"class": "K2Node_VariableGet",
+					"title": "Get NS_JumpDemo",
+					"x": 64,
+					"y": 54,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4ec0ff074baca6e63aa76383fd49d599:o:NS_JumpDemo",
+							"name": "NS_JumpDemo",
+							"direction": "output",
+							"type": "object:/Script/Niagara.NiagaraComponent",
+							"defaultValue": null,
+							"links": [
+								"37113c514aefb0caa1679c8eedc7289d:i:self"
+							]
+						},
+						{
+							"id": "4ec0ff074baca6e63aa76383fd49d599:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/JumpPad/BP_JumpPad.BP_JumpPad_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5e3f4cc9479c9df550b65589e9a2582a",
+					"class": "K2Node_CallFunction",
+					"title": "Break Color",
+					"x": 320,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5e3f4cc9479c9df550b65589e9a2582a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "5e3f4cc9479c9df550b65589e9a2582a:i:InColor",
+							"name": "InColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"f5635b5245bc8b4e25e9798681acb2d7:o:Color Target"
+							]
+						},
+						{
+							"id": "5e3f4cc9479c9df550b65589e9a2582a:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"3ea3e28b47eaab158be37d98999f2b52:i:X"
+							]
+						},
+						{
+							"id": "5e3f4cc9479c9df550b65589e9a2582a:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"3ea3e28b47eaab158be37d98999f2b52:i:Y"
+							]
+						},
+						{
+							"id": "5e3f4cc9479c9df550b65589e9a2582a:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"3ea3e28b47eaab158be37d98999f2b52:i:Z"
+							]
+						},
+						{
+							"id": "5e3f4cc9479c9df550b65589e9a2582a:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"3ea3e28b47eaab158be37d98999f2b52:i:W"
+							]
+						}
+					]
+				},
+				{
+					"guid": "905e1ef04533ce5d95d8268f8070b1b1",
+					"class": "K2Node_CallFunction",
+					"title": "Set Default Custom Primitive Data Float",
+					"x": 928,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "905e1ef04533ce5d95d8268f8070b1b1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cb43e010495232e290faebafb182a5a6:o:then"
+							]
+						},
+						{
+							"id": "905e1ef04533ce5d95d8268f8070b1b1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4908f98e43f4df031cc9ad9542080bee:i:execute"
+							]
+						},
+						{
+							"id": "905e1ef04533ce5d95d8268f8070b1b1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": [
+								"99096827488434f9097565aa0956b7f1:o:Cylinder1"
+							]
+						},
+						{
+							"id": "905e1ef04533ce5d95d8268f8070b1b1:i:DataIndex",
+							"name": "DataIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "905e1ef04533ce5d95d8268f8070b1b1:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "99096827488434f9097565aa0956b7f1",
+					"class": "K2Node_VariableGet",
+					"title": "Get Cylinder1",
+					"x": 944,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "99096827488434f9097565aa0956b7f1:o:Cylinder1",
+							"name": "Cylinder1",
+							"direction": "output",
+							"type": "object:/Script/Engine.StaticMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"4908f98e43f4df031cc9ad9542080bee:i:self",
+								"905e1ef04533ce5d95d8268f8070b1b1:i:self"
+							]
+						},
+						{
+							"id": "99096827488434f9097565aa0956b7f1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/JumpPad/BP_JumpPad.BP_JumpPad_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "cb43e010495232e290faebafb182a5a6",
+					"class": "K2Node_CallFunction",
+					"title": "Set Light Color",
+					"x": 656,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cb43e010495232e290faebafb182a5a6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"37113c514aefb0caa1679c8eedc7289d:o:then"
+							]
+						},
+						{
+							"id": "cb43e010495232e290faebafb182a5a6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"905e1ef04533ce5d95d8268f8070b1b1:i:execute"
+							]
+						},
+						{
+							"id": "cb43e010495232e290faebafb182a5a6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.LightComponent",
+							"defaultValue": null,
+							"links": [
+								"0a8bb2fd40d016b9cd208a98890b9195:o:PointLight"
+							]
+						},
+						{
+							"id": "cb43e010495232e290faebafb182a5a6:i:NewLightColor",
+							"name": "NewLightColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"f5635b5245bc8b4e25e9798681acb2d7:o:Color Target"
+							]
+						},
+						{
+							"id": "cb43e010495232e290faebafb182a5a6:i:bSRGB",
+							"name": "bSRGB",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f5635b5245bc8b4e25e9798681acb2d7",
+					"class": "K2Node_VariableGet",
+					"title": "Get Color Target",
+					"x": 71,
+					"y": 119,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f5635b5245bc8b4e25e9798681acb2d7:o:Color Target",
+							"name": "Color Target",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"37113c514aefb0caa1679c8eedc7289d:i:InValue",
+								"5e3f4cc9479c9df550b65589e9a2582a:i:InColor",
+								"cb43e010495232e290faebafb182a5a6:i:NewLightColor"
+							]
+						},
+						{
+							"id": "f5635b5245bc8b4e25e9798681acb2d7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/JumpPad/BP_JumpPad.BP_JumpPad_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0e9bbb9148398f97e48acc9565a9c9bf",
+					"class": "K2Node_CallFunction",
+					"title": "Launch Character",
+					"x": 1552,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0e9bbb9148398f97e48acc9565a9c9bf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5c93f67d442e268359a62da8a5bca046:o:then"
+							]
+						},
+						{
+							"id": "0e9bbb9148398f97e48acc9565a9c9bf:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e9bbb9148398f97e48acc9565a9c9bf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"5c93f67d442e268359a62da8a5bca046:o:AsCharacter"
+							]
+						},
+						{
+							"id": "0e9bbb9148398f97e48acc9565a9c9bf:i:LaunchVelocity",
+							"name": "LaunchVelocity",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"aeadbf704e526ab44c32ca8c9e9e43db:o:Velocity"
+							]
+						},
+						{
+							"id": "0e9bbb9148398f97e48acc9565a9c9bf:i:bXYOverride",
+							"name": "bXYOverride",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "0e9bbb9148398f97e48acc9565a9c9bf:i:bZOverride",
+							"name": "bZOverride",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "16345a5a4097dd595cc2cdb8de447417",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 480,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "16345a5a4097dd595cc2cdb8de447417:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"2f6ad1a34cb679f669f2a788860f69c5:o:OutputPin"
+							]
+						},
+						{
+							"id": "16345a5a4097dd595cc2cdb8de447417:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"939b53014fafd144e5bd9180ae09a9dd:i:self",
+								"ce4bd5ad436de79dd5a98580913a16a3:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1663f939438a6bb1c581a8a975aaa758",
+					"class": "K2Node_VariableGet",
+					"title": "Get Exclusion Tag",
+					"x": 464,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1663f939438a6bb1c581a8a975aaa758:o:Exclusion Tag",
+							"name": "Exclusion Tag",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"939b53014fafd144e5bd9180ae09a9dd:i:Tag"
+							]
+						},
+						{
+							"id": "1663f939438a6bb1c581a8a975aaa758:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/JumpPad/BP_JumpPad.BP_JumpPad_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2f6ad1a34cb679f669f2a788860f69c5",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 144,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2f6ad1a34cb679f669f2a788860f69c5:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"a1466c3d4235c5f45ab085b85abb1b63:o:OtherActor"
+							]
+						},
+						{
+							"id": "2f6ad1a34cb679f669f2a788860f69c5:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"16345a5a4097dd595cc2cdb8de447417:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5c93f67d442e268359a62da8a5bca046",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To Character",
+					"x": 1136,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5c93f67d442e268359a62da8a5bca046:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7c6e102b4f212792a297bbbfd611f20a:o:else"
+							]
+						},
+						{
+							"id": "5c93f67d442e268359a62da8a5bca046:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0e9bbb9148398f97e48acc9565a9c9bf:i:execute"
+							]
+						},
+						{
+							"id": "5c93f67d442e268359a62da8a5bca046:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5c93f67d442e268359a62da8a5bca046:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"ce4bd5ad436de79dd5a98580913a16a3:o:OutputPin"
+							]
+						},
+						{
+							"id": "5c93f67d442e268359a62da8a5bca046:o:AsCharacter",
+							"name": "AsCharacter",
+							"direction": "output",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"0e9bbb9148398f97e48acc9565a9c9bf:i:self"
+							]
+						},
+						{
+							"id": "5c93f67d442e268359a62da8a5bca046:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7c6e102b4f212792a297bbbfd611f20a",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 896,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7c6e102b4f212792a297bbbfd611f20a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a1466c3d4235c5f45ab085b85abb1b63:o:then"
+							]
+						},
+						{
+							"id": "7c6e102b4f212792a297bbbfd611f20a:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"939b53014fafd144e5bd9180ae09a9dd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7c6e102b4f212792a297bbbfd611f20a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7c6e102b4f212792a297bbbfd611f20a:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5c93f67d442e268359a62da8a5bca046:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "939b53014fafd144e5bd9180ae09a9dd",
+					"class": "K2Node_CallFunction",
+					"title": "Actor Has Tag",
+					"x": 640,
+					"y": 304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "939b53014fafd144e5bd9180ae09a9dd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"16345a5a4097dd595cc2cdb8de447417:o:OutputPin"
+							]
+						},
+						{
+							"id": "939b53014fafd144e5bd9180ae09a9dd:i:Tag",
+							"name": "Tag",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"1663f939438a6bb1c581a8a975aaa758:o:Exclusion Tag"
+							]
+						},
+						{
+							"id": "939b53014fafd144e5bd9180ae09a9dd:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7c6e102b4f212792a297bbbfd611f20a:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a1466c3d4235c5f45ab085b85abb1b63",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": -112,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a1466c3d4235c5f45ab085b85abb1b63:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a1466c3d4235c5f45ab085b85abb1b63:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7c6e102b4f212792a297bbbfd611f20a:i:execute"
+							]
+						},
+						{
+							"id": "a1466c3d4235c5f45ab085b85abb1b63:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"2f6ad1a34cb679f669f2a788860f69c5:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "aeadbf704e526ab44c32ca8c9e9e43db",
+					"class": "K2Node_VariableGet",
+					"title": "Get Velocity",
+					"x": 1568,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "aeadbf704e526ab44c32ca8c9e9e43db:o:Velocity",
+							"name": "Velocity",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"0e9bbb9148398f97e48acc9565a9c9bf:i:LaunchVelocity"
+							]
+						},
+						{
+							"id": "aeadbf704e526ab44c32ca8c9e9e43db:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/JumpPad/BP_JumpPad.BP_JumpPad_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ce4bd5ad436de79dd5a98580913a16a3",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1040,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ce4bd5ad436de79dd5a98580913a16a3:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"16345a5a4097dd595cc2cdb8de447417:o:OutputPin"
+							]
+						},
+						{
+							"id": "ce4bd5ad436de79dd5a98580913a16a3:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"5c93f67d442e268359a62da8a5bca046:i:Object"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "7387230044a7406979de4583056c59ea",
+					"text": "Trigger Launch Character and input velocity.",
+					"x": 1408,
+					"y": 96,
+					"width": 688,
+					"height": 384
+				},
+				{
+					"guid": "953ee4af4ba562e694c43cb29418ca62",
+					"text": "Ignore any actors that have a matching tag. ",
+					"x": 400,
+					"y": 96,
+					"width": 977,
+					"height": 394
+				},
+				{
+					"guid": "e1d67a994a464c431a5d2dbd85ce3cd1",
+					"text": "Only works on Character Actor Type",
+					"x": -176,
+					"y": 64,
+					"width": 544,
+					"height": 368
+				}
+			]
+		}
+	]
+}
