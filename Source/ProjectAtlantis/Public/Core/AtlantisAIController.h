@@ -16,8 +16,6 @@ public:
 	AAtlantisAIController();
 
 protected:
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Atlantis|AI")
-	TObjectPtr<UAIPerceptionComponent> AIPerception;
 	
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Atlantis|AI")
 	TObjectPtr<UStateTreeAIComponent> StateTreeComponent;
