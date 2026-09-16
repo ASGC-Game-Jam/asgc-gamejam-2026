@@ -25,8 +25,10 @@ struct FJournalInvestigationEntry
 };
 
 // @note(Tan): params here are subject to change depending on how investigation data looks like
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnJournalUpdateEvent, EJournalInvestigationStatus, Status, const FString&, Title);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnJournalInvestigationUpdateEvent, EJournalInvestigationStatus, OldStatus, EJournalInvestigationStatus, Status, const FString&, Title);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnJournalOpenCloseEvent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnJournalSignaledEvent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnJournalClearedEvent);
 
 /**
  * Journal Subsystem
@@ -41,6 +43,14 @@ public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 	
+	// Signals journal to close UI
+	UFUNCTION(BlueprintCallable, Category = "Journal")
+	void OpenJournal();
+
+	// Signals journal to close UI
+	UFUNCTION(BlueprintCallable, Category = "Journal")
+	void CloseJournal();
+
 	// Event signaled whenever journal has entered open state
 	UPROPERTY(BlueprintAssignable, Category = "Events|Journal")
 	FOnJournalOpenCloseEvent OnJournalOpen;
@@ -49,21 +59,33 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Events|Journal")
 	FOnJournalOpenCloseEvent OnJournalClose;
 
+	// Signals journal to light up UI should be opened by player
+	UFUNCTION(BlueprintCallable, Category = "Journal")
+	void SignalJournal();
+
+	UPROPERTY(BlueprintAssignable, Category = "Events|Journal")
+	FOnJournalSignaledEvent OnJournalSignaled;
+
 	// TODO Figure out how the data is formatted from investigation
 	//		Stub function for investigation to update status of a specific of a journal entry with a single description
 	UFUNCTION(BlueprintCallable, Category = "Journal")
-	void UpdateInvestigation(EJournalInvestigationStatus Status, const FString& Title, const FString& Description);
+	void UpdateInvestigationStatus(const FString& Title, EJournalInvestigationStatus Status);
+
+	// TODO Figure out how the data is formatted from investigation
+	//		Stub function for investigation to update status of a specific of a journal entry with a single description
+	UFUNCTION(BlueprintCallable, Category = "Journal")
+	void UpdateInvestigationDescription(const FString& Title, const FString& Description);
 
 	// TODO Figure out how the data is formatted from investigation
 	//		Stub function for investigation to update status of a specific of a journal entry with a list of descriptions
 	//      can be used for scenarios such as after game loads and investigation system wants to update entire state of a
 	//      entry
 	UFUNCTION(BlueprintCallable, Category = "Journal")
-	void UpdateInvestigationDescriptions(EJournalInvestigationStatus Status, const FString& Title, TArray<FString> Descriptions);
+	void UpdateInvestigationDescriptions(const FString& Title, TArray<FString> Descriptions);
 
 	// Event signaled whenever a journal entry has been updated
 	UPROPERTY(BlueprintAssignable, Category = "Events|Journal")
-	FOnJournalUpdateEvent OnInvestigationUpdated;
+	FOnJournalInvestigationUpdateEvent OnInvestigationUpdated;
 
 	// Get list of investigations
 	UFUNCTION(BlueprintCallable, Category = "Journal")
@@ -80,6 +102,18 @@ public:
 	// Clears out all investigations, should be used whenever returning to main menu or starting a new run
 	UFUNCTION(BlueprintCallable, Category = "Journal")
 	void ClearInvestigations();
+
+	// Event signaled whenever ClearInvestigations() is called
+	UPROPERTY(BlueprintAssignable, Category = "Events|Journal")
+	FOnJournalClearedEvent OnJournalInvestigationsCleared;
+
+	// Catchall for clearing all types of journal entry types
+	UFUNCTION(BlueprintCallable, Category = "Journal")
+	void ClearAll();
+
+	// Event signaled whenever ClearAll() is called
+	UPROPERTY(BlueprintAssignable, Category = "Events|Journal")
+	FOnJournalClearedEvent OnJournalCleared;
 
 private:
 	
