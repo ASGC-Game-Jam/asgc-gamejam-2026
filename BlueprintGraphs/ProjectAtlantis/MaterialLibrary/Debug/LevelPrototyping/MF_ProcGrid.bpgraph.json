@@ -1,0 +1,3167 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/MaterialLibrary/Debug/LevelPrototyping/MF_ProcGrid",
+	"asset": "MF_ProcGrid",
+	"assetClass": "MaterialFunction",
+	"parentClass": null,
+	"blueprintType": null,
+	"graphs": [
+		{
+			"name": "MaterialGraph",
+			"type": "MaterialFunction",
+			"nodes": [
+				{
+					"guid": "057a49d34b1c709f59107f9ff2be386a",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Function Output",
+					"x": -510,
+					"y": 195,
+					"comment": null,
+					"pins": [
+						{
+							"id": "057a49d34b1c709f59107f9ff2be386a:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"72b12dbb40f6061df95f19ae63f24502#1:o:Output"
+							]
+						},
+						{
+							"id": "057a49d34b1c709f59107f9ff2be386a:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "07a5041a4717d4378d3adfb8d34993d2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Constant",
+					"x": -3712,
+					"y": 1280,
+					"comment": null,
+					"pins": [
+						{
+							"id": "07a5041a4717d4378d3adfb8d34993d2:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "07a5041a4717d4378d3adfb8d34993d2:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"615ef705413efa189aac28afdab19934#1:i:Contrast (S)",
+								"615ef705413efa189aac28afdab19934:i:Contrast (S)"
+							]
+						}
+					]
+				},
+				{
+					"guid": "098996b548fd5790685e58a937d4aa81",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Vertex Interpolator",
+					"x": -4384,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "098996b548fd5790685e58a937d4aa81:i:VS",
+							"name": "VS",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"6271d5344bf245878986b58620bef7ec:o:Output"
+							]
+						},
+						{
+							"id": "098996b548fd5790685e58a937d4aa81:o:PS",
+							"name": "PS",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"d695f3084fd8d55c6c71efb7d93c57f2#1:i:True"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0a988db44b5fabd28189b4ba1c332d80",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Multiply",
+					"x": -2720,
+					"y": 576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0a988db44b5fabd28189b4ba1c332d80:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"4ed9bcaf45e6e7c1d6eb039559ef7cdc:o:Output"
+							]
+						},
+						{
+							"id": "0a988db44b5fabd28189b4ba1c332d80:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "0.5",
+							"links": []
+						},
+						{
+							"id": "0a988db44b5fabd28189b4ba1c332d80:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"db5dd7b34d8e9cb88978298723dcbf3c:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1ce71c5944c463877c977fb04ac08733",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Transform",
+					"x": -4128,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"c3ad80a9459237a3242800bef7ea7590:o:Output"
+							]
+						},
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialVectorCoordTransformSource",
+							"defaultValue": "Local Space",
+							"links": []
+						},
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733:i:Destination",
+							"name": "Destination",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialVectorCoordTransform",
+							"defaultValue": "World Space",
+							"links": []
+						},
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"4e025ad54a90b9ec2a0a2ba012e8eff5:i:VectorInput"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1ce71c5944c463877c977fb04ac08733#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Transform",
+					"x": -4096,
+					"y": 592,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733#1:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"c3ad80a9459237a3242800bef7ea7590#1:o:Output"
+							]
+						},
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733#1:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialVectorCoordTransformSource",
+							"defaultValue": "Local Space",
+							"links": []
+						},
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733#1:i:Destination",
+							"name": "Destination",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialVectorCoordTransform",
+							"defaultValue": "World Space",
+							"links": []
+						},
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"4e025ad54a90b9ec2a0a2ba012e8eff5#1:i:VectorInput"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1ce71c5944c463877c977fb04ac08733#2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Transform",
+					"x": -4112,
+					"y": 784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733#2:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"c3ad80a9459237a3242800bef7ea7590#2:o:Output"
+							]
+						},
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733#2:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialVectorCoordTransformSource",
+							"defaultValue": "Local Space",
+							"links": []
+						},
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733#2:i:Destination",
+							"name": "Destination",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialVectorCoordTransform",
+							"defaultValue": "World Space",
+							"links": []
+						},
+						{
+							"id": "1ce71c5944c463877c977fb04ac08733#2:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"4e025ad54a90b9ec2a0a2ba012e8eff5#2:i:VectorInput"
+							]
+						}
+					]
+				},
+				{
+					"guid": "25987ab14b3b64a94e193ca655428c25",
+					"class": "MaterialGraphNode",
+					"title": "Named Reroute Usage",
+					"x": -1584,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "25987ab14b3b64a94e193ca655428c25:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#2:i:Alpha",
+								"e3a361044834fcdcd0760d91bee10904:i:Alpha"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2b9922ad4c010212359c3f87a369e5c1",
+					"class": "MaterialGraphNode",
+					"title": "Named Reroute Declaration",
+					"x": -3354,
+					"y": 1131,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2b9922ad4c010212359c3f87a369e5c1:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"615ef705413efa189aac28afdab19934:o:Result"
+							]
+						},
+						{
+							"id": "2b9922ad4c010212359c3f87a369e5c1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2e832d224d0bc4dbd3c15383164379b0",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -1184,
+					"y": 736,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2e832d224d0bc4dbd3c15383164379b0:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#1:o:Output"
+							]
+						},
+						{
+							"id": "2e832d224d0bc4dbd3c15383164379b0:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"72b12dbb40f6061df95f19ae63f24502:i:True"
+							]
+						}
+					]
+				},
+				{
+					"guid": "34bf0a2f47df5d217cc1ecae24c43312",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Function Input",
+					"x": -2974,
+					"y": 562,
+					"comment": null,
+					"pins": [
+						{
+							"id": "34bf0a2f47df5d217cc1ecae24c43312:i:Preview",
+							"name": "Preview",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"9bf596ce44b3d23cd0fd41b414a5ef6e:o:Output"
+							]
+						},
+						{
+							"id": "34bf0a2f47df5d217cc1ecae24c43312:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"4ed9bcaf45e6e7c1d6eb039559ef7cdc:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "34bf0a2f47df5d217cc1ecae24c43312#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Function Input",
+					"x": -928,
+					"y": 512,
+					"comment": null,
+					"pins": [
+						{
+							"id": "34bf0a2f47df5d217cc1ecae24c43312#1:i:Preview",
+							"name": "Preview",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"db1236114537aa770baf60b27fb724cb:o:Output"
+							]
+						},
+						{
+							"id": "34bf0a2f47df5d217cc1ecae24c43312#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"72b12dbb40f6061df95f19ae63f24502#1:i:Value",
+								"72b12dbb40f6061df95f19ae63f24502:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "364497fd448f0bc1315b2bad5a9f19c3",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Function Output",
+					"x": -544,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "364497fd448f0bc1315b2bad5a9f19c3:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"72b12dbb40f6061df95f19ae63f24502:o:Output"
+							]
+						},
+						{
+							"id": "364497fd448f0bc1315b2bad5a9f19c3:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3b4651944f8bbbd3c2608eaccdc9bdc4",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -4384,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3b4651944f8bbbd3c2608eaccdc9bdc4:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"a3cadd5c46fb8d90a7d41fbb92fc671b:o:XYZ"
+							]
+						},
+						{
+							"id": "3b4651944f8bbbd3c2608eaccdc9bdc4:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"45b7ef644ed4ef80ca29c293e457779c:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "442718fb49d64195e842639c931385a7",
+					"class": "MaterialGraphNode",
+					"title": "Named Reroute Usage",
+					"x": -1600,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "442718fb49d64195e842639c931385a7:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#1:i:Alpha",
+								"e3a361044834fcdcd0760d91bee10904#3:i:Alpha"
+							]
+						}
+					]
+				},
+				{
+					"guid": "45396fd044f97b49f1aa9f8c1de46979",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -3856,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "45396fd044f97b49f1aa9f8c1de46979:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"ea438d12444bd74fda0e008a2eba58ba:o:OutputPin"
+							]
+						},
+						{
+							"id": "45396fd044f97b49f1aa9f8c1de46979:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"9aa4c41b40613c4c6cfa1384a8f1976b:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "45b7ef644ed4ef80ca29c293e457779c",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -3520,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "45b7ef644ed4ef80ca29c293e457779c:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"3b4651944f8bbbd3c2608eaccdc9bdc4:o:OutputPin"
+							]
+						},
+						{
+							"id": "45b7ef644ed4ef80ca29c293e457779c:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"d695f3084fd8d55c6c71efb7d93c57f2:i:False"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4e025ad54a90b9ec2a0a2ba012e8eff5",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Normalize",
+					"x": -3904,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4e025ad54a90b9ec2a0a2ba012e8eff5:i:VectorInput",
+							"name": "VectorInput",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"1ce71c5944c463877c977fb04ac08733:o:Output"
+							]
+						},
+						{
+							"id": "4e025ad54a90b9ec2a0a2ba012e8eff5:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"9aa4c41b40613c4c6cfa1384a8f1976b:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4e025ad54a90b9ec2a0a2ba012e8eff5#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Normalize",
+					"x": -3872,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4e025ad54a90b9ec2a0a2ba012e8eff5#1:i:VectorInput",
+							"name": "VectorInput",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"1ce71c5944c463877c977fb04ac08733#1:o:Output"
+							]
+						},
+						{
+							"id": "4e025ad54a90b9ec2a0a2ba012e8eff5#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"9aa4c41b40613c4c6cfa1384a8f1976b#1:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4e025ad54a90b9ec2a0a2ba012e8eff5#2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Normalize",
+					"x": -3888,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4e025ad54a90b9ec2a0a2ba012e8eff5#2:i:VectorInput",
+							"name": "VectorInput",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"1ce71c5944c463877c977fb04ac08733#2:o:Output"
+							]
+						},
+						{
+							"id": "4e025ad54a90b9ec2a0a2ba012e8eff5#2:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"9aa4c41b40613c4c6cfa1384a8f1976b#2:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4ed9bcaf45e6e7c1d6eb039559ef7cdc",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Divide",
+					"x": -2670,
+					"y": 482,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4ed9bcaf45e6e7c1d6eb039559ef7cdc:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"d695f3084fd8d55c6c71efb7d93c57f2:o:Output"
+							]
+						},
+						{
+							"id": "4ed9bcaf45e6e7c1d6eb039559ef7cdc:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"34bf0a2f47df5d217cc1ecae24c43312:o:Output"
+							]
+						},
+						{
+							"id": "4ed9bcaf45e6e7c1d6eb039559ef7cdc:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"0a988db44b5fabd28189b4ba1c332d80:i:A",
+								"81979d3c46c73764737bb4954f09d66e:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5017f0204fad3cb1672d92a44c15ab69",
+					"class": "MaterialGraphNode",
+					"title": "Named Reroute Declaration",
+					"x": -3354,
+					"y": 1211,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5017f0204fad3cb1672d92a44c15ab69:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"615ef705413efa189aac28afdab19934#1:o:Result"
+							]
+						},
+						{
+							"id": "5017f0204fad3cb1672d92a44c15ab69:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "528b83174d2339a718b34994eefa61c8",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Abs",
+					"x": -3728,
+					"y": 1216,
+					"comment": null,
+					"pins": [
+						{
+							"id": "528b83174d2339a718b34994eefa61c8:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"59834bb046b1612a29dd40a12056b8d9:o:B"
+							]
+						},
+						{
+							"id": "528b83174d2339a718b34994eefa61c8:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"615ef705413efa189aac28afdab19934#1:i:In (S)"
+							]
+						}
+					]
+				},
+				{
+					"guid": "528b83174d2339a718b34994eefa61c8#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Abs",
+					"x": -3728,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "528b83174d2339a718b34994eefa61c8#1:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"59834bb046b1612a29dd40a12056b8d9:o:R"
+							]
+						},
+						{
+							"id": "528b83174d2339a718b34994eefa61c8#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"615ef705413efa189aac28afdab19934:i:In (S)"
+							]
+						}
+					]
+				},
+				{
+					"guid": "59834bb046b1612a29dd40a12056b8d9",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Material Function Call",
+					"x": -3968,
+					"y": 1152,
+					"comment": null,
+					"pins": [
+						{
+							"id": "59834bb046b1612a29dd40a12056b8d9:i:Float3 (V3)",
+							"name": "Float3 (V3)",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"d695f3084fd8d55c6c71efb7d93c57f2#1:o:Output"
+							]
+						},
+						{
+							"id": "59834bb046b1612a29dd40a12056b8d9:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"528b83174d2339a718b34994eefa61c8#1:i:Input"
+							]
+						},
+						{
+							"id": "59834bb046b1612a29dd40a12056b8d9:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "59834bb046b1612a29dd40a12056b8d9:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"528b83174d2339a718b34994eefa61c8:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "615ef705413efa189aac28afdab19934",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Material Function Call",
+					"x": -3616,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "615ef705413efa189aac28afdab19934:i:In (S)",
+							"name": "In (S)",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"528b83174d2339a718b34994eefa61c8#1:o:Output"
+							]
+						},
+						{
+							"id": "615ef705413efa189aac28afdab19934:i:Contrast (S)",
+							"name": "Contrast (S)",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"07a5041a4717d4378d3adfb8d34993d2:o:Output"
+							]
+						},
+						{
+							"id": "615ef705413efa189aac28afdab19934:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"2b9922ad4c010212359c3f87a369e5c1:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "615ef705413efa189aac28afdab19934#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Material Function Call",
+					"x": -3616,
+					"y": 1216,
+					"comment": null,
+					"pins": [
+						{
+							"id": "615ef705413efa189aac28afdab19934#1:i:In (S)",
+							"name": "In (S)",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"528b83174d2339a718b34994eefa61c8:o:Output"
+							]
+						},
+						{
+							"id": "615ef705413efa189aac28afdab19934#1:i:Contrast (S)",
+							"name": "Contrast (S)",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"07a5041a4717d4378d3adfb8d34993d2:o:Output"
+							]
+						},
+						{
+							"id": "615ef705413efa189aac28afdab19934#1:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"5017f0204fad3cb1672d92a44c15ab69:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6271d5344bf245878986b58620bef7ec",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Pre Skinned Normal",
+					"x": -4606,
+					"y": 1138,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6271d5344bf245878986b58620bef7ec:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": [
+								"098996b548fd5790685e58a937d4aa81:i:VS"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6c79444e4502de47e3f1e79d3f05a455",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -3808,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6c79444e4502de47e3f1e79d3f05a455:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"7aed7dcb4c9f33586942959a7f4845a8:o:OutputPin"
+							]
+						},
+						{
+							"id": "6c79444e4502de47e3f1e79d3f05a455:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"9aa4c41b40613c4c6cfa1384a8f1976b#2:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "72b12dbb40f6061df95f19ae63f24502",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Static Switch",
+					"x": -736,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "72b12dbb40f6061df95f19ae63f24502:i:True",
+							"name": "True",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"2e832d224d0bc4dbd3c15383164379b0:o:OutputPin"
+							]
+						},
+						{
+							"id": "72b12dbb40f6061df95f19ae63f24502:i:False",
+							"name": "False",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"f4f120834cdfa138d9480fa3aff5c53d:o:OutputPin"
+							]
+						},
+						{
+							"id": "72b12dbb40f6061df95f19ae63f24502:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": null,
+							"links": [
+								"34bf0a2f47df5d217cc1ecae24c43312#1:o:Output"
+							]
+						},
+						{
+							"id": "72b12dbb40f6061df95f19ae63f24502:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"364497fd448f0bc1315b2bad5a9f19c3:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "72b12dbb40f6061df95f19ae63f24502#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Static Switch",
+					"x": -750,
+					"y": 226,
+					"comment": null,
+					"pins": [
+						{
+							"id": "72b12dbb40f6061df95f19ae63f24502#1:i:True",
+							"name": "True",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"a287adfc426ea621baefeabf6913f263:o:OutputPin"
+							]
+						},
+						{
+							"id": "72b12dbb40f6061df95f19ae63f24502#1:i:False",
+							"name": "False",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"cacdba144ac4f879e74678b329656ed3:o:OutputPin"
+							]
+						},
+						{
+							"id": "72b12dbb40f6061df95f19ae63f24502#1:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": null,
+							"links": [
+								"34bf0a2f47df5d217cc1ecae24c43312#1:o:Output"
+							]
+						},
+						{
+							"id": "72b12dbb40f6061df95f19ae63f24502#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"057a49d34b1c709f59107f9ff2be386a:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7aed7dcb4c9f33586942959a7f4845a8",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -4352,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7aed7dcb4c9f33586942959a7f4845a8:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"d98006ca449749f676a0968d7573270e:o:Output"
+							]
+						},
+						{
+							"id": "7aed7dcb4c9f33586942959a7f4845a8:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"6c79444e4502de47e3f1e79d3f05a455:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "800e787f40625621d4e4d8825bbffa88",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Vertex Normal WS",
+					"x": -4384,
+					"y": 1216,
+					"comment": null,
+					"pins": [
+						{
+							"id": "800e787f40625621d4e4d8825bbffa88:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"d695f3084fd8d55c6c71efb7d93c57f2#1:i:False"
+							]
+						}
+					]
+				},
+				{
+					"guid": "81979d3c46c73764737bb4954f09d66e",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -2208,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "81979d3c46c73764737bb4954f09d66e:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"4ed9bcaf45e6e7c1d6eb039559ef7cdc:o:Output"
+							]
+						},
+						{
+							"id": "81979d3c46c73764737bb4954f09d66e:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"ba226c6341982a41e955e4b35b89eac6#3:i:Input",
+								"ba226c6341982a41e955e4b35b89eac6#4:i:Input",
+								"ba226c6341982a41e955e4b35b89eac6#5:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "877b71604a43e0c1a7ae3b9fbee3c02f",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Sample",
+					"x": -1824,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional:byte",
+							"defaultValue": null,
+							"links": [
+								"ba226c6341982a41e955e4b35b89eac6#5:o:Output"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:i:Tex",
+							"name": "Tex",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:i:Apply View MipBias",
+							"name": "Apply View MipBias",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:i:MipValueMode",
+							"name": "MipValueMode",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ETextureMipValueMode",
+							"defaultValue": "None (use computed mip level)",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:i:Sampler Source",
+							"name": "Sampler Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ESamplerSourceMode",
+							"defaultValue": "Shared: Wrap",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:i:Sampler Type",
+							"name": "Sampler Type",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialSamplerType",
+							"defaultValue": "Masks",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:o:RGB",
+							"name": "RGB",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#2:i:A"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "mask:alpha",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f:o:RGBA",
+							"name": "RGBA",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "877b71604a43e0c1a7ae3b9fbee3c02f#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Sample",
+					"x": -1824,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional:byte",
+							"defaultValue": null,
+							"links": [
+								"ba226c6341982a41e955e4b35b89eac6#4:o:Output"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:i:Tex",
+							"name": "Tex",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:i:Apply View MipBias",
+							"name": "Apply View MipBias",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:i:MipValueMode",
+							"name": "MipValueMode",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ETextureMipValueMode",
+							"defaultValue": "None (use computed mip level)",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:i:Sampler Source",
+							"name": "Sampler Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ESamplerSourceMode",
+							"defaultValue": "Shared: Wrap",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:i:Sampler Type",
+							"name": "Sampler Type",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialSamplerType",
+							"defaultValue": "Masks",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:o:RGB",
+							"name": "RGB",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#2:i:B"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "mask:alpha",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#1:o:RGBA",
+							"name": "RGBA",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "877b71604a43e0c1a7ae3b9fbee3c02f#2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Sample",
+					"x": -1824,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional:byte",
+							"defaultValue": null,
+							"links": [
+								"ba226c6341982a41e955e4b35b89eac6#3:o:Output"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:i:Tex",
+							"name": "Tex",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:i:Apply View MipBias",
+							"name": "Apply View MipBias",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:i:MipValueMode",
+							"name": "MipValueMode",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ETextureMipValueMode",
+							"defaultValue": "None (use computed mip level)",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:i:Sampler Source",
+							"name": "Sampler Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ESamplerSourceMode",
+							"defaultValue": "Shared: Wrap",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:i:Sampler Type",
+							"name": "Sampler Type",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialSamplerType",
+							"defaultValue": "Masks",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:o:RGB",
+							"name": "RGB",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": [
+								"cacdba144ac4f879e74678b329656ed3:i:InputPin",
+								"e3a361044834fcdcd0760d91bee10904#3:i:B"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "mask:alpha",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#2:o:RGBA",
+							"name": "RGBA",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "877b71604a43e0c1a7ae3b9fbee3c02f#3",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Sample",
+					"x": -1840,
+					"y": 976,
+					"comment": null,
+					"pins": [
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional:byte",
+							"defaultValue": null,
+							"links": [
+								"ba226c6341982a41e955e4b35b89eac6:o:Output"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:i:Tex",
+							"name": "Tex",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:i:Apply View MipBias",
+							"name": "Apply View MipBias",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:i:MipValueMode",
+							"name": "MipValueMode",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ETextureMipValueMode",
+							"defaultValue": "None (use computed mip level)",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:i:Sampler Source",
+							"name": "Sampler Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ESamplerSourceMode",
+							"defaultValue": "Shared: Wrap",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:i:Sampler Type",
+							"name": "Sampler Type",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialSamplerType",
+							"defaultValue": "Masks",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:o:RGB",
+							"name": "RGB",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#1:i:B",
+								"f4f120834cdfa138d9480fa3aff5c53d:i:InputPin"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "mask:alpha",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#3:o:RGBA",
+							"name": "RGBA",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "877b71604a43e0c1a7ae3b9fbee3c02f#4",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Sample",
+					"x": -1840,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional:byte",
+							"defaultValue": null,
+							"links": [
+								"ba226c6341982a41e955e4b35b89eac6#1:o:Output"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:i:Tex",
+							"name": "Tex",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:i:Apply View MipBias",
+							"name": "Apply View MipBias",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:i:MipValueMode",
+							"name": "MipValueMode",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ETextureMipValueMode",
+							"defaultValue": "None (use computed mip level)",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:i:Sampler Source",
+							"name": "Sampler Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ESamplerSourceMode",
+							"defaultValue": "Shared: Wrap",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:i:Sampler Type",
+							"name": "Sampler Type",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialSamplerType",
+							"defaultValue": "Masks",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:o:RGB",
+							"name": "RGB",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904:i:B"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "mask:alpha",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#4:o:RGBA",
+							"name": "RGBA",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "877b71604a43e0c1a7ae3b9fbee3c02f#5",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Sample",
+					"x": -1840,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional:byte",
+							"defaultValue": null,
+							"links": [
+								"ba226c6341982a41e955e4b35b89eac6#2:o:Output"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:i:Tex",
+							"name": "Tex",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:i:Apply View MipBias",
+							"name": "Apply View MipBias",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:i:MipValueMode",
+							"name": "MipValueMode",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ETextureMipValueMode",
+							"defaultValue": "None (use computed mip level)",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:i:Sampler Source",
+							"name": "Sampler Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ESamplerSourceMode",
+							"defaultValue": "Shared: Wrap",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:i:Sampler Type",
+							"name": "Sampler Type",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialSamplerType",
+							"defaultValue": "Masks",
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:o:RGB",
+							"name": "RGB",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904:i:A"
+							]
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "mask:alpha",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "877b71604a43e0c1a7ae3b9fbee3c02f#5:o:RGBA",
+							"name": "RGBA",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "943b91c145f5cc6d0182139168b47986",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Actor Position WS",
+					"x": -4688,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "943b91c145f5cc6d0182139168b47986:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"d98006ca449749f676a0968d7573270e:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9aa4c41b40613c4c6cfa1384a8f1976b",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Dot Product",
+					"x": -3760,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9aa4c41b40613c4c6cfa1384a8f1976b:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"45396fd044f97b49f1aa9f8c1de46979:o:OutputPin"
+							]
+						},
+						{
+							"id": "9aa4c41b40613c4c6cfa1384a8f1976b:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"4e025ad54a90b9ec2a0a2ba012e8eff5:o:Output"
+							]
+						},
+						{
+							"id": "9aa4c41b40613c4c6cfa1384a8f1976b:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"febf44bd453a85add72c22938b2c3129:i:X (S)"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9aa4c41b40613c4c6cfa1384a8f1976b#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Dot Product",
+					"x": -3728,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9aa4c41b40613c4c6cfa1384a8f1976b#1:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"d98006ca449749f676a0968d7573270e:o:Output"
+							]
+						},
+						{
+							"id": "9aa4c41b40613c4c6cfa1384a8f1976b#1:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"4e025ad54a90b9ec2a0a2ba012e8eff5#1:o:Output"
+							]
+						},
+						{
+							"id": "9aa4c41b40613c4c6cfa1384a8f1976b#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"febf44bd453a85add72c22938b2c3129:i:Y (S)"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9aa4c41b40613c4c6cfa1384a8f1976b#2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Dot Product",
+					"x": -3728,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9aa4c41b40613c4c6cfa1384a8f1976b#2:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"6c79444e4502de47e3f1e79d3f05a455:o:OutputPin"
+							]
+						},
+						{
+							"id": "9aa4c41b40613c4c6cfa1384a8f1976b#2:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"4e025ad54a90b9ec2a0a2ba012e8eff5#2:o:Output"
+							]
+						},
+						{
+							"id": "9aa4c41b40613c4c6cfa1384a8f1976b#2:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"febf44bd453a85add72c22938b2c3129:i:Z (S)"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9bf596ce44b3d23cd0fd41b414a5ef6e",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Constant",
+					"x": -3070,
+					"y": 562,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9bf596ce44b3d23cd0fd41b414a5ef6e:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "100.0",
+							"links": []
+						},
+						{
+							"id": "9bf596ce44b3d23cd0fd41b414a5ef6e:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"34bf0a2f47df5d217cc1ecae24c43312:i:Preview"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a287adfc426ea621baefeabf6913f263",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -1198,
+					"y": 259,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a287adfc426ea621baefeabf6913f263:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#3:o:Output"
+							]
+						},
+						{
+							"id": "a287adfc426ea621baefeabf6913f263:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"72b12dbb40f6061df95f19ae63f24502#1:i:True"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a3cadd5c46fb8d90a7d41fbb92fc671b",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression World Position",
+					"x": -4752,
+					"y": 512,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a3cadd5c46fb8d90a7d41fbb92fc671b:i:Shader Offsets",
+							"name": "Shader Offsets",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EWorldPositionIncludedOffsets",
+							"defaultValue": "Absolute World Position (Including Material Shader Offsets)",
+							"links": []
+						},
+						{
+							"id": "a3cadd5c46fb8d90a7d41fbb92fc671b:o:XYZ",
+							"name": "XYZ",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": [
+								"3b4651944f8bbbd3c2608eaccdc9bdc4:i:InputPin",
+								"d98006ca449749f676a0968d7573270e:i:A"
+							]
+						},
+						{
+							"id": "a3cadd5c46fb8d90a7d41fbb92fc671b:o:XY",
+							"name": "XY",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a3cadd5c46fb8d90a7d41fbb92fc671b:o:Z",
+							"name": "Z",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ba226c6341982a41e955e4b35b89eac6",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Component Mask",
+					"x": -2048,
+					"y": 976,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"db5dd7b34d8e9cb88978298723dcbf3c:o:OutputPin"
+							]
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6:i:R",
+							"name": "R",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6:i:G",
+							"name": "G",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#3:i:UVs"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba226c6341982a41e955e4b35b89eac6#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Component Mask",
+					"x": -2032,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#1:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"db5dd7b34d8e9cb88978298723dcbf3c:o:OutputPin"
+							]
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#1:i:R",
+							"name": "R",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#1:i:G",
+							"name": "G",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#1:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#1:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#4:i:UVs"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba226c6341982a41e955e4b35b89eac6#2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Component Mask",
+					"x": -2032,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#2:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"db5dd7b34d8e9cb88978298723dcbf3c:o:OutputPin"
+							]
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#2:i:R",
+							"name": "R",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#2:i:G",
+							"name": "G",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#2:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#2:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#2:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#5:i:UVs"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba226c6341982a41e955e4b35b89eac6#3",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Component Mask",
+					"x": -2336,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#3:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"81979d3c46c73764737bb4954f09d66e:o:OutputPin"
+							]
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#3:i:R",
+							"name": "R",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#3:i:G",
+							"name": "G",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#3:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#3:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#3:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#2:i:UVs"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba226c6341982a41e955e4b35b89eac6#4",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Component Mask",
+					"x": -2064,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#4:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"81979d3c46c73764737bb4954f09d66e:o:OutputPin"
+							]
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#4:i:R",
+							"name": "R",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#4:i:G",
+							"name": "G",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#4:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#4:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#4:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#1:i:UVs"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba226c6341982a41e955e4b35b89eac6#5",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Component Mask",
+					"x": -2064,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#5:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"81979d3c46c73764737bb4954f09d66e:o:OutputPin"
+							]
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#5:i:R",
+							"name": "R",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#5:i:G",
+							"name": "G",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#5:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#5:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ba226c6341982a41e955e4b35b89eac6#5:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f:i:UVs"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c3ad80a9459237a3242800bef7ea7590",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Constant 3Vector",
+					"x": -4352,
+					"y": 432,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590:i:Constant",
+							"name": "Constant",
+							"direction": "input",
+							"type": "optional:rgb",
+							"defaultValue": "1.0,0.0,0.0",
+							"links": []
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": [
+								"1ce71c5944c463877c977fb04ac08733:i:Input"
+							]
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590:o:Output2",
+							"name": "Output2",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590:o:Output3",
+							"name": "Output3",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590:o:Output4",
+							"name": "Output4",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c3ad80a9459237a3242800bef7ea7590#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Constant 3Vector",
+					"x": -4352,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#1:i:Constant",
+							"name": "Constant",
+							"direction": "input",
+							"type": "optional:rgb",
+							"defaultValue": "0.0,1.0,0.0",
+							"links": []
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": [
+								"1ce71c5944c463877c977fb04ac08733#1:i:Input"
+							]
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#1:o:Output2",
+							"name": "Output2",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#1:o:Output3",
+							"name": "Output3",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#1:o:Output4",
+							"name": "Output4",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c3ad80a9459237a3242800bef7ea7590#2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Constant 3Vector",
+					"x": -4368,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#2:i:Constant",
+							"name": "Constant",
+							"direction": "input",
+							"type": "optional:rgb",
+							"defaultValue": "0.0,0.0,1.0",
+							"links": []
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#2:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": [
+								"1ce71c5944c463877c977fb04ac08733#2:i:Input"
+							]
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#2:o:Output2",
+							"name": "Output2",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#2:o:Output3",
+							"name": "Output3",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c3ad80a9459237a3242800bef7ea7590#2:o:Output4",
+							"name": "Output4",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "cacdba144ac4f879e74678b329656ed3",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -896,
+					"y": 400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cacdba144ac4f879e74678b329656ed3:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#2:o:R"
+							]
+						},
+						{
+							"id": "cacdba144ac4f879e74678b329656ed3:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"72b12dbb40f6061df95f19ae63f24502#1:i:False"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d695f3084fd8d55c6c71efb7d93c57f2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Static Switch Parameter",
+					"x": -3440,
+					"y": 464,
+					"comment": "Object Aligned by default.\r\nTrue = Object Aligned\r\nFalse = World Aligned",
+					"pins": [
+						{
+							"id": "d695f3084fd8d55c6c71efb7d93c57f2:i:True",
+							"name": "True",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"febf44bd453a85add72c22938b2c3129:o:Result"
+							]
+						},
+						{
+							"id": "d695f3084fd8d55c6c71efb7d93c57f2:i:False",
+							"name": "False",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"45b7ef644ed4ef80ca29c293e457779c:o:OutputPin"
+							]
+						},
+						{
+							"id": "d695f3084fd8d55c6c71efb7d93c57f2:i:Default Value",
+							"name": "Default Value",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "d695f3084fd8d55c6c71efb7d93c57f2:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"4ed9bcaf45e6e7c1d6eb039559ef7cdc:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d695f3084fd8d55c6c71efb7d93c57f2#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Static Switch Parameter",
+					"x": -4196,
+					"y": 1143,
+					"comment": "Object Aligned by default.\r\nTrue = Object Aligned\r\nFalse = World Aligned",
+					"pins": [
+						{
+							"id": "d695f3084fd8d55c6c71efb7d93c57f2#1:i:True",
+							"name": "True",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"098996b548fd5790685e58a937d4aa81:o:PS"
+							]
+						},
+						{
+							"id": "d695f3084fd8d55c6c71efb7d93c57f2#1:i:False",
+							"name": "False",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"800e787f40625621d4e4d8825bbffa88:o:Output"
+							]
+						},
+						{
+							"id": "d695f3084fd8d55c6c71efb7d93c57f2#1:i:Default Value",
+							"name": "Default Value",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "d695f3084fd8d55c6c71efb7d93c57f2#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"59834bb046b1612a29dd40a12056b8d9:i:Float3 (V3)"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d98006ca449749f676a0968d7573270e",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Subtract",
+					"x": -4496,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d98006ca449749f676a0968d7573270e:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"a3cadd5c46fb8d90a7d41fbb92fc671b:o:XYZ"
+							]
+						},
+						{
+							"id": "d98006ca449749f676a0968d7573270e:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"943b91c145f5cc6d0182139168b47986:o:Output"
+							]
+						},
+						{
+							"id": "d98006ca449749f676a0968d7573270e:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"7aed7dcb4c9f33586942959a7f4845a8:i:InputPin",
+								"9aa4c41b40613c4c6cfa1384a8f1976b#1:i:A",
+								"ea438d12444bd74fda0e008a2eba58ba:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "db1236114537aa770baf60b27fb724cb",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Static Bool",
+					"x": -1104,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "db1236114537aa770baf60b27fb724cb:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "db1236114537aa770baf60b27fb724cb:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"34bf0a2f47df5d217cc1ecae24c43312#1:i:Preview"
+							]
+						}
+					]
+				},
+				{
+					"guid": "db5dd7b34d8e9cb88978298723dcbf3c",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -2256,
+					"y": 784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "db5dd7b34d8e9cb88978298723dcbf3c:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"0a988db44b5fabd28189b4ba1c332d80:o:Output"
+							]
+						},
+						{
+							"id": "db5dd7b34d8e9cb88978298723dcbf3c:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"ba226c6341982a41e955e4b35b89eac6#1:i:Input",
+								"ba226c6341982a41e955e4b35b89eac6#2:i:Input",
+								"ba226c6341982a41e955e4b35b89eac6:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3a361044834fcdcd0760d91bee10904",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Linear Interpolate",
+					"x": -1440,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#5:o:G"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#4:o:G"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904:i:Alpha",
+							"name": "Alpha",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"25987ab14b3b64a94e193ca655428c25:o:Output"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#1:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3a361044834fcdcd0760d91bee10904#1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Linear Interpolate",
+					"x": -1440,
+					"y": 784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#1:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904:o:Output"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#1:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#3:o:G"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#1:i:Alpha",
+							"name": "Alpha",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"442718fb49d64195e842639c931385a7:o:Output"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"2e832d224d0bc4dbd3c15383164379b0:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3a361044834fcdcd0760d91bee10904#2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Linear Interpolate",
+					"x": -1424,
+					"y": 97,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#2:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f:o:R"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#2:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#1:o:R"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#2:i:Alpha",
+							"name": "Alpha",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"25987ab14b3b64a94e193ca655428c25:o:Output"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#2:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#3:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3a361044834fcdcd0760d91bee10904#3",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Linear Interpolate",
+					"x": -1424,
+					"y": 225,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#3:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"e3a361044834fcdcd0760d91bee10904#2:o:Output"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#3:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#2:o:R"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#3:i:Alpha",
+							"name": "Alpha",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"442718fb49d64195e842639c931385a7:o:Output"
+							]
+						},
+						{
+							"id": "e3a361044834fcdcd0760d91bee10904#3:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"a287adfc426ea621baefeabf6913f263:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ea438d12444bd74fda0e008a2eba58ba",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -4336,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ea438d12444bd74fda0e008a2eba58ba:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"d98006ca449749f676a0968d7573270e:o:Output"
+							]
+						},
+						{
+							"id": "ea438d12444bd74fda0e008a2eba58ba:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"45396fd044f97b49f1aa9f8c1de46979:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f4f120834cdfa138d9480fa3aff5c53d",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -880,
+					"y": 1088,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f4f120834cdfa138d9480fa3aff5c53d:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"877b71604a43e0c1a7ae3b9fbee3c02f#3:o:G"
+							]
+						},
+						{
+							"id": "f4f120834cdfa138d9480fa3aff5c53d:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"72b12dbb40f6061df95f19ae63f24502:i:False"
+							]
+						}
+					]
+				},
+				{
+					"guid": "febf44bd453a85add72c22938b2c3129",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Material Function Call",
+					"x": -3584,
+					"y": 544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "febf44bd453a85add72c22938b2c3129:i:X (S)",
+							"name": "X (S)",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"9aa4c41b40613c4c6cfa1384a8f1976b:o:Output"
+							]
+						},
+						{
+							"id": "febf44bd453a85add72c22938b2c3129:i:Y (S)",
+							"name": "Y (S)",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"9aa4c41b40613c4c6cfa1384a8f1976b#1:o:Output"
+							]
+						},
+						{
+							"id": "febf44bd453a85add72c22938b2c3129:i:Z (S)",
+							"name": "Z (S)",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"9aa4c41b40613c4c6cfa1384a8f1976b#2:o:Output"
+							]
+						},
+						{
+							"id": "febf44bd453a85add72c22938b2c3129:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"d695f3084fd8d55c6c71efb7d93c57f2:i:True"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "162e46154ced32ed59de84b5fa1bc0cf",
+					"text": "Project Tri-Planar or Top down only",
+					"x": -1200,
+					"y": 176,
+					"width": 592,
+					"height": 256
+				},
+				{
+					"guid": "162e46154ced32ed59de84b5fa1bc0cf#1",
+					"text": "Project Tri-Planar or Top down only",
+					"x": -1184,
+					"y": 656,
+					"width": 592,
+					"height": 272
+				},
+				{
+					"guid": "19e4967049686947960843b51e559dd7",
+					"text": "World Space Texture Blending",
+					"x": -2306,
+					"y": -210,
+					"width": 1089,
+					"height": 1456
+				},
+				{
+					"guid": "6e13d4e542f4960692b7fa844870045a",
+					"text": "Vertex Normal Blending Mask",
+					"x": -4624,
+					"y": 1024,
+					"width": 1408,
+					"height": 416
+				},
+				{
+					"guid": "d14ebb1149ea943696934295cf1f48d1",
+					"text": "Scale",
+					"x": -3088,
+					"y": 400,
+					"width": 560,
+					"height": 288
+				},
+				{
+					"guid": "de7a41144a0dbaee55043195847608a7",
+					"text": "Switch between Tri-Planar and Top down only",
+					"x": -1152,
+					"y": 448,
+					"width": 544,
+					"height": 176
+				},
+				{
+					"guid": "e664bc054fbc5252130a5899a8748593",
+					"text": "World Space or Local Space",
+					"x": -4802,
+					"y": 302,
+					"width": 1594,
+					"height": 684
+				}
+			]
+		}
+	]
+}
