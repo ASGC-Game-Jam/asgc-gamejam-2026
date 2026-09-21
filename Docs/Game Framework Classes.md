@@ -132,10 +132,57 @@ right visibility for something only the leaf should drive.
 confirm the level's World Settings GameMode override points at it. Do not hard-reference one
 framework class from another.
 
+### Connecting player features
+
+Each feature Spec owns connecting its behavior to the playable character and proving that connection
+
+Include the required player setup, access to other systems, and integration behavior in that Spec
+
+Keep feature logic in the classes or components that own it
+
+Keep changes to the shared player framework limited to the references or hooks that the feature actually needs
+
+Before replacing a placeholder player value, record
+
+- Which feature owns the value and its starting state
+- Where the authoritative value lives
+- Who can change it and through which API
+- How consumers read the current value and receive later changes
+- What consumers do when the owner is unavailable or replaced
+
+A value living on PlayerState does not by itself create a second source of truth
+
+A feature can use PlayerState as its authoritative storage if the ownership and write path are explicit
+
+A derived or replicated copy must have a named source and must not become another independent authority
+
+Connect consumers to the agreed owner, subscribe to relevant changes, and read the current value when connecting
+
+Release subscriptions and old references when an owner or consumer is replaced
+
+A feature should remain usable when optional consumers such as Audio or UI are absent
+
+Use the existing framework access paths and feature APIs first
+
+Add shared lookup or registration code only when named consumers demonstrate a need that those paths do not meet
+
+A generic feature registry and an arbitrary number of prototype features are not prerequisites for shipping a feature
+
+During code review, check that the Spec names the state owner, the integration is exercised on the playable character, and optional consumers do not become required dependencies
+
+Player input connections are covered by [Player Input & Control](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/issues/148)
+
+Traversal Mode, Ballast, and Oxygen carry their own integration requirements
+
+This guidance replaces the general integration rules previously collected in [Player Feature Integration](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/issues/149)
+
 ### Player state
 
-Bind to the delegates on `AAtlantisPlayerState` rather than polling it each tick. See
-[Replicated State Pattern.md](./Replicated%20State%20Pattern.md).
+For state owned through `AAtlantisPlayerState`, bind to its change delegates and read the current value when connecting
+
+For state owned elsewhere, use that feature's agreed read and notification API
+
+[Replicated State Pattern](./Replicated%20State%20Pattern.md) documents the existing replicated implementation
 
 ### Controls
 
