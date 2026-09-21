@@ -8,7 +8,7 @@ public class ProjectAtlantis : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EngineSettings" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "EngineSettings" });
 
         PrivateDependencyModuleNames.AddRange(new string[] {
             "GameAnalytics",
@@ -20,6 +20,7 @@ public class ProjectAtlantis : ModuleRules
             "HarmonixMetasound",
             "Harmonix"
         });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics" });
 
         PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
 
