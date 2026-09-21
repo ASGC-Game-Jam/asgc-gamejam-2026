@@ -1,14 +1,25 @@
-// Copyright ASGC. All Rights Reserved.
+// =======================================================================================
+// PROJECT ATLANTIS - METASOUND INTERFACE TEMPLATE
+// =======================================================================================
+// DESIGN NOTE: This file intentionally uses a boilerplate/template structure. 
+// Due to Unreal Engine's static registration requirements and dependency on the 
+// preprocessor (AUDIO_PARAMETER_INTERFACE_MEMBER_DEFINE), traditional C++ abstraction 
+// and inheritance cannot be used here.
+//
+// HOW TO USE: 
+// 1. Copy this file pairs (.h/.cpp) to create a new interface.
+// 2. Follow the !!CHANGE THIS!! TODO markers to rename namespaces and define your pins.
+// =======================================================================================
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "MetasoundFrontendDocument.h"
 #include "IAudioParameterInterfaceRegistry.h"
 
 namespace ProjectAtlantisAudio
 {
-	//This namespace is the "folder" for everything related to this one interface
-	//TODO: !!CHANGE THIS!! Rename this namespace to your interface to help keep things organizeds
+	//TODO: !!CHANGE THIS!! Rename this namespace to your interface to help keep things organized
 	namespace PlayerCharacterInterface
 	{
 		// Returns the version info (name + number) that identifies this interface to the engine.
@@ -21,8 +32,7 @@ namespace ProjectAtlantisAudio
 		extern const FMetasoundFrontendVersion FrontendVersion;
 
 		// --- Inputs ---
-		// Each FLazyName below is the exact pin name that will show up on a MetaSound graph.
-		// TODO: !!CHANGE THIS!! to reflect the pins you need
+		// TODO: !!CHANGE THIS!! to reflect the input pins you need
 		namespace Inputs
 		{
 			extern const FLazyName CurrentHp;
@@ -34,14 +44,15 @@ namespace ProjectAtlantisAudio
 			extern const FLazyName IsCrouching;
 		}
 
-		//OPTIONAL: Comment out if not using outputs
+		// --- Outputs ---
+		// TODO: !!CHANGE THIS!! to reflect the output pins you need (or comment out if unused)
 		namespace Outputs
 		{
 			extern const FLazyName MyOutput;
 		}
 	}
 
-	// Call this once, fron AtlantisInterfaceRegistration.cpp
+	// Call this once from AtlantisInterfaceRegistration.cpp
 	// TODO: !!CHANGE THIS!!
 	void RegisterPlayerCharacterInterface();
 }

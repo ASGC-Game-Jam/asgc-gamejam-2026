@@ -1,4 +1,15 @@
-// Copyright ASGC. All Rights Reserved.
+// =======================================================================================
+// PROJECT ATLANTIS - METASOUND INTERFACE TEMPLATE
+// =======================================================================================
+// DESIGN NOTE: This file intentionally uses a boilerplate/template structure. 
+// Due to Unreal Engine's static registration requirements and dependency on the 
+// preprocessor (AUDIO_PARAMETER_INTERFACE_MEMBER_DEFINE), traditional C++ abstraction 
+// and inheritance cannot be used here.
+//
+// HOW TO USE: 
+// 1. Copy this file pairs (.h/.cpp) to create a new interface.
+// 2. Follow the !!CHANGE THIS!! TODO markers to rename namespaces and define your pins.
+// =======================================================================================
 
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_PlayerCharacter.h"
 
@@ -6,33 +17,24 @@
 #include "MetasoundFrontendDocument.h"
 #include "MetasoundTrigger.h"
 
-// LOCTEXT_NAMESPACE just groups all the localizable text below under one label for the localization system.
 #define LOCTEXT_NAMESPACE "AtlantisMetaSoundInterfaces"
 
 namespace ProjectAtlantisAudio
 {
-	// This define is the "namespace string" for the interface, it becomes part of the interface's
-	// full registered name, e.g. "Atlantis.Character". 
 	// TODO: !!CHANGE THIS!! per interface file.
 	#define AUDIO_PARAMETER_INTERFACE_NAMESPACE "Atlantis.Character"
 
 	namespace PlayerCharacterInterface
 	{
-
-		// GetVersion() hands back a static, lazily-built version struct.
-		// "static" here means it's built once and reused, not rebuilt every call.
 		const FMetasoundFrontendVersion& GetVersion()
 		{
 			static const FMetasoundFrontendVersion Version = { AUDIO_PARAMETER_INTERFACE_NAMESPACE, { 1, 0 } };
 			return Version;
 		}
 
-		// This is the "real" copy of the version data that the header just declared as extern.
 		const FMetasoundFrontendVersion FrontendVersion{ AUDIO_PARAMETER_INTERFACE_NAMESPACE, { 1, 0 } };
 
-		// TODO: !!CHANGE THIS!! pins for this system's actual data
-		// AUDIO_PARAMETER_INTERFACE_MEMBER_DEFINE builds the full pin name using the namespace above,
-		// so "Health" becomes something like "ProjectAtlantis.PlayerCharacter.CurrentHp" internally.
+		// TODO: !!CHANGE THIS!! to match your header input variables
 		namespace Inputs
 		{	
 			const FLazyName CurrentHp(AUDIO_PARAMETER_INTERFACE_MEMBER_DEFINE("CurrentHp"));
@@ -44,33 +46,24 @@ namespace ProjectAtlantisAudio
 			const FLazyName IsCrouching(AUDIO_PARAMETER_INTERFACE_MEMBER_DEFINE("IsCrouching"));
 		}
 
-		//OPTIONAL: Comment out if not using outputs
+		// TODO: !!CHANGE THIS!! to match your header output variables (or comment out if unused)
 		namespace Outputs
 		{
 			const FLazyName MyOutput = AUDIO_PARAMETER_INTERFACE_MEMBER_DEFINE("MyOutput");
 		}
 
-		// CreateInterface() builds the actual interface object: a list of input pins and output pins.
-		// This is what gets handed to the registry so MetaSound graphs can "implement" it.
 		Audio::FParameterInterfacePtr CreateInterface()
 		{
-			// FInterface is a small local struct, it only exists to build itself once in its constructor.
 			struct FInterface : public Audio::FParameterInterface
 			{
 				FInterface()
-					// This base constructor call registers the interface's name + version number.
 					: Audio::FParameterInterface{ FrontendVersion.Name, FrontendVersion.Number.ToInterfaceVersion() }
 				{
 					using namespace Metasound;
 					using namespace Inputs;
-
-					//OPTIONAL: Comment out if not using outputs
 					using namespace Outputs; 
-					
 
-					// TODO: !!CHANGE THIS!! one Inputs.Add(...) block per input pin.
-					// Each entry is: display name, tooltip/description, data type, actual pin name,
-					// an optional default value text, then a sort index (controls pin order in editor).
+					// --- Register Inputs ---
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisPlayerHealth", "Health"),
@@ -102,7 +95,7 @@ namespace ProjectAtlantisAudio
 						{
 							LOCTEXT("AtlantisNumEnemiesInRange", "NumEnemiesInRange"),
 							LOCTEXT("AtlantisNumEnemiesInRange_Description", "Number of Enemies In Range"),
-							GetMetasoundDataTypeName<int>(),
+							GetMetasoundDataTypeName<int32>(), // FIXED: Changed int to int32 for MetaSound compatibility
 							NumEnemiesInRange.Resolve(),
 							FText(),
 							3
@@ -135,24 +128,21 @@ namespace ProjectAtlantisAudio
 							6
 						});
 
-
-					// OPTIONAL! Comment out if not using outputs
+					// --- Register Outputs ---
 					Outputs.Add(
 						{
-							LOCTEXT("AtlantisMyOutput", "MyOutput"),// Name to be displayed in editor or tools
-							LOCTEXT("AtlantisIsInvestigationReady_Description", "Is Player Character Investigation Ready?"), // Description to be displayed in editor or tools
-							GetMetasoundDataTypeName<bool>(), // FName describing the type of the data.
-							MyOutput, // Specified Pin
-							FText(), // Text to display in the editor or tools if the consuming system of the given input parameter is not implemented
-							EAudioParameterType::Boolean, // Type of output parameter used as a runtime identifier if unspecified by the DataType.
-							0 // Sort Order
+							LOCTEXT("AtlantisMyOutput", "MyOutput"),
+							LOCTEXT("AtlantisIsInvestigationReady_Description", "Is Player Character Investigation Ready?"),
+							GetMetasoundDataTypeName<bool>(),
+							MyOutput,
+							FText(),
+							EAudioParameterType::Boolean,
+							0
 						});
 				}
 			};
 
-			// Only build FInterface once, then reuse the same pointer every time CreateInterface() is called.
 			static Audio::FParameterInterfacePtr InterfacePtr;
-
 			if (InterfacePtr.IsValid() == false)
 			{
 				InterfacePtr = MakeShared<FInterface>();
@@ -162,17 +152,11 @@ namespace ProjectAtlantisAudio
 		}
 	}
 
-	// Undo the define so it doesn't leak into other files that get compiled after this one.
 #undef AUDIO_PARAMETER_INTERFACE_NAMESPACE
 
-	// This is the function your module calls on startup, it's the "switch" that actually
-	// makes the interface show up in the MetaSound editor's Interfaces panel.
-	// TODO !! CHANGE THIS !! - Must match your .h and be different for each interface
-	void ProjectAtlantisAudio::RegisterPlayerCharacterInterface()
+	void RegisterPlayerCharacterInterface()
 	{
 		Audio::IAudioParameterInterfaceRegistry& AudioParamRegistry = Audio::IAudioParameterInterfaceRegistry::Get();
-		
-		//TODO: !!CHANGE THIS!! - Ensure the interface namespace is the same as your .h
 		AudioParamRegistry.RegisterInterface(PlayerCharacterInterface::CreateInterface());
 	}
 }
