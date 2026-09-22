@@ -2127,58 +2127,6 @@
 					]
 				},
 				{
-					"guid": "56fae19544e679aca754b498c96ac8b8",
-					"class": "K2Node_CallFunction",
-					"title": "Remove Mapping Context",
-					"x": -144,
-					"y": 2048,
-					"comment": null,
-					"pins": [
-						{
-							"id": "56fae19544e679aca754b498c96ac8b8:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "56fae19544e679aca754b498c96ac8b8:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "56fae19544e679aca754b498c96ac8b8:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "interface:/Script/EnhancedInput.EnhancedInputSubsystemInterface",
-							"defaultValue": null,
-							"links": [
-								"9f9fff82451e63a7ab1cbf91782a3f50:o:ReturnValue"
-							]
-						},
-						{
-							"id": "56fae19544e679aca754b498c96ac8b8:i:MappingContext",
-							"name": "MappingContext",
-							"direction": "input",
-							"type": "object:/Script/EnhancedInput.InputMappingContext",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "56fae19544e679aca754b498c96ac8b8:i:Options",
-							"name": "Options",
-							"direction": "input",
-							"type": "struct:/Script/EnhancedInput.ModifyContextOptions",
-							"defaultValue": "(bIgnoreAllPressedKeysUntilRelease=True,bForceImmediately=False,bNotifyUserSettings=False)",
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "63233de94316f17985514482daff70b2",
 					"class": "K2Node_CreateWidget",
 					"title": "Create Widget",
@@ -2239,32 +2187,6 @@
 					]
 				},
 				{
-					"guid": "7398472f4969ac62649d2bb69296a6da",
-					"class": "K2Node_CustomEvent",
-					"title": "DistableInpuit",
-					"x": -496,
-					"y": 1584,
-					"comment": null,
-					"pins": [
-						{
-							"id": "7398472f4969ac62649d2bb69296a6da:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "7398472f4969ac62649d2bb69296a6da:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "75ee305f4d60765a3abf15a3bf6f486d",
 					"class": "K2Node_GetSubsystem",
 					"title": "Get EnhancedInputLocalPlayerSubsystem",
@@ -2309,26 +2231,6 @@
 							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
 							"defaultValue": null,
 							"links": []
-						}
-					]
-				},
-				{
-					"guid": "9f9fff82451e63a7ab1cbf91782a3f50",
-					"class": "K2Node_GetSubsystem",
-					"title": "Get EnhancedInputLocalPlayerSubsystem",
-					"x": -432,
-					"y": 2064,
-					"comment": null,
-					"pins": [
-						{
-							"id": "9f9fff82451e63a7ab1cbf91782a3f50:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
-							"defaultValue": null,
-							"links": [
-								"56fae19544e679aca754b498c96ac8b8:i:self"
-							]
 						}
 					]
 				},
