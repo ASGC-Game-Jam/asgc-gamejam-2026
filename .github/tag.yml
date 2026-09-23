@@ -1,0 +1,72 @@
+name: Build & Publish Release
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+# Shared paths for the self-hosted Windows build runner and the Ubuntu runners for GitHub and Steam releases
+env:
+  OUTPUT_PATH: "${{ github.workspace }}\\BuildOutput"
+
+jobs:
+  build-release:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          lfs: true
+
+      # TODO : Replace with actual build commands from build manager
+      - name: Clean, compile and package new build
+        env:
+          UNREAL_ENGINE_PATH: "C:\\Program Files\\Epic Games\\UE_5.7"
+          PROJECT_FILE_PATH: "${{ github.workspace }}\\ProjectAtlantis.uproject"
+        run: echo "Building project..."
+        shell: powershell
+
+      - name: Upload project build
+        uses: actions/upload-artifact@v7
+        with:
+          name: ProjectAtlantis-{{ github.ref_name }}.zip
+          path: {{ env.OUTPUT_PATH }}
+
+  github-release:
+    runs-on: ubuntu-latest
+    needs: build-release
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Fetch project build
+        uses: actions/download-artifact@v7
+        with:
+          name: ProjectAtlantis-{{ github.ref_name }}.zip
+          path: {{ env.OUTPUT_PATH }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          # assuming semver tags, so we don't need to specify a tag name or release name
+          generate_release_notes: true
+          working-directory: {{ env.OUTPUT_PATH }}
+          files: ProjectAtlantis-{{ github.ref_name }}.zip
+
+  steam-release:
+    runs-on: ubuntu-latest
+    # Could run this job in parallel with github-release, but keeping it sequential for now
+    needs: github-release
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Fetch project build
+        uses: actions/download-artifact@v7
+        with:
+          name: ProjectAtlantis-{{ github.ref_name }}.zip
+          path: {{ env.OUTPUT_PATH }}
+
+      # TODO : replace with Steamworks CLI commands to publish the build to Steam
+      - name: Publish to Steam
+        run: echo "Publishing to Steam..."
