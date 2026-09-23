@@ -10,9 +10,19 @@ public class ProjectAtlantis : ModuleRules
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "EngineSettings", "AIModule", "GameplayStateTreeModule" });
 
+        PrivateDependencyModuleNames.AddRange(new string[] {
+            "GameAnalytics",
+            "MetasoundFrontend",
+            "MetasoundGraphCore",
+            "MetasoundEngine",
+            "MetasoundStandardNodes",
+            "AudioExtensions",
+            "HarmonixMetasound",
+            "Harmonix"
+        });
 		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics" });
 
-		PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
+        PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
