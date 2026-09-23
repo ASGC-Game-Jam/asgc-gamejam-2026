@@ -1,0 +1,779 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Maps/L_JournalTest",
+	"asset": "L_JournalTest",
+	"parentClass": "LevelScriptActor",
+	"blueprintType": "BPTYPE_LevelScript",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "022155cb4a42f8573acd50be3798998f",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 1568,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "022155cb4a42f8573acd50be3798998f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"040be993499afc1e4992d6a108b26110:o:then"
+							]
+						},
+						{
+							"id": "022155cb4a42f8573acd50be3798998f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "022155cb4a42f8573acd50be3798998f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"040be993499afc1e4992d6a108b26110:o:ReturnValue"
+							]
+						},
+						{
+							"id": "022155cb4a42f8573acd50be3798998f:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "040be993499afc1e4992d6a108b26110",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 1232,
+					"y": 432,
+					"comment": null,
+					"pins": [
+						{
+							"id": "040be993499afc1e4992d6a108b26110:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"881d1b9c4f673d9664aa8d9b5b92db6d:o:OutputPin"
+							]
+						},
+						{
+							"id": "040be993499afc1e4992d6a108b26110:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"022155cb4a42f8573acd50be3798998f:i:execute"
+							]
+						},
+						{
+							"id": "040be993499afc1e4992d6a108b26110:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_BuildVersion.WBP_BuildVersion_C",
+							"links": []
+						},
+						{
+							"id": "040be993499afc1e4992d6a108b26110:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_BuildVersion.WBP_BuildVersion_C",
+							"defaultValue": null,
+							"links": [
+								"022155cb4a42f8573acd50be3798998f:i:self"
+							]
+						},
+						{
+							"id": "040be993499afc1e4992d6a108b26110:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"30a5726c4c1baf7520951e9f3a787155:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2d1d2b954ecda941047639afdaad9bb9",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2d1d2b954ecda941047639afdaad9bb9:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2d1d2b954ecda941047639afdaad9bb9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da013ce047e13ca65dc853836f7d1291:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2d382a204fa246d65c41d78d651e6f3f",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 1568,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2d382a204fa246d65c41d78d651e6f3f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f0dab8754a48b668606cd5974e74bfe5:o:then"
+							]
+						},
+						{
+							"id": "2d382a204fa246d65c41d78d651e6f3f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2d382a204fa246d65c41d78d651e6f3f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"f0dab8754a48b668606cd5974e74bfe5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2d382a204fa246d65c41d78d651e6f3f:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "30a5726c4c1baf7520951e9f3a787155",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 928,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "30a5726c4c1baf7520951e9f3a787155:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "30a5726c4c1baf7520951e9f3a787155:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "30a5726c4c1baf7520951e9f3a787155:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "30a5726c4c1baf7520951e9f3a787155:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"040be993499afc1e4992d6a108b26110:i:OwningPlayer"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3ef3fa5443b05933f80948a83b85941e",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 944,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3ef3fa5443b05933f80948a83b85941e:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da013ce047e13ca65dc853836f7d1291:o:then_0"
+							]
+						},
+						{
+							"id": "3ef3fa5443b05933f80948a83b85941e:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f0dab8754a48b668606cd5974e74bfe5:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6ea7cc154f4d4b8094de63bf4857797b",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1456,
+					"y": 1056,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6ea7cc154f4d4b8094de63bf4857797b:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"d2a7828242cf8312cae68a8aa1c33395:o:OutputPin"
+							]
+						},
+						{
+							"id": "6ea7cc154f4d4b8094de63bf4857797b:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"8fa3498148320aabcb07f09c802a246e:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "74ab54864e909cca09204a8713df49eb",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 912,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "74ab54864e909cca09204a8713df49eb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "74ab54864e909cca09204a8713df49eb:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "74ab54864e909cca09204a8713df49eb:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "74ab54864e909cca09204a8713df49eb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"f0dab8754a48b668606cd5974e74bfe5:i:OwningPlayer"
+							]
+						}
+					]
+				},
+				{
+					"guid": "881d1b9c4f673d9664aa8d9b5b92db6d",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 944,
+					"y": 464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "881d1b9c4f673d9664aa8d9b5b92db6d:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da013ce047e13ca65dc853836f7d1291:o:then_1"
+							]
+						},
+						{
+							"id": "881d1b9c4f673d9664aa8d9b5b92db6d:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"040be993499afc1e4992d6a108b26110:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8fa3498148320aabcb07f09c802a246e",
+					"class": "K2Node_VariableSet",
+					"title": "Set bShowMouseCursor",
+					"x": 1568,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8fa3498148320aabcb07f09c802a246e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9820ab85412f749c318e4fa38bcba4c4:o:then"
+							]
+						},
+						{
+							"id": "8fa3498148320aabcb07f09c802a246e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8fa3498148320aabcb07f09c802a246e:i:bShowMouseCursor",
+							"name": "bShowMouseCursor",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "8fa3498148320aabcb07f09c802a246e:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8fa3498148320aabcb07f09c802a246e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"6ea7cc154f4d4b8094de63bf4857797b:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9820ab85412f749c318e4fa38bcba4c4",
+					"class": "K2Node_CallFunction",
+					"title": "Set Input Mode Game And UI",
+					"x": 1216,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9820ab85412f749c318e4fa38bcba4c4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c16a056347d3271e41a3489ed3bf359a:o:OutputPin"
+							]
+						},
+						{
+							"id": "9820ab85412f749c318e4fa38bcba4c4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8fa3498148320aabcb07f09c802a246e:i:execute"
+							]
+						},
+						{
+							"id": "9820ab85412f749c318e4fa38bcba4c4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "9820ab85412f749c318e4fa38bcba4c4:i:PlayerController",
+							"name": "PlayerController",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"a6cf5c6846b8cb2357653c893dd745a9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "9820ab85412f749c318e4fa38bcba4c4:i:InWidgetToFocus",
+							"name": "InWidgetToFocus",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9820ab85412f749c318e4fa38bcba4c4:i:InMouseLockMode",
+							"name": "InMouseLockMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EMouseLockMode",
+							"defaultValue": "DoNotLock",
+							"links": []
+						},
+						{
+							"id": "9820ab85412f749c318e4fa38bcba4c4:i:bHideCursorDuringCapture",
+							"name": "bHideCursorDuringCapture",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "9820ab85412f749c318e4fa38bcba4c4:i:bFlushInput",
+							"name": "bFlushInput",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a6cf5c6846b8cb2357653c893dd745a9",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 928,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a6cf5c6846b8cb2357653c893dd745a9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "a6cf5c6846b8cb2357653c893dd745a9:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a6cf5c6846b8cb2357653c893dd745a9:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "a6cf5c6846b8cb2357653c893dd745a9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"9820ab85412f749c318e4fa38bcba4c4:i:PlayerController",
+								"d2a7828242cf8312cae68a8aa1c33395:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ad14637149ae649f2e7b2093dba82bdd",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "ad14637149ae649f2e7b2093dba82bdd:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ad14637149ae649f2e7b2093dba82bdd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ad14637149ae649f2e7b2093dba82bdd:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c16a056347d3271e41a3489ed3bf359a",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 944,
+					"y": 784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c16a056347d3271e41a3489ed3bf359a:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da013ce047e13ca65dc853836f7d1291:o:then_2"
+							]
+						},
+						{
+							"id": "c16a056347d3271e41a3489ed3bf359a:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9820ab85412f749c318e4fa38bcba4c4:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d2a7828242cf8312cae68a8aa1c33395",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1200,
+					"y": 1056,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d2a7828242cf8312cae68a8aa1c33395:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"a6cf5c6846b8cb2357653c893dd745a9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d2a7828242cf8312cae68a8aa1c33395:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"6ea7cc154f4d4b8094de63bf4857797b:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "da013ce047e13ca65dc853836f7d1291",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": 448,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "da013ce047e13ca65dc853836f7d1291:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2d1d2b954ecda941047639afdaad9bb9:o:then"
+							]
+						},
+						{
+							"id": "da013ce047e13ca65dc853836f7d1291:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3ef3fa5443b05933f80948a83b85941e:i:InputPin"
+							]
+						},
+						{
+							"id": "da013ce047e13ca65dc853836f7d1291:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"881d1b9c4f673d9664aa8d9b5b92db6d:i:InputPin"
+							]
+						},
+						{
+							"id": "da013ce047e13ca65dc853836f7d1291:o:then_2",
+							"name": "then_2",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c16a056347d3271e41a3489ed3bf359a:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f0dab8754a48b668606cd5974e74bfe5",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 1232,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f0dab8754a48b668606cd5974e74bfe5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3ef3fa5443b05933f80948a83b85941e:o:OutputPin"
+							]
+						},
+						{
+							"id": "f0dab8754a48b668606cd5974e74bfe5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2d382a204fa246d65c41d78d651e6f3f:i:execute"
+							]
+						},
+						{
+							"id": "f0dab8754a48b668606cd5974e74bfe5:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"links": []
+						},
+						{
+							"id": "f0dab8754a48b668606cd5974e74bfe5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": [
+								"2d382a204fa246d65c41d78d651e6f3f:i:self"
+							]
+						},
+						{
+							"id": "f0dab8754a48b668606cd5974e74bfe5:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"74ab54864e909cca09204a8713df49eb:o:ReturnValue"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "177301fc426e5e4bcf193aa084f795c3",
+					"text": "Add Journal",
+					"x": 896,
+					"y": -112,
+					"width": 944,
+					"height": 400
+				},
+				{
+					"guid": "3b7d721640a9370e9f6e40bc5e24c3dd",
+					"text": "Show cursor",
+					"x": 896,
+					"y": 672,
+					"width": 944,
+					"height": 448
+				},
+				{
+					"guid": "4811cd6d42aa9d9faaa02d86e582d80a",
+					"text": "Show build information",
+					"x": 896,
+					"y": 352,
+					"width": 944,
+					"height": 272
+				}
+			]
+		}
+	]
+}
