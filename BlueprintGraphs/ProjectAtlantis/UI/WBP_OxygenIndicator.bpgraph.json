@@ -11,6 +11,46 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "083b6ea548db373c18491bbd2f9d460d",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 1312,
+					"y": 592,
+					"comment": null,
+					"pins": [
+						{
+							"id": "083b6ea548db373c18491bbd2f9d460d:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"54731aa64bb08a5473f91eb241619039:o:CurrentOxygen"
+							]
+						},
+						{
+							"id": "083b6ea548db373c18491bbd2f9d460d:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ad2db0224db2f5a9baff109ec3f621d9:o:OxygenCapacity"
+							]
+						},
+						{
+							"id": "083b6ea548db373c18491bbd2f9d460d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"958c84a54c54d51be1e1c5964a7fbf80:i:InPercent"
+							]
+						}
+					]
+				},
+				{
 					"guid": "2fe10020496bbc18a01c0582d8215724",
 					"class": "K2Node_Event",
 					"title": "Event Tick",
@@ -85,6 +125,36 @@
 					]
 				},
 				{
+					"guid": "54731aa64bb08a5473f91eb241619039",
+					"class": "K2Node_VariableGet",
+					"title": "Get CurrentOxygen",
+					"x": 1056,
+					"y": 576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "54731aa64bb08a5473f91eb241619039:o:CurrentOxygen",
+							"name": "CurrentOxygen",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"083b6ea548db373c18491bbd2f9d460d:i:A"
+							]
+						},
+						{
+							"id": "54731aa64bb08a5473f91eb241619039:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"ee51d75346dc48dfdcf915a51824ef02:o:AsAtlantis Player State"
+							]
+						}
+					]
+				},
+				{
 					"guid": "6a18e44e401935876adefc961c496be8",
 					"class": "K2Node_Event",
 					"title": "Event Pre Construct",
@@ -122,7 +192,7 @@
 					"guid": "8359330248ee04b61face192af8078b4",
 					"class": "K2Node_VariableGet",
 					"title": "Get OxygenDisplay",
-					"x": 1344,
+					"x": 1472,
 					"y": 352,
 					"comment": null,
 					"pins": [
@@ -150,7 +220,7 @@
 					"guid": "958c84a54c54d51be1e1c5964a7fbf80",
 					"class": "K2Node_CallFunction",
 					"title": "Set Percent",
-					"x": 1344,
+					"x": 1472,
 					"y": 400,
 					"comment": null,
 					"pins": [
@@ -189,7 +259,7 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"ad2db0224db2f5a9baff109ec3f621d9:o:OxygenCapacity"
+								"083b6ea548db373c18491bbd2f9d460d:o:ReturnValue"
 							]
 						}
 					]
@@ -199,7 +269,7 @@
 					"class": "K2Node_VariableGet",
 					"title": "Get OxygenCapacity",
 					"x": 1056,
-					"y": 501,
+					"y": 640,
 					"comment": null,
 					"pins": [
 						{
@@ -209,7 +279,7 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"958c84a54c54d51be1e1c5964a7fbf80:i:InPercent"
+								"083b6ea548db373c18491bbd2f9d460d:i:B"
 							]
 						},
 						{
@@ -318,7 +388,7 @@
 							"id": "ee51d75346dc48dfdcf915a51824ef02:i:Object",
 							"name": "Object",
 							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
+							"type": "Object:/Script/CoreUObject.Object",
 							"defaultValue": null,
 							"links": [
 								"3336560743cfb87ab00c0bb3934571de:o:PlayerState"
@@ -328,9 +398,10 @@
 							"id": "ee51d75346dc48dfdcf915a51824ef02:o:AsAtlantis Player State",
 							"name": "AsAtlantis Player State",
 							"direction": "output",
-							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"type": "Object:/Script/ProjectAtlantis.AtlantisPlayerState",
 							"defaultValue": null,
 							"links": [
+								"54731aa64bb08a5473f91eb241619039:i:self",
 								"ad2db0224db2f5a9baff109ec3f621d9:i:self"
 							]
 						},

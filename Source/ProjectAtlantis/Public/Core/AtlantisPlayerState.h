@@ -55,6 +55,9 @@ public:
 	//~ Accessors.
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	float GetOxygenCapacity() const { return OxygenCapacity; }
+	
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	float GetCurrentOxygen() const { return CurrentOxygen; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	bool IsBallastAllocated() const { return bBallastAllocation; }
@@ -71,6 +74,9 @@ public:
 	//~ Mutators. Server only; calls on a client are ignored.
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetOxygenCapacity(float NewOxygenCapacity);
+	
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	void SetCurrentOxygen(float NewCurrentOxygen);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetBallastAllocated(bool bNewBallastAllocation);
@@ -86,6 +92,9 @@ protected:
 	//TODO: note that these are placeholder variables and data types they may be swapped out for the real value upon implementation
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	float OxygenCapacity = 100.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
+	float CurrentOxygen = 100.f;
 
 	UPROPERTY(ReplicatedUsing = OnRep_BallastAllocation, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	bool bBallastAllocation = false;
