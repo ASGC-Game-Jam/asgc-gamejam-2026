@@ -15,7 +15,7 @@
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
 					"x": 0,
-					"y": 0,
+					"y": 9,
 					"comment": null,
 					"pins": [
 						{
@@ -39,15 +39,15 @@
 					]
 				},
 				{
-					"guid": "6ef244564c45d85b91c7d09e801806fa",
-					"class": "K2Node_CallFunction",
-					"title": "Quit Game",
-					"x": 176,
+					"guid": "902e46294001c24b38a892b903ef800c",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 160,
 					"y": 400,
 					"comment": null,
 					"pins": [
 						{
-							"id": "6ef244564c45d85b91c7d09e801806fa:i:execute",
+							"id": "902e46294001c24b38a892b903ef800c:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
@@ -57,51 +57,39 @@
 							]
 						},
 						{
-							"id": "6ef244564c45d85b91c7d09e801806fa:o:then",
+							"id": "902e46294001c24b38a892b903ef800c:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
+							"links": [
+								"fa5dcaeb4ac77705e9f40385cf21e6b2:i:execute"
+							]
+						},
+						{
+							"id": "902e46294001c24b38a892b903ef800c:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "Class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_PauseMenu.WBP_PauseMenu_C",
 							"links": []
 						},
 						{
-							"id": "6ef244564c45d85b91c7d09e801806fa:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetSystemLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
-							"links": []
-						},
-						{
-							"id": "6ef244564c45d85b91c7d09e801806fa:i:WorldContextObject",
-							"name": "WorldContextObject",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
+							"id": "902e46294001c24b38a892b903ef800c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_PauseMenu.WBP_PauseMenu_C",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"fa5dcaeb4ac77705e9f40385cf21e6b2:i:self"
+							]
 						},
 						{
-							"id": "6ef244564c45d85b91c7d09e801806fa:i:SpecificPlayer",
-							"name": "SpecificPlayer",
+							"id": "902e46294001c24b38a892b903ef800c:i:OwningPlayer",
+							"name": "OwningPlayer",
 							"direction": "input",
 							"type": "object:/Script/Engine.PlayerController",
 							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "6ef244564c45d85b91c7d09e801806fa:i:QuitPreference",
-							"name": "QuitPreference",
-							"direction": "input",
-							"type": "byte:/Script/Engine.EQuitPreference",
-							"defaultValue": "Quit",
-							"links": []
-						},
-						{
-							"id": "6ef244564c45d85b91c7d09e801806fa:i:bIgnorePlatformRestrictions",
-							"name": "bIgnorePlatformRestrictions",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "false",
 							"links": []
 						}
 					]
@@ -110,8 +98,8 @@
 					"guid": "9e8d52924d2a3c153de34fa8c73f1eee",
 					"class": "K2Node_CallFunction",
 					"title": "Add to Viewport",
-					"x": 1520,
-					"y": -16,
+					"x": 601,
+					"y": -7,
 					"comment": null,
 					"pins": [
 						{
@@ -156,8 +144,8 @@
 					"guid": "c70bd77b4e12ed004d13cea31a8f0174",
 					"class": "K2Node_CreateWidget",
 					"title": "Create Widget",
-					"x": 1168,
-					"y": 0,
+					"x": 249,
+					"y": 9,
 					"comment": null,
 					"pins": [
 						{
@@ -209,40 +197,6 @@
 					]
 				},
 				{
-					"guid": "e8c38b184364a027449afda5581274a6",
-					"class": "K2Node_Event",
-					"title": "Event Tick",
-					"x": 0,
-					"y": 208,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
-					"pins": [
-						{
-							"id": "e8c38b184364a027449afda5581274a6:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "e8c38b184364a027449afda5581274a6:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "e8c38b184364a027449afda5581274a6:o:DeltaSeconds",
-							"name": "DeltaSeconds",
-							"direction": "output",
-							"type": "real:float",
-							"defaultValue": "0.0",
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "f7662033479d4f5bd07c43985154e3d5",
 					"class": "K2Node_InputKey",
 					"title": "Escape",
@@ -257,7 +211,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"6ef244564c45d85b91c7d09e801806fa:i:execute"
+								"902e46294001c24b38a892b903ef800c:i:execute"
 							]
 						},
 						{
@@ -273,7 +227,53 @@
 							"name": "Key",
 							"direction": "output",
 							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "fa5dcaeb4ac77705e9f40385cf21e6b2",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 528,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fa5dcaeb4ac77705e9f40385cf21e6b2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
 							"defaultValue": null,
+							"links": [
+								"902e46294001c24b38a892b903ef800c:o:then"
+							]
+						},
+						{
+							"id": "fa5dcaeb4ac77705e9f40385cf21e6b2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fa5dcaeb4ac77705e9f40385cf21e6b2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"902e46294001c24b38a892b903ef800c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fa5dcaeb4ac77705e9f40385cf21e6b2:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
 							"links": []
 						}
 					]
@@ -283,18 +283,18 @@
 				{
 					"guid": "2901e6b9479925d9ac46c7a53280c00a",
 					"text": "Show the current build version on the screen\r\nUseful in both testing and live operations, but should be moved to a menu/about screen",
-					"x": 1143,
-					"y": -153,
+					"x": 224,
+					"y": -144,
 					"width": 592,
 					"height": 336
 				},
 				{
 					"guid": "b7932f894601a3133cee07b5ba06ceb6",
-					"text": "TEMP: quick way to exit the build until we add a menu",
+					"text": "This processing should be moved out of the level blueprint so it can be applied to any level",
 					"x": -26,
-					"y": 332,
-					"width": 608,
-					"height": 304
+					"y": 284,
+					"width": 768,
+					"height": 320
 				}
 			]
 		}

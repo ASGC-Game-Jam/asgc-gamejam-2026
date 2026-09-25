@@ -1,0 +1,5233 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab",
+	"asset": "WBP_JournalInvestigationTab",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "OnInvestigationSelect",
+			"type": "Delegate",
+			"nodes": [
+				{
+					"guid": "2c63df5e4ca7889e29c6b7b75baa2c27",
+					"class": "K2Node_FunctionEntry",
+					"title": "OnInvestigationSelect",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2c63df5e4ca7889e29c6b7b75baa2c27:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2c63df5e4ca7889e29c6b7b75baa2c27:o:InvestigationName",
+							"name": "InvestigationName",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "OnInvestigationSelectionChanged",
+			"type": "Delegate",
+			"nodes": [
+				{
+					"guid": "7a6436f04d5e744de68b60bb834ad357",
+					"class": "K2Node_FunctionEntry",
+					"title": "OnInvestigationSelectionChanged",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7a6436f04d5e744de68b60bb834ad357:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "IsNewInvestigation",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "06bec9ce42c10261f88c7abb77bc2bf3",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 688,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "06bec9ce42c10261f88c7abb77bc2bf3:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"4dd10eec44068b85266c99a843ba2a59:o:OutputPin"
+							]
+						},
+						{
+							"id": "06bec9ce42c10261f88c7abb77bc2bf3:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"ced6bbd34a2828cd32816bbb673bdcfb:i:Selection"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2cf9a26d47243a4f348fd6a57e9c9d7f",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 192,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2cf9a26d47243a4f348fd6a57e9c9d7f:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"561eb16246722faa80e55382f190f6f9:o:Status"
+							]
+						},
+						{
+							"id": "2cf9a26d47243a4f348fd6a57e9c9d7f:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"4dd10eec44068b85266c99a843ba2a59:i:InputPin",
+								"7857ba364ff6b7181f4048b490dd774d:i:InByte"
+							]
+						}
+					]
+				},
+				{
+					"guid": "40cf0f5043d35ecfab0ce09fa5404c95",
+					"class": "K2Node_PromotableOperator",
+					"title": "Equal (Byte)",
+					"x": 416,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "40cf0f5043d35ecfab0ce09fa5404c95:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": null,
+							"links": [
+								"561eb16246722faa80e55382f190f6f9:o:OldStatus"
+							]
+						},
+						{
+							"id": "40cf0f5043d35ecfab0ce09fa5404c95:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"7857ba364ff6b7181f4048b490dd774d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "40cf0f5043d35ecfab0ce09fa5404c95:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"cb8b2e414f0bcb1de1f47b9db1934da4:i:Condition"
+							]
+						},
+						{
+							"id": "40cf0f5043d35ecfab0ce09fa5404c95:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4dd10eec44068b85266c99a843ba2a59",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 304,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4dd10eec44068b85266c99a843ba2a59:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"2cf9a26d47243a4f348fd6a57e9c9d7f:o:OutputPin"
+							]
+						},
+						{
+							"id": "4dd10eec44068b85266c99a843ba2a59:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"06bec9ce42c10261f88c7abb77bc2bf3:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "561eb16246722faa80e55382f190f6f9",
+					"class": "K2Node_FunctionEntry",
+					"title": "IsNewInvestigation",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "561eb16246722faa80e55382f190f6f9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cb8b2e414f0bcb1de1f47b9db1934da4:i:execute"
+							]
+						},
+						{
+							"id": "561eb16246722faa80e55382f190f6f9:o:OldStatus",
+							"name": "OldStatus",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"40cf0f5043d35ecfab0ce09fa5404c95:i:A"
+							]
+						},
+						{
+							"id": "561eb16246722faa80e55382f190f6f9:o:Status",
+							"name": "Status",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"2cf9a26d47243a4f348fd6a57e9c9d7f:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7857ba364ff6b7181f4048b490dd774d",
+					"class": "K2Node_CallFunction",
+					"title": "To Integer (Byte)",
+					"x": 288,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7857ba364ff6b7181f4048b490dd774d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "7857ba364ff6b7181f4048b490dd774d:i:InByte",
+							"name": "InByte",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": null,
+							"links": [
+								"2cf9a26d47243a4f348fd6a57e9c9d7f:o:OutputPin"
+							]
+						},
+						{
+							"id": "7857ba364ff6b7181f4048b490dd774d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"40cf0f5043d35ecfab0ce09fa5404c95:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cb8b2e414f0bcb1de1f47b9db1934da4",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 576,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cb8b2e414f0bcb1de1f47b9db1934da4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"561eb16246722faa80e55382f190f6f9:o:then"
+							]
+						},
+						{
+							"id": "cb8b2e414f0bcb1de1f47b9db1934da4:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"40cf0f5043d35ecfab0ce09fa5404c95:o:ReturnValue"
+							]
+						},
+						{
+							"id": "cb8b2e414f0bcb1de1f47b9db1934da4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e7dc81054d31b2a828c61caf7b76d7a5:i:InputPin"
+							]
+						},
+						{
+							"id": "cb8b2e414f0bcb1de1f47b9db1934da4:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ced6bbd34a2828cd32816bbb673bdcfb:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ced6bbd34a2828cd32816bbb673bdcfb",
+					"class": "K2Node_SwitchEnum",
+					"title": "Switch on EJournalInvestigationStatus",
+					"x": 800,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ced6bbd34a2828cd32816bbb673bdcfb:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cb8b2e414f0bcb1de1f47b9db1934da4:o:else"
+							]
+						},
+						{
+							"id": "ced6bbd34a2828cd32816bbb673bdcfb:i:Selection",
+							"name": "Selection",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"06bec9ce42c10261f88c7abb77bc2bf3:o:OutputPin"
+							]
+						},
+						{
+							"id": "ced6bbd34a2828cd32816bbb673bdcfb:i:NotEqual_ByteByte",
+							"name": "NotEqual_ByteByte",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "ced6bbd34a2828cd32816bbb673bdcfb:o:Undiscovered",
+							"name": "Undiscovered",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e9c450f942ba89b9744681bf7a1711a5:i:execute"
+							]
+						},
+						{
+							"id": "ced6bbd34a2828cd32816bbb673bdcfb:o:Inprogress",
+							"name": "Inprogress",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eca6767b4fb5c6201a769c9d965290f5:i:execute"
+							]
+						},
+						{
+							"id": "ced6bbd34a2828cd32816bbb673bdcfb:o:Complete",
+							"name": "Complete",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eca6767b4fb5c6201a769c9d965290f5:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d9bb71d543c95d289ba63281e4026854",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1088,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d9bb71d543c95d289ba63281e4026854:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e7dc81054d31b2a828c61caf7b76d7a5:o:OutputPin"
+							]
+						},
+						{
+							"id": "d9bb71d543c95d289ba63281e4026854:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e9c450f942ba89b9744681bf7a1711a5:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e7dc81054d31b2a828c61caf7b76d7a5",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 816,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e7dc81054d31b2a828c61caf7b76d7a5:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cb8b2e414f0bcb1de1f47b9db1934da4:o:then"
+							]
+						},
+						{
+							"id": "e7dc81054d31b2a828c61caf7b76d7a5:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d9bb71d543c95d289ba63281e4026854:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e9c450f942ba89b9744681bf7a1711a5",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 1200,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e9c450f942ba89b9744681bf7a1711a5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ced6bbd34a2828cd32816bbb673bdcfb:o:Undiscovered",
+								"d9bb71d543c95d289ba63281e4026854:o:OutputPin"
+							]
+						},
+						{
+							"id": "e9c450f942ba89b9744681bf7a1711a5:i:IsNewItem",
+							"name": "IsNewItem",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "eca6767b4fb5c6201a769c9d965290f5",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 1200,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eca6767b4fb5c6201a769c9d965290f5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ced6bbd34a2828cd32816bbb673bdcfb:o:Complete",
+								"ced6bbd34a2828cd32816bbb673bdcfb:o:Inprogress"
+							]
+						},
+						{
+							"id": "eca6767b4fb5c6201a769c9d965290f5:i:IsNewItem",
+							"name": "IsNewItem",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "UpdateInvestigationDescriptions",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "21bb413b4d1ed9f3e4a8fba5d268fe7d",
+					"class": "K2Node_VariableGet",
+					"title": "Get DescriptionList",
+					"x": 784,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "21bb413b4d1ed9f3e4a8fba5d268fe7d:o:DescriptionList",
+							"name": "DescriptionList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"c8c6cf974ccd289d8844838dfe00c2da:i:self"
+							]
+						},
+						{
+							"id": "21bb413b4d1ed9f3e4a8fba5d268fe7d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "35fff73448ba253fceb9e9933f280fdf",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To WBP_JournalInvestigationDescription",
+					"x": 2528,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "35fff73448ba253fceb9e9933f280fdf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e2f4a0994444dd1c419980862d93fa22:o:then"
+							]
+						},
+						{
+							"id": "35fff73448ba253fceb9e9933f280fdf:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"80aad002461ac81838e126a7dce09553:i:execute"
+							]
+						},
+						{
+							"id": "35fff73448ba253fceb9e9933f280fdf:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "35fff73448ba253fceb9e9933f280fdf:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"e2f4a0994444dd1c419980862d93fa22:o:ReturnValue"
+							]
+						},
+						{
+							"id": "35fff73448ba253fceb9e9933f280fdf:o:AsWBP Journal Investigation Description",
+							"name": "AsWBP Journal Investigation Description",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"995b9d024f4f1ffe7ecc1b8be3acbb4e:i:InputPin"
+							]
+						},
+						{
+							"id": "35fff73448ba253fceb9e9933f280fdf:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3a3e8d85435301cc3eff819fc4a45ef6",
+					"class": "K2Node_MacroInstance",
+					"title": "For Loop",
+					"x": 1280,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3a3e8d85435301cc3eff819fc4a45ef6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f464eded453876b4a9b482a5628c8ea3:o:then"
+							]
+						},
+						{
+							"id": "3a3e8d85435301cc3eff819fc4a45ef6:i:FirstIndex",
+							"name": "FirstIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"c8c6cf974ccd289d8844838dfe00c2da:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3a3e8d85435301cc3eff819fc4a45ef6:i:LastIndex",
+							"name": "LastIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"b3e25d404e016d18090987a8cde79992:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3a3e8d85435301cc3eff819fc4a45ef6:o:LoopBody",
+							"name": "LoopBody",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e2f4a0994444dd1c419980862d93fa22:i:execute"
+							]
+						},
+						{
+							"id": "3a3e8d85435301cc3eff819fc4a45ef6:o:Index",
+							"name": "Index",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"6786230b458c47d53e8f8485c8f3f238:i:InputPin"
+							]
+						},
+						{
+							"id": "3a3e8d85435301cc3eff819fc4a45ef6:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "49e8e24c475569697ec9e2abe88345fe",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Length",
+					"x": 784,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "49e8e24c475569697ec9e2abe88345fe:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "49e8e24c475569697ec9e2abe88345fe:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"c349264d4f55ddc99b9f7a86d8a84986:o:OutputPin"
+							]
+						},
+						{
+							"id": "49e8e24c475569697ec9e2abe88345fe:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"b3e25d404e016d18090987a8cde79992:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4d05555444f1a1c5224ca281d19c542f",
+					"class": "K2Node_FunctionEntry",
+					"title": "UpdateInvestigationDescriptions",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4d05555444f1a1c5224ca281d19c542f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f464eded453876b4a9b482a5628c8ea3:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6786230b458c47d53e8f8485c8f3f238",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1648,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6786230b458c47d53e8f8485c8f3f238:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"3a3e8d85435301cc3eff819fc4a45ef6:o:Index"
+							]
+						},
+						{
+							"id": "6786230b458c47d53e8f8485c8f3f238:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"b0afe0e2495b85506510a984afb352d6:i:Dimension 1"
+							]
+						}
+					]
+				},
+				{
+					"guid": "80aad002461ac81838e126a7dce09553",
+					"class": "K2Node_CallFunction",
+					"title": "Add Child",
+					"x": 3200,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "80aad002461ac81838e126a7dce09553:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35fff73448ba253fceb9e9933f280fdf:o:then"
+							]
+						},
+						{
+							"id": "80aad002461ac81838e126a7dce09553:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"87db209d4ac17b719bb2f9aaa6083e99:i:execute"
+							]
+						},
+						{
+							"id": "80aad002461ac81838e126a7dce09553:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"d89d1d994fd527b79a2dfca2f2102459:o:DescriptionList"
+							]
+						},
+						{
+							"id": "80aad002461ac81838e126a7dce09553:i:Content",
+							"name": "Content",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"995b9d024f4f1ffe7ecc1b8be3acbb4e:o:OutputPin"
+							]
+						},
+						{
+							"id": "80aad002461ac81838e126a7dce09553:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/UMG.PanelSlot",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "87db209d4ac17b719bb2f9aaa6083e99",
+					"class": "K2Node_VariableSet",
+					"title": "Set Text",
+					"x": 3616,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "87db209d4ac17b719bb2f9aaa6083e99:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"80aad002461ac81838e126a7dce09553:o:then"
+							]
+						},
+						{
+							"id": "87db209d4ac17b719bb2f9aaa6083e99:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "87db209d4ac17b719bb2f9aaa6083e99:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"87e4a023420c1486ce582dbd648b6045:o:ReturnValue"
+							]
+						},
+						{
+							"id": "87db209d4ac17b719bb2f9aaa6083e99:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "87db209d4ac17b719bb2f9aaa6083e99:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"f14f29b34c541e1b06b4819613b6bf08:o:Description"
+							]
+						}
+					]
+				},
+				{
+					"guid": "87e4a023420c1486ce582dbd648b6045",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (String)",
+					"x": 2976,
+					"y": 304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "87e4a023420c1486ce582dbd648b6045:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "87e4a023420c1486ce582dbd648b6045:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"b0afe0e2495b85506510a984afb352d6:o:Output"
+							]
+						},
+						{
+							"id": "87e4a023420c1486ce582dbd648b6045:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"87db209d4ac17b719bb2f9aaa6083e99:i:Text"
+							]
+						}
+					]
+				},
+				{
+					"guid": "889c6ef54518e936a86df39c0f8252bb",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 1696,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "889c6ef54518e936a86df39c0f8252bb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "889c6ef54518e936a86df39c0f8252bb:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "889c6ef54518e936a86df39c0f8252bb:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "889c6ef54518e936a86df39c0f8252bb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"e2f4a0994444dd1c419980862d93fa22:i:OwningPlayer"
+							]
+						}
+					]
+				},
+				{
+					"guid": "995b9d024f4f1ffe7ecc1b8be3acbb4e",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2912,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "995b9d024f4f1ffe7ecc1b8be3acbb4e:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"35fff73448ba253fceb9e9933f280fdf:o:AsWBP Journal Investigation Description"
+							]
+						},
+						{
+							"id": "995b9d024f4f1ffe7ecc1b8be3acbb4e:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"80aad002461ac81838e126a7dce09553:i:Content",
+								"f14f29b34c541e1b06b4819613b6bf08:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b0afe0e2495b85506510a984afb352d6",
+					"class": "K2Node_GetArrayItem",
+					"title": "Get (a ref)",
+					"x": 2704,
+					"y": 304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b0afe0e2495b85506510a984afb352d6:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"b54a4da648869b17385861a671321b27:o:OutputPin"
+							]
+						},
+						{
+							"id": "b0afe0e2495b85506510a984afb352d6:i:Dimension 1",
+							"name": "Dimension 1",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"6786230b458c47d53e8f8485c8f3f238:o:OutputPin"
+							]
+						},
+						{
+							"id": "b0afe0e2495b85506510a984afb352d6:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"87e4a023420c1486ce582dbd648b6045:i:InString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b3e25d404e016d18090987a8cde79992",
+					"class": "K2Node_PromotableOperator",
+					"title": "int - int",
+					"x": 1056,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b3e25d404e016d18090987a8cde79992:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"49e8e24c475569697ec9e2abe88345fe:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b3e25d404e016d18090987a8cde79992:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "b3e25d404e016d18090987a8cde79992:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"3a3e8d85435301cc3eff819fc4a45ef6:i:LastIndex"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b54a4da648869b17385861a671321b27",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1392,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b54a4da648869b17385861a671321b27:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"c349264d4f55ddc99b9f7a86d8a84986:o:OutputPin"
+							]
+						},
+						{
+							"id": "b54a4da648869b17385861a671321b27:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"b0afe0e2495b85506510a984afb352d6:i:Array"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c349264d4f55ddc99b9f7a86d8a84986",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 720,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c349264d4f55ddc99b9f7a86d8a84986:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"f464eded453876b4a9b482a5628c8ea3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c349264d4f55ddc99b9f7a86d8a84986:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"49e8e24c475569697ec9e2abe88345fe:i:TargetArray",
+								"b54a4da648869b17385861a671321b27:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c8c6cf974ccd289d8844838dfe00c2da",
+					"class": "K2Node_CallFunction",
+					"title": "Get Children Count",
+					"x": 944,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c8c6cf974ccd289d8844838dfe00c2da:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"21bb413b4d1ed9f3e4a8fba5d268fe7d:o:DescriptionList"
+							]
+						},
+						{
+							"id": "c8c6cf974ccd289d8844838dfe00c2da:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"3a3e8d85435301cc3eff819fc4a45ef6:i:FirstIndex"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c98b96e2412fddd5c0842598386f2c93",
+					"class": "K2Node_VariableGet",
+					"title": "Get CurrentInvestigation",
+					"x": 0,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c98b96e2412fddd5c0842598386f2c93:o:CurrentInvestigation",
+							"name": "CurrentInvestigation",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"f464eded453876b4a9b482a5628c8ea3:i:Title"
+							]
+						},
+						{
+							"id": "c98b96e2412fddd5c0842598386f2c93:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d89d1d994fd527b79a2dfca2f2102459",
+					"class": "K2Node_VariableGet",
+					"title": "Get DescriptionList",
+					"x": 2976,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d89d1d994fd527b79a2dfca2f2102459:o:DescriptionList",
+							"name": "DescriptionList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"80aad002461ac81838e126a7dce09553:i:self"
+							]
+						},
+						{
+							"id": "d89d1d994fd527b79a2dfca2f2102459:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "df23c6cb46f6be4bc87e94b1ffea89f7",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get AtlantisJournalSubsystem",
+					"x": 0,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "df23c6cb46f6be4bc87e94b1ffea89f7:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"f464eded453876b4a9b482a5628c8ea3:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e2f4a0994444dd1c419980862d93fa22",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 2000,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e2f4a0994444dd1c419980862d93fa22:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3a3e8d85435301cc3eff819fc4a45ef6:o:LoopBody"
+							]
+						},
+						{
+							"id": "e2f4a0994444dd1c419980862d93fa22:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35fff73448ba253fceb9e9933f280fdf:i:execute"
+							]
+						},
+						{
+							"id": "e2f4a0994444dd1c419980862d93fa22:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"links": []
+						},
+						{
+							"id": "e2f4a0994444dd1c419980862d93fa22:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"35fff73448ba253fceb9e9933f280fdf:i:Object"
+							]
+						},
+						{
+							"id": "e2f4a0994444dd1c419980862d93fa22:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"889c6ef54518e936a86df39c0f8252bb:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f14f29b34c541e1b06b4819613b6bf08",
+					"class": "K2Node_VariableGet",
+					"title": "Get Description",
+					"x": 2976,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f14f29b34c541e1b06b4819613b6bf08:o:Description",
+							"name": "Description",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"87db209d4ac17b719bb2f9aaa6083e99:i:self"
+							]
+						},
+						{
+							"id": "f14f29b34c541e1b06b4819613b6bf08:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"995b9d024f4f1ffe7ecc1b8be3acbb4e:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f464eded453876b4a9b482a5628c8ea3",
+					"class": "K2Node_CallFunction",
+					"title": "GetInvestigationDescriptions",
+					"x": 336,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f464eded453876b4a9b482a5628c8ea3:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4d05555444f1a1c5224ca281d19c542f:o:then"
+							]
+						},
+						{
+							"id": "f464eded453876b4a9b482a5628c8ea3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3a3e8d85435301cc3eff819fc4a45ef6:i:execute"
+							]
+						},
+						{
+							"id": "f464eded453876b4a9b482a5628c8ea3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"df23c6cb46f6be4bc87e94b1ffea89f7:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f464eded453876b4a9b482a5628c8ea3:i:Title",
+							"name": "Title",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"c98b96e2412fddd5c0842598386f2c93:o:CurrentInvestigation"
+							]
+						},
+						{
+							"id": "f464eded453876b4a9b482a5628c8ea3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"c349264d4f55ddc99b9f7a86d8a84986:i:InputPin"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "8241a7c0478d96cf9013a9a42a469e2b",
+					"text": "Only add new descriptions",
+					"x": 707,
+					"y": -80,
+					"width": 3088,
+					"height": 496
+				}
+			]
+		},
+		{
+			"name": "UpdateInvestigationSelection",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "0fb58fe24d0c78fb58e1ca8858acc440",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": 624,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0fb58fe24d0c78fb58e1ca8858acc440:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b1780a2f4f01de4b7c18da94c033eb21:o:then"
+							]
+						},
+						{
+							"id": "0fb58fe24d0c78fb58e1ca8858acc440:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f4cb79d54b3a2b87bfb8e589029bf043:i:execute"
+							]
+						},
+						{
+							"id": "0fb58fe24d0c78fb58e1ca8858acc440:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8f4c1a4044e0d85b523c19b590883d7f:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "21acf8274535cc5edd51a08f94fdde11",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Text)",
+					"x": 2128,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "21acf8274535cc5edd51a08f94fdde11:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "21acf8274535cc5edd51a08f94fdde11:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"2d8423ae4cf328582d480e9cda55af96:o:Result"
+							]
+						},
+						{
+							"id": "21acf8274535cc5edd51a08f94fdde11:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"3aa614774641ae759a40e595222d6651:i:InString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "28794c2641723dea3cd68eb71482a389",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 176,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "28794c2641723dea3cd68eb71482a389:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"82d6aab34f7441e4c9ce60ae91d4cec9:o:NextInvestigation"
+							]
+						},
+						{
+							"id": "28794c2641723dea3cd68eb71482a389:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"e88f6d514525176a7bb663b24a1733eb:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2d8423ae4cf328582d480e9cda55af96",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 1760,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2d8423ae4cf328582d480e9cda55af96:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Investigation Selected: {0}",
+							"links": []
+						},
+						{
+							"id": "2d8423ae4cf328582d480e9cda55af96:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"21acf8274535cc5edd51a08f94fdde11:i:InText"
+							]
+						},
+						{
+							"id": "2d8423ae4cf328582d480e9cda55af96:i:0",
+							"name": "0",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"c2e7b2ff417bb8501384218298276a1a:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3376d9d9483b8a61d7b9d5b660d61213",
+					"class": "K2Node_CallFunction",
+					"title": "OnInvestigationSelectionChanged_Event",
+					"x": 1152,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3376d9d9483b8a61d7b9d5b660d61213:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8f4c1a4044e0d85b523c19b590883d7f:o:else"
+							]
+						},
+						{
+							"id": "3376d9d9483b8a61d7b9d5b660d61213:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3aa614774641ae759a40e595222d6651:i:execute"
+							]
+						},
+						{
+							"id": "3376d9d9483b8a61d7b9d5b660d61213:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3aa614774641ae759a40e595222d6651",
+					"class": "K2Node_CallFunction",
+					"title": "Log String",
+					"x": 2336,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3aa614774641ae759a40e595222d6651:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3376d9d9483b8a61d7b9d5b660d61213:o:then"
+							]
+						},
+						{
+							"id": "3aa614774641ae759a40e595222d6651:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3aa614774641ae759a40e595222d6651:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "3aa614774641ae759a40e595222d6651:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"21acf8274535cc5edd51a08f94fdde11:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3aa614774641ae759a40e595222d6651:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "564dd2a543dd0db5a4383282ba8027b3",
+					"class": "K2Node_CallFunction",
+					"title": "Equal Exactly (String)",
+					"x": 144,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "564dd2a543dd0db5a4383282ba8027b3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "564dd2a543dd0db5a4383282ba8027b3:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"82d6aab34f7441e4c9ce60ae91d4cec9:o:NextInvestigation"
+							]
+						},
+						{
+							"id": "564dd2a543dd0db5a4383282ba8027b3:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"aa02573f423316c9071036a076dfaa51:o:CurrentInvestigation"
+							]
+						},
+						{
+							"id": "564dd2a543dd0db5a4383282ba8027b3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"b1780a2f4f01de4b7c18da94c033eb21:i:HasChanged"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5ed47ad2475e2310db1aeb9ed2865029",
+					"class": "K2Node_VariableGet",
+					"title": "Get CurrentInvestigation",
+					"x": 1232,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5ed47ad2475e2310db1aeb9ed2865029:o:CurrentInvestigation",
+							"name": "CurrentInvestigation",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"c2e7b2ff417bb8501384218298276a1a:i:InString"
+							]
+						},
+						{
+							"id": "5ed47ad2475e2310db1aeb9ed2865029:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "82d6aab34f7441e4c9ce60ae91d4cec9",
+					"class": "K2Node_FunctionEntry",
+					"title": "UpdateInvestigationSelection",
+					"x": -160,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "82d6aab34f7441e4c9ce60ae91d4cec9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b1780a2f4f01de4b7c18da94c033eb21:i:execute"
+							]
+						},
+						{
+							"id": "82d6aab34f7441e4c9ce60ae91d4cec9:o:NextInvestigation",
+							"name": "NextInvestigation",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"28794c2641723dea3cd68eb71482a389:i:InputPin",
+								"564dd2a543dd0db5a4383282ba8027b3:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8f4c1a4044e0d85b523c19b590883d7f",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 832,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8f4c1a4044e0d85b523c19b590883d7f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0fb58fe24d0c78fb58e1ca8858acc440:o:then_1"
+							]
+						},
+						{
+							"id": "8f4c1a4044e0d85b523c19b590883d7f:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"b770597345d50111026be7a74a5736df:o:OutputPin"
+							]
+						},
+						{
+							"id": "8f4c1a4044e0d85b523c19b590883d7f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8f4c1a4044e0d85b523c19b590883d7f:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3376d9d9483b8a61d7b9d5b660d61213:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "aa02573f423316c9071036a076dfaa51",
+					"class": "K2Node_VariableGet",
+					"title": "Get CurrentInvestigation",
+					"x": -80,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "aa02573f423316c9071036a076dfaa51:o:CurrentInvestigation",
+							"name": "CurrentInvestigation",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"564dd2a543dd0db5a4383282ba8027b3:i:B"
+							]
+						},
+						{
+							"id": "aa02573f423316c9071036a076dfaa51:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b1780a2f4f01de4b7c18da94c033eb21",
+					"class": "K2Node_VariableSet",
+					"title": "Set HasChanged",
+					"x": 400,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b1780a2f4f01de4b7c18da94c033eb21:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"82d6aab34f7441e4c9ce60ae91d4cec9:o:then"
+							]
+						},
+						{
+							"id": "b1780a2f4f01de4b7c18da94c033eb21:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0fb58fe24d0c78fb58e1ca8858acc440:i:execute"
+							]
+						},
+						{
+							"id": "b1780a2f4f01de4b7c18da94c033eb21:i:HasChanged",
+							"name": "HasChanged",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"564dd2a543dd0db5a4383282ba8027b3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b1780a2f4f01de4b7c18da94c033eb21:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"b770597345d50111026be7a74a5736df:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b770597345d50111026be7a74a5736df",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 640,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b770597345d50111026be7a74a5736df:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"b1780a2f4f01de4b7c18da94c033eb21:o:Output_Get"
+							]
+						},
+						{
+							"id": "b770597345d50111026be7a74a5736df:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8f4c1a4044e0d85b523c19b590883d7f:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c2e7b2ff417bb8501384218298276a1a",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (String)",
+					"x": 1488,
+					"y": 304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c2e7b2ff417bb8501384218298276a1a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "c2e7b2ff417bb8501384218298276a1a:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"5ed47ad2475e2310db1aeb9ed2865029:o:CurrentInvestigation"
+							]
+						},
+						{
+							"id": "c2e7b2ff417bb8501384218298276a1a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"2d8423ae4cf328582d480e9cda55af96:i:0"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e88f6d514525176a7bb663b24a1733eb",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 736,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e88f6d514525176a7bb663b24a1733eb:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"28794c2641723dea3cd68eb71482a389:o:OutputPin"
+							]
+						},
+						{
+							"id": "e88f6d514525176a7bb663b24a1733eb:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"f4cb79d54b3a2b87bfb8e589029bf043:i:CurrentInvestigation"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f4cb79d54b3a2b87bfb8e589029bf043",
+					"class": "K2Node_VariableSet",
+					"title": "Set CurrentInvestigation",
+					"x": 832,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f4cb79d54b3a2b87bfb8e589029bf043:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0fb58fe24d0c78fb58e1ca8858acc440:o:then_0"
+							]
+						},
+						{
+							"id": "f4cb79d54b3a2b87bfb8e589029bf043:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f4cb79d54b3a2b87bfb8e589029bf043:i:CurrentInvestigation",
+							"name": "CurrentInvestigation",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"e88f6d514525176a7bb663b24a1733eb:o:OutputPin"
+							]
+						},
+						{
+							"id": "f4cb79d54b3a2b87bfb8e589029bf043:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f4cb79d54b3a2b87bfb8e589029bf043:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "00520ba541f3a5255afb42babfe4e183",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateInvestigationDescription",
+					"x": 2624,
+					"y": -1248,
+					"comment": null,
+					"pins": [
+						{
+							"id": "00520ba541f3a5255afb42babfe4e183:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7011c62a4f2a455e5afa13ba87bb28e5:o:then"
+							]
+						},
+						{
+							"id": "00520ba541f3a5255afb42babfe4e183:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"360f404c4ac244063c9cc4b91eee4d27:i:execute"
+							]
+						},
+						{
+							"id": "00520ba541f3a5255afb42babfe4e183:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"00b92a3d42f83b5c7ea91d9e0d41d5c8:o:OutputPin"
+							]
+						},
+						{
+							"id": "00520ba541f3a5255afb42babfe4e183:i:Title",
+							"name": "Title",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"2d60ba52450bca2db764e7af0214bf13:o:CurrentInvestigation"
+							]
+						},
+						{
+							"id": "00520ba541f3a5255afb42babfe4e183:i:Description",
+							"name": "Description",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"e0c427d545918bbab75ad6836d737e9f:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "00b92a3d42f83b5c7ea91d9e0d41d5c8",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2544,
+					"y": -1168,
+					"comment": null,
+					"pins": [
+						{
+							"id": "00b92a3d42f83b5c7ea91d9e0d41d5c8:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"dc54561d4ad12ac5cf28c8bae1fc9829:o:OutputPin"
+							]
+						},
+						{
+							"id": "00b92a3d42f83b5c7ea91d9e0d41d5c8:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"00520ba541f3a5255afb42babfe4e183:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "01c0432949857207f95619b8135c0ef3",
+					"class": "K2Node_CustomEvent",
+					"title": "OnInvestigationUpdated_Event",
+					"x": 1136,
+					"y": -448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "01c0432949857207f95619b8135c0ef3:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"dce8ad3e47e6235d40cb35a681d6fea7:i:Delegate"
+							]
+						},
+						{
+							"id": "01c0432949857207f95619b8135c0ef3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"798d719d415572206738ef94a9db7cfe:i:execute"
+							]
+						},
+						{
+							"id": "01c0432949857207f95619b8135c0ef3:o:OldStatus",
+							"name": "OldStatus",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"798d719d415572206738ef94a9db7cfe:i:OldStatus"
+							]
+						},
+						{
+							"id": "01c0432949857207f95619b8135c0ef3:o:Status",
+							"name": "Status",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"2833c8f3439d69268262328ac0096790:i:InputPin"
+							]
+						},
+						{
+							"id": "01c0432949857207f95619b8135c0ef3:o:Title",
+							"name": "Title",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"d316ae2d49e84b627a9cdf837622a633:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0714d4374c49e8da534cb6b3a0aec535",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Length",
+					"x": 1808,
+					"y": -1680,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0714d4374c49e8da534cb6b3a0aec535:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "0714d4374c49e8da534cb6b3a0aec535:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"e02afe714bf3dea8dde9d58a0390e8ba:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0714d4374c49e8da534cb6b3a0aec535:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"240c414549331bc22fa463863b03f0dd:i:0"
+							]
+						}
+					]
+				},
+				{
+					"guid": "088f02f6448376124c2ef8aa595ca41f",
+					"class": "K2Node_CallFunction",
+					"title": "ClearInvestigations",
+					"x": 1504,
+					"y": -2064,
+					"comment": null,
+					"pins": [
+						{
+							"id": "088f02f6448376124c2ef8aa595ca41f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f0d2b7fc45db83c4417ad4813f69ea14:o:then"
+							]
+						},
+						{
+							"id": "088f02f6448376124c2ef8aa595ca41f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "088f02f6448376124c2ef8aa595ca41f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"fcf9c1574f6c09c67220948750cb5bdb:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "098ae684495ae5a5f5ad559155a58733",
+					"class": "K2Node_Event",
+					"title": "Event Pre Construct",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "098ae684495ae5a5f5ad559155a58733:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "098ae684495ae5a5f5ad559155a58733:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "098ae684495ae5a5f5ad559155a58733:o:IsDesignTime",
+							"name": "IsDesignTime",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0b92df034db0d3a5486b459efa053ddc",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3248,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0b92df034db0d3a5486b459efa053ddc:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9ddbf7aa4978f6db13a140b686c3a2c4:o:then_3"
+							]
+						},
+						{
+							"id": "0b92df034db0d3a5486b459efa053ddc:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bf269b044cf9c6deb3c309ba3d99e42c:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "188197b643096857b4df5da35847ea3b",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1136,
+					"y": 1312,
+					"comment": null,
+					"pins": [
+						{
+							"id": "188197b643096857b4df5da35847ea3b:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"454385e146ac8102da2bcd8112eccb4a:o:then_0"
+							]
+						},
+						{
+							"id": "188197b643096857b4df5da35847ea3b:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b4963a114632c6188841b3849bcaf3b0:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1bd9b6c444f1f4014f21fcae02aaee4a",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 992,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1bd9b6c444f1f4014f21fcae02aaee4a:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"684ca6774709ec31fa97fe9d88e47477:o:then_1"
+							]
+						},
+						{
+							"id": "1bd9b6c444f1f4014f21fcae02aaee4a:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a5fe94694fdf87a718e1b58fdd2cf39a:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1c1058664248a42f9dd05ab0e448cd69",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 3696,
+					"y": -1584,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1c1058664248a42f9dd05ab0e448cd69:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c8463a18425f6e2ac296cdaf5bfa18bd:o:then"
+							]
+						},
+						{
+							"id": "1c1058664248a42f9dd05ab0e448cd69:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c7443e5945fbb36f0d1eecb5198d543c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1c1058664248a42f9dd05ab0e448cd69:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ddca81c14b53d9860d7a9581c8731ca4:i:execute"
+							]
+						},
+						{
+							"id": "1c1058664248a42f9dd05ab0e448cd69:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1ea4e6da4ad0ea51474c028fb5b31077",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1824,
+					"y": -1552,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1ea4e6da4ad0ea51474c028fb5b31077:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e02afe714bf3dea8dde9d58a0390e8ba:o:then"
+							]
+						},
+						{
+							"id": "1ea4e6da4ad0ea51474c028fb5b31077:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"79841f7d44b3f9e479f6248d27f0c973:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "240c414549331bc22fa463863b03f0dd",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 2064,
+					"y": -1728,
+					"comment": null,
+					"pins": [
+						{
+							"id": "240c414549331bc22fa463863b03f0dd:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Investigation: {0}",
+							"links": []
+						},
+						{
+							"id": "240c414549331bc22fa463863b03f0dd:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"9086f69743200295be846795498e3f03:i:InText"
+							]
+						},
+						{
+							"id": "240c414549331bc22fa463863b03f0dd:i:0",
+							"name": "0",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"0714d4374c49e8da534cb6b3a0aec535:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "274a23d244111f6796479b8c8b5b46f1",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To WBP_JournalInvestigationItem",
+					"x": 2384,
+					"y": -480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "274a23d244111f6796479b8c8b5b46f1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"51ac4bdf44d9fab2165368aa1651805f:o:then"
+							]
+						},
+						{
+							"id": "274a23d244111f6796479b8c8b5b46f1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9ddbf7aa4978f6db13a140b686c3a2c4:i:execute"
+							]
+						},
+						{
+							"id": "274a23d244111f6796479b8c8b5b46f1:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "274a23d244111f6796479b8c8b5b46f1:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"51ac4bdf44d9fab2165368aa1651805f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "274a23d244111f6796479b8c8b5b46f1:o:AsWBP Journal Investigation Item",
+							"name": "AsWBP Journal Investigation Item",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"53a9b8b74212647a0facab91477a2332:i:Content",
+								"cfcc561f48455caa691556a80bc51537:i:InputPin"
+							]
+						},
+						{
+							"id": "274a23d244111f6796479b8c8b5b46f1:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "276935ee481f81489f84d580f4a715fb",
+					"class": "K2Node_VariableGet",
+					"title": "Get CurrentInvestigation",
+					"x": 1168,
+					"y": -1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "276935ee481f81489f84d580f4a715fb:o:CurrentInvestigation",
+							"name": "CurrentInvestigation",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"96315bf6473ba76b337839bb0bd352d0:i:Title"
+							]
+						},
+						{
+							"id": "276935ee481f81489f84d580f4a715fb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2833c8f3439d69268262328ac0096790",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1408,
+					"y": -336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2833c8f3439d69268262328ac0096790:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"01c0432949857207f95619b8135c0ef3:o:Status"
+							]
+						},
+						{
+							"id": "2833c8f3439d69268262328ac0096790:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"59f910b64fda5e49842b738c8159c7cf:i:InputPin",
+								"798d719d415572206738ef94a9db7cfe:i:Status"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2a2f30074c0bd2c87e7029b5d9826040",
+					"class": "K2Node_VariableGet",
+					"title": "Get InvestigationList",
+					"x": 1312,
+					"y": 1120,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2a2f30074c0bd2c87e7029b5d9826040:o:InvestigationList",
+							"name": "InvestigationList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"995c33a54520abc08891a48869cc8324:i:self"
+							]
+						},
+						{
+							"id": "2a2f30074c0bd2c87e7029b5d9826040:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2d60ba52450bca2db764e7af0214bf13",
+					"class": "K2Node_VariableGet",
+					"title": "Get CurrentInvestigation",
+					"x": 2112,
+					"y": -928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2d60ba52450bca2db764e7af0214bf13:o:CurrentInvestigation",
+							"name": "CurrentInvestigation",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"00520ba541f3a5255afb42babfe4e183:i:Title"
+							]
+						},
+						{
+							"id": "2d60ba52450bca2db764e7af0214bf13:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2ead55684bf241ec522f78b2a4de6abf",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateInvestigationSelection",
+					"x": 3072,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2ead55684bf241ec522f78b2a4de6abf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c3ee8f5445bcb856b9620ea8e8d48bfa:o:then"
+							]
+						},
+						{
+							"id": "2ead55684bf241ec522f78b2a4de6abf:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2ead55684bf241ec522f78b2a4de6abf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2ead55684bf241ec522f78b2a4de6abf:i:NextInvestigation",
+							"name": "NextInvestigation",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"c3ee8f5445bcb856b9620ea8e8d48bfa:o:InvestigationName"
+							]
+						}
+					]
+				},
+				{
+					"guid": "360f404c4ac244063c9cc4b91eee4d27",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateInvestigationDescriptions",
+					"x": 2960,
+					"y": -1248,
+					"comment": null,
+					"pins": [
+						{
+							"id": "360f404c4ac244063c9cc4b91eee4d27:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"00520ba541f3a5255afb42babfe4e183:o:then"
+							]
+						},
+						{
+							"id": "360f404c4ac244063c9cc4b91eee4d27:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "360f404c4ac244063c9cc4b91eee4d27:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3aabe13642a250ce3a2f54b2e0dc3e00",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 2096,
+					"y": -864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3aabe13642a250ce3a2f54b2e0dc3e00:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Description: {0}",
+							"links": []
+						},
+						{
+							"id": "3aabe13642a250ce3a2f54b2e0dc3e00:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"e0c427d545918bbab75ad6836d737e9f:i:InText"
+							]
+						},
+						{
+							"id": "3aabe13642a250ce3a2f54b2e0dc3e00:i:0",
+							"name": "0",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"9ee081124913792aa0e86d847c0c58ef:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3ee35584458ac6a1efd894aba43f6e6b",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3248,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3ee35584458ac6a1efd894aba43f6e6b:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9ddbf7aa4978f6db13a140b686c3a2c4:o:then_2"
+							]
+						},
+						{
+							"id": "3ee35584458ac6a1efd894aba43f6e6b:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bc927f8145b562e4a867b19883d4f4bc:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "454385e146ac8102da2bcd8112eccb4a",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": 800,
+					"y": 1280,
+					"comment": null,
+					"pins": [
+						{
+							"id": "454385e146ac8102da2bcd8112eccb4a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8e88b7844cca563560d9af9f259be562:o:then"
+							]
+						},
+						{
+							"id": "454385e146ac8102da2bcd8112eccb4a:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"188197b643096857b4df5da35847ea3b:i:InputPin"
+							]
+						},
+						{
+							"id": "454385e146ac8102da2bcd8112eccb4a:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ea81024449aa895d4c86569803b759f4:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "51ac4bdf44d9fab2165368aa1651805f",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 2016,
+					"y": -480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "51ac4bdf44d9fab2165368aa1651805f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ef168db404ab77b317afb9742f62205:o:then"
+							]
+						},
+						{
+							"id": "51ac4bdf44d9fab2165368aa1651805f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"274a23d244111f6796479b8c8b5b46f1:i:execute"
+							]
+						},
+						{
+							"id": "51ac4bdf44d9fab2165368aa1651805f:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"links": []
+						},
+						{
+							"id": "51ac4bdf44d9fab2165368aa1651805f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"274a23d244111f6796479b8c8b5b46f1:i:Object"
+							]
+						},
+						{
+							"id": "51ac4bdf44d9fab2165368aa1651805f:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"60a4bfea410ef0d1a375ab9bd6e04ab9:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "53a9b8b74212647a0facab91477a2332",
+					"class": "K2Node_CallFunction",
+					"title": "Add Child",
+					"x": 3424,
+					"y": -496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "53a9b8b74212647a0facab91477a2332:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da74381d45e950d93aa6f8bde97b9f99:o:OutputPin"
+							]
+						},
+						{
+							"id": "53a9b8b74212647a0facab91477a2332:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "53a9b8b74212647a0facab91477a2332:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"74e178df49e84226c9d3a2aeff9ac3bf:o:InvestigationList"
+							]
+						},
+						{
+							"id": "53a9b8b74212647a0facab91477a2332:i:Content",
+							"name": "Content",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"274a23d244111f6796479b8c8b5b46f1:o:AsWBP Journal Investigation Item"
+							]
+						},
+						{
+							"id": "53a9b8b74212647a0facab91477a2332:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/UMG.PanelSlot",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5638f7a04efad5b62b294ca0d4bfc916",
+					"class": "K2Node_CallFunction",
+					"title": "Clear Children",
+					"x": 1984,
+					"y": 1040,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5638f7a04efad5b62b294ca0d4bfc916:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"995c33a54520abc08891a48869cc8324:o:then"
+							]
+						},
+						{
+							"id": "5638f7a04efad5b62b294ca0d4bfc916:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6373c2ec44cd41d116f8ebb75158083b:i:execute"
+							]
+						},
+						{
+							"id": "5638f7a04efad5b62b294ca0d4bfc916:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"bc56f7d6412d668197badea0c2b43264:o:DescriptionList"
+							]
+						}
+					]
+				},
+				{
+					"guid": "59f910b64fda5e49842b738c8159c7cf",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1600,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "59f910b64fda5e49842b738c8159c7cf:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"2833c8f3439d69268262328ac0096790:o:OutputPin"
+							]
+						},
+						{
+							"id": "59f910b64fda5e49842b738c8159c7cf:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"bc927f8145b562e4a867b19883d4f4bc:i:Status"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5ef168db404ab77b317afb9742f62205",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1808,
+					"y": -480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5ef168db404ab77b317afb9742f62205:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"798d719d415572206738ef94a9db7cfe:o:then"
+							]
+						},
+						{
+							"id": "5ef168db404ab77b317afb9742f62205:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"798d719d415572206738ef94a9db7cfe:o:IsNewItem"
+							]
+						},
+						{
+							"id": "5ef168db404ab77b317afb9742f62205:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"51ac4bdf44d9fab2165368aa1651805f:i:execute"
+							]
+						},
+						{
+							"id": "5ef168db404ab77b317afb9742f62205:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "60a4bfea410ef0d1a375ab9bd6e04ab9",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 1712,
+					"y": -272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "60a4bfea410ef0d1a375ab9bd6e04ab9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "60a4bfea410ef0d1a375ab9bd6e04ab9:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "60a4bfea410ef0d1a375ab9bd6e04ab9:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "60a4bfea410ef0d1a375ab9bd6e04ab9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"51ac4bdf44d9fab2165368aa1651805f:i:OwningPlayer"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6373c2ec44cd41d116f8ebb75158083b",
+					"class": "K2Node_VariableSet",
+					"title": "Set CurrentInvestigation",
+					"x": 2208,
+					"y": 1072,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6373c2ec44cd41d116f8ebb75158083b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5638f7a04efad5b62b294ca0d4bfc916:o:then"
+							]
+						},
+						{
+							"id": "6373c2ec44cd41d116f8ebb75158083b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6373c2ec44cd41d116f8ebb75158083b:i:CurrentInvestigation",
+							"name": "CurrentInvestigation",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6373c2ec44cd41d116f8ebb75158083b:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6373c2ec44cd41d116f8ebb75158083b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "684ca6774709ec31fa97fe9d88e47477",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": 432,
+					"y": -656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "684ca6774709ec31fa97fe9d88e47477:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dfaaa0fe4a117bcbc62d1497720c1e8b:o:then"
+							]
+						},
+						{
+							"id": "684ca6774709ec31fa97fe9d88e47477:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a945594844255248db035f86f51397b6:i:InputPin"
+							]
+						},
+						{
+							"id": "684ca6774709ec31fa97fe9d88e47477:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1bd9b6c444f1f4014f21fcae02aaee4a:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6a45098f4b5c2b22b8fac693d5413655",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2880,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6a45098f4b5c2b22b8fac693d5413655:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"cfcc561f48455caa691556a80bc51537:o:OutputPin"
+							]
+						},
+						{
+							"id": "6a45098f4b5c2b22b8fac693d5413655:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"bc927f8145b562e4a867b19883d4f4bc:i:self",
+								"f17a73074350678fad0d2fa3fa6231ea:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7011c62a4f2a455e5afa13ba87bb28e5",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 2256,
+					"y": -1232,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7011c62a4f2a455e5afa13ba87bb28e5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"96315bf6473ba76b337839bb0bd352d0:o:then"
+							]
+						},
+						{
+							"id": "7011c62a4f2a455e5afa13ba87bb28e5:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8a2586bc47b4b18b99c1a58815628138:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7011c62a4f2a455e5afa13ba87bb28e5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"00520ba541f3a5255afb42babfe4e183:i:execute"
+							]
+						},
+						{
+							"id": "7011c62a4f2a455e5afa13ba87bb28e5:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "72d0439c4ea3507dd84bcfb0c90ab45d",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get AtlantisJournalSubsystem",
+					"x": 1136,
+					"y": -576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "72d0439c4ea3507dd84bcfb0c90ab45d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"dce8ad3e47e6235d40cb35a681d6fea7:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "74e178df49e84226c9d3a2aeff9ac3bf",
+					"class": "K2Node_VariableGet",
+					"title": "Get InvestigationList",
+					"x": 3248,
+					"y": -336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "74e178df49e84226c9d3a2aeff9ac3bf:o:InvestigationList",
+							"name": "InvestigationList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"53a9b8b74212647a0facab91477a2332:i:self"
+							]
+						},
+						{
+							"id": "74e178df49e84226c9d3a2aeff9ac3bf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "79841f7d44b3f9e479f6248d27f0c973",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateInvestigationStatus",
+					"x": 2608,
+					"y": -1600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "79841f7d44b3f9e479f6248d27f0c973:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1ea4e6da4ad0ea51474c028fb5b31077:o:OutputPin"
+							]
+						},
+						{
+							"id": "79841f7d44b3f9e479f6248d27f0c973:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c8463a18425f6e2ac296cdaf5bfa18bd:i:execute"
+							]
+						},
+						{
+							"id": "79841f7d44b3f9e479f6248d27f0c973:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c65cc1c547c98ff96369d8b5e1564caa:o:OutputPin"
+							]
+						},
+						{
+							"id": "79841f7d44b3f9e479f6248d27f0c973:i:Title",
+							"name": "Title",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"9086f69743200295be846795498e3f03:o:ReturnValue"
+							]
+						},
+						{
+							"id": "79841f7d44b3f9e479f6248d27f0c973:i:Status",
+							"name": "Status",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": "Inprogress",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "798d719d415572206738ef94a9db7cfe",
+					"class": "K2Node_CallFunction",
+					"title": "IsNewInvestigation",
+					"x": 1504,
+					"y": -496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "798d719d415572206738ef94a9db7cfe:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"01c0432949857207f95619b8135c0ef3:o:then"
+							]
+						},
+						{
+							"id": "798d719d415572206738ef94a9db7cfe:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ef168db404ab77b317afb9742f62205:i:execute"
+							]
+						},
+						{
+							"id": "798d719d415572206738ef94a9db7cfe:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "798d719d415572206738ef94a9db7cfe:i:OldStatus",
+							"name": "OldStatus",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"01c0432949857207f95619b8135c0ef3:o:OldStatus"
+							]
+						},
+						{
+							"id": "798d719d415572206738ef94a9db7cfe:i:Status",
+							"name": "Status",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"2833c8f3439d69268262328ac0096790:o:OutputPin"
+							]
+						},
+						{
+							"id": "798d719d415572206738ef94a9db7cfe:o:IsNewItem",
+							"name": "IsNewItem",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"5ef168db404ab77b317afb9742f62205:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7b8044e945c23e4d97f3379b712ca3f6",
+					"class": "K2Node_VariableGet",
+					"title": "Get CurrentInvestigation",
+					"x": 3232,
+					"y": -1472,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7b8044e945c23e4d97f3379b712ca3f6:o:CurrentInvestigation",
+							"name": "CurrentInvestigation",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"c7443e5945fbb36f0d1eecb5198d543c:i:InString"
+							]
+						},
+						{
+							"id": "7b8044e945c23e4d97f3379b712ca3f6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8a2586bc47b4b18b99c1a58815628138",
+					"class": "K2Node_CallFunction",
+					"title": "To Boolean (Integer)",
+					"x": 2096,
+					"y": -1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8a2586bc47b4b18b99c1a58815628138:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "8a2586bc47b4b18b99c1a58815628138:i:InInt",
+							"name": "InInt",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"9ee081124913792aa0e86d847c0c58ef:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8a2586bc47b4b18b99c1a58815628138:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7011c62a4f2a455e5afa13ba87bb28e5:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8c80756941f8ed91449e2982335c1ff9",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (TestAddRandomDescriptionButton)",
+					"x": 1136,
+					"y": -1232,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8c80756941f8ed91449e2982335c1ff9:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8c80756941f8ed91449e2982335c1ff9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"96315bf6473ba76b337839bb0bd352d0:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8d4761554a920ed995d85880dd5f36c8",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (TestAddRandomInvestigationButton)",
+					"x": 1088,
+					"y": -1712,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8d4761554a920ed995d85880dd5f36c8:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8d4761554a920ed995d85880dd5f36c8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e02afe714bf3dea8dde9d58a0390e8ba:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8e88b7844cca563560d9af9f259be562",
+					"class": "K2Node_CustomEvent",
+					"title": "OnInvestigationSelectionChanged_Event",
+					"x": 480,
+					"y": 1264,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8e88b7844cca563560d9af9f259be562:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8e88b7844cca563560d9af9f259be562:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"454385e146ac8102da2bcd8112eccb4a:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9086f69743200295be846795498e3f03",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Text)",
+					"x": 2352,
+					"y": -1712,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9086f69743200295be846795498e3f03:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "9086f69743200295be846795498e3f03:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"240c414549331bc22fa463863b03f0dd:o:Result"
+							]
+						},
+						{
+							"id": "9086f69743200295be846795498e3f03:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"79841f7d44b3f9e479f6248d27f0c973:i:Title",
+								"db11f35344c7feeeea5c8bbeddf95207:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "96315bf6473ba76b337839bb0bd352d0",
+					"class": "K2Node_CallFunction",
+					"title": "GetInvestigationDescriptions",
+					"x": 1504,
+					"y": -1248,
+					"comment": null,
+					"pins": [
+						{
+							"id": "96315bf6473ba76b337839bb0bd352d0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8c80756941f8ed91449e2982335c1ff9:o:then"
+							]
+						},
+						{
+							"id": "96315bf6473ba76b337839bb0bd352d0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7011c62a4f2a455e5afa13ba87bb28e5:i:execute"
+							]
+						},
+						{
+							"id": "96315bf6473ba76b337839bb0bd352d0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"e3b1af7548fa85700dbb5ca409d6f2fb:o:ReturnValue"
+							]
+						},
+						{
+							"id": "96315bf6473ba76b337839bb0bd352d0:i:Title",
+							"name": "Title",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"276935ee481f81489f84d580f4a715fb:o:CurrentInvestigation"
+							]
+						},
+						{
+							"id": "96315bf6473ba76b337839bb0bd352d0:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"9ee081124913792aa0e86d847c0c58ef:i:TargetArray"
+							]
+						}
+					]
+				},
+				{
+					"guid": "968ba4084f863da933b37497c6ce8aab",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3248,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "968ba4084f863da933b37497c6ce8aab:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9ddbf7aa4978f6db13a140b686c3a2c4:o:then_1"
+							]
+						},
+						{
+							"id": "968ba4084f863da933b37497c6ce8aab:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bc2ddf764e24fe07cf7e2bb02b0604a2:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "995c33a54520abc08891a48869cc8324",
+					"class": "K2Node_CallFunction",
+					"title": "Clear Children",
+					"x": 1552,
+					"y": 1040,
+					"comment": null,
+					"pins": [
+						{
+							"id": "995c33a54520abc08891a48869cc8324:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eaeb98a14737f79b70b824a0df73c879:o:then"
+							]
+						},
+						{
+							"id": "995c33a54520abc08891a48869cc8324:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5638f7a04efad5b62b294ca0d4bfc916:i:execute"
+							]
+						},
+						{
+							"id": "995c33a54520abc08891a48869cc8324:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"2a2f30074c0bd2c87e7029b5d9826040:o:InvestigationList"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9ddbf7aa4978f6db13a140b686c3a2c4",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": 2816,
+					"y": -480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9ddbf7aa4978f6db13a140b686c3a2c4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"274a23d244111f6796479b8c8b5b46f1:o:then"
+							]
+						},
+						{
+							"id": "9ddbf7aa4978f6db13a140b686c3a2c4:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"da74381d45e950d93aa6f8bde97b9f99:i:InputPin"
+							]
+						},
+						{
+							"id": "9ddbf7aa4978f6db13a140b686c3a2c4:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"968ba4084f863da933b37497c6ce8aab:i:InputPin"
+							]
+						},
+						{
+							"id": "9ddbf7aa4978f6db13a140b686c3a2c4:o:then_2",
+							"name": "then_2",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3ee35584458ac6a1efd894aba43f6e6b:i:InputPin"
+							]
+						},
+						{
+							"id": "9ddbf7aa4978f6db13a140b686c3a2c4:o:then_3",
+							"name": "then_3",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0b92df034db0d3a5486b459efa053ddc:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9ee081124913792aa0e86d847c0c58ef",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Length",
+					"x": 1792,
+					"y": -1152,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9ee081124913792aa0e86d847c0c58ef:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "9ee081124913792aa0e86d847c0c58ef:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"96315bf6473ba76b337839bb0bd352d0:o:ReturnValue"
+							]
+						},
+						{
+							"id": "9ee081124913792aa0e86d847c0c58ef:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"3aabe13642a250ce3a2f54b2e0dc3e00:i:0",
+								"8a2586bc47b4b18b99c1a58815628138:i:InInt"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a12fde82414676badea5a8b7e8cf6129",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "a12fde82414676badea5a8b7e8cf6129:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a12fde82414676badea5a8b7e8cf6129:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a12fde82414676badea5a8b7e8cf6129:o:MyGeometry",
+							"name": "MyGeometry",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.Geometry",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a12fde82414676badea5a8b7e8cf6129:o:InDeltaTime",
+							"name": "InDeltaTime",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a5fe94694fdf87a718e1b58fdd2cf39a",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1168,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a5fe94694fdf87a718e1b58fdd2cf39a:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1bd9b6c444f1f4014f21fcae02aaee4a:o:OutputPin"
+							]
+						},
+						{
+							"id": "a5fe94694fdf87a718e1b58fdd2cf39a:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b7bca41c47e60b9e369cc09c89d631e9:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a945594844255248db035f86f51397b6",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1136,
+					"y": -624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a945594844255248db035f86f51397b6:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"684ca6774709ec31fa97fe9d88e47477:o:then_0"
+							]
+						},
+						{
+							"id": "a945594844255248db035f86f51397b6:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dce8ad3e47e6235d40cb35a681d6fea7:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b4963a114632c6188841b3849bcaf3b0",
+					"class": "K2Node_CallFunction",
+					"title": "Clear Children",
+					"x": 1312,
+					"y": 1264,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b4963a114632c6188841b3849bcaf3b0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"188197b643096857b4df5da35847ea3b:o:OutputPin"
+							]
+						},
+						{
+							"id": "b4963a114632c6188841b3849bcaf3b0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b4963a114632c6188841b3849bcaf3b0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"de1e3c174c8fb906e58e2184568b79b1:o:DescriptionList"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b7bca41c47e60b9e369cc09c89d631e9",
+					"class": "K2Node_AddDelegate",
+					"title": "Bind Event to On Journal Investigations Cleared",
+					"x": 1472,
+					"y": 816,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b7bca41c47e60b9e369cc09c89d631e9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a5fe94694fdf87a718e1b58fdd2cf39a:o:OutputPin"
+							]
+						},
+						{
+							"id": "b7bca41c47e60b9e369cc09c89d631e9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b7bca41c47e60b9e369cc09c89d631e9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"ba621a6949f002ad9654f59084df6e55:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b7bca41c47e60b9e369cc09c89d631e9:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"eaeb98a14737f79b70b824a0df73c879:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba621a6949f002ad9654f59084df6e55",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get AtlantisJournalSubsystem",
+					"x": 1136,
+					"y": 912,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba621a6949f002ad9654f59084df6e55:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"b7bca41c47e60b9e369cc09c89d631e9:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bb57a0234b2bc069f2b7eaa5fcf7d9c0",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get AtlantisJournalSubsystem",
+					"x": 1136,
+					"y": -1440,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bb57a0234b2bc069f2b7eaa5fcf7d9c0:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c65cc1c547c98ff96369d8b5e1564caa:i:InputPin",
+								"e02afe714bf3dea8dde9d58a0390e8ba:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bc2ddf764e24fe07cf7e2bb02b0604a2",
+					"class": "K2Node_CallFunction",
+					"title": "SetName",
+					"x": 3376,
+					"y": -272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bc2ddf764e24fe07cf7e2bb02b0604a2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"968ba4084f863da933b37497c6ce8aab:o:OutputPin"
+							]
+						},
+						{
+							"id": "bc2ddf764e24fe07cf7e2bb02b0604a2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bc2ddf764e24fe07cf7e2bb02b0604a2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"cfcc561f48455caa691556a80bc51537:o:OutputPin"
+							]
+						},
+						{
+							"id": "bc2ddf764e24fe07cf7e2bb02b0604a2:i:Name",
+							"name": "Name",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"d316ae2d49e84b627a9cdf837622a633:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bc56f7d6412d668197badea0c2b43264",
+					"class": "K2Node_VariableGet",
+					"title": "Get DescriptionList",
+					"x": 1760,
+					"y": 1120,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bc56f7d6412d668197badea0c2b43264:o:DescriptionList",
+							"name": "DescriptionList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"5638f7a04efad5b62b294ca0d4bfc916:i:self"
+							]
+						},
+						{
+							"id": "bc56f7d6412d668197badea0c2b43264:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bc927f8145b562e4a867b19883d4f4bc",
+					"class": "K2Node_VariableSet",
+					"title": "Set Status",
+					"x": 3376,
+					"y": -48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bc927f8145b562e4a867b19883d4f4bc:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3ee35584458ac6a1efd894aba43f6e6b:o:OutputPin"
+							]
+						},
+						{
+							"id": "bc927f8145b562e4a867b19883d4f4bc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bc927f8145b562e4a867b19883d4f4bc:i:Status",
+							"name": "Status",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": [
+								"59f910b64fda5e49842b738c8159c7cf:o:OutputPin"
+							]
+						},
+						{
+							"id": "bc927f8145b562e4a867b19883d4f4bc:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": "Undiscovered",
+							"links": []
+						},
+						{
+							"id": "bc927f8145b562e4a867b19883d4f4bc:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"6a45098f4b5c2b22b8fac693d5413655:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bf269b044cf9c6deb3c309ba3d99e42c",
+					"class": "K2Node_AddDelegate",
+					"title": "Bind Event to On Investigation Button Click",
+					"x": 3344,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bf269b044cf9c6deb3c309ba3d99e42c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0b92df034db0d3a5486b459efa053ddc:o:OutputPin"
+							]
+						},
+						{
+							"id": "bf269b044cf9c6deb3c309ba3d99e42c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bf269b044cf9c6deb3c309ba3d99e42c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"f17a73074350678fad0d2fa3fa6231ea:o:OutputPin"
+							]
+						},
+						{
+							"id": "bf269b044cf9c6deb3c309ba3d99e42c:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"c3ee8f5445bcb856b9620ea8e8d48bfa:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c3ee8f5445bcb856b9620ea8e8d48bfa",
+					"class": "K2Node_CustomEvent",
+					"title": "OnInvestigationSelect_Event",
+					"x": 2656,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3ee8f5445bcb856b9620ea8e8d48bfa:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"bf269b044cf9c6deb3c309ba3d99e42c:i:Delegate"
+							]
+						},
+						{
+							"id": "c3ee8f5445bcb856b9620ea8e8d48bfa:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2ead55684bf241ec522f78b2a4de6abf:i:execute"
+							]
+						},
+						{
+							"id": "c3ee8f5445bcb856b9620ea8e8d48bfa:o:InvestigationName",
+							"name": "InvestigationName",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"2ead55684bf241ec522f78b2a4de6abf:i:NextInvestigation"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c65cc1c547c98ff96369d8b5e1564caa",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2464,
+					"y": -1392,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c65cc1c547c98ff96369d8b5e1564caa:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"bb57a0234b2bc069f2b7eaa5fcf7d9c0:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c65cc1c547c98ff96369d8b5e1564caa:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"79841f7d44b3f9e479f6248d27f0c973:i:self",
+								"e2f1563040204a219028a08538145092:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c7443e5945fbb36f0d1eecb5198d543c",
+					"class": "K2Node_CallFunction",
+					"title": "Is Empty",
+					"x": 3424,
+					"y": -1504,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c7443e5945fbb36f0d1eecb5198d543c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "c7443e5945fbb36f0d1eecb5198d543c:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"7b8044e945c23e4d97f3379b712ca3f6:o:CurrentInvestigation"
+							]
+						},
+						{
+							"id": "c7443e5945fbb36f0d1eecb5198d543c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"1c1058664248a42f9dd05ab0e448cd69:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c8463a18425f6e2ac296cdaf5bfa18bd",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateInvestigationDescription",
+					"x": 2960,
+					"y": -1600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c8463a18425f6e2ac296cdaf5bfa18bd:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"79841f7d44b3f9e479f6248d27f0c973:o:then"
+							]
+						},
+						{
+							"id": "c8463a18425f6e2ac296cdaf5bfa18bd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1c1058664248a42f9dd05ab0e448cd69:i:execute"
+							]
+						},
+						{
+							"id": "c8463a18425f6e2ac296cdaf5bfa18bd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"e2f1563040204a219028a08538145092:o:OutputPin"
+							]
+						},
+						{
+							"id": "c8463a18425f6e2ac296cdaf5bfa18bd:i:Title",
+							"name": "Title",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"db11f35344c7feeeea5c8bbeddf95207:o:OutputPin"
+							]
+						},
+						{
+							"id": "c8463a18425f6e2ac296cdaf5bfa18bd:i:Description",
+							"name": "Description",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"db11f35344c7feeeea5c8bbeddf95207:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cfcc561f48455caa691556a80bc51537",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2752,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cfcc561f48455caa691556a80bc51537:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"274a23d244111f6796479b8c8b5b46f1:o:AsWBP Journal Investigation Item"
+							]
+						},
+						{
+							"id": "cfcc561f48455caa691556a80bc51537:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"6a45098f4b5c2b22b8fac693d5413655:i:InputPin",
+								"bc2ddf764e24fe07cf7e2bb02b0604a2:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d316ae2d49e84b627a9cdf837622a633",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1472,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d316ae2d49e84b627a9cdf837622a633:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"01c0432949857207f95619b8135c0ef3:o:Title"
+							]
+						},
+						{
+							"id": "d316ae2d49e84b627a9cdf837622a633:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"bc2ddf764e24fe07cf7e2bb02b0604a2:i:Name"
+							]
+						}
+					]
+				},
+				{
+					"guid": "da74381d45e950d93aa6f8bde97b9f99",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3296,
+					"y": -448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "da74381d45e950d93aa6f8bde97b9f99:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9ddbf7aa4978f6db13a140b686c3a2c4:o:then_0"
+							]
+						},
+						{
+							"id": "da74381d45e950d93aa6f8bde97b9f99:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"53a9b8b74212647a0facab91477a2332:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "db11f35344c7feeeea5c8bbeddf95207",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2832,
+					"y": -1696,
+					"comment": null,
+					"pins": [
+						{
+							"id": "db11f35344c7feeeea5c8bbeddf95207:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"9086f69743200295be846795498e3f03:o:ReturnValue"
+							]
+						},
+						{
+							"id": "db11f35344c7feeeea5c8bbeddf95207:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"c8463a18425f6e2ac296cdaf5bfa18bd:i:Description",
+								"c8463a18425f6e2ac296cdaf5bfa18bd:i:Title",
+								"e3ea35a04c79bebeff47f6b4f077bf47:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dc54561d4ad12ac5cf28c8bae1fc9829",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2160,
+					"y": -992,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dc54561d4ad12ac5cf28c8bae1fc9829:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"e3b1af7548fa85700dbb5ca409d6f2fb:o:ReturnValue"
+							]
+						},
+						{
+							"id": "dc54561d4ad12ac5cf28c8bae1fc9829:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"00b92a3d42f83b5c7ea91d9e0d41d5c8:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dce8ad3e47e6235d40cb35a681d6fea7",
+					"class": "K2Node_AssignDelegate",
+					"title": "Assign On Investigation Updated",
+					"x": 1488,
+					"y": -656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dce8ad3e47e6235d40cb35a681d6fea7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a945594844255248db035f86f51397b6:o:OutputPin"
+							]
+						},
+						{
+							"id": "dce8ad3e47e6235d40cb35a681d6fea7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "dce8ad3e47e6235d40cb35a681d6fea7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"72d0439c4ea3507dd84bcfb0c90ab45d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "dce8ad3e47e6235d40cb35a681d6fea7:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"01c0432949857207f95619b8135c0ef3:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ddca81c14b53d9860d7a9581c8731ca4",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateInvestigationSelection",
+					"x": 3952,
+					"y": -1600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ddca81c14b53d9860d7a9581c8731ca4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1c1058664248a42f9dd05ab0e448cd69:o:then"
+							]
+						},
+						{
+							"id": "ddca81c14b53d9860d7a9581c8731ca4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ddca81c14b53d9860d7a9581c8731ca4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ddca81c14b53d9860d7a9581c8731ca4:i:NextInvestigation",
+							"name": "NextInvestigation",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"e3ea35a04c79bebeff47f6b4f077bf47:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "de1e3c174c8fb906e58e2184568b79b1",
+					"class": "K2Node_VariableGet",
+					"title": "Get DescriptionList",
+					"x": 1088,
+					"y": 1344,
+					"comment": null,
+					"pins": [
+						{
+							"id": "de1e3c174c8fb906e58e2184568b79b1:o:DescriptionList",
+							"name": "DescriptionList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"b4963a114632c6188841b3849bcaf3b0:i:self"
+							]
+						},
+						{
+							"id": "de1e3c174c8fb906e58e2184568b79b1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "dfaaa0fe4a117bcbc62d1497720c1e8b",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 48,
+					"y": -656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dfaaa0fe4a117bcbc62d1497720c1e8b:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "dfaaa0fe4a117bcbc62d1497720c1e8b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"684ca6774709ec31fa97fe9d88e47477:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e02afe714bf3dea8dde9d58a0390e8ba",
+					"class": "K2Node_CallFunction",
+					"title": "GetInvestigations",
+					"x": 1504,
+					"y": -1728,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e02afe714bf3dea8dde9d58a0390e8ba:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8d4761554a920ed995d85880dd5f36c8:o:then"
+							]
+						},
+						{
+							"id": "e02afe714bf3dea8dde9d58a0390e8ba:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1ea4e6da4ad0ea51474c028fb5b31077:i:InputPin"
+							]
+						},
+						{
+							"id": "e02afe714bf3dea8dde9d58a0390e8ba:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"bb57a0234b2bc069f2b7eaa5fcf7d9c0:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e02afe714bf3dea8dde9d58a0390e8ba:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"0714d4374c49e8da534cb6b3a0aec535:i:TargetArray"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e0c427d545918bbab75ad6836d737e9f",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Text)",
+					"x": 2368,
+					"y": -848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e0c427d545918bbab75ad6836d737e9f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "e0c427d545918bbab75ad6836d737e9f:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"3aabe13642a250ce3a2f54b2e0dc3e00:o:Result"
+							]
+						},
+						{
+							"id": "e0c427d545918bbab75ad6836d737e9f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"00520ba541f3a5255afb42babfe4e183:i:Description"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e2f1563040204a219028a08538145092",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2880,
+					"y": -1392,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e2f1563040204a219028a08538145092:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c65cc1c547c98ff96369d8b5e1564caa:o:OutputPin"
+							]
+						},
+						{
+							"id": "e2f1563040204a219028a08538145092:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c8463a18425f6e2ac296cdaf5bfa18bd:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3b1af7548fa85700dbb5ca409d6f2fb",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get AtlantisJournalSubsystem",
+					"x": 1136,
+					"y": -1024,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3b1af7548fa85700dbb5ca409d6f2fb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"96315bf6473ba76b337839bb0bd352d0:i:self",
+								"dc54561d4ad12ac5cf28c8bae1fc9829:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3ea35a04c79bebeff47f6b4f077bf47",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3792,
+					"y": -1696,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3ea35a04c79bebeff47f6b4f077bf47:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"db11f35344c7feeeea5c8bbeddf95207:o:OutputPin"
+							]
+						},
+						{
+							"id": "e3ea35a04c79bebeff47f6b4f077bf47:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"ddca81c14b53d9860d7a9581c8731ca4:i:NextInvestigation"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ea81024449aa895d4c86569803b759f4",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1136,
+					"y": 1600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ea81024449aa895d4c86569803b759f4:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"454385e146ac8102da2bcd8112eccb4a:o:then_1"
+							]
+						},
+						{
+							"id": "ea81024449aa895d4c86569803b759f4:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f03b0fb24aecfcf52e3b259e8abd757e:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "eaeb98a14737f79b70b824a0df73c879",
+					"class": "K2Node_CustomEvent",
+					"title": "OnJournalInvestigationsCleared",
+					"x": 1136,
+					"y": 1040,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eaeb98a14737f79b70b824a0df73c879:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"b7bca41c47e60b9e369cc09c89d631e9:i:Delegate"
+							]
+						},
+						{
+							"id": "eaeb98a14737f79b70b824a0df73c879:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"995c33a54520abc08891a48869cc8324:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f03b0fb24aecfcf52e3b259e8abd757e",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateInvestigationDescriptions",
+					"x": 1232,
+					"y": 1552,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f03b0fb24aecfcf52e3b259e8abd757e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ea81024449aa895d4c86569803b759f4:o:OutputPin"
+							]
+						},
+						{
+							"id": "f03b0fb24aecfcf52e3b259e8abd757e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f03b0fb24aecfcf52e3b259e8abd757e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f0d2b7fc45db83c4417ad4813f69ea14",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (TestClearAllInvestigations)",
+					"x": 1136,
+					"y": -2048,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f0d2b7fc45db83c4417ad4813f69ea14:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f0d2b7fc45db83c4417ad4813f69ea14:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"088f02f6448376124c2ef8aa595ca41f:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f17a73074350678fad0d2fa3fa6231ea",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2960,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f17a73074350678fad0d2fa3fa6231ea:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"6a45098f4b5c2b22b8fac693d5413655:o:OutputPin"
+							]
+						},
+						{
+							"id": "f17a73074350678fad0d2fa3fa6231ea:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": [
+								"bf269b044cf9c6deb3c309ba3d99e42c:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fcf9c1574f6c09c67220948750cb5bdb",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get AtlantisJournalSubsystem",
+					"x": 1136,
+					"y": -1936,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fcf9c1574f6c09c67220948750cb5bdb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"088f02f6448376124c2ef8aa595ca41f:i:self"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "011134fb4d6dd9f54397b48416da726f",
+					"text": "Remove all old descriptions",
+					"x": 1072,
+					"y": 1200,
+					"width": 592,
+					"height": 272
+				},
+				{
+					"guid": "0d4345644d2c6f53cf9865a1f3cb84dc",
+					"text": "DEBUG: Adds a new investigation",
+					"x": 1072,
+					"y": -1792,
+					"width": 3184,
+					"height": 480
+				},
+				{
+					"guid": "241e198b405e67ca18b2bdaf7ae0a8a9",
+					"text": "DEBUG: Adds a new description to current investigation",
+					"x": 1072,
+					"y": -1312,
+					"width": 2224,
+					"height": 592
+				},
+				{
+					"guid": "68ed11c746b3ce9afe8c5bbb1c39dc82",
+					"text": "Update selected investigation for description list",
+					"x": 2576,
+					"y": 256,
+					"width": 800,
+					"height": 368
+				},
+				{
+					"guid": "6f4558144ccb26d0f7f454a37d5c34f7",
+					"text": "Adds new descriptions from CurrentInvestigation",
+					"x": 1072,
+					"y": 1488,
+					"width": 592,
+					"height": 208
+				},
+				{
+					"guid": "72124a2c4042c64c7de7dfa6cc5a2ebe",
+					"text": "Setup investigation item spawn list",
+					"x": 1072,
+					"y": -720,
+					"width": 2640,
+					"height": 1440
+				},
+				{
+					"guid": "8268617844c37518eb37fea6767ea0ac",
+					"text": "DEBUG: Clear investigation list",
+					"x": 1072,
+					"y": -2128,
+					"width": 727,
+					"height": 327
+				},
+				{
+					"guid": "e7a39d6343d300d6d334d9934914666c",
+					"text": "Add to list",
+					"x": 3184,
+					"y": -560,
+					"width": 480,
+					"height": 272
+				},
+				{
+					"guid": "f8c821d44093ce65bc02d1bf745ccb8f",
+					"text": "TODO consider doing object pooling for items and descriptions if perf becomes an issue",
+					"x": 48,
+					"y": -816,
+					"width": 400,
+					"height": 128
+				},
+				{
+					"guid": "ff6b51854e62c44747e419a2c3d4c8c5",
+					"text": "Handle journal clearing investigations",
+					"x": 1072,
+					"y": 752,
+					"width": 1424,
+					"height": 432
+				}
+			]
+		}
+	]
+}

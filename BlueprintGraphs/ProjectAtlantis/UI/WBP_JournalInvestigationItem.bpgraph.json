@@ -1,0 +1,471 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem",
+	"asset": "WBP_JournalInvestigationItem",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "OnInvestigationButtonClick",
+			"type": "Delegate",
+			"nodes": [
+				{
+					"guid": "024c6dc944400d4983502cacedf98298",
+					"class": "K2Node_FunctionEntry",
+					"title": "OnInvestigationButtonClick",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "024c6dc944400d4983502cacedf98298:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "024c6dc944400d4983502cacedf98298:o:InvestigationName",
+							"name": "InvestigationName",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "SetName",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "0b0cec054a27620d3f8d63b3dd04a9a1",
+					"class": "K2Node_VariableSet",
+					"title": "Set InvestigationName",
+					"x": 208,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0b0cec054a27620d3f8d63b3dd04a9a1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3018617d4da88868694c22b7c7395a0c:o:then"
+							]
+						},
+						{
+							"id": "0b0cec054a27620d3f8d63b3dd04a9a1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d1431cfa45ba2ff4a510ed8cdef4369d:i:execute"
+							]
+						},
+						{
+							"id": "0b0cec054a27620d3f8d63b3dd04a9a1:i:InvestigationName",
+							"name": "InvestigationName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"3018617d4da88868694c22b7c7395a0c:o:Name"
+							]
+						},
+						{
+							"id": "0b0cec054a27620d3f8d63b3dd04a9a1:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"1fd0aba3402e40072faa7c8173f80a71:i:InString"
+							]
+						},
+						{
+							"id": "0b0cec054a27620d3f8d63b3dd04a9a1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1fd0aba3402e40072faa7c8173f80a71",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (String)",
+					"x": 480,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1fd0aba3402e40072faa7c8173f80a71:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "1fd0aba3402e40072faa7c8173f80a71:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"0b0cec054a27620d3f8d63b3dd04a9a1:o:Output_Get"
+							]
+						},
+						{
+							"id": "1fd0aba3402e40072faa7c8173f80a71:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"d1431cfa45ba2ff4a510ed8cdef4369d:i:Text"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3018617d4da88868694c22b7c7395a0c",
+					"class": "K2Node_FunctionEntry",
+					"title": "SetName",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3018617d4da88868694c22b7c7395a0c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0b0cec054a27620d3f8d63b3dd04a9a1:i:execute"
+							]
+						},
+						{
+							"id": "3018617d4da88868694c22b7c7395a0c:o:Name",
+							"name": "Name",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"0b0cec054a27620d3f8d63b3dd04a9a1:i:InvestigationName"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ac53394c43f2adfe3a11429f150ab1db",
+					"class": "K2Node_VariableGet",
+					"title": "Get Title",
+					"x": 528,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ac53394c43f2adfe3a11429f150ab1db:o:Title",
+							"name": "Title",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"d1431cfa45ba2ff4a510ed8cdef4369d:i:self"
+							]
+						},
+						{
+							"id": "ac53394c43f2adfe3a11429f150ab1db:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d1431cfa45ba2ff4a510ed8cdef4369d",
+					"class": "K2Node_VariableSet",
+					"title": "Set Text",
+					"x": 768,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d1431cfa45ba2ff4a510ed8cdef4369d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0b0cec054a27620d3f8d63b3dd04a9a1:o:then"
+							]
+						},
+						{
+							"id": "d1431cfa45ba2ff4a510ed8cdef4369d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d1431cfa45ba2ff4a510ed8cdef4369d:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"1fd0aba3402e40072faa7c8173f80a71:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d1431cfa45ba2ff4a510ed8cdef4369d:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d1431cfa45ba2ff4a510ed8cdef4369d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"ac53394c43f2adfe3a11429f150ab1db:o:Title"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "213545244b31677031d181918c556242",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "213545244b31677031d181918c556242:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "213545244b31677031d181918c556242:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7f2804dd4e0c91494783e4a4009a45a5",
+					"class": "K2Node_CallDelegate",
+					"title": "Call On Investigation Button Click",
+					"x": 304,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7f2804dd4e0c91494783e4a4009a45a5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fcf21a35455f1205d7693594fd48d787:o:then"
+							]
+						},
+						{
+							"id": "7f2804dd4e0c91494783e4a4009a45a5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7f2804dd4e0c91494783e4a4009a45a5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7f2804dd4e0c91494783e4a4009a45a5:i:InvestigationName",
+							"name": "InvestigationName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"b161e4fa4c6bd177df6bd495c76e0ac7:o:InvestigationName"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b161e4fa4c6bd177df6bd495c76e0ac7",
+					"class": "K2Node_VariableGet",
+					"title": "Get InvestigationName",
+					"x": 0,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b161e4fa4c6bd177df6bd495c76e0ac7:o:InvestigationName",
+							"name": "InvestigationName",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"7f2804dd4e0c91494783e4a4009a45a5:i:InvestigationName"
+							]
+						},
+						{
+							"id": "b161e4fa4c6bd177df6bd495c76e0ac7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationItem.WBP_JournalInvestigationItem_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c6475c9d4141ae5cd7c88591d3cabb59",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "c6475c9d4141ae5cd7c88591d3cabb59:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c6475c9d4141ae5cd7c88591d3cabb59:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c6475c9d4141ae5cd7c88591d3cabb59:o:MyGeometry",
+							"name": "MyGeometry",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.Geometry",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c6475c9d4141ae5cd7c88591d3cabb59:o:InDeltaTime",
+							"name": "InDeltaTime",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d587b6be4413d1847736d2a07cb67414",
+					"class": "K2Node_Event",
+					"title": "Event Pre Construct",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "d587b6be4413d1847736d2a07cb67414:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d587b6be4413d1847736d2a07cb67414:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d587b6be4413d1847736d2a07cb67414:o:IsDesignTime",
+							"name": "IsDesignTime",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "fcf21a35455f1205d7693594fd48d787",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (Button)",
+					"x": 0,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fcf21a35455f1205d7693594fd48d787:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fcf21a35455f1205d7693594fd48d787:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7f2804dd4e0c91494783e4a4009a45a5:i:execute"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}

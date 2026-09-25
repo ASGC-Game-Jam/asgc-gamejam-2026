@@ -5,8 +5,21 @@
 #include "EdGraph/EdGraphNode.h"
 #include "EdGraph/EdGraphPin.h"
 #include "EdGraphNode_Comment.h"          // UEdGraphNode_Comment (module: UnrealEd)
+#include "Materials/Material.h"
+#include "Materials/MaterialFunction.h"
+#include "Materials/MaterialExpression.h"
+#include "Materials/MaterialExpressionComment.h"
+#include "MaterialGraph/MaterialGraph.h"             // module: UnrealEd
+#include "MaterialGraph/MaterialGraphNode.h"
+#include "MaterialGraph/MaterialGraphNode_Comment.h"
+#include "MaterialGraph/MaterialGraphNode_Root.h"
+#include "MaterialGraph/MaterialGraphSchema.h"
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "AssetRegistry/ARFilter.h"
+#include "UObject/Package.h"
+#include "UObject/UObjectHash.h"
+#include "UObject/UnrealType.h"                      // TPropertyValueIterator
+#include "Misc/App.h"
 #include "Misc/Paths.h"
 #include "Misc/FileHelper.h"
 #include "Misc/PackageName.h"
@@ -17,15 +30,77 @@
 // The exporter reads the *live* editor model (UEdGraph/UEdGraphNode/UEdGraphPin) directly
 // rather than parsing the T3D copy/paste text — same full fidelity, but structured and far
 // less brittle across engine versions. Every value below maps 1:1 onto a field in the
-// `.bpgraph.json` schema (packages/types/src/blueprint-graph.ts).
+// `.bpgraph.json` schema (packages/types/src/blueprint-graph.ts). Blueprints, Materials and
+// Niagara assets all end up as UEdGraphs, so one writer serves every asset kind; only how the
+// graphs are *found* (and, for materials, how nodes are identified) differs per kind.
 
 namespace
 {
     using FJsonWriterRef = TSharedRef<TJsonWriter<TCHAR, TPrettyJsonPrintPolicy<TCHAR>>>;
 
+    /** Stable identity for a node across exports. Blueprints/Niagara persist NodeGuid; material
+     *  graph nodes are rebuilt every time (fresh random NodeGuid), so they map to their expression. */
+    using FNodeIdFn = TFunction<FString(const UEdGraphNode*)>;
+
+    struct FGraphEntry
+    {
+        UEdGraph* Graph = nullptr;
+        FString Type;
+        FString Name;
+    };
+
+    // Niagara is an engine *plugin*; match its classes by path so this module neither links it
+    // nor fails to load in a project that has Niagara disabled.
+    const FTopLevelAssetPath NiagaraClassPaths[] =
+    {
+        FTopLevelAssetPath(TEXT("/Script/Niagara"), TEXT("NiagaraSystem")),
+        FTopLevelAssetPath(TEXT("/Script/Niagara"), TEXT("NiagaraEmitter")),
+        FTopLevelAssetPath(TEXT("/Script/Niagara"), TEXT("NiagaraScript")),
+    };
+
+    bool IsNiagaraAsset(const UObject* Asset)
+    {
+        for (const UClass* C = Asset ? Asset->GetClass() : nullptr; C; C = C->GetSuperClass())
+        {
+            const FTopLevelAssetPath Path = C->GetClassPathName();
+            for (const FTopLevelAssetPath& N : NiagaraClassPaths) { if (Path == N) return true; }
+        }
+        return false;
+    }
+
     FString GuidStr(const FGuid& G)
     {
         return G.ToString(EGuidFormats::Digits).ToLower();
+    }
+
+    FString DefaultNodeId(const UEdGraphNode* N)
+    {
+        return GuidStr(N->NodeGuid);
+    }
+
+    /** A material expression's persisted guid (or, if it somehow has none, one derived from its
+     *  stable object path inside the package). */
+    FString ExpressionId(const UMaterialExpression* E)
+    {
+        if (E->MaterialExpressionGuid.IsValid()) return GuidStr(E->MaterialExpressionGuid);
+        return GuidStr(FGuid::NewDeterministicGuid(E->GetPathName(E->GetOutermost())));
+    }
+
+    FString MaterialNodeId(const UEdGraphNode* N)
+    {
+        if (const UMaterialGraphNode* MN = Cast<UMaterialGraphNode>(N))
+        {
+            if (MN->MaterialExpression) return ExpressionId(MN->MaterialExpression);
+        }
+        else if (const UMaterialGraphNode_Comment* CN = Cast<UMaterialGraphNode_Comment>(N))
+        {
+            if (CN->MaterialExpressionComment) return ExpressionId(CN->MaterialExpressionComment);
+        }
+        else if (N->IsA<UMaterialGraphNode_Root>())
+        {
+            return GuidStr(FGuid(0, 0, 0, 1)); // the single material-output node
+        }
+        return DefaultNodeId(N);
     }
 
     /** A pin's category + subtype flattened to a stable string, e.g. `exec`, `bool`,
@@ -64,12 +139,12 @@ namespace
     // A pin's raw PinId GUID is NOT stable across editor loads — some nodes (e.g. math compare
     // nodes' advanced `ErrorTolerance` pin) reconstruct pins on load and regenerate the GUID,
     // which made re-exports churn. So identity is derived instead from the owning node's stable
-    // NodeGuid + the pin's direction + name (with an occurrence index when a node has duplicate
+    // id + the pin's direction + name (with an occurrence index when a node has duplicate
     // names). Deterministic across loads, and it makes wire matching semantic rather than tied to
     // a volatile GUID. `Seen` tracks per-(node,dir,name) counts across the whole graph.
-    FString StablePinId(UEdGraphNode* N, const UEdGraphPin* P, TMap<FString, int32>& Seen)
+    FString StablePinId(const FString& NodeId, const UEdGraphPin* P, TMap<FString, int32>& Seen)
     {
-        const FString Base = GuidStr(N->NodeGuid) + TEXT(":") +
+        const FString Base = NodeId + TEXT(":") +
             (P->Direction == EGPD_Output ? TEXT("o:") : TEXT("i:")) + P->PinName.ToString();
         int32& Count = Seen.FindOrAdd(Base);
         const FString Id = Count == 0 ? Base : FString::Printf(TEXT("%s#%d"), *Base, Count);
@@ -103,10 +178,10 @@ namespace
         W->WriteObjectEnd();
     }
 
-    void WriteNode(const FJsonWriterRef& W, UEdGraphNode* N, const TMap<const UEdGraphPin*, FString>& PinIds)
+    void WriteNode(const FJsonWriterRef& W, UEdGraphNode* N, const FString& NodeId, const TMap<const UEdGraphPin*, FString>& PinIds)
     {
         W->WriteObjectStart();
-        W->WriteValue(TEXT("guid"), GuidStr(N->NodeGuid));
+        W->WriteValue(TEXT("guid"), NodeId);
         W->WriteValue(TEXT("class"), N->GetClass()->GetName());
         W->WriteValue(TEXT("title"), N->GetNodeTitle(ENodeTitleType::ListView).ToString());
         W->WriteValue(TEXT("x"), N->NodePosX);
@@ -121,10 +196,10 @@ namespace
         W->WriteObjectEnd();
     }
 
-    void WriteComment(const FJsonWriterRef& W, UEdGraphNode_Comment* C)
+    void WriteComment(const FJsonWriterRef& W, UEdGraphNode_Comment* C, const FString& NodeId)
     {
         W->WriteObjectStart();
-        W->WriteValue(TEXT("guid"), GuidStr(C->NodeGuid));
+        W->WriteValue(TEXT("guid"), NodeId);
         W->WriteValue(TEXT("text"), C->NodeComment);
         W->WriteValue(TEXT("x"), C->NodePosX);
         W->WriteValue(TEXT("y"), C->NodePosY);
@@ -133,61 +208,238 @@ namespace
         W->WriteObjectEnd();
     }
 
-    void WriteGraph(const FJsonWriterRef& W, UEdGraph* G, const FString& Type)
+    /** Assign each node its id, sorted by (id, object name), with `#n` suffixes on any duplicate
+     *  id so two nodes can never collapse into one in the diff. */
+    template <typename NodeT>
+    TArray<TPair<NodeT*, FString>> IdentifyNodes(const TArray<NodeT*>& In, const FNodeIdFn& NodeId)
+    {
+        TArray<TPair<NodeT*, FString>> Out;
+        Out.Reserve(In.Num());
+        for (NodeT* N : In) Out.Add({ N, NodeId(N) });
+        Out.Sort([](const TPair<NodeT*, FString>& A, const TPair<NodeT*, FString>& B)
+        {
+            return A.Value != B.Value ? A.Value < B.Value : A.Key->GetName() < B.Key->GetName();
+        });
+        TMap<FString, int32> Seen;
+        for (TPair<NodeT*, FString>& E : Out)
+        {
+            int32& Count = Seen.FindOrAdd(E.Value);
+            if (Count > 0) E.Value = FString::Printf(TEXT("%s#%d"), *E.Value, Count);
+            ++Count;
+        }
+        return Out;
+    }
+
+    void WriteGraph(const FJsonWriterRef& W, const FGraphEntry& Entry, const FNodeIdFn& NodeId)
     {
         W->WriteObjectStart();
-        W->WriteValue(TEXT("name"), G->GetName());
-        W->WriteValue(TEXT("type"), Type);
+        W->WriteValue(TEXT("name"), Entry.Name);
+        W->WriteValue(TEXT("type"), Entry.Type);
 
         // Split comment boxes from real nodes; keep each list deterministically ordered.
-        TArray<UEdGraphNode*> Nodes;
-        TArray<UEdGraphNode_Comment*> Comments;
-        for (UEdGraphNode* N : G->Nodes)
+        TArray<UEdGraphNode*> RawNodes;
+        TArray<UEdGraphNode_Comment*> RawComments;
+        for (UEdGraphNode* N : Entry.Graph->Nodes)
         {
             if (!N) continue;
-            if (UEdGraphNode_Comment* C = Cast<UEdGraphNode_Comment>(N)) { Comments.Add(C); }
-            else { Nodes.Add(N); }
+            if (UEdGraphNode_Comment* C = Cast<UEdGraphNode_Comment>(N)) { RawComments.Add(C); }
+            else { RawNodes.Add(N); }
         }
-        Nodes.Sort([](const UEdGraphNode& A, const UEdGraphNode& B) { return GuidStr(A.NodeGuid) < GuidStr(B.NodeGuid); });
-        Comments.Sort([](const UEdGraphNode_Comment& A, const UEdGraphNode_Comment& B) { return GuidStr(A.NodeGuid) < GuidStr(B.NodeGuid); });
+        const TArray<TPair<UEdGraphNode*, FString>> Nodes = IdentifyNodes(RawNodes, NodeId);
+        const TArray<TPair<UEdGraphNode_Comment*, FString>> Comments = IdentifyNodes(RawComments, NodeId);
 
         // Assign every pin in the graph a stable id up front, so both a pin's own id and the
         // link references pointing at it resolve to the same value.
         TMap<const UEdGraphPin*, FString> PinIds;
         TMap<FString, int32> Seen;
-        for (UEdGraphNode* N : Nodes)
+        for (const TPair<UEdGraphNode*, FString>& N : Nodes)
         {
-            for (const UEdGraphPin* P : N->Pins) { if (P) PinIds.Add(P, StablePinId(N, P, Seen)); }
+            for (const UEdGraphPin* P : N.Key->Pins) { if (P) PinIds.Add(P, StablePinId(N.Value, P, Seen)); }
         }
 
         W->WriteArrayStart(TEXT("nodes"));
-        for (UEdGraphNode* N : Nodes) WriteNode(W, N, PinIds);
+        for (const TPair<UEdGraphNode*, FString>& N : Nodes) WriteNode(W, N.Key, N.Value, PinIds);
         W->WriteArrayEnd();
 
         W->WriteArrayStart(TEXT("comments"));
-        for (UEdGraphNode_Comment* C : Comments) WriteComment(W, C);
+        for (const TPair<UEdGraphNode_Comment*, FString>& C : Comments) WriteComment(W, C.Key, C.Value);
         W->WriteArrayEnd();
 
         W->WriteObjectEnd();
     }
 
-    /** Every graph of a Blueprint, tagged with its kind, in a stable order. */
-    void GatherGraphs(UBlueprint* BP, TArray<TPair<UEdGraph*, FString>>& Out)
+    /** Stable graph order by `type:name`; a repeated key gets a `#n` suffix (the diff matches
+     *  graphs by that key, so it must be unique). */
+    void SortAndDedupeGraphs(TArray<FGraphEntry>& Graphs)
     {
-        for (UEdGraph* G : BP->UbergraphPages)        if (G) Out.Add({ G, TEXT("Ubergraph") });
-        for (UEdGraph* G : BP->FunctionGraphs)        if (G) Out.Add({ G, TEXT("Function") });
-        for (UEdGraph* G : BP->MacroGraphs)           if (G) Out.Add({ G, TEXT("Macro") });
-        for (UEdGraph* G : BP->DelegateSignatureGraphs) if (G) Out.Add({ G, TEXT("Delegate") });
-        Out.Sort([](const TPair<UEdGraph*, FString>& A, const TPair<UEdGraph*, FString>& B)
+        Graphs.StableSort([](const FGraphEntry& A, const FGraphEntry& B)
         {
-            const FString KA = A.Value + TEXT(":") + A.Key->GetName();
-            const FString KB = B.Value + TEXT(":") + B.Key->GetName();
-            return KA < KB;
+            return (A.Type + TEXT(":") + A.Name) < (B.Type + TEXT(":") + B.Name);
         });
+        TMap<FString, int32> Seen;
+        for (FGraphEntry& G : Graphs)
+        {
+            int32& Count = Seen.FindOrAdd(G.Type + TEXT(":") + G.Name);
+            if (Count > 0) G.Name = FString::Printf(TEXT("%s#%d"), *G.Name, Count);
+            ++Count;
+        }
+    }
+
+    // ── Blueprints ───────────────────────────────────────────────────────────
+
+    void GatherBlueprintGraphs(UBlueprint* BP, TArray<FGraphEntry>& Out)
+    {
+        for (UEdGraph* G : BP->UbergraphPages)          if (G) Out.Add({ G, TEXT("Ubergraph"), G->GetName() });
+        for (UEdGraph* G : BP->FunctionGraphs)          if (G) Out.Add({ G, TEXT("Function"), G->GetName() });
+        for (UEdGraph* G : BP->MacroGraphs)             if (G) Out.Add({ G, TEXT("Macro"), G->GetName() });
+        for (UEdGraph* G : BP->DelegateSignatureGraphs) if (G) Out.Add({ G, TEXT("Delegate"), G->GetName() });
+    }
+
+    // ── Materials ────────────────────────────────────────────────────────────
+
+    // A material's UMaterialGraph only exists while the material editor has it open (and even
+    // then it belongs to the editor's transient copy), so it's rebuilt here exactly the way the
+    // editor builds it. RebuildGraph points each expression's transient `GraphNode` (and
+    // `SubgraphExpression`) at the new nodes; this scope records and restores them so exporting
+    // never leaves the real asset referencing a throwaway graph.
+    class FTransientMaterialGraph
+    {
+    public:
+        explicit FTransientMaterialGraph(UObject* Asset)
+        {
+            UMaterialFunction* Function = Cast<UMaterialFunction>(Asset);
+            UMaterial* Host = Cast<UMaterial>(Asset);
+            if (Function)
+            {
+                // Same as FMaterialEditor::InitEditorForMaterialFunction: a function's graph is
+                // hosted by a scratch material that borrows the function's expressions.
+                Host = NewObject<UMaterial>(GetTransientPackage(), NAME_None, RF_Transient);
+                Host->AssignExpressionCollection(Function->GetExpressionCollection());
+            }
+            if (!Host) return;
+
+            for (UMaterialExpression* E : Host->GetExpressions())    { if (E) Saved.Add({ E, E->GraphNode, E->SubgraphExpression }); }
+            for (UMaterialExpressionComment* C : Host->GetEditorComments()) { if (C) Saved.Add({ C, C->GraphNode, C->SubgraphExpression }); }
+
+            Graph = NewObject<UMaterialGraph>(GetTransientPackage(), NAME_None, RF_Transient);
+            Graph->Schema = UMaterialGraphSchema::StaticClass();
+            Graph->Material = Host;
+            Graph->MaterialFunction = Function;
+            Graph->RebuildGraph();
+        }
+
+        ~FTransientMaterialGraph()
+        {
+            for (const FSavedExpression& S : Saved)
+            {
+                if (UMaterialExpression* E = S.Expression.Get())
+                {
+                    E->GraphNode = S.GraphNode;
+                    E->SubgraphExpression = S.SubgraphExpression;
+                }
+            }
+            if (Graph) Graph->MarkAsGarbage();
+        }
+
+        UMaterialGraph* Graph = nullptr;
+
+    private:
+        struct FSavedExpression
+        {
+            TWeakObjectPtr<UMaterialExpression> Expression;
+            TObjectPtr<UEdGraphNode> GraphNode;
+            TObjectPtr<UMaterialExpression> SubgraphExpression;
+        };
+        TArray<FSavedExpression> Saved;
+    };
+
+    /** Collapsed-node (composite) subgraphs, named by their path from the top graph. */
+    void GatherMaterialSubgraphs(UEdGraph* G, const FString& Prefix, TArray<FGraphEntry>& Out)
+    {
+        for (UEdGraph* Sub : G->SubGraphs)
+        {
+            if (!Sub) continue;
+            const FString Name = Prefix + TEXT("/") + Sub->GetName();
+            Out.Add({ Sub, TEXT("MaterialSubgraph"), Name });
+            GatherMaterialSubgraphs(Sub, Name, Out);
+        }
+    }
+
+    // ── Niagara ──────────────────────────────────────────────────────────────
+
+    bool IsDefaultObjectName(const UObject* O)
+    {
+        const FString Prefix = O->GetClass()->GetName() + TEXT("_");
+        const FString Name = O->GetName();
+        return Name.StartsWith(Prefix) && Name.RightChop(Prefix.Len()).IsNumeric();
+    }
+
+    /** Objects Niagara keeps only as inheritance-merge baselines — an emitter's
+     *  `VersionedParentAtLastMerge` copy and its `ParentScratchPads`. They're internal snapshots
+     *  of the parent emitter, not the artist's content; exporting them would duplicate every
+     *  inherited graph (and show each change twice). Found by reflection so Niagara isn't linked. */
+    TSet<const UObject*> FindNiagaraMergeBaselines(const TArray<UObject*>& Objects)
+    {
+        static const FName BaselineProps[] = { TEXT("VersionedParentAtLastMerge"), TEXT("ParentScratchPads") };
+        const auto IsBaselineProp = [](const FProperty* P)
+        {
+            return P && (P->GetFName() == BaselineProps[0] || P->GetFName() == BaselineProps[1]);
+        };
+
+        TSet<const UObject*> Out;
+        for (UObject* O : Objects)
+        {
+            for (TPropertyValueIterator<FObjectPropertyBase> It(O->GetClass(), O); It; ++It)
+            {
+                TArray<const FProperty*> Chain;
+                It.GetPropertyChain(Chain);
+                if (!IsBaselineProp(It.Key()) && !Chain.ContainsByPredicate(IsBaselineProp)) continue;
+                if (const UObject* Ref = It.Key()->GetObjectPropertyValue(It->Value)) Out.Add(Ref);
+            }
+        }
+        return Out;
+    }
+
+    // Niagara graphs (UNiagaraGraph : UEdGraph) are saved editor-only subobjects: the system
+    // script graph under the system's spawn script, one graph per emitter under that emitter,
+    // one per script version, plus the system overview graph. Rather than link NiagaraEditor
+    // (whose script-source class isn't exported), take every saved UEdGraph in the package and
+    // name it by its owner chain — e.g. type `NiagaraEmitter`, name `Sparks`.
+    void GatherPackageGraphs(UObject* Asset, TArray<FGraphEntry>& Out)
+    {
+        TArray<UObject*> Objects;
+        GetObjectsWithPackage(Asset->GetOutermost(), Objects, /*bIncludeNestedObjects*/ true,
+            RF_Transient, EInternalObjectFlags::Garbage);
+        const TSet<const UObject*> Baselines = FindNiagaraMergeBaselines(Objects);
+        for (UObject* O : Objects)
+        {
+            UEdGraph* G = Cast<UEdGraph>(O);
+            if (!IsValid(G)) continue;
+
+            TArray<FString> Segments;
+            FString Type;
+            bool bValidChain = true;
+            for (UObject* Outer = G->GetOuter(); Outer && Outer != Asset && !Outer->IsA<UPackage>(); Outer = Outer->GetOuter())
+            {
+                if (!IsValid(Outer) || Baselines.Contains(Outer)) { bValidChain = false; break; }
+                if (Outer->GetClass()->GetName().EndsWith(TEXT("ScriptSource"))) continue; // plumbing, not a name
+                if (Type.IsEmpty()) Type = Outer->GetClass()->GetName();
+                Segments.Insert(Outer->GetName(), 0);
+            }
+            if (!bValidChain) continue;
+            if (Type.IsEmpty()) Type = Asset->GetClass()->GetName();
+            if (Segments.Num() == 0 || !IsDefaultObjectName(G)) Segments.Add(G->GetName());
+            Out.Add({ G, Type, FString::Join(Segments, TEXT("/")) });
+        }
     }
 }
 
-FString FKeystoneBlueprintExporter::BuildJson(UBlueprint* Blueprint)
+bool FKeystoneBlueprintExporter::CanExport(const UObject* Asset)
+{
+    return Asset && (Asset->IsA<UBlueprint>() || Asset->IsA<UMaterial>() || Asset->IsA<UMaterialFunction>() || IsNiagaraAsset(Asset));
+}
+
+FString FKeystoneBlueprintExporter::BuildJson(UObject* Asset)
 {
     FString Out;
     const FJsonWriterRef W = TJsonWriterFactory<TCHAR, TPrettyJsonPrintPolicy<TCHAR>>::Create(&Out);
@@ -195,16 +447,46 @@ FString FKeystoneBlueprintExporter::BuildJson(UBlueprint* Blueprint)
     W->WriteObjectStart();
     W->WriteValue(TEXT("version"), 1);
     W->WriteValue(TEXT("generatedBy"), TEXT("keystone-blueprint-export"));
-    W->WriteValue(TEXT("package"), Blueprint->GetOutermost()->GetName()); // /Game/.../BP_Hero
-    W->WriteValue(TEXT("asset"), Blueprint->GetName());
-    if (Blueprint->ParentClass) { W->WriteValue(TEXT("parentClass"), Blueprint->ParentClass->GetName()); }
-    else { W->WriteNull(TEXT("parentClass")); }
-    W->WriteValue(TEXT("blueprintType"), StaticEnum<EBlueprintType>()->GetNameStringByValue(Blueprint->BlueprintType));
+    W->WriteValue(TEXT("package"), Asset->GetOutermost()->GetName()); // /Game/.../BP_Hero
+    W->WriteValue(TEXT("asset"), Asset->GetName());
 
-    TArray<TPair<UEdGraph*, FString>> Graphs;
-    GatherGraphs(Blueprint, Graphs);
+    TArray<FGraphEntry> Graphs;
+    FNodeIdFn NodeId = &DefaultNodeId;
+    TUniquePtr<FTransientMaterialGraph> MaterialGraph; // must outlive WriteGraph below
+
+    if (UBlueprint* Blueprint = Cast<UBlueprint>(Asset))
+    {
+        if (Blueprint->ParentClass) { W->WriteValue(TEXT("parentClass"), Blueprint->ParentClass->GetName()); }
+        else { W->WriteNull(TEXT("parentClass")); }
+        W->WriteValue(TEXT("blueprintType"), StaticEnum<EBlueprintType>()->GetNameStringByValue(Blueprint->BlueprintType));
+        GatherBlueprintGraphs(Blueprint, Graphs);
+    }
+    else
+    {
+        W->WriteValue(TEXT("assetClass"), Asset->GetClass()->GetName());
+        W->WriteNull(TEXT("parentClass"));
+        W->WriteNull(TEXT("blueprintType"));
+
+        if (Asset->IsA<UMaterial>() || Asset->IsA<UMaterialFunction>())
+        {
+            MaterialGraph = MakeUnique<FTransientMaterialGraph>(Asset);
+            if (MaterialGraph->Graph)
+            {
+                const FString Type = Asset->IsA<UMaterial>() ? TEXT("Material") : TEXT("MaterialFunction");
+                Graphs.Add({ MaterialGraph->Graph, Type, TEXT("MaterialGraph") });
+                GatherMaterialSubgraphs(MaterialGraph->Graph, TEXT("MaterialGraph"), Graphs);
+            }
+            NodeId = &MaterialNodeId;
+        }
+        else if (IsNiagaraAsset(Asset))
+        {
+            GatherPackageGraphs(Asset, Graphs);
+        }
+    }
+
+    SortAndDedupeGraphs(Graphs);
     W->WriteArrayStart(TEXT("graphs"));
-    for (const TPair<UEdGraph*, FString>& GP : Graphs) WriteGraph(W, GP.Key, GP.Value);
+    for (const FGraphEntry& G : Graphs) WriteGraph(W, G, NodeId);
     W->WriteArrayEnd();
 
     W->WriteObjectEnd();
@@ -222,9 +504,9 @@ FString FKeystoneBlueprintExporter::ExportFileForPackage(const FString& PackageN
     return FPaths::ConvertRelativePathToFull(Abs);
 }
 
-FString FKeystoneBlueprintExporter::ExportFileFor(UBlueprint* Blueprint)
+FString FKeystoneBlueprintExporter::ExportFileFor(UObject* Asset)
 {
-    return ExportFileForPackage(Blueprint->GetOutermost()->GetName());
+    return ExportFileForPackage(Asset->GetOutermost()->GetName());
 }
 
 FKeystoneBlueprintExporter::EPackageState FKeystoneBlueprintExporter::ClassifyPackage(const FString& PackageName)
@@ -315,13 +597,13 @@ int32 FKeystoneBlueprintExporter::PruneOrphanExports(const TSet<FString>& Expect
     return Removed;
 }
 
-bool FKeystoneBlueprintExporter::ExportOne(UBlueprint* Blueprint, FKeystoneExportResult& InOutResult)
+bool FKeystoneBlueprintExporter::ExportOne(UObject* Asset, FKeystoneExportResult& InOutResult)
 {
-    if (!Blueprint) { InOutResult.Failed++; return false; }
+    if (!CanExport(Asset)) { InOutResult.Failed++; return false; }
     InOutResult.Scanned++;
 
-    const FString Json = BuildJson(Blueprint);
-    const FString File = ExportFileFor(Blueprint);
+    const FString Json = BuildJson(Asset);
+    const FString File = ExportFileFor(Asset);
 
     // Skip the write (and the git churn) when nothing changed.
     FString Existing;
@@ -347,7 +629,7 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
     FAssetRegistryModule& ARM = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
 
     // If the editor's startup scan is still running the registry is incomplete: the export would
-    // miss Blueprints, and the prune would have to keep every file it cannot account for. This is
+    // miss assets, and the prune would have to keep every file it cannot account for. This is
     // a manual, one-off action, so blocking until the scan finishes is acceptable.
     if (ARM.Get().IsLoadingAssets())
     {
@@ -356,6 +638,9 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
 
     FARFilter Filter;
     Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
+    Filter.ClassPaths.Add(UMaterial::StaticClass()->GetClassPathName());
+    Filter.ClassPaths.Add(UMaterialFunction::StaticClass()->GetClassPathName()); // + material layers/blends
+    for (const FTopLevelAssetPath& N : NiagaraClassPaths) Filter.ClassPaths.Add(N);
     Filter.bRecursiveClasses = true;
     Filter.PackagePaths.Add(*RootPath);
     Filter.bRecursivePaths = true;
@@ -373,7 +658,7 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
     MW->WriteValue(TEXT("project"), FApp::GetProjectName());
     MW->WriteArrayStart(TEXT("entries"));
 
-    // Every export a live Blueprint maps to. Anything else under the folder is an orphan left
+    // Every export a live asset maps to. Anything else under the folder is an orphan left
     // behind by a rename or a delete, which the sweep prunes below.
     TSet<FString> ExpectedFiles;
     ExpectedFiles.Reserve(Assets.Num());
@@ -381,18 +666,24 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
     Assets.Sort([](const FAssetData& A, const FAssetData& B) { return A.PackageName.LexicalLess(B.PackageName); });
     for (const FAssetData& AD : Assets)
     {
-        UBlueprint* BP = Cast<UBlueprint>(AD.GetAsset());
-        if (!BP) { R.Failed++; continue; }
-        ExportOne(BP, R);
+        UObject* Asset = AD.GetAsset();
+        if (!CanExport(Asset))
+        {
+            UE_LOG(LogTemp, Warning, TEXT("[keystone] could not load %s for export"), *AD.GetObjectPathString());
+            R.Failed++;
+            continue;
+        }
+        ExportOne(Asset, R);
 
-        const FString File = ExportFileFor(BP);
+        const FString File = ExportFileFor(Asset);
         ExpectedFiles.Add(File);
 
         FString RepoRel = File;
         FPaths::MakePathRelativeTo(RepoRel, *(FPaths::ProjectDir())); // e.g. BlueprintGraphs/Characters/BP_Hero.bpgraph.json
         MW->WriteObjectStart();
-        MW->WriteValue(TEXT("package"), BP->GetOutermost()->GetName());
-        MW->WriteValue(TEXT("asset"), BP->GetName());
+        MW->WriteValue(TEXT("package"), Asset->GetOutermost()->GetName());
+        MW->WriteValue(TEXT("asset"), Asset->GetName());
+        if (!Asset->IsA<UBlueprint>()) MW->WriteValue(TEXT("assetClass"), Asset->GetClass()->GetName());
         MW->WriteValue(TEXT("exportPath"), RepoRel);
         MW->WriteObjectEnd();
     }

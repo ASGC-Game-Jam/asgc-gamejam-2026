@@ -1,0 +1,3681 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Placeables/JumpPad/NS_JumpPad",
+	"asset": "NS_JumpPad",
+	"assetClass": "NiagaraSystem",
+	"parentClass": null,
+	"blueprintType": null,
+	"graphs": [
+		{
+			"name": "Bands_0",
+			"type": "NiagaraEmitter",
+			"nodes": [
+				{
+					"guid": "09f0643340aa32a13f2249a208bb7ecb",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Scale Mesh Size",
+					"x": -2400,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "09f0643340aa32a13f2249a208bb7ecb:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"bb7e56a642f2284ec4194da48eadac15:o:Dest"
+							]
+						},
+						{
+							"id": "09f0643340aa32a13f2249a208bb7ecb:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"fd0ce6804a613d4eb1f4939aff1534d6:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0aaed08b4321e0affcb9fcb8ed7347b0",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Emitter Spawn",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0aaed08b4321e0affcb9fcb8ed7347b0:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9a0e12d24658c390912975b59e7c0829:o:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "12c13ae04761473e6d55f4b1631d664d",
+					"class": "NiagaraNodeInput",
+					"title": "FloatFromCurve.FloatCurve",
+					"x": -1600,
+					"y": 2600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "12c13ae04761473e6d55f4b1631d664d:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": [
+								"b514ea824a0bb2f221f656b04df20a65:i:FloatFromCurve.FloatCurve"
+							]
+						}
+					]
+				},
+				{
+					"guid": "12c6cf78412ed609aa7f168d0e1a73a2",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Spawn Rate",
+					"x": -400,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "12c6cf78412ed609aa7f168d0e1a73a2:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"8cbe34b74e80ab6f1a9de8b98442d668:o:OutputMap"
+							]
+						},
+						{
+							"id": "12c6cf78412ed609aa7f168d0e1a73a2:i:Use Spawn Probability",
+							"name": "Use Spawn Probability",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "12c6cf78412ed609aa7f168d0e1a73a2:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"3bf0b8d04a099337b629a3b726579754:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1b448a8c45d225c833fbd0879ab42a48",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -800,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1b448a8c45d225c833fbd0879ab42a48:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"b514ea824a0bb2f221f656b04df20a65:o:Dest"
+							]
+						},
+						{
+							"id": "1b448a8c45d225c833fbd0879ab42a48:i:ScaleColor.Scale Alpha",
+							"name": "ScaleColor.Scale Alpha",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraFloat",
+							"defaultValue": null,
+							"links": [
+								"f02b163b449c44794dd86c96430a57ee:o:Value"
+							]
+						},
+						{
+							"id": "1b448a8c45d225c833fbd0879ab42a48:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"a38fe91340c30af5f4874baeaa229feb:i:InputMap"
+							]
+						},
+						{
+							"id": "1b448a8c45d225c833fbd0879ab42a48:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2c63214041d739833f006d8c25637051",
+					"class": "NiagaraNodeInput",
+					"title": "FloatFromCurve001.FloatCurve",
+					"x": -4000,
+					"y": 2450,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2c63214041d739833f006d8c25637051:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": [
+								"ff63dcd94cc628d2420e7d9c1e5a4ea5:i:FloatFromCurve001.FloatCurve"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3bf0b8d04a099337b629a3b726579754",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Emitter Update",
+					"x": 0,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3bf0b8d04a099337b629a3b726579754:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"12c6cf78412ed609aa7f168d0e1a73a2:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4125dde04dbb162cde10648379b7d4f5",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -1600,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4125dde04dbb162cde10648379b7d4f5:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"695c360e473d7e1fdbf11a99b3bb03ce:i:Source",
+								"c3dd8c22456953b4cbf289bd98311d9d:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5c07b4324ed1bc47f29b15b7208cb1db",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -1200,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5c07b4324ed1bc47f29b15b7208cb1db:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"8cbe34b74e80ab6f1a9de8b98442d668:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "66bf7d9e478fda2999464a9b0d2fb473",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Solve Forces and Velocity",
+					"x": -1600,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "66bf7d9e478fda2999464a9b0d2fb473:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"fd0ce6804a613d4eb1f4939aff1534d6:o:OutputMap"
+							]
+						},
+						{
+							"id": "66bf7d9e478fda2999464a9b0d2fb473:i:Clamp Velocity",
+							"name": "Clamp Velocity",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "66bf7d9e478fda2999464a9b0d2fb473:i:Limit Acceleration",
+							"name": "Limit Acceleration",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "66bf7d9e478fda2999464a9b0d2fb473:i:Rotational Solver Is Enabled",
+							"name": "Rotational Solver Is Enabled",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "66bf7d9e478fda2999464a9b0d2fb473:i:Write to Presolve Properties",
+							"name": "Write to Presolve Properties",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "66bf7d9e478fda2999464a9b0d2fb473:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"b514ea824a0bb2f221f656b04df20a65:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "695c360e473d7e1fdbf11a99b3bb03ce",
+					"class": "NiagaraNodeParameterMapGet",
+					"title": "Map Get",
+					"x": -1200,
+					"y": 900,
+					"comment": null,
+					"pins": [
+						{
+							"id": "695c360e473d7e1fdbf11a99b3bb03ce:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"4125dde04dbb162cde10648379b7d4f5:o:Input"
+							]
+						},
+						{
+							"id": "695c360e473d7e1fdbf11a99b3bb03ce:o:User.Color",
+							"name": "User.Color",
+							"direction": "output",
+							"type": "Type:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"c3dd8c22456953b4cbf289bd98311d9d:i:InitializeParticle.Color"
+							]
+						},
+						{
+							"id": "695c360e473d7e1fdbf11a99b3bb03ce:o:Add",
+							"name": "Add",
+							"direction": "output",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "695c360e473d7e1fdbf11a99b3bb03ce:i:None",
+							"name": "None",
+							"direction": "input",
+							"type": "Type:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=1.000000,G=1.000000,B=1.000000,A=1.000000)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8cbe34b74e80ab6f1a9de8b98442d668",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Emitter State",
+					"x": -800,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"5c07b4324ed1bc47f29b15b7208cb1db:o:Input"
+							]
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:ScaleSpawnCountCurve",
+							"name": "ScaleSpawnCountCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Enable Distance Culling",
+							"name": "Enable Distance Culling",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Enable Visibility Culling",
+							"name": "Enable Visibility Culling",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Inactive Response",
+							"name": "Inactive Response",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraInactiveMode.ENiagaraInactiveMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Life Cycle Mode",
+							"name": "Life Cycle Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraEmitterLifeCycleMode.ENiagaraEmitterLifeCycleMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Loop Behavior",
+							"name": "Loop Behavior",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_EmitterStateOptions.ENiagara_EmitterStateOptions",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Loop Duration Mode",
+							"name": "Loop Duration Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_InfiniteLoopDuration.ENiagara_InfiniteLoopDuration",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Scalability Mode",
+							"name": "Scalability Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraEmitterScalabilityMode_Limited.ENiagaraEmitterScalabilityMode_Limited",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Scale Spawn Count",
+							"name": "Scale Spawn Count",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:UseLoopDelay",
+							"name": "UseLoopDelay",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"12c6cf78412ed609aa7f168d0e1a73a2:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9a0e12d24658c390912975b59e7c0829",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -400,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a0e12d24658c390912975b59e7c0829:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"0aaed08b4321e0affcb9fcb8ed7347b0:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9c25dd7844167a48213e27a38879b3d9",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Particle State",
+					"x": -4000,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9c25dd7844167a48213e27a38879b3d9:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"e94fe0824f27d5bd6e5486b82dcfc370:o:Input"
+							]
+						},
+						{
+							"id": "9c25dd7844167a48213e27a38879b3d9:i:Kill Particles When Lifetime Has Elapsed",
+							"name": "Kill Particles When Lifetime Has Elapsed",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "9c25dd7844167a48213e27a38879b3d9:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"ff63dcd94cc628d2420e7d9c1e5a4ea5:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9f1863484470656ce37135946d55be72",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Particle Spawn",
+					"x": 0,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9f1863484470656ce37135946d55be72:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"ed5581b94a0b5f6ae756dca869196dab:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a38fe91340c30af5f4874baeaa229feb",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Scale Color",
+					"x": -400,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a38fe91340c30af5f4874baeaa229feb:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"1b448a8c45d225c833fbd0879ab42a48:o:Dest"
+							]
+						},
+						{
+							"id": "a38fe91340c30af5f4874baeaa229feb:i:ColorCurve",
+							"name": "ColorCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceColorCurve",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a38fe91340c30af5f4874baeaa229feb:i:Scale Mode",
+							"name": "Scale Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraScaleColorMode.ENiagaraScaleColorMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "a38fe91340c30af5f4874baeaa229feb:i:ScaleA",
+							"name": "ScaleA",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "a38fe91340c30af5f4874baeaa229feb:i:ScaleRGB",
+							"name": "ScaleRGB",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "a38fe91340c30af5f4874baeaa229feb:i:ScaleRGBA",
+							"name": "ScaleRGBA",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "a38fe91340c30af5f4874baeaa229feb:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"d258dc274fd664362cf18b8b8209bb00:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b514ea824a0bb2f221f656b04df20a65",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -1600,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b514ea824a0bb2f221f656b04df20a65:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"66bf7d9e478fda2999464a9b0d2fb473:o:OutputMap"
+							]
+						},
+						{
+							"id": "b514ea824a0bb2f221f656b04df20a65:i:FloatFromCurve.FloatCurve",
+							"name": "FloatFromCurve.FloatCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": [
+								"12c13ae04761473e6d55f4b1631d664d:o:Input"
+							]
+						},
+						{
+							"id": "b514ea824a0bb2f221f656b04df20a65:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"1b448a8c45d225c833fbd0879ab42a48:i:Source",
+								"f02b163b449c44794dd86c96430a57ee:i:InputMap"
+							]
+						},
+						{
+							"id": "b514ea824a0bb2f221f656b04df20a65:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bb7e56a642f2284ec4194da48eadac15",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -2800,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bb7e56a642f2284ec4194da48eadac15:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"dad50e88428d32611eeba78908fdf0db:o:Dest"
+							]
+						},
+						{
+							"id": "bb7e56a642f2284ec4194da48eadac15:i:ScaleMeshSize.Scale Factor",
+							"name": "ScaleMeshSize.Scale Factor",
+							"direction": "input",
+							"type": "Type:/Script/CoreUObject.Vector3f",
+							"defaultValue": null,
+							"links": [
+								"e35654944c9853db7e968683c9c21daa:o:Vec3"
+							]
+						},
+						{
+							"id": "bb7e56a642f2284ec4194da48eadac15:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"09f0643340aa32a13f2249a208bb7ecb:i:InputMap"
+							]
+						},
+						{
+							"id": "bb7e56a642f2284ec4194da48eadac15:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c3dd8c22456953b4cbf289bd98311d9d",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -800,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3dd8c22456953b4cbf289bd98311d9d:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"4125dde04dbb162cde10648379b7d4f5:o:Input"
+							]
+						},
+						{
+							"id": "c3dd8c22456953b4cbf289bd98311d9d:i:InitializeParticle.Color",
+							"name": "InitializeParticle.Color",
+							"direction": "input",
+							"type": "Type:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"695c360e473d7e1fdbf11a99b3bb03ce:o:User.Color"
+							]
+						},
+						{
+							"id": "c3dd8c22456953b4cbf289bd98311d9d:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"ed5581b94a0b5f6ae756dca869196dab:i:InputMap"
+							]
+						},
+						{
+							"id": "c3dd8c22456953b4cbf289bd98311d9d:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d258dc274fd664362cf18b8b8209bb00",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Particle Update",
+					"x": 0,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d258dc274fd664362cf18b8b8209bb00:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"a38fe91340c30af5f4874baeaa229feb:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dad50e88428d32611eeba78908fdf0db",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -3600,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dad50e88428d32611eeba78908fdf0db:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"ff63dcd94cc628d2420e7d9c1e5a4ea5:o:Dest"
+							]
+						},
+						{
+							"id": "dad50e88428d32611eeba78908fdf0db:i:MakeVector.Z",
+							"name": "MakeVector.Z",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraFloat",
+							"defaultValue": null,
+							"links": [
+								"e61941ba4ae570b89d4292944f02b91b:o:Value"
+							]
+						},
+						{
+							"id": "dad50e88428d32611eeba78908fdf0db:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"bb7e56a642f2284ec4194da48eadac15:i:Source",
+								"e35654944c9853db7e968683c9c21daa:i:InputMap"
+							]
+						},
+						{
+							"id": "dad50e88428d32611eeba78908fdf0db:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e35654944c9853db7e968683c9c21daa",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Make Vector",
+					"x": -3200,
+					"y": 2500,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e35654944c9853db7e968683c9c21daa:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"dad50e88428d32611eeba78908fdf0db:o:Dest"
+							]
+						},
+						{
+							"id": "e35654944c9853db7e968683c9c21daa:o:Vec3",
+							"name": "Vec3",
+							"direction": "output",
+							"type": "Type:/Script/CoreUObject.Vector3f",
+							"defaultValue": null,
+							"links": [
+								"bb7e56a642f2284ec4194da48eadac15:i:ScaleMeshSize.Scale Factor"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e61941ba4ae570b89d4292944f02b91b",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Float from Curve 001",
+					"x": -3600,
+					"y": 2500,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e61941ba4ae570b89d4292944f02b91b:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"ff63dcd94cc628d2420e7d9c1e5a4ea5:o:Dest"
+							]
+						},
+						{
+							"id": "e61941ba4ae570b89d4292944f02b91b:i:DefaultCurve",
+							"name": "DefaultCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e61941ba4ae570b89d4292944f02b91b:o:Value",
+							"name": "Value",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraFloat",
+							"defaultValue": null,
+							"links": [
+								"dad50e88428d32611eeba78908fdf0db:i:MakeVector.Z"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e94fe0824f27d5bd6e5486b82dcfc370",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -4400,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e94fe0824f27d5bd6e5486b82dcfc370:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9c25dd7844167a48213e27a38879b3d9:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ed5581b94a0b5f6ae756dca869196dab",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Initialize Particle",
+					"x": -400,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"c3dd8c22456953b4cbf289bd98311d9d:o:Dest"
+							]
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustAlpha",
+							"name": "AdjustAlpha",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustHue",
+							"name": "AdjustHue",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustSaturation",
+							"name": "AdjustSaturation",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustValue",
+							"name": "AdjustValue",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Color Channel Mode",
+							"name": "Color Channel Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraChannelCorrelation.ENiagaraChannelCorrelation",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Color Mode",
+							"name": "Color Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_ColorInitializationMode.ENiagara_ColorInitializationMode",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Color Randomness Mode",
+							"name": "Color Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Lifetime Mode",
+							"name": "Lifetime Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_LifetimeMode.ENiagara_LifetimeMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Lifetime Randomness Mode",
+							"name": "Lifetime Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mass Mode",
+							"name": "Mass Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_MassInitializationMode.ENiagara_MassInitializationMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mass Randomness Mode",
+							"name": "Mass Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mesh Renderer Array Visibility Mode",
+							"name": "Mesh Renderer Array Visibility Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSetRandom.ENiagara_UnsetDirectSetRandom",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mesh Scale Mode",
+							"name": "Mesh Scale Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_SizeScaleMode.ENiagara_SizeScaleMode",
+							"defaultValue": "NewEnumerator3",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mesh Scale Randomness Mode",
+							"name": "Mesh Scale Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Position Mode",
+							"name": "Position Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_PositionInitializationMode.ENiagara_PositionInitializationMode",
+							"defaultValue": "NewEnumerator2",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Ribbon Facing Mode",
+							"name": "Ribbon Facing Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSet.ENiagara_UnsetDirectSet",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Ribbon Twist Mode",
+							"name": "Ribbon Twist Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSet.ENiagara_UnsetDirectSet",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Ribbon Width Mode",
+							"name": "Ribbon Width Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSet.ENiagara_UnsetDirectSet",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Rotation Mode",
+							"name": "Sprite Rotation Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_SpriteRotationMode.ENiagara_SpriteRotationMode",
+							"defaultValue": "NewEnumerator3",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Rotation Randomness Mode",
+							"name": "Sprite Rotation Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Size Mode",
+							"name": "Sprite Size Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_SizeScaleMode.ENiagara_SizeScaleMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Size Randomness Mode",
+							"name": "Sprite Size Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite UV Mode",
+							"name": "Sprite UV Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_UVFlippingMode.ENiagara_UVFlippingMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite UV Randomness Mode",
+							"name": "Sprite UV Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:UsePositionOffset",
+							"name": "UsePositionOffset",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Wrap Index By Mesh Count",
+							"name": "Wrap Index By Mesh Count",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Write Material Random",
+							"name": "Write Material Random",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9f1863484470656ce37135946d55be72:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f02b163b449c44794dd86c96430a57ee",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Float from Curve",
+					"x": -1200,
+					"y": 2500,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f02b163b449c44794dd86c96430a57ee:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"b514ea824a0bb2f221f656b04df20a65:o:Dest"
+							]
+						},
+						{
+							"id": "f02b163b449c44794dd86c96430a57ee:i:DefaultCurve",
+							"name": "DefaultCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f02b163b449c44794dd86c96430a57ee:o:Value",
+							"name": "Value",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraFloat",
+							"defaultValue": null,
+							"links": [
+								"1b448a8c45d225c833fbd0879ab42a48:i:ScaleColor.Scale Alpha"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fd0ce6804a613d4eb1f4939aff1534d6",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Gravity Force",
+					"x": -2000,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fd0ce6804a613d4eb1f4939aff1534d6:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"09f0643340aa32a13f2249a208bb7ecb:o:OutputMap"
+							]
+						},
+						{
+							"id": "fd0ce6804a613d4eb1f4939aff1534d6:i:Coordinate Space",
+							"name": "Coordinate Space",
+							"direction": "input",
+							"type": "Enum:/Script/Niagara.ENiagaraCoordinateSpace",
+							"defaultValue": "World",
+							"links": []
+						},
+						{
+							"id": "fd0ce6804a613d4eb1f4939aff1534d6:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"66bf7d9e478fda2999464a9b0d2fb473:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ff63dcd94cc628d2420e7d9c1e5a4ea5",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -4000,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ff63dcd94cc628d2420e7d9c1e5a4ea5:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9c25dd7844167a48213e27a38879b3d9:o:OutputMap"
+							]
+						},
+						{
+							"id": "ff63dcd94cc628d2420e7d9c1e5a4ea5:i:FloatFromCurve001.FloatCurve",
+							"name": "FloatFromCurve001.FloatCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": [
+								"2c63214041d739833f006d8c25637051:o:Input"
+							]
+						},
+						{
+							"id": "ff63dcd94cc628d2420e7d9c1e5a4ea5:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"dad50e88428d32611eeba78908fdf0db:i:Source",
+								"e61941ba4ae570b89d4292944f02b91b:i:InputMap"
+							]
+						},
+						{
+							"id": "ff63dcd94cc628d2420e7d9c1e5a4ea5:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "Glow_Base_0",
+			"type": "NiagaraEmitter",
+			"nodes": [
+				{
+					"guid": "0aaed08b4321e0affcb9fcb8ed7347b0",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Emitter Spawn",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0aaed08b4321e0affcb9fcb8ed7347b0:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9a0e12d24658c390912975b59e7c0829:o:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2125892340879c9212bdba83f8d551ba",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -800,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2125892340879c9212bdba83f8d551ba:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"4125dde04dbb162cde10648379b7d4f5:o:Input"
+							]
+						},
+						{
+							"id": "2125892340879c9212bdba83f8d551ba:i:InitializeParticle.Color",
+							"name": "InitializeParticle.Color",
+							"direction": "input",
+							"type": "Type:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"ae68e3f947b1804196812e9700bed6d7:o:User.Color"
+							]
+						},
+						{
+							"id": "2125892340879c9212bdba83f8d551ba:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"ed5581b94a0b5f6ae756dca869196dab:i:InputMap"
+							]
+						},
+						{
+							"id": "2125892340879c9212bdba83f8d551ba:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3bf0b8d04a099337b629a3b726579754",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Emitter Update",
+					"x": 0,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3bf0b8d04a099337b629a3b726579754:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"5f680cb240e3d18bf2f74bb33536c657:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4125dde04dbb162cde10648379b7d4f5",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -1600,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4125dde04dbb162cde10648379b7d4f5:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"2125892340879c9212bdba83f8d551ba:i:Source",
+								"ae68e3f947b1804196812e9700bed6d7:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5c07b4324ed1bc47f29b15b7208cb1db",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -1200,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5c07b4324ed1bc47f29b15b7208cb1db:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"8cbe34b74e80ab6f1a9de8b98442d668:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5f680cb240e3d18bf2f74bb33536c657",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Spawn Burst Instantaneous",
+					"x": -400,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5f680cb240e3d18bf2f74bb33536c657:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"8cbe34b74e80ab6f1a9de8b98442d668:o:OutputMap"
+							]
+						},
+						{
+							"id": "5f680cb240e3d18bf2f74bb33536c657:i:Use Spawn Probability",
+							"name": "Use Spawn Probability",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "5f680cb240e3d18bf2f74bb33536c657:i:UseLoopCountLimit",
+							"name": "UseLoopCountLimit",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "5f680cb240e3d18bf2f74bb33536c657:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"3bf0b8d04a099337b629a3b726579754:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8cbe34b74e80ab6f1a9de8b98442d668",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Emitter State",
+					"x": -800,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"5c07b4324ed1bc47f29b15b7208cb1db:o:Input"
+							]
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:ScaleSpawnCountCurve",
+							"name": "ScaleSpawnCountCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Enable Distance Culling",
+							"name": "Enable Distance Culling",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Enable Visibility Culling",
+							"name": "Enable Visibility Culling",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Inactive Response",
+							"name": "Inactive Response",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraInactiveMode.ENiagaraInactiveMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Life Cycle Mode",
+							"name": "Life Cycle Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraEmitterLifeCycleMode.ENiagaraEmitterLifeCycleMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Loop Behavior",
+							"name": "Loop Behavior",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_EmitterStateOptions.ENiagara_EmitterStateOptions",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Loop Duration Mode",
+							"name": "Loop Duration Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_InfiniteLoopDuration.ENiagara_InfiniteLoopDuration",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Scalability Mode",
+							"name": "Scalability Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraEmitterScalabilityMode_Limited.ENiagaraEmitterScalabilityMode_Limited",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Scale Spawn Count",
+							"name": "Scale Spawn Count",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:UseLoopDelay",
+							"name": "UseLoopDelay",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"5f680cb240e3d18bf2f74bb33536c657:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9a0e12d24658c390912975b59e7c0829",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -400,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a0e12d24658c390912975b59e7c0829:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"0aaed08b4321e0affcb9fcb8ed7347b0:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9c25dd7844167a48213e27a38879b3d9",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Particle State",
+					"x": -400,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9c25dd7844167a48213e27a38879b3d9:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"e94fe0824f27d5bd6e5486b82dcfc370:o:Input"
+							]
+						},
+						{
+							"id": "9c25dd7844167a48213e27a38879b3d9:i:Kill Particles When Lifetime Has Elapsed",
+							"name": "Kill Particles When Lifetime Has Elapsed",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "9c25dd7844167a48213e27a38879b3d9:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"d258dc274fd664362cf18b8b8209bb00:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9f1863484470656ce37135946d55be72",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Particle Spawn",
+					"x": 0,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9f1863484470656ce37135946d55be72:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"ed5581b94a0b5f6ae756dca869196dab:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ae68e3f947b1804196812e9700bed6d7",
+					"class": "NiagaraNodeParameterMapGet",
+					"title": "Map Get",
+					"x": -1200,
+					"y": 900,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ae68e3f947b1804196812e9700bed6d7:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"4125dde04dbb162cde10648379b7d4f5:o:Input"
+							]
+						},
+						{
+							"id": "ae68e3f947b1804196812e9700bed6d7:o:User.Color",
+							"name": "User.Color",
+							"direction": "output",
+							"type": "Type:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"2125892340879c9212bdba83f8d551ba:i:InitializeParticle.Color"
+							]
+						},
+						{
+							"id": "ae68e3f947b1804196812e9700bed6d7:o:Add",
+							"name": "Add",
+							"direction": "output",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ae68e3f947b1804196812e9700bed6d7:i:None",
+							"name": "None",
+							"direction": "input",
+							"type": "Type:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=1.000000,G=1.000000,B=1.000000,A=1.000000)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d258dc274fd664362cf18b8b8209bb00",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Particle Update",
+					"x": 0,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d258dc274fd664362cf18b8b8209bb00:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9c25dd7844167a48213e27a38879b3d9:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e94fe0824f27d5bd6e5486b82dcfc370",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -800,
+					"y": 2300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e94fe0824f27d5bd6e5486b82dcfc370:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9c25dd7844167a48213e27a38879b3d9:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ed5581b94a0b5f6ae756dca869196dab",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Initialize Particle",
+					"x": -400,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"2125892340879c9212bdba83f8d551ba:o:Dest"
+							]
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustAlpha",
+							"name": "AdjustAlpha",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustHue",
+							"name": "AdjustHue",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustSaturation",
+							"name": "AdjustSaturation",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustValue",
+							"name": "AdjustValue",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Color Channel Mode",
+							"name": "Color Channel Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraChannelCorrelation.ENiagaraChannelCorrelation",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Color Mode",
+							"name": "Color Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_ColorInitializationMode.ENiagara_ColorInitializationMode",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Color Randomness Mode",
+							"name": "Color Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Lifetime Mode",
+							"name": "Lifetime Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_LifetimeMode.ENiagara_LifetimeMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Lifetime Randomness Mode",
+							"name": "Lifetime Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mass Mode",
+							"name": "Mass Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_MassInitializationMode.ENiagara_MassInitializationMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mass Randomness Mode",
+							"name": "Mass Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mesh Renderer Array Visibility Mode",
+							"name": "Mesh Renderer Array Visibility Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSetRandom.ENiagara_UnsetDirectSetRandom",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mesh Scale Mode",
+							"name": "Mesh Scale Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_SizeScaleMode.ENiagara_SizeScaleMode",
+							"defaultValue": "NewEnumerator3",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mesh Scale Randomness Mode",
+							"name": "Mesh Scale Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Position Mode",
+							"name": "Position Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_PositionInitializationMode.ENiagara_PositionInitializationMode",
+							"defaultValue": "NewEnumerator2",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Ribbon Facing Mode",
+							"name": "Ribbon Facing Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSet.ENiagara_UnsetDirectSet",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Ribbon Twist Mode",
+							"name": "Ribbon Twist Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSet.ENiagara_UnsetDirectSet",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Ribbon Width Mode",
+							"name": "Ribbon Width Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSet.ENiagara_UnsetDirectSet",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Rotation Mode",
+							"name": "Sprite Rotation Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_SpriteRotationMode.ENiagara_SpriteRotationMode",
+							"defaultValue": "NewEnumerator3",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Rotation Randomness Mode",
+							"name": "Sprite Rotation Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Size Mode",
+							"name": "Sprite Size Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_SizeScaleMode.ENiagara_SizeScaleMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Size Randomness Mode",
+							"name": "Sprite Size Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite UV Mode",
+							"name": "Sprite UV Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_UVFlippingMode.ENiagara_UVFlippingMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite UV Randomness Mode",
+							"name": "Sprite UV Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:UsePositionOffset",
+							"name": "UsePositionOffset",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Wrap Index By Mesh Count",
+							"name": "Wrap Index By Mesh Count",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Write Material Random",
+							"name": "Write Material Random",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9f1863484470656ce37135946d55be72:i:Out"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "Spores_0",
+			"type": "NiagaraEmitter",
+			"nodes": [
+				{
+					"guid": "052444c549f153d8061b94953f770fb5",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Spawn Rate",
+					"x": -400,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "052444c549f153d8061b94953f770fb5:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"8cbe34b74e80ab6f1a9de8b98442d668:o:OutputMap"
+							]
+						},
+						{
+							"id": "052444c549f153d8061b94953f770fb5:i:Use Spawn Probability",
+							"name": "Use Spawn Probability",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "052444c549f153d8061b94953f770fb5:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"3bf0b8d04a099337b629a3b726579754:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0780fb14437fce730b4c81a4755bf759",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Float from Curve",
+					"x": -1200,
+					"y": 2850,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0780fb14437fce730b4c81a4755bf759:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"b8047c7346157e29d4d1ea93f76e1682:o:Dest"
+							]
+						},
+						{
+							"id": "0780fb14437fce730b4c81a4755bf759:i:DefaultCurve",
+							"name": "DefaultCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0780fb14437fce730b4c81a4755bf759:o:Value",
+							"name": "Value",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraFloat",
+							"defaultValue": null,
+							"links": [
+								"a2df4c894108570f1522b59b65173c54:i:ScaleColor.Scale Alpha"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0aaed08b4321e0affcb9fcb8ed7347b0",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Emitter Spawn",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0aaed08b4321e0affcb9fcb8ed7347b0:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9a0e12d24658c390912975b59e7c0829:o:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "394849c14bde5381f5581da4354b2155",
+					"class": "NiagaraNodeInput",
+					"title": "FloatFromCurve.FloatCurve",
+					"x": -1600,
+					"y": 2950,
+					"comment": null,
+					"pins": [
+						{
+							"id": "394849c14bde5381f5581da4354b2155:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": [
+								"b8047c7346157e29d4d1ea93f76e1682:i:FloatFromCurve.FloatCurve"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3bf0b8d04a099337b629a3b726579754",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Emitter Update",
+					"x": 0,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3bf0b8d04a099337b629a3b726579754:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"052444c549f153d8061b94953f770fb5:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3fa84df2431e094d98849780e8b64984",
+					"class": "NiagaraNodeParameterMapGet",
+					"title": "Map Get",
+					"x": -1600,
+					"y": 900,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3fa84df2431e094d98849780e8b64984:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"4125dde04dbb162cde10648379b7d4f5:o:Input"
+							]
+						},
+						{
+							"id": "3fa84df2431e094d98849780e8b64984:o:User.Color",
+							"name": "User.Color",
+							"direction": "output",
+							"type": "Type:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"f8a218414cd2ef1c14e6f39818d450ce:i:InitializeParticle.Color"
+							]
+						},
+						{
+							"id": "3fa84df2431e094d98849780e8b64984:o:Add",
+							"name": "Add",
+							"direction": "output",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3fa84df2431e094d98849780e8b64984:i:None",
+							"name": "None",
+							"direction": "input",
+							"type": "Type:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=1.000000,G=1.000000,B=1.000000,A=1.000000)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4125dde04dbb162cde10648379b7d4f5",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -2000,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4125dde04dbb162cde10648379b7d4f5:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"3fa84df2431e094d98849780e8b64984:i:Source",
+								"f8a218414cd2ef1c14e6f39818d450ce:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "588eab24446db01021bf6799ec03fc78",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Gravity Force",
+					"x": -2000,
+					"y": 2650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "588eab24446db01021bf6799ec03fc78:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9c25dd7844167a48213e27a38879b3d9:o:OutputMap"
+							]
+						},
+						{
+							"id": "588eab24446db01021bf6799ec03fc78:i:Coordinate Space",
+							"name": "Coordinate Space",
+							"direction": "input",
+							"type": "Enum:/Script/Niagara.ENiagaraCoordinateSpace",
+							"defaultValue": "World",
+							"links": []
+						},
+						{
+							"id": "588eab24446db01021bf6799ec03fc78:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"d47798884d65974683f0b0b1ad232fd8:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5c07b4324ed1bc47f29b15b7208cb1db",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -1200,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5c07b4324ed1bc47f29b15b7208cb1db:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"8cbe34b74e80ab6f1a9de8b98442d668:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8cbe34b74e80ab6f1a9de8b98442d668",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Emitter State",
+					"x": -800,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"5c07b4324ed1bc47f29b15b7208cb1db:o:Input"
+							]
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:ScaleSpawnCountCurve",
+							"name": "ScaleSpawnCountCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Enable Distance Culling",
+							"name": "Enable Distance Culling",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Enable Visibility Culling",
+							"name": "Enable Visibility Culling",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Inactive Response",
+							"name": "Inactive Response",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraInactiveMode.ENiagaraInactiveMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Life Cycle Mode",
+							"name": "Life Cycle Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraEmitterLifeCycleMode.ENiagaraEmitterLifeCycleMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Loop Behavior",
+							"name": "Loop Behavior",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_EmitterStateOptions.ENiagara_EmitterStateOptions",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Loop Duration Mode",
+							"name": "Loop Duration Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_InfiniteLoopDuration.ENiagara_InfiniteLoopDuration",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Scalability Mode",
+							"name": "Scalability Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraEmitterScalabilityMode_Limited.ENiagaraEmitterScalabilityMode_Limited",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:Scale Spawn Count",
+							"name": "Scale Spawn Count",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:i:UseLoopDelay",
+							"name": "UseLoopDelay",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8cbe34b74e80ab6f1a9de8b98442d668:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"052444c549f153d8061b94953f770fb5:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "92906d714e66c8d3225ad9a183f0f52f",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Shape Location",
+					"x": -400,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"ed5581b94a0b5f6ae756dca869196dab:o:OutputMap"
+							]
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:LatheCurve",
+							"name": "LatheCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Additional Quaternion Rotation",
+							"name": "Additional Quaternion Rotation",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Apply To Particle Position",
+							"name": "Apply To Particle Position",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_AttributeSamplingApplyOutput.ENiagara_AttributeSamplingApplyOutput",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Box / Plane Mode",
+							"name": "Box / Plane Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Location/ENiagara_BoxPlaneMode.ENiagara_BoxPlaneMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Cone Angle Type",
+							"name": "Cone Angle Type",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Angles/ENiagara_AngleInput.ENiagara_AngleInput",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Cone Mode",
+							"name": "Cone Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Location/ENiagara_ConeMode.ENiagara_ConeMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Cylinder Distribution",
+							"name": "Cylinder Distribution",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Location/ENiagara_CylinderMode.ENiagara_CylinderMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Enable Lathe Profile",
+							"name": "Enable Lathe Profile",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Enable Torus Knot Radius",
+							"name": "Enable Torus Knot Radius",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Evaluation Type",
+							"name": "Evaluation Type",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessEvaluation.ENiagaraRandomnessEvaluation",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Fixed Random Seed",
+							"name": "Fixed Random Seed",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Flatten Endcaps",
+							"name": "Flatten Endcaps",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Hemicircle Internal Cap",
+							"name": "Hemicircle Internal Cap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Hemicircle X",
+							"name": "Hemicircle X",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Hemicircle Y",
+							"name": "Hemicircle Y",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Hemisphere Angle Type",
+							"name": "Hemisphere Angle Type",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Angles/ENiagara_AngleInput.ENiagara_AngleInput",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:MaskSpawnGroup",
+							"name": "MaskSpawnGroup",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Offset Mode",
+							"name": "Offset Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Transforms/ENiagara_OffsetMode.ENiagara_OffsetMode",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Override Seed",
+							"name": "Override Seed",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Randomness Mode",
+							"name": "Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Ring / Disc Distribution Mode",
+							"name": "Ring / Disc Distribution Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraSphereDistributionMode.ENiagaraSphereDistributionMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Ring / Disc Mode",
+							"name": "Ring / Disc Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Location/ENiagaraRingDiscMode.ENiagaraRingDiscMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Rotation Angle Type",
+							"name": "Rotation Angle Type",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Angles/ENiagara_AngleInput.ENiagara_AngleInput",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Rotation Mode",
+							"name": "Rotation Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Transforms/ENiagara_RotationMode.ENiagara_RotationMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Scale Mode",
+							"name": "Scale Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Transforms/ENiagara_ScaleMode.ENiagara_ScaleMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Shape Primitive",
+							"name": "Shape Primitive",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Location/ENiagara_LocationShapes.ENiagara_LocationShapes",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Sphere Distribution",
+							"name": "Sphere Distribution",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraSphereDistributionMode.ENiagaraSphereDistributionMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Surface Only",
+							"name": "Surface Only",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Torus Distribution Mode",
+							"name": "Torus Distribution Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraTorusDistributionMode.ENiagaraTorusDistributionMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Torus Mode",
+							"name": "Torus Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraShapeTorusMode.ENiagaraShapeTorusMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Transform Method",
+							"name": "Transform Method",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Transforms/ENiagara_TransformType.ENiagara_TransformType",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Transform Order",
+							"name": "Transform Order",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Transforms/ENiagara_TransformOrder.ENiagara_TransformOrder",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:Use Endcaps In Surface Only Mode",
+							"name": "Use Endcaps In Surface Only Mode",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:i:UseOwnerScale",
+							"name": "UseOwnerScale",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "92906d714e66c8d3225ad9a183f0f52f:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9f1863484470656ce37135946d55be72:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "93cfecb944999f00e3a49e82614a14d6",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Scale Color",
+					"x": -400,
+					"y": 2650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "93cfecb944999f00e3a49e82614a14d6:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"a2df4c894108570f1522b59b65173c54:o:Dest"
+							]
+						},
+						{
+							"id": "93cfecb944999f00e3a49e82614a14d6:i:ColorCurve",
+							"name": "ColorCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceColorCurve",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "93cfecb944999f00e3a49e82614a14d6:i:Scale Mode",
+							"name": "Scale Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraScaleColorMode.ENiagaraScaleColorMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "93cfecb944999f00e3a49e82614a14d6:i:ScaleA",
+							"name": "ScaleA",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "93cfecb944999f00e3a49e82614a14d6:i:ScaleRGB",
+							"name": "ScaleRGB",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "93cfecb944999f00e3a49e82614a14d6:i:ScaleRGBA",
+							"name": "ScaleRGBA",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "93cfecb944999f00e3a49e82614a14d6:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"d258dc274fd664362cf18b8b8209bb00:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9a0e12d24658c390912975b59e7c0829",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -400,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a0e12d24658c390912975b59e7c0829:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"0aaed08b4321e0affcb9fcb8ed7347b0:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9c25dd7844167a48213e27a38879b3d9",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Particle State",
+					"x": -2400,
+					"y": 2650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9c25dd7844167a48213e27a38879b3d9:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"e94fe0824f27d5bd6e5486b82dcfc370:o:Input"
+							]
+						},
+						{
+							"id": "9c25dd7844167a48213e27a38879b3d9:i:Kill Particles When Lifetime Has Elapsed",
+							"name": "Kill Particles When Lifetime Has Elapsed",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "9c25dd7844167a48213e27a38879b3d9:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"588eab24446db01021bf6799ec03fc78:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9f1863484470656ce37135946d55be72",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Particle Spawn",
+					"x": 0,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9f1863484470656ce37135946d55be72:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"92906d714e66c8d3225ad9a183f0f52f:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a2df4c894108570f1522b59b65173c54",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -800,
+					"y": 2650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a2df4c894108570f1522b59b65173c54:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"b8047c7346157e29d4d1ea93f76e1682:o:Dest"
+							]
+						},
+						{
+							"id": "a2df4c894108570f1522b59b65173c54:i:ScaleColor.Scale Alpha",
+							"name": "ScaleColor.Scale Alpha",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraFloat",
+							"defaultValue": null,
+							"links": [
+								"0780fb14437fce730b4c81a4755bf759:o:Value"
+							]
+						},
+						{
+							"id": "a2df4c894108570f1522b59b65173c54:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"93cfecb944999f00e3a49e82614a14d6:i:InputMap"
+							]
+						},
+						{
+							"id": "a2df4c894108570f1522b59b65173c54:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b8047c7346157e29d4d1ea93f76e1682",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -1600,
+					"y": 2650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b8047c7346157e29d4d1ea93f76e1682:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"d47798884d65974683f0b0b1ad232fd8:o:OutputMap"
+							]
+						},
+						{
+							"id": "b8047c7346157e29d4d1ea93f76e1682:i:FloatFromCurve.FloatCurve",
+							"name": "FloatFromCurve.FloatCurve",
+							"direction": "input",
+							"type": "Class:/Script/Niagara.NiagaraDataInterfaceCurve",
+							"defaultValue": null,
+							"links": [
+								"394849c14bde5381f5581da4354b2155:o:Input"
+							]
+						},
+						{
+							"id": "b8047c7346157e29d4d1ea93f76e1682:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"0780fb14437fce730b4c81a4755bf759:i:InputMap",
+								"a2df4c894108570f1522b59b65173c54:i:Source"
+							]
+						},
+						{
+							"id": "b8047c7346157e29d4d1ea93f76e1682:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d258dc274fd664362cf18b8b8209bb00",
+					"class": "NiagaraNodeOutput",
+					"title": "Output Particle Update",
+					"x": 0,
+					"y": 2650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d258dc274fd664362cf18b8b8209bb00:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"93cfecb944999f00e3a49e82614a14d6:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d47798884d65974683f0b0b1ad232fd8",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Solve Forces and Velocity",
+					"x": -1600,
+					"y": 2650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d47798884d65974683f0b0b1ad232fd8:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"588eab24446db01021bf6799ec03fc78:o:OutputMap"
+							]
+						},
+						{
+							"id": "d47798884d65974683f0b0b1ad232fd8:i:Clamp Velocity",
+							"name": "Clamp Velocity",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "d47798884d65974683f0b0b1ad232fd8:i:Limit Acceleration",
+							"name": "Limit Acceleration",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "d47798884d65974683f0b0b1ad232fd8:i:Rotational Solver Is Enabled",
+							"name": "Rotational Solver Is Enabled",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "d47798884d65974683f0b0b1ad232fd8:i:Write to Presolve Properties",
+							"name": "Write to Presolve Properties",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "d47798884d65974683f0b0b1ad232fd8:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"b8047c7346157e29d4d1ea93f76e1682:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e94fe0824f27d5bd6e5486b82dcfc370",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -2800,
+					"y": 2650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e94fe0824f27d5bd6e5486b82dcfc370:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"9c25dd7844167a48213e27a38879b3d9:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ed5581b94a0b5f6ae756dca869196dab",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "Initialize Particle",
+					"x": -800,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"f8a218414cd2ef1c14e6f39818d450ce:o:Dest"
+							]
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustAlpha",
+							"name": "AdjustAlpha",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustHue",
+							"name": "AdjustHue",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustSaturation",
+							"name": "AdjustSaturation",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:AdjustValue",
+							"name": "AdjustValue",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Color Channel Mode",
+							"name": "Color Channel Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraChannelCorrelation.ENiagaraChannelCorrelation",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Color Mode",
+							"name": "Color Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_ColorInitializationMode.ENiagara_ColorInitializationMode",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Color Randomness Mode",
+							"name": "Color Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Lifetime Mode",
+							"name": "Lifetime Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_LifetimeMode.ENiagara_LifetimeMode",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Lifetime Randomness Mode",
+							"name": "Lifetime Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mass Mode",
+							"name": "Mass Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_MassInitializationMode.ENiagara_MassInitializationMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mass Randomness Mode",
+							"name": "Mass Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mesh Renderer Array Visibility Mode",
+							"name": "Mesh Renderer Array Visibility Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSetRandom.ENiagara_UnsetDirectSetRandom",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mesh Scale Mode",
+							"name": "Mesh Scale Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_SizeScaleMode.ENiagara_SizeScaleMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Mesh Scale Randomness Mode",
+							"name": "Mesh Scale Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Position Mode",
+							"name": "Position Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_PositionInitializationMode.ENiagara_PositionInitializationMode",
+							"defaultValue": "NewEnumerator2",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Ribbon Facing Mode",
+							"name": "Ribbon Facing Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSet.ENiagara_UnsetDirectSet",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Ribbon Twist Mode",
+							"name": "Ribbon Twist Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSet.ENiagara_UnsetDirectSet",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Ribbon Width Mode",
+							"name": "Ribbon Width Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/Ribbons/ENiagara_UnsetDirectSet.ENiagara_UnsetDirectSet",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Rotation Mode",
+							"name": "Sprite Rotation Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_SpriteRotationMode.ENiagara_SpriteRotationMode",
+							"defaultValue": "NewEnumerator3",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Rotation Randomness Mode",
+							"name": "Sprite Rotation Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Size Mode",
+							"name": "Sprite Size Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_SizeScaleMode.ENiagara_SizeScaleMode",
+							"defaultValue": "NewEnumerator1",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite Size Randomness Mode",
+							"name": "Sprite Size Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite UV Mode",
+							"name": "Sprite UV Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_UVFlippingMode.ENiagara_UVFlippingMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Sprite UV Randomness Mode",
+							"name": "Sprite UV Randomness Mode",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraRandomnessMode.ENiagaraRandomnessMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:UsePositionOffset",
+							"name": "UsePositionOffset",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Wrap Index By Mesh Count",
+							"name": "Wrap Index By Mesh Count",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:i:Write Material Random",
+							"name": "Write Material Random",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "ed5581b94a0b5f6ae756dca869196dab:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"92906d714e66c8d3225ad9a183f0f52f:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f8a218414cd2ef1c14e6f39818d450ce",
+					"class": "NiagaraNodeParameterMapSet",
+					"title": "Map Set",
+					"x": -1200,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f8a218414cd2ef1c14e6f39818d450ce:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"4125dde04dbb162cde10648379b7d4f5:o:Input"
+							]
+						},
+						{
+							"id": "f8a218414cd2ef1c14e6f39818d450ce:i:InitializeParticle.Color",
+							"name": "InitializeParticle.Color",
+							"direction": "input",
+							"type": "Type:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"3fa84df2431e094d98849780e8b64984:o:User.Color"
+							]
+						},
+						{
+							"id": "f8a218414cd2ef1c14e6f39818d450ce:o:Dest",
+							"name": "Dest",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"ed5581b94a0b5f6ae756dca869196dab:i:InputMap"
+							]
+						},
+						{
+							"id": "f8a218414cd2ef1c14e6f39818d450ce:i:Add",
+							"name": "Add",
+							"direction": "input",
+							"type": "Misc:DynamicAddPin",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "SystemSpawnScript/SystemScriptGraph",
+			"type": "NiagaraScript",
+			"nodes": [
+				{
+					"guid": "221a8c874dcee6ff632559890647339a",
+					"class": "NiagaraNodeEmitter",
+					"title": "Emitter Minimal001 Update",
+					"x": -800,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "221a8c874dcee6ff632559890647339a:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"56d1d3df48fcc7e2997158822cd34f96:o:OutputMap"
+							]
+						},
+						{
+							"id": "221a8c874dcee6ff632559890647339a:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"da09dbe74ee3810f85072aae8d3e10d0:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "353552e643912d1567973da4e3438fb2",
+					"class": "NiagaraNodeEmitter",
+					"title": "Emitter Minimal Spawn",
+					"x": -400,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "353552e643912d1567973da4e3438fb2:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"7657b4434904df3ebb390c9cdc3ea0c1:o:OutputMap"
+							]
+						},
+						{
+							"id": "353552e643912d1567973da4e3438fb2:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"c0f5506b48f7ddda1707caa3f7c0ebb3:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "56d1d3df48fcc7e2997158822cd34f96",
+					"class": "NiagaraNodeEmitter",
+					"title": "Emitter Minimal002 Update",
+					"x": -1200,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "56d1d3df48fcc7e2997158822cd34f96:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"8758326f407257556ba5d99cd9c3e7e4:o:OutputMap"
+							]
+						},
+						{
+							"id": "56d1d3df48fcc7e2997158822cd34f96:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"221a8c874dcee6ff632559890647339a:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7657b4434904df3ebb390c9cdc3ea0c1",
+					"class": "NiagaraNodeEmitter",
+					"title": "Emitter Minimal001 Spawn",
+					"x": -800,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7657b4434904df3ebb390c9cdc3ea0c1:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"fde604c3451f6d8bc5810fb73620c2ac:o:OutputMap"
+							]
+						},
+						{
+							"id": "7657b4434904df3ebb390c9cdc3ea0c1:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"353552e643912d1567973da4e3438fb2:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8758326f407257556ba5d99cd9c3e7e4",
+					"class": "NiagaraNodeFunctionCall",
+					"title": "System State",
+					"x": -1600,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8758326f407257556ba5d99cd9c3e7e4:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"b1d554f64f05672b3580b3b2c55d1561:o:Input"
+							]
+						},
+						{
+							"id": "8758326f407257556ba5d99cd9c3e7e4:i:Inactive Response",
+							"name": "Inactive Response",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagaraSystemInactiveMode.ENiagaraSystemInactiveMode",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8758326f407257556ba5d99cd9c3e7e4:i:Loop Behavior",
+							"name": "Loop Behavior",
+							"direction": "input",
+							"type": "Enum:/Niagara/Enums/ENiagara_EmitterStateOptions.ENiagara_EmitterStateOptions",
+							"defaultValue": "NewEnumerator0",
+							"links": []
+						},
+						{
+							"id": "8758326f407257556ba5d99cd9c3e7e4:i:UseLoopDelay",
+							"name": "UseLoopDelay",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraBool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8758326f407257556ba5d99cd9c3e7e4:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"56d1d3df48fcc7e2997158822cd34f96:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8aa72a0d492867e5b2cb79964bf93c72",
+					"class": "NiagaraNodeOutput",
+					"title": "Output System Update",
+					"x": 0,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8aa72a0d492867e5b2cb79964bf93c72:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"da09dbe74ee3810f85072aae8d3e10d0:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b1d554f64f05672b3580b3b2c55d1561",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -2000,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b1d554f64f05672b3580b3b2c55d1561:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"8758326f407257556ba5d99cd9c3e7e4:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c0f5506b48f7ddda1707caa3f7c0ebb3",
+					"class": "NiagaraNodeOutput",
+					"title": "Output System Spawn",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0f5506b48f7ddda1707caa3f7c0ebb3:i:Out",
+							"name": "Out",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"353552e643912d1567973da4e3438fb2:o:OutputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "da09dbe74ee3810f85072aae8d3e10d0",
+					"class": "NiagaraNodeEmitter",
+					"title": "Emitter Minimal Update",
+					"x": -400,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "da09dbe74ee3810f85072aae8d3e10d0:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"221a8c874dcee6ff632559890647339a:o:OutputMap"
+							]
+						},
+						{
+							"id": "da09dbe74ee3810f85072aae8d3e10d0:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"8aa72a0d492867e5b2cb79964bf93c72:i:Out"
+							]
+						}
+					]
+				},
+				{
+					"guid": "efab9608424bf02dce71d1ae2ca8503b",
+					"class": "NiagaraNodeInput",
+					"title": "InputMap",
+					"x": -1600,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "efab9608424bf02dce71d1ae2ca8503b:o:Input",
+							"name": "Input",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"fde604c3451f6d8bc5810fb73620c2ac:i:InputMap"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fde604c3451f6d8bc5810fb73620c2ac",
+					"class": "NiagaraNodeEmitter",
+					"title": "Emitter Minimal002 Spawn",
+					"x": -1200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fde604c3451f6d8bc5810fb73620c2ac:i:InputMap",
+							"name": "InputMap",
+							"direction": "input",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"efab9608424bf02dce71d1ae2ca8503b:o:Input"
+							]
+						},
+						{
+							"id": "fde604c3451f6d8bc5810fb73620c2ac:o:OutputMap",
+							"name": "OutputMap",
+							"direction": "output",
+							"type": "Type:/Script/Niagara.NiagaraParameterMap",
+							"defaultValue": null,
+							"links": [
+								"7657b4434904df3ebb390c9cdc3ea0c1:i:InputMap"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "NiagaraSystemEditorData_0/NiagaraOverview",
+			"type": "NiagaraSystemEditorData",
+			"nodes": [
+				{
+					"guid": "529228e744f96003ea41c9987983f62d",
+					"class": "NiagaraOverviewNode",
+					"title": "NS_JumpPad",
+					"x": 0,
+					"y": 256,
+					"comment": null,
+					"pins": []
+				},
+				{
+					"guid": "7e96005441a899c686994ea236ae05ae",
+					"class": "NiagaraOverviewNode",
+					"title": "Spores",
+					"x": 560,
+					"y": 256,
+					"comment": null,
+					"pins": []
+				},
+				{
+					"guid": "894377134e2a45054c8b4abf691d8d42",
+					"class": "NiagaraOverviewNode",
+					"title": "Bands",
+					"x": 368,
+					"y": 256,
+					"comment": null,
+					"pins": []
+				},
+				{
+					"guid": "cd8a9edb4c5b48eaae2f528fb60bbdf6",
+					"class": "NiagaraOverviewNode",
+					"title": "Glow_Base",
+					"x": 160,
+					"y": 256,
+					"comment": null,
+					"pins": []
+				}
+			],
+			"comments": []
+		}
+	]
+}
