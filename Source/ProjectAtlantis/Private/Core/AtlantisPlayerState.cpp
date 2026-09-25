@@ -32,6 +32,7 @@ void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
 	if (AAtlantisPlayerState* AtlantisPlayerState = Cast<AAtlantisPlayerState>(PlayerState))
 	{
 		AtlantisPlayerState->OxygenCapacity = OxygenCapacity;
+		AtlantisPlayerState->CurrentOxygen = CurrentOxygen;
 		AtlantisPlayerState->bBallastAllocation = bBallastAllocation;
 		AtlantisPlayerState->BallastState = BallastState;
 		AtlantisPlayerState->TraversalMode = TraversalMode;
@@ -52,6 +53,17 @@ void AAtlantisPlayerState::SetOxygenCapacity(const float NewOxygenCapacity)
 	// Replication never calls our RepNotify on the authority, so drive it by hand to keep
 	// the listen-server host in step with every remote client.
 	OnRep_OxygenCapacity(OldOxygenCapacity);
+}
+
+void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
+{
+	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, NewCurrentOxygen))
+	{
+		return;
+	}
+
+	const float OldCurrentOxygen = CurrentOxygen;
+	CurrentOxygen = NewCurrentOxygen;
 }
 
 void AAtlantisPlayerState::SetBallastAllocated(const bool bNewBallastAllocation)

@@ -1,0 +1,270 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/HUD/BP_AtlantisHUD",
+	"asset": "BP_AtlantisHUD",
+	"parentClass": "HUD",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "0cbfb5a94e959c581a19bb9ba679554a",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0cbfb5a94e959c581a19bb9ba679554a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "33ced21740d83e1ee2d16892c84fdf08",
+					"class": "K2Node_VariableGet",
+					"title": "Get PlayerOwner",
+					"x": 480,
+					"y": -48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "33ced21740d83e1ee2d16892c84fdf08:o:PlayerOwner",
+							"name": "PlayerOwner",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"acd636f74abe624d8620d88b92a4721d:i:OwningPlayer"
+							]
+						},
+						{
+							"id": "33ced21740d83e1ee2d16892c84fdf08:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.HUD",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5b8b10184ee299c693ccef91b8e10ca2",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 816,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5b8b10184ee299c693ccef91b8e10ca2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"acd636f74abe624d8620d88b92a4721d:o:then"
+							]
+						},
+						{
+							"id": "5b8b10184ee299c693ccef91b8e10ca2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5b8b10184ee299c693ccef91b8e10ca2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"acd636f74abe624d8620d88b92a4721d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5b8b10184ee299c693ccef91b8e10ca2:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "acd636f74abe624d8620d88b92a4721d",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 400,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "acd636f74abe624d8620d88b92a4721d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cfb9e8f14ca9e1b3f5a0ca977886a01b:o:then"
+							]
+						},
+						{
+							"id": "acd636f74abe624d8620d88b92a4721d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5b8b10184ee299c693ccef91b8e10ca2:i:execute"
+							]
+						},
+						{
+							"id": "acd636f74abe624d8620d88b92a4721d:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_HUD_Root.WBP_HUD_Root_C",
+							"links": []
+						},
+						{
+							"id": "acd636f74abe624d8620d88b92a4721d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_HUD_Root.WBP_HUD_Root_C",
+							"defaultValue": null,
+							"links": [
+								"5b8b10184ee299c693ccef91b8e10ca2:i:self"
+							]
+						},
+						{
+							"id": "acd636f74abe624d8620d88b92a4721d:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"33ced21740d83e1ee2d16892c84fdf08:o:PlayerOwner"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ae7e3ae44ad7980d8ddd9bb512b8d82d",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "ae7e3ae44ad7980d8ddd9bb512b8d82d:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ae7e3ae44ad7980d8ddd9bb512b8d82d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ae7e3ae44ad7980d8ddd9bb512b8d82d:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "cfb9e8f14ca9e1b3f5a0ca977886a01b",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cfb9e8f14ca9e1b3f5a0ca977886a01b:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cfb9e8f14ca9e1b3f5a0ca977886a01b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"acd636f74abe624d8620d88b92a4721d:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e20504044934f514399d9ba84282eaf5",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "e20504044934f514399d9ba84282eaf5:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e20504044934f514399d9ba84282eaf5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e20504044934f514399d9ba84282eaf5:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}
