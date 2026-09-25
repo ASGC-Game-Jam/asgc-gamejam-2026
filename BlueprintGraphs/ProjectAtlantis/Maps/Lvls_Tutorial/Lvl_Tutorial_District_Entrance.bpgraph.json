@@ -1,0 +1,302 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Maps/Lvls_Tutorial/Lvl_Tutorial_District_Entrance",
+	"asset": "Lvl_Tutorial_District_Entrance",
+	"parentClass": "LevelScriptActor",
+	"blueprintType": "BPTYPE_LevelScript",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "14a7f10b4045796f0da50ab200771ebd",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 249,
+					"y": 9,
+					"comment": null,
+					"pins": [
+						{
+							"id": "14a7f10b4045796f0da50ab200771ebd:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bec882344cd1608880cfefb8ea671f27:o:then"
+							]
+						},
+						{
+							"id": "14a7f10b4045796f0da50ab200771ebd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b745962f4351e82cc37c8c9438d0ff9f:i:execute"
+							]
+						},
+						{
+							"id": "14a7f10b4045796f0da50ab200771ebd:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_BuildVersion.WBP_BuildVersion_C",
+							"links": []
+						},
+						{
+							"id": "14a7f10b4045796f0da50ab200771ebd:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_BuildVersion.WBP_BuildVersion_C",
+							"defaultValue": null,
+							"links": [
+								"b745962f4351e82cc37c8c9438d0ff9f:i:self"
+							]
+						},
+						{
+							"id": "14a7f10b4045796f0da50ab200771ebd:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "794a64dd4d9fc0162b70278148164e65",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 528,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "794a64dd4d9fc0162b70278148164e65:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f1f78073440dfaee35db189098298bef:o:then"
+							]
+						},
+						{
+							"id": "794a64dd4d9fc0162b70278148164e65:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "794a64dd4d9fc0162b70278148164e65:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"f1f78073440dfaee35db189098298bef:o:ReturnValue"
+							]
+						},
+						{
+							"id": "794a64dd4d9fc0162b70278148164e65:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b745962f4351e82cc37c8c9438d0ff9f",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 601,
+					"y": -7,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b745962f4351e82cc37c8c9438d0ff9f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"14a7f10b4045796f0da50ab200771ebd:o:then"
+							]
+						},
+						{
+							"id": "b745962f4351e82cc37c8c9438d0ff9f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b745962f4351e82cc37c8c9438d0ff9f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"14a7f10b4045796f0da50ab200771ebd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b745962f4351e82cc37c8c9438d0ff9f:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bec882344cd1608880cfefb8ea671f27",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 9,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bec882344cd1608880cfefb8ea671f27:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bec882344cd1608880cfefb8ea671f27:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"14a7f10b4045796f0da50ab200771ebd:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ec88fbf1407d6aa92ae8438dbc9aba45",
+					"class": "K2Node_InputKey",
+					"title": "Escape",
+					"x": 0,
+					"y": 400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ec88fbf1407d6aa92ae8438dbc9aba45:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f1f78073440dfaee35db189098298bef:i:execute"
+							]
+						},
+						{
+							"id": "ec88fbf1407d6aa92ae8438dbc9aba45:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ec88fbf1407d6aa92ae8438dbc9aba45:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f1f78073440dfaee35db189098298bef",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 160,
+					"y": 400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f1f78073440dfaee35db189098298bef:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ec88fbf1407d6aa92ae8438dbc9aba45:o:Pressed"
+							]
+						},
+						{
+							"id": "f1f78073440dfaee35db189098298bef:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"794a64dd4d9fc0162b70278148164e65:i:execute"
+							]
+						},
+						{
+							"id": "f1f78073440dfaee35db189098298bef:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_PauseMenu.WBP_PauseMenu_C",
+							"links": []
+						},
+						{
+							"id": "f1f78073440dfaee35db189098298bef:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_PauseMenu.WBP_PauseMenu_C",
+							"defaultValue": null,
+							"links": [
+								"794a64dd4d9fc0162b70278148164e65:i:self"
+							]
+						},
+						{
+							"id": "f1f78073440dfaee35db189098298bef:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "36957bd94e9b292d539ebda3c73f9fc0",
+					"text": "This processing should be moved out of the level blueprint so it can be applied to any level",
+					"x": -26,
+					"y": 284,
+					"width": 768,
+					"height": 320
+				},
+				{
+					"guid": "5d3e8eda4afb1e33e5ca33a22036811d",
+					"text": "Show the current build version on the screen\r\nUseful in both testing and live operations, but should be moved to a menu/about screen",
+					"x": 224,
+					"y": -144,
+					"width": 592,
+					"height": 336
+				}
+			]
+		}
+	]
+}

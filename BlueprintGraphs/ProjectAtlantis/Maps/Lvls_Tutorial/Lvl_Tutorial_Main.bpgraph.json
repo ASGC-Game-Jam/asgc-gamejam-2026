@@ -1,0 +1,156 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Maps/Lvls_Tutorial/Lvl_Tutorial_Main",
+	"asset": "Lvl_Tutorial_Main",
+	"parentClass": "LevelScriptActor",
+	"blueprintType": "BPTYPE_LevelScript",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "6b90e076495e998be956f7bbb1eaf4b1",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 9,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6b90e076495e998be956f7bbb1eaf4b1:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6b90e076495e998be956f7bbb1eaf4b1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ce6218364cf5767ebd997399cd383ecc:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c4db52594162d617dfb5229908410ae0",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 601,
+					"y": -7,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c4db52594162d617dfb5229908410ae0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ce6218364cf5767ebd997399cd383ecc:o:then"
+							]
+						},
+						{
+							"id": "c4db52594162d617dfb5229908410ae0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c4db52594162d617dfb5229908410ae0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"ce6218364cf5767ebd997399cd383ecc:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c4db52594162d617dfb5229908410ae0:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ce6218364cf5767ebd997399cd383ecc",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 249,
+					"y": 9,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ce6218364cf5767ebd997399cd383ecc:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6b90e076495e998be956f7bbb1eaf4b1:o:then"
+							]
+						},
+						{
+							"id": "ce6218364cf5767ebd997399cd383ecc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c4db52594162d617dfb5229908410ae0:i:execute"
+							]
+						},
+						{
+							"id": "ce6218364cf5767ebd997399cd383ecc:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_BuildVersion.WBP_BuildVersion_C",
+							"links": []
+						},
+						{
+							"id": "ce6218364cf5767ebd997399cd383ecc:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_BuildVersion.WBP_BuildVersion_C",
+							"defaultValue": null,
+							"links": [
+								"c4db52594162d617dfb5229908410ae0:i:self"
+							]
+						},
+						{
+							"id": "ce6218364cf5767ebd997399cd383ecc:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "458a1a784cc52ecc44f4518f50d208f1",
+					"text": "Show the current build version on the screen\r\nUseful in both testing and live operations, but should be moved to a menu/about screen",
+					"x": 224,
+					"y": -144,
+					"width": 592,
+					"height": 336
+				}
+			]
+		}
+	]
+}
