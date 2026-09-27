@@ -156,7 +156,7 @@ Make commits whenever they help you save or organize your work
 
 Use meaningful messages where practical
 
-The project prefers Conventional Commit prefixes as labels on the issue, not in the titles
+The project prefers [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/#summary) prefixes as labels on the issue, not in the titles
 
 examples
 - `add footstep audio system` - add the (feature) label
