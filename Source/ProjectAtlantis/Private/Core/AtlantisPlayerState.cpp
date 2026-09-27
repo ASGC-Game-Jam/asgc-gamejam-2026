@@ -19,6 +19,7 @@ void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(AAtlantisPlayerState, OxygenCapacity);
+	DOREPLIFETIME(AAtlantisPlayerState, CurrentOxygen);
 	DOREPLIFETIME(AAtlantisPlayerState, bBallastAllocation);
 	DOREPLIFETIME(AAtlantisPlayerState, BallastState);
 	DOREPLIFETIME(AAtlantisPlayerState, TraversalMode);
@@ -64,6 +65,7 @@ void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
 
 	const float OldCurrentOxygen = CurrentOxygen;
 	CurrentOxygen = NewCurrentOxygen;
+	OnRep_CurrentOxygen(OldCurrentOxygen);
 }
 
 void AAtlantisPlayerState::SetBallastAllocated(const bool bNewBallastAllocation)
@@ -108,6 +110,11 @@ void AAtlantisPlayerState::SetTraversalMode(const int32 NewTraversalMode)
 void AAtlantisPlayerState::OnRep_OxygenCapacity(const float OldOxygenCapacity) const
 {
 	OnOxygenCapacityChanged.Broadcast(OldOxygenCapacity, OxygenCapacity);
+}
+
+void AAtlantisPlayerState::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
+{
+	OnCurrentOxygenChanged.Broadcast(OldCurrentOxygen, CurrentOxygen);
 }
 
 void AAtlantisPlayerState::OnRep_BallastAllocation(const bool bOldBallastAllocation)
