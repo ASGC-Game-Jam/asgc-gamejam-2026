@@ -45,7 +45,7 @@ Task ownership is already represented in GitHub Projects, and another contributo
 
 # 2) Start From `main`
 
-Before creating a task branch, make sure your local `main` is current
+Before creating a branch, make sure your local `main` is current
 
 ```bash
 git switch main
@@ -66,14 +66,14 @@ Most work should follow this flow
 ```text
 Issue
   ↓
-Task Branch
+Feature Branch
   ↓
 Pull Request
   ↓
 main
 ```
 
-A temporary feature/integration branch may be used when several related tasks must work together before the overall feature can be validated
+A temporary integration branch may be used when several related tasks must work together before the overall feature can be validated
 
 ```
 87-audio-footstep-system ─────────────┐
@@ -102,7 +102,7 @@ Sync when
 
 If someone adds unrelated documentation while you are working on gameplay code, there is usually no reason to immediately update your branch
 
-Both rebasing and merging `main` into a task branch can be appropriate
+Both rebasing and merging `main` into a branch can be appropriate
 
 Experienced contributors and Feature Owners can choose the approach that best fits the situation
 
@@ -156,37 +156,22 @@ Make commits whenever they help you save or organize your work
 
 Use meaningful messages where practical
 
-The project prefers Conventional Commit prefixes
+The project prefers Conventional Commit prefixes as labels on the issue, not in the titles
 
-```text
-feat: add footstep audio system
-fix: correct invalid asset reference
-docs: clarify Git LFS setup
-refactor: reorganize inventory initialization
-chore: update project configuration
-```
+examples
+- `add footstep audio system` - add the (feature) label
+- `correct invalid asset reference` - add the (fix) label
+- `clarify Git LFS setup` - add the (documentation) label
+- `reorganize inventory initialization` - add the (refactor) label
+- `update project configuration` - add the (chore) label
 
-Common prefixes include
 
-```text
-feat
-fix
-docs
-refactor
-chore
-```
+Avoid messages such as single word commits such as
 
-Avoid messages such as:
-
-```text
-stuff
-changes
-fix
-test
-asdf
-final
-final2
-```
+- `stuff`
+- `fix`
+- `asdf`
+- `final2`
 
 Ordinary Pull Requests are squash-merged, so temporary development commits do not need to be individually perfect 
 
@@ -295,7 +280,7 @@ Before marking a PR ready for review, make sure the
 
 The PR does not need to remain perfectly documented during active development
 
-It **does** need to accurately describe the final change before merge
+It **does** need to accurately describe the final change before merge, specifically reflecting the work section of the Spec it's attempting to implement
 
 GitHub Releases are currently being used instead of maintaining a separate `CHANGELOG.md`, which makes clean PR and commit information especially useful
 
@@ -386,14 +371,14 @@ Before starting
 
 * [ ] Find or create the appropriate Issue
 * [ ] Update local `main`
-* [ ] Create a short-lived task branch
+* [ ] Create a short-lived branch
 * [ ] Check and lock shared Unreal assets
 
 Before committing
 
 * [ ] Run `git status`
 * [ ] Review what changed
-* [ ] Stage only files belonging to your task
+* [ ] Stage only files belonging to your work
 * [ ] Use a meaningful commit message
 
 Before requesting review
@@ -410,7 +395,7 @@ After merge
 
 * [ ] Return to `main` and pull
 * [ ] Unlock assets
-* [ ] Delete the completed task branch
+* [ ] Delete the completed branch
 * [ ] Start new work on a new branch
 
 ---
