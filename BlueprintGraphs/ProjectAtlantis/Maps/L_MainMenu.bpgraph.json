@@ -25,7 +25,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"de52e20a4f43fa4a58daee82d841f3a7:o:then_3"
+								"de52e20a4f43fa4a58daee82d841f3a7:o:then_4"
 							]
 						},
 						{
@@ -155,6 +155,72 @@
 							"direction": "input",
 							"type": "int",
 							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2b30da624ff1b1cf90f5c1b10415572e",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisGameInstance",
+					"x": 713,
+					"y": -296,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2b30da624ff1b1cf90f5c1b10415572e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f95a0c91461f21e935ef1e840c416bb3:o:OutputPin"
+							]
+						},
+						{
+							"id": "2b30da624ff1b1cf90f5c1b10415572e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ff23ecd948aded96aba07e92775bf58c:i:execute"
+							]
+						},
+						{
+							"id": "2b30da624ff1b1cf90f5c1b10415572e:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2b30da624ff1b1cf90f5c1b10415572e:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"e1b112fa417a433f3d91568eafaa524e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2b30da624ff1b1cf90f5c1b10415572e:o:AsBP Atlantis Game Instance",
+							"name": "AsBP Atlantis Game Instance",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/BP_AtlantisGameInstance.BP_AtlantisGameInstance_C",
+							"defaultValue": null,
+							"links": [
+								"ff23ecd948aded96aba07e92775bf58c:i:self"
+							]
+						},
+						{
+							"id": "2b30da624ff1b1cf90f5c1b10415572e:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -564,7 +630,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"de52e20a4f43fa4a58daee82d841f3a7:o:then_2"
+								"de52e20a4f43fa4a58daee82d841f3a7:o:then_3"
 							]
 						},
 						{
@@ -624,7 +690,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"de52e20a4f43fa4a58daee82d841f3a7:o:then_1"
+								"de52e20a4f43fa4a58daee82d841f3a7:o:then_2"
 							]
 						},
 						{
@@ -822,7 +888,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"de52e20a4f43fa4a58daee82d841f3a7:o:then_0"
+								"de52e20a4f43fa4a58daee82d841f3a7:o:then_1"
 							]
 						},
 						{
@@ -862,7 +928,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"bd9ba34945cc3c141133aba37911946a:i:InputPin"
+								"f95a0c91461f21e935ef1e840c416bb3:i:InputPin"
 							]
 						},
 						{
@@ -872,7 +938,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"9a660b644dd8aa9317ef2f8ddb38dd5f:i:InputPin"
+								"bd9ba34945cc3c141133aba37911946a:i:InputPin"
 							]
 						},
 						{
@@ -882,7 +948,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"8e7e854b499511120764c5acde5133ec:i:InputPin"
+								"9a660b644dd8aa9317ef2f8ddb38dd5f:i:InputPin"
 							]
 						},
 						{
@@ -892,13 +958,143 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
+								"8e7e854b499511120764c5acde5133ec:i:InputPin"
+							]
+						},
+						{
+							"id": "de52e20a4f43fa4a58daee82d841f3a7:o:then_4",
+							"name": "then_4",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
 								"06c40f7c41c4ef777935f7aac3724d1c:i:InputPin"
 							]
+						}
+					]
+				},
+				{
+					"guid": "e1b112fa417a433f3d91568eafaa524e",
+					"class": "K2Node_CallFunction",
+					"title": "Get Game Instance",
+					"x": 505,
+					"y": -232,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e1b112fa417a433f3d91568eafaa524e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "e1b112fa417a433f3d91568eafaa524e:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e1b112fa417a433f3d91568eafaa524e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.GameInstance",
+							"defaultValue": null,
+							"links": [
+								"2b30da624ff1b1cf90f5c1b10415572e:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f95a0c91461f21e935ef1e840c416bb3",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 489,
+					"y": -264,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f95a0c91461f21e935ef1e840c416bb3:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"de52e20a4f43fa4a58daee82d841f3a7:o:then_0"
+							]
+						},
+						{
+							"id": "f95a0c91461f21e935ef1e840c416bb3:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2b30da624ff1b1cf90f5c1b10415572e:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ff23ecd948aded96aba07e92775bf58c",
+					"class": "K2Node_CallFunction",
+					"title": "PlayMusic",
+					"x": 1049,
+					"y": -312,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ff23ecd948aded96aba07e92775bf58c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2b30da624ff1b1cf90f5c1b10415572e:o:then"
+							]
+						},
+						{
+							"id": "ff23ecd948aded96aba07e92775bf58c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ff23ecd948aded96aba07e92775bf58c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/BP_AtlantisGameInstance.BP_AtlantisGameInstance_C",
+							"defaultValue": null,
+							"links": [
+								"2b30da624ff1b1cf90f5c1b10415572e:o:AsBP Atlantis Game Instance"
+							]
+						},
+						{
+							"id": "ff23ecd948aded96aba07e92775bf58c:i:Music",
+							"name": "Music",
+							"direction": "input",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": "/Game/ProjectAtlantis/Audio/Music/SW_AtlantisMenuTheme.SW_AtlantisMenuTheme",
+							"links": []
 						}
 					]
 				}
 			],
 			"comments": [
+				{
+					"guid": "074e5a8446d4d1607f510ba2011a4e15",
+					"text": "Play the main menu music",
+					"x": 464,
+					"y": -384,
+					"width": 880,
+					"height": 272
+				},
 				{
 					"guid": "43eec370455a2a800b7001b5945aae47",
 					"text": "Show cursor",
