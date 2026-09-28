@@ -1,0 +1,22 @@
+name: PR Comment Checklist
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  post-checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Post Checklist Comment
+        # using this action should ensure later updates to the checklist will be intelligently updated
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: pr-checklist
+          path: .github/pull_request_checklist.md

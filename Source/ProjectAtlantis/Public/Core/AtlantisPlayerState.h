@@ -9,6 +9,9 @@
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnOxygenCapacityChanged, float, OldOxygenCapacity, float, NewOxygenCapacity);
 
+/** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, OldCurrentOxygen, float, NewCurrentOxygen);
+
 /**
  * Any part of the ballast system changed. Allocation and state are grouped into a single
  * event because nothing consumes one without the other.
@@ -42,6 +45,10 @@ public:
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnOxygenCapacityChanged OnOxygenCapacityChanged;
+	
+	//~ Change events. Bind from UI, audio, and VFX rather than polling.
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
+	FOnCurrentOxygenChanged OnCurrentOxygenChanged;
 
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnBallastChanged OnBallastChanged;
@@ -55,6 +62,9 @@ public:
 	//~ Accessors.
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	float GetOxygenCapacity() const { return OxygenCapacity; }
+	
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	float GetCurrentOxygen() const { return CurrentOxygen; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	bool IsBallastAllocated() const { return bBallastAllocation; }
@@ -71,6 +81,9 @@ public:
 	//~ Mutators. Server only; calls on a client are ignored.
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetOxygenCapacity(float NewOxygenCapacity);
+	
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	void SetCurrentOxygen(float NewCurrentOxygen);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetBallastAllocated(bool bNewBallastAllocation);
@@ -87,6 +100,9 @@ protected:
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	float OxygenCapacity = 100.f;
 
+	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
+	float CurrentOxygen = 100.f;
+
 	UPROPERTY(ReplicatedUsing = OnRep_BallastAllocation, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	bool bBallastAllocation = false;
 
@@ -102,6 +118,9 @@ protected:
 	//RepNotifies - These allow the server to notify clients of changes to replicated variables. It can alos be used as a change event when non-multiplayer
 	UFUNCTION()
 	void OnRep_OxygenCapacity(float OldOxygenCapacity) const;
+	
+	UFUNCTION()
+	void OnRep_CurrentOxygen(float OldCurrentOxygen) const;
 
 	UFUNCTION()
 	void OnRep_BallastAllocation(bool bOldBallastAllocation);

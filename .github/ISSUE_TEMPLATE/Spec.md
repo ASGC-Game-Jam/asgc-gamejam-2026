@@ -1,17 +1,8 @@
 ---
 name: Spec
 title: ""
-about: Define one independently deliverable technical outcome from an approved Feature Doc
-labels: "Feature"
----
-
-| Role | Reviewer | Status | Date | Notes |
-|---|---|---|---|---|
-| Design | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
-| Tech Design | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
-| Tech | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
-| [Discipline] | [Name] | [Pending / Approved] | [YYYY-MM-DD] | [Notes] |
-
+about: Independently deliverable technical outcome
+labels: "feature"
 ---
 
 # 1. Description

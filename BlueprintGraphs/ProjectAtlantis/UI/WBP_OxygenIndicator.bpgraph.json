@@ -1,0 +1,830 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_OxygenIndicator",
+	"asset": "WBP_OxygenIndicator",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "1dc30ba14e78c4510e64ccac6dbdcfc4",
+					"class": "K2Node_VariableGet",
+					"title": "Get OxygenDisplay",
+					"x": 1632,
+					"y": 998,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1dc30ba14e78c4510e64ccac6dbdcfc4:o:OxygenDisplay",
+							"name": "OxygenDisplay",
+							"direction": "output",
+							"type": "object:/Script/UMG.ProgressBar",
+							"defaultValue": null,
+							"links": [
+								"7d627a0f4e2e41b5c47244a3e16fdc23:i:self"
+							]
+						},
+						{
+							"id": "1dc30ba14e78c4510e64ccac6dbdcfc4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "253fe17345beb2dfb4ccbfb29aee47f6",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (Float)",
+					"x": 1456,
+					"y": 1248,
+					"comment": null,
+					"pins": [
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4e160f9d4d9f804b17d524ac0c56ba55:o:ReturnValue"
+							]
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:RoundingMode",
+							"name": "RoundingMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ERoundingMode",
+							"defaultValue": "HalfToEven",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:bAlwaysSign",
+							"name": "bAlwaysSign",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:bUseGrouping",
+							"name": "bUseGrouping",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:MinimumIntegralDigits",
+							"name": "MinimumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:MaximumIntegralDigits",
+							"name": "MaximumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "324",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:MinimumFractionalDigits",
+							"name": "MinimumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:MaximumFractionalDigits",
+							"name": "MaximumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"e9dfb9bc424873cc8d8e0b9abf29d399:i:OxygenCapacity"
+							]
+						}
+					]
+				},
+				{
+					"guid": "30bd3da84a6197845eb82886ebc1a527",
+					"class": "K2Node_Event",
+					"title": "Event On Initialized",
+					"x": -64,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "30bd3da84a6197845eb82886ebc1a527:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "30bd3da84a6197845eb82886ebc1a527:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"978acec345a9a403c36f1b8de991ef72:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "49a892434af026a84f7400a1374ba211",
+					"class": "K2Node_VariableGet",
+					"title": "Get Atlantis Player State",
+					"x": 928,
+					"y": 1271,
+					"comment": null,
+					"pins": [
+						{
+							"id": "49a892434af026a84f7400a1374ba211:o:Atlantis Player State",
+							"name": "Atlantis Player State",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"4e160f9d4d9f804b17d524ac0c56ba55:i:self"
+							]
+						},
+						{
+							"id": "49a892434af026a84f7400a1374ba211:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4b6c0ef34762a2da046cfeb35ef3e4c2",
+					"class": "K2Node_CallFunction",
+					"title": "Get Owning Player",
+					"x": -80,
+					"y": 616,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4b6c0ef34762a2da046cfeb35ef3e4c2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4b6c0ef34762a2da046cfeb35ef3e4c2:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"6af7943040f43b5c3a6da088b744782f:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4e160f9d4d9f804b17d524ac0c56ba55",
+					"class": "K2Node_CallFunction",
+					"title": "GetOxygenCapacity",
+					"x": 1152,
+					"y": 1232,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4e160f9d4d9f804b17d524ac0c56ba55:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"49a892434af026a84f7400a1374ba211:o:Atlantis Player State"
+							]
+						},
+						{
+							"id": "4e160f9d4d9f804b17d524ac0c56ba55:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"253fe17345beb2dfb4ccbfb29aee47f6:i:Value",
+								"a4d9b7db4662a7690ea8adba1e559e90:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "61fc0d39471a56b38befa2937a9dd2a4",
+					"class": "K2Node_VariableSet",
+					"title": "Set Text",
+					"x": 2240,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "61fc0d39471a56b38befa2937a9dd2a4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7d627a0f4e2e41b5c47244a3e16fdc23:o:then"
+							]
+						},
+						{
+							"id": "61fc0d39471a56b38befa2937a9dd2a4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "61fc0d39471a56b38befa2937a9dd2a4:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"e9dfb9bc424873cc8d8e0b9abf29d399:o:Result"
+							]
+						},
+						{
+							"id": "61fc0d39471a56b38befa2937a9dd2a4:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "61fc0d39471a56b38befa2937a9dd2a4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"b7de966542c6aa53092f53b16d16c8fb:o:PercentageText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "626a07e74fe0b8740061f2881e14392e",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (Float)",
+					"x": 1456,
+					"y": 1152,
+					"comment": null,
+					"pins": [
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"dd670ec143de9c58265cb88f4ca0dd86:o:NewCurrentOxygen"
+							]
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:RoundingMode",
+							"name": "RoundingMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ERoundingMode",
+							"defaultValue": "HalfToEven",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:bAlwaysSign",
+							"name": "bAlwaysSign",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:bUseGrouping",
+							"name": "bUseGrouping",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:MinimumIntegralDigits",
+							"name": "MinimumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:MaximumIntegralDigits",
+							"name": "MaximumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "324",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:MinimumFractionalDigits",
+							"name": "MinimumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:MaximumFractionalDigits",
+							"name": "MaximumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"e9dfb9bc424873cc8d8e0b9abf29d399:i:CurrentOxygen"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6af7943040f43b5c3a6da088b744782f",
+					"class": "K2Node_VariableGet",
+					"title": "Get PlayerState",
+					"x": 176,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6af7943040f43b5c3a6da088b744782f:o:PlayerState",
+							"name": "PlayerState",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerState",
+							"defaultValue": null,
+							"links": [
+								"978acec345a9a403c36f1b8de991ef72:i:Object"
+							]
+						},
+						{
+							"id": "6af7943040f43b5c3a6da088b744782f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Controller",
+							"defaultValue": null,
+							"links": [
+								"4b6c0ef34762a2da046cfeb35ef3e4c2:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7d627a0f4e2e41b5c47244a3e16fdc23",
+					"class": "K2Node_CallFunction",
+					"title": "Set Percent",
+					"x": 1840,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7d627a0f4e2e41b5c47244a3e16fdc23:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dd670ec143de9c58265cb88f4ca0dd86:o:then"
+							]
+						},
+						{
+							"id": "7d627a0f4e2e41b5c47244a3e16fdc23:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"61fc0d39471a56b38befa2937a9dd2a4:i:execute"
+							]
+						},
+						{
+							"id": "7d627a0f4e2e41b5c47244a3e16fdc23:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.ProgressBar",
+							"defaultValue": null,
+							"links": [
+								"1dc30ba14e78c4510e64ccac6dbdcfc4:o:OxygenDisplay"
+							]
+						},
+						{
+							"id": "7d627a0f4e2e41b5c47244a3e16fdc23:i:InPercent",
+							"name": "InPercent",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"a4d9b7db4662a7690ea8adba1e559e90:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "93a2f215429095e8aade01a2ada420ec",
+					"class": "K2Node_VariableSet",
+					"title": "Set Atlantis Player State",
+					"x": 752,
+					"y": 512,
+					"comment": null,
+					"pins": [
+						{
+							"id": "93a2f215429095e8aade01a2ada420ec:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"978acec345a9a403c36f1b8de991ef72:o:then"
+							]
+						},
+						{
+							"id": "93a2f215429095e8aade01a2ada420ec:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f17cd8784ede38e7d20b399cd4e5fd91:i:execute"
+							]
+						},
+						{
+							"id": "93a2f215429095e8aade01a2ada420ec:i:Atlantis Player State",
+							"name": "Atlantis Player State",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"978acec345a9a403c36f1b8de991ef72:o:AsAtlantis Player State"
+							]
+						},
+						{
+							"id": "93a2f215429095e8aade01a2ada420ec:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"f17cd8784ede38e7d20b399cd4e5fd91:i:self"
+							]
+						},
+						{
+							"id": "93a2f215429095e8aade01a2ada420ec:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "978acec345a9a403c36f1b8de991ef72",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To AtlantisPlayerState",
+					"x": 416,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "978acec345a9a403c36f1b8de991ef72:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"30bd3da84a6197845eb82886ebc1a527:o:then"
+							]
+						},
+						{
+							"id": "978acec345a9a403c36f1b8de991ef72:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"93a2f215429095e8aade01a2ada420ec:i:execute"
+							]
+						},
+						{
+							"id": "978acec345a9a403c36f1b8de991ef72:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "978acec345a9a403c36f1b8de991ef72:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"6af7943040f43b5c3a6da088b744782f:o:PlayerState"
+							]
+						},
+						{
+							"id": "978acec345a9a403c36f1b8de991ef72:o:AsAtlantis Player State",
+							"name": "AsAtlantis Player State",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"93a2f215429095e8aade01a2ada420ec:i:Atlantis Player State"
+							]
+						},
+						{
+							"id": "978acec345a9a403c36f1b8de991ef72:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a4d9b7db4662a7690ea8adba1e559e90",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 1456,
+					"y": 1031,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a4d9b7db4662a7690ea8adba1e559e90:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"dd670ec143de9c58265cb88f4ca0dd86:o:NewCurrentOxygen"
+							]
+						},
+						{
+							"id": "a4d9b7db4662a7690ea8adba1e559e90:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4e160f9d4d9f804b17d524ac0c56ba55:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a4d9b7db4662a7690ea8adba1e559e90:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"7d627a0f4e2e41b5c47244a3e16fdc23:i:InPercent"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b7de966542c6aa53092f53b16d16c8fb",
+					"class": "K2Node_VariableGet",
+					"title": "Get PercentageText",
+					"x": 2048,
+					"y": 1029,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b7de966542c6aa53092f53b16d16c8fb:o:PercentageText",
+							"name": "PercentageText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"61fc0d39471a56b38befa2937a9dd2a4:i:self"
+							]
+						},
+						{
+							"id": "b7de966542c6aa53092f53b16d16c8fb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "dd670ec143de9c58265cb88f4ca0dd86",
+					"class": "K2Node_CustomEvent",
+					"title": "OnCurrentOxygenChanged_Event",
+					"x": 768,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dd670ec143de9c58265cb88f4ca0dd86:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"f17cd8784ede38e7d20b399cd4e5fd91:i:Delegate"
+							]
+						},
+						{
+							"id": "dd670ec143de9c58265cb88f4ca0dd86:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7d627a0f4e2e41b5c47244a3e16fdc23:i:execute"
+							]
+						},
+						{
+							"id": "dd670ec143de9c58265cb88f4ca0dd86:o:OldCurrentOxygen",
+							"name": "OldCurrentOxygen",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "dd670ec143de9c58265cb88f4ca0dd86:o:NewCurrentOxygen",
+							"name": "NewCurrentOxygen",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"626a07e74fe0b8740061f2881e14392e:i:Value",
+								"a4d9b7db4662a7690ea8adba1e559e90:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e9dfb9bc424873cc8d8e0b9abf29d399",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 1776,
+					"y": 1168,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e9dfb9bc424873cc8d8e0b9abf29d399:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "{CurrentOxygen} / {OxygenCapacity}",
+							"links": []
+						},
+						{
+							"id": "e9dfb9bc424873cc8d8e0b9abf29d399:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"61fc0d39471a56b38befa2937a9dd2a4:i:Text"
+							]
+						},
+						{
+							"id": "e9dfb9bc424873cc8d8e0b9abf29d399:i:CurrentOxygen",
+							"name": "CurrentOxygen",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"626a07e74fe0b8740061f2881e14392e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e9dfb9bc424873cc8d8e0b9abf29d399:i:OxygenCapacity",
+							"name": "OxygenCapacity",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"253fe17345beb2dfb4ccbfb29aee47f6:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f17cd8784ede38e7d20b399cd4e5fd91",
+					"class": "K2Node_AssignDelegate",
+					"title": "Assign On Current Oxygen Changed",
+					"x": 1200,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f17cd8784ede38e7d20b399cd4e5fd91:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"93a2f215429095e8aade01a2ada420ec:o:then"
+							]
+						},
+						{
+							"id": "f17cd8784ede38e7d20b399cd4e5fd91:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f17cd8784ede38e7d20b399cd4e5fd91:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"93a2f215429095e8aade01a2ada420ec:o:Output_Get"
+							]
+						},
+						{
+							"id": "f17cd8784ede38e7d20b399cd4e5fd91:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"dd670ec143de9c58265cb88f4ca0dd86:o:OutputDelegate"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "07033b904267fce186222793a6c5abce",
+					"text": "OnInitialized because it runs once and we need to bind only once",
+					"x": -133,
+					"y": 370,
+					"width": 288,
+					"height": 224
+				}
+			]
+		}
+	]
+}

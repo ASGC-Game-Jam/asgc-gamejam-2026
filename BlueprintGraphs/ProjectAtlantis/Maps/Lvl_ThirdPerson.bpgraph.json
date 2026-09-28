@@ -11,34 +11,6 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
-					"guid": "445ac30945752fad03fe51a3c920a7c8",
-					"class": "K2Node_Event",
-					"title": "Event BeginPlay",
-					"x": 0,
-					"y": 9,
-					"comment": null,
-					"pins": [
-						{
-							"id": "445ac30945752fad03fe51a3c920a7c8:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "445ac30945752fad03fe51a3c920a7c8:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"c70bd77b4e12ed004d13cea31a8f0174:i:execute"
-							]
-						}
-					]
-				},
-				{
 					"guid": "902e46294001c24b38a892b903ef800c",
 					"class": "K2Node_CreateWidget",
 					"title": "Create Widget",
@@ -70,7 +42,7 @@
 							"id": "902e46294001c24b38a892b903ef800c:i:Class",
 							"name": "Class",
 							"direction": "input",
-							"type": "Class:/Script/UMG.UserWidget",
+							"type": "class:/Script/UMG.UserWidget",
 							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_PauseMenu.WBP_PauseMenu_C",
 							"links": []
 						},
@@ -86,108 +58,6 @@
 						},
 						{
 							"id": "902e46294001c24b38a892b903ef800c:i:OwningPlayer",
-							"name": "OwningPlayer",
-							"direction": "input",
-							"type": "object:/Script/Engine.PlayerController",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "9e8d52924d2a3c153de34fa8c73f1eee",
-					"class": "K2Node_CallFunction",
-					"title": "Add to Viewport",
-					"x": 601,
-					"y": -7,
-					"comment": null,
-					"pins": [
-						{
-							"id": "9e8d52924d2a3c153de34fa8c73f1eee:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"c70bd77b4e12ed004d13cea31a8f0174:o:then"
-							]
-						},
-						{
-							"id": "9e8d52924d2a3c153de34fa8c73f1eee:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "9e8d52924d2a3c153de34fa8c73f1eee:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.UserWidget",
-							"defaultValue": null,
-							"links": [
-								"c70bd77b4e12ed004d13cea31a8f0174:o:ReturnValue"
-							]
-						},
-						{
-							"id": "9e8d52924d2a3c153de34fa8c73f1eee:i:ZOrder",
-							"name": "ZOrder",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "0",
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "c70bd77b4e12ed004d13cea31a8f0174",
-					"class": "K2Node_CreateWidget",
-					"title": "Create Widget",
-					"x": 249,
-					"y": 9,
-					"comment": null,
-					"pins": [
-						{
-							"id": "c70bd77b4e12ed004d13cea31a8f0174:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"445ac30945752fad03fe51a3c920a7c8:o:then"
-							]
-						},
-						{
-							"id": "c70bd77b4e12ed004d13cea31a8f0174:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"9e8d52924d2a3c153de34fa8c73f1eee:i:execute"
-							]
-						},
-						{
-							"id": "c70bd77b4e12ed004d13cea31a8f0174:i:Class",
-							"name": "Class",
-							"direction": "input",
-							"type": "class:/Script/UMG.UserWidget",
-							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_BuildVersion.WBP_BuildVersion_C",
-							"links": []
-						},
-						{
-							"id": "c70bd77b4e12ed004d13cea31a8f0174:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_BuildVersion.WBP_BuildVersion_C",
-							"defaultValue": null,
-							"links": [
-								"9e8d52924d2a3c153de34fa8c73f1eee:i:self"
-							]
-						},
-						{
-							"id": "c70bd77b4e12ed004d13cea31a8f0174:i:OwningPlayer",
 							"name": "OwningPlayer",
 							"direction": "input",
 							"type": "object:/Script/Engine.PlayerController",
@@ -280,14 +150,6 @@
 				}
 			],
 			"comments": [
-				{
-					"guid": "2901e6b9479925d9ac46c7a53280c00a",
-					"text": "Show the current build version on the screen\r\nUseful in both testing and live operations, but should be moved to a menu/about screen",
-					"x": 224,
-					"y": -144,
-					"width": 592,
-					"height": 336
-				},
 				{
 					"guid": "b7932f894601a3133cee07b5ba06ceb6",
 					"text": "This processing should be moved out of the level blueprint so it can be applied to any level",
