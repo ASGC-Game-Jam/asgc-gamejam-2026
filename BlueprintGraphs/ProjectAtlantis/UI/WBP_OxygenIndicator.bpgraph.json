@@ -39,6 +39,100 @@
 					]
 				},
 				{
+					"guid": "253fe17345beb2dfb4ccbfb29aee47f6",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (Float)",
+					"x": 1456,
+					"y": 1248,
+					"comment": null,
+					"pins": [
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4e160f9d4d9f804b17d524ac0c56ba55:o:ReturnValue"
+							]
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:RoundingMode",
+							"name": "RoundingMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ERoundingMode",
+							"defaultValue": "HalfToEven",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:bAlwaysSign",
+							"name": "bAlwaysSign",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:bUseGrouping",
+							"name": "bUseGrouping",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:MinimumIntegralDigits",
+							"name": "MinimumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:MaximumIntegralDigits",
+							"name": "MaximumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "324",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:MinimumFractionalDigits",
+							"name": "MinimumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:i:MaximumFractionalDigits",
+							"name": "MaximumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "253fe17345beb2dfb4ccbfb29aee47f6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"e9dfb9bc424873cc8d8e0b9abf29d399:i:OxygenCapacity"
+							]
+						}
+					]
+				},
+				{
 					"guid": "30bd3da84a6197845eb82886ebc1a527",
 					"class": "K2Node_Event",
 					"title": "Event On Initialized",
@@ -67,49 +161,11 @@
 					]
 				},
 				{
-					"guid": "311ac05e4fdada74225c55b24fe55b5e",
-					"class": "K2Node_CallFunction",
-					"title": "To String (Float)",
-					"x": 1264,
-					"y": 1223,
-					"comment": null,
-					"pins": [
-						{
-							"id": "311ac05e4fdada74225c55b24fe55b5e:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetStringLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
-							"links": []
-						},
-						{
-							"id": "311ac05e4fdada74225c55b24fe55b5e:i:InDouble",
-							"name": "InDouble",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"dd670ec143de9c58265cb88f4ca0dd86:o:NewCurrentOxygen"
-							]
-						},
-						{
-							"id": "311ac05e4fdada74225c55b24fe55b5e:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "string",
-							"defaultValue": null,
-							"links": [
-								"a727960942bc54ec0d55c5bfb1db7a87:i:A"
-							]
-						}
-					]
-				},
-				{
 					"guid": "49a892434af026a84f7400a1374ba211",
 					"class": "K2Node_VariableGet",
 					"title": "Get Atlantis Player State",
 					"x": 928,
-					"y": 1104,
+					"y": 1271,
 					"comment": null,
 					"pins": [
 						{
@@ -165,7 +221,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "GetOxygenCapacity",
 					"x": 1152,
-					"y": 1065,
+					"y": 1232,
 					"comment": null,
 					"pins": [
 						{
@@ -185,7 +241,7 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"9b96f1e044753dc1a27de58547af749c:i:InDouble",
+								"253fe17345beb2dfb4ccbfb29aee47f6:i:Value",
 								"a4d9b7db4662a7690ea8adba1e559e90:i:B"
 							]
 						}
@@ -224,7 +280,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"daf4e94c482adaca31e9879f723863ef:o:ReturnValue"
+								"e9dfb9bc424873cc8d8e0b9abf29d399:o:Result"
 							]
 						},
 						{
@@ -243,6 +299,100 @@
 							"defaultValue": null,
 							"links": [
 								"b7de966542c6aa53092f53b16d16c8fb:o:PercentageText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "626a07e74fe0b8740061f2881e14392e",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (Float)",
+					"x": 1456,
+					"y": 1152,
+					"comment": null,
+					"pins": [
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"dd670ec143de9c58265cb88f4ca0dd86:o:NewCurrentOxygen"
+							]
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:RoundingMode",
+							"name": "RoundingMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ERoundingMode",
+							"defaultValue": "HalfToEven",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:bAlwaysSign",
+							"name": "bAlwaysSign",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:bUseGrouping",
+							"name": "bUseGrouping",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:MinimumIntegralDigits",
+							"name": "MinimumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:MaximumIntegralDigits",
+							"name": "MaximumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "324",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:MinimumFractionalDigits",
+							"name": "MinimumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:i:MaximumFractionalDigits",
+							"name": "MaximumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "626a07e74fe0b8740061f2881e14392e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"e9dfb9bc424873cc8d8e0b9abf29d399:i:CurrentOxygen"
 							]
 						}
 					]
@@ -452,44 +602,6 @@
 					]
 				},
 				{
-					"guid": "9b96f1e044753dc1a27de58547af749c",
-					"class": "K2Node_CallFunction",
-					"title": "To String (Float)",
-					"x": 1440,
-					"y": 1289,
-					"comment": null,
-					"pins": [
-						{
-							"id": "9b96f1e044753dc1a27de58547af749c:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetStringLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
-							"links": []
-						},
-						{
-							"id": "9b96f1e044753dc1a27de58547af749c:i:InDouble",
-							"name": "InDouble",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"4e160f9d4d9f804b17d524ac0c56ba55:o:ReturnValue"
-							]
-						},
-						{
-							"id": "9b96f1e044753dc1a27de58547af749c:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "string",
-							"defaultValue": null,
-							"links": [
-								"a727960942bc54ec0d55c5bfb1db7a87:i:C"
-							]
-						}
-					]
-				},
-				{
 					"guid": "a4d9b7db4662a7690ea8adba1e559e90",
 					"class": "K2Node_PromotableOperator",
 					"title": "float / float",
@@ -530,62 +642,6 @@
 					]
 				},
 				{
-					"guid": "a727960942bc54ec0d55c5bfb1db7a87",
-					"class": "K2Node_CommutativeAssociativeBinaryOperator",
-					"title": "Append",
-					"x": 1632,
-					"y": 1200,
-					"comment": null,
-					"pins": [
-						{
-							"id": "a727960942bc54ec0d55c5bfb1db7a87:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetStringLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
-							"links": []
-						},
-						{
-							"id": "a727960942bc54ec0d55c5bfb1db7a87:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": null,
-							"links": [
-								"311ac05e4fdada74225c55b24fe55b5e:o:ReturnValue"
-							]
-						},
-						{
-							"id": "a727960942bc54ec0d55c5bfb1db7a87:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": " / ",
-							"links": []
-						},
-						{
-							"id": "a727960942bc54ec0d55c5bfb1db7a87:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "string",
-							"defaultValue": null,
-							"links": [
-								"daf4e94c482adaca31e9879f723863ef:i:InString"
-							]
-						},
-						{
-							"id": "a727960942bc54ec0d55c5bfb1db7a87:i:C",
-							"name": "C",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": null,
-							"links": [
-								"9b96f1e044753dc1a27de58547af749c:o:ReturnValue"
-							]
-						}
-					]
-				},
-				{
 					"guid": "b7de966542c6aa53092f53b16d16c8fb",
 					"class": "K2Node_VariableGet",
 					"title": "Get PercentageText",
@@ -610,44 +666,6 @@
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
 							"defaultValue": null,
 							"links": []
-						}
-					]
-				},
-				{
-					"guid": "daf4e94c482adaca31e9879f723863ef",
-					"class": "K2Node_CallFunction",
-					"title": "To Text (String)",
-					"x": 1952,
-					"y": 1200,
-					"comment": null,
-					"pins": [
-						{
-							"id": "daf4e94c482adaca31e9879f723863ef:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetTextLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
-							"links": []
-						},
-						{
-							"id": "daf4e94c482adaca31e9879f723863ef:i:InString",
-							"name": "InString",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": null,
-							"links": [
-								"a727960942bc54ec0d55c5bfb1db7a87:o:ReturnValue"
-							]
-						},
-						{
-							"id": "daf4e94c482adaca31e9879f723863ef:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"61fc0d39471a56b38befa2937a9dd2a4:i:Text"
-							]
 						}
 					]
 				},
@@ -694,8 +712,56 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"311ac05e4fdada74225c55b24fe55b5e:i:InDouble",
+								"626a07e74fe0b8740061f2881e14392e:i:Value",
 								"a4d9b7db4662a7690ea8adba1e559e90:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e9dfb9bc424873cc8d8e0b9abf29d399",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 1776,
+					"y": 1168,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e9dfb9bc424873cc8d8e0b9abf29d399:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "{CurrentOxygen} / {OxygenCapacity}",
+							"links": []
+						},
+						{
+							"id": "e9dfb9bc424873cc8d8e0b9abf29d399:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"61fc0d39471a56b38befa2937a9dd2a4:i:Text"
+							]
+						},
+						{
+							"id": "e9dfb9bc424873cc8d8e0b9abf29d399:i:CurrentOxygen",
+							"name": "CurrentOxygen",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"626a07e74fe0b8740061f2881e14392e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e9dfb9bc424873cc8d8e0b9abf29d399:i:OxygenCapacity",
+							"name": "OxygenCapacity",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"253fe17345beb2dfb4ccbfb29aee47f6:o:ReturnValue"
 							]
 						}
 					]
@@ -740,7 +806,7 @@
 							"id": "f17cd8784ede38e7d20b399cd4e5fd91:i:Delegate",
 							"name": "Delegate",
 							"direction": "input",
-							"type": "Delegate",
+							"type": "delegate",
 							"defaultValue": null,
 							"links": [
 								"dd670ec143de9c58265cb88f4ca0dd86:o:OutputDelegate"
