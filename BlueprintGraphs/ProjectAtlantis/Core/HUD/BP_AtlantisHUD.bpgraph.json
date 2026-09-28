@@ -39,8 +39,8 @@
 					"guid": "33ced21740d83e1ee2d16892c84fdf08",
 					"class": "K2Node_VariableGet",
 					"title": "Get PlayerOwner",
-					"x": 480,
-					"y": -48,
+					"x": 64,
+					"y": 109,
 					"comment": null,
 					"pins": [
 						{
@@ -67,7 +67,7 @@
 					"guid": "5b8b10184ee299c693ccef91b8e10ca2",
 					"class": "K2Node_CallFunction",
 					"title": "Add to Viewport",
-					"x": 816,
+					"x": 576,
 					"y": -16,
 					"comment": null,
 					"pins": [
@@ -113,7 +113,7 @@
 					"guid": "acd636f74abe624d8620d88b92a4721d",
 					"class": "K2Node_CreateWidget",
 					"title": "Create Widget",
-					"x": 400,
+					"x": 224,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -168,40 +168,6 @@
 					]
 				},
 				{
-					"guid": "ae7e3ae44ad7980d8ddd9bb512b8d82d",
-					"class": "K2Node_Event",
-					"title": "Event ActorBeginOverlap",
-					"x": 0,
-					"y": 208,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
-					"pins": [
-						{
-							"id": "ae7e3ae44ad7980d8ddd9bb512b8d82d:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "ae7e3ae44ad7980d8ddd9bb512b8d82d:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "ae7e3ae44ad7980d8ddd9bb512b8d82d:o:OtherActor",
-							"name": "OtherActor",
-							"direction": "output",
-							"type": "object:/Script/Engine.Actor",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "cfb9e8f14ca9e1b3f5a0ca977886a01b",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
@@ -226,40 +192,6 @@
 							"links": [
 								"acd636f74abe624d8620d88b92a4721d:i:execute"
 							]
-						}
-					]
-				},
-				{
-					"guid": "e20504044934f514399d9ba84282eaf5",
-					"class": "K2Node_Event",
-					"title": "Event Tick",
-					"x": 0,
-					"y": 416,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
-					"pins": [
-						{
-							"id": "e20504044934f514399d9ba84282eaf5:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "e20504044934f514399d9ba84282eaf5:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "e20504044934f514399d9ba84282eaf5:o:DeltaSeconds",
-							"name": "DeltaSeconds",
-							"direction": "output",
-							"type": "real:float",
-							"defaultValue": "0.0",
-							"links": []
 						}
 					]
 				}
