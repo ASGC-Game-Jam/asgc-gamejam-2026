@@ -19,6 +19,7 @@ void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(AAtlantisPlayerState, OxygenCapacity);
+	DOREPLIFETIME(AAtlantisPlayerState, CurrentOxygen);
 	DOREPLIFETIME(AAtlantisPlayerState, bBallastAllocation);
 	DOREPLIFETIME(AAtlantisPlayerState, BallastState);
 	DOREPLIFETIME(AAtlantisPlayerState, TraversalMode);
@@ -32,6 +33,7 @@ void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
 	if (AAtlantisPlayerState* AtlantisPlayerState = Cast<AAtlantisPlayerState>(PlayerState))
 	{
 		AtlantisPlayerState->OxygenCapacity = OxygenCapacity;
+		AtlantisPlayerState->CurrentOxygen = CurrentOxygen;
 		AtlantisPlayerState->bBallastAllocation = bBallastAllocation;
 		AtlantisPlayerState->BallastState = BallastState;
 		AtlantisPlayerState->TraversalMode = TraversalMode;
@@ -52,6 +54,18 @@ void AAtlantisPlayerState::SetOxygenCapacity(const float NewOxygenCapacity)
 	// Replication never calls our RepNotify on the authority, so drive it by hand to keep
 	// the listen-server host in step with every remote client.
 	OnRep_OxygenCapacity(OldOxygenCapacity);
+}
+
+void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
+{
+	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, NewCurrentOxygen))
+	{
+		return;
+	}
+
+	const float OldCurrentOxygen = CurrentOxygen;
+	CurrentOxygen = NewCurrentOxygen;
+	OnRep_CurrentOxygen(OldCurrentOxygen);
 }
 
 void AAtlantisPlayerState::SetBallastAllocated(const bool bNewBallastAllocation)
@@ -96,6 +110,11 @@ void AAtlantisPlayerState::SetTraversalMode(const int32 NewTraversalMode)
 void AAtlantisPlayerState::OnRep_OxygenCapacity(const float OldOxygenCapacity) const
 {
 	OnOxygenCapacityChanged.Broadcast(OldOxygenCapacity, OxygenCapacity);
+}
+
+void AAtlantisPlayerState::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
+{
+	OnCurrentOxygenChanged.Broadcast(OldCurrentOxygen, CurrentOxygen);
 }
 
 void AAtlantisPlayerState::OnRep_BallastAllocation(const bool bOldBallastAllocation)
