@@ -1,0 +1,164 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Maps/Tutorial/L_Tutorial_Main",
+	"asset": "L_Tutorial_Main",
+	"parentClass": "LevelScriptActor",
+	"blueprintType": "BPTYPE_LevelScript",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "7884352842c8bf49728a448de1ee0404",
+					"class": "K2Node_InputKey",
+					"title": "Escape",
+					"x": 64,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7884352842c8bf49728a448de1ee0404:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dc7b2a9142fce1868a8e2394644aa88b:i:execute"
+							]
+						},
+						{
+							"id": "7884352842c8bf49728a448de1ee0404:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7884352842c8bf49728a448de1ee0404:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "dc7b2a9142fce1868a8e2394644aa88b",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 224,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dc7b2a9142fce1868a8e2394644aa88b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7884352842c8bf49728a448de1ee0404:o:Pressed"
+							]
+						},
+						{
+							"id": "dc7b2a9142fce1868a8e2394644aa88b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e1d6783a40a56604b733f994c34b57d7:i:execute"
+							]
+						},
+						{
+							"id": "dc7b2a9142fce1868a8e2394644aa88b:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_PauseMenu.WBP_PauseMenu_C",
+							"links": []
+						},
+						{
+							"id": "dc7b2a9142fce1868a8e2394644aa88b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_PauseMenu.WBP_PauseMenu_C",
+							"defaultValue": null,
+							"links": [
+								"e1d6783a40a56604b733f994c34b57d7:i:self"
+							]
+						},
+						{
+							"id": "dc7b2a9142fce1868a8e2394644aa88b:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e1d6783a40a56604b733f994c34b57d7",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 592,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e1d6783a40a56604b733f994c34b57d7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dc7b2a9142fce1868a8e2394644aa88b:o:then"
+							]
+						},
+						{
+							"id": "e1d6783a40a56604b733f994c34b57d7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e1d6783a40a56604b733f994c34b57d7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"dc7b2a9142fce1868a8e2394644aa88b:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e1d6783a40a56604b733f994c34b57d7:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "72cb3b774d06bc8f660985bce119f1b0",
+					"text": "This processing should be moved out of the level blueprint so it can be applied to any level",
+					"x": 32,
+					"y": -64,
+					"width": 768,
+					"height": 320
+				}
+			]
+		}
+	]
+}
