@@ -6,6 +6,19 @@
 #include "GameFramework/PlayerState.h"
 #include "AtlantisPlayerState.generated.h"
 
+UENUM(BlueprintType)
+enum class EAtlantisBallastState : uint8
+{
+	/** Invalid sentinel used to detect a ballast state that was not explicitly initialized. */
+	None = 0,
+	/** Sink passively without ballast oxygen; allow horizontal swimming and lower surface walking. */
+	Descend,
+	/** Hold roughly the same depth; allow horizontal and vertical swimming, but no surface walking. */
+	Wander,
+	/** Rise passively using more ballast oxygen than Wander; allow horizontal swimming and upper surface walking. */
+	Ascend,
+};
+
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnOxygenCapacityChanged, float, OldOxygenCapacity, float, NewOxygenCapacity);
 
@@ -16,7 +29,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, Old
  * Any part of the ballast system changed. Allocation and state are grouped into a single
  * event because nothing consumes one without the other.
  */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBallastChanged, bool, bIsAllocated, int32, BallastState);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBallastChanged, bool, bIsAllocated, EAtlantisBallastState, BallastState);
 
 /** Traversal mode changed. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTraversalModeChanged, int32, OldTraversalMode, int32, NewTraversalMode);
@@ -45,7 +58,7 @@ public:
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnOxygenCapacityChanged OnOxygenCapacityChanged;
-	
+
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnCurrentOxygenChanged OnCurrentOxygenChanged;
@@ -70,7 +83,7 @@ public:
 	bool IsBallastAllocated() const { return bBallastAllocation; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
-	int32 GetBallastState() const { return BallastState; }
+	EAtlantisBallastState GetBallastState() const { return BallastState; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	int32 GetTraversalMode() const { return TraversalMode; }
@@ -89,7 +102,7 @@ public:
 	void SetBallastAllocated(bool bNewBallastAllocation);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
-	void SetBallastState(int32 NewBallastState);
+	void SetBallastState(EAtlantisBallastState NewBallastState);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetTraversalMode(int32 NewTraversalMode);
@@ -97,21 +110,28 @@ public:
 protected:
 	//PlayerState Variables - Often includes things like health, ammo etc.
 	//TODO: note that these are placeholder variables and data types they may be swapped out for the real value upon implementation
+
+	/** Maximum oxygen the player can hold. */
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	float OxygenCapacity = 100.f;
 
+	/** Oxygen currently available to the player. */
 	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	float CurrentOxygen = 100.f;
 
+	/** Whether oxygen has been allocated to ballast; allocation rules are not implemented yet. */
 	UPROPERTY(ReplicatedUsing = OnRep_BallastAllocation, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	bool bBallastAllocation = false;
 
+	/** Current ballast mode; None marks a state that has not been initialized for gameplay. */
 	UPROPERTY(ReplicatedUsing = OnRep_BallastState, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
-	int32 BallastState = 0;
+	EAtlantisBallastState BallastState = EAtlantisBallastState::None;
 
+	/** Current traversal mode, stored as a placeholder integer until traversal modes are defined. */
 	UPROPERTY(ReplicatedUsing = OnRep_TraversalMode, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	int32 TraversalMode = 0;
 
+	/** Identifiers for the items currently equipped by the player. */
 	UPROPERTY(ReplicatedUsing = OnRep_EquippedItems, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	TArray<FString> EquippedItems;
 
@@ -126,7 +146,7 @@ protected:
 	void OnRep_BallastAllocation(bool bOldBallastAllocation);
 
 	UFUNCTION()
-	void OnRep_BallastState(int32 OldBallastState);
+	void OnRep_BallastState(EAtlantisBallastState OldBallastState);
 
 	UFUNCTION()
 	void OnRep_TraversalMode(int32 OldTraversalMode) const;

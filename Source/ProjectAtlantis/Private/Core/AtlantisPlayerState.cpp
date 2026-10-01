@@ -81,14 +81,14 @@ void AAtlantisPlayerState::SetBallastAllocated(const bool bNewBallastAllocation)
 	OnRep_BallastAllocation(bOldBallastAllocation);
 }
 
-void AAtlantisPlayerState::SetBallastState(const int32 NewBallastState)
+void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallastState)
 {
 	if (!HasAuthority() || BallastState == NewBallastState)
 	{
 		return;
 	}
 
-	const int32 OldBallastState = BallastState;
+	const EAtlantisBallastState OldBallastState = BallastState;
 	BallastState = NewBallastState;
 
 	OnRep_BallastState(OldBallastState);
@@ -122,7 +122,7 @@ void AAtlantisPlayerState::OnRep_BallastAllocation(const bool bOldBallastAllocat
 	BroadcastBallastChanged();
 }
 
-void AAtlantisPlayerState::OnRep_BallastState(const int32 OldBallastState)
+void AAtlantisPlayerState::OnRep_BallastState(const EAtlantisBallastState OldBallastState)
 {
 	BroadcastBallastChanged();
 }
