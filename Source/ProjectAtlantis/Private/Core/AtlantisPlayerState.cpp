@@ -141,3 +141,53 @@ void AAtlantisPlayerState::BroadcastBallastChanged() const
 {
 	OnBallastChanged.Broadcast(bBallastAllocation, BallastState);
 }
+
+float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastState BallastState) const
+{
+	switch (BallastState)
+	{
+	case EAtlantisBallastState::Descend:
+		return DescendOxygenAllocation;
+
+	case EAtlantisBallastState::Wander:
+		return WanderOxygenAllocation;
+
+	case EAtlantisBallastState::Ascend:
+		return AscendOxygenAllocation;
+
+
+	case EAtlantisBallastState::None:
+		//TODO: Confirm None case handling
+		ensureMsgf(false, TEXT("GetRequiredBallastAllocation called with EValueState::None"));
+		return 0;
+	};
+}
+
+void AAtlantisPlayerState::RequestBallasteStateChange(const EAtlantisBallastState NewBallastState)
+{
+
+
+	//TODO confirm if the first initialization of the BallastState should pass through here.
+	bool bOxygenAllocated = IsBallastAllocated();
+	if (NewBallastState == EAtlantisBallastState::None) {
+		//TODO something
+
+		return;
+	}
+	if (NewBallastState == GetBallastState()) { return; }
+
+
+	float RequiredAllocation = GetRequiredBallastAllocation(NewBallastState);
+		//TODO confirm if current should be > or >= than required
+		//TODO confirm that CurrentOxygen includes LockedOxygen
+
+		if (GetCurrentOxygen() > RequiredAllocation) {
+			
+
+			//TODO confirm the use of lockeOxygen is ok
+			//TODO confirm if Oxygen can be locked by other sources. If yes, confirm if the case BallastState = None must be handled here
+
+			SetLockedOxygen(RequiredAllocation);
+			SetBallastState(NewBallastState)
+		}
+}

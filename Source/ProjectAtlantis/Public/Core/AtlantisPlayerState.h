@@ -156,4 +156,27 @@ protected:
 
 	/** Shared fan-out for the two ballast properties. */
 	void BroadcastBallastChanged() const;
+
+
+protected:
+	//TODO : Confirm varibles grouping and category
+	// Value configuration - tuning values not strictly related to the player, set in Blueprint class defaults. 
+ 
+	/**	Required Oxygen Allocation for Descending Ballast State. */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
+	float DescendOxygenAllocation = 0.f;
+	
+	/**	Required Oxygen Allocation for Wander Ballast State. */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
+	float WanderOxygenAllocation = 1.f;
+
+	/**	Required Oxygen Allocation for Ascending Ballast State. */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
+	float AscendOxygenAllocation = 2.f;
+
+	/** Returns the Oxygen allocation required by BallastState. */
+	float GetRequiredBallastAllocation(EAtlantisBallastState BallastState) const;
+	
+	void RequestBallasteStateChange(EAtlantisBallastState NewBallastValueState);
+
 };
