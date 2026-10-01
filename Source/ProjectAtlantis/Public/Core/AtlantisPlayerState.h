@@ -9,9 +9,13 @@
 UENUM(BlueprintType)
 enum class EAtlantisBallastState : uint8
 {
+	/** Invalid sentinel used to detect a ballast state that was not explicitly initialized. */
 	None = 0,
+	/** Sink passively without ballast oxygen; allow horizontal swimming and lower surface walking. */
 	Descend,
+	/** Hold roughly the same depth; allow horizontal and vertical swimming, but no surface walking. */
 	Wander,
+	/** Rise passively using more ballast oxygen than Wander; allow horizontal swimming and upper surface walking. */
 	Ascend,
 };
 
