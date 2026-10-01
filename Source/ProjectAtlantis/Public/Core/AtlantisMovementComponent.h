@@ -7,7 +7,7 @@
 #include "AtlantisMovementComponent.generated.h"
 
 /**
- * Player movement component, so we can set up the stock CMC with our swim-specific tuning values
+ * Player movement component, so we can set up the stock Character Movement Component with our swim-specific tuning values
  */
 UCLASS()
 class PROJECTATLANTIS_API UAtlantisMovementComponent : public UCharacterMovementComponent
