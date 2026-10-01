@@ -6,6 +6,15 @@
 #include "GameFramework/PlayerState.h"
 #include "AtlantisPlayerState.generated.h"
 
+UENUM(BlueprintType)
+enum class EAtlantisBallastState : uint8
+{
+	None = 0,
+	Descend,
+	Wander,
+	Ascend,
+};
+
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnOxygenCapacityChanged, float, OldOxygenCapacity, float, NewOxygenCapacity);
 
@@ -16,7 +25,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, Old
  * Any part of the ballast system changed. Allocation and state are grouped into a single
  * event because nothing consumes one without the other.
  */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBallastChanged, bool, bIsAllocated, int32, BallastState);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBallastChanged, bool, bIsAllocated, EAtlantisBallastState, BallastState);
 
 /** Traversal mode changed. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTraversalModeChanged, int32, OldTraversalMode, int32, NewTraversalMode);
@@ -70,7 +79,7 @@ public:
 	bool IsBallastAllocated() const { return bBallastAllocation; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
-	int32 GetBallastState() const { return BallastState; }
+	EAtlantisBallastState GetBallastState() const { return BallastState; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	int32 GetTraversalMode() const { return TraversalMode; }
@@ -89,7 +98,7 @@ public:
 	void SetBallastAllocated(bool bNewBallastAllocation);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
-	void SetBallastState(int32 NewBallastState);
+	void SetBallastState(EAtlantisBallastState NewBallastState);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetTraversalMode(int32 NewTraversalMode);
@@ -107,7 +116,7 @@ protected:
 	bool bBallastAllocation = false;
 
 	UPROPERTY(ReplicatedUsing = OnRep_BallastState, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
-	int32 BallastState = 0;
+	EAtlantisBallastState BallastState = EAtlantisBallastState::None;
 
 	UPROPERTY(ReplicatedUsing = OnRep_TraversalMode, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	int32 TraversalMode = 0;
@@ -126,7 +135,7 @@ protected:
 	void OnRep_BallastAllocation(bool bOldBallastAllocation);
 
 	UFUNCTION()
-	void OnRep_BallastState(int32 OldBallastState);
+	void OnRep_BallastState(EAtlantisBallastState OldBallastState);
 
 	UFUNCTION()
 	void OnRep_TraversalMode(int32 OldTraversalMode) const;
