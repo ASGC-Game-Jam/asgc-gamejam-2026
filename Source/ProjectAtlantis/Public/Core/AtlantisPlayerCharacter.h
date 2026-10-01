@@ -13,7 +13,7 @@ class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
 
 public:
 	// Sets default values for this character's properties
-	AAtlantisPlayerCharacter();
+	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
 
 protected:
 	// Called when the game starts or when spawned

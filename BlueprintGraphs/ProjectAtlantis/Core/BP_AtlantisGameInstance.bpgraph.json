@@ -1,0 +1,654 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/BP_AtlantisGameInstance",
+	"asset": "BP_AtlantisGameInstance",
+	"parentClass": "GameInstance",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "07629e0e44be1dac0ee45094528b0cbc",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 944,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "07629e0e44be1dac0ee45094528b0cbc:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.AudioComponent",
+							"defaultValue": null,
+							"links": [
+								"2a4e51b4489ae8a34f251e92cb64cbd3:o:MusicPlayer"
+							]
+						},
+						{
+							"id": "07629e0e44be1dac0ee45094528b0cbc:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.AudioComponent",
+							"defaultValue": null,
+							"links": [
+								"4756503d475f221ac8307eb9d9817945:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2a4e51b4489ae8a34f251e92cb64cbd3",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 464,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2a4e51b4489ae8a34f251e92cb64cbd3:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e363a9664c54623272193bb2c7064760:o:then"
+							]
+						},
+						{
+							"id": "2a4e51b4489ae8a34f251e92cb64cbd3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"85a8a73c4c7ae34d28d1e093760c3832:i:InputPin"
+							]
+						},
+						{
+							"id": "2a4e51b4489ae8a34f251e92cb64cbd3:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f6c8b7b04b40a1466f7f80924414eed3:i:execute"
+							]
+						},
+						{
+							"id": "2a4e51b4489ae8a34f251e92cb64cbd3:o:MusicPlayer",
+							"name": "MusicPlayer",
+							"direction": "output",
+							"type": "object:/Script/Engine.AudioComponent",
+							"defaultValue": null,
+							"links": [
+								"07629e0e44be1dac0ee45094528b0cbc:i:InputPin"
+							]
+						},
+						{
+							"id": "2a4e51b4489ae8a34f251e92cb64cbd3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/BP_AtlantisGameInstance.BP_AtlantisGameInstance_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3a791cc84c0c5077ee339fbb62ae3d81",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 480,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3a791cc84c0c5077ee339fbb62ae3d81:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": [
+								"e363a9664c54623272193bb2c7064760:o:Music"
+							]
+						},
+						{
+							"id": "3a791cc84c0c5077ee339fbb62ae3d81:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": [
+								"66e2103c4062dde5a0a822b5125b3576:i:InputPin",
+								"d98a8ad141be1bf5031c9c8b3e6493f4:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "433fa9de417e999305ef85bb368d7d51",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 816,
+					"y": 79,
+					"comment": null,
+					"pins": [
+						{
+							"id": "433fa9de417e999305ef85bb368d7d51:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"85a8a73c4c7ae34d28d1e093760c3832:o:OutputPin"
+							]
+						},
+						{
+							"id": "433fa9de417e999305ef85bb368d7d51:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d98a8ad141be1bf5031c9c8b3e6493f4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "433fa9de417e999305ef85bb368d7d51:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "433fa9de417e999305ef85bb368d7d51:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4756503d475f221ac8307eb9d9817945:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4756503d475f221ac8307eb9d9817945",
+					"class": "K2Node_CallFunction",
+					"title": "Stop",
+					"x": 1024,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4756503d475f221ac8307eb9d9817945:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"433fa9de417e999305ef85bb368d7d51:o:else"
+							]
+						},
+						{
+							"id": "4756503d475f221ac8307eb9d9817945:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f6c8b7b04b40a1466f7f80924414eed3:i:execute"
+							]
+						},
+						{
+							"id": "4756503d475f221ac8307eb9d9817945:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.AudioComponent",
+							"defaultValue": null,
+							"links": [
+								"07629e0e44be1dac0ee45094528b0cbc:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "66e2103c4062dde5a0a822b5125b3576",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1232,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "66e2103c4062dde5a0a822b5125b3576:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": [
+								"3a791cc84c0c5077ee339fbb62ae3d81:o:OutputPin"
+							]
+						},
+						{
+							"id": "66e2103c4062dde5a0a822b5125b3576:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": [
+								"9cc0d12a4090376b52e4ed9dbc88f592:i:InputPin",
+								"f6c8b7b04b40a1466f7f80924414eed3:i:Sound"
+							]
+						}
+					]
+				},
+				{
+					"guid": "85a8a73c4c7ae34d28d1e093760c3832",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 736,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "85a8a73c4c7ae34d28d1e093760c3832:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2a4e51b4489ae8a34f251e92cb64cbd3:o:then"
+							]
+						},
+						{
+							"id": "85a8a73c4c7ae34d28d1e093760c3832:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"433fa9de417e999305ef85bb368d7d51:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9cc0d12a4090376b52e4ed9dbc88f592",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1824,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9cc0d12a4090376b52e4ed9dbc88f592:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": [
+								"66e2103c4062dde5a0a822b5125b3576:o:OutputPin"
+							]
+						},
+						{
+							"id": "9cc0d12a4090376b52e4ed9dbc88f592:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": [
+								"c8079306442e311fcd561d87fd880b28:i:MusicPlaying"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c8079306442e311fcd561d87fd880b28",
+					"class": "K2Node_VariableSet",
+					"title": "Set MusicPlaying",
+					"x": 1920,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c8079306442e311fcd561d87fd880b28:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c84835aa455dd2edf8e9b9ba400b0345:o:then"
+							]
+						},
+						{
+							"id": "c8079306442e311fcd561d87fd880b28:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c8079306442e311fcd561d87fd880b28:i:MusicPlaying",
+							"name": "MusicPlaying",
+							"direction": "input",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": [
+								"9cc0d12a4090376b52e4ed9dbc88f592:o:OutputPin"
+							]
+						},
+						{
+							"id": "c8079306442e311fcd561d87fd880b28:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/BP_AtlantisGameInstance.BP_AtlantisGameInstance_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c8079306442e311fcd561d87fd880b28:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c84835aa455dd2edf8e9b9ba400b0345",
+					"class": "K2Node_VariableSet",
+					"title": "Set MusicPlayer",
+					"x": 1696,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c84835aa455dd2edf8e9b9ba400b0345:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f6c8b7b04b40a1466f7f80924414eed3:o:then"
+							]
+						},
+						{
+							"id": "c84835aa455dd2edf8e9b9ba400b0345:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c8079306442e311fcd561d87fd880b28:i:execute"
+							]
+						},
+						{
+							"id": "c84835aa455dd2edf8e9b9ba400b0345:i:MusicPlayer",
+							"name": "MusicPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.AudioComponent",
+							"defaultValue": null,
+							"links": [
+								"f6c8b7b04b40a1466f7f80924414eed3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c84835aa455dd2edf8e9b9ba400b0345:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/BP_AtlantisGameInstance.BP_AtlantisGameInstance_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c84835aa455dd2edf8e9b9ba400b0345:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.AudioComponent",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d98a8ad141be1bf5031c9c8b3e6493f4",
+					"class": "K2Node_PromotableOperator",
+					"title": "Equal (Object)",
+					"x": 624,
+					"y": 114,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d98a8ad141be1bf5031c9c8b3e6493f4:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"3a791cc84c0c5077ee339fbb62ae3d81:o:OutputPin"
+							]
+						},
+						{
+							"id": "d98a8ad141be1bf5031c9c8b3e6493f4:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"f4fc6c684dcf9ebd113c9ea181a5faf1:o:MusicPlaying"
+							]
+						},
+						{
+							"id": "d98a8ad141be1bf5031c9c8b3e6493f4:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"433fa9de417e999305ef85bb368d7d51:i:Condition"
+							]
+						},
+						{
+							"id": "d98a8ad141be1bf5031c9c8b3e6493f4:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e363a9664c54623272193bb2c7064760",
+					"class": "K2Node_CustomEvent",
+					"title": "PlayMusic",
+					"x": 272,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e363a9664c54623272193bb2c7064760:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e363a9664c54623272193bb2c7064760:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2a4e51b4489ae8a34f251e92cb64cbd3:i:execute"
+							]
+						},
+						{
+							"id": "e363a9664c54623272193bb2c7064760:o:Music",
+							"name": "Music",
+							"direction": "output",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": [
+								"3a791cc84c0c5077ee339fbb62ae3d81:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f4fc6c684dcf9ebd113c9ea181a5faf1",
+					"class": "K2Node_VariableGet",
+					"title": "Get MusicPlaying",
+					"x": 464,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f4fc6c684dcf9ebd113c9ea181a5faf1:o:MusicPlaying",
+							"name": "MusicPlaying",
+							"direction": "output",
+							"type": "object:/Script/Engine.SoundWave",
+							"defaultValue": null,
+							"links": [
+								"d98a8ad141be1bf5031c9c8b3e6493f4:i:B"
+							]
+						},
+						{
+							"id": "f4fc6c684dcf9ebd113c9ea181a5faf1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/BP_AtlantisGameInstance.BP_AtlantisGameInstance_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f6c8b7b04b40a1466f7f80924414eed3",
+					"class": "K2Node_CallFunction",
+					"title": "Spawn Sound 2D",
+					"x": 1328,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2a4e51b4489ae8a34f251e92cb64cbd3:o:else",
+								"4756503d475f221ac8307eb9d9817945:o:then"
+							]
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c84835aa455dd2edf8e9b9ba400b0345:i:execute"
+							]
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:Sound",
+							"name": "Sound",
+							"direction": "input",
+							"type": "object:/Script/Engine.SoundBase",
+							"defaultValue": null,
+							"links": [
+								"66e2103c4062dde5a0a822b5125b3576:o:OutputPin"
+							]
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:VolumeMultiplier",
+							"name": "VolumeMultiplier",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:PitchMultiplier",
+							"name": "PitchMultiplier",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:StartTime",
+							"name": "StartTime",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:ConcurrencySettings",
+							"name": "ConcurrencySettings",
+							"direction": "input",
+							"type": "object:/Script/Engine.SoundConcurrency",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:bPersistAcrossLevelTransition",
+							"name": "bPersistAcrossLevelTransition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:i:bAutoDestroy",
+							"name": "bAutoDestroy",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "f6c8b7b04b40a1466f7f80924414eed3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.AudioComponent",
+							"defaultValue": null,
+							"links": [
+								"c84835aa455dd2edf8e9b9ba400b0345:i:MusicPlayer"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}
