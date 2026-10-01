@@ -24,7 +24,7 @@ private:
 	 * Acceleration while swimming. Separate from walking's Max Acceleration so swim feel can be tuned independently 
 	 * See also Braking Deceleration
 	 */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Movement: Swimming" , meta = (AllowPrivateAccess = true, ClampMin = 0, UIMin=0,ForceUnits = "cm/s^2"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Movement: Swimming", meta = (AllowPrivateAccess = true, ClampMin = 0, UIMin = 0, ForceUnits = "cm/s^2"))
 	float MaxSwimAcceleration;
 };
 
