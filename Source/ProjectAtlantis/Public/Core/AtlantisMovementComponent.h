@@ -17,6 +17,7 @@ class PROJECTATLANTIS_API UAtlantisMovementComponent : public UCharacterMovement
 public:
 	UAtlantisMovementComponent();
 
+	virtual void PhysicsVolumeChanged(APhysicsVolume* NewVolume) override;
 	virtual float ImmersionDepth() const override;
 	virtual float GetMaxAcceleration() const override;
 	virtual void CalcVelocity(float DeltaTime, float Friction, bool bFluid, float BrakingDeceleration) override;
