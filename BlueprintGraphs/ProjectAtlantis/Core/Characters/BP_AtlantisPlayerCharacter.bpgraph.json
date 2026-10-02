@@ -879,6 +879,36 @@
 					]
 				},
 				{
+					"guid": "0a6f55724a4cc8f7d732cebce503595d",
+					"class": "K2Node_VariableGet",
+					"title": "Get CurrentOxygenLevel",
+					"x": -4544,
+					"y": -3680,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0a6f55724a4cc8f7d732cebce503595d:o:CurrentOxygenLevel",
+							"name": "CurrentOxygenLevel",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4db721f0409e4d730601418230f7029b:i:Value"
+							]
+						},
+						{
+							"id": "0a6f55724a4cc8f7d732cebce503595d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"2837dee4469daf3b0096f79fa28f8485:o:AsBP Atlantis Game Mode"
+							]
+						}
+					]
+				},
+				{
 					"guid": "0cba04d1437c70c90659b7988398690f",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
@@ -1011,6 +1041,72 @@
 					]
 				},
 				{
+					"guid": "2837dee4469daf3b0096f79fa28f8485",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisGameMode",
+					"x": -4896,
+					"y": -3840,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2837dee4469daf3b0096f79fa28f8485:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ada692a84ab31730e45a519f51188529:o:then"
+							]
+						},
+						{
+							"id": "2837dee4469daf3b0096f79fa28f8485:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a6b5104a4b95ac0ab67bbebf1addddd4:i:execute"
+							]
+						},
+						{
+							"id": "2837dee4469daf3b0096f79fa28f8485:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2837dee4469daf3b0096f79fa28f8485:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"6f73f09142a1668f9d23be88d793b118:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2837dee4469daf3b0096f79fa28f8485:o:AsBP Atlantis Game Mode",
+							"name": "AsBP Atlantis Game Mode",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"0a6f55724a4cc8f7d732cebce503595d:i:self"
+							]
+						},
+						{
+							"id": "2837dee4469daf3b0096f79fa28f8485:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "4c1e286e481a36a714cd1ea38e21e6cd",
 					"class": "K2Node_CallFunction",
 					"title": "Set Active",
@@ -1067,6 +1163,100 @@
 					]
 				},
 				{
+					"guid": "4db721f0409e4d730601418230f7029b",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (Float)",
+					"x": -4256,
+					"y": -3712,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4db721f0409e4d730601418230f7029b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "4db721f0409e4d730601418230f7029b:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0a6f55724a4cc8f7d732cebce503595d:o:CurrentOxygenLevel"
+							]
+						},
+						{
+							"id": "4db721f0409e4d730601418230f7029b:i:RoundingMode",
+							"name": "RoundingMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ERoundingMode",
+							"defaultValue": "HalfToEven",
+							"links": []
+						},
+						{
+							"id": "4db721f0409e4d730601418230f7029b:i:bAlwaysSign",
+							"name": "bAlwaysSign",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "4db721f0409e4d730601418230f7029b:i:bUseGrouping",
+							"name": "bUseGrouping",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4db721f0409e4d730601418230f7029b:i:MinimumIntegralDigits",
+							"name": "MinimumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "4db721f0409e4d730601418230f7029b:i:MaximumIntegralDigits",
+							"name": "MaximumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "324",
+							"links": []
+						},
+						{
+							"id": "4db721f0409e4d730601418230f7029b:i:MinimumFractionalDigits",
+							"name": "MinimumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "4db721f0409e4d730601418230f7029b:i:MaximumFractionalDigits",
+							"name": "MaximumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "3",
+							"links": []
+						},
+						{
+							"id": "4db721f0409e4d730601418230f7029b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"a6b5104a4b95ac0ab67bbebf1addddd4:i:InText"
+							]
+						}
+					]
+				},
+				{
 					"guid": "541d1a584c06f832087eceaeeae1fd30",
 					"class": "K2Node_VariableGet",
 					"title": "Get ThirdPersonCamera",
@@ -1091,6 +1281,102 @@
 							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5eeeeedf4b2745dd1a4e90837a0c8ded",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -4640,
+					"y": -3568,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5eeeeedf4b2745dd1a4e90837a0c8ded:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d10d573a40c9ea13d6f8eaad66ab63f6:o:OutputPin"
+							]
+						},
+						{
+							"id": "5eeeeedf4b2745dd1a4e90837a0c8ded:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6f309a1f4f1eb82c44ccd48b62a943f5:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6f309a1f4f1eb82c44ccd48b62a943f5",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -4640,
+					"y": -3424,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6f309a1f4f1eb82c44ccd48b62a943f5:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5eeeeedf4b2745dd1a4e90837a0c8ded:o:OutputPin"
+							]
+						},
+						{
+							"id": "6f309a1f4f1eb82c44ccd48b62a943f5:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bcdeb1374ba9e19d1e97209ed3301658:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6f73f09142a1668f9d23be88d793b118",
+					"class": "K2Node_CallFunction",
+					"title": "Get Game Mode",
+					"x": -5248,
+					"y": -3808,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6f73f09142a1668f9d23be88d793b118:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "6f73f09142a1668f9d23be88d793b118:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6f73f09142a1668f9d23be88d793b118:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.GameModeBase",
+							"defaultValue": null,
+							"links": [
+								"2837dee4469daf3b0096f79fa28f8485:i:Object"
+							]
 						}
 					]
 				},
@@ -1151,6 +1437,102 @@
 					]
 				},
 				{
+					"guid": "a6b5104a4b95ac0ab67bbebf1addddd4",
+					"class": "K2Node_CallFunction",
+					"title": "Print Text",
+					"x": -4000,
+					"y": -3840,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2837dee4469daf3b0096f79fa28f8485:o:then"
+							]
+						},
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b2d14372433bd0b7ca9010a734d1c64f:i:InputPin"
+							]
+						},
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"4db721f0409e4d730601418230f7029b:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "ada692a84ab31730e45a519f51188529",
 					"class": "K2Node_Event",
 					"title": "Event Tick",
@@ -1173,7 +1555,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"bcdeb1374ba9e19d1e97209ed3301658:i:execute"
+								"2837dee4469daf3b0096f79fa28f8485:i:execute"
 							]
 						},
 						{
@@ -1183,6 +1565,36 @@
 							"type": "real:float",
 							"defaultValue": "0.0",
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b2d14372433bd0b7ca9010a734d1c64f",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -3824,
+					"y": -3808,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b2d14372433bd0b7ca9010a734d1c64f:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a6b5104a4b95ac0ab67bbebf1addddd4:o:then"
+							]
+						},
+						{
+							"id": "b2d14372433bd0b7ca9010a734d1c64f:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d10d573a40c9ea13d6f8eaad66ab63f6:i:InputPin"
+							]
 						}
 					]
 				},
@@ -1201,7 +1613,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"ada692a84ab31730e45a519f51188529:o:then"
+								"6f309a1f4f1eb82c44ccd48b62a943f5:o:OutputPin"
 							]
 						},
 						{
@@ -1323,6 +1735,36 @@
 							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d10d573a40c9ea13d6f8eaad66ab63f6",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -3808,
+					"y": -3568,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d10d573a40c9ea13d6f8eaad66ab63f6:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b2d14372433bd0b7ca9010a734d1c64f:o:OutputPin"
+							]
+						},
+						{
+							"id": "d10d573a40c9ea13d6f8eaad66ab63f6:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5eeeeedf4b2745dd1a4e90837a0c8ded:i:InputPin"
+							]
 						}
 					]
 				},
@@ -1579,11 +2021,42 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "01d7ab3244c7dceb6ce8409deac72c5c",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 256,
+					"y": 864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "01d7ab3244c7dceb6ce8409deac72c5c:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"10609d0e429ca915b0592caa2aa97b7e:o:Started",
+								"ac2d8a4f475c98bed83d238f71d27f64:o:then"
+							]
+						},
+						{
+							"id": "01d7ab3244c7dceb6ce8409deac72c5c:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"428d84a64464d01309517898ea59d8e9:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "05a1f815492cf9380cf2f088cd043a79",
 					"class": "K2Node_CallFunction",
 					"title": "Jump",
-					"x": 288,
-					"y": 816,
+					"x": 1808,
+					"y": 944,
 					"comment": null,
 					"pins": [
 						{
@@ -1593,8 +2066,8 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"10609d0e429ca915b0592caa2aa97b7e:o:Started",
-								"ac2d8a4f475c98bed83d238f71d27f64:o:then"
+								"540e3105492f39b567e491acdb8d45e9:o:then",
+								"a6967ce74eb386383f41018b0b900b80:o:else"
 							]
 						},
 						{
@@ -1612,6 +2085,66 @@
 							"type": "object:/Script/Engine.Character",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0d32d2cc49ebc4a7a61f86bc57515ef4",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1344,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0d32d2cc49ebc4a7a61f86bc57515ef4:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"8e9017dd46f9decf0f93b0b083804d3c:o:OutputPin"
+							]
+						},
+						{
+							"id": "0d32d2cc49ebc4a7a61f86bc57515ef4:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"540e3105492f39b567e491acdb8d45e9:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0f3f89604489f9125af7fc8fc47ef776",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1456,
+					"y": 2176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0f3f89604489f9125af7fc8fc47ef776:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"b99d1350480fe1fb7f7f4daf42170248:o:OutputPin"
+							]
+						},
+						{
+							"id": "0f3f89604489f9125af7fc8fc47ef776:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"77c0f33c4a166fc5bc8611b71a13b57b:i:self"
+							]
 						}
 					]
 				},
@@ -1638,7 +2171,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"05a1f815492cf9380cf2f088cd043a79:i:execute"
+								"01d7ab3244c7dceb6ce8409deac72c5c:i:InputPin"
 							]
 						},
 						{
@@ -1762,7 +2295,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "Stop Jumping",
 					"x": 288,
-					"y": 960,
+					"y": 1120,
 					"comment": null,
 					"pins": [
 						{
@@ -1795,6 +2328,152 @@
 					]
 				},
 				{
+					"guid": "15655e1f4ed450c88a5014935cf47c55",
+					"class": "K2Node_VariableGet",
+					"title": "Get OxygenShouldDecrease",
+					"x": 800,
+					"y": 976,
+					"comment": null,
+					"pins": [
+						{
+							"id": "15655e1f4ed450c88a5014935cf47c55:o:OxygenShouldDecrease",
+							"name": "OxygenShouldDecrease",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"a6967ce74eb386383f41018b0b900b80:i:Condition"
+							]
+						},
+						{
+							"id": "15655e1f4ed450c88a5014935cf47c55:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"428d84a64464d01309517898ea59d8e9:o:AsBP Atlantis Game Mode"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1c6e6be94dc9720349b03c8d95226c25",
+					"class": "K2Node_VariableGet",
+					"title": "Get OxygenShouldIncrease",
+					"x": 640,
+					"y": 2048,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1c6e6be94dc9720349b03c8d95226c25:o:OxygenShouldIncrease",
+							"name": "OxygenShouldIncrease",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"9905c75f48234ab08cb6a48d2f9a4358:i:Condition"
+							]
+						},
+						{
+							"id": "1c6e6be94dc9720349b03c8d95226c25:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"f443189147b57569a12bf885be4ff993:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2ba5c72a48c7cbde783357b7c53455c4",
+					"class": "K2Node_VariableSet",
+					"title": "Set OxygenShouldDecrease",
+					"x": 1216,
+					"y": 1616,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2ba5c72a48c7cbde783357b7c53455c4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eb70d7694e0438341c94b0bc24a21c5c:o:else"
+							]
+						},
+						{
+							"id": "2ba5c72a48c7cbde783357b7c53455c4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e24fb39d4a7d071aa51478be08d1bcc0:i:execute"
+							]
+						},
+						{
+							"id": "2ba5c72a48c7cbde783357b7c53455c4:i:OxygenShouldDecrease",
+							"name": "OxygenShouldDecrease",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "2ba5c72a48c7cbde783357b7c53455c4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"d4f8a9b94f635a1b8e502997858f4f9a:o:OutputPin"
+							]
+						},
+						{
+							"id": "2ba5c72a48c7cbde783357b7c53455c4:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3676dd814405c8f4d1e7f5922e5092e6",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1216,
+					"y": 1776,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3676dd814405c8f4d1e7f5922e5092e6:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"d4f8a9b94f635a1b8e502997858f4f9a:o:OutputPin"
+							]
+						},
+						{
+							"id": "3676dd814405c8f4d1e7f5922e5092e6:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"dbd10bed4c14275d80498db935770e43:i:InputPin"
+							]
+						}
+					]
+				},
+				{
 					"guid": "3a147b2b424d0103e520ea94db7e2b86",
 					"class": "K2Node_Event",
 					"title": "Event Touch Jump End",
@@ -1818,6 +2497,271 @@
 							"defaultValue": null,
 							"links": [
 								"13e99d724ae7ddaf0bbd52a5dbc5dace:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3bb9ff064a88615681ddcc875e92edf7",
+					"class": "K2Node_VariableSet",
+					"title": "Set OxygenShouldIncrease",
+					"x": 1232,
+					"y": 1872,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3bb9ff064a88615681ddcc875e92edf7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9905c75f48234ab08cb6a48d2f9a4358:o:then"
+							]
+						},
+						{
+							"id": "3bb9ff064a88615681ddcc875e92edf7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3bb9ff064a88615681ddcc875e92edf7:i:OxygenShouldIncrease",
+							"name": "OxygenShouldIncrease",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "3bb9ff064a88615681ddcc875e92edf7:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "3bb9ff064a88615681ddcc875e92edf7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"984c8eb5465b091187368f9a0d11c822:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "428d84a64464d01309517898ea59d8e9",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisGameMode",
+					"x": 480,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "428d84a64464d01309517898ea59d8e9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"01d7ab3244c7dceb6ce8409deac72c5c:o:OutputPin"
+							]
+						},
+						{
+							"id": "428d84a64464d01309517898ea59d8e9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a6967ce74eb386383f41018b0b900b80:i:execute"
+							]
+						},
+						{
+							"id": "428d84a64464d01309517898ea59d8e9:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "428d84a64464d01309517898ea59d8e9:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"887596144672a21852d6168c394085f5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "428d84a64464d01309517898ea59d8e9:o:AsBP Atlantis Game Mode",
+							"name": "AsBP Atlantis Game Mode",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"15655e1f4ed450c88a5014935cf47c55:i:self",
+								"8e9017dd46f9decf0f93b0b083804d3c:i:InputPin"
+							]
+						},
+						{
+							"id": "428d84a64464d01309517898ea59d8e9:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4bb14e164a84fe154e1bf4911e2cc59f",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisGameMode",
+					"x": 288,
+					"y": 1952,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4bb14e164a84fe154e1bf4911e2cc59f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bfb1d3314e5e53a2024b14890969f9b2:o:Pressed"
+							]
+						},
+						{
+							"id": "4bb14e164a84fe154e1bf4911e2cc59f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9905c75f48234ab08cb6a48d2f9a4358:i:execute"
+							]
+						},
+						{
+							"id": "4bb14e164a84fe154e1bf4911e2cc59f:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4bb14e164a84fe154e1bf4911e2cc59f:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"d32f747d4ee208ea4b51fbaa0d61aab7:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4bb14e164a84fe154e1bf4911e2cc59f:o:AsBP Atlantis Game Mode",
+							"name": "AsBP Atlantis Game Mode",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"f443189147b57569a12bf885be4ff993:i:InputPin"
+							]
+						},
+						{
+							"id": "4bb14e164a84fe154e1bf4911e2cc59f:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "540e3105492f39b567e491acdb8d45e9",
+					"class": "K2Node_CallFunction",
+					"title": "DecreaseOxygenBy",
+					"x": 1440,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "540e3105492f39b567e491acdb8d45e9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a6967ce74eb386383f41018b0b900b80:o:then"
+							]
+						},
+						{
+							"id": "540e3105492f39b567e491acdb8d45e9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"05a1f815492cf9380cf2f088cd043a79:i:execute"
+							]
+						},
+						{
+							"id": "540e3105492f39b567e491acdb8d45e9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"0d32d2cc49ebc4a7a61f86bc57515ef4:o:OutputPin"
+							]
+						},
+						{
+							"id": "540e3105492f39b567e491acdb8d45e9:i:DecreaseBy",
+							"name": "DecreaseBy",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "5.000000",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5aa03fc44858f67a4f41768ab0c34ff2",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 640,
+					"y": 1712,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5aa03fc44858f67a4f41768ab0c34ff2:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"a4b0fadd4aa52246c7ab85be88366afb:o:OutputPin"
+							]
+						},
+						{
+							"id": "5aa03fc44858f67a4f41768ab0c34ff2:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"d4f8a9b94f635a1b8e502997858f4f9a:i:InputPin"
 							]
 						}
 					]
@@ -1927,6 +2871,72 @@
 					]
 				},
 				{
+					"guid": "6dcfcdaa41061a7993dc61abdcb30596",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisGameMode",
+					"x": 288,
+					"y": 1552,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6dcfcdaa41061a7993dc61abdcb30596:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ecac9e9d4ea3086fd38fcc98b4860df1:o:Pressed"
+							]
+						},
+						{
+							"id": "6dcfcdaa41061a7993dc61abdcb30596:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eb70d7694e0438341c94b0bc24a21c5c:i:execute"
+							]
+						},
+						{
+							"id": "6dcfcdaa41061a7993dc61abdcb30596:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6dcfcdaa41061a7993dc61abdcb30596:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"f1c724eb4a5626a238c64797bb8ff427:o:ReturnValue"
+							]
+						},
+						{
+							"id": "6dcfcdaa41061a7993dc61abdcb30596:o:AsBP Atlantis Game Mode",
+							"name": "AsBP Atlantis Game Mode",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"a4b0fadd4aa52246c7ab85be88366afb:i:InputPin"
+							]
+						},
+						{
+							"id": "6dcfcdaa41061a7993dc61abdcb30596:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "7579ef1340e9eec3f06f649089cbc0a8",
 					"class": "K2Node_CallFunction",
 					"title": "Aim",
@@ -1978,6 +2988,60 @@
 							"defaultValue": null,
 							"links": [
 								"6004f173430db82107689eb0db8d7045:o:ActionValue_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "77c0f33c4a166fc5bc8611b71a13b57b",
+					"class": "K2Node_VariableSet",
+					"title": "Set OxygenShouldDecrease",
+					"x": 1552,
+					"y": 2016,
+					"comment": null,
+					"pins": [
+						{
+							"id": "77c0f33c4a166fc5bc8611b71a13b57b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"965d648c487ef3dac89d508f12f3988f:o:then"
+							]
+						},
+						{
+							"id": "77c0f33c4a166fc5bc8611b71a13b57b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "77c0f33c4a166fc5bc8611b71a13b57b:i:OxygenShouldDecrease",
+							"name": "OxygenShouldDecrease",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "77c0f33c4a166fc5bc8611b71a13b57b:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "77c0f33c4a166fc5bc8611b71a13b57b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"0f3f89604489f9125af7fc8fc47ef776:o:OutputPin"
 							]
 						}
 					]
@@ -2039,6 +3103,293 @@
 					]
 				},
 				{
+					"guid": "8626a1f24ae83b13770ac5873605c301",
+					"class": "K2Node_VariableSet",
+					"title": "Set OxygenShouldDecrease",
+					"x": 1216,
+					"y": 1472,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8626a1f24ae83b13770ac5873605c301:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eb70d7694e0438341c94b0bc24a21c5c:o:then"
+							]
+						},
+						{
+							"id": "8626a1f24ae83b13770ac5873605c301:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8626a1f24ae83b13770ac5873605c301:i:OxygenShouldDecrease",
+							"name": "OxygenShouldDecrease",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8626a1f24ae83b13770ac5873605c301:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "8626a1f24ae83b13770ac5873605c301:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"d4f8a9b94f635a1b8e502997858f4f9a:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "887596144672a21852d6168c394085f5",
+					"class": "K2Node_CallFunction",
+					"title": "Get Game Mode",
+					"x": 304,
+					"y": 896,
+					"comment": null,
+					"pins": [
+						{
+							"id": "887596144672a21852d6168c394085f5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "887596144672a21852d6168c394085f5:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "887596144672a21852d6168c394085f5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.GameModeBase",
+							"defaultValue": null,
+							"links": [
+								"428d84a64464d01309517898ea59d8e9:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8e9017dd46f9decf0f93b0b083804d3c",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 848,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8e9017dd46f9decf0f93b0b083804d3c:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"428d84a64464d01309517898ea59d8e9:o:AsBP Atlantis Game Mode"
+							]
+						},
+						{
+							"id": "8e9017dd46f9decf0f93b0b083804d3c:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"0d32d2cc49ebc4a7a61f86bc57515ef4:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "965d648c487ef3dac89d508f12f3988f",
+					"class": "K2Node_VariableSet",
+					"title": "Set OxygenShouldIncrease",
+					"x": 1232,
+					"y": 2016,
+					"comment": null,
+					"pins": [
+						{
+							"id": "965d648c487ef3dac89d508f12f3988f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9905c75f48234ab08cb6a48d2f9a4358:o:else"
+							]
+						},
+						{
+							"id": "965d648c487ef3dac89d508f12f3988f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"77c0f33c4a166fc5bc8611b71a13b57b:i:execute"
+							]
+						},
+						{
+							"id": "965d648c487ef3dac89d508f12f3988f:i:OxygenShouldIncrease",
+							"name": "OxygenShouldIncrease",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "965d648c487ef3dac89d508f12f3988f:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "965d648c487ef3dac89d508f12f3988f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"b99d1350480fe1fb7f7f4daf42170248:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "984c8eb5465b091187368f9a0d11c822",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1072,
+					"y": 2112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "984c8eb5465b091187368f9a0d11c822:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"dce0b2b34d1bab2177ecc29ab892c145:o:OutputPin"
+							]
+						},
+						{
+							"id": "984c8eb5465b091187368f9a0d11c822:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"3bb9ff064a88615681ddcc875e92edf7:i:self",
+								"b99d1350480fe1fb7f7f4daf42170248:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9905c75f48234ab08cb6a48d2f9a4358",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 928,
+					"y": 1952,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9905c75f48234ab08cb6a48d2f9a4358:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4bb14e164a84fe154e1bf4911e2cc59f:o:then"
+							]
+						},
+						{
+							"id": "9905c75f48234ab08cb6a48d2f9a4358:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"1c6e6be94dc9720349b03c8d95226c25:o:OxygenShouldIncrease"
+							]
+						},
+						{
+							"id": "9905c75f48234ab08cb6a48d2f9a4358:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3bb9ff064a88615681ddcc875e92edf7:i:execute"
+							]
+						},
+						{
+							"id": "9905c75f48234ab08cb6a48d2f9a4358:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"965d648c487ef3dac89d508f12f3988f:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9a2523254728523f298fe5834420b85d",
+					"class": "K2Node_VariableGet",
+					"title": "Get OxygenShouldDecrease",
+					"x": 640,
+					"y": 1648,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a2523254728523f298fe5834420b85d:o:OxygenShouldDecrease",
+							"name": "OxygenShouldDecrease",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"eb70d7694e0438341c94b0bc24a21c5c:i:Condition"
+							]
+						},
+						{
+							"id": "9a2523254728523f298fe5834420b85d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"a4b0fadd4aa52246c7ab85be88366afb:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
 					"guid": "a1208a7345c3a224111917a36958a758",
 					"class": "K2Node_CallFunction",
 					"title": "Aim",
@@ -2095,6 +3446,87 @@
 					]
 				},
 				{
+					"guid": "a4b0fadd4aa52246c7ab85be88366afb",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 576,
+					"y": 1648,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a4b0fadd4aa52246c7ab85be88366afb:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"6dcfcdaa41061a7993dc61abdcb30596:o:AsBP Atlantis Game Mode"
+							]
+						},
+						{
+							"id": "a4b0fadd4aa52246c7ab85be88366afb:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"5aa03fc44858f67a4f41768ab0c34ff2:i:InputPin",
+								"9a2523254728523f298fe5834420b85d:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a6967ce74eb386383f41018b0b900b80",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1152,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a6967ce74eb386383f41018b0b900b80:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"428d84a64464d01309517898ea59d8e9:o:then"
+							]
+						},
+						{
+							"id": "a6967ce74eb386383f41018b0b900b80:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"15655e1f4ed450c88a5014935cf47c55:o:OxygenShouldDecrease"
+							]
+						},
+						{
+							"id": "a6967ce74eb386383f41018b0b900b80:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"540e3105492f39b567e491acdb8d45e9:i:execute"
+							]
+						},
+						{
+							"id": "a6967ce74eb386383f41018b0b900b80:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"05a1f815492cf9380cf2f088cd043a79:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "ac2d8a4f475c98bed83d238f71d27f64",
 					"class": "K2Node_Event",
 					"title": "Event Touch Jump Start",
@@ -2117,7 +3549,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"05a1f815492cf9380cf2f088cd043a79:i:execute"
+								"01d7ab3244c7dceb6ce8409deac72c5c:i:InputPin"
 							]
 						}
 					]
@@ -2179,6 +3611,73 @@
 					]
 				},
 				{
+					"guid": "b99d1350480fe1fb7f7f4daf42170248",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1136,
+					"y": 2176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b99d1350480fe1fb7f7f4daf42170248:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"984c8eb5465b091187368f9a0d11c822:o:OutputPin"
+							]
+						},
+						{
+							"id": "b99d1350480fe1fb7f7f4daf42170248:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"0f3f89604489f9125af7fc8fc47ef776:i:InputPin",
+								"965d648c487ef3dac89d508f12f3988f:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bfb1d3314e5e53a2024b14890969f9b2",
+					"class": "K2Node_InputKey",
+					"title": "8",
+					"x": 128,
+					"y": 1952,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bfb1d3314e5e53a2024b14890969f9b2:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4bb14e164a84fe154e1bf4911e2cc59f:i:execute"
+							]
+						},
+						{
+							"id": "bfb1d3314e5e53a2024b14890969f9b2:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bfb1d3314e5e53a2024b14890969f9b2:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "ca1849864412b2cba67e88886133331f",
 					"class": "K2Node_CallFunction",
 					"title": "Aim",
@@ -2231,6 +3730,188 @@
 							"links": [
 								"e835eb57445272c31c5c9c9295feafb7:o:ActionValue_Y"
 							]
+						}
+					]
+				},
+				{
+					"guid": "d32f747d4ee208ea4b51fbaa0d61aab7",
+					"class": "K2Node_CallFunction",
+					"title": "Get Game Mode",
+					"x": 64,
+					"y": 2112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d32f747d4ee208ea4b51fbaa0d61aab7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "d32f747d4ee208ea4b51fbaa0d61aab7:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d32f747d4ee208ea4b51fbaa0d61aab7:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.GameModeBase",
+							"defaultValue": null,
+							"links": [
+								"4bb14e164a84fe154e1bf4911e2cc59f:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d4f8a9b94f635a1b8e502997858f4f9a",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1072,
+					"y": 1712,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d4f8a9b94f635a1b8e502997858f4f9a:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"5aa03fc44858f67a4f41768ab0c34ff2:o:OutputPin"
+							]
+						},
+						{
+							"id": "d4f8a9b94f635a1b8e502997858f4f9a:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"2ba5c72a48c7cbde783357b7c53455c4:i:self",
+								"3676dd814405c8f4d1e7f5922e5092e6:i:InputPin",
+								"8626a1f24ae83b13770ac5873605c301:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dbd10bed4c14275d80498db935770e43",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1440,
+					"y": 1776,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dbd10bed4c14275d80498db935770e43:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"3676dd814405c8f4d1e7f5922e5092e6:o:OutputPin"
+							]
+						},
+						{
+							"id": "dbd10bed4c14275d80498db935770e43:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"e24fb39d4a7d071aa51478be08d1bcc0:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dce0b2b34d1bab2177ecc29ab892c145",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 640,
+					"y": 2112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dce0b2b34d1bab2177ecc29ab892c145:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"f443189147b57569a12bf885be4ff993:o:OutputPin"
+							]
+						},
+						{
+							"id": "dce0b2b34d1bab2177ecc29ab892c145:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"984c8eb5465b091187368f9a0d11c822:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e24fb39d4a7d071aa51478be08d1bcc0",
+					"class": "K2Node_VariableSet",
+					"title": "Set OxygenShouldIncrease",
+					"x": 1536,
+					"y": 1616,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e24fb39d4a7d071aa51478be08d1bcc0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2ba5c72a48c7cbde783357b7c53455c4:o:then"
+							]
+						},
+						{
+							"id": "e24fb39d4a7d071aa51478be08d1bcc0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e24fb39d4a7d071aa51478be08d1bcc0:i:OxygenShouldIncrease",
+							"name": "OxygenShouldIncrease",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "e24fb39d4a7d071aa51478be08d1bcc0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"dbd10bed4c14275d80498db935770e43:o:OutputPin"
+							]
+						},
+						{
+							"id": "e24fb39d4a7d071aa51478be08d1bcc0:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
 						}
 					]
 				},
@@ -2443,6 +4124,159 @@
 					]
 				},
 				{
+					"guid": "eb70d7694e0438341c94b0bc24a21c5c",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 928,
+					"y": 1552,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eb70d7694e0438341c94b0bc24a21c5c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6dcfcdaa41061a7993dc61abdcb30596:o:then"
+							]
+						},
+						{
+							"id": "eb70d7694e0438341c94b0bc24a21c5c:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"9a2523254728523f298fe5834420b85d:o:OxygenShouldDecrease"
+							]
+						},
+						{
+							"id": "eb70d7694e0438341c94b0bc24a21c5c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8626a1f24ae83b13770ac5873605c301:i:execute"
+							]
+						},
+						{
+							"id": "eb70d7694e0438341c94b0bc24a21c5c:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2ba5c72a48c7cbde783357b7c53455c4:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ecac9e9d4ea3086fd38fcc98b4860df1",
+					"class": "K2Node_InputKey",
+					"title": "7",
+					"x": 128,
+					"y": 1552,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ecac9e9d4ea3086fd38fcc98b4860df1:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6dcfcdaa41061a7993dc61abdcb30596:i:execute"
+							]
+						},
+						{
+							"id": "ecac9e9d4ea3086fd38fcc98b4860df1:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ecac9e9d4ea3086fd38fcc98b4860df1:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f1c724eb4a5626a238c64797bb8ff427",
+					"class": "K2Node_CallFunction",
+					"title": "Get Game Mode",
+					"x": 64,
+					"y": 1712,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f1c724eb4a5626a238c64797bb8ff427:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "f1c724eb4a5626a238c64797bb8ff427:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f1c724eb4a5626a238c64797bb8ff427:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.GameModeBase",
+							"defaultValue": null,
+							"links": [
+								"6dcfcdaa41061a7993dc61abdcb30596:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f443189147b57569a12bf885be4ff993",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 576,
+					"y": 2048,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f443189147b57569a12bf885be4ff993:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"4bb14e164a84fe154e1bf4911e2cc59f:o:AsBP Atlantis Game Mode"
+							]
+						},
+						{
+							"id": "f443189147b57569a12bf885be4ff993:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": [
+								"1c6e6be94dc9720349b03c8d95226c25:i:self",
+								"dce0b2b34d1bab2177ecc29ab892c145:i:InputPin"
+							]
+						}
+					]
+				},
+				{
 					"guid": "f983b920452502820afbcd8779bc6952",
 					"class": "K2Node_Event",
 					"title": "Event Primary Thumbstick",
@@ -2509,6 +4343,14 @@
 					"height": 848
 				},
 				{
+					"guid": "955ef28a446e0aaf2b5790ad7d13f5c8",
+					"text": "Oxygen Decrease/Increase debug test",
+					"x": 0,
+					"y": 1408,
+					"width": 1834,
+					"height": 828
+				},
+				{
 					"guid": "d109af2944248e1d67ebd98efbbe29f8",
 					"text": "Movement Input",
 					"x": 768,
@@ -2521,8 +4363,8 @@
 					"text": "Jump Input - Jump properties such as height, press-and-hold and multi-jump can be customized on the Character Movement Component.",
 					"x": -144,
 					"y": 704,
-					"width": 880,
-					"height": 528
+					"width": 2288,
+					"height": 560
 				}
 			]
 		}
