@@ -8,6 +8,7 @@
 
 class UInputMappingContext;
 class UEnhancedInputLocalPlayerSubsystem;
+enum class EAtlantisBallastState : uint8;
 
 /** The desired set of control mapping contexts changed. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnControlsChanged);
@@ -72,6 +73,17 @@ public:
 	const TArray<UInputMappingContext*>& GetCurrentMappingContexts() const { return CurrentMappingContexts; }
 
 protected:
+	virtual void SetupInputComponent() override;
+
+	/** Temporary ballast test shortcuts: 2 = Descend, 3 = Wander, 4 = Ascend. */
+	void SelectDescend();
+	void SelectWander();
+	void SelectAscend();
+	void RequestTestBallastState(EAtlantisBallastState NewBallastState);
+
+	UFUNCTION(Server, Reliable)
+	void ServerSetTestBallastState(EAtlantisBallastState NewBallastState);
+
 	/** Pushes every context in the desired set to the input subsystem. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
 	void EstablishMappingContexts();

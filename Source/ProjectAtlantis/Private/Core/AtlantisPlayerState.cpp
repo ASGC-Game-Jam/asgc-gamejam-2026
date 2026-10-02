@@ -124,6 +124,10 @@ void AAtlantisPlayerState::OnRep_BallastAllocation(const bool bOldBallastAllocat
 
 void AAtlantisPlayerState::OnRep_BallastState(const EAtlantisBallastState OldBallastState)
 {
+	UE_LOG(LogTemp, Log, TEXT("Ballast state changed for %s: %s -> %s"),
+		*GetName(),
+		*StaticEnum<EAtlantisBallastState>()->GetNameStringByValue(static_cast<int64>(OldBallastState)),
+		*StaticEnum<EAtlantisBallastState>()->GetNameStringByValue(static_cast<int64>(BallastState)));
 	BroadcastBallastChanged();
 }
 
