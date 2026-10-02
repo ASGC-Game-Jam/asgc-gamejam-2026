@@ -24,5 +24,6 @@ protected:
 	float AscendBuoyancy = 1.5f;
 
 public:
+	virtual void PhysicsVolumeChanged(APhysicsVolume* NewVolume) override;
 	virtual float ImmersionDepth() const override;
 };

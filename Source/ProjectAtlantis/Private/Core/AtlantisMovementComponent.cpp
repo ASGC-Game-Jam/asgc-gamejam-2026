@@ -6,6 +6,38 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/PhysicsVolume.h"
 
+void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
+{
+	const APhysicsVolume* OldVolume = GetPhysicsVolume();
+	if (OldVolume == NewVolume)
+	{
+		Super::PhysicsVolumeChanged(NewVolume);
+		return;
+	}
+	
+	if (OldVolume)
+	{
+		UE_LOG(LogTemp, Log, TEXT("%s exited PhysicsVolume %s (WaterVolume=%s)"),
+			*GetNameSafe(GetOwner()), *GetNameSafe(OldVolume),
+			OldVolume->bWaterVolume ? TEXT("true") : TEXT("false"));
+	}
+	
+	if (NewVolume)
+	{
+		UE_LOG(LogTemp, Log, TEXT("%s entered PhysicsVolume %s (WaterVolume=%s)"),
+			*GetNameSafe(GetOwner()), *GetNameSafe(NewVolume),
+			NewVolume->bWaterVolume ? TEXT("true") : TEXT("false"));
+		
+		if (NewVolume->bWaterVolume)
+		{
+			AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
+			PlayerState->SetBallastState(EAtlantisBallastState::Descend);
+		}
+	}
+
+	Super::PhysicsVolumeChanged(NewVolume);
+}
+
 float UAtlantisMovementComponent::ImmersionDepth() const
 {
 	if (const AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
