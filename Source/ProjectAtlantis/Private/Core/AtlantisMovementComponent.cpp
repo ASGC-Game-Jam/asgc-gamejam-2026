@@ -2,8 +2,9 @@
 
 
 #include "Core/AtlantisMovementComponent.h"
-#include "GameFramework/Character.h"
 #include "Core/AtlantisPlayerState.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/PhysicsVolume.h"
 
 UAtlantisMovementComponent::UAtlantisMovementComponent()
 {
@@ -63,6 +64,26 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 	}
 }
 
+float UAtlantisMovementComponent::ImmersionDepth() const
+{
+	if (const AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
+		IsSwimming() && GetPhysicsVolume()->bWaterVolume && PlayerState)
+	{
+		if (const EAtlantisBallastState BallastState = PlayerState->GetBallastState(); BallastState ==
+			EAtlantisBallastState::Descend
+			|| BallastState == EAtlantisBallastState::Wander
+			|| BallastState == EAtlantisBallastState::Ascend)
+		{
+			// Ballast must retain its direction and neutral state throughout a water volume.
+			// Native surface-depth scaling otherwise turns neutral buoyancy into sinking,
+			// and can make Ascend sink as the capsule approaches the volume boundary.
+			return 1.f;
+		}
+	}
+
+	return Super::ImmersionDepth();
+}
+
 void UAtlantisMovementComponent::PhysSwimming(float DeltaTime, int32 Iterations)
 {
 	const AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
@@ -86,6 +107,13 @@ void UAtlantisMovementComponent::PhysSwimming(float DeltaTime, int32 Iterations)
 		break;
 	case EAtlantisBallastState::Wander:
 		Buoyancy = 1.f;
+		if (FMath::IsNearlyZero(GetGravitySpaceZ(Acceleration))
+			&& !HasAnimRootMotion() && !CurrentRootMotion.HasOverrideVelocity())
+		{
+			// Neutral buoyancy cancels gravity, but does not remove existing sink/rise momentum.
+			// Hold depth when there is no vertical input, even while swimming horizontally.
+			SetGravitySpaceZ(Velocity, 0.f);
+		}
 		break;
 	default:
 		break;
