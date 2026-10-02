@@ -23,4 +23,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis|Ballast", meta = (ClampMin = "1.01"))
 	float AscendBuoyancy = 1.5f;
 
+public:
+	virtual float ImmersionDepth() const override;
 };
