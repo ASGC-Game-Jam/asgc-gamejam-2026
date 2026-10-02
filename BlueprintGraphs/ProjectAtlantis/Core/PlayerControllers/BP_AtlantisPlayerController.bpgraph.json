@@ -3,7 +3,7 @@
 	"generatedBy": "keystone-blueprint-export",
 	"package": "/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController",
 	"asset": "BP_AtlantisPlayerController",
-	"parentClass": "PlayerController",
+	"parentClass": "AtlantisPlayerController",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
@@ -82,7 +82,7 @@
 			"comments": []
 		},
 		{
-			"name": "AddControls",
+			"name": "AddControls2",
 			"type": "Function",
 			"nodes": [
 				{
@@ -193,7 +193,7 @@
 							"id": "495549214ff88d13b4e85aaadf2bf8ae:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerController",
 							"defaultValue": null,
 							"links": []
 						}
@@ -202,7 +202,7 @@
 				{
 					"guid": "636697e04ab0b42d2aa43dbc0521e955",
 					"class": "K2Node_FunctionEntry",
-					"title": "AddControls",
+					"title": "AddControls2",
 					"x": -96,
 					"y": 0,
 					"comment": null,
@@ -431,7 +431,7 @@
 			"comments": []
 		},
 		{
-			"name": "ClearAllControls",
+			"name": "ClearAllControls2",
 			"type": "Function",
 			"nodes": [
 				{
@@ -456,7 +456,7 @@
 							"id": "015172514c61e5208df6e7bec113e545:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerController",
 							"defaultValue": null,
 							"links": []
 						}
@@ -465,7 +465,7 @@
 				{
 					"guid": "4c39bc354891d875f51c98be85d472cb",
 					"class": "K2Node_CallFunction",
-					"title": "ClearMappingContexts",
+					"title": "ClearMappingContexts2",
 					"x": 784,
 					"y": -16,
 					"comment": null,
@@ -501,7 +501,7 @@
 				{
 					"guid": "500a7c364613974ef8d8f98df7cc1637",
 					"class": "K2Node_FunctionEntry",
-					"title": "ClearAllControls",
+					"title": "ClearAllControls2",
 					"x": 0,
 					"y": 0,
 					"comment": null,
@@ -608,7 +608,7 @@
 			"comments": []
 		},
 		{
-			"name": "ClearMappingContexts",
+			"name": "ClearMappingContexts2",
 			"type": "Function",
 			"nodes": [
 				{
@@ -633,7 +633,7 @@
 							"id": "393b208249f06b02c1dff7a663979edd:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerController",
 							"defaultValue": null,
 							"links": []
 						}
@@ -642,7 +642,7 @@
 				{
 					"guid": "83ed70a04fe52a335476fd8226903a46",
 					"class": "K2Node_FunctionEntry",
-					"title": "ClearMappingContexts",
+					"title": "ClearMappingContexts2",
 					"x": 0,
 					"y": 16,
 					"comment": null,
@@ -805,13 +805,13 @@
 			"comments": []
 		},
 		{
-			"name": "DisableAllControls",
+			"name": "DisableAllControls2",
 			"type": "Function",
 			"nodes": [
 				{
 					"guid": "81ff87194c6144e68cf8d0ababa22f14",
 					"class": "K2Node_FunctionEntry",
-					"title": "DisableAllControls",
+					"title": "DisableAllControls2",
 					"x": -32,
 					"y": 32,
 					"comment": null,
@@ -831,7 +831,7 @@
 				{
 					"guid": "9cbc103841f58f43f8a2c6b773405f04",
 					"class": "K2Node_CallFunction",
-					"title": "ClearMappingContexts",
+					"title": "ClearMappingContexts2",
 					"x": 384,
 					"y": 16,
 					"comment": "Since Enhanced Input doesn't directly have a \"disable\" flag\r\nwe must remove ALL context mappings to effectively disable the input without messing with other systems. ",
@@ -922,7 +922,7 @@
 			"comments": []
 		},
 		{
-			"name": "EnableAllControls",
+			"name": "EnableAllControls2",
 			"type": "Function",
 			"nodes": [
 				{
@@ -982,7 +982,7 @@
 				{
 					"guid": "36e7d1214b420be79911d495ab8fc6c8",
 					"class": "K2Node_FunctionEntry",
-					"title": "EnableAllControls",
+					"title": "EnableAllControls2",
 					"x": 0,
 					"y": 0,
 					"comment": null,
@@ -1002,7 +1002,7 @@
 				{
 					"guid": "d12f62c249e598fa97b7cb978a834db9",
 					"class": "K2Node_CallFunction",
-					"title": "EstablishMappingContexts",
+					"title": "EstablishMappingContexts2",
 					"x": 352,
 					"y": -16,
 					"comment": null,
@@ -1039,7 +1039,7 @@
 			"comments": []
 		},
 		{
-			"name": "EstablishMappingContexts",
+			"name": "EstablishMappingContexts2",
 			"type": "Function",
 			"nodes": [
 				{
@@ -1128,7 +1128,7 @@
 							"id": "6b3729cb4525df9e123dd1b4599c7f88:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerController",
 							"defaultValue": null,
 							"links": []
 						}
@@ -1203,7 +1203,7 @@
 				{
 					"guid": "f8f8a3bb4d04c1d2730c23b1eae3b7f8",
 					"class": "K2Node_FunctionEntry",
-					"title": "EstablishMappingContexts",
+					"title": "EstablishMappingContexts2",
 					"x": 656,
 					"y": -337,
 					"comment": null,
@@ -1244,7 +1244,7 @@
 			"comments": []
 		},
 		{
-			"name": "RemoveControls",
+			"name": "RemoveControls2",
 			"type": "Function",
 			"nodes": [
 				{
@@ -1488,7 +1488,7 @@
 				{
 					"guid": "cdd641364fbb78d0609cc8937ae24bdf",
 					"class": "K2Node_FunctionEntry",
-					"title": "RemoveControls",
+					"title": "RemoveControls2",
 					"x": -96,
 					"y": 92,
 					"comment": null,
@@ -1575,7 +1575,7 @@
 							"id": "f27703cb4715e40c865e15af3b044e6f:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerController",
 							"defaultValue": null,
 							"links": []
 						}
@@ -2321,7 +2321,7 @@
 				{
 					"guid": "b9f4b34846778b841a8f90b3528780c6",
 					"class": "K2Node_CallFunction",
-					"title": "EstablishMappingContexts",
+					"title": "EstablishMappingContexts2",
 					"x": 960,
 					"y": -368,
 					"comment": null,
