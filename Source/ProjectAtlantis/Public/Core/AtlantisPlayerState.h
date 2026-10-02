@@ -22,6 +22,9 @@ enum class EAtlantisBallastState : uint8
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnOxygenCapacityChanged, float, OldOxygenCapacity, float, NewOxygenCapacity);
 
+/** Amount of Oxygen locked changed. Carries the previous value so listeners can compute a delta. */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockedOxygenChanged, float, OldLockedOxygen, float, NewLockedOxygen);
+
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, OldCurrentOxygen, float, NewCurrentOxygen);
 
@@ -61,6 +64,10 @@ public:
 
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
+	FOnLockedOxygenChanged OnLockedOxygenChanged;
+
+	//~ Change events. Bind from UI, audio, and VFX rather than polling.
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnCurrentOxygenChanged OnCurrentOxygenChanged;
 
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
@@ -76,6 +83,9 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	float GetOxygenCapacity() const { return OxygenCapacity; }
 	
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	float GetLockedOxygen() const { return LockedOxygen; }
+
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	float GetCurrentOxygen() const { return CurrentOxygen; }
 
@@ -96,6 +106,9 @@ public:
 	void SetOxygenCapacity(float NewOxygenCapacity);
 	
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	void SetLockedOxygen(float NewLockedOxygen);
+
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetCurrentOxygen(float NewCurrentOxygen);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
@@ -114,6 +127,10 @@ protected:
 	/** Maximum oxygen the player can hold. */
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	float OxygenCapacity = 100.f;
+
+	/** Oumount of currently locked oxygen. */
+	UPROPERTY(ReplicatedUsing = OnRep_LockedOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
+	float LockedOxygen = 0.f;
 
 	/** Oxygen currently available to the player. */
 	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
@@ -140,6 +157,9 @@ protected:
 	void OnRep_OxygenCapacity(float OldOxygenCapacity) const;
 	
 	UFUNCTION()
+	void OnRep_LockedOxygen(float OldLockedOxygen) const;
+
+	UFUNCTION()
 	void OnRep_CurrentOxygen(float OldCurrentOxygen) const;
 
 	UFUNCTION()
@@ -156,6 +176,9 @@ protected:
 
 	/** Shared fan-out for the two ballast properties. */
 	void BroadcastBallastChanged() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	void RequestBallasteStateChange(EAtlantisBallastState NewBallastValueState);
 
 
 protected:
@@ -176,7 +199,5 @@ protected:
 
 	/** Returns the Oxygen allocation required by BallastState. */
 	float GetRequiredBallastAllocation(EAtlantisBallastState BallastState) const;
-	
-	void RequestBallasteStateChange(EAtlantisBallastState NewBallastValueState);
 
 };

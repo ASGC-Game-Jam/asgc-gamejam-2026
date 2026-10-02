@@ -19,6 +19,7 @@ void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(AAtlantisPlayerState, OxygenCapacity);
+	DOREPLIFETIME(AAtlantisPlayerState, LockedOxygen);
 	DOREPLIFETIME(AAtlantisPlayerState, CurrentOxygen);
 	DOREPLIFETIME(AAtlantisPlayerState, bBallastAllocation);
 	DOREPLIFETIME(AAtlantisPlayerState, BallastState);
@@ -33,6 +34,7 @@ void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
 	if (AAtlantisPlayerState* AtlantisPlayerState = Cast<AAtlantisPlayerState>(PlayerState))
 	{
 		AtlantisPlayerState->OxygenCapacity = OxygenCapacity;
+		AtlantisPlayerState->LockedOxygen = LockedOxygen;
 		AtlantisPlayerState->CurrentOxygen = CurrentOxygen;
 		AtlantisPlayerState->bBallastAllocation = bBallastAllocation;
 		AtlantisPlayerState->BallastState = BallastState;
@@ -56,6 +58,20 @@ void AAtlantisPlayerState::SetOxygenCapacity(const float NewOxygenCapacity)
 	OnRep_OxygenCapacity(OldOxygenCapacity);
 }
 
+void AAtlantisPlayerState::SetLockedOxygen(const float NewLockedOxygen)
+{
+	if (!HasAuthority() || FMath::IsNearlyEqual(LockedOxygen, NewLockedOxygen))
+	{
+		return;
+	}
+
+	const float OldLockedOxygen = LockedOxygen;
+	LockedOxygen = NewLockedOxygen;
+
+	// Replication never calls our RepNotify on the authority, so drive it by hand to keep
+	// the listen-server host in step with every remote client.
+	OnRep_LockedOxygen(OldLockedOxygen);
+}
 void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
 {
 	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, NewCurrentOxygen))
@@ -112,6 +128,11 @@ void AAtlantisPlayerState::OnRep_OxygenCapacity(const float OldOxygenCapacity) c
 	OnOxygenCapacityChanged.Broadcast(OldOxygenCapacity, OxygenCapacity);
 }
 
+void AAtlantisPlayerState::OnRep_LockedOxygen(const float OldLockedOxygen) const
+{
+	OnLockedOxygenChanged.Broadcast(OldLockedOxygen, LockedOxygen);
+}
+
 void AAtlantisPlayerState::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
 {
 	OnCurrentOxygenChanged.Broadcast(OldCurrentOxygen, CurrentOxygen);
@@ -142,9 +163,9 @@ void AAtlantisPlayerState::BroadcastBallastChanged() const
 	OnBallastChanged.Broadcast(bBallastAllocation, BallastState);
 }
 
-float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastState BallastState) const
+float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastState RequiredBallastState) const
 {
-	switch (BallastState)
+	switch (RequiredBallastState)
 	{
 	case EAtlantisBallastState::Descend:
 		return DescendOxygenAllocation;
@@ -159,8 +180,9 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 	case EAtlantisBallastState::None:
 		//TODO: Confirm None case handling
 		ensureMsgf(false, TEXT("GetRequiredBallastAllocation called with EValueState::None"));
-		return 0;
-	};
+		return 0.f;
+	}
+	return 0.f;
 }
 
 void AAtlantisPlayerState::RequestBallasteStateChange(const EAtlantisBallastState NewBallastState)
@@ -188,6 +210,7 @@ void AAtlantisPlayerState::RequestBallasteStateChange(const EAtlantisBallastStat
 			//TODO confirm if Oxygen can be locked by other sources. If yes, confirm if the case BallastState = None must be handled here
 
 			SetLockedOxygen(RequiredAllocation);
-			SetBallastState(NewBallastState)
+			SetBallastState(NewBallastState);
 		}
+		
 }
