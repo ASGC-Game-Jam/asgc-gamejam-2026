@@ -139,6 +139,11 @@ void AAtlantisPlayerState::OnRep_CurrentOxygen(const float OldCurrentOxygen) con
 
 void AAtlantisPlayerState::OnRep_BallastState(const EAtlantisBallastState OldBallastState) const
 {
+	UE_LOG(LogTemp, Log, TEXT("Ballast state changed for %s: %s -> %s"),
+		*GetName(),
+		*StaticEnum<EAtlantisBallastState>()->GetNameStringByValue(static_cast<int64>(OldBallastState)),
+		*StaticEnum<EAtlantisBallastState>()->GetNameStringByValue(static_cast<int64>(BallastState)));
+
 	OnBallastChanged.Broadcast(IsBallastAllocated(), BallastState);
 }
 

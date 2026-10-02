@@ -2,6 +2,9 @@
 
 
 #include "Core/AtlantisPlayerController.h"
+#include "Core/AtlantisPlayerState.h"
+#include "Components/InputComponent.h"
+#include "InputCoreTypes.h"
 
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
@@ -36,6 +39,54 @@ namespace
 		Options.bNotifyUserSettings = false;
 
 		return Options;
+	}
+}
+
+void AAtlantisPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+	InputComponent->BindKey(EKeys::Two, IE_Pressed, this, &AAtlantisPlayerController::SelectDescend);
+	InputComponent->BindKey(EKeys::Three, IE_Pressed, this, &AAtlantisPlayerController::SelectWander);
+	InputComponent->BindKey(EKeys::Four, IE_Pressed, this, &AAtlantisPlayerController::SelectAscend);
+}
+
+void AAtlantisPlayerController::SelectDescend()
+{
+	RequestTestBallastState(EAtlantisBallastState::Descend);
+}
+
+void AAtlantisPlayerController::SelectWander()
+{
+	RequestTestBallastState(EAtlantisBallastState::Wander);
+}
+
+void AAtlantisPlayerController::SelectAscend()
+{
+	RequestTestBallastState(EAtlantisBallastState::Ascend);
+}
+
+void AAtlantisPlayerController::RequestTestBallastState(const EAtlantisBallastState NewBallastState)
+{
+	if (bControlsEnabled && GetPawn())
+	{
+		ServerSetTestBallastState(NewBallastState);
+	}
+}
+
+void AAtlantisPlayerController::ServerSetTestBallastState_Implementation(const EAtlantisBallastState NewBallastState)
+{
+	if (!bControlsEnabled || !GetPawn()
+		|| (NewBallastState != EAtlantisBallastState::Descend
+			&& NewBallastState != EAtlantisBallastState::Wander
+			&& NewBallastState != EAtlantisBallastState::Ascend))
+	{
+		return;
+	}
+
+	// Test shortcut only; Oxygen allocation will be handled by the Ballast contract.
+	if (AAtlantisPlayerState* AtlantisPlayerState = GetPlayerState<AAtlantisPlayerState>())
+	{
+		AtlantisPlayerState->SetBallastState(NewBallastState);
 	}
 }
 
