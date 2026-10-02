@@ -185,7 +185,7 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 	return 0.f;
 }
 
-void AAtlantisPlayerState::RequestBallasteStateChange(const EAtlantisBallastState NewBallastState)
+void AAtlantisPlayerState::RequestBallastStateChange(const EAtlantisBallastState NewBallastState)
 {
 
 

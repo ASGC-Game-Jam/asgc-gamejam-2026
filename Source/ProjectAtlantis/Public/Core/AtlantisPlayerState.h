@@ -178,7 +178,7 @@ protected:
 	void BroadcastBallastChanged() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
-	void RequestBallasteStateChange(EAtlantisBallastState NewBallastValueState);
+	void RequestBallastStateChange(EAtlantisBallastState NewBallastValueState);
 
 
 protected:
