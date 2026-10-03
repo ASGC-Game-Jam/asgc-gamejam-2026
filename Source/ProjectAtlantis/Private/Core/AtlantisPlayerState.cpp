@@ -187,7 +187,6 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 void AAtlantisPlayerState::RequestBallastStateChange(const EAtlantisBallastState NewBallastState)
 {
 	//TODO confirm if the first initialization of the BallastState should pass through here.
-	bool bOxygenAllocated = IsBallastAllocated();
 	if (NewBallastState == EAtlantisBallastState::None)
 	{
 		//TODO something
