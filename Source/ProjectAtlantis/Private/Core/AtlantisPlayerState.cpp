@@ -72,6 +72,7 @@ void AAtlantisPlayerState::SetLockedOxygen(const float NewLockedOxygen)
 	// the listen-server host in step with every remote client.
 	OnRep_LockedOxygen(OldLockedOxygen);
 }
+
 void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
 {
 	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, NewCurrentOxygen))
@@ -185,11 +186,10 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 
 void AAtlantisPlayerState::RequestBallastStateChange(const EAtlantisBallastState NewBallastState)
 {
-
-
 	//TODO confirm if the first initialization of the BallastState should pass through here.
 	bool bOxygenAllocated = IsBallastAllocated();
-	if (NewBallastState == EAtlantisBallastState::None) {
+	if (NewBallastState == EAtlantisBallastState::None)
+	{
 		//TODO something
 
 		return;
@@ -198,17 +198,15 @@ void AAtlantisPlayerState::RequestBallastStateChange(const EAtlantisBallastState
 
 
 	float RequiredAllocation = GetRequiredBallastAllocation(NewBallastState);
-		//TODO confirm if current should be > or >= than required
-		//TODO confirm that CurrentOxygen includes LockedOxygen
+	//TODO confirm if current should be > or >= than required
+	//TODO confirm that CurrentOxygen includes LockedOxygen
 
-		if (GetCurrentOxygen() > RequiredAllocation) {
-			
+	if (GetCurrentOxygen() > RequiredAllocation)
+	{
+		//TODO confirm the use of lockeOxygen is ok
+		//TODO confirm if Oxygen can be locked by other sources. If yes, confirm if the case BallastState = None must be handled here
 
-			//TODO confirm the use of lockeOxygen is ok
-			//TODO confirm if Oxygen can be locked by other sources. If yes, confirm if the case BallastState = None must be handled here
-
-			SetLockedOxygen(RequiredAllocation);
-			SetBallastState(NewBallastState);
-		}
-		
+		SetLockedOxygen(RequiredAllocation);
+		SetBallastState(NewBallastState);
+	}
 }
