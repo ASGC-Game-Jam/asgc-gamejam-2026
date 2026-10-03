@@ -75,13 +75,15 @@ void AAtlantisPlayerState::SetLockedOxygen(const float NewLockedOxygen)
 
 void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
 {
-	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, NewCurrentOxygen))
+	// Current oxygen includes the ballast allocation; consumption can only use the unlocked portion.
+	const float ClampedOxygen = FMath::Max(NewCurrentOxygen, LockedOxygen);
+	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, ClampedOxygen))
 	{
 		return;
 	}
 
 	const float OldCurrentOxygen = CurrentOxygen;
-	CurrentOxygen = NewCurrentOxygen;
+	CurrentOxygen = ClampedOxygen;
 	OnRep_CurrentOxygen(OldCurrentOxygen);
 }
 
