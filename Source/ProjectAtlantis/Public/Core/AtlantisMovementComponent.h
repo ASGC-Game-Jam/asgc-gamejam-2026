@@ -9,6 +9,18 @@
 /**
  * Player movement component, so we can set up the stock Character Movement Component with our swim-specific tuning values
  */
+
+UENUM(BlueprintType)
+enum class EAtlantisSwimVerticalLimit : uint8
+{
+	/** Limits only vertical speed. Horizontal stays at Max Swim Speed */
+	Clamp,
+	/** Slows down the whole movement until vertical speed fits the current speed */
+	Scale,
+	/** Smooth limit between Max Swim Speed and Max Vertical Swim Speed*/
+	Ellipse
+};
+
 UCLASS()
 class PROJECTATLANTIS_API UAtlantisMovementComponent : public UCharacterMovementComponent
 {
@@ -40,4 +52,14 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Movement: Swimming",
 		meta = (AllowPrivateAccess = true, ClampMin = 0, UIMin = 0, ForceUnits = "cm/s"))
 	float MaxVerticalSwimSpeed;
+	
+	/** Experiment only: how vertical swim speed is limited. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Movement: Swimming", meta=(AllowPrivateAccess = true))
+	EAtlantisSwimVerticalLimit VerticalLimitMode;
+	
+	FVector ClampVerticalSpeed(const FVector& InVelocity) const;
+	FVector ScaleToVerticalSpeed(const FVector& InVelocity) const;
+	FVector LimitToSpeedEllipse(const FVector& InVelocity) const;
+
+
 };
