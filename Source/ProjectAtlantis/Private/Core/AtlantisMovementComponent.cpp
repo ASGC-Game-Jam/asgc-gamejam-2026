@@ -46,7 +46,7 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 	
 	const float HorizontalMaxSpeed = GetMaxSpeed();
 	const float Speed = Velocity.Size();
-	if (HorizontalMaxSpeed < 0.f || MaxVerticalSwimSpeed < 0.f || Speed <= KINDA_SMALL_NUMBER)
+	if (HorizontalMaxSpeed <= 0.f || MaxVerticalSwimSpeed <= 0.f || Speed <= KINDA_SMALL_NUMBER)
 	{
 		return;
 	}
@@ -54,14 +54,12 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 	const FVector Direction = Velocity / Speed;
 	const float HorizontalRatio = Direction.Size2D() / HorizontalMaxSpeed;
 	const float VerticalRatio = FMath::Abs(Direction.Z) / MaxVerticalSwimSpeed;
-	const float MaxSpeedInDirection = 1.f / FMath::Sqrt(FMath::Square(HorizontalRatio) * FMath::Square(VerticalRatio));
+	const float MaxSpeedInDirection = 1.f / FMath::Sqrt(FMath::Square(HorizontalRatio) + FMath::Square(VerticalRatio));
 	
 	if (Speed > MaxSpeedInDirection)
 	{
 			Velocity = Direction * MaxSpeedInDirection;
 	}
-	
-	
 }
 
 
