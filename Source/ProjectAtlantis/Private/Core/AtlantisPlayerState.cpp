@@ -5,6 +5,8 @@
 
 #include "Net/UnrealNetwork.h"
 
+DEFINE_LOG_CATEGORY_STATIC(LogAtlantisPlayerState, Log, All);
+
 AAtlantisPlayerState::AAtlantisPlayerState()
 {
 	// APlayerState already enables replication and marks itself always-relevant in its own
@@ -107,9 +109,22 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 		return;
 	}
 
-	const EAtlantisBallastState OldBallastState = BallastState;
-	BallastState = NewBallastState;
+	const float RequiredAllocation = GetRequiredBallastAllocation(NewBallastState);
+	if (RequiredAllocation < 0.f || CurrentOxygen <= RequiredAllocation)
+	{
+		return;
+	}
 
+	const EAtlantisBallastState OldBallastState = BallastState;
+	const float OldLockedOxygen = LockedOxygen;
+	BallastState = NewBallastState;
+	LockedOxygen = RequiredAllocation;
+	bBallastAllocation = RequiredAllocation > 0.f;
+
+	if (!FMath::IsNearlyEqual(OldLockedOxygen, LockedOxygen))
+	{
+		OnRep_LockedOxygen(OldLockedOxygen);
+	}
 	OnRep_BallastState(OldBallastState);
 }
 
@@ -171,43 +186,22 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 	switch (RequiredBallastState)
 	{
 		case EAtlantisBallastState::Descend:
+		{
 			return DescendOxygenAllocation;
+		}
 		case EAtlantisBallastState::Wander:
+		{
 			return WanderOxygenAllocation;
+		}
 		case EAtlantisBallastState::Ascend:
+		{
 			return AscendOxygenAllocation;
+		}
 		case EAtlantisBallastState::None:
-			{
-				//TODO: Confirm None case handling
-				ensureMsgf(false, TEXT("GetRequiredBallastAllocation called with EValueState::None"));
-				return 0.f;
-			}
-	}
-	return 0.f;
-}
-
-void AAtlantisPlayerState::RequestBallastStateChange(const EAtlantisBallastState NewBallastState)
-{
-	//TODO confirm if the first initialization of the BallastState should pass through here.
-	if (NewBallastState == EAtlantisBallastState::None)
-	{
-		//TODO something
-
-		return;
-	}
-	if (NewBallastState == GetBallastState()) { return; }
-
-
-	float RequiredAllocation = GetRequiredBallastAllocation(NewBallastState);
-	//TODO confirm if current should be > or >= than required
-	//TODO confirm that CurrentOxygen includes LockedOxygen
-
-	if (GetCurrentOxygen() > RequiredAllocation)
-	{
-		//TODO confirm the use of lockeOxygen is ok
-		//TODO confirm if Oxygen can be locked by other sources. If yes, confirm if the case BallastState = None must be handled here
-
-		SetLockedOxygen(RequiredAllocation);
-		SetBallastState(NewBallastState);
+		default:
+		{
+			UE_LOG(LogAtlantisPlayerState, Error, TEXT("Invalid ballast state: %d"), static_cast<uint8>(RequiredBallastState));
+			return -1.f;
+		}
 	}
 }

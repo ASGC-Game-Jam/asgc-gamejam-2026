@@ -118,6 +118,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetBallastAllocated(bool bNewBallastAllocation);
 
+	/** Reserves oxygen for the requested mode only when total oxygen is strictly above its allocation. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetBallastState(EAtlantisBallastState NewBallastState);
 
@@ -132,21 +133,21 @@ protected:
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	float OxygenCapacity = 100.f;
 
-	/** Oumount of currently locked oxygen. */
+	/** Oxygen reserved for ballast and unavailable for consumption. */
 	UPROPERTY(ReplicatedUsing = OnRep_LockedOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	float LockedOxygen = 0.f;
 
-	/** Oxygen currently available to the player. */
+	/** Total oxygen, including LockedOxygen. Consumption cannot reduce it below the reservation. */
 	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	float CurrentOxygen = 100.f;
 
-	/** Whether oxygen has been allocated to ballast; allocation rules are not implemented yet. */
+	/** Whether the current ballast mode reserves a nonzero amount of oxygen. */
 	UPROPERTY(ReplicatedUsing = OnRep_BallastAllocation, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	bool bBallastAllocation = false;
 
-	/** Current ballast mode; None marks a state that has not been initialized for gameplay. */
+	/** Initial and current ballast mode; None is an invalid gameplay state. */
 	UPROPERTY(ReplicatedUsing = OnRep_BallastState, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
-	EAtlantisBallastState BallastState = EAtlantisBallastState::None;
+	EAtlantisBallastState BallastState = EAtlantisBallastState::Descend;
 
 	/** Current traversal mode, stored as a placeholder integer until traversal modes are defined. */
 	UPROPERTY(ReplicatedUsing = OnRep_TraversalMode, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
@@ -181,13 +182,7 @@ protected:
 	/** Shared fan-out for the two ballast properties. */
 	void BroadcastBallastChanged() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
-	void RequestBallastStateChange(EAtlantisBallastState NewBallastValueState);
-
-
-protected:
-	//TODO : Confirm varibles grouping and category
-	// Value configuration - tuning values not strictly related to the player, set in Blueprint class defaults. 
+	// Ballast reservations, not consumption rates; tune in Blueprint class defaults.
  
 	/**	Required Oxygen Allocation for Descending Ballast State. */
 	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
