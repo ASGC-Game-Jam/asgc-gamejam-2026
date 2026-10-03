@@ -879,36 +879,6 @@
 					]
 				},
 				{
-					"guid": "0a6f55724a4cc8f7d732cebce503595d",
-					"class": "K2Node_VariableGet",
-					"title": "Get CurrentOxygenLevel",
-					"x": -4544,
-					"y": -3680,
-					"comment": null,
-					"pins": [
-						{
-							"id": "0a6f55724a4cc8f7d732cebce503595d:o:CurrentOxygenLevel",
-							"name": "CurrentOxygenLevel",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"4db721f0409e4d730601418230f7029b:i:Value"
-							]
-						},
-						{
-							"id": "0a6f55724a4cc8f7d732cebce503595d:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
-							"defaultValue": null,
-							"links": [
-								"2837dee4469daf3b0096f79fa28f8485:o:AsBP Atlantis Game Mode"
-							]
-						}
-					]
-				},
-				{
 					"guid": "0cba04d1437c70c90659b7988398690f",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
@@ -1041,72 +1011,6 @@
 					]
 				},
 				{
-					"guid": "2837dee4469daf3b0096f79fa28f8485",
-					"class": "K2Node_DynamicCast",
-					"title": "Cast To BP_AtlantisGameMode",
-					"x": -4896,
-					"y": -3840,
-					"comment": null,
-					"pins": [
-						{
-							"id": "2837dee4469daf3b0096f79fa28f8485:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"ada692a84ab31730e45a519f51188529:o:then"
-							]
-						},
-						{
-							"id": "2837dee4469daf3b0096f79fa28f8485:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"a6b5104a4b95ac0ab67bbebf1addddd4:i:execute"
-							]
-						},
-						{
-							"id": "2837dee4469daf3b0096f79fa28f8485:o:CastFailed",
-							"name": "CastFailed",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "2837dee4469daf3b0096f79fa28f8485:i:Object",
-							"name": "Object",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
-							"defaultValue": null,
-							"links": [
-								"6f73f09142a1668f9d23be88d793b118:o:ReturnValue"
-							]
-						},
-						{
-							"id": "2837dee4469daf3b0096f79fa28f8485:o:AsBP Atlantis Game Mode",
-							"name": "AsBP Atlantis Game Mode",
-							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
-							"defaultValue": null,
-							"links": [
-								"0a6f55724a4cc8f7d732cebce503595d:i:self"
-							]
-						},
-						{
-							"id": "2837dee4469daf3b0096f79fa28f8485:o:bSuccess",
-							"name": "bSuccess",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "4c1e286e481a36a714cd1ea38e21e6cd",
 					"class": "K2Node_CallFunction",
 					"title": "Set Active",
@@ -1163,100 +1067,6 @@
 					]
 				},
 				{
-					"guid": "4db721f0409e4d730601418230f7029b",
-					"class": "K2Node_CallFunction",
-					"title": "To Text (Float)",
-					"x": -4256,
-					"y": -3712,
-					"comment": null,
-					"pins": [
-						{
-							"id": "4db721f0409e4d730601418230f7029b:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetTextLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
-							"links": []
-						},
-						{
-							"id": "4db721f0409e4d730601418230f7029b:i:Value",
-							"name": "Value",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"0a6f55724a4cc8f7d732cebce503595d:o:CurrentOxygenLevel"
-							]
-						},
-						{
-							"id": "4db721f0409e4d730601418230f7029b:i:RoundingMode",
-							"name": "RoundingMode",
-							"direction": "input",
-							"type": "byte:/Script/Engine.ERoundingMode",
-							"defaultValue": "HalfToEven",
-							"links": []
-						},
-						{
-							"id": "4db721f0409e4d730601418230f7029b:i:bAlwaysSign",
-							"name": "bAlwaysSign",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						},
-						{
-							"id": "4db721f0409e4d730601418230f7029b:i:bUseGrouping",
-							"name": "bUseGrouping",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "4db721f0409e4d730601418230f7029b:i:MinimumIntegralDigits",
-							"name": "MinimumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "4db721f0409e4d730601418230f7029b:i:MaximumIntegralDigits",
-							"name": "MaximumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "324",
-							"links": []
-						},
-						{
-							"id": "4db721f0409e4d730601418230f7029b:i:MinimumFractionalDigits",
-							"name": "MinimumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "0",
-							"links": []
-						},
-						{
-							"id": "4db721f0409e4d730601418230f7029b:i:MaximumFractionalDigits",
-							"name": "MaximumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "3",
-							"links": []
-						},
-						{
-							"id": "4db721f0409e4d730601418230f7029b:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"a6b5104a4b95ac0ab67bbebf1addddd4:i:InText"
-							]
-						}
-					]
-				},
-				{
 					"guid": "541d1a584c06f832087eceaeeae1fd30",
 					"class": "K2Node_VariableGet",
 					"title": "Get ThirdPersonCamera",
@@ -1281,102 +1091,6 @@
 							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
 							"defaultValue": null,
 							"links": []
-						}
-					]
-				},
-				{
-					"guid": "5eeeeedf4b2745dd1a4e90837a0c8ded",
-					"class": "K2Node_Knot",
-					"title": "Reroute Node",
-					"x": -4640,
-					"y": -3568,
-					"comment": null,
-					"pins": [
-						{
-							"id": "5eeeeedf4b2745dd1a4e90837a0c8ded:i:InputPin",
-							"name": "InputPin",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"d10d573a40c9ea13d6f8eaad66ab63f6:o:OutputPin"
-							]
-						},
-						{
-							"id": "5eeeeedf4b2745dd1a4e90837a0c8ded:o:OutputPin",
-							"name": "OutputPin",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"6f309a1f4f1eb82c44ccd48b62a943f5:i:InputPin"
-							]
-						}
-					]
-				},
-				{
-					"guid": "6f309a1f4f1eb82c44ccd48b62a943f5",
-					"class": "K2Node_Knot",
-					"title": "Reroute Node",
-					"x": -4640,
-					"y": -3424,
-					"comment": null,
-					"pins": [
-						{
-							"id": "6f309a1f4f1eb82c44ccd48b62a943f5:i:InputPin",
-							"name": "InputPin",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"5eeeeedf4b2745dd1a4e90837a0c8ded:o:OutputPin"
-							]
-						},
-						{
-							"id": "6f309a1f4f1eb82c44ccd48b62a943f5:o:OutputPin",
-							"name": "OutputPin",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"bcdeb1374ba9e19d1e97209ed3301658:i:execute"
-							]
-						}
-					]
-				},
-				{
-					"guid": "6f73f09142a1668f9d23be88d793b118",
-					"class": "K2Node_CallFunction",
-					"title": "Get Game Mode",
-					"x": -5248,
-					"y": -3808,
-					"comment": null,
-					"pins": [
-						{
-							"id": "6f73f09142a1668f9d23be88d793b118:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.GameplayStatics",
-							"defaultValue": "/Script/Engine.Default__GameplayStatics",
-							"links": []
-						},
-						{
-							"id": "6f73f09142a1668f9d23be88d793b118:i:WorldContextObject",
-							"name": "WorldContextObject",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "6f73f09142a1668f9d23be88d793b118:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "object:/Script/Engine.GameModeBase",
-							"defaultValue": null,
-							"links": [
-								"2837dee4469daf3b0096f79fa28f8485:i:Object"
-							]
 						}
 					]
 				},
@@ -1437,102 +1151,6 @@
 					]
 				},
 				{
-					"guid": "a6b5104a4b95ac0ab67bbebf1addddd4",
-					"class": "K2Node_CallFunction",
-					"title": "Print Text",
-					"x": -4000,
-					"y": -3840,
-					"comment": null,
-					"pins": [
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"2837dee4469daf3b0096f79fa28f8485:o:then"
-							]
-						},
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"b2d14372433bd0b7ca9010a734d1c64f:i:InputPin"
-							]
-						},
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetSystemLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
-							"links": []
-						},
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:WorldContextObject",
-							"name": "WorldContextObject",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:InText",
-							"name": "InText",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"4db721f0409e4d730601418230f7029b:o:ReturnValue"
-							]
-						},
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:bPrintToScreen",
-							"name": "bPrintToScreen",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:bPrintToLog",
-							"name": "bPrintToLog",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:TextColor",
-							"name": "TextColor",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.LinearColor",
-							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
-							"links": []
-						},
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:Duration",
-							"name": "Duration",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": "2.000000",
-							"links": []
-						},
-						{
-							"id": "a6b5104a4b95ac0ab67bbebf1addddd4:i:Key",
-							"name": "Key",
-							"direction": "input",
-							"type": "name",
-							"defaultValue": "None",
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "ada692a84ab31730e45a519f51188529",
 					"class": "K2Node_Event",
 					"title": "Event Tick",
@@ -1555,7 +1173,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"2837dee4469daf3b0096f79fa28f8485:i:execute"
+								"bcdeb1374ba9e19d1e97209ed3301658:i:execute"
 							]
 						},
 						{
@@ -1565,36 +1183,6 @@
 							"type": "real:float",
 							"defaultValue": "0.0",
 							"links": []
-						}
-					]
-				},
-				{
-					"guid": "b2d14372433bd0b7ca9010a734d1c64f",
-					"class": "K2Node_Knot",
-					"title": "Reroute Node",
-					"x": -3824,
-					"y": -3808,
-					"comment": null,
-					"pins": [
-						{
-							"id": "b2d14372433bd0b7ca9010a734d1c64f:i:InputPin",
-							"name": "InputPin",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"a6b5104a4b95ac0ab67bbebf1addddd4:o:then"
-							]
-						},
-						{
-							"id": "b2d14372433bd0b7ca9010a734d1c64f:o:OutputPin",
-							"name": "OutputPin",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"d10d573a40c9ea13d6f8eaad66ab63f6:i:InputPin"
-							]
 						}
 					]
 				},
@@ -1613,7 +1201,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"6f309a1f4f1eb82c44ccd48b62a943f5:o:OutputPin"
+								"ada692a84ab31730e45a519f51188529:o:then"
 							]
 						},
 						{
@@ -1735,36 +1323,6 @@
 							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
 							"defaultValue": null,
 							"links": []
-						}
-					]
-				},
-				{
-					"guid": "d10d573a40c9ea13d6f8eaad66ab63f6",
-					"class": "K2Node_Knot",
-					"title": "Reroute Node",
-					"x": -3808,
-					"y": -3568,
-					"comment": null,
-					"pins": [
-						{
-							"id": "d10d573a40c9ea13d6f8eaad66ab63f6:i:InputPin",
-							"name": "InputPin",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"b2d14372433bd0b7ca9010a734d1c64f:o:OutputPin"
-							]
-						},
-						{
-							"id": "d10d573a40c9ea13d6f8eaad66ab63f6:o:OutputPin",
-							"name": "OutputPin",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"5eeeeedf4b2745dd1a4e90837a0c8ded:i:InputPin"
-							]
 						}
 					]
 				},
@@ -2021,6 +1579,36 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "016a8a1a4e74f76743c914bf02945577",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1360,
+					"y": 992,
+					"comment": null,
+					"pins": [
+						{
+							"id": "016a8a1a4e74f76743c914bf02945577:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a6967ce74eb386383f41018b0b900b80:o:else"
+							]
+						},
+						{
+							"id": "016a8a1a4e74f76743c914bf02945577:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"05a1f815492cf9380cf2f088cd043a79:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "01d7ab3244c7dceb6ce8409deac72c5c",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
@@ -2066,8 +1654,8 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"540e3105492f39b567e491acdb8d45e9:o:then",
-								"a6967ce74eb386383f41018b0b900b80:o:else"
+								"016a8a1a4e74f76743c914bf02945577:o:OutputPin",
+								"540e3105492f39b567e491acdb8d45e9:o:then"
 							]
 						},
 						{
@@ -2331,8 +1919,8 @@
 					"guid": "15655e1f4ed450c88a5014935cf47c55",
 					"class": "K2Node_VariableGet",
 					"title": "Get OxygenShouldDecrease",
-					"x": 800,
-					"y": 976,
+					"x": 816,
+					"y": 912,
 					"comment": null,
 					"pins": [
 						{
@@ -2424,6 +2012,14 @@
 							"links": []
 						},
 						{
+							"id": "2ba5c72a48c7cbde783357b7c53455c4:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
 							"id": "2ba5c72a48c7cbde783357b7c53455c4:i:self",
 							"name": "self",
 							"direction": "input",
@@ -2432,14 +2028,6 @@
 							"links": [
 								"d4f8a9b94f635a1b8e502997858f4f9a:o:OutputPin"
 							]
-						},
-						{
-							"id": "2ba5c72a48c7cbde783357b7c53455c4:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
 						}
 					]
 				},
@@ -3481,7 +3069,7 @@
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
 					"x": 1152,
-					"y": 928,
+					"y": 848,
 					"comment": null,
 					"pins": [
 						{
@@ -3521,7 +3109,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"05a1f815492cf9380cf2f088cd043a79:i:execute"
+								"016a8a1a4e74f76743c914bf02945577:i:InputPin"
 							]
 						}
 					]
@@ -3896,6 +3484,14 @@
 							"links": []
 						},
 						{
+							"id": "e24fb39d4a7d071aa51478be08d1bcc0:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
 							"id": "e24fb39d4a7d071aa51478be08d1bcc0:i:self",
 							"name": "self",
 							"direction": "input",
@@ -3904,14 +3500,6 @@
 							"links": [
 								"dbd10bed4c14275d80498db935770e43:o:OutputPin"
 							]
-						},
-						{
-							"id": "e24fb39d4a7d071aa51478be08d1bcc0:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
 						}
 					]
 				},
