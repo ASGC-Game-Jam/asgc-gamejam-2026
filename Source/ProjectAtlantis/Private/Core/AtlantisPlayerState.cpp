@@ -55,8 +55,6 @@ void AAtlantisPlayerState::SetOxygenCapacity(const float NewOxygenCapacity)
 	const float OldOxygenCapacity = OxygenCapacity;
 	OxygenCapacity = NewOxygenCapacity;
 
-	// Replication never calls our RepNotify on the authority, so drive it by hand to keep
-	// the listen-server host in step with every remote client.
 	OnRep_OxygenCapacity(OldOxygenCapacity);
 }
 
@@ -70,8 +68,6 @@ void AAtlantisPlayerState::SetLockedOxygen(const float NewLockedOxygen)
 	const float OldLockedOxygen = LockedOxygen;
 	LockedOxygen = NewLockedOxygen;
 
-	// Replication never calls our RepNotify on the authority, so drive it by hand to keep
-	// the listen-server host in step with every remote client.
 	OnRep_LockedOxygen(OldLockedOxygen);
 }
 
