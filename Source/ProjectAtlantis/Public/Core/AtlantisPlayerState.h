@@ -89,6 +89,10 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	float GetCurrentOxygen() const { return CurrentOxygen; }
 
+	/** Oxygen available for consumption after excluding the ballast reservation. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	float GetAvailableOxygen() const { return FMath::Max(CurrentOxygen - LockedOxygen, 0.f); }
+
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	bool IsBallastAllocated() const { return bBallastAllocation; }
 
