@@ -11,6 +11,50 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "067233da4982f77c6a0629a3b8fe846a",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 304,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "067233da4982f77c6a0629a3b8fe846a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "067233da4982f77c6a0629a3b8fe846a:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "067233da4982f77c6a0629a3b8fe846a:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "067233da4982f77c6a0629a3b8fe846a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"8b32ac00414d1cd3292f7fa6f8870588:i:PlayerController"
+							]
+						}
+					]
+				},
+				{
 					"guid": "25b6529c4e4a8275190d1abc1698e124",
 					"class": "K2Node_ComponentBoundEvent",
 					"title": "On Clicked (QuitButton)",
@@ -93,34 +137,6 @@
 					]
 				},
 				{
-					"guid": "7740bef140c6dd40b76350b1d1a41327",
-					"class": "K2Node_CallFunction",
-					"title": "Get Owning Player",
-					"x": 304,
-					"y": 592,
-					"comment": null,
-					"pins": [
-						{
-							"id": "7740bef140c6dd40b76350b1d1a41327:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.Widget",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "7740bef140c6dd40b76350b1d1a41327:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "object:/Script/Engine.PlayerController",
-							"defaultValue": null,
-							"links": [
-								"8b32ac00414d1cd3292f7fa6f8870588:i:PlayerController"
-							]
-						}
-					]
-				},
-				{
 					"guid": "8b32ac00414d1cd3292f7fa6f8870588",
 					"class": "K2Node_CallFunction",
 					"title": "Set Input Mode Game Only",
@@ -163,7 +179,7 @@
 							"type": "object:/Script/Engine.PlayerController",
 							"defaultValue": null,
 							"links": [
-								"7740bef140c6dd40b76350b1d1a41327:o:ReturnValue"
+								"067233da4982f77c6a0629a3b8fe846a:o:ReturnValue"
 							]
 						},
 						{
