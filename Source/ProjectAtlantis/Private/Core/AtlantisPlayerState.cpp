@@ -5,6 +5,8 @@
 
 #include "Net/UnrealNetwork.h"
 
+DEFINE_LOG_CATEGORY_STATIC(LogAtlantisPlayerState, Log, All);
+
 AAtlantisPlayerState::AAtlantisPlayerState()
 {
 	// APlayerState already enables replication and marks itself always-relevant in its own
@@ -19,6 +21,7 @@ void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(AAtlantisPlayerState, OxygenCapacity);
+	DOREPLIFETIME(AAtlantisPlayerState, LockedOxygen);
 	DOREPLIFETIME(AAtlantisPlayerState, CurrentOxygen);
 	DOREPLIFETIME(AAtlantisPlayerState, bBallastAllocation);
 	DOREPLIFETIME(AAtlantisPlayerState, BallastState);
@@ -33,6 +36,7 @@ void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
 	if (AAtlantisPlayerState* AtlantisPlayerState = Cast<AAtlantisPlayerState>(PlayerState))
 	{
 		AtlantisPlayerState->OxygenCapacity = OxygenCapacity;
+		AtlantisPlayerState->LockedOxygen = LockedOxygen;
 		AtlantisPlayerState->CurrentOxygen = CurrentOxygen;
 		AtlantisPlayerState->bBallastAllocation = bBallastAllocation;
 		AtlantisPlayerState->BallastState = BallastState;
@@ -51,20 +55,33 @@ void AAtlantisPlayerState::SetOxygenCapacity(const float NewOxygenCapacity)
 	const float OldOxygenCapacity = OxygenCapacity;
 	OxygenCapacity = NewOxygenCapacity;
 
-	// Replication never calls our RepNotify on the authority, so drive it by hand to keep
-	// the listen-server host in step with every remote client.
 	OnRep_OxygenCapacity(OldOxygenCapacity);
+}
+
+void AAtlantisPlayerState::SetLockedOxygen(const float NewLockedOxygen)
+{
+	if (!HasAuthority() || FMath::IsNearlyEqual(LockedOxygen, NewLockedOxygen))
+	{
+		return;
+	}
+
+	const float OldLockedOxygen = LockedOxygen;
+	LockedOxygen = NewLockedOxygen;
+
+	OnRep_LockedOxygen(OldLockedOxygen);
 }
 
 void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
 {
-	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, NewCurrentOxygen))
+	// Current oxygen includes the ballast allocation; consumption can only use the unlocked portion.
+	const float ClampedOxygen = FMath::Max(NewCurrentOxygen, LockedOxygen);
+	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, ClampedOxygen))
 	{
 		return;
 	}
 
 	const float OldCurrentOxygen = CurrentOxygen;
-	CurrentOxygen = NewCurrentOxygen;
+	CurrentOxygen = ClampedOxygen;
 	OnRep_CurrentOxygen(OldCurrentOxygen);
 }
 
@@ -88,9 +105,22 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 		return;
 	}
 
-	const EAtlantisBallastState OldBallastState = BallastState;
-	BallastState = NewBallastState;
+	const float RequiredAllocation = GetRequiredBallastAllocation(NewBallastState);
+	if (RequiredAllocation < 0.f || CurrentOxygen <= RequiredAllocation)
+	{
+		return;
+	}
 
+	const EAtlantisBallastState OldBallastState = BallastState;
+	const float OldLockedOxygen = LockedOxygen;
+	BallastState = NewBallastState;
+	LockedOxygen = RequiredAllocation;
+	bBallastAllocation = RequiredAllocation > 0.f;
+
+	if (!FMath::IsNearlyEqual(OldLockedOxygen, LockedOxygen))
+	{
+		OnRep_LockedOxygen(OldLockedOxygen);
+	}
 	OnRep_BallastState(OldBallastState);
 }
 
@@ -110,6 +140,11 @@ void AAtlantisPlayerState::SetTraversalMode(const int32 NewTraversalMode)
 void AAtlantisPlayerState::OnRep_OxygenCapacity(const float OldOxygenCapacity) const
 {
 	OnOxygenCapacityChanged.Broadcast(OldOxygenCapacity, OxygenCapacity);
+}
+
+void AAtlantisPlayerState::OnRep_LockedOxygen(const float OldLockedOxygen) const
+{
+	OnLockedOxygenChanged.Broadcast(OldLockedOxygen, LockedOxygen);
 }
 
 void AAtlantisPlayerState::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
@@ -140,4 +175,29 @@ void AAtlantisPlayerState::OnRep_EquippedItems(const TArray<FString>& OldEquippe
 void AAtlantisPlayerState::BroadcastBallastChanged() const
 {
 	OnBallastChanged.Broadcast(bBallastAllocation, BallastState);
+}
+
+float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastState RequiredBallastState) const
+{
+	switch (RequiredBallastState)
+	{
+		case EAtlantisBallastState::Descend:
+		{
+			return DescendOxygenAllocation;
+		}
+		case EAtlantisBallastState::Wander:
+		{
+			return WanderOxygenAllocation;
+		}
+		case EAtlantisBallastState::Ascend:
+		{
+			return AscendOxygenAllocation;
+		}
+		case EAtlantisBallastState::None:
+		default:
+		{
+			UE_LOG(LogAtlantisPlayerState, Error, TEXT("Invalid ballast state: %d"), static_cast<uint8>(RequiredBallastState));
+			return -1.f;
+		}
+	}
 }
