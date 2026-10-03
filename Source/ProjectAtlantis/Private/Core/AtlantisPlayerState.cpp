@@ -167,20 +167,18 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 {
 	switch (RequiredBallastState)
 	{
-	case EAtlantisBallastState::Descend:
-		return DescendOxygenAllocation;
-
-	case EAtlantisBallastState::Wander:
-		return WanderOxygenAllocation;
-
-	case EAtlantisBallastState::Ascend:
-		return AscendOxygenAllocation;
-
-
-	case EAtlantisBallastState::None:
-		//TODO: Confirm None case handling
-		ensureMsgf(false, TEXT("GetRequiredBallastAllocation called with EValueState::None"));
-		return 0.f;
+		case EAtlantisBallastState::Descend:
+			return DescendOxygenAllocation;
+		case EAtlantisBallastState::Wander:
+			return WanderOxygenAllocation;
+		case EAtlantisBallastState::Ascend:
+			return AscendOxygenAllocation;
+		case EAtlantisBallastState::None:
+			{
+				//TODO: Confirm None case handling
+				ensureMsgf(false, TEXT("GetRequiredBallastAllocation called with EValueState::None"));
+				return 0.f;
+			}
 	}
 	return 0.f;
 }
