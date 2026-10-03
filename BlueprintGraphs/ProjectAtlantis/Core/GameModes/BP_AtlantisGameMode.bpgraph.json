@@ -172,19 +172,19 @@
 							]
 						},
 						{
-							"id": "56f8485f499c2fbfcf0b91b5943a243c:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "56f8485f499c2fbfcf0b91b5943a243c:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "56f8485f499c2fbfcf0b91b5943a243c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -601,19 +601,19 @@
 							]
 						},
 						{
-							"id": "0b39dd12494632af4c5ce388f4cfdf05:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "0b39dd12494632af4c5ce388f4cfdf05:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "0b39dd12494632af4c5ce388f4cfdf05:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -1002,19 +1002,19 @@
 							]
 						},
 						{
-							"id": "1a64a4c74f0c75fb06a7c592b0c376d6:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "1a64a4c74f0c75fb06a7c592b0c376d6:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "1a64a4c74f0c75fb06a7c592b0c376d6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -1260,6 +1260,34 @@
 					]
 				},
 				{
+					"guid": "1e596df14b08e5b269fb5d8c3b44dc5e",
+					"class": "K2Node_VariableGet",
+					"title": "Get TotalOxygenLevel",
+					"x": 1168,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1e596df14b08e5b269fb5d8c3b44dc5e:o:TotalOxygenLevel",
+							"name": "TotalOxygenLevel",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"497edbe74ddeb561da77bea063a66235:i:B"
+							]
+						},
+						{
+							"id": "1e596df14b08e5b269fb5d8c3b44dc5e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "23f520fa45da84bb9146d2bd650a53e7",
 					"class": "K2Node_PromotableOperator",
 					"title": "float >= float",
@@ -1452,8 +1480,10 @@
 							"name": "B",
 							"direction": "input",
 							"type": "real:double",
-							"defaultValue": "100.000000",
-							"links": []
+							"defaultValue": null,
+							"links": [
+								"1e596df14b08e5b269fb5d8c3b44dc5e:o:TotalOxygenLevel"
+							]
 						},
 						{
 							"id": "497edbe74ddeb561da77bea063a66235:o:ReturnValue",
@@ -1786,7 +1816,7 @@
 							"name": "IncreaseBy",
 							"direction": "input",
 							"type": "real:double",
-							"defaultValue": "0.0",
+							"defaultValue": "0.500000",
 							"links": []
 						}
 					]
