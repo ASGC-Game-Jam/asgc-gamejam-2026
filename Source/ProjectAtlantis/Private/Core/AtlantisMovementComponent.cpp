@@ -14,8 +14,7 @@ float UAtlantisMovementComponent::GetMaxAcceleration() const
 {
 	return IsSwimming() ? MaxSwimAcceleration : Super::GetMaxAcceleration();
 }
-// Swimming follows the camera's pitch: W swims where you look, A/D stay horizontal.
-// The move input arrives yaw-only from the Blueprint's move handler; this adds the pitch.
+// Swimming follows the camera's pitch: W swims where you look, A/D to move to the sides, this will just add pitch
 FVector UAtlantisMovementComponent::ConstrainInputAcceleration(const FVector& InputAcceleration) const
 {
 	// Keep stock behaviour for every other movement mode
