@@ -39,7 +39,7 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 	Super::CalcVelocity(DeltaTime, Friction, bFluid, BrakingDeceleration);
 	
 	//We want to check the direction of our acceleration so we only apply it to the player when he goes up or down
-	if (!FMath::IsNearlyZero(Acceleration.Z))
+	if (IsSwimming() && !FMath::IsNearlyZero(Acceleration.Z))
 	{
 		//We clamp it between the up or down speeds (negative would be down...I think)
 		Velocity.Z = FMath::Clamp(Velocity.Z, -MaxVerticalSwimSpeed, MaxVerticalSwimSpeed);
