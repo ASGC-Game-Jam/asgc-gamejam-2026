@@ -39,11 +39,29 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 	Super::CalcVelocity(DeltaTime, Friction, bFluid, BrakingDeceleration);
 	
 	//We want to check the direction of our acceleration so we only apply it to the player when he goes up or down
-	if (IsSwimming() && !FMath::IsNearlyZero(Acceleration.Z))
+	if (!IsSwimming() || FMath::IsNearlyZero(Acceleration.Z))
 	{
-		//We clamp it between the up or down speeds (negative would be down...I think)
-		Velocity.Z = FMath::Clamp(Velocity.Z, -MaxVerticalSwimSpeed, MaxVerticalSwimSpeed);
+		return;
 	}
+	
+	const float HorizontalMaxSpeed = GetMaxSpeed();
+	const float Speed = Velocity.Size();
+	if (HorizontalMaxSpeed < 0.f || MaxVerticalSwimSpeed < 0.f || Speed <= KINDA_SMALL_NUMBER)
+	{
+		return;
+	}
+	
+	const FVector Direction = Velocity / Speed;
+	const float HorizontalRatio = Direction.Size2D() / HorizontalMaxSpeed;
+	const float VerticalRatio = FMath::Abs(Direction.Z) / MaxVerticalSwimSpeed;
+	const float MaxSpeedInDirection = 1.f / FMath::Sqrt(FMath::Square(HorizontalRatio) * FMath::Square(VerticalRatio));
+	
+	if (Speed > MaxSpeedInDirection)
+	{
+			Velocity = Direction * MaxSpeedInDirection;
+	}
+	
+	
 }
 
 
