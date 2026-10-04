@@ -87,8 +87,6 @@ void AAtlantisPlayerController::RemoveControls(UInputMappingContext* MappingCont
 
 void AAtlantisPlayerController::ClearAllControls()
 {
-	// Withdraw from the subsystem BEFORE emptying the list. The Blueprint cleared the array
-	// first and then iterated it, so the contexts were forgotten while staying applied.
 	ClearMappingContexts();
 
 	CurrentMappingContexts.Empty();
