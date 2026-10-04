@@ -120,7 +120,7 @@ void AAtlantisPlayerController::EstablishMappingContexts()
 	}
 
 	const FModifyContextOptions Options = MakeControlOptions();
-	for (UInputMappingContext* MappingContext : CurrentMappingContexts)
+	for (const UInputMappingContext* MappingContext : CurrentMappingContexts)
 	{
 		if (MappingContext)
 		{
@@ -138,7 +138,7 @@ void AAtlantisPlayerController::ClearMappingContexts()
 	}
 
 	const FModifyContextOptions Options = MakeControlOptions();
-	for (UInputMappingContext* MappingContext : CurrentMappingContexts)
+	for (const UInputMappingContext* MappingContext : CurrentMappingContexts)
 	{
 		if (MappingContext)
 		{
