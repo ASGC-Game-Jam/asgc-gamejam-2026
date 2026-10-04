@@ -26,6 +26,23 @@
 #include "HAL/FileManager.h"
 #include "Serialization/JsonWriter.h"
 #include "Serialization/JsonSerializer.h"
+#include "Engine/UserDefinedEnum.h"
+#include "StructUtils/UserDefinedStruct.h"
+#include "Engine/DataTable.h"
+#include "Engine/SimpleConstructionScript.h"
+#include "Engine/SCS_Node.h"
+#include "Engine/Level.h"
+#include "Engine/World.h"
+#include "Engine/LevelScriptBlueprint.h"
+#include "GameFramework/WorldSettings.h"
+#include "Components/ActorComponent.h"
+#include "UObject/ObjectRedirector.h"
+#include "UObject/StructOnScope.h"
+#include "UObject/TextProperty.h"
+#include "UObject/EnumProperty.h"
+#include "UObject/FieldPathProperty.h"
+#include "Dom/JsonObject.h"
+#include "Dom/JsonValue.h"
 
 // The exporter reads the *live* editor model (UEdGraph/UEdGraphNode/UEdGraphPin) directly
 // rather than parsing the T3D copy/paste text — same full fidelity, but structured and far
@@ -432,11 +449,373 @@ namespace
             Out.Add({ G, Type, FString::Join(Segments, TEXT("/")) });
         }
     }
+
+    // ── Properties ───────────────────────────────────────────────────────────
+    // A reflection dump of an asset's editable data, so assets with no node graph (an Enum, an
+    // Input Action, a Texture's settings…) still diff as something readable, and graph assets
+    // additionally diff their class defaults. Hand-rolled rather than FJsonObjectConverter for
+    // two reasons: that converter follows every instanced object reference with no cycle guard
+    // (an actor CDO's components point at each other, which would recurse forever and take the
+    // editor down from a save hook), and it has no size budget. Output is deterministic:
+    // properties come out in reflection order, map keys sorted, floats rounded to what the
+    // Details panel shows, so a re-export without edits is byte-identical.
+
+    /** Properties never worth diffing: regenerated on every save or never user-authored. */
+    const int64 SkipPropertyFlags = CPF_Transient | CPF_DuplicateTransient | CPF_NonPIEDuplicateTransient | CPF_Deprecated;
+
+    /** Named properties that change on every save without any authored edit. */
+    bool IsVolatileProperty(const FProperty* P)
+    {
+        static const FName Volatile[] = { TEXT("LightingGuid"), TEXT("StateId"), TEXT("ParameterStateId") };
+        for (const FName& N : Volatile) { if (P->GetFName() == N) return true; }
+        return false;
+    }
+
+    struct FDumpState
+    {
+        /** Package the dump root lives in; only its own subobjects are expanded inline. */
+        const UPackage* Package = nullptr;
+        /** Objects on the current expansion path (cycle guard). */
+        TArray<const UObject*> Path;
+        /** Values emitted so far, against `MaxValues` — a hard ceiling on export size. */
+        int32 Emitted = 0;
+        bool bTruncated = false;
+        static constexpr int32 MaxValues = 60000;
+        static constexpr int32 MaxDepth = 10;
+
+        bool Budget() { if (Emitted >= MaxValues) { bTruncated = true; return false; } ++Emitted; return true; }
+    };
+
+    TSharedPtr<FJsonValue> PropertyToJson(const FProperty* P, const void* ValuePtr, FDumpState& S);
+
+    /** A float the way the editor prints it (7 significant digits) rather than its double expansion. */
+    double RoundedFloat(float F)
+    {
+        return FCString::Atod(*FString::Printf(TEXT("%.7g"), (double)F));
+    }
+
+    FString ExportTextOf(const FProperty* P, const void* ValuePtr)
+    {
+        FString Out;
+        P->ExportText_Direct(Out, ValuePtr, ValuePtr, nullptr, PPF_None);
+        return Out;
+    }
+
+    /** Should a referenced object be expanded inline (instanced data authored as part of this
+     *  asset) or written as a path string (a reference to something else)? */
+    bool ShouldExpandObject(const FProperty* P, const UObject* Obj, const FDumpState& S)
+    {
+        if (!Obj || !S.Package || S.Path.Num() >= FDumpState::MaxDepth) return false;
+        if (Obj->GetOutermost() != S.Package) return false;               // another asset: reference only
+        if (S.Path.Contains(Obj)) return false;                            // cycle
+        if (Obj->IsA<UEdGraph>() || Obj->IsA<UEdGraphNode>()) return false; // graphs are exported separately
+        if (Obj->IsA<UStruct>()) return false;                             // classes/structs: a name is enough
+        const bool bInstancedProperty = P && P->HasAnyPropertyFlags(CPF_PersistentInstance | CPF_InstancedReference);
+        const bool bInstancedClass = Obj->GetClass()->HasAnyClassFlags(CLASS_DefaultToInstanced);
+        return bInstancedProperty || bInstancedClass;
+    }
+
+    /** The reflected properties of `Def` at `Data`, as a JSON object in reflection order. */
+    TSharedRef<FJsonObject> StructToJson(const UStruct* Def, const void* Data, FDumpState& S)
+    {
+        TSharedRef<FJsonObject> Obj = MakeShared<FJsonObject>();
+        for (TFieldIterator<FProperty> It(Def); It; ++It)
+        {
+            const FProperty* P = *It;
+            if (P->HasAnyPropertyFlags(SkipPropertyFlags) || IsVolatileProperty(P)) continue;
+            if (!S.Budget()) break;
+            const void* ValuePtr = P->ContainerPtrToValuePtr<void>(Data);
+            TSharedPtr<FJsonValue> V = PropertyToJson(P, ValuePtr, S);
+            if (V.IsValid()) Obj->SetField(P->GetAuthoredName(), V); // authored: a Struct field's friendly name
+        }
+        return Obj;
+    }
+
+    TSharedPtr<FJsonValue> ObjectToJson(const FProperty* P, const UObject* Obj, FDumpState& S)
+    {
+        if (!Obj) return MakeShared<FJsonValueNull>();
+        if (!ShouldExpandObject(P, Obj, S)) return MakeShared<FJsonValueString>(Obj->GetPathName());
+        S.Path.Push(Obj);
+        TSharedRef<FJsonObject> Out = MakeShared<FJsonObject>();
+        Out->SetStringField(TEXT("_class"), Obj->GetClass()->GetName());
+        Out->SetStringField(TEXT("_name"), Obj->GetName());
+        const TSharedRef<FJsonObject> Fields = StructToJson(Obj->GetClass(), Obj, S);
+        for (const TPair<FString, TSharedPtr<FJsonValue>>& F : Fields->Values) Out->SetField(F.Key, F.Value);
+        S.Path.Pop();
+        return MakeShared<FJsonValueObject>(Out);
+    }
+
+    TSharedPtr<FJsonValue> PropertyToJson(const FProperty* P, const void* ValuePtr, FDumpState& S)
+    {
+        if (const FBoolProperty* BP = CastField<FBoolProperty>(P))
+        {
+            return MakeShared<FJsonValueBoolean>(BP->GetPropertyValue(ValuePtr));
+        }
+        if (const FEnumProperty* EP = CastField<FEnumProperty>(P))
+        {
+            const int64 V = EP->GetUnderlyingProperty()->GetSignedIntPropertyValue(ValuePtr);
+            return MakeShared<FJsonValueString>(EP->GetEnum() ? EP->GetEnum()->GetNameStringByValue(V) : FString::Printf(TEXT("%lld"), V));
+        }
+        if (const FNumericProperty* NP = CastField<FNumericProperty>(P))
+        {
+            if (const UEnum* E = NP->GetIntPropertyEnum())
+            {
+                return MakeShared<FJsonValueString>(E->GetNameStringByValue(NP->GetSignedIntPropertyValue(ValuePtr)));
+            }
+            if (const FFloatProperty* FP = CastField<FFloatProperty>(P))
+            {
+                return MakeShared<FJsonValueNumber>(RoundedFloat(FP->GetPropertyValue(ValuePtr)));
+            }
+            if (NP->IsFloatingPoint()) return MakeShared<FJsonValueNumber>(NP->GetFloatingPointPropertyValue(ValuePtr));
+            if (NP->IsInteger())
+            {
+                // JSON numbers are doubles; anything past 2^53 goes out as text to stay exact.
+                const int64 V = NP->GetSignedIntPropertyValue(ValuePtr);
+                if (V > (1LL << 53) || V < -(1LL << 53)) return MakeShared<FJsonValueString>(FString::Printf(TEXT("%lld"), V));
+                return MakeShared<FJsonValueNumber>((double)V);
+            }
+            return MakeShared<FJsonValueString>(ExportTextOf(P, ValuePtr));
+        }
+        if (const FStrProperty* SP = CastField<FStrProperty>(P)) return MakeShared<FJsonValueString>(SP->GetPropertyValue(ValuePtr));
+        if (const FNameProperty* NmP = CastField<FNameProperty>(P)) return MakeShared<FJsonValueString>(NmP->GetPropertyValue(ValuePtr).ToString());
+        if (const FTextProperty* TP = CastField<FTextProperty>(P)) return MakeShared<FJsonValueString>(TP->GetPropertyValue(ValuePtr).ToString());
+        if (const FStructProperty* StP = CastField<FStructProperty>(P))
+        {
+            // Structs with a native text form (FGuid, FSoftObjectPath, FDateTime…) export as that one
+            // string; everything else (FVector, FLinearColor, user structs) expands field by field.
+            const UScriptStruct* SS = StP->Struct;
+            if (SS && SS->GetCppStructOps() && SS->GetCppStructOps()->HasExportTextItem())
+            {
+                return MakeShared<FJsonValueString>(ExportTextOf(P, ValuePtr));
+            }
+            return MakeShared<FJsonValueObject>(StructToJson(SS, ValuePtr, S));
+        }
+        if (const FArrayProperty* AP = CastField<FArrayProperty>(P))
+        {
+            FScriptArrayHelper Helper(AP, ValuePtr);
+            TArray<TSharedPtr<FJsonValue>> Out;
+            Out.Reserve(Helper.Num());
+            for (int32 i = 0; i < Helper.Num(); ++i)
+            {
+                if (!S.Budget()) break;
+                TSharedPtr<FJsonValue> V = PropertyToJson(AP->Inner, Helper.GetRawPtr(i), S);
+                Out.Add(V.IsValid() ? V : MakeShared<FJsonValueNull>());
+            }
+            return MakeShared<FJsonValueArray>(Out);
+        }
+        if (const FSetProperty* SetP = CastField<FSetProperty>(P))
+        {
+            FScriptSetHelper Helper(SetP, ValuePtr);
+            TArray<TSharedPtr<FJsonValue>> Out;
+            for (FScriptSetHelper::FIterator It(Helper); It; ++It)
+            {
+                if (!S.Budget()) break;
+                TSharedPtr<FJsonValue> V = PropertyToJson(SetP->ElementProp, Helper.GetElementPtr(It), S);
+                Out.Add(V.IsValid() ? V : MakeShared<FJsonValueNull>());
+            }
+            // Set order is hash order, not authored order — sort by text so re-exports are stable.
+            Out.Sort([](const TSharedPtr<FJsonValue>& A, const TSharedPtr<FJsonValue>& B)
+            {
+                FString SA, SB; A->TryGetString(SA); B->TryGetString(SB); return SA < SB;
+            });
+            return MakeShared<FJsonValueArray>(Out);
+        }
+        if (const FMapProperty* MP = CastField<FMapProperty>(P))
+        {
+            FScriptMapHelper Helper(MP, ValuePtr);
+            TArray<TPair<FString, TSharedPtr<FJsonValue>>> Pairs;
+            for (FScriptMapHelper::FIterator It(Helper); It; ++It)
+            {
+                if (!S.Budget()) break;
+                const FString Key = ExportTextOf(MP->KeyProp, Helper.GetKeyPtr(It));
+                TSharedPtr<FJsonValue> V = PropertyToJson(MP->ValueProp, Helper.GetValuePtr(It), S);
+                Pairs.Add({ Key, V.IsValid() ? V : MakeShared<FJsonValueNull>() });
+            }
+            Pairs.Sort([](const TPair<FString, TSharedPtr<FJsonValue>>& A, const TPair<FString, TSharedPtr<FJsonValue>>& B) { return A.Key < B.Key; });
+            TSharedRef<FJsonObject> Out = MakeShared<FJsonObject>();
+            for (const TPair<FString, TSharedPtr<FJsonValue>>& Pair : Pairs) Out->SetField(Pair.Key, Pair.Value);
+            return MakeShared<FJsonValueObject>(Out);
+        }
+        if (const FSoftObjectProperty* SoP = CastField<FSoftObjectProperty>(P))
+        {
+            const FSoftObjectPtr& Soft = SoP->GetPropertyValue(ValuePtr);
+            return Soft.IsNull() ? TSharedPtr<FJsonValue>(MakeShared<FJsonValueNull>()) : MakeShared<FJsonValueString>(Soft.ToString());
+        }
+        if (const FObjectPropertyBase* OP = CastField<FObjectPropertyBase>(P))
+        {
+            return ObjectToJson(P, OP->GetObjectPropertyValue(ValuePtr), S);
+        }
+        if (const FInterfaceProperty* IP = CastField<FInterfaceProperty>(P))
+        {
+            const UObject* Obj = IP->GetPropertyValue(ValuePtr).GetObject();
+            return Obj ? TSharedPtr<FJsonValue>(MakeShared<FJsonValueString>(Obj->GetPathName())) : MakeShared<FJsonValueNull>();
+        }
+        if (CastField<FDelegateProperty>(P) || CastField<FMulticastDelegateProperty>(P))
+        {
+            return nullptr; // bindings are code wiring, not authored data
+        }
+        return MakeShared<FJsonValueString>(ExportTextOf(P, ValuePtr));
+    }
+
+    /** `Obj`'s own properties as a JSON object (the common case: "dump this asset"). */
+    TSharedRef<FJsonObject> DumpObject(const UObject* Obj, FDumpState& S)
+    {
+        if (!Obj) return MakeShared<FJsonObject>();
+        S.Path.Push(Obj);
+        TSharedRef<FJsonObject> Out = StructToJson(Obj->GetClass(), Obj, S);
+        S.Path.Pop();
+        return Out;
+    }
+
+    // Per-kind property sections. Each returns the `properties` object for one asset kind; the
+    // generic fallback is the asset's own property values, flat.
+
+    TSharedRef<FJsonObject> EnumProperties(const UEnum* E)
+    {
+        TSharedRef<FJsonObject> Enumerators = MakeShared<FJsonObject>();
+        const int32 Count = E->NumEnums() - (E->ContainsExistingMax() ? 1 : 0);
+        for (int32 i = 0; i < Count; ++i)
+        {
+            TSharedRef<FJsonObject> Entry = MakeShared<FJsonObject>();
+            Entry->SetStringField(TEXT("displayName"), E->GetDisplayNameTextByIndex(i).ToString());
+            Entry->SetNumberField(TEXT("value"), (double)E->GetValueByIndex(i));
+            // Keyed by the internal name, which survives a display-name edit — so renaming an
+            // entry diffs as "displayName changed", not as one entry removed and another added.
+            Enumerators->SetObjectField(E->GetNameStringByIndex(i), Entry);
+        }
+        TSharedRef<FJsonObject> Out = MakeShared<FJsonObject>();
+        Out->SetObjectField(TEXT("enumerators"), Enumerators);
+        return Out;
+    }
+
+    TSharedRef<FJsonObject> StructProperties(const UUserDefinedStruct* St, FDumpState& S)
+    {
+        TSharedRef<FJsonObject> Fields = MakeShared<FJsonObject>();
+        for (TFieldIterator<FProperty> It(St); It; ++It)
+        {
+            TSharedRef<FJsonObject> F = MakeShared<FJsonObject>();
+            F->SetStringField(TEXT("type"), It->GetCPPType());
+            Fields->SetObjectField(It->GetAuthoredName(), F);
+        }
+        // InitializeStruct applies the authored default values, so a scratch instance is the defaults.
+        FStructOnScope Scratch(St);
+        TSharedRef<FJsonObject> Out = MakeShared<FJsonObject>();
+        Out->SetObjectField(TEXT("fields"), Fields);
+        Out->SetObjectField(TEXT("defaults"), StructToJson(St, Scratch.GetStructMemory(), S));
+        return Out;
+    }
+
+    TSharedRef<FJsonObject> DataTableProperties(const UDataTable* Table, FDumpState& S)
+    {
+        TSharedRef<FJsonObject> Out = MakeShared<FJsonObject>();
+        const UScriptStruct* RowStruct = Table->GetRowStruct();
+        if (RowStruct) Out->SetStringField(TEXT("rowStruct"), RowStruct->GetPathName());
+        else Out->SetField(TEXT("rowStruct"), MakeShared<FJsonValueNull>());
+
+        TArray<FName> Names;
+        Table->GetRowMap().GetKeys(Names);
+        Names.Sort(FNameLexicalLess());
+        TSharedRef<FJsonObject> Rows = MakeShared<FJsonObject>();
+        for (const FName& Name : Names)
+        {
+            if (!S.Budget()) break;
+            uint8* const* Row = Table->GetRowMap().Find(Name);
+            if (RowStruct && Row && *Row) Rows->SetObjectField(Name.ToString(), StructToJson(RowStruct, *Row, S));
+        }
+        Out->SetObjectField(TEXT("rows"), Rows);
+        return Out;
+    }
+
+    TSharedRef<FJsonObject> BlueprintProperties(UBlueprint* BP, FDumpState& S)
+    {
+        TSharedRef<FJsonObject> Out = MakeShared<FJsonObject>();
+
+        // Declared variables (name → type/category/default). Keyed by name so a retype or a
+        // default edit diffs on the variable, not on a list index.
+        TSharedRef<FJsonObject> Variables = MakeShared<FJsonObject>();
+        for (const FBPVariableDescription& V : BP->NewVariables)
+        {
+            TSharedRef<FJsonObject> Var = MakeShared<FJsonObject>();
+            Var->SetStringField(TEXT("type"), PinTypeString(V.VarType));
+            Var->SetStringField(TEXT("category"), V.Category.ToString());
+            Var->SetStringField(TEXT("defaultValue"), V.DefaultValue);
+            Var->SetBoolField(TEXT("instanceEditable"), !(V.PropertyFlags & CPF_DisableEditOnInstance));
+            Variables->SetObjectField(V.VarName.ToString(), Var);
+        }
+        Out->SetObjectField(TEXT("variables"), Variables);
+
+        // Components added in the Blueprint editor (the SCS tree), each with its template's values.
+        TSharedRef<FJsonObject> Components = MakeShared<FJsonObject>();
+        if (BP->SimpleConstructionScript)
+        {
+            TMap<const USCS_Node*, FName> ParentOf;
+            for (const USCS_Node* N : BP->SimpleConstructionScript->GetAllNodes())
+            {
+                if (!N) continue;
+                for (const USCS_Node* C : N->GetChildNodes()) { if (C) ParentOf.Add(C, N->GetVariableName()); }
+            }
+            for (const USCS_Node* N : BP->SimpleConstructionScript->GetAllNodes())
+            {
+                if (!N) continue;
+                TSharedRef<FJsonObject> Comp = MakeShared<FJsonObject>();
+                Comp->SetStringField(TEXT("class"), N->ComponentClass ? N->ComponentClass->GetName() : FString());
+                if (const FName* Parent = ParentOf.Find(N)) Comp->SetStringField(TEXT("parent"), Parent->ToString());
+                else if (!N->ParentComponentOrVariableName.IsNone()) Comp->SetStringField(TEXT("parent"), N->ParentComponentOrVariableName.ToString());
+                else Comp->SetField(TEXT("parent"), MakeShared<FJsonValueNull>());
+                if (!N->AttachToName.IsNone()) Comp->SetStringField(TEXT("socket"), N->AttachToName.ToString());
+                Comp->SetObjectField(TEXT("properties"), DumpObject(N->ComponentTemplate, S));
+                Components->SetObjectField(N->GetVariableName().ToString(), Comp);
+            }
+        }
+        Out->SetObjectField(TEXT("components"), Components);
+
+        // Class defaults: every value on the Details panel of the Blueprint itself.
+        const UObject* CDO = BP->GeneratedClass ? BP->GeneratedClass->GetDefaultObject(/*bCreateIfNeeded*/ false) : nullptr;
+        Out->SetObjectField(TEXT("defaults"), DumpObject(CDO, S));
+        return Out;
+    }
+
+    TSharedRef<FJsonObject> WorldProperties(UWorld* World, FDumpState& S)
+    {
+        TSharedRef<FJsonObject> Out = MakeShared<FJsonObject>();
+        AWorldSettings* Settings = World->GetWorldSettings(/*bCheckStreamingPersistent*/ false, /*bChecked*/ false);
+        Out->SetObjectField(TEXT("worldSettings"), DumpObject(Settings, S));
+        return Out;
+    }
+
+    /** The `properties` object for any asset. */
+    TSharedRef<FJsonObject> BuildProperties(UObject* Asset, FDumpState& S)
+    {
+        S.Package = Asset->GetOutermost();
+        if (const UUserDefinedEnum* E = Cast<UUserDefinedEnum>(Asset)) return EnumProperties(E);
+        if (const UUserDefinedStruct* St = Cast<UUserDefinedStruct>(Asset)) return StructProperties(St, S);
+        if (const UDataTable* Table = Cast<UDataTable>(Asset)) return DataTableProperties(Table, S);
+        if (UBlueprint* BP = Cast<UBlueprint>(Asset)) return BlueprintProperties(BP, S);
+        if (UWorld* World = Cast<UWorld>(Asset)) return WorldProperties(World, S);
+        return DumpObject(Asset, S);
+    }
+
+    /** The Blueprint whose graphs a level package carries: its Level Blueprint, if one was ever made. */
+    UBlueprint* LevelBlueprintOf(UWorld* World)
+    {
+        return World && World->PersistentLevel ? World->PersistentLevel->GetLevelScriptBlueprint(/*bDontCreate*/ true) : nullptr;
+    }
+}
+
+bool FKeystoneBlueprintExporter::IsExcludedPackage(const FString& PackageName)
+{
+    // One File Per Actor: every placed actor is its own tiny package. Exporting them would mean
+    // thousands of files per level, and loading one standalone pulls in its whole level.
+    return PackageName.Contains(TEXT("/__ExternalActors__/")) || PackageName.Contains(TEXT("/__ExternalObjects__/"));
 }
 
 bool FKeystoneBlueprintExporter::CanExport(const UObject* Asset)
 {
-    return Asset && (Asset->IsA<UBlueprint>() || Asset->IsA<UMaterial>() || Asset->IsA<UMaterialFunction>() || IsNiagaraAsset(Asset));
+    if (!IsValid(Asset) || Asset->IsA<UPackage>() || Asset->IsA<UObjectRedirector>()) return false;
+    if (Asset->HasAnyFlags(RF_ClassDefaultObject | RF_Transient)) return false;
+    const UPackage* Package = Asset->GetOutermost();
+    if (!Package || Package == GetTransientPackage()) return false;
+    return !IsExcludedPackage(Package->GetName());
 }
 
 FString FKeystoneBlueprintExporter::BuildJson(UObject* Asset)
@@ -445,16 +824,21 @@ FString FKeystoneBlueprintExporter::BuildJson(UObject* Asset)
     const FJsonWriterRef W = TJsonWriterFactory<TCHAR, TPrettyJsonPrintPolicy<TCHAR>>::Create(&Out);
 
     W->WriteObjectStart();
-    W->WriteValue(TEXT("version"), 1);
+    W->WriteValue(TEXT("version"), KEYSTONE_EXPORT_VERSION);
     W->WriteValue(TEXT("generatedBy"), TEXT("keystone-blueprint-export"));
     W->WriteValue(TEXT("package"), Asset->GetOutermost()->GetName()); // /Game/.../BP_Hero
     W->WriteValue(TEXT("asset"), Asset->GetName());
+    W->WriteValue(TEXT("assetClass"), Asset->GetClass()->GetName());
 
     TArray<FGraphEntry> Graphs;
     FNodeIdFn NodeId = &DefaultNodeId;
     TUniquePtr<FTransientMaterialGraph> MaterialGraph; // must outlive WriteGraph below
 
-    if (UBlueprint* Blueprint = Cast<UBlueprint>(Asset))
+    // A level's graphs are its Level Blueprint's; everything else that has graphs owns them.
+    UBlueprint* Blueprint = Cast<UBlueprint>(Asset);
+    if (UWorld* World = Cast<UWorld>(Asset)) Blueprint = LevelBlueprintOf(World);
+
+    if (Blueprint)
     {
         if (Blueprint->ParentClass) { W->WriteValue(TEXT("parentClass"), Blueprint->ParentClass->GetName()); }
         else { W->WriteNull(TEXT("parentClass")); }
@@ -463,7 +847,6 @@ FString FKeystoneBlueprintExporter::BuildJson(UObject* Asset)
     }
     else
     {
-        W->WriteValue(TEXT("assetClass"), Asset->GetClass()->GetName());
         W->WriteNull(TEXT("parentClass"));
         W->WriteNull(TEXT("blueprintType"));
 
@@ -488,6 +871,13 @@ FString FKeystoneBlueprintExporter::BuildJson(UObject* Asset)
     W->WriteArrayStart(TEXT("graphs"));
     for (const FGraphEntry& G : Graphs) WriteGraph(W, G, NodeId);
     W->WriteArrayEnd();
+
+    // Properties: the asset's Details-panel data (see BuildProperties). Written after the graphs
+    // so the graph half of the file is unchanged from format version 1.
+    FDumpState State;
+    const TSharedRef<FJsonObject> Properties = BuildProperties(Asset, State);
+    if (State.bTruncated) Properties->SetBoolField(TEXT("_truncated"), true);
+    FJsonSerializer::Serialize(MakeShared<FJsonValueObject>(Properties), TEXT("properties"), W, /*bCloseWriter*/ false);
 
     W->WriteObjectEnd();
     W->Close();
@@ -636,24 +1026,38 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
         ARM.Get().WaitForCompletion();
     }
 
+    // Every asset under the root. No class filter: anything with a Details panel gets an export.
     FARFilter Filter;
-    Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
-    Filter.ClassPaths.Add(UMaterial::StaticClass()->GetClassPathName());
-    Filter.ClassPaths.Add(UMaterialFunction::StaticClass()->GetClassPathName()); // + material layers/blends
-    for (const FTopLevelAssetPath& N : NiagaraClassPaths) Filter.ClassPaths.Add(N);
-    Filter.bRecursiveClasses = true;
     Filter.PackagePaths.Add(*RootPath);
     Filter.bRecursivePaths = true;
 
     TArray<FAssetData> Assets;
     ARM.Get().GetAssets(Filter, Assets);
 
+    // One export per package: drop redirectors, the One-File-Per-Actor folders, and any second
+    // asset sharing a package with the first (the export is keyed by package).
+    Assets.Sort([](const FAssetData& A, const FAssetData& B)
+    {
+        return A.PackageName != B.PackageName ? A.PackageName.LexicalLess(B.PackageName) : A.AssetName.LexicalLess(B.AssetName);
+    });
+    TArray<FAssetData> Unique;
+    Unique.Reserve(Assets.Num());
+    FName LastPackage;
+    for (const FAssetData& AD : Assets)
+    {
+        if (AD.IsRedirector() || AD.PackageName == LastPackage) continue;
+        if (IsExcludedPackage(AD.PackageName.ToString())) continue;
+        Unique.Add(AD);
+        LastPackage = AD.PackageName;
+    }
+
     // Manifest: package -> committed export path, so Keystone can resolve a changed .uasset to
-    // its .bpgraph.json without re-deriving the path rule.
+    // its .bpgraph.json without re-deriving the path rule, and can tell which plugin generation
+    // wrote the tree (version 2 = every asset has an export, with properties).
     FString ManifestJson;
     const FJsonWriterRef MW = TJsonWriterFactory<TCHAR, TPrettyJsonPrintPolicy<TCHAR>>::Create(&ManifestJson);
     MW->WriteObjectStart();
-    MW->WriteValue(TEXT("version"), 1);
+    MW->WriteValue(TEXT("version"), KEYSTONE_EXPORT_VERSION);
     MW->WriteValue(TEXT("generatedBy"), TEXT("keystone-blueprint-export"));
     MW->WriteValue(TEXT("project"), FApp::GetProjectName());
     MW->WriteArrayStart(TEXT("entries"));
@@ -661,10 +1065,10 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
     // Every export a live asset maps to. Anything else under the folder is an orphan left
     // behind by a rename or a delete, which the sweep prunes below.
     TSet<FString> ExpectedFiles;
-    ExpectedFiles.Reserve(Assets.Num());
+    ExpectedFiles.Reserve(Unique.Num());
 
-    Assets.Sort([](const FAssetData& A, const FAssetData& B) { return A.PackageName.LexicalLess(B.PackageName); });
-    for (const FAssetData& AD : Assets)
+    int32 LoadedSinceGc = 0;
+    for (const FAssetData& AD : Unique)
     {
         UObject* Asset = AD.GetAsset();
         if (!CanExport(Asset))
@@ -683,9 +1087,18 @@ FKeystoneExportResult FKeystoneBlueprintExporter::ExportAll(const FString& RootP
         MW->WriteObjectStart();
         MW->WriteValue(TEXT("package"), Asset->GetOutermost()->GetName());
         MW->WriteValue(TEXT("asset"), Asset->GetName());
-        if (!Asset->IsA<UBlueprint>()) MW->WriteValue(TEXT("assetClass"), Asset->GetClass()->GetName());
+        MW->WriteValue(TEXT("assetClass"), Asset->GetClass()->GetName());
         MW->WriteValue(TEXT("exportPath"), RepoRel);
         MW->WriteObjectEnd();
+
+        // A sweep now loads every asset in the project, meshes and textures included. Release
+        // what the loop pulled in every so often so a big project does not exhaust memory;
+        // anything open in an editor or otherwise referenced survives the collection.
+        if (++LoadedSinceGc >= 64)
+        {
+            LoadedSinceGc = 0;
+            CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
+        }
     }
 
     MW->WriteArrayEnd();
