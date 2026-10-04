@@ -1,8 +1,9 @@
 {
-	"version": 1,
+	"version": 2,
 	"generatedBy": "keystone-blueprint-export",
 	"package": "/Game/ProjectAtlantis/Core/PlayerControllers/BP_MainMenuPlayerController",
 	"asset": "BP_MainMenuPlayerController",
+	"assetClass": "Blueprint",
 	"parentClass": "PlayerController",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
@@ -98,5 +99,325 @@
 			],
 			"comments": []
 		}
-	]
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"Player": null,
+			"AcknowledgedPawn": null,
+			"MyHUD": null,
+			"PlayerCameraManager": null,
+			"PlayerCameraManagerClass": null,
+			"bAutoManageActiveCameraTarget": true,
+			"TargetViewRotation":
+			{
+				"Pitch": 0,
+				"Yaw": 0,
+				"Roll": 0
+			},
+			"SmoothTargetViewRotationSpeed": 20,
+			"HiddenActors": [],
+			"HiddenPrimitiveComponents": [],
+			"LastSpectatorStateSynchTime": 0,
+			"ClientCap": 0,
+			"CheatClass": "/Script/Engine.CheatManager",
+			"bPlayerIsWaiting": false,
+			"bShowMouseCursor": false,
+			"bEnableClickEvents": false,
+			"bEnableTouchEvents": true,
+			"bEnableMouseOverEvents": false,
+			"bEnableTouchOverEvents": false,
+			"bForceFeedbackEnabled": true,
+			"bEnableMotionControls": true,
+			"bEnableStreamingSource": true,
+			"bStreamingSourceShouldActivate": true,
+			"bStreamingSourceShouldBlockOnSlowStreaming": true,
+			"StreamingSourcePriority": "Normal",
+			"StreamingSourceDebugColor":
+			{
+				"B": 0,
+				"G": 0,
+				"R": 0,
+				"A": 0
+			},
+			"StreamingSourceShapes": [],
+			"ForceFeedbackScale": 1,
+			"ClickEventKeys": [
+				"LeftMouseButton"
+			],
+			"DefaultMouseCursor": "Default",
+			"CurrentMouseCursor": "None",
+			"DefaultClickTraceChannel": "ECC_Visibility",
+			"CurrentClickTraceChannel": "ECC_WorldStatic",
+			"HitResultTraceDistance": 100000,
+			"SeamlessTravelCount": 0,
+			"LastCompletedSeamlessTravelCount": 0,
+			"InactiveStateInputComponent": null,
+			"bShouldPerformFullTickWhenPaused": false,
+			"CurrentTouchInterface": null,
+			"OverridePlayerInputClass": null,
+			"SpectatorPawn": null,
+			"bIsLocalPlayerController": false,
+			"SpawnLocation":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"CachedConnectionPlayerId": "INVALID",
+			"PlayerState": null,
+			"StateName": "None",
+			"Pawn": null,
+			"Character": null,
+			"TransformComponent":
+			{
+				"_class": "SceneComponent",
+				"_name": "TransformComponent0",
+				"AttachParent": null,
+				"AttachSocketName": "None",
+				"RelativeLocation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"RelativeRotation":
+				{
+					"Pitch": 0,
+					"Yaw": 0,
+					"Roll": 0
+				},
+				"RelativeScale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				},
+				"ComponentVelocity":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"bAbsoluteLocation": false,
+				"bAbsoluteRotation": true,
+				"bAbsoluteScale": false,
+				"bVisible": true,
+				"bShouldUpdatePhysicsVolume": false,
+				"bHiddenInGame": false,
+				"bBoundsChangeTriggersStreamingDataRebuild": false,
+				"bUseAttachParentBound": false,
+				"bComputeFastLocalBounds": false,
+				"bComputeBoundsOnceForGame": false,
+				"bComputedBoundsOnceForGame": false,
+				"bIsNotRenderAttachmentRoot": false,
+				"bVisualizeComponent": false,
+				"Mobility": "Movable",
+				"DetailMode": "DM_Low",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"ControlRotation":
+			{
+				"Pitch": 0,
+				"Yaw": 0,
+				"Roll": 0
+			},
+			"bAttachToPawn": false,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": true,
+				"bCanEverTick": true,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": true,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": true,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": true,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": false,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 3,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent":
+			{
+				"_class": "SceneComponent",
+				"_name": "TransformComponent0",
+				"AttachParent": null,
+				"AttachSocketName": "None",
+				"RelativeLocation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"RelativeRotation":
+				{
+					"Pitch": 0,
+					"Yaw": 0,
+					"Roll": 0
+				},
+				"RelativeScale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				},
+				"ComponentVelocity":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"bAbsoluteLocation": false,
+				"bAbsoluteRotation": true,
+				"bAbsoluteScale": false,
+				"bVisible": true,
+				"bShouldUpdatePhysicsVolume": false,
+				"bHiddenInGame": false,
+				"bBoundsChangeTriggersStreamingDataRebuild": false,
+				"bUseAttachParentBound": false,
+				"bComputeFastLocalBounds": false,
+				"bComputeBoundsOnceForGame": false,
+				"bComputedBoundsOnceForGame": false,
+				"bIsNotRenderAttachmentRoot": false,
+				"bVisualizeComponent": false,
+				"Mobility": "Movable",
+				"DetailMode": "DM_Low",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": true,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
 }
