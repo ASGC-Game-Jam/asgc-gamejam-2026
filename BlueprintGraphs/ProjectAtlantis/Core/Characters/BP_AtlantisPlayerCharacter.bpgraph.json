@@ -7,31 +7,6 @@
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
-			"name": "NewEventDispatcher",
-			"type": "Delegate",
-			"nodes": [
-				{
-					"guid": "069a1533468f43c1e50919b8ac676ca7",
-					"class": "K2Node_FunctionEntry",
-					"title": "NewEventDispatcher",
-					"x": 0,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "069a1533468f43c1e50919b8ac676ca7:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				}
-			],
-			"comments": []
-		},
-		{
 			"name": "Aim",
 			"type": "Function",
 			"nodes": [
@@ -1579,6 +1554,54 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "00e8ab2a46598584eb5aa985cce4137b",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 2512,
+					"y": 1184,
+					"comment": null,
+					"pins": [
+						{
+							"id": "00e8ab2a46598584eb5aa985cce4137b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"19dafc0249ed13e3116944a2dcb8ca9f:o:then"
+							]
+						},
+						{
+							"id": "00e8ab2a46598584eb5aa985cce4137b:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"6f24ca2446bf91b8066a95894d39bba4:o:bWaterVolume"
+							]
+						},
+						{
+							"id": "00e8ab2a46598584eb5aa985cce4137b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c1f670b14fb1c7cea9aa4f8acc5a19f6:i:execute"
+							]
+						},
+						{
+							"id": "00e8ab2a46598584eb5aa985cce4137b:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "05a1f815492cf9380cf2f088cd043a79",
 					"class": "K2Node_CallFunction",
 					"title": "Jump",
@@ -1610,6 +1633,136 @@
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "06ae4c56487b527bae7dcdaa1d281841",
+					"class": "K2Node_VariableSet",
+					"title": "Set As BP Atlantis Player Controller",
+					"x": 2192,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "06ae4c56487b527bae7dcdaa1d281841:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1649ea4244c062b5ab163bbbe9538129:o:then"
+							]
+						},
+						{
+							"id": "06ae4c56487b527bae7dcdaa1d281841:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "06ae4c56487b527bae7dcdaa1d281841:i:As BP Atlantis Player Controller",
+							"name": "As BP Atlantis Player Controller",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": [
+								"1649ea4244c062b5ab163bbbe9538129:o:AsBP Atlantis Player Controller"
+							]
+						},
+						{
+							"id": "06ae4c56487b527bae7dcdaa1d281841:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "06ae4c56487b527bae7dcdaa1d281841:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "07fe15e343b444431c695383a35bfd2b",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Component Begin Overlap (CapsuleComponent)",
+					"x": 1344,
+					"y": 1184,
+					"comment": null,
+					"pins": [
+						{
+							"id": "07fe15e343b444431c695383a35bfd2b:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "07fe15e343b444431c695383a35bfd2b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"19dafc0249ed13e3116944a2dcb8ca9f:i:execute"
+							]
+						},
+						{
+							"id": "07fe15e343b444431c695383a35bfd2b:o:OverlappedComponent",
+							"name": "OverlappedComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "07fe15e343b444431c695383a35bfd2b:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "07fe15e343b444431c695383a35bfd2b:o:OtherComp",
+							"name": "OtherComp",
+							"direction": "output",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "07fe15e343b444431c695383a35bfd2b:o:OtherBodyIndex",
+							"name": "OtherBodyIndex",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "07fe15e343b444431c695383a35bfd2b:o:bFromSweep",
+							"name": "bFromSweep",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "07fe15e343b444431c695383a35bfd2b:o:SweepResult",
+							"name": "SweepResult",
+							"direction": "output",
+							"type": "struct:/Script/Engine.HitResult",
 							"defaultValue": null,
 							"links": []
 						}
@@ -1795,6 +1948,168 @@
 					]
 				},
 				{
+					"guid": "1649ea4244c062b5ab163bbbe9538129",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisPlayerController",
+					"x": 1824,
+					"y": 944,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1649ea4244c062b5ab163bbbe9538129:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f8863c0044f98e1b9870808892dec274:o:then"
+							]
+						},
+						{
+							"id": "1649ea4244c062b5ab163bbbe9538129:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"06ae4c56487b527bae7dcdaa1d281841:i:execute"
+							]
+						},
+						{
+							"id": "1649ea4244c062b5ab163bbbe9538129:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1649ea4244c062b5ab163bbbe9538129:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"47a2e92e4491192c1376f9876bc76c8e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1649ea4244c062b5ab163bbbe9538129:o:AsBP Atlantis Player Controller",
+							"name": "AsBP Atlantis Player Controller",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": [
+								"06ae4c56487b527bae7dcdaa1d281841:i:As BP Atlantis Player Controller"
+							]
+						},
+						{
+							"id": "1649ea4244c062b5ab163bbbe9538129:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "19dafc0249ed13e3116944a2dcb8ca9f",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To DefaultPhysicsVolume",
+					"x": 1840,
+					"y": 1184,
+					"comment": null,
+					"pins": [
+						{
+							"id": "19dafc0249ed13e3116944a2dcb8ca9f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"07fe15e343b444431c695383a35bfd2b:o:then"
+							]
+						},
+						{
+							"id": "19dafc0249ed13e3116944a2dcb8ca9f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"00e8ab2a46598584eb5aa985cce4137b:i:execute"
+							]
+						},
+						{
+							"id": "19dafc0249ed13e3116944a2dcb8ca9f:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "19dafc0249ed13e3116944a2dcb8ca9f:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "Object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"60fe02ee4a64e5800ad494a80fca59b4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "19dafc0249ed13e3116944a2dcb8ca9f:o:AsDefault Physics Volume",
+							"name": "AsDefault Physics Volume",
+							"direction": "output",
+							"type": "Object:/Script/Engine.DefaultPhysicsVolume",
+							"defaultValue": null,
+							"links": [
+								"6f24ca2446bf91b8066a95894d39bba4:i:self"
+							]
+						},
+						{
+							"id": "19dafc0249ed13e3116944a2dcb8ca9f:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "238173694cd9b4de3e1485be261f951e",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3152,
+					"y": 1984,
+					"comment": null,
+					"pins": [
+						{
+							"id": "238173694cd9b4de3e1485be261f951e:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"94f0dc00413d1823b351ceaf3e7ccd20:o:OutputPin"
+							]
+						},
+						{
+							"id": "238173694cd9b4de3e1485be261f951e:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"4c0310604dfee867ab6633bf310a114c:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "3a147b2b424d0103e520ea94db7e2b86",
 					"class": "K2Node_Event",
 					"title": "Event Touch Jump End",
@@ -1819,6 +2134,238 @@
 							"links": [
 								"13e99d724ae7ddaf0bbd52a5dbc5dace:i:execute"
 							]
+						}
+					]
+				},
+				{
+					"guid": "440669564b8624808bf2acac498dc9c1",
+					"class": "K2Node_VariableSet",
+					"title": "Set As BP Atlantis Player Controller",
+					"x": 1760,
+					"y": 1664,
+					"comment": null,
+					"pins": [
+						{
+							"id": "440669564b8624808bf2acac498dc9c1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c420bcc84832c9e0ca8ca09747063702:o:then"
+							]
+						},
+						{
+							"id": "440669564b8624808bf2acac498dc9c1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"587e68c34f9e85ff60d1ebbcc5d5d47e:i:execute"
+							]
+						},
+						{
+							"id": "440669564b8624808bf2acac498dc9c1:i:As BP Atlantis Player Controller",
+							"name": "As BP Atlantis Player Controller",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "440669564b8624808bf2acac498dc9c1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "440669564b8624808bf2acac498dc9c1:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": [
+								"7fe931c444e1b5c9a5ca9683dd4a9067:i:PlayerController"
+							]
+						}
+					]
+				},
+				{
+					"guid": "47a2e92e4491192c1376f9876bc76c8e",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 1824,
+					"y": 1072,
+					"comment": null,
+					"pins": [
+						{
+							"id": "47a2e92e4491192c1376f9876bc76c8e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "47a2e92e4491192c1376f9876bc76c8e:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "47a2e92e4491192c1376f9876bc76c8e:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "47a2e92e4491192c1376f9876bc76c8e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"1649ea4244c062b5ab163bbbe9538129:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4c0310604dfee867ab6633bf310a114c",
+					"class": "K2Node_CallFunction",
+					"title": "Remove Mapping Context",
+					"x": 3216,
+					"y": 1632,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4c0310604dfee867ab6633bf310a114c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9fa902664fd618e5966a4aa6044e42bf:o:then"
+							]
+						},
+						{
+							"id": "4c0310604dfee867ab6633bf310a114c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4c0310604dfee867ab6633bf310a114c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "interface:/Script/EnhancedInput.EnhancedInputSubsystemInterface",
+							"defaultValue": null,
+							"links": [
+								"238173694cd9b4de3e1485be261f951e:o:OutputPin"
+							]
+						},
+						{
+							"id": "4c0310604dfee867ab6633bf310a114c:i:MappingContext",
+							"name": "MappingContext",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.InputMappingContext",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/IMC_Swim.IMC_Swim",
+							"links": []
+						},
+						{
+							"id": "4c0310604dfee867ab6633bf310a114c:i:Options",
+							"name": "Options",
+							"direction": "input",
+							"type": "struct:/Script/EnhancedInput.ModifyContextOptions",
+							"defaultValue": "(bIgnoreAllPressedKeysUntilRelease=True,bForceImmediately=False,bNotifyUserSettings=False)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5037cd884d9b0da7b69ba0a6fbf29678",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2736,
+					"y": 1712,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5037cd884d9b0da7b69ba0a6fbf29678:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"9e240e3d4901d0991403dd9284e3c51f:o:OutputPin"
+							]
+						},
+						{
+							"id": "5037cd884d9b0da7b69ba0a6fbf29678:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"9fa902664fd618e5966a4aa6044e42bf:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "587e68c34f9e85ff60d1ebbcc5d5d47e",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 2448,
+					"y": 1648,
+					"comment": null,
+					"pins": [
+						{
+							"id": "587e68c34f9e85ff60d1ebbcc5d5d47e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"440669564b8624808bf2acac498dc9c1:o:then"
+							]
+						},
+						{
+							"id": "587e68c34f9e85ff60d1ebbcc5d5d47e:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"b13e0c704d183b0d33585b895dee1241:o:ReturnValue"
+							]
+						},
+						{
+							"id": "587e68c34f9e85ff60d1ebbcc5d5d47e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9fa902664fd618e5966a4aa6044e42bf:i:execute"
+							]
+						},
+						{
+							"id": "587e68c34f9e85ff60d1ebbcc5d5d47e:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -1927,6 +2474,66 @@
 					]
 				},
 				{
+					"guid": "60fe02ee4a64e5800ad494a80fca59b4",
+					"class": "K2Node_CallFunction",
+					"title": "Get Physics Volume",
+					"x": 1840,
+					"y": 1312,
+					"comment": null,
+					"pins": [
+						{
+							"id": "60fe02ee4a64e5800ad494a80fca59b4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SceneComponent",
+							"defaultValue": null,
+							"links": [
+								"7859551c4a37328cd0310bae3a3e5f33:o:Mesh"
+							]
+						},
+						{
+							"id": "60fe02ee4a64e5800ad494a80fca59b4:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PhysicsVolume",
+							"defaultValue": null,
+							"links": [
+								"19dafc0249ed13e3116944a2dcb8ca9f:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6f24ca2446bf91b8066a95894d39bba4",
+					"class": "K2Node_VariableGet",
+					"title": "Get bWaterVolume",
+					"x": 2208,
+					"y": 1271,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6f24ca2446bf91b8066a95894d39bba4:o:bWaterVolume",
+							"name": "bWaterVolume",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"00e8ab2a46598584eb5aa985cce4137b:i:Condition"
+							]
+						},
+						{
+							"id": "6f24ca2446bf91b8066a95894d39bba4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PhysicsVolume",
+							"defaultValue": null,
+							"links": [
+								"19dafc0249ed13e3116944a2dcb8ca9f:o:AsDefault Physics Volume"
+							]
+						}
+					]
+				},
+				{
 					"guid": "7579ef1340e9eec3f06f649089cbc0a8",
 					"class": "K2Node_CallFunction",
 					"title": "Aim",
@@ -1983,6 +2590,34 @@
 					]
 				},
 				{
+					"guid": "7859551c4a37328cd0310bae3a3e5f33",
+					"class": "K2Node_VariableGet",
+					"title": "Get Mesh",
+					"x": 1840,
+					"y": 1392,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7859551c4a37328cd0310bae3a3e5f33:o:Mesh",
+							"name": "Mesh",
+							"direction": "output",
+							"type": "object:/Script/Engine.SkeletalMeshComponent",
+							"defaultValue": null,
+							"links": [
+								"60fe02ee4a64e5800ad494a80fca59b4:i:self"
+							]
+						},
+						{
+							"id": "7859551c4a37328cd0310bae3a3e5f33:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "788c162d41434957096cbfad115fe074",
 					"class": "K2Node_CallFunction",
 					"title": "Move",
@@ -2035,6 +2670,246 @@
 							"links": [
 								"f983b920452502820afbcd8779bc6952:o:Axis_Y"
 							]
+						}
+					]
+				},
+				{
+					"guid": "7b43cda34564961ffed3e69be1277b2b",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2432,
+					"y": 1904,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7b43cda34564961ffed3e69be1277b2b:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"7fe931c444e1b5c9a5ca9683dd4a9067:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7b43cda34564961ffed3e69be1277b2b:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"9e240e3d4901d0991403dd9284e3c51f:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7fe931c444e1b5c9a5ca9683dd4a9067",
+					"class": "K2Node_GetSubsystemFromPC",
+					"title": "Get EnhancedInputLocalPlayerSubsystem",
+					"x": 2144,
+					"y": 1744,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7fe931c444e1b5c9a5ca9683dd4a9067:i:PlayerController",
+							"name": "PlayerController",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"440669564b8624808bf2acac498dc9c1:o:Output_Get"
+							]
+						},
+						{
+							"id": "7fe931c444e1b5c9a5ca9683dd4a9067:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"7b43cda34564961ffed3e69be1277b2b:i:InputPin",
+								"94f0dc00413d1823b351ceaf3e7ccd20:i:InputPin",
+								"b13e0c704d183b0d33585b895dee1241:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "942f3ec24f1009058a7585b2c083e41b",
+					"class": "K2Node_CallFunction",
+					"title": "Remove Mapping Context",
+					"x": 3920,
+					"y": 1168,
+					"comment": null,
+					"pins": [
+						{
+							"id": "942f3ec24f1009058a7585b2c083e41b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ba4ddf274d5c6f1e79d0b894b76f9fd8:o:then"
+							]
+						},
+						{
+							"id": "942f3ec24f1009058a7585b2c083e41b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "942f3ec24f1009058a7585b2c083e41b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "interface:/Script/EnhancedInput.EnhancedInputSubsystemInterface",
+							"defaultValue": null,
+							"links": [
+								"c8e5a6414e5acc33c896aaaf456c5f92:o:OutputPin"
+							]
+						},
+						{
+							"id": "942f3ec24f1009058a7585b2c083e41b:i:MappingContext",
+							"name": "MappingContext",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.InputMappingContext",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/IMC_Default.IMC_Default",
+							"links": []
+						},
+						{
+							"id": "942f3ec24f1009058a7585b2c083e41b:i:Options",
+							"name": "Options",
+							"direction": "input",
+							"type": "struct:/Script/EnhancedInput.ModifyContextOptions",
+							"defaultValue": "(bIgnoreAllPressedKeysUntilRelease=True,bForceImmediately=False,bNotifyUserSettings=False)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "94f0dc00413d1823b351ceaf3e7ccd20",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2384,
+					"y": 1984,
+					"comment": null,
+					"pins": [
+						{
+							"id": "94f0dc00413d1823b351ceaf3e7ccd20:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"7fe931c444e1b5c9a5ca9683dd4a9067:o:ReturnValue"
+							]
+						},
+						{
+							"id": "94f0dc00413d1823b351ceaf3e7ccd20:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"238173694cd9b4de3e1485be261f951e:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9e240e3d4901d0991403dd9284e3c51f",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2672,
+					"y": 1904,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9e240e3d4901d0991403dd9284e3c51f:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"7b43cda34564961ffed3e69be1277b2b:o:OutputPin"
+							]
+						},
+						{
+							"id": "9e240e3d4901d0991403dd9284e3c51f:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"5037cd884d9b0da7b69ba0a6fbf29678:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9fa902664fd618e5966a4aa6044e42bf",
+					"class": "K2Node_CallFunction",
+					"title": "Add Mapping Context",
+					"x": 2784,
+					"y": 1632,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9fa902664fd618e5966a4aa6044e42bf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"587e68c34f9e85ff60d1ebbcc5d5d47e:o:then"
+							]
+						},
+						{
+							"id": "9fa902664fd618e5966a4aa6044e42bf:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4c0310604dfee867ab6633bf310a114c:i:execute"
+							]
+						},
+						{
+							"id": "9fa902664fd618e5966a4aa6044e42bf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "interface:/Script/EnhancedInput.EnhancedInputSubsystemInterface",
+							"defaultValue": null,
+							"links": [
+								"5037cd884d9b0da7b69ba0a6fbf29678:o:OutputPin"
+							]
+						},
+						{
+							"id": "9fa902664fd618e5966a4aa6044e42bf:i:MappingContext",
+							"name": "MappingContext",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.InputMappingContext",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/IMC_Default.IMC_Default",
+							"links": []
+						},
+						{
+							"id": "9fa902664fd618e5966a4aa6044e42bf:i:Priority",
+							"name": "Priority",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "9fa902664fd618e5966a4aa6044e42bf:i:Options",
+							"name": "Options",
+							"direction": "input",
+							"type": "struct:/Script/EnhancedInput.ModifyContextOptions",
+							"defaultValue": "(bIgnoreAllPressedKeysUntilRelease=True,bForceImmediately=False,bNotifyUserSettings=False)",
+							"links": []
 						}
 					]
 				},
@@ -2179,6 +3054,285 @@
 					]
 				},
 				{
+					"guid": "b13e0c704d183b0d33585b895dee1241",
+					"class": "K2Node_CallFunction",
+					"title": "Is Valid",
+					"x": 2432,
+					"y": 1760,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b13e0c704d183b0d33585b895dee1241:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "b13e0c704d183b0d33585b895dee1241:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"7fe931c444e1b5c9a5ca9683dd4a9067:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b13e0c704d183b0d33585b895dee1241:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"587e68c34f9e85ff60d1ebbcc5d5d47e:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ba4ddf274d5c6f1e79d0b894b76f9fd8",
+					"class": "K2Node_CallFunction",
+					"title": "Add Mapping Context",
+					"x": 3488,
+					"y": 1168,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba4ddf274d5c6f1e79d0b894b76f9fd8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c1f670b14fb1c7cea9aa4f8acc5a19f6:o:then"
+							]
+						},
+						{
+							"id": "ba4ddf274d5c6f1e79d0b894b76f9fd8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"942f3ec24f1009058a7585b2c083e41b:i:execute"
+							]
+						},
+						{
+							"id": "ba4ddf274d5c6f1e79d0b894b76f9fd8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "interface:/Script/EnhancedInput.EnhancedInputSubsystemInterface",
+							"defaultValue": null,
+							"links": [
+								"c226dba84fde82d1e58ad0b8cf11e656:o:ReturnValue"
+							]
+						},
+						{
+							"id": "ba4ddf274d5c6f1e79d0b894b76f9fd8:i:MappingContext",
+							"name": "MappingContext",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.InputMappingContext",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/IMC_Swim.IMC_Swim",
+							"links": []
+						},
+						{
+							"id": "ba4ddf274d5c6f1e79d0b894b76f9fd8:i:Priority",
+							"name": "Priority",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "ba4ddf274d5c6f1e79d0b894b76f9fd8:i:Options",
+							"name": "Options",
+							"direction": "input",
+							"type": "struct:/Script/EnhancedInput.ModifyContextOptions",
+							"defaultValue": "(bIgnoreAllPressedKeysUntilRelease=True,bForceImmediately=False,bNotifyUserSettings=False)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c1f670b14fb1c7cea9aa4f8acc5a19f6",
+					"class": "K2Node_VariableSet",
+					"title": "Set As BP Atlantis Player Controller",
+					"x": 2736,
+					"y": 1200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c1f670b14fb1c7cea9aa4f8acc5a19f6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"00e8ab2a46598584eb5aa985cce4137b:o:then"
+							]
+						},
+						{
+							"id": "c1f670b14fb1c7cea9aa4f8acc5a19f6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ba4ddf274d5c6f1e79d0b894b76f9fd8:i:execute"
+							]
+						},
+						{
+							"id": "c1f670b14fb1c7cea9aa4f8acc5a19f6:i:As BP Atlantis Player Controller",
+							"name": "As BP Atlantis Player Controller",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c1f670b14fb1c7cea9aa4f8acc5a19f6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c1f670b14fb1c7cea9aa4f8acc5a19f6:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": [
+								"c226dba84fde82d1e58ad0b8cf11e656:i:PlayerController"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c226dba84fde82d1e58ad0b8cf11e656",
+					"class": "K2Node_GetSubsystemFromPC",
+					"title": "Get EnhancedInputLocalPlayerSubsystem",
+					"x": 3104,
+					"y": 1280,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c226dba84fde82d1e58ad0b8cf11e656:i:PlayerController",
+							"name": "PlayerController",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"c1f670b14fb1c7cea9aa4f8acc5a19f6:o:Output_Get"
+							]
+						},
+						{
+							"id": "c226dba84fde82d1e58ad0b8cf11e656:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"ba4ddf274d5c6f1e79d0b894b76f9fd8:i:self",
+								"d9741a0e4ca0f90fc03eb09394052708:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c420bcc84832c9e0ca8ca09747063702",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Component End Overlap (CapsuleComponent)",
+					"x": 1312,
+					"y": 1648,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c420bcc84832c9e0ca8ca09747063702:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c420bcc84832c9e0ca8ca09747063702:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"440669564b8624808bf2acac498dc9c1:i:execute"
+							]
+						},
+						{
+							"id": "c420bcc84832c9e0ca8ca09747063702:o:OverlappedComponent",
+							"name": "OverlappedComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c420bcc84832c9e0ca8ca09747063702:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c420bcc84832c9e0ca8ca09747063702:o:OtherComp",
+							"name": "OtherComp",
+							"direction": "output",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c420bcc84832c9e0ca8ca09747063702:o:OtherBodyIndex",
+							"name": "OtherBodyIndex",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c8e5a6414e5acc33c896aaaf456c5f92",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3936,
+					"y": 1456,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c8e5a6414e5acc33c896aaaf456c5f92:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"d9741a0e4ca0f90fc03eb09394052708:o:OutputPin"
+							]
+						},
+						{
+							"id": "c8e5a6414e5acc33c896aaaf456c5f92:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"942f3ec24f1009058a7585b2c083e41b:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "ca1849864412b2cba67e88886133331f",
 					"class": "K2Node_CallFunction",
 					"title": "Aim",
@@ -2230,6 +3384,36 @@
 							"defaultValue": null,
 							"links": [
 								"e835eb57445272c31c5c9c9295feafb7:o:ActionValue_Y"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d9741a0e4ca0f90fc03eb09394052708",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3488,
+					"y": 1456,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d9741a0e4ca0f90fc03eb09394052708:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c226dba84fde82d1e58ad0b8cf11e656:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d9741a0e4ca0f90fc03eb09394052708:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c8e5a6414e5acc33c896aaaf456c5f92:i:InputPin"
 							]
 						}
 					]
@@ -2439,6 +3623,34 @@
 							"type": "object:/Script/EnhancedInput.InputAction",
 							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Look.IA_Look",
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f8863c0044f98e1b9870808892dec274",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 1568,
+					"y": 944,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f8863c0044f98e1b9870808892dec274:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f8863c0044f98e1b9870808892dec274:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1649ea4244c062b5ab163bbbe9538129:i:execute"
+							]
 						}
 					]
 				},
