@@ -82,263 +82,6 @@
 			"comments": []
 		},
 		{
-			"name": "Should Use Touch Controls",
-			"type": "Function",
-			"nodes": [
-				{
-					"guid": "10b46a5842131ec75fa02085c03bd392",
-					"class": "K2Node_FunctionResult",
-					"title": "Return Node",
-					"x": 1293,
-					"y": 342,
-					"comment": null,
-					"pins": [
-						{
-							"id": "10b46a5842131ec75fa02085c03bd392:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"e831858a483aad3e97b51d92a7084f8e:o:OutputPin"
-							]
-						},
-						{
-							"id": "10b46a5842131ec75fa02085c03bd392:i:Use Mobile Controls",
-							"name": "Use Mobile Controls",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": null,
-							"links": [
-								"9b2fc5114661fd32e2daa691bb91c5a5:o:Force Touch Controls"
-							]
-						}
-					]
-				},
-				{
-					"guid": "1cb4a89446769775c49d1dae45a0d1c3",
-					"class": "K2Node_CallFunction",
-					"title": "Get Platform Name",
-					"x": 368,
-					"y": 96,
-					"comment": null,
-					"pins": [
-						{
-							"id": "1cb4a89446769775c49d1dae45a0d1c3:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.GameplayStatics",
-							"defaultValue": "/Script/Engine.Default__GameplayStatics",
-							"links": []
-						},
-						{
-							"id": "1cb4a89446769775c49d1dae45a0d1c3:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "string",
-							"defaultValue": null,
-							"links": [
-								"6832d35f4fe72330e6c6c282adddc78b:i:Selection"
-							]
-						}
-					]
-				},
-				{
-					"guid": "6832d35f4fe72330e6c6c282adddc78b",
-					"class": "K2Node_SwitchString",
-					"title": "Switch on String",
-					"x": 640,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "6832d35f4fe72330e6c6c282adddc78b:o:Default",
-							"name": "Default",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"e831858a483aad3e97b51d92a7084f8e:i:InputPin"
-							]
-						},
-						{
-							"id": "6832d35f4fe72330e6c6c282adddc78b:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"b55c18fd400e8b007c764daa81ada442:o:then"
-							]
-						},
-						{
-							"id": "6832d35f4fe72330e6c6c282adddc78b:i:Selection",
-							"name": "Selection",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": null,
-							"links": [
-								"1cb4a89446769775c49d1dae45a0d1c3:o:ReturnValue"
-							]
-						},
-						{
-							"id": "6832d35f4fe72330e6c6c282adddc78b:i:NotEqual_StriStri",
-							"name": "NotEqual_StriStri",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetStringLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
-							"links": []
-						},
-						{
-							"id": "6832d35f4fe72330e6c6c282adddc78b:o:iOS",
-							"name": "iOS",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"85ccc2f14a89c49118917590fb993e10:i:execute"
-							]
-						},
-						{
-							"id": "6832d35f4fe72330e6c6c282adddc78b:o:Android",
-							"name": "Android",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"85ccc2f14a89c49118917590fb993e10:i:execute"
-							]
-						}
-					]
-				},
-				{
-					"guid": "85ccc2f14a89c49118917590fb993e10",
-					"class": "K2Node_FunctionResult",
-					"title": "Return Node",
-					"x": 1024,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "85ccc2f14a89c49118917590fb993e10:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"6832d35f4fe72330e6c6c282adddc78b:o:Android",
-								"6832d35f4fe72330e6c6c282adddc78b:o:iOS"
-							]
-						},
-						{
-							"id": "85ccc2f14a89c49118917590fb993e10:i:Use Mobile Controls",
-							"name": "Use Mobile Controls",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "9b2fc5114661fd32e2daa691bb91c5a5",
-					"class": "K2Node_VariableGet",
-					"title": "Get Force Touch Controls",
-					"x": 1085,
-					"y": 438,
-					"comment": null,
-					"pins": [
-						{
-							"id": "9b2fc5114661fd32e2daa691bb91c5a5:o:Force Touch Controls",
-							"name": "Force Touch Controls",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": null,
-							"links": [
-								"10b46a5842131ec75fa02085c03bd392:i:Use Mobile Controls"
-							]
-						},
-						{
-							"id": "9b2fc5114661fd32e2daa691bb91c5a5:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "b55c18fd400e8b007c764daa81ada442",
-					"class": "K2Node_FunctionEntry",
-					"title": "Should Use Touch Controls",
-					"x": 0,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "b55c18fd400e8b007c764daa81ada442:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"6832d35f4fe72330e6c6c282adddc78b:i:execute"
-							]
-						}
-					]
-				},
-				{
-					"guid": "e831858a483aad3e97b51d92a7084f8e",
-					"class": "K2Node_Knot",
-					"title": "Reroute Node",
-					"x": 1069,
-					"y": 374,
-					"comment": null,
-					"pins": [
-						{
-							"id": "e831858a483aad3e97b51d92a7084f8e:i:InputPin",
-							"name": "InputPin",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"6832d35f4fe72330e6c6c282adddc78b:o:Default"
-							]
-						},
-						{
-							"id": "e831858a483aad3e97b51d92a7084f8e:o:OutputPin",
-							"name": "OutputPin",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"10b46a5842131ec75fa02085c03bd392:i:execute"
-							]
-						}
-					]
-				}
-			],
-			"comments": [
-				{
-					"guid": "091f959047392d9841cba6aa1fad77e9",
-					"text": "Use UMG touch controls if on a mobile platform.",
-					"x": 306,
-					"y": -86,
-					"width": 560,
-					"height": 288
-				},
-				{
-					"guid": "1b70da244fc99351fdb3b38becb64ea3",
-					"text": "You can also force touch controls through a config override.",
-					"x": 1024,
-					"y": 256,
-					"width": 464,
-					"height": 256
-				}
-			]
-		},
-		{
 			"name": "UserConstructionScript",
 			"type": "Function",
 			"nodes": [
@@ -432,7 +175,7 @@
 							"type": "bool",
 							"defaultValue": null,
 							"links": [
-								"53d13d4b49304115cd79628e2bb947c7:o:Use Mobile Controls"
+								"ca1af8454ca9f9e0b76a419d0a88b8ef:o:ReturnValue"
 							]
 						},
 						{
@@ -591,34 +334,6 @@
 							"defaultValue": null,
 							"links": [
 								"266f6b2649ce3e0c3a5f5895581d6f2e:i:Condition"
-							]
-						}
-					]
-				},
-				{
-					"guid": "53d13d4b49304115cd79628e2bb947c7",
-					"class": "K2Node_CallFunction",
-					"title": "Should Use Touch Controls",
-					"x": 496,
-					"y": 256,
-					"comment": null,
-					"pins": [
-						{
-							"id": "53d13d4b49304115cd79628e2bb947c7:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:self",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "53d13d4b49304115cd79628e2bb947c7:o:Use Mobile Controls",
-							"name": "Use Mobile Controls",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": null,
-							"links": [
-								"246ebe7549e1353a1b6d098e7f9a6b53:i:Condition"
 							]
 						}
 					]
@@ -867,6 +582,34 @@
 							"defaultValue": null,
 							"links": [
 								"63233de94316f17985514482daff70b2:i:OwningPlayer"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ca1af8454ca9f9e0b76a419d0a88b8ef",
+					"class": "K2Node_CallFunction",
+					"title": "Should Use Touch Controls",
+					"x": 480,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ca1af8454ca9f9e0b76a419d0a88b8ef:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerController",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ca1af8454ca9f9e0b76a419d0a88b8ef:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"246ebe7549e1353a1b6d098e7f9a6b53:i:Condition"
 							]
 						}
 					]

@@ -6,6 +6,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
+#include "HAL/PlatformProperties.h"
 
 // Anonymous namespace: everything inside has internal linkage, so these helpers are private to
 // this .cpp. Another file can define its own MakeControlOptions without a duplicate-symbol link
@@ -41,6 +42,13 @@ namespace
 UEnhancedInputLocalPlayerSubsystem* AAtlantisPlayerController::GetEnhancedInputSubsystem() const
 {
 	return ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
+}
+
+bool AAtlantisPlayerController::ShouldUseTouchControls() const
+{
+	const FString PlatformName(FPlatformProperties::PlatformName());
+	const bool bIsMobilePlatform = PlatformName == TEXT("IOS") || PlatformName == TEXT("Android");
+	return bIsMobilePlatform || bForceTouchControls;
 }
 
 void AAtlantisPlayerController::AddControls(UInputMappingContext* NewControlMappingContext)
