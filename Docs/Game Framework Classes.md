@@ -215,11 +215,7 @@ members and the reparent will error. Then recompile and read the Message Log.
 
 Empty this list as items land — it is a snapshot, not part of the convention.
 
-- **`BP_AtlantisPlayerController` has not been reparented** to `AAtlantisPlayerController`, and
-  still holds the Blueprint versions of the controls functions, dispatchers, and variables. They
-  must be deleted before reparenting.
-- **The rest of that controller's `BeginPlay` graph is still Blueprint** — touch-control
-  detection and the touch widget spawn were not ported.
+- The touch widget is still spawned by the controller's Blueprint `BeginPlay` graph.
 - **`MoveToStart` and `MoveToTransform` are not authority-guarded or replicated.** Called on a
   client, they teleport the actor locally and desync it.
 - **`StartTransform` is captured before `Super::BeginPlay()`** in
