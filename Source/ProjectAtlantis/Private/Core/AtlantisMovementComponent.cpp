@@ -86,7 +86,7 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 			*GetNameSafe(GetOwner()), *GetNameSafe(NewVolume),
 			NewVolume->bWaterVolume ? TEXT("true") : TEXT("false"));
 		
-		if (NewVolume->bWaterVolume && IsValid(CharacterOwner))
+		if (NewVolume->bWaterVolume && (!OldVolume || !OldVolume->bWaterVolume) && IsValid(CharacterOwner))
 		{
 			if (AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>(); IsValid(PlayerState))
 			{
