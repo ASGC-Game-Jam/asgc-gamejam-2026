@@ -29,7 +29,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnControlsDisabled);
  *
  * Change events follow the project fan-out convention; see Docs/Replicated State Pattern.md.
  */
-UCLASS()
+UCLASS(Config = Game)
 class PROJECTATLANTIS_API AAtlantisPlayerController : public APlayerController
 {
 	GENERATED_BODY()
@@ -67,6 +67,14 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls")
 	bool AreControlsEnabled() const { return bControlsEnabled; }
+
+	/** Whether UMG touch controls should be shown on this platform or by configuration. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls", meta = (DisplayName = "Should Use Touch Controls"))
+	bool ShouldUseTouchControls() const;
+
+	/** Explicitly enables touch controls on non-mobile platforms when set in project config. */
+	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "Atlantis|Controls", meta = (DisplayName = "Force Touch Controls"))
+	bool bForceTouchControls = false;
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls")
 	const TArray<UInputMappingContext*>& GetCurrentMappingContexts() const { return CurrentMappingContexts; }
