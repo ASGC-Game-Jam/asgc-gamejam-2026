@@ -106,21 +106,22 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 	}
 
 	const float RequiredAllocation = GetRequiredBallastAllocation(NewBallastState);
-	if (RequiredAllocation < 0.f || CurrentOxygen <= RequiredAllocation)
+	if (RequiredAllocation < 0.f)
+	{
+		UE_LOG(LogAtlantisPlayerState, Fatal, TEXT("Ballast state %d has an invalid oxygen allocation: %f"),
+		       static_cast<uint8>(NewBallastState), RequiredAllocation);
+		return;
+	}
+	else if (CurrentOxygen <= RequiredAllocation)
 	{
 		return;
 	}
 
 	const EAtlantisBallastState OldBallastState = BallastState;
-	const float OldLockedOxygen = LockedOxygen;
 	BallastState = NewBallastState;
-	LockedOxygen = RequiredAllocation;
+	SetLockedOxygen(RequiredAllocation);
 	bBallastAllocation = RequiredAllocation > 0.f;
 
-	if (!FMath::IsNearlyEqual(OldLockedOxygen, LockedOxygen))
-	{
-		OnRep_LockedOxygen(OldLockedOxygen);
-	}
 	OnRep_BallastState(OldBallastState);
 }
 
