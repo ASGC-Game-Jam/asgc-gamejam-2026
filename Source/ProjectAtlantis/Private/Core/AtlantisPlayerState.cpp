@@ -130,10 +130,6 @@ void AAtlantisPlayerState::OnRep_OxygenCapacity(const float OldOxygenCapacity) c
 void AAtlantisPlayerState::OnRep_LockedOxygen(const float OldLockedOxygen) const
 {
 	OnLockedOxygenChanged.Broadcast(OldLockedOxygen, LockedOxygen);
-	if ((OldLockedOxygen > 0.f) != IsBallastAllocated())
-	{
-		BroadcastBallastChanged();
-	}
 }
 
 void AAtlantisPlayerState::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
@@ -143,7 +139,7 @@ void AAtlantisPlayerState::OnRep_CurrentOxygen(const float OldCurrentOxygen) con
 
 void AAtlantisPlayerState::OnRep_BallastState(const EAtlantisBallastState OldBallastState) const
 {
-	BroadcastBallastChanged();
+	OnBallastChanged.Broadcast(IsBallastAllocated(), BallastState);
 }
 
 void AAtlantisPlayerState::OnRep_TraversalMode(const int32 OldTraversalMode) const
@@ -154,11 +150,6 @@ void AAtlantisPlayerState::OnRep_TraversalMode(const int32 OldTraversalMode) con
 void AAtlantisPlayerState::OnRep_EquippedItems(const TArray<FString>& OldEquippedItems) const
 {
 	OnEquippedItemsChanged.Broadcast(EquippedItems);
-}
-
-void AAtlantisPlayerState::BroadcastBallastChanged() const
-{
-	OnBallastChanged.Broadcast(IsBallastAllocated(), BallastState);
 }
 
 float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastState RequiredBallastState) const

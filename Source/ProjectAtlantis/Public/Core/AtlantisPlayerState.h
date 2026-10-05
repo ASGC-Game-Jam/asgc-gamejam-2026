@@ -29,8 +29,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockedOxygenChanged, float, OldL
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, OldCurrentOxygen, float, NewCurrentOxygen);
 
 /**
- * Any part of the ballast system changed. Allocation and state are grouped into a single
- * event because nothing consumes one without the other.
+ * Ballast mode changed. Includes the allocation status derived from locked oxygen.
  */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBallastChanged, bool, bIsAllocated, EAtlantisBallastState, BallastState);
 
@@ -168,9 +167,6 @@ protected:
 
 	UFUNCTION()
 	void OnRep_EquippedItems(const TArray<FString>& OldEquippedItems) const;
-
-	/** Shared fan-out for the two ballast properties. */
-	void BroadcastBallastChanged() const;
 
 	// Ballast reservations, not consumption rates; tune in Blueprint class defaults.
  
