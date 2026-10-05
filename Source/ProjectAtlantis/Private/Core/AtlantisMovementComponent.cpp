@@ -85,14 +85,15 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 		UE_LOG(LogTemp, Log, TEXT("%s entered PhysicsVolume %s (WaterVolume=%s)"),
 			*GetNameSafe(GetOwner()), *GetNameSafe(NewVolume),
 			NewVolume->bWaterVolume ? TEXT("true") : TEXT("false"));
-		
-		if (NewVolume->bWaterVolume && (!OldVolume || !OldVolume->bWaterVolume) && IsValid(CharacterOwner))
-		{
-			if (AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>(); IsValid(PlayerState))
-			{
-				PlayerState->SetBallastState(EAtlantisBallastState::Descend);
-			}
-		}
+	}
+
+	const bool bEnteringWater = NewVolume && NewVolume->bWaterVolume && (!OldVolume || !OldVolume->bWaterVolume);
+	AAtlantisPlayerState* PlayerState = bEnteringWater && IsValid(CharacterOwner)
+		? CharacterOwner->GetPlayerState<AAtlantisPlayerState>() : nullptr;
+
+	if (IsValid(PlayerState))
+	{
+		PlayerState->SetBallastState(EAtlantisBallastState::Descend);
 	}
 
 	Super::PhysicsVolumeChanged(NewVolume);
@@ -157,4 +158,3 @@ void UAtlantisMovementComponent::PhysSwimming(float DeltaTime, int32 Iterations)
 	Buoyancy = SavedBuoyancy;
 	Acceleration = SavedAcceleration;
 }
-
