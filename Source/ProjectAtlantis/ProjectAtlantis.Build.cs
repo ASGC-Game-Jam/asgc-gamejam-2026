@@ -7,6 +7,11 @@ public class ProjectAtlantis : ModuleRules
 	public ProjectAtlantis(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+		if (Target.bBuildEditor)
+		{
+			PrivateDependencyModuleNames.Add("UnrealEd");
+		}
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "EngineSettings", "AIModule", "GameplayStateTreeModule" });
 
