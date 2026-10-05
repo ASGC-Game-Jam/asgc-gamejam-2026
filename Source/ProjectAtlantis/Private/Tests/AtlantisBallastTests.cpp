@@ -21,8 +21,10 @@ namespace
 	class FAtlantisBallastFatalCommand : public IAutomationLatentCommand
 	{
 	public:
-		FAtlantisBallastFatalCommand(FAutomationTestBase* InTest, FProcHandle InProcess, const FString& InChildLogFilePath)
-			: Test(InTest), Process(InProcess), ChildLogFilePath(InChildLogFilePath), StartTime(FPlatformTime::Seconds())
+		FAtlantisBallastFatalCommand(FAutomationTestBase* InTest, FProcHandle InProcess,
+		                             const FString& InChildLogFilePath)
+			: Test(InTest), Process(InProcess), ChildLogFilePath(InChildLogFilePath),
+			  StartTime(FPlatformTime::Seconds())
 		{
 		}
 
@@ -52,12 +54,20 @@ namespace
 
 			int32 ReturnCode = 0;
 			const bool bHasReturnCode = FPlatformProcess::GetProcReturnCode(Process, &ReturnCode);
-			Test->TestTrue(TEXT("Invalid ballast request terminates the child process"), bHasReturnCode && ReturnCode != 0);
+			Test->TestTrue(
+				TEXT("Invalid ballast request terminates the child process"), bHasReturnCode && ReturnCode != 0);
 			FString Log;
-			Test->TestTrue(TEXT("Child process log is available"), FFileHelper::LoadFileToString(Log, *ChildLogFilePath));
-			Test->TestTrue(TEXT("Child reached the invalid ballast request"), Log.Contains(TEXT("AtlantisBallastFatalProbe: requesting None")));
-			Test->TestTrue(TEXT("Allocation helper reported the expected fatal error"), Log.Contains(TEXT("Fatal error:")) && Log.Contains(TEXT("Invalid ballast state: 0")));
-			Test->TestFalse(TEXT("Invalid request never returns"), Log.Contains(TEXT("AtlantisBallastFatalProbe: request returned")));
+			Test->TestTrue(
+				TEXT("Child process log is available"), FFileHelper::LoadFileToString(Log, *ChildLogFilePath));
+			Test->TestTrue(
+				TEXT("Child reached the invalid ballast request"),
+				Log.Contains(TEXT("AtlantisBallastFatalProbe: requesting None")));
+			Test->TestTrue(
+				TEXT("Allocation helper reported the expected fatal error"),
+				Log.Contains(TEXT("Fatal error:")) && Log.Contains(TEXT("Invalid ballast state: 0")));
+			Test->TestFalse(
+				TEXT("Invalid request never returns"),
+				Log.Contains(TEXT("AtlantisBallastFatalProbe: request returned")));
 			return true;
 		}
 
@@ -89,7 +99,8 @@ namespace
 			if (State)
 			{
 				State->OnBallastChanged.AddDynamic(Listener.Get(), &UAtlantisBallastTestListener::RecordBallastChanged);
-				State->OnLockedOxygenChanged.AddDynamic(Listener.Get(), &UAtlantisBallastTestListener::RecordLockedOxygenChanged);
+				State->OnLockedOxygenChanged.AddDynamic(Listener.Get(),
+				                                        &UAtlantisBallastTestListener::RecordLockedOxygenChanged);
 			}
 		}
 
@@ -103,8 +114,9 @@ namespace
 	};
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastInitialStateTest, "Atlantis.PlayerState.BallastAllocation.InitialState",
-	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastInitialStateTest,
+                                 "Atlantis.PlayerState.BallastAllocation.InitialState",
+                                 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FAtlantisBallastInitialStateTest::RunTest(const FString& Parameters)
 {
@@ -119,8 +131,9 @@ bool FAtlantisBallastInitialStateTest::RunTest(const FString& Parameters)
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastRejectedAllocationTest, "Atlantis.PlayerState.BallastAllocation.RejectedAllocation",
-	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastRejectedAllocationTest,
+                                 "Atlantis.PlayerState.BallastAllocation.RejectedAllocation",
+                                 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FAtlantisBallastRejectedAllocationTest::RunTest(const FString& Parameters)
 {
@@ -133,7 +146,9 @@ bool FAtlantisBallastRejectedAllocationTest::RunTest(const FString& Parameters)
 	{
 		Fixture.State->SetCurrentOxygen(Oxygen);
 		Fixture.State->SetBallastState(EAtlantisBallastState::Wander);
-		TestTrue(TEXT("Insufficient or exact allocation is rejected"), Fixture.State->GetBallastState() == EAtlantisBallastState::Descend);
+		TestTrue(
+			TEXT("Insufficient or exact allocation is rejected"),
+			Fixture.State->GetBallastState() == EAtlantisBallastState::Descend);
 		TestEqual(TEXT("Rejected mode preserves reservation"), Fixture.State->GetLockedOxygen(), 0.f);
 		TestEqual(TEXT("Rejected mode preserves total oxygen"), Fixture.State->GetCurrentOxygen(), Oxygen);
 		TestEqual(TEXT("Rejected mode emits no ballast event"), Fixture.Listener->BallastEventCount, 0);
@@ -142,8 +157,9 @@ bool FAtlantisBallastRejectedAllocationTest::RunTest(const FString& Parameters)
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastModeTransitionsTest, "Atlantis.PlayerState.BallastAllocation.ModeTransitions",
-	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastModeTransitionsTest,
+                                 "Atlantis.PlayerState.BallastAllocation.ModeTransitions",
+                                 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FAtlantisBallastModeTransitionsTest::RunTest(const FString& Parameters)
 {
@@ -170,8 +186,9 @@ bool FAtlantisBallastModeTransitionsTest::RunTest(const FString& Parameters)
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastRepeatedModeTest, "Atlantis.PlayerState.BallastAllocation.RepeatedMode",
-	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastRepeatedModeTest,
+                                 "Atlantis.PlayerState.BallastAllocation.RepeatedMode",
+                                 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FAtlantisBallastRepeatedModeTest::RunTest(const FString& Parameters)
 {
@@ -186,15 +203,17 @@ bool FAtlantisBallastRepeatedModeTest::RunTest(const FString& Parameters)
 	Fixture.State->SetBallastState(EAtlantisBallastState::Wander);
 	Fixture.Listener->Reset();
 	Fixture.State->SetBallastState(EAtlantisBallastState::Wander);
-	TestTrue(TEXT("Repeating Wander preserves mode"), Fixture.State->GetBallastState() == EAtlantisBallastState::Wander);
+	TestTrue(
+		TEXT("Repeating Wander preserves mode"), Fixture.State->GetBallastState() == EAtlantisBallastState::Wander);
 	TestEqual(TEXT("Repeating Wander preserves reservation"), Fixture.State->GetLockedOxygen(), 1.f);
 	TestEqual(TEXT("Repeating Wander emits no ballast event"), Fixture.Listener->BallastEventCount, 0);
 	TestEqual(TEXT("Repeating Wander emits no reservation event"), Fixture.Listener->LockedOxygenEventCount, 0);
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastConsumptionProtectionTest, "Atlantis.PlayerState.BallastAllocation.ConsumptionProtection",
-	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastConsumptionProtectionTest,
+                                 "Atlantis.PlayerState.BallastAllocation.ConsumptionProtection",
+                                 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FAtlantisBallastConsumptionProtectionTest::RunTest(const FString& Parameters)
 {
@@ -211,8 +230,9 @@ bool FAtlantisBallastConsumptionProtectionTest::RunTest(const FString& Parameter
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastReservationReleaseTest, "Atlantis.PlayerState.BallastAllocation.ReservationRelease",
-	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastReservationReleaseTest,
+                                 "Atlantis.PlayerState.BallastAllocation.ReservationRelease",
+                                 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FAtlantisBallastReservationReleaseTest::RunTest(const FString& Parameters)
 {
@@ -234,8 +254,9 @@ bool FAtlantisBallastReservationReleaseTest::RunTest(const FString& Parameters)
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastDirectReservationEventsTest, "Atlantis.PlayerState.BallastAllocation.DirectReservationEvents",
-	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastDirectReservationEventsTest,
+                                 "Atlantis.PlayerState.BallastAllocation.DirectReservationEvents",
+                                 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FAtlantisBallastDirectReservationEventsTest::RunTest(const FString& Parameters)
 {
@@ -260,8 +281,9 @@ bool FAtlantisBallastDirectReservationEventsTest::RunTest(const FString& Paramet
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastInvalidStateFatalTest, "Atlantis.PlayerState.BallastAllocation.InvalidStateFatal",
-	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisBallastInvalidStateFatalTest,
+                                 "Atlantis.PlayerState.BallastAllocation.InvalidStateFatal",
+                                 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FAtlantisBallastInvalidStateFatalTest::RunTest(const FString& Parameters)
 {
@@ -278,16 +300,20 @@ bool FAtlantisBallastInvalidStateFatalTest::RunTest(const FString& Parameters)
 		return false;
 	}
 
-	const FString ChildLogFilePath = FPaths::ConvertRelativePathToFull(FPaths::CreateTempFilename(*FPaths::ProjectLogDir(), TEXT("BallastFatal"), TEXT(".log")));
+	const FString ChildLogFilePath = FPaths::ConvertRelativePathToFull(
+		FPaths::CreateTempFilename(*FPaths::ProjectLogDir(), TEXT("BallastFatal"), TEXT(".log")));
 	const FString Arguments = FString::Printf(
-		TEXT("\"%s\" -unattended -nop4 -NullRHI -nosplash -NoCrashDialog -AtlantisBallastFatalProbe -abslog=\"%s\" -ExecCmds=\"Automation RunTests Atlantis.PlayerState.BallastAllocation.InvalidStateFatal\" -TestExit=\"Automation Test Queue Empty\""),
+		TEXT(
+			"\"%s\" -unattended -nop4 -NullRHI -nosplash -NoCrashDialog -AtlantisBallastFatalProbe -abslog=\"%s\" -ExecCmds=\"Automation RunTests Atlantis.PlayerState.BallastAllocation.InvalidStateFatal\" -TestExit=\"Automation Test Queue Empty\""),
 		*FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath()), *ChildLogFilePath);
-	FProcHandle Process = FPlatformProcess::CreateProc(FPlatformProcess::ExecutablePath(), *Arguments, false, true, true, nullptr, 0, nullptr, nullptr);
+	FProcHandle Process = FPlatformProcess::CreateProc(FPlatformProcess::ExecutablePath(), *Arguments, false, true,
+	                                                   true, nullptr, 0, nullptr, nullptr);
 	if (!TestTrue(TEXT("Fatal ballast child process started"), Process.IsValid()))
 	{
 		return false;
 	}
-	FAutomationTestFramework::Get().EnqueueLatentCommand(MakeShared<FAtlantisBallastFatalCommand>(this, Process, ChildLogFilePath));
+	FAutomationTestFramework::Get().EnqueueLatentCommand(
+		MakeShared<FAtlantisBallastFatalCommand>(this, Process, ChildLogFilePath));
 	return true;
 }
 
