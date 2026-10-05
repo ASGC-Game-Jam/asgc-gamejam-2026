@@ -38,7 +38,26 @@ FVector UAtlantisMovementComponent::ConstrainInputAcceleration(const FVector& In
 
 void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, bool bFluid, float BrakingDeceleration)
 {
+	const AAtlantisPlayerState* PlayerState = CharacterOwner
+		                                          ? CharacterOwner->GetPlayerState<AAtlantisPlayerState>()
+		                                          : nullptr;
+
+	const bool bPassiveBallast = IsSwimming() && PlayerState && (PlayerState->GetBallastState() ==
+		EAtlantisBallastState::Descend || PlayerState->GetBallastState() == EAtlantisBallastState::Ascend);
+
+	const FVector::FReal PassiveVerticalVelocity = GetGravitySpaceZ(Velocity);
+	
+	if (bPassiveBallast)
+	{
+		SetGravitySpaceZ(Velocity, 0.f);
+	}
+
 	Super::CalcVelocity(DeltaTime, Friction, bFluid, BrakingDeceleration);
+	if (bPassiveBallast)
+	{
+		const float FluidDrag = bFluid ? 1.f - FMath::Min(Friction * DeltaTime, 1.f) : 1.f;
+		SetGravitySpaceZ(Velocity, PassiveVerticalVelocity * FluidDrag);
+	}
 	
 	// We want to check the direction of our acceleration so we only apply it to the player when he goes up or down
 	if (!IsSwimming() || FMath::IsNearlyZero(Acceleration.Z))
