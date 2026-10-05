@@ -86,10 +86,12 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 			*GetNameSafe(GetOwner()), *GetNameSafe(NewVolume),
 			NewVolume->bWaterVolume ? TEXT("true") : TEXT("false"));
 		
-		if (NewVolume->bWaterVolume)
+		if (NewVolume->bWaterVolume && IsValid(CharacterOwner))
 		{
-			AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
-			PlayerState->SetBallastState(EAtlantisBallastState::Descend);
+			if (AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>(); IsValid(PlayerState))
+			{
+				PlayerState->SetBallastState(EAtlantisBallastState::Descend);
+			}
 		}
 	}
 
