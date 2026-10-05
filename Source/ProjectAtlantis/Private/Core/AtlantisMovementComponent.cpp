@@ -133,13 +133,6 @@ void UAtlantisMovementComponent::PhysSwimming(float DeltaTime, int32 Iterations)
 		break;
 	case EAtlantisBallastState::Wander:
 		Buoyancy = 1.f;
-		if (FMath::IsNearlyZero(GetGravitySpaceZ(Acceleration))
-			&& !HasAnimRootMotion() && !CurrentRootMotion.HasOverrideVelocity())
-		{
-			// Neutral buoyancy cancels gravity, but does not remove existing sink/rise momentum.
-			// Hold depth when there is no vertical input, even while swimming horizontally.
-			SetGravitySpaceZ(Velocity, 0.f);
-		}
 		break;
 	default:
 		break;
