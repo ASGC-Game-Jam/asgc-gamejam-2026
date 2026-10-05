@@ -87,15 +87,6 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 			NewVolume->bWaterVolume ? TEXT("true") : TEXT("false"));
 	}
 
-	const bool bEnteringWater = NewVolume && NewVolume->bWaterVolume && (!OldVolume || !OldVolume->bWaterVolume);
-	AAtlantisPlayerState* PlayerState = bEnteringWater && IsValid(CharacterOwner)
-		? CharacterOwner->GetPlayerState<AAtlantisPlayerState>() : nullptr;
-
-	if (IsValid(PlayerState))
-	{
-		PlayerState->SetBallastState(EAtlantisBallastState::Descend);
-	}
-
 	Super::PhysicsVolumeChanged(NewVolume);
 }
 
