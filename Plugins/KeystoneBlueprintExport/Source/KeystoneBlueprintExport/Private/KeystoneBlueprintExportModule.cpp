@@ -1,7 +1,7 @@
 // Keystone Blueprint Export — editor module. Wires the exporter core to two of its three
 // triggers (the third, the commandlet, needs no module glue):
 //   • a Keystone menu with plain-language buttons (mirrors the source-art tool's menu), and
-//   • auto-capture on save (ON by default) so saving a Blueprint, Material or Niagara asset refreshes its .bpgraph.json
+//   • auto-capture on save (ON by default) so saving any asset refreshes its .bpgraph.json
 //     with zero clicks — artists just work; the file stays current alongside their .uasset.
 //
 // On-save only *writes* the export next to the asset; pushing is left to the artist's normal
@@ -74,20 +74,20 @@ private:
     {
         if (!Package || Context.IsProceduralSave()) return; // cooks etc. aren't artist saves
 
-        // A Blueprint anywhere in the package first (a .umap's Level Blueprint isn't the package's
-        // primary asset), else the package's own asset if it's a Material/Niagara graph asset.
-        UObject* Target = nullptr;
-        ForEachObjectWithPackage(Package, [&Target](UObject* Obj)
+        // The package's own asset: for a .umap that is the UWorld (whose export carries the Level
+        // Blueprint's graphs plus the world settings); for everything else it is the asset itself.
+        UObject* Target = Package->FindAssetInPackage();
+        if (!FKeystoneBlueprintExporter::CanExport(Target))
         {
-            if (Cast<UBlueprint>(Obj)) { Target = Obj; return false; }
-            return true;
-        });
-        if (!Target)
-        {
-            UObject* Asset = Package->FindAssetInPackage();
-            if (FKeystoneBlueprintExporter::CanExport(Asset)) Target = Asset;
+            // Older packages can lack the asset flag; fall back to a Blueprint found inside.
+            Target = nullptr;
+            ForEachObjectWithPackage(Package, [&Target](UObject* Obj)
+            {
+                if (Cast<UBlueprint>(Obj)) { Target = Obj; return false; }
+                return true;
+            });
         }
-        if (!Target) return;
+        if (!FKeystoneBlueprintExporter::CanExport(Target)) return;
         FKeystoneExportResult R;
         FKeystoneBlueprintExporter::ExportOne(Target, R);
     }
@@ -308,7 +308,7 @@ private:
             NAME_None,
             "Keystone",
             LOCTEXT("KeystoneMenu", "Keystone"),
-            LOCTEXT("KeystoneMenuTip", "Keystone tools: Blueprint/Material/Niagara graph export and source-art sync"));
+            LOCTEXT("KeystoneMenuTip", "Keystone tools: asset export for visual diffs, and source-art sync"));
         if (KeystoneMenu)
         {
             BuildMenu(KeystoneMenu);
@@ -317,20 +317,20 @@ private:
 
     static void BuildMenu(UToolMenu* Menu)
     {
-        FToolMenuSection& S = Menu->AddSection("KeystoneActions", LOCTEXT("KeystoneActions", "Blueprint Graphs"));
+        FToolMenuSection& S = Menu->AddSection("KeystoneActions", LOCTEXT("KeystoneActions", "Asset Exports"));
         S.AddMenuEntry("ExportGraphs",
-            LOCTEXT("ExportGraphs", "Export Blueprint Graphs…"),
-            LOCTEXT("ExportGraphsTip", "Write every Blueprint, Material and Niagara node graph to BlueprintGraphs/*.bpgraph.json"),
+            LOCTEXT("ExportGraphs", "Export Assets for Keystone…"),
+            LOCTEXT("ExportGraphsTip", "Write every asset's node graphs and properties to BlueprintGraphs/*.bpgraph.json"),
             FSlateIcon(),
             FUIAction(FExecuteAction::CreateStatic(&FKeystoneBlueprintExportModule::OnExportClicked)));
         S.AddMenuEntry("CommitGraphs",
-            LOCTEXT("CommitGraphs", "Commit & Push Blueprint Graphs…"),
+            LOCTEXT("CommitGraphs", "Commit & Push Keystone Exports…"),
             LOCTEXT("CommitGraphsTip", "Stage, commit and push only the BlueprintGraphs/ folder"),
             FSlateIcon(),
             FUIAction(FExecuteAction::CreateStatic(&FKeystoneBlueprintExportModule::OnCommitClicked)));
         S.AddMenuEntry("ToggleGraphAutoCapture",
             LOCTEXT("ToggleAutoCapture", "Toggle Auto-Capture on Save"),
-            LOCTEXT("ToggleAutoCaptureTip", "Re-export a Blueprint, Material or Niagara graph automatically whenever it's saved"),
+            LOCTEXT("ToggleAutoCaptureTip", "Re-export an asset automatically whenever it's saved"),
             FSlateIcon(),
             FUIAction(
                 FExecuteAction::CreateStatic(&FKeystoneBlueprintExportModule::OnToggleAutoCapture),
@@ -346,11 +346,11 @@ private:
     {
         const FKeystoneExportResult R = FKeystoneBlueprintExporter::ExportAll();
         FString Msg = FString::Printf(
-            TEXT("Exported Blueprint, Material and Niagara graphs.\n\nScanned: %d\nWritten/updated: %d\nUnchanged: %d"),
+            TEXT("Exported assets for Keystone (graphs + properties).\n\nScanned: %d\nWritten/updated: %d\nUnchanged: %d"),
             R.Scanned, R.Written, R.Unchanged);
         if (R.Pruned > 0) Msg += FString::Printf(TEXT("\nRemoved (stale): %d"), R.Pruned);
         if (R.Failed > 0) Msg += FString::Printf(TEXT("\nFailed: %d (see the Output Log)"), R.Failed);
-        Msg += TEXT("\n\nNext: Keystone ▸ Commit & Push Blueprint Graphs.");
+        Msg += TEXT("\n\nNext: Keystone ▸ Commit & Push Keystone Exports.");
         Info(Msg);
     }
 
@@ -375,8 +375,8 @@ private:
         const bool bNext = !IsAutoCaptureOn();
         SetAutoCapture(bNext);
         Info(bNext
-            ? TEXT("Auto-capture ON — saving a Blueprint, Material or Niagara asset re-exports its graph automatically.")
-            : TEXT("Auto-capture OFF — export manually with Keystone ▸ Export Blueprint Graphs."));
+            ? TEXT("Auto-capture ON — saving an asset re-exports it automatically.")
+            : TEXT("Auto-capture OFF — export manually with Keystone ▸ Export Assets for Keystone."));
     }
 };
 
