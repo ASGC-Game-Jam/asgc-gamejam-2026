@@ -3,6 +3,7 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "Core/AtlantisPlayerState.h"
+#include "Tests/AtlantisBallastTestListener.h"
 #include "Engine/World.h"
 #include "HAL/PlatformProcess.h"
 #include "HAL/PlatformTime.h"
@@ -11,6 +12,7 @@
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
 #include "Misc/Parse.h"
+#include "UObject/StrongObjectPtr.h"
 
 namespace
 {
@@ -90,27 +92,58 @@ bool FAtlantisBallastAllocationTest::RunTest(const FString& Parameters)
 	}
 	TestTrue(TEXT("Initial mode is Descend"), State->GetBallastState() == EAtlantisBallastState::Descend);
 	TestEqual(TEXT("Descend reserves no oxygen"), State->GetLockedOxygen(), 0.f);
+	const TStrongObjectPtr Listener(NewObject<UAtlantisBallastTestListener>());
+	State->OnBallastChanged.AddDynamic(Listener.Get(), &UAtlantisBallastTestListener::RecordBallastChanged);
+	State->OnLockedOxygenChanged.AddDynamic(Listener.Get(), &UAtlantisBallastTestListener::RecordLockedOxygenChanged);
+	State->SetBallastState(EAtlantisBallastState::Descend);
+	TestEqual(TEXT("Repeating initial mode emits no ballast event"), Listener->BallastEventCount, 0);
 	State->SetCurrentOxygen(1.f);
 	State->SetBallastState(EAtlantisBallastState::Wander);
 	TestTrue(TEXT("Exact allocation is rejected"), State->GetBallastState() == EAtlantisBallastState::Descend);
+	TestEqual(TEXT("Rejected mode emits no ballast event"), Listener->BallastEventCount, 0);
+	TestEqual(TEXT("Rejected mode emits no reservation event"), Listener->LockedOxygenEventCount, 0);
 	State->SetCurrentOxygen(3.f);
 	State->SetBallastState(EAtlantisBallastState::Wander);
 	TestEqual(TEXT("Wander reservation"), State->GetLockedOxygen(), 1.f);
 	TestTrue(TEXT("Wander is allocated"), State->IsBallastAllocated());
 	TestEqual(TEXT("Allocation preserves total oxygen"), State->GetCurrentOxygen(), 3.f);
+	TestEqual(TEXT("Wander emits exactly one ballast event"), Listener->BallastEventCount, 1);
+	TestTrue(TEXT("Wander event reports allocated"), Listener->bLastAllocated);
+	TestTrue(TEXT("Wander event reports mode"), Listener->LastBallastState == EAtlantisBallastState::Wander);
+	Listener->Reset();
+	State->SetBallastState(EAtlantisBallastState::Wander);
+	TestEqual(TEXT("Repeating Wander emits no ballast event"), Listener->BallastEventCount, 0);
+	TestEqual(TEXT("Repeating Wander emits no reservation event"), Listener->LockedOxygenEventCount, 0);
 	State->SetBallastState(EAtlantisBallastState::Ascend);
 	TestEqual(TEXT("Ascend replaces reservation"), State->GetLockedOxygen(), 2.f);
+	TestEqual(TEXT("Ascend emits exactly one ballast event"), Listener->BallastEventCount, 1);
+	TestTrue(TEXT("Ascend event reports allocated"), Listener->bLastAllocated);
+	TestTrue(TEXT("Ascend event reports mode"), Listener->LastBallastState == EAtlantisBallastState::Ascend);
 	State->SetCurrentOxygen(0.f);
 	TestEqual(TEXT("Consumption preserves reserved oxygen"), State->GetCurrentOxygen(), 2.f);
+	Listener->Reset();
 	State->SetBallastState(EAtlantisBallastState::Descend);
 	TestEqual(TEXT("Descend releases reservation"), State->GetLockedOxygen(), 0.f);
 	TestFalse(TEXT("Descend is not allocated"), State->IsBallastAllocated());
+	TestEqual(TEXT("Descend emits exactly one ballast event"), Listener->BallastEventCount, 1);
+	TestFalse(TEXT("Descend event reports unallocated"), Listener->bLastAllocated);
+	TestTrue(TEXT("Descend event reports mode"), Listener->LastBallastState == EAtlantisBallastState::Descend);
 	State->SetCurrentOxygen(0.f);
 	TestEqual(TEXT("Released oxygen can be consumed"), State->GetCurrentOxygen(), 0.f);
+	Listener->Reset();
 	State->SetLockedOxygen(1.f);
 	TestTrue(TEXT("Direct reservation sets derived allocation"), State->IsBallastAllocated());
+	TestEqual(TEXT("Direct reservation emits one oxygen event"), Listener->LockedOxygenEventCount, 1);
+	TestEqual(TEXT("Direct reservation reports old oxygen"), Listener->LastOldLockedOxygen, 0.f);
+	TestEqual(TEXT("Direct reservation reports new oxygen"), Listener->LastNewLockedOxygen, 1.f);
+	TestEqual(TEXT("Direct reservation emits no ballast event"), Listener->BallastEventCount, 0);
+	Listener->Reset();
 	State->SetLockedOxygen(0.f);
 	TestFalse(TEXT("Direct release clears derived allocation"), State->IsBallastAllocated());
+	TestEqual(TEXT("Direct release emits one oxygen event"), Listener->LockedOxygenEventCount, 1);
+	TestEqual(TEXT("Direct release reports old oxygen"), Listener->LastOldLockedOxygen, 1.f);
+	TestEqual(TEXT("Direct release reports new oxygen"), Listener->LastNewLockedOxygen, 0.f);
+	TestEqual(TEXT("Direct release emits no ballast event"), Listener->BallastEventCount, 0);
 
 	World->DestroyWorld(false);
 
