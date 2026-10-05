@@ -196,10 +196,10 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 		}
 		case EAtlantisBallastState::None:
 		default:
-			{
-				UE_LOG(LogAtlantisPlayerState, Fatal, TEXT("Invalid ballast state: %d"),
-				       static_cast<uint8>(RequiredBallastState));
-				return -1.f;
+		{
+			UE_LOG(LogAtlantisPlayerState, Fatal, TEXT("Invalid ballast state: %d"),
+			       static_cast<uint8>(RequiredBallastState));
+			return -1.f;
 		}
 	}
 }
