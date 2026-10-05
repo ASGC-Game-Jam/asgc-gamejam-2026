@@ -94,7 +94,7 @@ public:
 	float GetAvailableOxygen() const { return FMath::Max(CurrentOxygen - LockedOxygen, 0.f); }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
-	bool IsBallastAllocated() const { return bBallastAllocation; }
+	bool IsBallastAllocated() const { return LockedOxygen > 0.f; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	EAtlantisBallastState GetBallastState() const { return BallastState; }
@@ -114,9 +114,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetCurrentOxygen(float NewCurrentOxygen);
-
-	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
-	void SetBallastAllocated(bool bNewBallastAllocation);
 
 	/** Reserves oxygen for the requested mode only when total oxygen is strictly above its allocation. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
@@ -141,10 +138,6 @@ protected:
 	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	float CurrentOxygen = 100.f;
 
-	/** Whether the current ballast mode reserves a nonzero amount of oxygen. */
-	UPROPERTY(ReplicatedUsing = OnRep_BallastAllocation, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
-	bool bBallastAllocation = false;
-
 	/** Initial and current ballast mode; None is an invalid gameplay state. */
 	UPROPERTY(ReplicatedUsing = OnRep_BallastState, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	EAtlantisBallastState BallastState = EAtlantisBallastState::Descend;
@@ -168,10 +161,7 @@ protected:
 	void OnRep_CurrentOxygen(float OldCurrentOxygen) const;
 
 	UFUNCTION()
-	void OnRep_BallastAllocation(bool bOldBallastAllocation);
-
-	UFUNCTION()
-	void OnRep_BallastState(EAtlantisBallastState OldBallastState);
+	void OnRep_BallastState(EAtlantisBallastState OldBallastState) const;
 
 	UFUNCTION()
 	void OnRep_TraversalMode(int32 OldTraversalMode) const;

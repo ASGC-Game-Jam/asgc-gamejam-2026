@@ -70,7 +70,8 @@ and Epic's own Blueprint-facing page phrases it in a way that reinforces the con
 warning at the end of this document.
 
 **Delegates are grouped by what listens, not one per property.**
-Six properties are served by five delegates: `bBallastAllocation` and `BallastState` share
+Six replicated properties are served by six delegates. Allocation is derived from
+`LockedOxygen > 0.f`; allocation changes and `BallastState` changes share
 `OnBallastChanged`, because nothing consumes one without the other. This is not only tidiness:
 [there is no deterministic order between the RepNotify callbacks of different replicated
 variables](https://dev.epicgames.com/documentation/unreal-engine/replicated-object-execution-order-in-unreal-engine),
@@ -237,7 +238,7 @@ That last one is worth stating plainly: **never write logic that depends on one 
 RepNotify running before another's.** The call order on the client bears no relation to
 declaration order, memory layout, or the order the server marked them dirty. If two values must
 be consumed together, put them behind one delegate — which is the real reason
-`bBallastAllocation` and `BallastState` share `OnBallastChanged` rather than merely a tidiness
+the derived allocation status and `BallastState` share `OnBallastChanged` rather than merely a tidiness
 preference.
 
 Not sure whether something belongs in replicated state or an RPC? Reach out to a lead before

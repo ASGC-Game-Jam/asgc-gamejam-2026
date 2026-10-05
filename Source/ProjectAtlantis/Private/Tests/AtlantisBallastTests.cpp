@@ -104,9 +104,13 @@ bool FAtlantisBallastAllocationTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("Consumption preserves reserved oxygen"), State->GetCurrentOxygen(), 2.f);
 	State->SetBallastState(EAtlantisBallastState::Descend);
 	TestEqual(TEXT("Descend releases reservation"), State->GetLockedOxygen(), 0.f);
-	TestFalse(TEXT("Descend clears allocation flag"), State->IsBallastAllocated());
+	TestFalse(TEXT("Descend is not allocated"), State->IsBallastAllocated());
 	State->SetCurrentOxygen(0.f);
 	TestEqual(TEXT("Released oxygen can be consumed"), State->GetCurrentOxygen(), 0.f);
+	State->SetLockedOxygen(1.f);
+	TestTrue(TEXT("Direct reservation sets derived allocation"), State->IsBallastAllocated());
+	State->SetLockedOxygen(0.f);
+	TestFalse(TEXT("Direct release clears derived allocation"), State->IsBallastAllocated());
 
 	World->DestroyWorld(false);
 
