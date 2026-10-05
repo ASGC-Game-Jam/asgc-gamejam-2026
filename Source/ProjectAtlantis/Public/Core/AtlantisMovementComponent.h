@@ -29,15 +29,13 @@ private:
 	 * Acceleration while swimming. Separate from walking's Max Acceleration so swim feel can be tuned independently 
 	 * See also Braking Deceleration Swimming
 	 */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Movement: Swimming",
-		meta = (AllowPrivateAccess = true, ClampMin = 0, UIMin = 0, ForceUnits = "cm/s^2"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Movement: Swimming", meta = (AllowPrivateAccess = true, ClampMin = 0, UIMin = 0, ForceUnits = "cm/s^2"))
 	float MaxSwimAcceleration;
 	
 	/** 
 	* Determines  the Maximum Vertical Swim Speed for the player
 	* If you want to set the horizontal swim speed see Max Swim Speed
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Movement: Swimming",
-		meta = (AllowPrivateAccess = true, ClampMin = 0, UIMin = 0, ForceUnits = "cm/s"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Movement: Swimming", meta = (AllowPrivateAccess = true, ClampMin = 0, UIMin = 0, ForceUnits = "cm/s"))
 	float MaxVerticalSwimSpeed;
 };
