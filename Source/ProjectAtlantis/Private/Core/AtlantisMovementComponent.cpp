@@ -58,7 +58,7 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 	
 	if (Speed > MaxSpeedInDirection)
 	{
-			Velocity = Direction * MaxSpeedInDirection;
+		Velocity = Direction * MaxSpeedInDirection;
 	}
 }
 
