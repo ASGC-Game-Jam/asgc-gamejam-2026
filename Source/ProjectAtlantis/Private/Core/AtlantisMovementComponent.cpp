@@ -107,11 +107,11 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 
 float UAtlantisMovementComponent::ImmersionDepth() const
 {
-	if (const AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
-		IsSwimming() && GetPhysicsVolume()->bWaterVolume && PlayerState)
+	const AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
+	if (IsSwimming() && GetPhysicsVolume()->bWaterVolume && PlayerState)
 	{
-		if (const EAtlantisBallastState BallastState = PlayerState->GetBallastState(); BallastState !=
-			EAtlantisBallastState::None)
+		const EAtlantisBallastState BallastState = PlayerState->GetBallastState();
+		if (BallastState != EAtlantisBallastState::None)
 		{
 			// Ballast must retain its direction and neutral state throughout a water volume.
 			// Native surface-depth scaling otherwise turns neutral buoyancy into sinking,
