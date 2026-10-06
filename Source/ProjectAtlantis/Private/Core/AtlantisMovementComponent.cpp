@@ -92,20 +92,16 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 
 void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 {
-	const APhysicsVolume* OldVolume = GetPhysicsVolume();
-	if (OldVolume == NewVolume)
+	Super::PhysicsVolumeChanged(NewVolume);
+	
+	if (GetPhysicsVolume() == NewVolume || !CharacterOwner)
 	{
-		Super::PhysicsVolumeChanged(NewVolume);
 		return;
 	}
 	
-	Super::PhysicsVolumeChanged(NewVolume);
-	if (CharacterOwner)
+	if (AAtlantisPlayerController* Controller = Cast<AAtlantisPlayerController>(CharacterOwner->GetController()))
 	{
-		if (AAtlantisPlayerController* Controller = Cast<AAtlantisPlayerController>(CharacterOwner->GetController()))
-		{
-			Controller->UpdateMovementControls(NewVolume && NewVolume->bWaterVolume);
-		}
+		Controller->UpdateMovementControls(NewVolume && NewVolume->bWaterVolume);
 	}
 }
 
