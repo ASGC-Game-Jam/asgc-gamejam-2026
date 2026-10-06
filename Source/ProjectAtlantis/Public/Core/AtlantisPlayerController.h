@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "AtlantisPlayerController.generated.h"
 
+struct FInputActionValue;
 class UInputMappingContext;
 class UInputAction;
 class UEnhancedInputLocalPlayerSubsystem;
@@ -105,10 +106,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
 	TObjectPtr<UInputAction> AscendBallastAction;
 
-	void SelectDescend();
-	void SelectWander();
-	void SelectAscend();
-	void RequestBallastState(EAtlantisBallastState NewBallastState);
+	void RequestBallastState(const FInputActionValue& ActionValue, EAtlantisBallastState NewBallastState);
 
 	UFUNCTION(Server, Reliable)
 	void ServerSetBallastState(EAtlantisBallastState NewBallastState);

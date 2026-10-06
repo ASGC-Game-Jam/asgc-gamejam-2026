@@ -43,7 +43,13 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 		                                          ? CharacterOwner->GetPlayerState<AAtlantisPlayerState>()
 		                                          : nullptr;
 
-	const bool bPassiveBallast = IsSwimming() && PlayerState && (PlayerState->GetBallastState() ==
+	if (!PlayerState)
+	{
+		Super::CalcVelocity(DeltaTime, Friction, bFluid, BrakingDeceleration);
+		return;
+	}
+
+	const bool bPassiveBallast = IsSwimming() && (PlayerState->GetBallastState() ==
 		EAtlantisBallastState::Descend || PlayerState->GetBallastState() == EAtlantisBallastState::Ascend);
 
 	const FVector::FReal PassiveVerticalVelocity = GetGravitySpaceZ(Velocity);
@@ -93,20 +99,6 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 		return;
 	}
 	
-	if (OldVolume)
-	{
-		UE_LOG(LogTemp, Log, TEXT("%s exited PhysicsVolume %s (WaterVolume=%s)"),
-			*GetNameSafe(GetOwner()), *GetNameSafe(OldVolume),
-			OldVolume->bWaterVolume ? TEXT("true") : TEXT("false"));
-	}
-	
-	if (NewVolume)
-	{
-		UE_LOG(LogTemp, Log, TEXT("%s entered PhysicsVolume %s (WaterVolume=%s)"),
-			*GetNameSafe(GetOwner()), *GetNameSafe(NewVolume),
-			NewVolume->bWaterVolume ? TEXT("true") : TEXT("false"));
-	}
-
 	Super::PhysicsVolumeChanged(NewVolume);
 	if (CharacterOwner)
 	{
@@ -122,10 +114,7 @@ float UAtlantisMovementComponent::ImmersionDepth() const
 	if (const AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
 		IsSwimming() && GetPhysicsVolume()->bWaterVolume && PlayerState)
 	{
-		if (const EAtlantisBallastState BallastState = PlayerState->GetBallastState(); BallastState ==
-			EAtlantisBallastState::Descend
-			|| BallastState == EAtlantisBallastState::Wander
-			|| BallastState == EAtlantisBallastState::Ascend)
+		if (const EAtlantisBallastState BallastState = PlayerState->GetBallastState(); BallastState != EAtlantisBallastState::None)
 		{
 			// Ballast must retain its direction and neutral state throughout a water volume.
 			// Native surface-depth scaling otherwise turns neutral buoyancy into sinking,
@@ -146,6 +135,8 @@ void UAtlantisMovementComponent::PhysSwimming(float DeltaTime, int32 Iterations)
 		return;
 	}
 
+	// Apply ballast overrides only for this swimming step. Restore configured buoyancy
+	// for None and the original input acceleration for later movement modes/steps.
 	const float SavedBuoyancy = Buoyancy;
 	const FVector SavedAcceleration = Acceleration;
 	switch (PlayerState->GetBallastState())

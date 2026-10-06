@@ -50,15 +50,15 @@ void AAtlantisPlayerController::SetupInputComponent()
 	{
 		if (DescendBallastAction)
 		{
-			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this, &AAtlantisPlayerController::SelectDescend);
+			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this, &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Descend);
 		}
 		if (WanderBallastAction)
 		{
-			EnhancedInput->BindAction(WanderBallastAction, ETriggerEvent::Started, this, &AAtlantisPlayerController::SelectWander);
+			EnhancedInput->BindAction(WanderBallastAction, ETriggerEvent::Started, this, &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
 		}
 		if (AscendBallastAction)
 		{
-			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this, &AAtlantisPlayerController::SelectAscend);
+			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this, &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
 		}
 	}
 	RefreshMovementControls();
@@ -96,22 +96,7 @@ void AAtlantisPlayerController::UpdateMovementControls(bool bInWater)
 	}
 }
 
-void AAtlantisPlayerController::SelectDescend()
-{
-	RequestBallastState(EAtlantisBallastState::Descend);
-}
-
-void AAtlantisPlayerController::SelectWander()
-{
-	RequestBallastState(EAtlantisBallastState::Wander);
-}
-
-void AAtlantisPlayerController::SelectAscend()
-{
-	RequestBallastState(EAtlantisBallastState::Ascend);
-}
-
-void AAtlantisPlayerController::RequestBallastState(const EAtlantisBallastState NewBallastState)
+void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& ActionValue, const EAtlantisBallastState NewBallastState)
 {
 	if (bControlsEnabled && GetPawn())
 	{
@@ -122,9 +107,8 @@ void AAtlantisPlayerController::RequestBallastState(const EAtlantisBallastState 
 void AAtlantisPlayerController::ServerSetBallastState_Implementation(const EAtlantisBallastState NewBallastState)
 {
 	if (!bControlsEnabled || !GetPawn()
-		|| (NewBallastState != EAtlantisBallastState::Descend
-			&& NewBallastState != EAtlantisBallastState::Wander
-			&& NewBallastState != EAtlantisBallastState::Ascend))
+		|| NewBallastState == EAtlantisBallastState::None
+		|| !StaticEnum<EAtlantisBallastState>()->IsValidEnumValue(static_cast<int64>(NewBallastState)))
 	{
 		return;
 	}
