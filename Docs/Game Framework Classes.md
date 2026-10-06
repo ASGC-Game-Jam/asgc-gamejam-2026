@@ -183,6 +183,8 @@ re-applies the whole set at one priority.
 
 Ballast selection uses three Enhanced Input actions: `IA_BallastDescend`, `IA_BallastWander`,
 and `IA_BallastAscend`.
+Default keyboard bindings are 2 (Descend), 3 (Wander), and 4 (Ascend). Xbox controller
+face buttons use B/right (Descend), X/left (Wander), and Y/top (Ascend) in `IMC_Swim`.
 
 Movement contexts follow the pawn's physics volume. `AAtlantisPlayerController` initializes
 them on possession and client pawn replication; `UAtlantisMovementComponent` updates them
