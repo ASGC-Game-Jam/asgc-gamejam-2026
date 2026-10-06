@@ -106,9 +106,7 @@ void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& Act
 
 void AAtlantisPlayerController::ServerSetBallastState_Implementation(const EAtlantisBallastState NewBallastState)
 {
-	if (!bControlsEnabled || !GetPawn()
-		|| NewBallastState == EAtlantisBallastState::None
-		|| !StaticEnum<EAtlantisBallastState>()->IsValidEnumValue(static_cast<int64>(NewBallastState)))
+	if (!bControlsEnabled || !GetPawn() || NewBallastState == EAtlantisBallastState::None)
 	{
 		return;
 	}
