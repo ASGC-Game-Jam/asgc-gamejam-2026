@@ -3,6 +3,7 @@
 
 #include "Core/AtlantisMovementComponent.h"
 #include "Core/AtlantisPlayerState.h"
+#include "Core/AtlantisPlayerController.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/PhysicsVolume.h"
 
@@ -107,6 +108,13 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 	}
 
 	Super::PhysicsVolumeChanged(NewVolume);
+	if (CharacterOwner)
+	{
+		if (AAtlantisPlayerController* Controller = Cast<AAtlantisPlayerController>(CharacterOwner->GetController()))
+		{
+			Controller->UpdateMovementControls(NewVolume && NewVolume->bWaterVolume);
+		}
+	}
 }
 
 float UAtlantisMovementComponent::ImmersionDepth() const

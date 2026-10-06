@@ -7,6 +7,7 @@
 #include "AtlantisPlayerController.generated.h"
 
 class UInputMappingContext;
+class UInputAction;
 class UEnhancedInputLocalPlayerSubsystem;
 enum class EAtlantisBallastState : uint8;
 
@@ -36,6 +37,9 @@ class PROJECTATLANTIS_API AAtlantisPlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
+	void UpdateMovementControls(bool bInWater);
+	virtual void OnRep_Pawn() override;
+
 	//~ Change events. Bind from UI rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Controls")
 	FOnControlsChanged OnControlsChanged;
@@ -82,15 +86,32 @@ public:
 
 protected:
 	virtual void SetupInputComponent() override;
+	virtual void OnPossess(APawn* InPawn) override;
 
-	/** Temporary ballast test shortcuts: 2 = Descend, 3 = Wander, 4 = Ascend. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls")
+	TObjectPtr<UInputMappingContext> SwimmingMappingContext;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls")
+	TObjectPtr<UInputMappingContext> DefaultMovementMappingContext;
+
+	void RefreshMovementControls();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> DescendBallastAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> WanderBallastAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> AscendBallastAction;
+
 	void SelectDescend();
 	void SelectWander();
 	void SelectAscend();
-	void RequestTestBallastState(EAtlantisBallastState NewBallastState);
+	void RequestBallastState(EAtlantisBallastState NewBallastState);
 
 	UFUNCTION(Server, Reliable)
-	void ServerSetTestBallastState(EAtlantisBallastState NewBallastState);
+	void ServerSetBallastState(EAtlantisBallastState NewBallastState);
 
 	/** Pushes every context in the desired set to the input subsystem. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
