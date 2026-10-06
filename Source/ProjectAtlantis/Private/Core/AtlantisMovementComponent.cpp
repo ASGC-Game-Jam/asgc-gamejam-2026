@@ -52,6 +52,8 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 	const bool bPassiveBallast = IsSwimming() && (PlayerState->GetBallastState() ==
 		EAtlantisBallastState::Descend || PlayerState->GetBallastState() == EAtlantisBallastState::Ascend);
 	
+	// Save before clearing Z: passive buoyancy must accumulate across swimming steps.
+	const FVector::FReal PassiveVerticalVelocity = GetGravitySpaceZ(Velocity);
 	if (bPassiveBallast)
 	{
 		SetGravitySpaceZ(Velocity, 0.f);
@@ -61,7 +63,6 @@ void UAtlantisMovementComponent::CalcVelocity(float DeltaTime, float Friction, b
 
 	if (bPassiveBallast)
 	{
-		const FVector::FReal PassiveVerticalVelocity = GetGravitySpaceZ(Velocity);
 		const float FluidDrag = bFluid ? 1.f - FMath::Min(Friction * DeltaTime, 1.f) : 1.f;
 		SetGravitySpaceZ(Velocity, PassiveVerticalVelocity * FluidDrag);
 	}
