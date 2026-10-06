@@ -133,10 +133,8 @@ void UAtlantisMovementComponent::PhysSwimming(float DeltaTime, int32 Iterations)
 		return;
 	}
 
-	// Apply ballast overrides only for this swimming step. Restore configured buoyancy
-	// for None and the original input acceleration for later movement modes/steps.
+	// Preserve configured buoyancy for native swimming when PlayerState is unavailable.
 	const float SavedBuoyancy = Buoyancy;
-	const FVector SavedAcceleration = Acceleration;
 	switch (PlayerState->GetBallastState())
 	{
 	case EAtlantisBallastState::Descend:
@@ -156,5 +154,4 @@ void UAtlantisMovementComponent::PhysSwimming(float DeltaTime, int32 Iterations)
 
 	Super::PhysSwimming(DeltaTime, Iterations);
 	Buoyancy = SavedBuoyancy;
-	Acceleration = SavedAcceleration;
 }
