@@ -4,24 +4,24 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "CommonInputBaseTypes.h"
 #include "AtlantisBallastIndicatorWidget.generated.h"
 
-class AAtlantisPlayerController;
+class UCommonInputSubsystem;
 
-/** Shows ballast selection hints for the owning player's last active input device. */
+/** Shows ballast selection hints for the owning player's Common Input method. */
 UCLASS()
 class PROJECTATLANTIS_API UAtlantisBallastIndicatorWidget : public UUserWidget
 {
 	GENERATED_BODY()
-
-public:
-	UFUNCTION()
-	void UpdateInputHints(bool bUsingGamepad);
 
 protected:
 	virtual void NativeConstruct() override;
 	virtual void NativeDestruct() override;
 
 private:
-	TWeakObjectPtr<AAtlantisPlayerController> InputController;
+	void UpdateInputHints(ECommonInputType InputType);
+
+	TWeakObjectPtr<UCommonInputSubsystem> InputSubsystem;
+	FDelegateHandle InputMethodChangedHandle;
 };

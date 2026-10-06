@@ -2,37 +2,43 @@
 
 #include "UI/AtlantisBallastIndicatorWidget.h"
 
+#include "CommonInputSubsystem.h"
 #include "Components/TextBlock.h"
-#include "Core/AtlantisPlayerController.h"
 
 #define LOCTEXT_NAMESPACE "AtlantisBallastIndicator"
 
 void UAtlantisBallastIndicatorWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	InputController = Cast<AAtlantisPlayerController>(GetOwningPlayer());
-	if (AAtlantisPlayerController* Controller = InputController.Get())
+	InputSubsystem = UCommonInputSubsystem::Get(GetOwningLocalPlayer());
+	if (UCommonInputSubsystem* Subsystem = InputSubsystem.Get())
 	{
-		Controller->OnInputDeviceChanged.AddUniqueDynamic(this, &UAtlantisBallastIndicatorWidget::UpdateInputHints);
+		InputMethodChangedHandle = Subsystem->OnInputMethodChangedNative.AddUObject(
+			this, &UAtlantisBallastIndicatorWidget::UpdateInputHints);
+		UpdateInputHints(Subsystem->GetCurrentInputType());
 	}
-	UpdateInputHints(InputController.IsValid() && InputController->IsUsingGamepad());
+	else
+	{
+		UpdateInputHints(ECommonInputType::MouseAndKeyboard);
+	}
 }
 
 void UAtlantisBallastIndicatorWidget::NativeDestruct()
 {
-	if (AAtlantisPlayerController* Controller = InputController.Get())
+	if (UCommonInputSubsystem* Subsystem = InputSubsystem.Get())
 	{
-		Controller->OnInputDeviceChanged.RemoveDynamic(this, &UAtlantisBallastIndicatorWidget::UpdateInputHints);
+		Subsystem->OnInputMethodChangedNative.Remove(InputMethodChangedHandle);
 	}
-	InputController.Reset();
+	InputMethodChangedHandle.Reset();
+	InputSubsystem.Reset();
 	Super::NativeDestruct();
 }
 
-void UAtlantisBallastIndicatorWidget::UpdateInputHints(bool bUsingGamepad)
+void UAtlantisBallastIndicatorWidget::UpdateInputHints(ECommonInputType InputType)
 {
 	if (UTextBlock* Hints = Cast<UTextBlock>(GetWidgetFromName(TEXT("BallastStateKeys"))))
 	{
-		Hints->SetText(bUsingGamepad
+		Hints->SetText(InputType == ECommonInputType::Gamepad
 			? LOCTEXT("GamepadHints", "Descend: B | Wander: X | Ascend: Y")
 			: LOCTEXT("KeyboardHints", "Descend: 2 | Wander: 3 | Ascend: 4"));
 	}

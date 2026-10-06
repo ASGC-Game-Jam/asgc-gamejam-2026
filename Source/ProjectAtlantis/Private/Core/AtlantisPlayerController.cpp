@@ -10,7 +10,6 @@
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
-#include "InputKeyEventArgs.h"
 #include "HAL/PlatformProperties.h"
 
 // Anonymous namespace: everything inside has internal linkage, so these helpers are private to
@@ -42,21 +41,6 @@ namespace
 
 		return Options;
 	}
-}
-
-bool AAtlantisPlayerController::InputKey(const FInputKeyEventArgs& Params)
-{
-	const bool bGamepadInput = Params.Key.IsGamepadKey();
-	const float AxisThreshold = bGamepadInput ? 0.2f : KINDA_SMALL_NUMBER;
-	const bool bMeaningfulInput = Params.Event == IE_Pressed
-		|| (Params.Event == IE_Axis && FMath::Abs(Params.AmountDepressed) > AxisThreshold);
-	if (bMeaningfulInput && bUsingGamepad != bGamepadInput)
-	{
-		bUsingGamepad = bGamepadInput;
-		OnInputDeviceChanged.Broadcast(bUsingGamepad);
-	}
-
-	return Super::InputKey(Params);
 }
 
 void AAtlantisPlayerController::SetupInputComponent()

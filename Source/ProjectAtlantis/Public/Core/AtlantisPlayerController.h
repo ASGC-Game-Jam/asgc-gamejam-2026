@@ -15,8 +15,6 @@ enum class EAtlantisBallastState : uint8;
 /** The desired set of control mapping contexts changed. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnControlsChanged);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInputDeviceChanged, bool, bUsingGamepad);
-
 /** Controls were re-applied to the input subsystem as a whole. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnControlsEnabled);
 
@@ -40,14 +38,6 @@ class PROJECTATLANTIS_API AAtlantisPlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
-	virtual bool InputKey(const FInputKeyEventArgs& Params) override;
-
-	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Controls")
-	FOnInputDeviceChanged OnInputDeviceChanged;
-
-	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls")
-	bool IsUsingGamepad() const { return bUsingGamepad; }
-
 	void UpdateMovementControls(bool bInWater);
 	virtual void OnRep_Pawn() override;
 
@@ -96,8 +86,6 @@ public:
 	const TArray<UInputMappingContext*>& GetCurrentMappingContexts() const { return CurrentMappingContexts; }
 
 protected:
-	bool bUsingGamepad = false;
-
 	virtual void SetupInputComponent() override;
 	virtual void OnPossess(APawn* InPawn) override;
 
