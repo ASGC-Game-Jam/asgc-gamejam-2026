@@ -50,15 +50,18 @@ void AAtlantisPlayerController::SetupInputComponent()
 	{
 		if (DescendBallastAction)
 		{
-			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this, &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Descend);
+			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this,
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Descend);
 		}
 		if (WanderBallastAction)
 		{
-			EnhancedInput->BindAction(WanderBallastAction, ETriggerEvent::Started, this, &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
+			EnhancedInput->BindAction(WanderBallastAction, ETriggerEvent::Started, this,
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
 		}
 		if (AscendBallastAction)
 		{
-			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this, &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
+			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this,
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
 		}
 	}
 	RefreshMovementControls();
