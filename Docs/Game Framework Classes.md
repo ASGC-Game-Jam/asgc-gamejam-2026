@@ -172,6 +172,16 @@ Every context is applied at priority `0`. Supporting per-context priority means
 `CurrentMappingContexts` becomes an array of structs, because `EstablishMappingContexts`
 re-applies the whole set at one priority.
 
+Ballast selection uses three Enhanced Input actions: `IA_BallastDescend`, `IA_BallastWander`,
+and `IA_BallastAscend`.
+
+Movement contexts follow the pawn's physics volume. `AAtlantisPlayerController` initializes
+them on possession and client pawn replication; `UAtlantisMovementComponent` updates them
+when the physics volume changes. A water volume selects `IMC_Swim` and removes `IMC_Default`;
+leaving water reverses that selection. The controller Blueprint assigns both context references
+in Class Defaults. Context changes use `AddControls` and `RemoveControls`, so switching volumes
+while controls are disabled updates the desired set without enabling input.
+
 ### Repositioning the player character
 
 ```cpp

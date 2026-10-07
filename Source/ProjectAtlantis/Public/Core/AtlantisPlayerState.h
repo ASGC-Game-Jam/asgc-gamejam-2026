@@ -54,9 +54,6 @@ public:
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
-	/** Carries our custom state across seamless travel and PlayerState re-creation. */
-	virtual void CopyProperties(APlayerState* PlayerState) override;
-
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnOxygenCapacityChanged OnOxygenCapacityChanged;
@@ -124,6 +121,9 @@ public:
 protected:
 	//PlayerState Variables - Often includes things like health, ammo etc.
 	//TODO: note that these are placeholder variables and data types they may be swapped out for the real value upon implementation
+
+	/** Carries our custom state across seamless travel and PlayerState re-creation. */
+	virtual void CopyProperties(APlayerState* PlayerState) override;
 
 	/** Maximum oxygen the player can hold. */
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")

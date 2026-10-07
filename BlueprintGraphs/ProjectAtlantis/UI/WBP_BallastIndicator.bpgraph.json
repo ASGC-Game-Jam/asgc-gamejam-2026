@@ -1,0 +1,749 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_BallastIndicator",
+	"asset": "WBP_BallastIndicator",
+	"assetClass": "WidgetBlueprint",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "2e5970294a9da90df7a66ca76c90a3a5",
+					"class": "K2Node_CallFunction",
+					"title": "IsBallastAllocated",
+					"x": 1443,
+					"y": 640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2e5970294a9da90df7a66ca76c90a3a5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"cb7ca4f342715cf2dacfe7aa46eceec2:o:Atlantis Player State"
+							]
+						},
+						{
+							"id": "2e5970294a9da90df7a66ca76c90a3a5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f07027e7431affb2aec336938e8df388:i:bIsAllocated"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3837265541a221101f45189537db6067",
+					"class": "K2Node_VariableGet",
+					"title": "Get PlayerState",
+					"x": 176,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3837265541a221101f45189537db6067:o:PlayerState",
+							"name": "PlayerState",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerState",
+							"defaultValue": null,
+							"links": [
+								"8be14fcb4a8f4b323087c1a564c07094:i:Object"
+							]
+						},
+						{
+							"id": "3837265541a221101f45189537db6067:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Controller",
+							"defaultValue": null,
+							"links": [
+								"757f2fb34e695d859d19c3bc7c8edaf9:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3f494b874629c42db8302f9f24641acd",
+					"class": "K2Node_CustomEvent",
+					"title": "OnCurrentBallastChanged_Event",
+					"x": 736,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3f494b874629c42db8302f9f24641acd:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"46ffd90e4d56466df10487ad090e9059:i:Delegate"
+							]
+						},
+						{
+							"id": "3f494b874629c42db8302f9f24641acd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eaa0892244c95aa662928b9e3f4806ba:i:execute"
+							]
+						},
+						{
+							"id": "3f494b874629c42db8302f9f24641acd:o:bIsAllocated",
+							"name": "bIsAllocated",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3f494b874629c42db8302f9f24641acd:o:BallastState",
+							"name": "BallastState",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EAtlantisBallastState",
+							"defaultValue": null,
+							"links": [
+								"a4620c0d4b70526234e4489e84006e15:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "46ffd90e4d56466df10487ad090e9059",
+					"class": "K2Node_AddDelegate",
+					"title": "Bind Event to On Ballast Changed",
+					"x": 1168,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "46ffd90e4d56466df10487ad090e9059:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"964ba6474fb253dc940205ad96cd8f85:o:then"
+							]
+						},
+						{
+							"id": "46ffd90e4d56466df10487ad090e9059:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f07027e7431affb2aec336938e8df388:i:execute"
+							]
+						},
+						{
+							"id": "46ffd90e4d56466df10487ad090e9059:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"964ba6474fb253dc940205ad96cd8f85:o:Output_Get"
+							]
+						},
+						{
+							"id": "46ffd90e4d56466df10487ad090e9059:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"3f494b874629c42db8302f9f24641acd:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5e782e1c4725e0ea31e8cd91d5b4a6e7",
+					"class": "K2Node_Event",
+					"title": "Event On Initialized",
+					"x": -64,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5e782e1c4725e0ea31e8cd91d5b4a6e7:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5e782e1c4725e0ea31e8cd91d5b4a6e7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8be14fcb4a8f4b323087c1a564c07094:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "68a2dcb142fbb8f7eed70187bcc7e210",
+					"class": "K2Node_VariableGet",
+					"title": "Get BallastState",
+					"x": 1586,
+					"y": 1137,
+					"comment": null,
+					"pins": [
+						{
+							"id": "68a2dcb142fbb8f7eed70187bcc7e210:o:BallastState",
+							"name": "BallastState",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"eaa0892244c95aa662928b9e3f4806ba:i:self"
+							]
+						},
+						{
+							"id": "68a2dcb142fbb8f7eed70187bcc7e210:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_BallastIndicator.WBP_BallastIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "73591a0d44b21f40cb8caba07f422efe",
+					"class": "K2Node_CallFunction",
+					"title": "GetBallastState",
+					"x": 1443,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "73591a0d44b21f40cb8caba07f422efe:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"cb7ca4f342715cf2dacfe7aa46eceec2:o:Atlantis Player State"
+							]
+						},
+						{
+							"id": "73591a0d44b21f40cb8caba07f422efe:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EAtlantisBallastState",
+							"defaultValue": null,
+							"links": [
+								"f07027e7431affb2aec336938e8df388:i:BallastState"
+							]
+						}
+					]
+				},
+				{
+					"guid": "757f2fb34e695d859d19c3bc7c8edaf9",
+					"class": "K2Node_CallFunction",
+					"title": "Get Owning Player",
+					"x": -80,
+					"y": 616,
+					"comment": null,
+					"pins": [
+						{
+							"id": "757f2fb34e695d859d19c3bc7c8edaf9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "757f2fb34e695d859d19c3bc7c8edaf9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"3837265541a221101f45189537db6067:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8be14fcb4a8f4b323087c1a564c07094",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To AtlantisPlayerState",
+					"x": 416,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8be14fcb4a8f4b323087c1a564c07094:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5e782e1c4725e0ea31e8cd91d5b4a6e7:o:then"
+							]
+						},
+						{
+							"id": "8be14fcb4a8f4b323087c1a564c07094:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"964ba6474fb253dc940205ad96cd8f85:i:execute"
+							]
+						},
+						{
+							"id": "8be14fcb4a8f4b323087c1a564c07094:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8be14fcb4a8f4b323087c1a564c07094:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"3837265541a221101f45189537db6067:o:PlayerState"
+							]
+						},
+						{
+							"id": "8be14fcb4a8f4b323087c1a564c07094:o:AsAtlantis Player State",
+							"name": "AsAtlantis Player State",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"964ba6474fb253dc940205ad96cd8f85:i:Atlantis Player State"
+							]
+						},
+						{
+							"id": "8be14fcb4a8f4b323087c1a564c07094:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "964ba6474fb253dc940205ad96cd8f85",
+					"class": "K2Node_VariableSet",
+					"title": "Set Atlantis Player State",
+					"x": 752,
+					"y": 512,
+					"comment": null,
+					"pins": [
+						{
+							"id": "964ba6474fb253dc940205ad96cd8f85:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8be14fcb4a8f4b323087c1a564c07094:o:then"
+							]
+						},
+						{
+							"id": "964ba6474fb253dc940205ad96cd8f85:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"46ffd90e4d56466df10487ad090e9059:i:execute"
+							]
+						},
+						{
+							"id": "964ba6474fb253dc940205ad96cd8f85:i:Atlantis Player State",
+							"name": "Atlantis Player State",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"8be14fcb4a8f4b323087c1a564c07094:o:AsAtlantis Player State"
+							]
+						},
+						{
+							"id": "964ba6474fb253dc940205ad96cd8f85:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"46ffd90e4d56466df10487ad090e9059:i:self"
+							]
+						},
+						{
+							"id": "964ba6474fb253dc940205ad96cd8f85:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_BallastIndicator.WBP_BallastIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a0e905074fcdd22722ae55b78c876cb0",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 1408,
+					"y": 961,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a0e905074fcdd22722ae55b78c876cb0:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Ballast: {BallastState}",
+							"links": []
+						},
+						{
+							"id": "a0e905074fcdd22722ae55b78c876cb0:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"eaa0892244c95aa662928b9e3f4806ba:i:Text"
+							]
+						},
+						{
+							"id": "a0e905074fcdd22722ae55b78c876cb0:i:BallastState",
+							"name": "BallastState",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"a4620c0d4b70526234e4489e84006e15:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a4620c0d4b70526234e4489e84006e15",
+					"class": "K2Node_GenericToText",
+					"title": "To Text",
+					"x": 1088,
+					"y": 1012,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a4620c0d4b70526234e4489e84006e15:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EAtlantisBallastState",
+							"defaultValue": null,
+							"links": [
+								"3f494b874629c42db8302f9f24641acd:o:BallastState"
+							]
+						},
+						{
+							"id": "a4620c0d4b70526234e4489e84006e15:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"a0e905074fcdd22722ae55b78c876cb0:i:BallastState"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cb7ca4f342715cf2dacfe7aa46eceec2",
+					"class": "K2Node_VariableGet",
+					"title": "Get Atlantis Player State",
+					"x": 1184,
+					"y": 736,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cb7ca4f342715cf2dacfe7aa46eceec2:o:Atlantis Player State",
+							"name": "Atlantis Player State",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"2e5970294a9da90df7a66ca76c90a3a5:i:self",
+								"73591a0d44b21f40cb8caba07f422efe:i:self"
+							]
+						},
+						{
+							"id": "cb7ca4f342715cf2dacfe7aa46eceec2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_BallastIndicator.WBP_BallastIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "eaa0892244c95aa662928b9e3f4806ba",
+					"class": "K2Node_VariableSet",
+					"title": "Set Text",
+					"x": 1792,
+					"y": 881,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eaa0892244c95aa662928b9e3f4806ba:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3f494b874629c42db8302f9f24641acd:o:then"
+							]
+						},
+						{
+							"id": "eaa0892244c95aa662928b9e3f4806ba:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eaa0892244c95aa662928b9e3f4806ba:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"a0e905074fcdd22722ae55b78c876cb0:o:Result"
+							]
+						},
+						{
+							"id": "eaa0892244c95aa662928b9e3f4806ba:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eaa0892244c95aa662928b9e3f4806ba:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"68a2dcb142fbb8f7eed70187bcc7e210:o:BallastState"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f07027e7431affb2aec336938e8df388",
+					"class": "K2Node_CallFunction",
+					"title": "OnCurrentBallastChanged_Event",
+					"x": 1792,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f07027e7431affb2aec336938e8df388:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"46ffd90e4d56466df10487ad090e9059:o:then"
+							]
+						},
+						{
+							"id": "f07027e7431affb2aec336938e8df388:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f07027e7431affb2aec336938e8df388:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f07027e7431affb2aec336938e8df388:i:bIsAllocated",
+							"name": "bIsAllocated",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2e5970294a9da90df7a66ca76c90a3a5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f07027e7431affb2aec336938e8df388:i:BallastState",
+							"name": "BallastState",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EAtlantisBallastState",
+							"defaultValue": null,
+							"links": [
+								"73591a0d44b21f40cb8caba07f422efe:o:ReturnValue"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "044250204e406547c5e6499c6faef2ee",
+					"text": "OnInitialized because it runs once and we need to bind only once",
+					"x": -133,
+					"y": 370,
+					"width": 288,
+					"height": 224
+				}
+			]
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"Atlantis Player State":
+			{
+				"type": "Object:/Script/ProjectAtlantis.AtlantisPlayerState",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"BallastState": null,
+			"Atlantis Player State": null,
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
+}

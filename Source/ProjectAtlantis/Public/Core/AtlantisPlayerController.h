@@ -6,8 +6,11 @@
 #include "GameFramework/PlayerController.h"
 #include "AtlantisPlayerController.generated.h"
 
+struct FInputActionValue;
 class UInputMappingContext;
+class UInputAction;
 class UEnhancedInputLocalPlayerSubsystem;
+enum class EAtlantisBallastState : uint8;
 
 /** The desired set of control mapping contexts changed. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnControlsChanged);
@@ -35,6 +38,9 @@ class PROJECTATLANTIS_API AAtlantisPlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
+	void UpdateMovementControls(bool bInWater);
+	virtual void OnRep_Pawn() override;
+
 	//~ Change events. Bind from UI rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Controls")
 	FOnControlsChanged OnControlsChanged;
@@ -80,6 +86,31 @@ public:
 	const TArray<UInputMappingContext*>& GetCurrentMappingContexts() const { return CurrentMappingContexts; }
 
 protected:
+	virtual void SetupInputComponent() override;
+	virtual void OnPossess(APawn* InPawn) override;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls")
+	TObjectPtr<UInputMappingContext> SwimmingMappingContext;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls")
+	TObjectPtr<UInputMappingContext> DefaultMovementMappingContext;
+
+	void RefreshMovementControls();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> DescendBallastAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> WanderBallastAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> AscendBallastAction;
+
+	void RequestBallastState(const FInputActionValue& ActionValue, EAtlantisBallastState NewBallastState);
+
+	UFUNCTION(Server, Reliable)
+	void ServerSetBallastState(EAtlantisBallastState NewBallastState);
+
 	/** Pushes every context in the desired set to the input subsystem. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
 	void EstablishMappingContexts();

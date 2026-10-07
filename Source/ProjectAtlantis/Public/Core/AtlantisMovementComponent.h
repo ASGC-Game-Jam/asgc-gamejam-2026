@@ -17,12 +17,23 @@ class PROJECTATLANTIS_API UAtlantisMovementComponent : public UCharacterMovement
 public:
 	UAtlantisMovementComponent();
 
+	virtual void PhysicsVolumeChanged(APhysicsVolume* NewVolume) override;
+	virtual float ImmersionDepth() const override;
 	virtual float GetMaxAcceleration() const override;
 	virtual void CalcVelocity(float DeltaTime, float Friction, bool bFluid, float BrakingDeceleration) override;
 
 protected:
 	virtual FVector ConstrainInputAcceleration(const FVector& InputAcceleration) const override;
 	
+	virtual void PhysSwimming(float DeltaTime, int32 Iterations) override;
+
+	/** Ballast buoyancy ratio: below 1 sinks; 0 has no lift. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis|Ballast", meta = (ClampMin = "0.0", ClampMax = "0.99"))
+	float DescendBuoyancy = 0.5f;
+
+	/** Ballast buoyancy ratio: above 1 rises. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis|Ballast", meta = (ClampMin = "1.01"))
+	float AscendBuoyancy = 1.5f;
 
 private:
 	/** 
