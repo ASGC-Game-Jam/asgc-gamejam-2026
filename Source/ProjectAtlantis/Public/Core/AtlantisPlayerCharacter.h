@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Core/AtlantisTraversalTypes.h"
 #include "AtlantisPlayerCharacter.generated.h"
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTraversalModeChanged, EAtlantisTraversalMode, NewMode, EAtlantisTraversalMode, OldMode);
 
 UCLASS()
 class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
@@ -14,7 +17,11 @@ class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
-
+	
+	/** It fires when the traversal mode changes */
+	UPROPERTY(BlueprintAssignable, Category="Atlantis|Traversal")
+	FOnTraversalModeChanged OnTraversalModeChanged;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
