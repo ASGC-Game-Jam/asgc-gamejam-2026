@@ -99,6 +99,14 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Ballast")
 	bool IsVerticalSwimmingAllowed() const { return BallastState == EAtlantisBallastState::Wander; }
 
+	/** Ballast permits lower-surface attachment only in Descend; Surface Walking owns attachment. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Ballast")
+	bool IsLowerSurfaceWalkingAllowed() const { return BallastState == EAtlantisBallastState::Descend; }
+
+	/** Ballast permits upper-surface attachment only in Ascend; Surface Walking owns attachment. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Ballast")
+	bool IsUpperSurfaceWalkingAllowed() const { return BallastState == EAtlantisBallastState::Ascend; }
+
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	int32 GetTraversalMode() const { return TraversalMode; }
 

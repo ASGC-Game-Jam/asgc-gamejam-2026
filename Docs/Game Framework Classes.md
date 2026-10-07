@@ -140,6 +140,11 @@ Bind to the delegates on `AAtlantisPlayerState` rather than polling it each tick
 Ballast consumers read `GetBallastState()` and subscribe to `OnBallastChanged`.
 `IsVerticalSwimmingAllowed()` exposes the shared rule: only Wander permits vertical
 swimming input. Native swimming uses this query to constrain input acceleration.
+`IsLowerSurfaceWalkingAllowed()` permits lower surfaces in Descend, and
+`IsUpperSurfaceWalkingAllowed()` permits upper surfaces in Ascend. Both return false
+in Wander and for the invalid None state. Surface Walking reads these queries on
+initialization and after `OnBallastChanged`; it owns surface detection, attachment,
+and detachment. These queries describe ballast compatibility, not traversal availability.
 
 ### Controls
 
