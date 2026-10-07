@@ -40,6 +40,11 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTraversalModeChanged, int32, Old
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEquippedItemsChanged, const TArray<FString>&, NewEquippedItems);
 
 /**
+ * CriticalOxygen changed. True while oxygen level is critical.
+ */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCriticalOxygenChanged, bool, bCriticalOxygen);
+
+/**
  * Per-player state that survives respawn. Every property here is server-authoritative:
  * clients read via the getters and react via the change delegates, and only the server
  * may call the setters.
@@ -74,6 +79,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnEquippedItemsChanged OnEquippedItemsChanged;
+
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
+	FOnCriticalOxygenChanged OnCriticalOxygenChanged;
 
 	//~ Accessors.
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
@@ -113,6 +121,18 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	const TArray<FString>& GetEquippedItems() const { return EquippedItems; }
 
+	/** Indicates whether oxygen level is critical. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	bool IsCriticalOxygen() const { return bCriticalOxygen; }
+
+	/** Oxygen level is critical when AvailableOxygen is below this value. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	float GetCriticalOxygenThreshold() const { return CriticalOxygenThreshold; }
+
+	/** Oxygen above the critical threshold required to leave Critical Oxygen. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	float GetCriticalOxygenRecoveryMargin() const { return CriticalOxygenRecoveryMargin; }
+
 	//~ Mutators. Server only; calls on a client are ignored.
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetOxygenCapacity(float NewOxygenCapacity);
@@ -130,7 +150,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetTraversalMode(int32 NewTraversalMode);
 
+	/** Indicates whether oxygen level is critical. */
+	UFUNCTION()
+	void SetCriticalOxygen(bool bNewCriticalOxygen);
+
 protected:
+
+	virtual void BeginPlay() override;
+
 	//PlayerState Variables - Often includes things like health, ammo etc.
 	//TODO: note that these are placeholder variables and data types they may be swapped out for the real value upon implementation
 
@@ -161,6 +188,18 @@ protected:
 	UPROPERTY(ReplicatedUsing = OnRep_EquippedItems, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
 	TArray<FString> EquippedItems;
 
+	/** Indicates whether oxygen level is critical. */
+	UPROPERTY(ReplicatedUsing = OnRep_CriticalOxygen, BlueprintReadOnly, Category = "Atlantis|PlayerState")
+	bool bCriticalOxygen = false;
+
+	/** Oxygen level is critical when AvailableOxygen is below this value. */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
+	float CriticalOxygenThreshold = 5.f;
+
+	/** Oxygen above the critical threshold required to leave Critical Oxygen. */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
+	float CriticalOxygenRecoveryMargin = 1.f;
+
 	//RepNotifies - These allow the server to notify clients of changes to replicated variables. It can alos be used as a change event when non-multiplayer
 	UFUNCTION()
 	void OnRep_OxygenCapacity(float OldOxygenCapacity) const;
@@ -179,6 +218,12 @@ protected:
 
 	UFUNCTION()
 	void OnRep_EquippedItems(const TArray<FString>& OldEquippedItems) const;
+
+	UFUNCTION()
+	void OnRep_CriticalOxygen() const;
+
+	/** Recomputes Critical Oxygen from available Oxygen. */
+	void UpdateCriticalOxygen();
 
 	// Ballast reservations, not consumption rates; tune in Blueprint class defaults.
  

@@ -26,6 +26,7 @@ void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(AAtlantisPlayerState, BallastState);
 	DOREPLIFETIME(AAtlantisPlayerState, TraversalMode);
 	DOREPLIFETIME(AAtlantisPlayerState, EquippedItems);
+	DOREPLIFETIME(AAtlantisPlayerState, bCriticalOxygen);
 }
 
 void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
@@ -40,6 +41,18 @@ void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
 		AtlantisPlayerState->BallastState = BallastState;
 		AtlantisPlayerState->TraversalMode = TraversalMode;
 		AtlantisPlayerState->EquippedItems = EquippedItems;
+		AtlantisPlayerState->bCriticalOxygen = bCriticalOxygen;
+	}
+}
+
+void AAtlantisPlayerState::BeginPlay()
+{
+	Super::BeginPlay();
+	// CriticalOxygen flag is updated on oxygen level changes (both current and locked) through setters.
+	// If default oxygen level is critical the flag doesn't reflect that until next oxygen level change.
+	if (HasAuthority())
+	{
+		UpdateCriticalOxygen();
 	}
 }
 
@@ -67,6 +80,7 @@ void AAtlantisPlayerState::SetLockedOxygen(const float NewLockedOxygen)
 	LockedOxygen = NewLockedOxygen;
 
 	OnRep_LockedOxygen(OldLockedOxygen);
+	UpdateCriticalOxygen();
 }
 
 void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
@@ -81,6 +95,7 @@ void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
 	const float OldCurrentOxygen = CurrentOxygen;
 	CurrentOxygen = ClampedOxygen;
 	OnRep_CurrentOxygen(OldCurrentOxygen);
+	UpdateCriticalOxygen();
 }
 
 void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallastState)
@@ -122,6 +137,17 @@ void AAtlantisPlayerState::SetTraversalMode(const int32 NewTraversalMode)
 	OnRep_TraversalMode(OldTraversalMode);
 }
 
+void AAtlantisPlayerState::SetCriticalOxygen(bool bNewCriticalOxygen)
+{
+	if (!HasAuthority() || bCriticalOxygen == bNewCriticalOxygen)
+	{
+		return;
+	}
+
+	bCriticalOxygen = bNewCriticalOxygen;
+	OnRep_CriticalOxygen();
+}
+
 void AAtlantisPlayerState::OnRep_OxygenCapacity(const float OldOxygenCapacity) const
 {
 	OnOxygenCapacityChanged.Broadcast(OldOxygenCapacity, OxygenCapacity);
@@ -150,6 +176,24 @@ void AAtlantisPlayerState::OnRep_TraversalMode(const int32 OldTraversalMode) con
 void AAtlantisPlayerState::OnRep_EquippedItems(const TArray<FString>& OldEquippedItems) const
 {
 	OnEquippedItemsChanged.Broadcast(EquippedItems);
+}
+
+void AAtlantisPlayerState::OnRep_CriticalOxygen() const
+{
+	OnCriticalOxygenChanged.Broadcast(bCriticalOxygen);
+}
+
+void AAtlantisPlayerState::UpdateCriticalOxygen()
+{
+	const float AvailableOxygen = CurrentOxygen - LockedOxygen;
+	if (!bCriticalOxygen && AvailableOxygen < CriticalOxygenThreshold)
+	{
+		SetCriticalOxygen(true);
+	}
+	else if (bCriticalOxygen && AvailableOxygen > CriticalOxygenThreshold + CriticalOxygenRecoveryMargin)
+	{
+		SetCriticalOxygen(false);
+	}
 }
 
 float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastState RequiredBallastState) const
