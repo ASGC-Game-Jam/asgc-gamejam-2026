@@ -42,5 +42,23 @@ void AAtlantisPlayerCharacter::MoveToTransform(const FTransform& Transform)
 {
 	SetActorTransform(Transform);
 }
-
-
+//This function is meant to translate the Movement Options of our base Player Character to our own Terrestrial / Swimming Modes
+EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(EMovementMode MovementMode)
+{
+	switch (MovementMode)
+	{
+		//We set up the Terrestrial movements, the ones that we know that will be on the ground and breathable environments.
+	case MOVE_Walking:
+	case MOVE_NavWalking:
+	case MOVE_Falling:
+		return EAtlantisTraversalMode::Terrestrial;
+		
+		// The really short list of movements that indicate when we are underwater
+	case MOVE_Swimming:
+		return EAtlantisTraversalMode::Swimming;
+		
+		// Our back-up state in case of engine modes that are not supported by our traversal, like flying...they fly now
+	default:
+		return EAtlantisTraversalMode::None;
+	}
+}

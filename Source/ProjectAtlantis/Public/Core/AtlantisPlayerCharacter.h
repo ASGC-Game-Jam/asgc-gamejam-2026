@@ -19,13 +19,19 @@ public:
 	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
 	
 	/** It fires when the traversal mode changes */
-	UPROPERTY(BlueprintAssignable, Category="Atlantis|Traversal")
+	UPROPERTY(BlueprintAssignable, Category="Atlantis|Movement|Traversal")
 	FOnTraversalModeChanged OnTraversalModeChanged;
+	
+	/** Getter for the current Traversal mode */ 
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Movement|Traversal")
+	EAtlantisTraversalMode GetTraversalMode() const;
 	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	
+	virtual void OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode = 0) override;
+	
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -44,4 +50,11 @@ public:
 private:
 	UPROPERTY(BlueprintReadOnly, Category = "Atlantis|Movement", meta = (AllowPrivateAccess = "true"))
 	FTransform StartTransform;
+	
+	/** Current Traversal mode. Visible in the Details panel for debugging */
+	UPROPERTY(VisibleInstanceOnly, Category = "Atlantis|Movement|Traversal")
+	EAtlantisTraversalMode TraversalMode = EAtlantisTraversalMode::None;
+	
+	/** Maps and engiene movement mode to a traversal mode */
+	static EAtlantisTraversalMode ToTraversalMode(EMovementMode MovementMode);
 };
