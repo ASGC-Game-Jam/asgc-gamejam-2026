@@ -11,6 +11,34 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "055f73ce4e03b5257f22fb9d9269d6be",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (ReturnToMainMenuButton)",
+					"x": 0,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "055f73ce4e03b5257f22fb9d9269d6be:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "055f73ce4e03b5257f22fb9d9269d6be:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e8f45f4b4f88a3a84f75b2ad9372d8ba:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "08fa186845c574468a2080822a9ed41d",
 					"class": "K2Node_CallFunction",
 					"title": "Set Input Mode UI Only",
@@ -83,15 +111,15 @@
 					]
 				},
 				{
-					"guid": "1ff91459448916b11bb56caa9ef129b1",
+					"guid": "0e99cfde412a3ae6930d1e9c447c5e51",
 					"class": "K2Node_ComponentBoundEvent",
-					"title": "On Clicked (ReturnToGameButton)",
+					"title": "On Clicked (QuitButton)",
 					"x": 0,
-					"y": 144,
+					"y": 672,
 					"comment": null,
 					"pins": [
 						{
-							"id": "1ff91459448916b11bb56caa9ef129b1:o:OutputDelegate",
+							"id": "0e99cfde412a3ae6930d1e9c447c5e51:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -99,7 +127,35 @@
 							"links": []
 						},
 						{
-							"id": "1ff91459448916b11bb56caa9ef129b1:o:then",
+							"id": "0e99cfde412a3ae6930d1e9c447c5e51:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e0d6d46c45f7f76ea78487b7ee4c7a3f:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2a71b5024504f6d16938bc96c0c95897",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (ReturnToGameButton)",
+					"x": 0,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2a71b5024504f6d16938bc96c0c95897:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2a71b5024504f6d16938bc96c0c95897:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -474,34 +530,6 @@
 					]
 				},
 				{
-					"guid": "9936f0e04fb1d89e1a548596360868a8",
-					"class": "K2Node_ComponentBoundEvent",
-					"title": "On Clicked (ReturnToMainMenuButton)",
-					"x": 0,
-					"y": 384,
-					"comment": null,
-					"pins": [
-						{
-							"id": "9936f0e04fb1d89e1a548596360868a8:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "9936f0e04fb1d89e1a548596360868a8:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"e8f45f4b4f88a3a84f75b2ad9372d8ba:i:execute"
-							]
-						}
-					]
-				},
-				{
 					"guid": "c004a1cb4cc491a7a5653c9ba711996c",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
@@ -577,34 +605,6 @@
 					]
 				},
 				{
-					"guid": "d343d88a417ff2cb8469a586605487e9",
-					"class": "K2Node_ComponentBoundEvent",
-					"title": "On Clicked (QuitButton)",
-					"x": 0,
-					"y": 672,
-					"comment": null,
-					"pins": [
-						{
-							"id": "d343d88a417ff2cb8469a586605487e9:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "d343d88a417ff2cb8469a586605487e9:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"e0d6d46c45f7f76ea78487b7ee4c7a3f:i:execute"
-							]
-						}
-					]
-				},
-				{
 					"guid": "df728a514878e4462299e2ad0401b476",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
@@ -649,7 +649,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"d343d88a417ff2cb8469a586605487e9:o:then"
+								"0e99cfde412a3ae6930d1e9c447c5e51:o:then"
 							]
 						},
 						{
@@ -717,7 +717,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"9936f0e04fb1d89e1a548596360868a8:o:then"
+								"055f73ce4e03b5257f22fb9d9269d6be:o:then"
 							]
 						},
 						{
@@ -813,7 +813,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"1ff91459448916b11bb56caa9ef129b1:o:then"
+								"2a71b5024504f6d16938bc96c0c95897:o:then"
 							]
 						},
 						{
@@ -871,6 +871,14 @@
 							"links": []
 						},
 						{
+							"id": "fcd01c9a47afd48b324d8588956ce039:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
 							"id": "fcd01c9a47afd48b324d8588956ce039:i:self",
 							"name": "self",
 							"direction": "input",
@@ -879,14 +887,6 @@
 							"links": [
 								"75b8d0514680790edf741fbcdf2e5e16:o:OutputPin"
 							]
-						},
-						{
-							"id": "fcd01c9a47afd48b324d8588956ce039:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
 						}
 					]
 				}
