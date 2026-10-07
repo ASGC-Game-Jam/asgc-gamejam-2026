@@ -137,6 +137,10 @@ framework class from another.
 Bind to the delegates on `AAtlantisPlayerState` rather than polling it each tick. See
 [Replicated State Pattern.md](./Replicated%20State%20Pattern.md).
 
+Ballast consumers read `GetBallastState()` and subscribe to `OnBallastChanged`.
+`IsVerticalSwimmingAllowed()` exposes the shared rule: only Wander permits vertical
+swimming input. Native swimming uses this query to constrain input acceleration.
+
 ### Controls
 
 `AAtlantisPlayerController` owns the player's Enhanced Input mapping contexts, and separates two

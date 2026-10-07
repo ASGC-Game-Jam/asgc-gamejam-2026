@@ -139,17 +139,20 @@ void UAtlantisMovementComponent::PhysSwimming(float DeltaTime, int32 Iterations)
 	{
 	case EAtlantisBallastState::Descend:
 		Buoyancy = FMath::Clamp(DescendBuoyancy, 0.f, 0.99f);
-		Acceleration = ProjectToGravityFloor(Acceleration);
 		break;
 	case EAtlantisBallastState::Ascend:
 		Buoyancy = FMath::Max(AscendBuoyancy, 1.01f);
-		Acceleration = ProjectToGravityFloor(Acceleration);
 		break;
 	case EAtlantisBallastState::Wander:
 		Buoyancy = 1.f;
 		break;
 	default:
 		break;
+	}
+
+	if (!PlayerState->IsVerticalSwimmingAllowed())
+	{
+		Acceleration = ProjectToGravityFloor(Acceleration);
 	}
 
 	Super::PhysSwimming(DeltaTime, Iterations);

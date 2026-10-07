@@ -95,6 +95,10 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	EAtlantisBallastState GetBallastState() const { return BallastState; }
 
+	/** Ballast permits player-controlled vertical swimming only in Wander. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Ballast")
+	bool IsVerticalSwimmingAllowed() const { return BallastState == EAtlantisBallastState::Wander; }
+
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	int32 GetTraversalMode() const { return TraversalMode; }
 
