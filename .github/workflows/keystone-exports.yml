@@ -1,0 +1,25 @@
+name: Keystone exports
+
+# Flags assets changed without their BlueprintGraphs/ export, so Keystone reviews show the
+# real change. See CONTRIBUTING.md ("Keystone Asset Exports").
+on:
+  pull_request:
+    paths:
+      - '**/*.uasset'
+      - '**/*.umap'
+      - 'BlueprintGraphs/**'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Asset exports up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: false # git objects are enough; never download LFS assets
+      - name: Check exports
+        run: bash .github/scripts/check-keystone-exports.sh "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}"
