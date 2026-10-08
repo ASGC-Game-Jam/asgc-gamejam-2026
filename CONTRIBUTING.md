@@ -74,15 +74,15 @@ If the check can't reach the LFS server it reports that instead, and doesn't blo
 
 It happens. Lock the file, finish the change, and mention it on the Pull Request so a reviewer knows the collision was checked. If someone else was editing the same asset, sort out whose version to keep *before* merging — untangling it afterwards is much harder.
 
-## Keystone Blueprint Exports
+## Keystone Asset Exports
 
-Keystone can't read `.uasset` files, so it shows reviewers what changed in a Blueprint by comparing a text copy of it in `BlueprintGraphs/`. The Keystone plugin writes that copy automatically every time you save the Blueprint in the editor.
+Keystone can't read `.uasset` files, so it shows reviewers what changed in an asset by comparing a text copy of it in `BlueprintGraphs/`. The Keystone plugin writes that copy automatically every time you save the asset in the editor.
 
-**Commit the `BlueprintGraphs/` changes together with your `.uasset`.** If you leave them out, Keystone shows reviewers the old graph and warns that the export is out of date.
+**Commit the `BlueprintGraphs/` changes together with your `.uasset`.** If you leave them out, Keystone shows reviewers the old version and warns that the export is out of date.
 
-When you open a Pull Request, the **Keystone exports** check lists any Blueprint you changed without updating its export. To fix it, open the project on your branch, run **Keystone ▸ Export Blueprint Graphs…**, then **Keystone ▸ Commit & Push Blueprint Graphs…**.
+When you open a Pull Request, the **Keystone exports** check lists any asset you changed without updating its export. To fix it, open the project on your branch, run **Keystone ▸ Export Assets for Keystone…**, then **Keystone ▸ Commit & Push Keystone Exports…**.
 
-If you only resaved or recompiled a Blueprint, its export can legitimately stay the same. Say so on the Pull Request and the reviewer can ignore the check.
+If you only resaved or recompiled an asset, its export can legitimately stay the same. Say so on the Pull Request and the reviewer can ignore the check.
 
 ## Reporting Issues
 
