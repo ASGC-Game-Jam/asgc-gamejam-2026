@@ -12,6 +12,164 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "085627214470256ace1b099f524278d6",
+					"class": "K2Node_VariableSet",
+					"title": "Set Percent",
+					"x": 2752,
+					"y": 1200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "085627214470256ace1b099f524278d6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"efc8056e47d34be2090f0fa3c78addf0:o:else"
+							]
+						},
+						{
+							"id": "085627214470256ace1b099f524278d6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "085627214470256ace1b099f524278d6:i:Percent",
+							"name": "Percent",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "085627214470256ace1b099f524278d6:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "085627214470256ace1b099f524278d6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.ProgressBar",
+							"defaultValue": null,
+							"links": [
+								"e07eda444b1ea7436bc796be45b511cd:o:OxygenDisplay"
+							]
+						}
+					]
+				},
+				{
+					"guid": "08e55a84413acd05fbc4738f986624a0",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 2304,
+					"y": 864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "08e55a84413acd05fbc4738f986624a0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eaa0892244c95aa662928b9e3f4806ba:o:then"
+							]
+						},
+						{
+							"id": "08e55a84413acd05fbc4738f986624a0:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"6bb1b4b94cfa63b99009a6bef258b6ff:o:ReturnValue"
+							]
+						},
+						{
+							"id": "08e55a84413acd05fbc4738f986624a0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1f632291470bc92dc3981fbe8f3eb692:i:execute"
+							]
+						},
+						{
+							"id": "08e55a84413acd05fbc4738f986624a0:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"efc8056e47d34be2090f0fa3c78addf0:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1f632291470bc92dc3981fbe8f3eb692",
+					"class": "K2Node_VariableSet",
+					"title": "Set Percent",
+					"x": 2752,
+					"y": 880,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1f632291470bc92dc3981fbe8f3eb692:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"08e55a84413acd05fbc4738f986624a0:o:then"
+							]
+						},
+						{
+							"id": "1f632291470bc92dc3981fbe8f3eb692:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1f632291470bc92dc3981fbe8f3eb692:i:Percent",
+							"name": "Percent",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.500000",
+							"links": []
+						},
+						{
+							"id": "1f632291470bc92dc3981fbe8f3eb692:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "1f632291470bc92dc3981fbe8f3eb692:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.ProgressBar",
+							"defaultValue": null,
+							"links": [
+								"e07eda444b1ea7436bc796be45b511cd:o:OxygenDisplay"
+							]
+						}
+					]
+				},
+				{
 					"guid": "2e5970294a9da90df7a66ca76c90a3a5",
 					"class": "K2Node_CallFunction",
 					"title": "IsBallastAllocated",
@@ -37,6 +195,91 @@
 							"defaultValue": null,
 							"links": [
 								"f07027e7431affb2aec336938e8df388:i:bIsAllocated"
+							]
+						}
+					]
+				},
+				{
+					"guid": "33ac829940513ba8d6c57787fb85b8b6",
+					"class": "K2Node_VariableGet",
+					"title": "Get BallastState",
+					"x": 1712,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "33ac829940513ba8d6c57787fb85b8b6:o:BallastState",
+							"name": "BallastState",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EAtlantisBallastState",
+							"defaultValue": null,
+							"links": [
+								"6bb1b4b94cfa63b99009a6bef258b6ff:i:A",
+								"ce7a85f040fb00062590439da1d3127d:i:A"
+							]
+						},
+						{
+							"id": "33ac829940513ba8d6c57787fb85b8b6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"5401719c4945283546fb5ba9f77ea69e:o:Atlantis Player State"
+							]
+						}
+					]
+				},
+				{
+					"guid": "363403424266a33b4d02a3a5ab528db4",
+					"class": "K2Node_VariableSet",
+					"title": "Set Percent",
+					"x": 2752,
+					"y": 1040,
+					"comment": null,
+					"pins": [
+						{
+							"id": "363403424266a33b4d02a3a5ab528db4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"efc8056e47d34be2090f0fa3c78addf0:o:then"
+							]
+						},
+						{
+							"id": "363403424266a33b4d02a3a5ab528db4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "363403424266a33b4d02a3a5ab528db4:i:Percent",
+							"name": "Percent",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "363403424266a33b4d02a3a5ab528db4:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "363403424266a33b4d02a3a5ab528db4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.ProgressBar",
+							"defaultValue": null,
+							"links": [
+								"e07eda444b1ea7436bc796be45b511cd:o:OxygenDisplay"
 							]
 						}
 					]
@@ -170,6 +413,34 @@
 					]
 				},
 				{
+					"guid": "5401719c4945283546fb5ba9f77ea69e",
+					"class": "K2Node_VariableGet",
+					"title": "Get Atlantis Player State",
+					"x": 1520,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5401719c4945283546fb5ba9f77ea69e:o:Atlantis Player State",
+							"name": "Atlantis Player State",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"33ac829940513ba8d6c57787fb85b8b6:i:self"
+							]
+						},
+						{
+							"id": "5401719c4945283546fb5ba9f77ea69e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_BallastIndicator.WBP_BallastIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "5e782e1c4725e0ea31e8cd91d5b4a6e7",
 					"class": "K2Node_Event",
 					"title": "Event On Initialized",
@@ -201,8 +472,8 @@
 					"guid": "68a2dcb142fbb8f7eed70187bcc7e210",
 					"class": "K2Node_VariableGet",
 					"title": "Get BallastState",
-					"x": 1586,
-					"y": 1137,
+					"x": 1552,
+					"y": 1088,
 					"comment": null,
 					"pins": [
 						{
@@ -221,6 +492,44 @@
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_BallastIndicator.WBP_BallastIndicator_C",
 							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6bb1b4b94cfa63b99009a6bef258b6ff",
+					"class": "K2Node_EnumEquality",
+					"title": "Equal (Enum)",
+					"x": 1936,
+					"y": 1040,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6bb1b4b94cfa63b99009a6bef258b6ff:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"08e55a84413acd05fbc4738f986624a0:i:Condition"
+							]
+						},
+						{
+							"id": "6bb1b4b94cfa63b99009a6bef258b6ff:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EAtlantisBallastState",
+							"defaultValue": null,
+							"links": [
+								"33ac829940513ba8d6c57787fb85b8b6:o:BallastState"
+							]
+						},
+						{
+							"id": "6bb1b4b94cfa63b99009a6bef258b6ff:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EAtlantisBallastState",
+							"defaultValue": "Wander",
 							"links": []
 						}
 					]
@@ -505,6 +814,74 @@
 					]
 				},
 				{
+					"guid": "ce7a85f040fb00062590439da1d3127d",
+					"class": "K2Node_EnumEquality",
+					"title": "Equal (Enum)",
+					"x": 1936,
+					"y": 1168,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ce7a85f040fb00062590439da1d3127d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"efc8056e47d34be2090f0fa3c78addf0:i:Condition"
+							]
+						},
+						{
+							"id": "ce7a85f040fb00062590439da1d3127d:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EAtlantisBallastState",
+							"defaultValue": null,
+							"links": [
+								"33ac829940513ba8d6c57787fb85b8b6:o:BallastState"
+							]
+						},
+						{
+							"id": "ce7a85f040fb00062590439da1d3127d:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EAtlantisBallastState",
+							"defaultValue": "Ascend",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e07eda444b1ea7436bc796be45b511cd",
+					"class": "K2Node_VariableGet",
+					"title": "Get OxygenDisplay",
+					"x": 2320,
+					"y": 1280,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e07eda444b1ea7436bc796be45b511cd:o:OxygenDisplay",
+							"name": "OxygenDisplay",
+							"direction": "output",
+							"type": "object:/Script/UMG.ProgressBar",
+							"defaultValue": null,
+							"links": [
+								"085627214470256ace1b099f524278d6:i:self",
+								"1f632291470bc92dc3981fbe8f3eb692:i:self",
+								"363403424266a33b4d02a3a5ab528db4:i:self"
+							]
+						},
+						{
+							"id": "e07eda444b1ea7436bc796be45b511cd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_BallastIndicator.WBP_BallastIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "eaa0892244c95aa662928b9e3f4806ba",
 					"class": "K2Node_VariableSet",
 					"title": "Set Text",
@@ -528,7 +905,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"08e55a84413acd05fbc4738f986624a0:i:execute"
+							]
 						},
 						{
 							"id": "eaa0892244c95aa662928b9e3f4806ba:i:Text",
@@ -556,6 +935,56 @@
 							"defaultValue": null,
 							"links": [
 								"68a2dcb142fbb8f7eed70187bcc7e210:o:BallastState"
+							]
+						}
+					]
+				},
+				{
+					"guid": "efc8056e47d34be2090f0fa3c78addf0",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 2512,
+					"y": 1024,
+					"comment": null,
+					"pins": [
+						{
+							"id": "efc8056e47d34be2090f0fa3c78addf0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"08e55a84413acd05fbc4738f986624a0:o:else"
+							]
+						},
+						{
+							"id": "efc8056e47d34be2090f0fa3c78addf0:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"ce7a85f040fb00062590439da1d3127d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "efc8056e47d34be2090f0fa3c78addf0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"363403424266a33b4d02a3a5ab528db4:i:execute"
+							]
+						},
+						{
+							"id": "efc8056e47d34be2090f0fa3c78addf0:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"085627214470256ace1b099f524278d6:i:execute"
 							]
 						}
 					]
@@ -646,6 +1075,7 @@
 		},
 		"defaults":
 		{
+			"OxygenDisplay": null,
 			"BallastState": null,
 			"Atlantis Player State": null,
 			"ColorAndOpacity":
