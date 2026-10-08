@@ -124,16 +124,17 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 	OnRep_BallastState(OldBallastState);
 }
 
-void AAtlantisPlayerState::SetTraversalMode(const int32 NewTraversalMode)
+void AAtlantisPlayerState::SetTraversalMode(const EAtlantisTraversalMode NewTraversalMode)
 {
 	if (!HasAuthority() || TraversalMode == NewTraversalMode)
 	{
 		return;
 	}
 
-	const int32 OldTraversalMode = TraversalMode;
+	const EAtlantisTraversalMode OldTraversalMode = TraversalMode;
 	TraversalMode = NewTraversalMode;
-
+	UE_LOG(LogAtlantisPlayerState,Verbose, TEXT("Traversal mode: %s->%s"),*UEnum::GetValueAsString(OldTraversalMode),*UEnum::GetValueAsString(TraversalMode));
+	
 	OnRep_TraversalMode(OldTraversalMode);
 }
 
@@ -168,7 +169,7 @@ void AAtlantisPlayerState::OnRep_BallastState(const EAtlantisBallastState OldBal
 	OnBallastChanged.Broadcast(IsBallastAllocated(), BallastState);
 }
 
-void AAtlantisPlayerState::OnRep_TraversalMode(const int32 OldTraversalMode) const
+void AAtlantisPlayerState::OnRep_TraversalMode(const EAtlantisTraversalMode OldTraversalMode) const
 {
 	OnTraversalModeChanged.Broadcast(OldTraversalMode, TraversalMode);
 }

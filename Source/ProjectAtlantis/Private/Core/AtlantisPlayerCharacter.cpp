@@ -62,3 +62,23 @@ EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(EMovementMode M
 		return EAtlantisTraversalMode::None;
 	}
 }
+
+void AAtlantisPlayerCharacter::OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode)
+{
+	Super::OnMovementModeChanged(PrevMovementMode, PreviousCustomMode);
+	
+	//Several base Player Character modes share one traversal mode (Walking, Falling are both Terrestrial)
+	const EAtlantisTraversalMode NewMode = ToTraversalMode(GetCharacterMovement()->MovementMode);
+	if (NewMode == TraversalMode) return;
+	
+	const EAtlantisTraversalMode OldMode = TraversalMode;
+	TraversalMode = NewMode;
+	
+	OnTraversalModeChanged.Broadcast(NewMode, OldMode);
+}
+
+EAtlantisTraversalMode AAtlantisPlayerCharacter::GetTraversalMode() const
+{
+	return TraversalMode;	
+	
+}
