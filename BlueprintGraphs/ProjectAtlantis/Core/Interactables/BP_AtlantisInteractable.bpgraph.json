@@ -310,6 +310,44 @@
 					]
 				},
 				{
+					"guid": "7217dbbe46aab4d268ed8b9b6ba9aa96",
+					"class": "K2Node_Event",
+					"title": "Event Examine",
+					"x": 0,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7217dbbe46aab4d268ed8b9b6ba9aa96:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7217dbbe46aab4d268ed8b9b6ba9aa96:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c9ade5a44b20c7a085eae586b9309d77:i:execute"
+							]
+						},
+						{
+							"id": "7217dbbe46aab4d268ed8b9b6ba9aa96:o:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"c9ade5a44b20c7a085eae586b9309d77:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "7e5a2a8b44cbf4b5cb09d1bc06d4d029",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
@@ -365,6 +403,52 @@
 							"direction": "output",
 							"type": "object:/Script/Engine.Actor",
 							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c9ade5a44b20c7a085eae586b9309d77",
+					"class": "K2Node_CallFunction",
+					"title": "Toggle Examine Mode Camera",
+					"x": 352,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c9ade5a44b20c7a085eae586b9309d77:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7217dbbe46aab4d268ed8b9b6ba9aa96:o:then"
+							]
+						},
+						{
+							"id": "c9ade5a44b20c7a085eae586b9309d77:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c9ade5a44b20c7a085eae586b9309d77:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"7217dbbe46aab4d268ed8b9b6ba9aa96:o:PlayerCharacter"
+							]
+						},
+						{
+							"id": "c9ade5a44b20c7a085eae586b9309d77:i:TurnOn",
+							"name": "TurnOn",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
 							"links": []
 						}
 					]
