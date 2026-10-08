@@ -150,10 +150,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetTraversalMode(int32 NewTraversalMode);
 
-	/** Indicates whether oxygen level is critical. */
-	UFUNCTION()
-	void SetCriticalOxygen(bool bNewCriticalOxygen);
-
 protected:
 
 	virtual void BeginPlay() override;
@@ -163,6 +159,8 @@ protected:
 
 	/** Carries our custom state across seamless travel and PlayerState re-creation. */
 	virtual void CopyProperties(APlayerState* PlayerState) override;
+
+private:
 
 	/** Maximum oxygen the player can hold. */
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
@@ -221,6 +219,10 @@ protected:
 
 	UFUNCTION()
 	void OnRep_CriticalOxygen() const;
+
+	/** Toggles the flag indicating whether oxygen is at critical level or not. */
+	UFUNCTION()
+	void SetCriticalOxygen(bool bNewCriticalOxygen);
 
 	/** Recomputes Critical Oxygen from available Oxygen. */
 	void UpdateCriticalOxygen();

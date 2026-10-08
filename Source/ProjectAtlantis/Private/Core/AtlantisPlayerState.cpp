@@ -186,7 +186,7 @@ void AAtlantisPlayerState::OnRep_CriticalOxygen() const
 void AAtlantisPlayerState::UpdateCriticalOxygen()
 {
 	const float AvailableOxygen = CurrentOxygen - LockedOxygen;
-	if (!bCriticalOxygen && AvailableOxygen < CriticalOxygenThreshold)
+	if (!bCriticalOxygen && AvailableOxygen <= CriticalOxygenThreshold)
 	{
 		SetCriticalOxygen(true);
 	}
