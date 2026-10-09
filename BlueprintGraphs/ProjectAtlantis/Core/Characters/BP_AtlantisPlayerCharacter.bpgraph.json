@@ -2731,7 +2731,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"e09ebfb447e52e7fb2b9f3b4de0c38ff:i:execute"
+							]
 						},
 						{
 							"id": "2a3da48345e90202f09ace99f8974cc9:i:self",
@@ -2751,6 +2753,16 @@
 							"defaultValue": null,
 							"links": [
 								"87115fef4f4aee672c43a0a53d6a13b7:o:self"
+							]
+						},
+						{
+							"id": "2a3da48345e90202f09ace99f8974cc9:o:Interaction Occured",
+							"name": "Interaction Occured",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e09ebfb447e52e7fb2b9f3b4de0c38ff:i:Condition"
 							]
 						}
 					]
@@ -2784,11 +2796,31 @@
 					]
 				},
 				{
+					"guid": "407e70c34cb3244e373f099374f33d07",
+					"class": "K2Node_Self",
+					"title": "Self-Reference",
+					"x": 3040,
+					"y": 1541,
+					"comment": null,
+					"pins": [
+						{
+							"id": "407e70c34cb3244e373f099374f33d07:o:self",
+							"name": "self",
+							"direction": "output",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": [
+								"95e2456d4a40dcddd35112b1662730e7:i:PlayerCharacter"
+							]
+						}
+					]
+				},
+				{
 					"guid": "434678404c0a3a65d25191960ba288c6",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
 					"x": 2064,
-					"y": 1424,
+					"y": 1423,
 					"comment": null,
 					"pins": [
 						{
@@ -3292,7 +3324,8 @@
 							"type": "object:/Script/Engine.Actor",
 							"defaultValue": null,
 							"links": [
-								"2a3da48345e90202f09ace99f8974cc9:i:self"
+								"2a3da48345e90202f09ace99f8974cc9:i:self",
+								"d3e3b0db4519af91ef627e8e6814b859:i:InputPin"
 							]
 						},
 						{
@@ -3357,6 +3390,62 @@
 							"direction": "output",
 							"type": "struct:/Script/CoreUObject.Vector",
 							"defaultValue": "0, 0, 0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "95e2456d4a40dcddd35112b1662730e7",
+					"class": "K2Node_Message",
+					"title": "Talk",
+					"x": 3216,
+					"y": 1440,
+					"comment": null,
+					"pins": [
+						{
+							"id": "95e2456d4a40dcddd35112b1662730e7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e09ebfb447e52e7fb2b9f3b4de0c38ff:o:else"
+							]
+						},
+						{
+							"id": "95e2456d4a40dcddd35112b1662730e7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "95e2456d4a40dcddd35112b1662730e7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"d3e3b0db4519af91ef627e8e6814b859:o:OutputPin"
+							]
+						},
+						{
+							"id": "95e2456d4a40dcddd35112b1662730e7:i:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"407e70c34cb3244e373f099374f33d07:o:self"
+							]
+						},
+						{
+							"id": "95e2456d4a40dcddd35112b1662730e7:o:Interaction Occured",
+							"name": "Interaction Occured",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
 							"links": []
 						}
 					]
@@ -3716,6 +3805,36 @@
 					]
 				},
 				{
+					"guid": "d3e3b0db4519af91ef627e8e6814b859",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3120,
+					"y": 1632,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d3e3b0db4519af91ef627e8e6814b859:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"94c3af0d4709521d42946cb4131ccff8:o:HitActor"
+							]
+						},
+						{
+							"id": "d3e3b0db4519af91ef627e8e6814b859:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"95e2456d4a40dcddd35112b1662730e7:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "d512a7bd40e4c23cc6d9efba2d58bdd8",
 					"class": "K2Node_CallFunction",
 					"title": "Line Trace By Profile",
@@ -3861,6 +3980,54 @@
 							"defaultValue": null,
 							"links": [
 								"434678404c0a3a65d25191960ba288c6:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e09ebfb447e52e7fb2b9f3b4de0c38ff",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 2882,
+					"y": 1423,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e09ebfb447e52e7fb2b9f3b4de0c38ff:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2a3da48345e90202f09ace99f8974cc9:o:then"
+							]
+						},
+						{
+							"id": "e09ebfb447e52e7fb2b9f3b4de0c38ff:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2a3da48345e90202f09ace99f8974cc9:o:Interaction Occured"
+							]
+						},
+						{
+							"id": "e09ebfb447e52e7fb2b9f3b4de0c38ff:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e09ebfb447e52e7fb2b9f3b4de0c38ff:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"95e2456d4a40dcddd35112b1662730e7:i:execute"
 							]
 						}
 					]
@@ -4238,6 +4405,13 @@
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": false
+			},
+			"TalkRange":
+			{
+				"type": "real:float",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
 			}
 		},
 		"components":
@@ -4383,7 +4557,7 @@
 					"bEnableFirstPersonFieldOfView": false,
 					"bEnableFirstPersonScale": false,
 					"ProjectionMode": "Perspective",
-					"CameraMesh": null,
+					"CameraMesh": "/Engine/EditorMeshes/MatineeCam_SM.MatineeCam_SM",
 					"PostProcessBlendWeight": 1,
 					"PostProcessSettings":
 					{
@@ -5150,7 +5324,7 @@
 					"bEnableFirstPersonFieldOfView": false,
 					"bEnableFirstPersonScale": false,
 					"ProjectionMode": "Perspective",
-					"CameraMesh": null,
+					"CameraMesh": "/Engine/EditorMeshes/MatineeCam_SM.MatineeCam_SM",
 					"PostProcessBlendWeight": 1,
 					"PostProcessSettings":
 					{
@@ -5892,6 +6066,7 @@
 			"Character Movement": null,
 			"Last Overlapped Actors": [],
 			" Overlapped Actors To Discard": [],
+			"TalkRange": 200,
 			"StartTransform":
 			{
 				"Rotation":
@@ -5919,7 +6094,7 @@
 				"_class": "SkeletalMeshComponent",
 				"_name": "CharacterMesh0",
 				"AnimBlueprintGeneratedClass": null,
-				"AnimClass": "/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+				"AnimClass": null,
 				"AnimationData":
 				{
 					"AnimToPlay": null,
@@ -6551,8 +6726,6 @@
 			{
 				"_class": "AtlantisMovementComponent",
 				"_name": "CharMoveComp",
-				"DescendBuoyancy": 0.5,
-				"AscendBuoyancy": 1.5,
 				"MaxSwimAcceleration": 2000,
 				"MaxVerticalSwimSpeed": 150,
 				"GravityScale": 1,
