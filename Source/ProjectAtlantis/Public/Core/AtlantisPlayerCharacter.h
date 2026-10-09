@@ -16,7 +16,6 @@ public:
 	// Sets default values for this character's properties
 	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
 
-	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
