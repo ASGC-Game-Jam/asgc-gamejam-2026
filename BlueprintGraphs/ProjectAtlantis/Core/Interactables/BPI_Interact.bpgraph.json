@@ -25,7 +25,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"8d90c9704b1de04e605ddbbf9a521194:i:execute"
+							]
 						},
 						{
 							"id": "27a0951e4268ecdd0ce9df84445401cf:o:PlayerCharacter",
@@ -33,6 +35,34 @@
 							"direction": "output",
 							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
 							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8d90c9704b1de04e605ddbbf9a521194",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8d90c9704b1de04e605ddbbf9a521194:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"27a0951e4268ecdd0ce9df84445401cf:o:then"
+							]
+						},
+						{
+							"id": "8d90c9704b1de04e605ddbbf9a521194:i:Interaction Occured",
+							"name": "Interaction Occured",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
 							"links": []
 						}
 					]
