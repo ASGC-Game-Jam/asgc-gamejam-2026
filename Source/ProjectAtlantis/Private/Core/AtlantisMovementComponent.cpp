@@ -241,7 +241,8 @@ void UAtlantisMovementComponent::PhysicsRotation(float DeltaTime)
 	SafeMoveUpdatedComponent(FVector::ZeroVector, Facing, true, Hit);
 }
 
-void UAtlantisMovementComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UAtlantisMovementComponent::TickComponent(float DeltaTime, ELevelTick TickType,
+                                               FActorComponentTickFunction* ThisTickFunction)
 {
 	bDetachedThisFrame = false;
 	SurfaceReattachTimeRemaining = FMath::Max(0.f, SurfaceReattachTimeRemaining - DeltaTime);
@@ -250,7 +251,8 @@ void UAtlantisMovementComponent::TickComponent(float DeltaTime, ELevelTick TickT
 	{
 		if (BoundBallastState.IsValid())
 		{
-			BoundBallastState->OnBallastChanged.RemoveDynamic(this, &UAtlantisMovementComponent::OnSurfaceBallastChanged);
+			BoundBallastState->OnBallastChanged.RemoveDynamic(
+				this, &UAtlantisMovementComponent::OnSurfaceBallastChanged);
 		}
 		BoundBallastState = State;
 		if (State)
@@ -267,7 +269,9 @@ void UAtlantisMovementComponent::TickComponent(float DeltaTime, ELevelTick TickT
 
 bool UAtlantisMovementComponent::IsSurfaceAllowed(const FVector& Normal) const
 {
-	const AAtlantisPlayerState* State = CharacterOwner ? CharacterOwner->GetPlayerState<AAtlantisPlayerState>() : nullptr;
+	const AAtlantisPlayerState* State = CharacterOwner
+		                                    ? CharacterOwner->GetPlayerState<AAtlantisPlayerState>()
+		                                    : nullptr;
 	if (!State || (IsSurfaceWalking() && State->GetBallastState() != AttachedBallastState))
 	{
 		return false;
@@ -278,7 +282,8 @@ bool UAtlantisMovementComponent::IsSurfaceAllowed(const FVector& Normal) const
 		|| (State->IsUpperSurfaceWalkingAllowed() && Normal.Z <= -RequiredNormalZ);
 }
 
-bool UAtlantisMovementComponent::FindSupportingSurface(const FVector& Direction, float ExtraDistance, FHitResult& Hit) const
+bool UAtlantisMovementComponent::FindSupportingSurface(const FVector& Direction, float ExtraDistance,
+                                                       FHitResult& Hit) const
 {
 	if (!CharacterOwner || !UpdatedComponent || !GetWorld())
 	{
@@ -287,20 +292,22 @@ bool UAtlantisMovementComponent::FindSupportingSurface(const FVector& Direction,
 	const UCapsuleComponent* Capsule = CharacterOwner->GetCapsuleComponent();
 	const float Radius = Capsule->GetScaledCapsuleRadius();
 	const float HalfHeight = Capsule->GetScaledCapsuleHalfHeight();
-	const float Extent = Radius + (HalfHeight - Radius) * FMath::Abs(FVector::DotProduct(Direction, Capsule->GetUpVector()));
+	const float Extent = Radius + (HalfHeight - Radius) * FMath::Abs(
+		FVector::DotProduct(Direction, Capsule->GetUpVector()));
 	FCollisionQueryParams Params(SCENE_QUERY_STAT(SurfaceWalkSupport), false, CharacterOwner);
 	const FVector Start = UpdatedComponent->GetComponentLocation();
 	// Attachment needs support beneath the center, just like continued walking.
 	// A capsule sweep can still touch the lip after walking off and snap the
 	// character back onto it every swimming tick, preventing a drop.
 	const bool bHit = GetWorld()->LineTraceSingleByChannel(Hit, Start, Start + Direction * (Extent + ExtraDistance),
-		UpdatedComponent->GetCollisionObjectType(), Params);
+	                                                       UpdatedComponent->GetCollisionObjectType(), Params);
 	return bHit && Hit.bBlockingHit && !Hit.bStartPenetrating && IsSurfaceAllowed(Hit.ImpactNormal);
 }
 
 bool UAtlantisMovementComponent::TryAttachSurface()
 {
-	if (bDetachedThisFrame || SurfaceReattachTimeRemaining > 0.f || !IsSwimming() || !GetPhysicsVolume() || !GetPhysicsVolume()->bWaterVolume || !CharacterOwner)
+	if (bDetachedThisFrame || SurfaceReattachTimeRemaining > 0.f || !IsSwimming() || !GetPhysicsVolume()
+		|| !GetPhysicsVolume()->bWaterVolume || !CharacterOwner)
 	{
 		return false;
 	}
@@ -316,7 +323,8 @@ bool UAtlantisMovementComponent::TryAttachSurface()
 		return false;
 	}
 	SurfaceNormal = Hit.ImpactNormal;
-	const FVector Target = Hit.ImpactPoint + SurfaceNormal * (CharacterOwner->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() + SurfaceContactOffset);
+	const FVector Target = Hit.ImpactPoint + SurfaceNormal * (
+		CharacterOwner->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() + SurfaceContactOffset);
 	const FQuat Rotation = GetSurfaceRotation();
 	if (IsSurfacePoseBlocked(Target, Rotation))
 	{
@@ -343,7 +351,8 @@ bool UAtlantisMovementComponent::TryAttachSurface()
 
 FQuat UAtlantisMovementComponent::GetSurfaceRotation() const
 {
-	FVector Forward = FVector::VectorPlaneProject(CharacterOwner->GetActorForwardVector(), SurfaceNormal).GetSafeNormal();
+	FVector Forward = FVector::VectorPlaneProject(CharacterOwner->GetActorForwardVector(),
+	                                              SurfaceNormal).GetSafeNormal();
 	if (!Velocity.IsNearlyZero())
 	{
 		Forward = FVector::VectorPlaneProject(Velocity, SurfaceNormal).GetSafeNormal();
@@ -362,7 +371,9 @@ bool UAtlantisMovementComponent::IsSurfacePoseBlocked(const FVector& Location, c
 	const UCapsuleComponent* Capsule = CharacterOwner->GetCapsuleComponent();
 	FCollisionQueryParams Params(SCENE_QUERY_STAT(SurfaceWalkPose), false, CharacterOwner);
 	return GetWorld()->OverlapBlockingTestByChannel(Location, Rotation, Capsule->GetCollisionObjectType(),
-		FCollisionShape::MakeCapsule(Capsule->GetScaledCapsuleRadius(), Capsule->GetScaledCapsuleHalfHeight()), Params);
+	                                                FCollisionShape::MakeCapsule(
+		                                                Capsule->GetScaledCapsuleRadius(),
+		                                                Capsule->GetScaledCapsuleHalfHeight()), Params);
 }
 
 bool UAtlantisMovementComponent::OrientToSurface()
@@ -384,30 +395,39 @@ bool UAtlantisMovementComponent::TrySurfaceStep(const FVector& Delta)
 	{
 		return false;
 	}
+	
 	FScopedMovementUpdate ScopedStep(UpdatedComponent, EScopedUpdate::DeferredUpdates);
 	const FVector Start = UpdatedComponent->GetComponentLocation();
 	const FQuat Rotation = UpdatedComponent->GetComponentQuat();
+	
 	FHitResult Hit;
 	SafeMoveUpdatedComponent(SurfaceNormal * MaxStepHeight, Rotation, true, Hit);
+	
 	if (Hit.bBlockingHit)
 	{
 		ScopedStep.RevertMove();
 		return false;
 	}
+	
 	SafeMoveUpdatedComponent(Delta, Rotation, true, Hit);
 	if (Hit.bBlockingHit)
 	{
 		ScopedStep.RevertMove();
 		return false;
 	}
+	
 	SafeMoveUpdatedComponent(-SurfaceNormal * (MaxStepHeight + SurfaceDetachDistance), Rotation, true, Hit);
+	
 	if (!Hit.IsValidBlockingHit() || !IsSurfaceAllowed(Hit.ImpactNormal)
-		|| FVector::DotProduct(SurfaceNormal, Hit.ImpactNormal) < FMath::Cos(FMath::DegreesToRadians(MaxSurfaceNormalChangeDegrees))
-		|| FVector::DotProduct(UpdatedComponent->GetComponentLocation() - Start, SurfaceNormal) > MaxStepHeight + KINDA_SMALL_NUMBER)
+		|| FVector::DotProduct(SurfaceNormal, Hit.ImpactNormal) < FMath::Cos(FMath::DegreesToRadians(
+			MaxSurfaceNormalChangeDegrees))
+		|| FVector::DotProduct(
+			UpdatedComponent->GetComponentLocation() - Start, SurfaceNormal) > MaxStepHeight + KINDA_SMALL_NUMBER)
 	{
 		ScopedStep.RevertMove();
 		return false;
 	}
+	
 	// Keep a small clearance instead of leaving the stepped capsule touching the new support.
 	SafeMoveUpdatedComponent(Hit.ImpactNormal * SurfaceContactOffset, Rotation, true, Hit);
 	return true;
@@ -418,22 +438,27 @@ bool UAtlantisMovementComponent::SnapToSurface(const FHitResult& Support)
 	FScopedMovementUpdate ScopedAlignment(UpdatedComponent, EScopedUpdate::DeferredUpdates);
 	const FVector PreviousNormal = SurfaceNormal;
 	SurfaceNormal = Support.ImpactNormal;
+	
 	const FVector Start = UpdatedComponent->GetComponentLocation();
 	const float HalfHeight = CharacterOwner->GetCapsuleComponent()->GetScaledCapsuleHalfHeight();
 	const float Distance = FVector::DotProduct(Start - Support.ImpactPoint, SurfaceNormal);
 	const FVector Delta = SurfaceNormal * (HalfHeight + SurfaceContactOffset - Distance);
-	FHitResult Hit;
+	
 	// Restore clearance before rotating onto a different normal, avoiding penetration of the support itself.
+	FHitResult Hit;
 	SafeMoveUpdatedComponent(Delta, UpdatedComponent->GetComponentQuat(), true, Hit);
-	// Rounded capsule contact at a small seam can block the downward snap
-	// before the center trace reaches the higher support. Keep that safe clearance.
+
+	// Rounded capsule contact at a small seam can block the downward snap before the center trace reaches the higher
+	// support.
 	const bool bSafePartialSnap = Hit.IsValidBlockingHit() && FVector::DotProduct(Delta, SurfaceNormal) < 0.f;
-	if ((!UpdatedComponent->GetComponentLocation().Equals(Start + Delta, 1.f) && !bSafePartialSnap) || !OrientToSurface())
+	if ((!UpdatedComponent->GetComponentLocation().Equals(Start + Delta, 1.f) && !bSafePartialSnap)
+		|| ! OrientToSurface())
 	{
 		ScopedAlignment.RevertMove();
 		SurfaceNormal = PreviousNormal;
 		return false;
 	}
+	
 	return true;
 }
 
@@ -443,21 +468,26 @@ void UAtlantisMovementComponent::DetachSurface(bool bBlocked)
 	{
 		return;
 	}
+	
 	bDetachedThisFrame = true;
 	if (bBlocked)
 	{
 		SurfaceReattachTimeRemaining = BlockedSurfaceReattachDelay;
 	}
+	
 	SetBase(nullptr);
 	SurfaceNormal = FVector::UpVector;
+	
 	FHitResult Hit;
-	SafeMoveUpdatedComponent(FVector::ZeroVector, FRotator(0.f, CharacterOwner->GetActorRotation().Yaw, 0.f).Quaternion(), true, Hit);
+	SafeMoveUpdatedComponent(FVector::ZeroVector,
+	                         FRotator(0.f, CharacterOwner->GetActorRotation().Yaw, 0.f).Quaternion(), true, Hit);
 	SetMovementMode(GetPhysicsVolume() && GetPhysicsVolume()->bWaterVolume ? MOVE_Swimming : MOVE_Falling);
 }
 
 void UAtlantisMovementComponent::OnSurfaceBallastChanged(bool bAllocated, EAtlantisBallastState State)
 {
-	if (CharacterOwner && CharacterOwner->GetLocalRole() != ROLE_SimulatedProxy && IsSurfaceWalking() && !IsSurfaceAllowed(SurfaceNormal))
+	if (CharacterOwner && CharacterOwner->GetLocalRole() != ROLE_SimulatedProxy && IsSurfaceWalking() && !
+		IsSurfaceAllowed(SurfaceNormal))
 	{
 		DetachSurface();
 	}
@@ -475,6 +505,7 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 		Super::PhysCustom(DeltaTime, Iterations);
 		return;
 	}
+	
 	// Remote proxies follow replicated attachment and rotation; they do not decide support loss.
 	if (CharacterOwner->GetLocalRole() == ROLE_SimulatedProxy)
 	{
@@ -482,30 +513,37 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 		SafeMoveUpdatedComponent(Velocity * DeltaTime, UpdatedComponent->GetComponentQuat(), true, Hit);
 		return;
 	}
+	
 	FHitResult Support;
 	if (!GetPhysicsVolume() || !GetPhysicsVolume()->bWaterVolume
 		|| !FindSupportingSurface(-SurfaceNormal, SurfaceDetachDistance, Support)
-		|| FVector::DotProduct(SurfaceNormal, Support.ImpactNormal) < FMath::Cos(FMath::DegreesToRadians(MaxSurfaceNormalChangeDegrees)))
+		|| FVector::DotProduct(SurfaceNormal, Support.ImpactNormal) < FMath::Cos(
+			FMath::DegreesToRadians(MaxSurfaceNormalChangeDegrees)))
 	{
 		DetachSurface();
 		StartNewPhysics(DeltaTime, Iterations);
 		return;
 	}
+	
 	if (!SnapToSurface(Support))
 	{
 		Velocity = FVector::ZeroVector;
 		return;
 	}
+	
 	SetBase(Support.GetComponent(), Support.BoneName);
 	Acceleration = FVector::VectorPlaneProject(Acceleration, SurfaceNormal);
 	Velocity = FVector::VectorPlaneProject(Velocity, SurfaceNormal);
 	CalcVelocity(DeltaTime, GroundFriction, false, BrakingDecelerationWalking);
 	Velocity = FVector::VectorPlaneProject(Velocity, SurfaceNormal).GetClampedToMaxSize(GetMaxSpeed());
+	
 	const FVector Start = UpdatedComponent->GetComponentLocation();
 	const FVector PreviousNormal = SurfaceNormal;
 	const FQuat PreviousRotation = UpdatedComponent->GetComponentQuat();
+	
 	FHitResult Hit;
 	SafeMoveUpdatedComponent(Velocity * DeltaTime, UpdatedComponent->GetComponentQuat(), true, Hit);
+	
 	if (Hit.IsValidBlockingHit())
 	{
 		const FVector RemainingDelta = Velocity * DeltaTime * (1.f - Hit.Time);
@@ -523,9 +561,12 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 			// measured displacement below removes velocity into the wall, as on dry land.
 		}
 	}
+
 	Support = FHitResult();
+	
 	if (!FindSupportingSurface(-SurfaceNormal, SurfaceDetachDistance, Support)
-		|| FVector::DotProduct(SurfaceNormal, Support.ImpactNormal) < FMath::Cos(FMath::DegreesToRadians(MaxSurfaceNormalChangeDegrees)))
+		|| FVector::DotProduct(SurfaceNormal, Support.ImpactNormal) < FMath::Cos(
+			FMath::DegreesToRadians(MaxSurfaceNormalChangeDegrees)))
 	{
 		// A steep blocking surface is an obstacle, whereas an empty support
 		// trace is a ledge: allow walking off it and resume ballast swimming.
@@ -533,13 +574,16 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 		{
 			SurfaceNormal = PreviousNormal;
 			FHitResult ReturnHit;
-			SafeMoveUpdatedComponent(Start - UpdatedComponent->GetComponentLocation(), PreviousRotation, true, ReturnHit);
+			SafeMoveUpdatedComponent(Start - UpdatedComponent->GetComponentLocation(), PreviousRotation, true,
+			                         ReturnHit);
 			Velocity = FVector::ZeroVector;
 			return;
 		}
+	
 		DetachSurface();
 		return;
 	}
+	
 	if (!SnapToSurface(Support))
 	{
 		SurfaceNormal = PreviousNormal;
@@ -548,17 +592,19 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 		Velocity = FVector::ZeroVector;
 		return;
 	}
+
 	SetBase(Support.GetComponent(), Support.BoneName);
 	if (DeltaTime > MIN_TICK_TIME)
 	{
-		Velocity = FVector::VectorPlaneProject((UpdatedComponent->GetComponentLocation() - Start) / DeltaTime, SurfaceNormal);
+		Velocity = FVector::VectorPlaneProject((UpdatedComponent->GetComponentLocation() - Start) / DeltaTime,
+		                                       SurfaceNormal);
 	}
 }
 
 void UAtlantisMovementComponent::OnMovementModeChanged(EMovementMode PreviousMovementMode, uint8 PreviousCustomMode)
 {
 	Super::OnMovementModeChanged(PreviousMovementMode, PreviousCustomMode);
-	// Surface Walk owns its orientation; only restore upright rotation on terrestrial exits.
+	
 	if (PreviousMovementMode == MOVE_Swimming && !IsSwimming() && !IsSurfaceWalking() && HasValidData())
 	{
 		FHitResult Hit;
@@ -566,6 +612,7 @@ void UAtlantisMovementComponent::OnMovementModeChanged(EMovementMode PreviousMov
 		                         FRotator(0.f, UpdatedComponent->GetComponentRotation().Yaw, 0.f).Quaternion(), true,
 		                         Hit);
 	}
+	
 	if (IsSurfaceWalking() && AttachedBallastState == EAtlantisBallastState::None)
 	{
 		// Network movement mode can arrive before local contact detection.
