@@ -17,12 +17,22 @@ class PROJECTATLANTIS_API UAtlantisMovementComponent : public UCharacterMovement
 public:
 	UAtlantisMovementComponent();
 
+	virtual void PhysicsRotation(float DeltaTime) override;
+	virtual void OnMovementModeChanged(EMovementMode PreviousMovementMode, uint8 PreviousCustomMode) override;
 	virtual void PhysicsVolumeChanged(APhysicsVolume* NewVolume) override;
 	virtual float ImmersionDepth() const override;
 	virtual float GetMaxAcceleration() const override;
 	virtual void CalcVelocity(float DeltaTime, float Friction, bool bFluid, float BrakingDeceleration) override;
 
 protected:
+	/** How quickly swimming facing converges to velocity. Zero turns immediately. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis|Swimming", meta = (ClampMin = "0"))
+	float SwimFacingInterpolationSpeed = 8.f;
+
+	/** Below this speed, retain the last facing direction rather than rotating to noise. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis|Swimming", meta = (ClampMin = "0"))
+	float MinSwimFacingSpeed = 1.f;
+
 	virtual FVector ConstrainInputAcceleration(const FVector& InputAcceleration) const override;
 	
 	virtual void PhysSwimming(float DeltaTime, int32 Iterations) override;

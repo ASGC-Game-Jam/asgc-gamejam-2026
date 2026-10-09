@@ -158,3 +158,30 @@ void UAtlantisMovementComponent::PhysSwimming(float DeltaTime, int32 Iterations)
 	Super::PhysSwimming(DeltaTime, Iterations);
 	Buoyancy = SavedBuoyancy;
 }
+
+void UAtlantisMovementComponent::PhysicsRotation(float DeltaTime)
+{
+	if (!IsSwimming())
+	{
+		Super::PhysicsRotation(DeltaTime);
+		return;
+	}
+	if (!HasValidData() || Velocity.SizeSquared() <= FMath::Square(MinSwimFacingSpeed))
+	{
+		return;
+	}
+	const FQuat Target = Velocity.Rotation().Quaternion();
+	const FQuat Facing = FMath::QInterpTo(UpdatedComponent->GetComponentQuat(), Target, DeltaTime, SwimFacingInterpolationSpeed);
+	FHitResult Hit;
+	SafeMoveUpdatedComponent(FVector::ZeroVector, Facing, true, Hit);
+}
+
+void UAtlantisMovementComponent::OnMovementModeChanged(EMovementMode PreviousMovementMode, uint8 PreviousCustomMode)
+{
+	Super::OnMovementModeChanged(PreviousMovementMode, PreviousCustomMode);
+	if (PreviousMovementMode == MOVE_Swimming && !IsSwimming() && HasValidData())
+	{
+		FHitResult Hit;
+		SafeMoveUpdatedComponent(FVector::ZeroVector, FRotator(0.f, UpdatedComponent->GetComponentRotation().Yaw, 0.f).Quaternion(), true, Hit);
+	}
+}

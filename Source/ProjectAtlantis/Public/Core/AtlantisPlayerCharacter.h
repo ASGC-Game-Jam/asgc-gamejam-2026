@@ -13,6 +13,7 @@ class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
+
 	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
 
 	virtual void BeginPlay() override;
@@ -26,7 +27,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-	
+
+	virtual void FaceRotation(FRotator NewControlRotation, float DeltaTime = 0.f) override;
+
 	/** Returns the character to the transform captured at BeginPlay. Authority only. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
 	void MoveToStart();
