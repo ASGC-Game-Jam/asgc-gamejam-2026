@@ -2,6 +2,10 @@
 
 
 #include "Core/AtlantisPlayerController.h"
+#include "Core/AtlantisPlayerState.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PhysicsVolume.h"
+#include "EnhancedInputComponent.h"
 
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
@@ -36,6 +40,84 @@ namespace
 		Options.bNotifyUserSettings = false;
 
 		return Options;
+	}
+}
+
+void AAtlantisPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
+	{
+		if (DescendBallastAction)
+		{
+			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this,
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Descend);
+		}
+		if (WanderBallastAction)
+		{
+			EnhancedInput->BindAction(WanderBallastAction, ETriggerEvent::Started, this,
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
+		}
+		if (AscendBallastAction)
+		{
+			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this,
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
+		}
+	}
+	RefreshMovementControls();
+}
+
+void AAtlantisPlayerController::OnPossess(APawn* InPawn)
+{
+	Super::OnPossess(InPawn);
+	RefreshMovementControls();
+}
+
+void AAtlantisPlayerController::OnRep_Pawn()
+{
+	Super::OnRep_Pawn();
+	RefreshMovementControls();
+}
+
+void AAtlantisPlayerController::RefreshMovementControls()
+{
+	if (const APawn* ControlledPawn = GetPawn())
+	{
+		const APhysicsVolume* Volume = ControlledPawn->GetPhysicsVolume();
+		UpdateMovementControls(Volume && Volume->bWaterVolume);
+	}
+}
+
+void AAtlantisPlayerController::UpdateMovementControls(bool bInWater)
+{
+	UInputMappingContext* ActiveContext = bInWater ? SwimmingMappingContext : DefaultMovementMappingContext;
+	UInputMappingContext* InactiveContext = bInWater ? DefaultMovementMappingContext : SwimmingMappingContext;
+	RemoveControls(InactiveContext);
+	if (ActiveContext && !CurrentMappingContexts.Contains(ActiveContext))
+	{
+		AddControls(ActiveContext);
+	}
+}
+
+void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& ActionValue, const EAtlantisBallastState NewBallastState)
+{
+	if (bControlsEnabled && GetPawn())
+	{
+		ServerSetBallastState(NewBallastState);
+	}
+}
+
+void AAtlantisPlayerController::ServerSetBallastState_Implementation(const EAtlantisBallastState NewBallastState)
+{
+	if (!bControlsEnabled || !GetPawn() || NewBallastState == EAtlantisBallastState::None)
+	{
+		return;
+	}
+
+	// PlayerState accepts the request only when the required oxygen can be reserved.
+	if (AAtlantisPlayerState* AtlantisPlayerState = GetPlayerState<AAtlantisPlayerState>())
+	{
+		AtlantisPlayerState->SetBallastState(NewBallastState);
 	}
 }
 

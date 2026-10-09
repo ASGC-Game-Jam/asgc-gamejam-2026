@@ -1,8 +1,9 @@
 {
-	"version": 1,
+	"version": 2,
 	"generatedBy": "keystone-blueprint-export",
 	"package": "/Game/ProjectAtlantis/UI/WBP_MainMenu",
 	"asset": "WBP_MainMenu",
+	"assetClass": "WidgetBlueprint",
 	"parentClass": "UserWidget",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
@@ -55,6 +56,138 @@
 					]
 				},
 				{
+					"guid": "2d1c77654ad0bf71a57fb8adc706ea7c",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 288,
+					"y": 1184,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2d1c77654ad0bf71a57fb8adc706ea7c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"572a540e481dbcb226090f8b61be6747:o:then"
+							]
+						},
+						{
+							"id": "2d1c77654ad0bf71a57fb8adc706ea7c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6e1dcf45404fade31c56fa87b57c1028:i:execute"
+							]
+						},
+						{
+							"id": "2d1c77654ad0bf71a57fb8adc706ea7c:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/Credits/WBP_CreditsScreen.WBP_CreditsScreen_C",
+							"links": []
+						},
+						{
+							"id": "2d1c77654ad0bf71a57fb8adc706ea7c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/Credits/WBP_CreditsScreen.WBP_CreditsScreen_C",
+							"defaultValue": null,
+							"links": [
+								"6e1dcf45404fade31c56fa87b57c1028:i:self"
+							]
+						},
+						{
+							"id": "2d1c77654ad0bf71a57fb8adc706ea7c:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"8a6f71c642e7ec98d8bf87b89bee1187:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "572a540e481dbcb226090f8b61be6747",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (CreditsButton)",
+					"x": 0,
+					"y": 1184,
+					"comment": null,
+					"pins": [
+						{
+							"id": "572a540e481dbcb226090f8b61be6747:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "572a540e481dbcb226090f8b61be6747:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2d1c77654ad0bf71a57fb8adc706ea7c:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6e1dcf45404fade31c56fa87b57c1028",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 640,
+					"y": 1168,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6e1dcf45404fade31c56fa87b57c1028:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2d1c77654ad0bf71a57fb8adc706ea7c:o:then"
+							]
+						},
+						{
+							"id": "6e1dcf45404fade31c56fa87b57c1028:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6e1dcf45404fade31c56fa87b57c1028:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"2d1c77654ad0bf71a57fb8adc706ea7c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "6e1dcf45404fade31c56fa87b57c1028:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "87d766ff47120de0728330a867d727e6",
 					"class": "K2Node_ComponentBoundEvent",
 					"title": "On Clicked (NewGameButton)",
@@ -78,6 +211,50 @@
 							"defaultValue": null,
 							"links": [
 								"8b32ac00414d1cd3292f7fa6f8870588:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8a6f71c642e7ec98d8bf87b89bee1187",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 0,
+					"y": 1280,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8a6f71c642e7ec98d8bf87b89bee1187:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "8a6f71c642e7ec98d8bf87b89bee1187:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8a6f71c642e7ec98d8bf87b89bee1187:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "8a6f71c642e7ec98d8bf87b89bee1187:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"2d1c77654ad0bf71a57fb8adc706ea7c:i:OwningPlayer"
 							]
 						}
 					]
@@ -340,5 +517,118 @@
 				}
 			]
 		}
-	]
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"WBP_MenuFrame": null,
+			"QuitButton": null,
+			"OptionsButton": null,
+			"NewGameButton": null,
+			"CreditsButton": null,
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
 }
