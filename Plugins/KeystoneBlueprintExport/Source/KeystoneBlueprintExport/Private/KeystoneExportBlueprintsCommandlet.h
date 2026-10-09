@@ -3,7 +3,7 @@
 //
 //   UnrealEditor-Cmd <Project>.uproject -run=KeystoneExportBlueprints [-commit] [-path=/Game/...]
 //
-// It exports every Blueprint, Material/Material Function and Niagara asset to `.bpgraph.json` and, with -commit, stages+commits+pushes just
+// It exports every asset under /Game to `.bpgraph.json` (graphs + properties) and, with -commit, stages+commits+pushes just
 // the BlueprintGraphs/ folder. No editor UI, no artist involvement.
 #pragma once
 

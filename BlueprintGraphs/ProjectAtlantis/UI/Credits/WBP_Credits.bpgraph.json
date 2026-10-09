@@ -1,0 +1,904 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/Credits/WBP_Credits",
+	"asset": "WBP_Credits",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "01995be842563e0290496483faa37b12",
+					"class": "K2Node_MacroInstance",
+					"title": "For Each Loop",
+					"x": 608,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "01995be842563e0290496483faa37b12:i:Exec",
+							"name": "Exec",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"88422b6c48e670923df497b6e1ea095f:o:then"
+							]
+						},
+						{
+							"id": "01995be842563e0290496483faa37b12:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "name[]",
+							"defaultValue": null,
+							"links": [
+								"88422b6c48e670923df497b6e1ea095f:o:OutRowNames"
+							]
+						},
+						{
+							"id": "01995be842563e0290496483faa37b12:o:LoopBody",
+							"name": "LoopBody",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7cdffbc34ed55d7274abd1a80e03f49f:i:execute"
+							]
+						},
+						{
+							"id": "01995be842563e0290496483faa37b12:o:Array Element",
+							"name": "Array Element",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"7cdffbc34ed55d7274abd1a80e03f49f:i:RowName"
+							]
+						},
+						{
+							"id": "01995be842563e0290496483faa37b12:o:Array Index",
+							"name": "Array Index",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "01995be842563e0290496483faa37b12:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"88f5973740e4f7bab7a88592957e47ca:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "053b40574f5fda507c720cb467cf2143",
+					"class": "K2Node_VariableGet",
+					"title": "Get Scroll",
+					"x": 832,
+					"y": 967,
+					"comment": null,
+					"pins": [
+						{
+							"id": "053b40574f5fda507c720cb467cf2143:o:Scroll",
+							"name": "Scroll",
+							"direction": "output",
+							"type": "object:/Script/UMG.WidgetAnimation",
+							"defaultValue": null,
+							"links": [
+								"88f5973740e4f7bab7a88592957e47ca:i:InAnimation"
+							]
+						},
+						{
+							"id": "053b40574f5fda507c720cb467cf2143:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/Credits/WBP_Credits.WBP_Credits_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0e96ed674d1552f3d384a29d4709623c",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1840,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0e96ed674d1552f3d384a29d4709623c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7cdffbc34ed55d7274abd1a80e03f49f:o:then"
+							]
+						},
+						{
+							"id": "0e96ed674d1552f3d384a29d4709623c:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"34c36d294aa445f093062e96a9a183a0:o:isCategory_2_1AEA8FC74510C163DAFD66A5AB640FE6"
+							]
+						},
+						{
+							"id": "0e96ed674d1552f3d384a29d4709623c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ee278e96415af5d8da8d4f995a58f105:i:execute"
+							]
+						},
+						{
+							"id": "0e96ed674d1552f3d384a29d4709623c:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c30f6d0943ba3fc2287886872e3ffc43:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "34c36d294aa445f093062e96a9a183a0",
+					"class": "K2Node_BreakStruct",
+					"title": "Break ST Credits",
+					"x": 1472,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "34c36d294aa445f093062e96a9a183a0:i:ST_Credits",
+							"name": "ST_Credits",
+							"direction": "input",
+							"type": "struct:/Game/ProjectAtlantis/UI/Credits/Data/ST_Credits.ST_Credits",
+							"defaultValue": null,
+							"links": [
+								"7cdffbc34ed55d7274abd1a80e03f49f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "34c36d294aa445f093062e96a9a183a0:o:isCategory_2_1AEA8FC74510C163DAFD66A5AB640FE6",
+							"name": "isCategory_2_1AEA8FC74510C163DAFD66A5AB640FE6",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"0e96ed674d1552f3d384a29d4709623c:i:Condition"
+							]
+						},
+						{
+							"id": "34c36d294aa445f093062e96a9a183a0:o:CategoryName_5_BB51E5D740467AAB9FF8F0AD8DBA9E99",
+							"name": "CategoryName_5_BB51E5D740467AAB9FF8F0AD8DBA9E99",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"ee278e96415af5d8da8d4f995a58f105:i:Category"
+							]
+						},
+						{
+							"id": "34c36d294aa445f093062e96a9a183a0:o:ST_Credit_9_8092CBF248FD880FC5D03483F254B9A3",
+							"name": "ST_Credit_9_8092CBF248FD880FC5D03483F254B9A3",
+							"direction": "output",
+							"type": "struct:/Game/ProjectAtlantis/UI/Credits/Data/ST_Credit.ST_Credit",
+							"defaultValue": null,
+							"links": [
+								"c30f6d0943ba3fc2287886872e3ffc43:i:ST_Credit"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7cdffbc34ed55d7274abd1a80e03f49f",
+					"class": "K2Node_GetDataTableRow",
+					"title": "Get Data Table Row DT_Credits",
+					"x": 1088,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7cdffbc34ed55d7274abd1a80e03f49f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"01995be842563e0290496483faa37b12:o:LoopBody"
+							]
+						},
+						{
+							"id": "7cdffbc34ed55d7274abd1a80e03f49f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0e96ed674d1552f3d384a29d4709623c:i:execute"
+							]
+						},
+						{
+							"id": "7cdffbc34ed55d7274abd1a80e03f49f:o:RowNotFound",
+							"name": "RowNotFound",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7cdffbc34ed55d7274abd1a80e03f49f:i:DataTable",
+							"name": "DataTable",
+							"direction": "input",
+							"type": "object:/Script/Engine.DataTable",
+							"defaultValue": "/Game/ProjectAtlantis/UI/Credits/Data/DT_Credits.DT_Credits",
+							"links": []
+						},
+						{
+							"id": "7cdffbc34ed55d7274abd1a80e03f49f:i:RowName",
+							"name": "RowName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"01995be842563e0290496483faa37b12:o:Array Element"
+							]
+						},
+						{
+							"id": "7cdffbc34ed55d7274abd1a80e03f49f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Game/ProjectAtlantis/UI/Credits/Data/ST_Credits.ST_Credits",
+							"defaultValue": null,
+							"links": [
+								"34c36d294aa445f093062e96a9a183a0:i:ST_Credits"
+							]
+						}
+					]
+				},
+				{
+					"guid": "88422b6c48e670923df497b6e1ea095f",
+					"class": "K2Node_CallFunction",
+					"title": "Get Data Table Row Names",
+					"x": 224,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "88422b6c48e670923df497b6e1ea095f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e0157f74494c15a33ca4b694e0b9cd55:o:then"
+							]
+						},
+						{
+							"id": "88422b6c48e670923df497b6e1ea095f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"01995be842563e0290496483faa37b12:i:Exec"
+							]
+						},
+						{
+							"id": "88422b6c48e670923df497b6e1ea095f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.DataTableFunctionLibrary",
+							"defaultValue": "/Script/Engine.Default__DataTableFunctionLibrary",
+							"links": []
+						},
+						{
+							"id": "88422b6c48e670923df497b6e1ea095f:i:Table",
+							"name": "Table",
+							"direction": "input",
+							"type": "object:/Script/Engine.DataTable",
+							"defaultValue": "/Game/ProjectAtlantis/UI/Credits/Data/DT_Credits.DT_Credits",
+							"links": []
+						},
+						{
+							"id": "88422b6c48e670923df497b6e1ea095f:o:OutRowNames",
+							"name": "OutRowNames",
+							"direction": "output",
+							"type": "name[]",
+							"defaultValue": null,
+							"links": [
+								"01995be842563e0290496483faa37b12:i:Array"
+							]
+						}
+					]
+				},
+				{
+					"guid": "88e585a34d31936a410e56963c9cb1bd",
+					"class": "K2Node_VariableGet",
+					"title": "Get VB",
+					"x": 112,
+					"y": 1156,
+					"comment": null,
+					"pins": [
+						{
+							"id": "88e585a34d31936a410e56963c9cb1bd:o:VB",
+							"name": "VB",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"a472705546a4829f3cfa36a6f39a0046:i:self"
+							]
+						},
+						{
+							"id": "88e585a34d31936a410e56963c9cb1bd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/Credits/WBP_Credits.WBP_Credits_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "88f5973740e4f7bab7a88592957e47ca",
+					"class": "K2Node_CallFunction",
+					"title": "Play Animation",
+					"x": 1024,
+					"y": 862,
+					"comment": null,
+					"pins": [
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"01995be842563e0290496483faa37b12:o:Completed"
+							]
+						},
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:i:InAnimation",
+							"name": "InAnimation",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetAnimation",
+							"defaultValue": null,
+							"links": [
+								"053b40574f5fda507c720cb467cf2143:o:Scroll"
+							]
+						},
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:i:StartAtTime",
+							"name": "StartAtTime",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:i:NumLoopsToPlay",
+							"name": "NumLoopsToPlay",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:i:PlayMode",
+							"name": "PlayMode",
+							"direction": "input",
+							"type": "byte:/Script/UMG.EUMGSequencePlayMode",
+							"defaultValue": "Forward",
+							"links": []
+						},
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:i:PlaybackSpeed",
+							"name": "PlaybackSpeed",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"aa9bfb1c46c63b50580182be51a09613:o:ReturnValue"
+							]
+						},
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:i:bRestoreState",
+							"name": "bRestoreState",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "88f5973740e4f7bab7a88592957e47ca:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/UMG.WidgetAnimationHandle",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a472705546a4829f3cfa36a6f39a0046",
+					"class": "K2Node_CallFunction",
+					"title": "Get Children Count",
+					"x": 272,
+					"y": 1118,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a472705546a4829f3cfa36a6f39a0046:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"88e585a34d31936a410e56963c9cb1bd:o:VB"
+							]
+						},
+						{
+							"id": "a472705546a4829f3cfa36a6f39a0046:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"d6163fef43181b80549fcbb83b735643:i:InInt"
+							]
+						}
+					]
+				},
+				{
+					"guid": "aa9bfb1c46c63b50580182be51a09613",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 832,
+					"y": 1124,
+					"comment": null,
+					"pins": [
+						{
+							"id": "aa9bfb1c46c63b50580182be51a09613:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "13.000000",
+							"links": []
+						},
+						{
+							"id": "aa9bfb1c46c63b50580182be51a09613:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"f80afe35487e18201b77eab3b854f43c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "aa9bfb1c46c63b50580182be51a09613:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"88f5973740e4f7bab7a88592957e47ca:i:PlaybackSpeed"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b1e3c1cd4da5c2d1664acc95d929130e",
+					"class": "K2Node_CallFunction",
+					"title": "Add Child to Vertical Box",
+					"x": 2512,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b1e3c1cd4da5c2d1664acc95d929130e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ee278e96415af5d8da8d4f995a58f105:o:then"
+							]
+						},
+						{
+							"id": "b1e3c1cd4da5c2d1664acc95d929130e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b1e3c1cd4da5c2d1664acc95d929130e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"dbf757bb4818dabec6e230a86a1b0101:o:VB"
+							]
+						},
+						{
+							"id": "b1e3c1cd4da5c2d1664acc95d929130e:i:Content",
+							"name": "Content",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"ee278e96415af5d8da8d4f995a58f105:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b1e3c1cd4da5c2d1664acc95d929130e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBoxSlot",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c30f6d0943ba3fc2287886872e3ffc43",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 2096,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c30f6d0943ba3fc2287886872e3ffc43:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0e96ed674d1552f3d384a29d4709623c:o:else"
+							]
+						},
+						{
+							"id": "c30f6d0943ba3fc2287886872e3ffc43:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eff097914d57bdf1e4c3a583c0d14140:i:execute"
+							]
+						},
+						{
+							"id": "c30f6d0943ba3fc2287886872e3ffc43:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/Credits/WBP_Credit.WBP_Credit_C",
+							"links": []
+						},
+						{
+							"id": "c30f6d0943ba3fc2287886872e3ffc43:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/Credits/WBP_Credit.WBP_Credit_C",
+							"defaultValue": null,
+							"links": [
+								"eff097914d57bdf1e4c3a583c0d14140:i:Content"
+							]
+						},
+						{
+							"id": "c30f6d0943ba3fc2287886872e3ffc43:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c30f6d0943ba3fc2287886872e3ffc43:i:ST_Credit",
+							"name": "ST_Credit",
+							"direction": "input",
+							"type": "struct:/Game/ProjectAtlantis/UI/Credits/Data/ST_Credit.ST_Credit",
+							"defaultValue": null,
+							"links": [
+								"34c36d294aa445f093062e96a9a183a0:o:ST_Credit_9_8092CBF248FD880FC5D03483F254B9A3"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d6163fef43181b80549fcbb83b735643",
+					"class": "K2Node_CallFunction",
+					"title": "To Float (Integer)",
+					"x": 496,
+					"y": 1156,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d6163fef43181b80549fcbb83b735643:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "d6163fef43181b80549fcbb83b735643:i:InInt",
+							"name": "InInt",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"a472705546a4829f3cfa36a6f39a0046:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d6163fef43181b80549fcbb83b735643:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"f80afe35487e18201b77eab3b854f43c:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dbf757bb4818dabec6e230a86a1b0101",
+					"class": "K2Node_VariableGet",
+					"title": "Get VB",
+					"x": 2272,
+					"y": 432,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dbf757bb4818dabec6e230a86a1b0101:o:VB",
+							"name": "VB",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"b1e3c1cd4da5c2d1664acc95d929130e:i:self",
+								"eff097914d57bdf1e4c3a583c0d14140:i:self"
+							]
+						},
+						{
+							"id": "dbf757bb4818dabec6e230a86a1b0101:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/Credits/WBP_Credits.WBP_Credits_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e0157f74494c15a33ca4b694e0b9cd55",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 0,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e0157f74494c15a33ca4b694e0b9cd55:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e0157f74494c15a33ca4b694e0b9cd55:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"88422b6c48e670923df497b6e1ea095f:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ee278e96415af5d8da8d4f995a58f105",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 2096,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ee278e96415af5d8da8d4f995a58f105:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0e96ed674d1552f3d384a29d4709623c:o:then"
+							]
+						},
+						{
+							"id": "ee278e96415af5d8da8d4f995a58f105:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b1e3c1cd4da5c2d1664acc95d929130e:i:execute"
+							]
+						},
+						{
+							"id": "ee278e96415af5d8da8d4f995a58f105:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/Credits/WBP_CreditCategory.WBP_CreditCategory_C",
+							"links": []
+						},
+						{
+							"id": "ee278e96415af5d8da8d4f995a58f105:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/Credits/WBP_CreditCategory.WBP_CreditCategory_C",
+							"defaultValue": null,
+							"links": [
+								"b1e3c1cd4da5c2d1664acc95d929130e:i:Content"
+							]
+						},
+						{
+							"id": "ee278e96415af5d8da8d4f995a58f105:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ee278e96415af5d8da8d4f995a58f105:i:Category",
+							"name": "Category",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"34c36d294aa445f093062e96a9a183a0:o:CategoryName_5_BB51E5D740467AAB9FF8F0AD8DBA9E99"
+							]
+						}
+					]
+				},
+				{
+					"guid": "eff097914d57bdf1e4c3a583c0d14140",
+					"class": "K2Node_CallFunction",
+					"title": "Add Child to Vertical Box",
+					"x": 2512,
+					"y": 512,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eff097914d57bdf1e4c3a583c0d14140:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c30f6d0943ba3fc2287886872e3ffc43:o:then"
+							]
+						},
+						{
+							"id": "eff097914d57bdf1e4c3a583c0d14140:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eff097914d57bdf1e4c3a583c0d14140:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"dbf757bb4818dabec6e230a86a1b0101:o:VB"
+							]
+						},
+						{
+							"id": "eff097914d57bdf1e4c3a583c0d14140:i:Content",
+							"name": "Content",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"c30f6d0943ba3fc2287886872e3ffc43:o:ReturnValue"
+							]
+						},
+						{
+							"id": "eff097914d57bdf1e4c3a583c0d14140:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBoxSlot",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f80afe35487e18201b77eab3b854f43c",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 656,
+					"y": 1157,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f80afe35487e18201b77eab3b854f43c:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"d6163fef43181b80549fcbb83b735643:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f80afe35487e18201b77eab3b854f43c:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "25.000000",
+							"links": []
+						},
+						{
+							"id": "f80afe35487e18201b77eab3b854f43c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"aa9bfb1c46c63b50580182be51a09613:i:B"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}

@@ -7,8 +7,8 @@ public class ProjectAtlantis : ModuleRules
 	public ProjectAtlantis(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "EngineSettings", "AIModule", "GameplayStateTreeModule" });
+
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG", "CommonInput", "EngineSettings", "AIModule", "GameplayStateTreeModule" });
 
         PrivateDependencyModuleNames.AddRange(new string[] {
             "GameAnalytics",
@@ -20,7 +20,7 @@ public class ProjectAtlantis : ModuleRules
             "HarmonixMetasound",
             "Harmonix"
         });
-		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics", "CommonUI" });
 
         PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
 
