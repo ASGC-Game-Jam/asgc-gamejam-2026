@@ -25,7 +25,7 @@ public:
 	virtual void CalcVelocity(float DeltaTime, float Friction, bool bFluid, float BrakingDeceleration) override;
 
 protected:
-	/** How quickly swimming facing converges to velocity or returns upright. Zero turns immediately. */
+	/** How quickly active swimming faces velocity or returns upright after input release. Zero turns immediately. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis|Swimming", meta = (ClampMin = "0"))
 	float SwimFacingInterpolationSpeed = 8.f;
 
