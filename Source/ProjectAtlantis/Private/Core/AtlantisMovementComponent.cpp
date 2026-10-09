@@ -166,12 +166,26 @@ void UAtlantisMovementComponent::PhysicsRotation(float DeltaTime)
 		Super::PhysicsRotation(DeltaTime);
 		return;
 	}
-	if (!HasValidData() || Velocity.SizeSquared() <= FMath::Square(MinSwimFacingSpeed))
+	if (!HasValidData())
 	{
 		return;
 	}
-	const FQuat Target = Velocity.Rotation().Quaternion();
-	const FQuat Facing = FMath::QInterpTo(UpdatedComponent->GetComponentQuat(), Target, DeltaTime, SwimFacingInterpolationSpeed);
+	// Passive ballast motion should not tilt the character. At rest, also return
+	// to upright while preserving the last heading instead of facing velocity noise.
+	const AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
+	const bool bPassiveBallast = PlayerState &&
+		(PlayerState->GetBallastState() == EAtlantisBallastState::Ascend ||
+		 PlayerState->GetBallastState() == EAtlantisBallastState::Descend);
+	const bool bMoving = Velocity.SizeSquared() > FMath::Square(MinSwimFacingSpeed);
+	const FRotator TargetRotation = !bPassiveBallast && bMoving
+		? Velocity.Rotation()
+		: FRotator(0.f, UpdatedComponent->GetComponentRotation().Yaw, 0.f);
+	const FQuat Target = TargetRotation.Quaternion();
+	// Interpolate neutral pitch/roll independently so quaternion shortest-path
+	// interpolation cannot gradually change the heading while righting a tilted pose.
+	const FQuat Facing = !bPassiveBallast && bMoving
+		? FMath::QInterpTo(UpdatedComponent->GetComponentQuat(), Target, DeltaTime, SwimFacingInterpolationSpeed)
+		: FMath::RInterpTo(UpdatedComponent->GetComponentRotation(), TargetRotation, DeltaTime, SwimFacingInterpolationSpeed).Quaternion();
 	FHitResult Hit;
 	SafeMoveUpdatedComponent(FVector::ZeroVector, Facing, true, Hit);
 }
