@@ -46,7 +46,7 @@ void AAtlantisPlayerCharacter::UpdateTraversalMode()
 {
 	if (AAtlantisPlayerState* PlayerState  = GetPlayerState<AAtlantisPlayerState>())
 	{
-		AtlantisPlayerState ->SetTraversalMode(ToTraversalMode(GetCharacterMovement()->MovementMode));
+		PlayerState ->SetTraversalMode(ToTraversalMode(GetCharacterMovement()->MovementMode));
 	}
 }
 
