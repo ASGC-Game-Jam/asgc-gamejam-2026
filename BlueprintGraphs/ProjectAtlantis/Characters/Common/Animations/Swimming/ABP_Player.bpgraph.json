@@ -1,0 +1,3236 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player",
+	"asset": "ABP_Player",
+	"assetClass": "AnimBlueprint",
+	"parentClass": "AtlantisPlayerAnimInstance",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "AnimGraph",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "0742a24741c06d18678f82b4f009b2df",
+					"class": "AnimGraphNode_Root",
+					"title": "Output Pose",
+					"x": 436,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0742a24741c06d18678f82b4f009b2df:i:Result",
+							"name": "Result",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"84b661c0414cbfd72ce38eb8eb5f24bb:o:Pose"
+							]
+						}
+					]
+				},
+				{
+					"guid": "143e42cb4fc99f65086cbfabe7ab6f1e",
+					"class": "AnimGraphNode_StateMachine",
+					"title": "Main States",
+					"x": -768,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "143e42cb4fc99f65086cbfabe7ab6f1e:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"80c35e9e4619f2abf8aef1a8d67209fb:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2069957b49e3221049990ca5f558495a",
+					"class": "AnimGraphNode_ControlRig",
+					"title": "Control Rig",
+					"x": -352,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2069957b49e3221049990ca5f558495a:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"80c35e9e4619f2abf8aef1a8d67209fb:o:Pose"
+							]
+						},
+						{
+							"id": "2069957b49e3221049990ca5f558495a:i:Alpha",
+							"name": "Alpha",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "2069957b49e3221049990ca5f558495a:i:bAlphaBoolEnabled",
+							"name": "bAlphaBoolEnabled",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "True",
+							"links": []
+						},
+						{
+							"id": "2069957b49e3221049990ca5f558495a:i:AlphaCurveName",
+							"name": "AlphaCurveName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "2069957b49e3221049990ca5f558495a:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"84b661c0414cbfd72ce38eb8eb5f24bb:i:BlendPose_1"
+							]
+						},
+						{
+							"id": "2069957b49e3221049990ca5f558495a:i:ShouldDoIKTrace",
+							"name": "ShouldDoIKTrace",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"58a5753f4f7b95afc1e0528eca5fd194:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "415faad94b32f6f5de196497bfa579e7",
+					"class": "AnimGraphNode_SequencePlayer",
+					"title": "Sequence Player 'A_Swim_Idle'",
+					"x": -1064,
+					"y": 780,
+					"comment": null,
+					"pins": [
+						{
+							"id": "415faad94b32f6f5de196497bfa579e7:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"e6ab202645c58b0f6fdbec8f3086e317:i:BlendPose_1"
+							]
+						}
+					]
+				},
+				{
+					"guid": "58a5753f4f7b95afc1e0528eca5fd194",
+					"class": "K2Node_CallFunction",
+					"title": "NOT Boolean",
+					"x": -320,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "58a5753f4f7b95afc1e0528eca5fd194:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "58a5753f4f7b95afc1e0528eca5fd194:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7d91722e4a80649e8332af94ba4ef7fd:o:IsFalling"
+							]
+						},
+						{
+							"id": "58a5753f4f7b95afc1e0528eca5fd194:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2069957b49e3221049990ca5f558495a:i:ShouldDoIKTrace"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5c3d98254084f206ca8af18b3be85be2",
+					"class": "AnimGraphNode_SequencePlayer",
+					"title": "Sequence Player 'A_Swim_Fwd'",
+					"x": -1064,
+					"y": 530,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5c3d98254084f206ca8af18b3be85be2:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"e6ab202645c58b0f6fdbec8f3086e317:i:BlendPose_0"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6453859e4a62d440fd076093b64aea7d",
+					"class": "AnimGraphNode_SaveCachedPose",
+					"title": "Save cached pose 'Locomotion'",
+					"x": -576,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6453859e4a62d440fd076093b64aea7d:i:Pose",
+							"name": "Pose",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"7b2abe1946ae875c4d65159996204c93:o:Pose"
+							]
+						}
+					]
+				},
+				{
+					"guid": "79ca164b4593d1e3ee0aee9a80dcd8e7",
+					"class": "K2Node_VariableGet",
+					"title": "Get bIsSwimmingMoving",
+					"x": -164,
+					"y": 380,
+					"comment": null,
+					"pins": [
+						{
+							"id": "79ca164b4593d1e3ee0aee9a80dcd8e7:o:bIsSwimmingMoving",
+							"name": "bIsSwimmingMoving",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e6ab202645c58b0f6fdbec8f3086e317:i:bActiveValue"
+							]
+						},
+						{
+							"id": "79ca164b4593d1e3ee0aee9a80dcd8e7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerAnimInstance",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7b2abe1946ae875c4d65159996204c93",
+					"class": "AnimGraphNode_StateMachine",
+					"title": "Locomotion",
+					"x": -768,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7b2abe1946ae875c4d65159996204c93:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"6453859e4a62d440fd076093b64aea7d:i:Pose"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7d91722e4a80649e8332af94ba4ef7fd",
+					"class": "K2Node_VariableGet",
+					"title": "Get IsFalling",
+					"x": -320,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7d91722e4a80649e8332af94ba4ef7fd:o:IsFalling",
+							"name": "IsFalling",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"58a5753f4f7b95afc1e0528eca5fd194:i:A"
+							]
+						},
+						{
+							"id": "7d91722e4a80649e8332af94ba4ef7fd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "80c35e9e4619f2abf8aef1a8d67209fb",
+					"class": "AnimGraphNode_Slot",
+					"title": "Slot 'DefaultSlot'",
+					"x": -576,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "80c35e9e4619f2abf8aef1a8d67209fb:i:Source",
+							"name": "Source",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"143e42cb4fc99f65086cbfabe7ab6f1e:o:Pose"
+							]
+						},
+						{
+							"id": "80c35e9e4619f2abf8aef1a8d67209fb:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"2069957b49e3221049990ca5f558495a:i:Source"
+							]
+						}
+					]
+				},
+				{
+					"guid": "84b661c0414cbfd72ce38eb8eb5f24bb",
+					"class": "AnimGraphNode_BlendListByBool",
+					"title": "Blend Poses by bool",
+					"x": -64,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "84b661c0414cbfd72ce38eb8eb5f24bb:i:BlendPose_0",
+							"name": "BlendPose_0",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"e6ab202645c58b0f6fdbec8f3086e317:o:Pose"
+							]
+						},
+						{
+							"id": "84b661c0414cbfd72ce38eb8eb5f24bb:i:BlendPose_1",
+							"name": "BlendPose_1",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"2069957b49e3221049990ca5f558495a:o:Pose"
+							]
+						},
+						{
+							"id": "84b661c0414cbfd72ce38eb8eb5f24bb:i:BlendTime_0",
+							"name": "BlendTime_0",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.2",
+							"links": []
+						},
+						{
+							"id": "84b661c0414cbfd72ce38eb8eb5f24bb:i:BlendTime_1",
+							"name": "BlendTime_1",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.2",
+							"links": []
+						},
+						{
+							"id": "84b661c0414cbfd72ce38eb8eb5f24bb:i:bActiveValue",
+							"name": "bActiveValue",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d6d43023451545d2e6aed9b084c02028:o:bIsSwimming"
+							]
+						},
+						{
+							"id": "84b661c0414cbfd72ce38eb8eb5f24bb:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"0742a24741c06d18678f82b4f009b2df:i:Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d6d43023451545d2e6aed9b084c02028",
+					"class": "K2Node_VariableGet",
+					"title": "Get bIsSwimming",
+					"x": -164,
+					"y": -120,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d6d43023451545d2e6aed9b084c02028:o:bIsSwimming",
+							"name": "bIsSwimming",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"84b661c0414cbfd72ce38eb8eb5f24bb:i:bActiveValue"
+							]
+						},
+						{
+							"id": "d6d43023451545d2e6aed9b084c02028:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerAnimInstance",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e6ab202645c58b0f6fdbec8f3086e317",
+					"class": "AnimGraphNode_BlendListByBool",
+					"title": "Blend Poses by bool",
+					"x": -564,
+					"y": 580,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e6ab202645c58b0f6fdbec8f3086e317:i:BlendPose_0",
+							"name": "BlendPose_0",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"5c3d98254084f206ca8af18b3be85be2:o:Pose"
+							]
+						},
+						{
+							"id": "e6ab202645c58b0f6fdbec8f3086e317:i:BlendPose_1",
+							"name": "BlendPose_1",
+							"direction": "input",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"415faad94b32f6f5de196497bfa579e7:o:Pose"
+							]
+						},
+						{
+							"id": "e6ab202645c58b0f6fdbec8f3086e317:i:BlendTime_0",
+							"name": "BlendTime_0",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.2",
+							"links": []
+						},
+						{
+							"id": "e6ab202645c58b0f6fdbec8f3086e317:i:BlendTime_1",
+							"name": "BlendTime_1",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.2",
+							"links": []
+						},
+						{
+							"id": "e6ab202645c58b0f6fdbec8f3086e317:i:bActiveValue",
+							"name": "bActiveValue",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"79ca164b4593d1e3ee0aee9a80dcd8e7:o:bIsSwimmingMoving"
+							]
+						},
+						{
+							"id": "e6ab202645c58b0f6fdbec8f3086e317:o:Pose",
+							"name": "Pose",
+							"direction": "output",
+							"type": "struct:/Script/Engine.PoseLink",
+							"defaultValue": null,
+							"links": [
+								"84b661c0414cbfd72ce38eb8eb5f24bb:i:BlendPose_0"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0263d9e845107e4e81e7ea93bd8ca8d1",
+					"class": "K2Node_CallFunction",
+					"title": "Is Falling",
+					"x": -32,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0263d9e845107e4e81e7ea93bd8ca8d1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.NavMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"4035f8d1480f9081b00d9ebe2e855032:o:MovementComponent"
+							]
+						},
+						{
+							"id": "0263d9e845107e4e81e7ea93bd8ca8d1:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"4b351bb943304c1f524fca8a175e309c:i:IsFalling"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0cea47b44798b65d6363efb1a52155e8",
+					"class": "K2Node_Event",
+					"title": "Event Blueprint Initialize Animation",
+					"x": -1264,
+					"y": -640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0cea47b44798b65d6363efb1a52155e8:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0cea47b44798b65d6363efb1a52155e8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"76f24a9b45c16838047eb8a4f594e0ce:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0fa8db3f47d348bb8f0b2e9721443783",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": -880,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0fa8db3f47d348bb8f0b2e9721443783:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f4f18129401801fbac5c8d96c9f736d9:o:then"
+							]
+						},
+						{
+							"id": "0fa8db3f47d348bb8f0b2e9721443783:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1faf54764ae236144235df8effb6b210:i:execute"
+							]
+						},
+						{
+							"id": "0fa8db3f47d348bb8f0b2e9721443783:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0fa8db3f47d348bb8f0b2e9721443783:o:Character",
+							"name": "Character",
+							"direction": "output",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0fa8db3f47d348bb8f0b2e9721443783:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "165d8f3a4974ab8c239a5caf9c5d7918",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -256,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "165d8f3a4974ab8c239a5caf9c5d7918:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1faf54764ae236144235df8effb6b210:o:then_0"
+							]
+						},
+						{
+							"id": "165d8f3a4974ab8c239a5caf9c5d7918:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"504c93924cdc4487264e8db4f91853f4:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1da78143447f53ae697602a42b19433c",
+					"class": "K2Node_CallFunction",
+					"title": "Get Current Acceleration",
+					"x": -64,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1da78143447f53ae697602a42b19433c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"f35adc3741748d4e6d66c4a6e3c89aec:o:MovementComponent"
+							]
+						},
+						{
+							"id": "1da78143447f53ae697602a42b19433c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"561048054dc372f63941c797e4db9d71:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1faf54764ae236144235df8effb6b210",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": -528,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1faf54764ae236144235df8effb6b210:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0fa8db3f47d348bb8f0b2e9721443783:o:then"
+							]
+						},
+						{
+							"id": "1faf54764ae236144235df8effb6b210:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"165d8f3a4974ab8c239a5caf9c5d7918:i:InputPin"
+							]
+						},
+						{
+							"id": "1faf54764ae236144235df8effb6b210:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8b66df884bf541538c3081855a0bff4c:i:InputPin"
+							]
+						},
+						{
+							"id": "1faf54764ae236144235df8effb6b210:o:then_2",
+							"name": "then_2",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b9bc7eab4c616c65ab28ad94a589f809:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "270e6d074aef2c27bffaf29377ae4186",
+					"class": "K2Node_VariableSet",
+					"title": "Set GroundSpeed",
+					"x": 528,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "270e6d074aef2c27bffaf29377ae4186:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"504c93924cdc4487264e8db4f91853f4:o:then"
+							]
+						},
+						{
+							"id": "270e6d074aef2c27bffaf29377ae4186:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a65c87944d932bbd21947e874eea56e2:i:execute"
+							]
+						},
+						{
+							"id": "270e6d074aef2c27bffaf29377ae4186:i:GroundSpeed",
+							"name": "GroundSpeed",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"63c0639344ea36eec26133a45c67c29b:o:ReturnValue"
+							]
+						},
+						{
+							"id": "270e6d074aef2c27bffaf29377ae4186:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "270e6d074aef2c27bffaf29377ae4186:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "280600734de0263bae1948b809922bc0",
+					"class": "K2Node_VariableSet",
+					"title": "Set MovementComponent",
+					"x": -144,
+					"y": -624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "280600734de0263bae1948b809922bc0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"68b068bb44104ad3d09268add642d585:o:then"
+							]
+						},
+						{
+							"id": "280600734de0263bae1948b809922bc0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "280600734de0263bae1948b809922bc0:i:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "input",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"c1a9a595496f2e93ca321dbc4ecbe780:o:CharacterMovement"
+							]
+						},
+						{
+							"id": "280600734de0263bae1948b809922bc0:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "280600734de0263bae1948b809922bc0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "29cd529f4d416d3fc37150ad1dc1c9d3",
+					"class": "K2Node_VariableGet",
+					"title": "Get Character",
+					"x": 1040,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "29cd529f4d416d3fc37150ad1dc1c9d3:o:Character",
+							"name": "Character",
+							"direction": "output",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"7b18d3bb4f75120a783008af96f3d502:i:self"
+							]
+						},
+						{
+							"id": "29cd529f4d416d3fc37150ad1dc1c9d3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "32a000e14ce41d832b2c4abd289a7696",
+					"class": "K2Node_CallFunction",
+					"title": "Get Owning Actor",
+					"x": -1216,
+					"y": -576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "32a000e14ce41d832b2c4abd289a7696:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.AnimInstance",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "32a000e14ce41d832b2c4abd289a7696:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"76f24a9b45c16838047eb8a4f594e0ce:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4035f8d1480f9081b00d9ebe2e855032",
+					"class": "K2Node_VariableGet",
+					"title": "Get MovementComponent",
+					"x": -240,
+					"y": 464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4035f8d1480f9081b00d9ebe2e855032:o:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"0263d9e845107e4e81e7ea93bd8ca8d1:i:self"
+							]
+						},
+						{
+							"id": "4035f8d1480f9081b00d9ebe2e855032:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4b351bb943304c1f524fca8a175e309c",
+					"class": "K2Node_VariableSet",
+					"title": "Set IsFalling",
+					"x": 272,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4b351bb943304c1f524fca8a175e309c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b9bc7eab4c616c65ab28ad94a589f809:o:OutputPin"
+							]
+						},
+						{
+							"id": "4b351bb943304c1f524fca8a175e309c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4b351bb943304c1f524fca8a175e309c:i:IsFalling",
+							"name": "IsFalling",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"0263d9e845107e4e81e7ea93bd8ca8d1:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4b351bb943304c1f524fca8a175e309c:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "4b351bb943304c1f524fca8a175e309c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "504c93924cdc4487264e8db4f91853f4",
+					"class": "K2Node_VariableSet",
+					"title": "Set Velocity",
+					"x": 144,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "504c93924cdc4487264e8db4f91853f4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"165d8f3a4974ab8c239a5caf9c5d7918:o:OutputPin"
+							]
+						},
+						{
+							"id": "504c93924cdc4487264e8db4f91853f4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"270e6d074aef2c27bffaf29377ae4186:i:execute"
+							]
+						},
+						{
+							"id": "504c93924cdc4487264e8db4f91853f4:i:Velocity",
+							"name": "Velocity",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"67e5f81b4b2d0c638760bca972c51e9e:o:Velocity"
+							]
+						},
+						{
+							"id": "504c93924cdc4487264e8db4f91853f4:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"63c0639344ea36eec26133a45c67c29b:i:A"
+							]
+						},
+						{
+							"id": "504c93924cdc4487264e8db4f91853f4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "561048054dc372f63941c797e4db9d71",
+					"class": "K2Node_PromotableOperator",
+					"title": "Not Equal (Vector)",
+					"x": 256,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "561048054dc372f63941c797e4db9d71:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"1da78143447f53ae697602a42b19433c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "561048054dc372f63941c797e4db9d71:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "561048054dc372f63941c797e4db9d71:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7499a56a4b78e478e2794cabbcf6e971:i:B"
+							]
+						},
+						{
+							"id": "561048054dc372f63941c797e4db9d71:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "63c0639344ea36eec26133a45c67c29b",
+					"class": "K2Node_CallFunction",
+					"title": "Vector Length XY",
+					"x": 320,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "63c0639344ea36eec26133a45c67c29b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "63c0639344ea36eec26133a45c67c29b:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"504c93924cdc4487264e8db4f91853f4:o:Output_Get"
+							]
+						},
+						{
+							"id": "63c0639344ea36eec26133a45c67c29b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"270e6d074aef2c27bffaf29377ae4186:i:GroundSpeed"
+							]
+						}
+					]
+				},
+				{
+					"guid": "650f55c6460de98c232b71a25d3fc401",
+					"class": "K2Node_VariableSet",
+					"title": "Set ShouldMove",
+					"x": 768,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "650f55c6460de98c232b71a25d3fc401:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8b66df884bf541538c3081855a0bff4c:o:OutputPin"
+							]
+						},
+						{
+							"id": "650f55c6460de98c232b71a25d3fc401:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "650f55c6460de98c232b71a25d3fc401:i:ShouldMove",
+							"name": "ShouldMove",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7499a56a4b78e478e2794cabbcf6e971:o:ReturnValue"
+							]
+						},
+						{
+							"id": "650f55c6460de98c232b71a25d3fc401:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "650f55c6460de98c232b71a25d3fc401:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "67e5f81b4b2d0c638760bca972c51e9e",
+					"class": "K2Node_VariableGet",
+					"title": "Get Velocity",
+					"x": -48,
+					"y": -176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "67e5f81b4b2d0c638760bca972c51e9e:o:Velocity",
+							"name": "Velocity",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"504c93924cdc4487264e8db4f91853f4:i:Velocity"
+							]
+						},
+						{
+							"id": "67e5f81b4b2d0c638760bca972c51e9e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.MovementComponent",
+							"defaultValue": null,
+							"links": [
+								"76d89c7241404ec064e135a6d40ad805:o:MovementComponent"
+							]
+						}
+					]
+				},
+				{
+					"guid": "68b068bb44104ad3d09268add642d585",
+					"class": "K2Node_VariableSet",
+					"title": "Set Character",
+					"x": -656,
+					"y": -624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "68b068bb44104ad3d09268add642d585:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"76f24a9b45c16838047eb8a4f594e0ce:o:then"
+							]
+						},
+						{
+							"id": "68b068bb44104ad3d09268add642d585:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"280600734de0263bae1948b809922bc0:i:execute"
+							]
+						},
+						{
+							"id": "68b068bb44104ad3d09268add642d585:i:Character",
+							"name": "Character",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"76f24a9b45c16838047eb8a4f594e0ce:o:AsCharacter"
+							]
+						},
+						{
+							"id": "68b068bb44104ad3d09268add642d585:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"c1a9a595496f2e93ca321dbc4ecbe780:i:self"
+							]
+						},
+						{
+							"id": "68b068bb44104ad3d09268add642d585:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6a658bb548ad252537ce0ca1c4cd8589",
+					"class": "K2Node_Select",
+					"title": "Select",
+					"x": 1936,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6a658bb548ad252537ce0ca1c4cd8589:i:Option 0",
+							"name": "Option 0",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"925cdbc342e7d1ff8ddae28d7ccd441e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "6a658bb548ad252537ce0ca1c4cd8589:i:Option 1",
+							"name": "Option 1",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"7b1deaab4e125ccc4a0d7d8fab6af5e5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "6a658bb548ad252537ce0ca1c4cd8589:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d182e0314041ee6846b481aae05e5930:o:bOrientRotationToMovement"
+							]
+						},
+						{
+							"id": "6a658bb548ad252537ce0ca1c4cd8589:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a65c87944d932bbd21947e874eea56e2:i:Direction"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7499a56a4b78e478e2794cabbcf6e971",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "AND Boolean",
+					"x": 576,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7499a56a4b78e478e2794cabbcf6e971:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "7499a56a4b78e478e2794cabbcf6e971:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"97bef17149a091463a772982d52b2a63:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7499a56a4b78e478e2794cabbcf6e971:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"561048054dc372f63941c797e4db9d71:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7499a56a4b78e478e2794cabbcf6e971:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"650f55c6460de98c232b71a25d3fc401:i:ShouldMove"
+							]
+						}
+					]
+				},
+				{
+					"guid": "76d89c7241404ec064e135a6d40ad805",
+					"class": "K2Node_VariableGet",
+					"title": "Get MovementComponent",
+					"x": -240,
+					"y": -176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "76d89c7241404ec064e135a6d40ad805:o:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"67e5f81b4b2d0c638760bca972c51e9e:i:self"
+							]
+						},
+						{
+							"id": "76d89c7241404ec064e135a6d40ad805:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "76f24a9b45c16838047eb8a4f594e0ce",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To Character",
+					"x": -912,
+					"y": -640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "76f24a9b45c16838047eb8a4f594e0ce:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0cea47b44798b65d6363efb1a52155e8:o:then"
+							]
+						},
+						{
+							"id": "76f24a9b45c16838047eb8a4f594e0ce:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"68b068bb44104ad3d09268add642d585:i:execute"
+							]
+						},
+						{
+							"id": "76f24a9b45c16838047eb8a4f594e0ce:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "76f24a9b45c16838047eb8a4f594e0ce:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"32a000e14ce41d832b2c4abd289a7696:o:ReturnValue"
+							]
+						},
+						{
+							"id": "76f24a9b45c16838047eb8a4f594e0ce:o:AsCharacter",
+							"name": "AsCharacter",
+							"direction": "output",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"68b068bb44104ad3d09268add642d585:i:Character"
+							]
+						},
+						{
+							"id": "76f24a9b45c16838047eb8a4f594e0ce:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7b18d3bb4f75120a783008af96f3d502",
+					"class": "K2Node_CallFunction",
+					"title": "Get Actor Rotation",
+					"x": 1184,
+					"y": -80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7b18d3bb4f75120a783008af96f3d502:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"29cd529f4d416d3fc37150ad1dc1c9d3:o:Character"
+							]
+						},
+						{
+							"id": "7b18d3bb4f75120a783008af96f3d502:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": null,
+							"links": [
+								"925cdbc342e7d1ff8ddae28d7ccd441e:i:BaseRotation"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7b1deaab4e125ccc4a0d7d8fab6af5e5",
+					"class": "K2Node_CallFunction",
+					"title": "Clamp (Float)",
+					"x": 1680,
+					"y": -96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7b1deaab4e125ccc4a0d7d8fab6af5e5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "7b1deaab4e125ccc4a0d7d8fab6af5e5:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"925cdbc342e7d1ff8ddae28d7ccd441e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7b1deaab4e125ccc4a0d7d8fab6af5e5:i:Min",
+							"name": "Min",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "-45.000000",
+							"links": []
+						},
+						{
+							"id": "7b1deaab4e125ccc4a0d7d8fab6af5e5:i:Max",
+							"name": "Max",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "45.000000",
+							"links": []
+						},
+						{
+							"id": "7b1deaab4e125ccc4a0d7d8fab6af5e5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"6a658bb548ad252537ce0ca1c4cd8589:i:Option 1"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8b4169a346b78162866b74a523a55cde",
+					"class": "K2Node_VariableGet",
+					"title": "Get GroundSpeed",
+					"x": 240,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8b4169a346b78162866b74a523a55cde:o:GroundSpeed",
+							"name": "GroundSpeed",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"97bef17149a091463a772982d52b2a63:i:A"
+							]
+						},
+						{
+							"id": "8b4169a346b78162866b74a523a55cde:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8b66df884bf541538c3081855a0bff4c",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -256,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8b66df884bf541538c3081855a0bff4c:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1faf54764ae236144235df8effb6b210:o:then_1"
+							]
+						},
+						{
+							"id": "8b66df884bf541538c3081855a0bff4c:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"650f55c6460de98c232b71a25d3fc401:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "925cdbc342e7d1ff8ddae28d7ccd441e",
+					"class": "K2Node_CallFunction",
+					"title": "Calculate Direction",
+					"x": 1408,
+					"y": -176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "925cdbc342e7d1ff8ddae28d7ccd441e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.AnimInstance",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "925cdbc342e7d1ff8ddae28d7ccd441e:i:Velocity",
+							"name": "Velocity",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"dc71f72e4e41db515b5b86861a870c69:o:Velocity"
+							]
+						},
+						{
+							"id": "925cdbc342e7d1ff8ddae28d7ccd441e:i:BaseRotation",
+							"name": "BaseRotation",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Rotator",
+							"defaultValue": null,
+							"links": [
+								"7b18d3bb4f75120a783008af96f3d502:o:ReturnValue"
+							]
+						},
+						{
+							"id": "925cdbc342e7d1ff8ddae28d7ccd441e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"6a658bb548ad252537ce0ca1c4cd8589:i:Option 0",
+								"7b1deaab4e125ccc4a0d7d8fab6af5e5:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "97bef17149a091463a772982d52b2a63",
+					"class": "K2Node_PromotableOperator",
+					"title": "float > float",
+					"x": 384,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "97bef17149a091463a772982d52b2a63:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"8b4169a346b78162866b74a523a55cde:o:GroundSpeed"
+							]
+						},
+						{
+							"id": "97bef17149a091463a772982d52b2a63:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.010000",
+							"links": []
+						},
+						{
+							"id": "97bef17149a091463a772982d52b2a63:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7499a56a4b78e478e2794cabbcf6e971:i:A"
+							]
+						},
+						{
+							"id": "97bef17149a091463a772982d52b2a63:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a65c87944d932bbd21947e874eea56e2",
+					"class": "K2Node_VariableSet",
+					"title": "Set Direction",
+					"x": 2176,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a65c87944d932bbd21947e874eea56e2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"270e6d074aef2c27bffaf29377ae4186:o:then"
+							]
+						},
+						{
+							"id": "a65c87944d932bbd21947e874eea56e2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a65c87944d932bbd21947e874eea56e2:i:Direction",
+							"name": "Direction",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"6a658bb548ad252537ce0ca1c4cd8589:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a65c87944d932bbd21947e874eea56e2:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "a65c87944d932bbd21947e874eea56e2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b11b601a4e865630936989a96ee36efe",
+					"class": "K2Node_VariableGet",
+					"title": "Get MovementComponent",
+					"x": 1409,
+					"y": 56,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b11b601a4e865630936989a96ee36efe:o:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"d182e0314041ee6846b481aae05e5930:i:self"
+							]
+						},
+						{
+							"id": "b11b601a4e865630936989a96ee36efe:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b9bc7eab4c616c65ab28ad94a589f809",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -256,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b9bc7eab4c616c65ab28ad94a589f809:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1faf54764ae236144235df8effb6b210:o:then_2"
+							]
+						},
+						{
+							"id": "b9bc7eab4c616c65ab28ad94a589f809:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4b351bb943304c1f524fca8a175e309c:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c1a9a595496f2e93ca321dbc4ecbe780",
+					"class": "K2Node_VariableGet",
+					"title": "Get CharacterMovement",
+					"x": -448,
+					"y": -560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c1a9a595496f2e93ca321dbc4ecbe780:o:CharacterMovement",
+							"name": "CharacterMovement",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"280600734de0263bae1948b809922bc0:i:MovementComponent"
+							]
+						},
+						{
+							"id": "c1a9a595496f2e93ca321dbc4ecbe780:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": [
+								"68b068bb44104ad3d09268add642d585:o:Output_Get"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d182e0314041ee6846b481aae05e5930",
+					"class": "K2Node_VariableGet",
+					"title": "Get bOrientRotationToMovement",
+					"x": 1617,
+					"y": 56,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d182e0314041ee6846b481aae05e5930:o:bOrientRotationToMovement",
+							"name": "bOrientRotationToMovement",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"6a658bb548ad252537ce0ca1c4cd8589:i:Index"
+							]
+						},
+						{
+							"id": "d182e0314041ee6846b481aae05e5930:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"b11b601a4e865630936989a96ee36efe:o:MovementComponent"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dc71f72e4e41db515b5b86861a870c69",
+					"class": "K2Node_VariableGet",
+					"title": "Get Velocity",
+					"x": 1248,
+					"y": -128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dc71f72e4e41db515b5b86861a870c69:o:Velocity",
+							"name": "Velocity",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"925cdbc342e7d1ff8ddae28d7ccd441e:i:Velocity"
+							]
+						},
+						{
+							"id": "dc71f72e4e41db515b5b86861a870c69:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f35adc3741748d4e6d66c4a6e3c89aec",
+					"class": "K2Node_VariableGet",
+					"title": "Get MovementComponent",
+					"x": -256,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f35adc3741748d4e6d66c4a6e3c89aec:o:MovementComponent",
+							"name": "MovementComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.CharacterMovementComponent",
+							"defaultValue": null,
+							"links": [
+								"1da78143447f53ae697602a42b19433c:i:self"
+							]
+						},
+						{
+							"id": "f35adc3741748d4e6d66c4a6e3c89aec:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f4f18129401801fbac5c8d96c9f736d9",
+					"class": "K2Node_Event",
+					"title": "Event Blueprint Update Animation",
+					"x": -1264,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f4f18129401801fbac5c8d96c9f736d9:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f4f18129401801fbac5c8d96c9f736d9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0fa8db3f47d348bb8f0b2e9721443783:i:execute"
+							]
+						},
+						{
+							"id": "f4f18129401801fbac5c8d96c9f736d9:o:DeltaTimeX",
+							"name": "DeltaTimeX",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "0ca1fe9b4419539b1fedbeab45b718de",
+					"text": "Calculate direction using the delta between the velocity and the actor rotation. When the character is not strafing, clamp the value between - and + 45 degrees so that backwards animations do not play when turning around, but running into wall looks better.",
+					"x": 1024,
+					"y": -336,
+					"width": 1344,
+					"height": 528
+				},
+				{
+					"guid": "a740a91946aa984670ea4699d9f38be1",
+					"text": "Only update values if the character is valid (character exists in the world and the reference is set).",
+					"x": -1296,
+					"y": -208,
+					"width": 608,
+					"height": 240
+				},
+				{
+					"guid": "b877c8b14b0041dc82b43a9d5793389e",
+					"text": "Set Is Falling from the movement components falling state.",
+					"x": -272,
+					"y": 304,
+					"width": 736,
+					"height": 224
+				},
+				{
+					"guid": "b9f51ffa466a60d1de039d92b4a27418",
+					"text": "Set references to owning character when this blueprint initializes.",
+					"x": -1296,
+					"y": -720,
+					"width": 1424,
+					"height": 256
+				},
+				{
+					"guid": "edee005e4ef255ae21fec2945be059ae",
+					"text": "Set Should Move to true only if ground speed is above a small threshold (to prevent incredibly small velocities from triggering animations) and if there is currently acceleration (input) applied.",
+					"x": -272,
+					"y": -80,
+					"width": 1248,
+					"height": 368
+				},
+				{
+					"guid": "ef967dc4484b44e51a01109d55a46f7f",
+					"text": "Set velocity and ground speed from the movement components velocity. Ground speed is calculated from only the X and Y axis of the velocity, so moving up or down does not affect it.",
+					"x": -272,
+					"y": -336,
+					"width": 1232,
+					"height": 240
+				}
+			]
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"Character":
+			{
+				"type": "object:/Script/Engine.Character",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"MovementComponent":
+			{
+				"type": "object:/Script/Engine.CharacterMovementComponent",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Velocity":
+			{
+				"type": "struct:/Script/CoreUObject.Vector",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"GroundSpeed":
+			{
+				"type": "real:double",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Direction":
+			{
+				"type": "real:double",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"ShouldMove":
+			{
+				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"IsFalling":
+			{
+				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"__AnimBlueprintMutables":
+			{
+				"__FloatProperty": 0,
+				"__FloatProperty_0": 0,
+				"__BoolProperty_1": false,
+				"__BoolProperty_2": false
+			},
+			"AnimBlueprintExtension_PropertyAccess":
+			{
+			},
+			"AnimBlueprintExtension_Base":
+			{
+			},
+			"AnimGraphNode_Root":
+			{
+				"Result":
+				{
+					"LinkID": 32,
+					"SourceLinkID": 0
+				},
+				"Name": "AnimGraph",
+				"LayerGroup": "DefaultSharedGroup",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_10":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_9":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_BlendSpacePlayer":
+			{
+				"GroupName": "Locomotion",
+				"GroupRole": "CanBeLeader",
+				"bOverridePositionWhenJoiningSyncGroupAsLeader": false,
+				"Method": "SyncGroup",
+				"bIgnoreForRelevancyTest": false,
+				"X": 0,
+				"Y": 0,
+				"PlayRate": 1,
+				"bLoop": true,
+				"bResetPlayTimeWhenBlendSpaceChanges": true,
+				"StartPosition": 0,
+				"BlendSpace": "/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_StateResult_5":
+			{
+				"StateIndex": 1,
+				"StateEntryFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedInFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateExitFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedOutFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"Result":
+				{
+					"LinkID": 3,
+					"SourceLinkID": 4
+				},
+				"Name": "Walk / Run",
+				"LayerGroup": "DefaultSharedGroup",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_SequencePlayer_5":
+			{
+				"GroupName": "None",
+				"GroupRole": "CanBeLeader",
+				"bOverridePositionWhenJoiningSyncGroupAsLeader": false,
+				"Method": "DoNotSync",
+				"bIgnoreForRelevancyTest": false,
+				"Sequence": "/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/MM_Idle.MM_Idle",
+				"PlayRateBasis": 1,
+				"PlayRate": 1,
+				"PlayRateScaleBiasClampConstants":
+				{
+					"bMapRange": false,
+					"bClampResult": false,
+					"bInterpResult": false,
+					"InRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"OutRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"Scale": 1,
+					"Bias": 0,
+					"ClampMin": 0,
+					"ClampMax": 1,
+					"InterpSpeedIncreasing": 10,
+					"InterpSpeedDecreasing": 10
+				},
+				"StartPosition": 0,
+				"bLoopAnimation": true,
+				"bStartFromMatchingPose": false,
+				"PlayRateScaleBiasClampState":
+				{
+				},
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_StateResult_4":
+			{
+				"StateIndex": 0,
+				"StateEntryFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedInFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateExitFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedOutFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"Result":
+				{
+					"LinkID": 5,
+					"SourceLinkID": 6
+				},
+				"Name": "Idle",
+				"LayerGroup": "DefaultSharedGroup",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_StateMachine_1":
+			{
+				"StateMachineIndexInClass": 1,
+				"MaxTransitionsPerFrame": 3,
+				"MaxTransitionsRequests": 32,
+				"bSkipFirstUpdateTransition": true,
+				"bReinitializeOnBecomingRelevant": true,
+				"bCreateNotifyMetaData": true,
+				"bAllowConduitEntryStates": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_SaveCachedPose":
+			{
+				"Pose":
+				{
+					"LinkID": 7,
+					"SourceLinkID": 8
+				},
+				"CachePoseName": "Locomotion",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_8":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_7":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_6":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_5":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_4":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_3":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_2":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult_1":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_TransitionResult":
+			{
+				"bCanEnterTransition": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_SequencePlayer_4":
+			{
+				"GroupName": "None",
+				"GroupRole": "CanBeLeader",
+				"bOverridePositionWhenJoiningSyncGroupAsLeader": false,
+				"Method": "DoNotSync",
+				"bIgnoreForRelevancyTest": false,
+				"Sequence": "/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/Jump/MM_Land.MM_Land",
+				"PlayRateBasis": 1,
+				"PlayRate": 1,
+				"PlayRateScaleBiasClampConstants":
+				{
+					"bMapRange": false,
+					"bClampResult": false,
+					"bInterpResult": false,
+					"InRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"OutRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"Scale": 1,
+					"Bias": 0,
+					"ClampMin": 0,
+					"ClampMax": 1,
+					"InterpSpeedIncreasing": 10,
+					"InterpSpeedDecreasing": 10
+				},
+				"StartPosition": 0,
+				"bLoopAnimation": false,
+				"bStartFromMatchingPose": false,
+				"PlayRateScaleBiasClampState":
+				{
+				},
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_StateResult_3":
+			{
+				"StateIndex": 3,
+				"StateEntryFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedInFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateExitFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedOutFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"Result":
+				{
+					"LinkID": 18,
+					"SourceLinkID": 19
+				},
+				"Name": "Land",
+				"LayerGroup": "DefaultSharedGroup",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_SequencePlayer_3":
+			{
+				"GroupName": "None",
+				"GroupRole": "CanBeLeader",
+				"bOverridePositionWhenJoiningSyncGroupAsLeader": false,
+				"Method": "DoNotSync",
+				"bIgnoreForRelevancyTest": false,
+				"Sequence": "/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/Jump/MM_Fall_Loop.MM_Fall_Loop",
+				"PlayRateBasis": 1,
+				"PlayRate": 1,
+				"PlayRateScaleBiasClampConstants":
+				{
+					"bMapRange": false,
+					"bClampResult": false,
+					"bInterpResult": false,
+					"InRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"OutRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"Scale": 1,
+					"Bias": 0,
+					"ClampMin": 0,
+					"ClampMax": 1,
+					"InterpSpeedIncreasing": 10,
+					"InterpSpeedDecreasing": 10
+				},
+				"StartPosition": 0,
+				"bLoopAnimation": true,
+				"bStartFromMatchingPose": false,
+				"PlayRateScaleBiasClampState":
+				{
+				},
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_StateResult_2":
+			{
+				"StateIndex": 2,
+				"StateEntryFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedInFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateExitFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedOutFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"Result":
+				{
+					"LinkID": 20,
+					"SourceLinkID": 21
+				},
+				"Name": "Fall Loop",
+				"LayerGroup": "DefaultSharedGroup",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_SequencePlayer_2":
+			{
+				"GroupName": "None",
+				"GroupRole": "CanBeLeader",
+				"bOverridePositionWhenJoiningSyncGroupAsLeader": false,
+				"Method": "DoNotSync",
+				"bIgnoreForRelevancyTest": false,
+				"Sequence": "/Game/ProjectAtlantis/Characters/Common/Animations/Unarmed/Jump/MM_Jump.MM_Jump",
+				"PlayRateBasis": 1,
+				"PlayRate": 1,
+				"PlayRateScaleBiasClampConstants":
+				{
+					"bMapRange": false,
+					"bClampResult": false,
+					"bInterpResult": false,
+					"InRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"OutRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"Scale": 1,
+					"Bias": 0,
+					"ClampMin": 0,
+					"ClampMax": 1,
+					"InterpSpeedIncreasing": 10,
+					"InterpSpeedDecreasing": 10
+				},
+				"StartPosition": 0.080000000000000002,
+				"bLoopAnimation": false,
+				"bStartFromMatchingPose": false,
+				"PlayRateScaleBiasClampState":
+				{
+				},
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_StateResult_1":
+			{
+				"StateIndex": 1,
+				"StateEntryFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedInFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateExitFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedOutFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"Result":
+				{
+					"LinkID": 22,
+					"SourceLinkID": 23
+				},
+				"Name": "Jump",
+				"LayerGroup": "DefaultSharedGroup",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_UseCachedPose":
+			{
+				"LinkToCachingNode":
+				{
+					"LinkID": 8,
+					"SourceLinkID": 24
+				},
+				"CachePoseName": "Locomotion",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_StateResult":
+			{
+				"StateIndex": 0,
+				"StateEntryFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedInFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateExitFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"StateFullyBlendedOutFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"Result":
+				{
+					"LinkID": 24,
+					"SourceLinkID": 25
+				},
+				"Name": "Locomotion",
+				"LayerGroup": "DefaultSharedGroup",
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_StateMachine":
+			{
+				"StateMachineIndexInClass": 0,
+				"MaxTransitionsPerFrame": 3,
+				"MaxTransitionsRequests": 32,
+				"bSkipFirstUpdateTransition": true,
+				"bReinitializeOnBecomingRelevant": true,
+				"bCreateNotifyMetaData": true,
+				"bAllowConduitEntryStates": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_Slot":
+			{
+				"Source":
+				{
+					"LinkID": 26,
+					"SourceLinkID": 27
+				},
+				"SlotName": "DefaultSlot",
+				"bAlwaysUpdateSourcePose": false,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_ControlRig":
+			{
+				"ControlRigClass": "/Game/ProjectAtlantis/Characters/Common/Mannequins/CR_Mannequin_FootIK.CR_Mannequin_FootIK_C",
+				"DefaultControlRigClass": null,
+				"Alpha": 1,
+				"AlphaInputType": "Float",
+				"bAlphaBoolEnabled": true,
+				"bSetRefPoseFromSkeleton": false,
+				"AlphaScaleBias":
+				{
+					"Scale": 1,
+					"Bias": 0
+				},
+				"AlphaBoolBlend":
+				{
+					"BlendInTime": 0,
+					"BlendOutTime": 0,
+					"BlendOption": "Linear",
+					"CustomCurve": null
+				},
+				"AlphaCurveName": "None",
+				"AlphaScaleBiasClamp":
+				{
+					"bMapRange": false,
+					"bClampResult": false,
+					"bInterpResult": false,
+					"InRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"OutRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"Scale": 1,
+					"Bias": 0,
+					"ClampMin": 0,
+					"ClampMax": 1,
+					"InterpSpeedIncreasing": 10,
+					"InterpSpeedDecreasing": 10
+				},
+				"InputMapping":
+				{
+				},
+				"OutputMapping":
+				{
+				},
+				"LODThreshold": -1,
+				"Source":
+				{
+					"LinkID": 27,
+					"SourceLinkID": 28
+				},
+				"bResetInputPoseToInitial": true,
+				"bTransferInputPose": true,
+				"bTransferInputCurves": true,
+				"bTransferPoseInGlobalSpace": false,
+				"InputBonesToTransfer": [],
+				"OutputBonesToTransfer": [],
+				"AssetUserData": [],
+				"EventQueue": [],
+				"SourcePropertyNames": [
+					"__CustomProperty_ShouldDoIKTrace_2069957B49E3221049990CA5F558495A"
+				],
+				"DestPropertyNames": [
+					"ShouldDoIKTrace"
+				],
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_BlendListByBool_1":
+			{
+				"BlendProfileForFalse": null,
+				"bUseSeperateBlendProfileForFalse": false,
+				"bActiveValue": false,
+				"BlendPose": [
+					{
+						"LinkID": 31,
+						"SourceLinkID": 29
+					},
+					{
+						"LinkID": 30,
+						"SourceLinkID": 29
+					}
+				],
+				"BlendTime": [
+					0.20000000000000001,
+					0.20000000000000001
+				],
+				"TransitionType": "StandardBlend",
+				"BlendType": "HermiteCubic",
+				"ChildUpateMode": "Default",
+				"CustomBlendCurve": null,
+				"BlendProfile": null,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_SequencePlayer_1":
+			{
+				"GroupName": "None",
+				"GroupRole": "CanBeLeader",
+				"bOverridePositionWhenJoiningSyncGroupAsLeader": false,
+				"Method": "DoNotSync",
+				"bIgnoreForRelevancyTest": false,
+				"Sequence": "/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/A_Swim_Idle.A_Swim_Idle",
+				"PlayRateBasis": 1,
+				"PlayRate": 1,
+				"PlayRateScaleBiasClampConstants":
+				{
+					"bMapRange": false,
+					"bClampResult": false,
+					"bInterpResult": false,
+					"InRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"OutRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"Scale": 1,
+					"Bias": 0,
+					"ClampMin": 0,
+					"ClampMax": 1,
+					"InterpSpeedIncreasing": 10,
+					"InterpSpeedDecreasing": 10
+				},
+				"StartPosition": 0,
+				"bLoopAnimation": true,
+				"bStartFromMatchingPose": false,
+				"PlayRateScaleBiasClampState":
+				{
+				},
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_SequencePlayer":
+			{
+				"GroupName": "None",
+				"GroupRole": "CanBeLeader",
+				"bOverridePositionWhenJoiningSyncGroupAsLeader": false,
+				"Method": "DoNotSync",
+				"bIgnoreForRelevancyTest": false,
+				"Sequence": "/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/A_Swim_Fwd.A_Swim_Fwd",
+				"PlayRateBasis": 1,
+				"PlayRate": 1,
+				"PlayRateScaleBiasClampConstants":
+				{
+					"bMapRange": false,
+					"bClampResult": false,
+					"bInterpResult": false,
+					"InRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"OutRange":
+					{
+						"Min": 0,
+						"Max": 1
+					},
+					"Scale": 1,
+					"Bias": 0,
+					"ClampMin": 0,
+					"ClampMax": 1,
+					"InterpSpeedIncreasing": 10,
+					"InterpSpeedDecreasing": 10
+				},
+				"StartPosition": 0,
+				"bLoopAnimation": true,
+				"bStartFromMatchingPose": false,
+				"PlayRateScaleBiasClampState":
+				{
+				},
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"AnimGraphNode_BlendListByBool":
+			{
+				"BlendProfileForFalse": null,
+				"bUseSeperateBlendProfileForFalse": false,
+				"bActiveValue": false,
+				"BlendPose": [
+					{
+						"LinkID": 29,
+						"SourceLinkID": 32
+					},
+					{
+						"LinkID": 28,
+						"SourceLinkID": 32
+					}
+				],
+				"BlendTime": [
+					0.20000000000000001,
+					0.20000000000000001
+				],
+				"TransitionType": "StandardBlend",
+				"BlendType": "HermiteCubic",
+				"ChildUpateMode": "Default",
+				"CustomBlendCurve": null,
+				"BlendProfile": null,
+				"InitialUpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"BecomeRelevantFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				},
+				"UpdateFunction":
+				{
+					"ClassName": "None",
+					"FunctionName": "None"
+				}
+			},
+			"__CustomProperty_ShouldDoIKTrace_2069957B49E3221049990CA5F558495A": false,
+			"Character": null,
+			"MovementComponent": null,
+			"Velocity":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"GroundSpeed": 0,
+			"Direction": 0,
+			"ShouldMove": false,
+			"IsFalling": false,
+			"SwimmingMovementThreshold": 3,
+			"RootMotionMode": "RootMotionFromMontagesOnly",
+			"bUseMultiThreadedAnimationUpdate": true,
+			"bUsingCopyPoseFromMesh": false,
+			"bReceiveNotifiesFromLinkedInstances": false,
+			"bPropagateNotifiesToLinkedInstances": false,
+			"bUseMainInstanceMontageEvaluationData": false,
+			"PostCompileValidationClassName": "None"
+		}
+	}
+}
