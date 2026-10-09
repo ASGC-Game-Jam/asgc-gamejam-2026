@@ -1871,6 +1871,34 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "05001a9449c53769d9d21ba131937c49",
+					"class": "K2Node_VariableGet",
+					"title": "Get JournalWidget",
+					"x": 2496,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "05001a9449c53769d9d21ba131937c49:o:JournalWidget",
+							"name": "JournalWidget",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": [
+								"5500582447191e46ad07f4bcb9bcaa60:i:self"
+							]
+						},
+						{
+							"id": "05001a9449c53769d9d21ba131937c49:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_EXPERIMENTALJournalPlayerController.BP_EXPERIMENTALJournalPlayerController_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "0863d23b4c2254504d9e0e96e0618161",
 					"class": "K2Node_CallFunction",
 					"title": "Add to Viewport",
@@ -2182,6 +2210,44 @@
 							"defaultValue": null,
 							"links": [
 								"420c66ac408cf46224cc979913b51035:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5500582447191e46ad07f4bcb9bcaa60",
+					"class": "K2Node_CallFunction",
+					"title": "HandleJournal",
+					"x": 2592,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5500582447191e46ad07f4bcb9bcaa60:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f90172054f06c48e1874afb3209b1e16:o:Started"
+							]
+						},
+						{
+							"id": "5500582447191e46ad07f4bcb9bcaa60:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5500582447191e46ad07f4bcb9bcaa60:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": [
+								"05001a9449c53769d9d21ba131937c49:o:JournalWidget"
 							]
 						}
 					]
@@ -2639,18 +2705,18 @@
 							]
 						},
 						{
-							"id": "c32fdd10426052023238baa3decf0553:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_EXPERIMENTALJournalPlayerController.BP_EXPERIMENTALJournalPlayerController_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "c32fdd10426052023238baa3decf0553:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c32fdd10426052023238baa3decf0553:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_EXPERIMENTALJournalPlayerController.BP_EXPERIMENTALJournalPlayerController_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -2815,6 +2881,90 @@
 							]
 						}
 					]
+				},
+				{
+					"guid": "f90172054f06c48e1874afb3209b1e16",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_Journal",
+					"x": 2192,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f90172054f06c48e1874afb3209b1e16:o:Triggered",
+							"name": "Triggered",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f90172054f06c48e1874afb3209b1e16:o:Started",
+							"name": "Started",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5500582447191e46ad07f4bcb9bcaa60:i:execute"
+							]
+						},
+						{
+							"id": "f90172054f06c48e1874afb3209b1e16:o:Ongoing",
+							"name": "Ongoing",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f90172054f06c48e1874afb3209b1e16:o:Canceled",
+							"name": "Canceled",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f90172054f06c48e1874afb3209b1e16:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f90172054f06c48e1874afb3209b1e16:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "f90172054f06c48e1874afb3209b1e16:o:ElapsedSeconds",
+							"name": "ElapsedSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f90172054f06c48e1874afb3209b1e16:o:TriggeredSeconds",
+							"name": "TriggeredSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f90172054f06c48e1874afb3209b1e16:o:InputAction",
+							"name": "InputAction",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Journal.IA_Journal",
+							"links": []
+						}
+					]
 				}
 			],
 			"comments": [
@@ -2843,6 +2993,14 @@
 					"height": 400
 				},
 				{
+					"guid": "284567f942e8d838970dc7bfbf21748f",
+					"text": "journal is mainly handled within the widget itself",
+					"x": 2128,
+					"y": 32,
+					"width": 683,
+					"height": 362
+				},
+				{
 					"guid": "36fa440942402a599e3cf79a1cd2cb7a",
 					"text": "Add touch input controls through a widget",
 					"x": 464,
@@ -2855,8 +3013,8 @@
 					"text": "Add Journal Widget to Player",
 					"x": 1920,
 					"y": 480,
-					"width": 1488,
-					"height": 1328
+					"width": 1504,
+					"height": 864
 				},
 				{
 					"guid": "5cc795a9481b14c5255e2b987fd36bde",
