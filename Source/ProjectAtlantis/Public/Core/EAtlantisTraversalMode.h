@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AtlantisTraversalTypes.generated.h"
+#include "EAtlantisTraversalMode.generated.h"
 
 
 UENUM(BlueprintType)

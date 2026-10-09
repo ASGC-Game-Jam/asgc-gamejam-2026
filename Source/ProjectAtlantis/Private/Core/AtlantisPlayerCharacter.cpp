@@ -6,11 +6,11 @@
 #include "Core/AtlantisPlayerState.h"
 
 // Sets default values
-AAtlantisPlayerCharacter::AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer): Super(ObjectInitializer.SetDefaultSubobjectClass<UAtlantisMovementComponent>(ACharacter::CharacterMovementComponentName))
+AAtlantisPlayerCharacter::AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer) : Super(
+	ObjectInitializer.SetDefaultSubobjectClass<UAtlantisMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
@@ -24,14 +24,12 @@ void AAtlantisPlayerCharacter::BeginPlay()
 void AAtlantisPlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
 void AAtlantisPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 void AAtlantisPlayerCharacter::MoveToStart()
@@ -46,9 +44,9 @@ void AAtlantisPlayerCharacter::MoveToTransform(const FTransform& Transform)
 
 void AAtlantisPlayerCharacter::UpdateTraversalMode()
 {
-	if (AAtlantisPlayerState* PlayerState = GetPlayerState<AAtlantisPlayerState>())
+	if (AAtlantisPlayerState* AtlantisPlayerState  = GetPlayerState<AAtlantisPlayerState>())
 	{
-		AtlantisPlayerState->SetTraversalMode(ToTraversalMode(GetCharacterMovement()->MovementMode));	
+		AtlantisPlayerState ->SetTraversalMode(ToTraversalMode(GetCharacterMovement()->MovementMode));
 	}
 }
 
@@ -70,24 +68,24 @@ EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(EMovementMode M
 void AAtlantisPlayerCharacter::OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode)
 {
 	Super::OnMovementModeChanged(PrevMovementMode, PreviousCustomMode);
-	
+
 	UpdateTraversalMode();
 }
 
 void AAtlantisPlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-	
+
 	UpdateTraversalMode();
 }
 
 void AAtlantisPlayerCharacter::UnPossessed()
 {
 	// Clear the traversal mode before the Super
-	if (AAtlantisPlayerState *AtlantisPlayerState  = GetPlayerState<AAtlantisPlayerState>())
+	if (AAtlantisPlayerState* AtlantisPlayerState  = GetPlayerState<AAtlantisPlayerState>())
 	{
-		AtlantisPlayerState->SetTraversalMode(EAtlantisTraversalMode::None);
+		AtlantisPlayerState ->SetTraversalMode(EAtlantisTraversalMode::None);
 	}
-	
+
 	Super::UnPossessed();
 }

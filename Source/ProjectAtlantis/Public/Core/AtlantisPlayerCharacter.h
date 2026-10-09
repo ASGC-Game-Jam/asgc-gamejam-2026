@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Core/AtlantisTraversalTypes.h"
+#include "Core/EAtlantisTraversalMode.h"
 #include "AtlantisPlayerCharacter.generated.h"
 
 

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
-#include "Core/AtlantisTraversalTypes.h"
+#include "Core/EAtlantisTraversalMode.h"
 #include "AtlantisPlayerState.generated.h"
 
 UENUM(BlueprintType)
