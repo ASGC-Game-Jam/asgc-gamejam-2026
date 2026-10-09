@@ -42,11 +42,11 @@ void AAtlantisPlayerCharacter::MoveToTransform(const FTransform& Transform)
 	SetActorTransform(Transform);
 }
 
-void AAtlantisPlayerCharacter::UpdateTraversalMode()
+void AAtlantisPlayerCharacter::UpdateTraversalMode() const
 {
-	if (AAtlantisPlayerState* PlayerState  = GetPlayerState<AAtlantisPlayerState>())
+	if (AAtlantisPlayerState* State  = GetPlayerState<AAtlantisPlayerState>())
 	{
-		PlayerState ->SetTraversalMode(ToTraversalMode(GetCharacterMovement()->MovementMode));
+		State ->SetTraversalMode(ToTraversalMode(GetCharacterMovement()->MovementMode));
 	}
 }
 
@@ -82,9 +82,9 @@ void AAtlantisPlayerCharacter::PossessedBy(AController* NewController)
 void AAtlantisPlayerCharacter::UnPossessed()
 {
 	// Clear the traversal mode before the Super
-	if (AAtlantisPlayerState* AtlantisPlayerState  = GetPlayerState<AAtlantisPlayerState>())
+	if (AAtlantisPlayerState* State  = GetPlayerState<AAtlantisPlayerState>())
 	{
-		AtlantisPlayerState ->SetTraversalMode(EAtlantisTraversalMode::None);
+		State ->SetTraversalMode(EAtlantisTraversalMode::None);
 	}
 
 	Super::UnPossessed();

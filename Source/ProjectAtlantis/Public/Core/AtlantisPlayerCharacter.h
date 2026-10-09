@@ -16,7 +16,6 @@ public:
 	// Sets default values for this character's properties
 	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
 
-protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
@@ -26,7 +25,6 @@ protected:
 	
 	virtual void UnPossessed() override;
 
-public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -49,5 +47,5 @@ private:
 	static EAtlantisTraversalMode ToTraversalMode(EMovementMode MovementMode);
 	
 	/** Pushes the current traversal mode to the PlayerState. */
-	void UpdateTraversalMode();
+	void UpdateTraversalMode() const;
 };
