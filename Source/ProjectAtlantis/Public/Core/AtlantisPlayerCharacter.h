@@ -7,7 +7,6 @@
 #include "Core/AtlantisTraversalTypes.h"
 #include "AtlantisPlayerCharacter.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTraversalModeChanged, EAtlantisTraversalMode, NewMode, EAtlantisTraversalMode, OldMode);
 
 UCLASS()
 class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
@@ -17,14 +16,7 @@ class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
-	
-	/** It fires when the traversal mode changes */
-	UPROPERTY(BlueprintAssignable, Category="Atlantis|Movement|Traversal")
-	FOnTraversalModeChanged OnTraversalModeChanged;
-	
-	/** Getter for the current Traversal mode */ 
-	UFUNCTION(BlueprintPure, Category = "Atlantis|Movement|Traversal")
-	EAtlantisTraversalMode GetTraversalMode() const;
+
 	
 protected:
 	// Called when the game starts or when spawned
@@ -32,6 +24,10 @@ protected:
 	
 	virtual void OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode = 0) override;
 	
+	virtual void PossessedBy(AController* NewController) override;
+	
+	virtual void UnPossessed() override;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -51,10 +47,9 @@ private:
 	UPROPERTY(BlueprintReadOnly, Category = "Atlantis|Movement", meta = (AllowPrivateAccess = "true"))
 	FTransform StartTransform;
 	
-	/** Current Traversal mode. Visible in the Details panel for debugging */
-	UPROPERTY(VisibleInstanceOnly, Category = "Atlantis|Movement|Traversal")
-	EAtlantisTraversalMode TraversalMode = EAtlantisTraversalMode::None;
-	
-	/** Maps and engiene movement mode to a traversal mode */
+	/** Maps an engine movement mode to a traversal mode */
 	static EAtlantisTraversalMode ToTraversalMode(EMovementMode MovementMode);
+	
+	/** Pushes the current traversal mode to the PlayerState. */
+	void UpdateTraversalMode();
 };

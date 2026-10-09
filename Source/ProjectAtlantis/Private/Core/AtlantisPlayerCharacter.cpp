@@ -3,6 +3,7 @@
 
 #include "Core/AtlantisPlayerCharacter.h"
 #include "Core/AtlantisMovementComponent.h"
+#include "Core/AtlantisPlayerState.h"
 
 // Sets default values
 AAtlantisPlayerCharacter::AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer): Super(ObjectInitializer.SetDefaultSubobjectClass<UAtlantisMovementComponent>(ACharacter::CharacterMovementComponentName))
@@ -42,6 +43,15 @@ void AAtlantisPlayerCharacter::MoveToTransform(const FTransform& Transform)
 {
 	SetActorTransform(Transform);
 }
+
+void AAtlantisPlayerCharacter::UpdateTraversalMode()
+{
+	if (AAtlantisPlayerState *AtlantisPlayerState = GetPlayerState<AAtlantisPlayerState>())
+	{
+		AtlantisPlayerState->SetTraversalMode(ToTraversalMode(GetCharacterMovement()->MovementMode));	
+	}
+}
+
 //This function is meant to translate the Movement Options of our base Player Character to our own Terrestrial / Swimming Modes
 EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(EMovementMode MovementMode)
 {
@@ -67,18 +77,23 @@ void AAtlantisPlayerCharacter::OnMovementModeChanged(EMovementMode PrevMovementM
 {
 	Super::OnMovementModeChanged(PrevMovementMode, PreviousCustomMode);
 	
-	//Several base Player Character modes share one traversal mode (Walking, Falling are both Terrestrial)
-	const EAtlantisTraversalMode NewMode = ToTraversalMode(GetCharacterMovement()->MovementMode);
-	if (NewMode == TraversalMode) return;
-	
-	const EAtlantisTraversalMode OldMode = TraversalMode;
-	TraversalMode = NewMode;
-	
-	OnTraversalModeChanged.Broadcast(NewMode, OldMode);
+	UpdateTraversalMode();
 }
 
-EAtlantisTraversalMode AAtlantisPlayerCharacter::GetTraversalMode() const
+void AAtlantisPlayerCharacter::PossessedBy(AController* NewController)
 {
-	return TraversalMode;	
+	Super::PossessedBy(NewController);
 	
+	UpdateTraversalMode();
+}
+
+void AAtlantisPlayerCharacter::UnPossessed()
+{
+	// Clear the traversal mode before the Super
+	if (AAtlantisPlayerState *AtlantisPlayerState  = GetPlayerState<AAtlantisPlayerState>())
+	{
+		AtlantisPlayerState->SetTraversalMode(EAtlantisTraversalMode::None);
+	}
+	
+	Super::UnPossessed();
 }
