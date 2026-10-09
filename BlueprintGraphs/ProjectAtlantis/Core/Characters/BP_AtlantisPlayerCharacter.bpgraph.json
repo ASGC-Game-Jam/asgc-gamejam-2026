@@ -870,14 +870,6 @@
 							]
 						},
 						{
-							"id": "3444c69f4ca647efc28775abc5fec6c4:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "3444c69f4ca647efc28775abc5fec6c4:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
@@ -886,6 +878,14 @@
 							"links": [
 								"bcfc9d5e4976404f246066bca8084b0e:i:Condition"
 							]
+						},
+						{
+							"id": "3444c69f4ca647efc28775abc5fec6c4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -2768,8 +2768,8 @@
 							]
 						},
 						{
-							"id": "2a3da48345e90202f09ace99f8974cc9:i:Examine Mode State",
-							"name": "Examine Mode State",
+							"id": "2a3da48345e90202f09ace99f8974cc9:i:Current Examine Mode State",
+							"name": "Current Examine Mode State",
 							"direction": "input",
 							"type": "bool",
 							"defaultValue": null,
@@ -2794,7 +2794,7 @@
 					"class": "K2Node_VariableGet",
 					"title": "Get Examine Mode",
 					"x": 2224,
-					"y": 1536,
+					"y": 1539,
 					"comment": null,
 					"pins": [
 						{
@@ -2804,7 +2804,7 @@
 							"type": "bool",
 							"defaultValue": null,
 							"links": [
-								"2a3da48345e90202f09ace99f8974cc9:i:Examine Mode State"
+								"2a3da48345e90202f09ace99f8974cc9:i:Current Examine Mode State"
 							]
 						},
 						{
@@ -4425,7 +4425,7 @@
 			{
 				"type": "bool",
 				"category": "Default",
-				"defaultValue": "True",
+				"defaultValue": "",
 				"instanceEditable": false
 			},
 			"As BP Atlantis Player Controller":
@@ -6111,7 +6111,7 @@
 			"CameraBoom": null,
 			"First Person Camera": null,
 			"Range": 600,
-			"Examine": true,
+			"Examine Mode": true,
 			"As BP Atlantis Player Controller": null,
 			"Character Movement": null,
 			"Last Overlapped Actors": [],
@@ -6776,6 +6776,8 @@
 			{
 				"_class": "AtlantisMovementComponent",
 				"_name": "CharMoveComp",
+				"DescendBuoyancy": 0.5,
+				"AscendBuoyancy": 1.5,
 				"MaxSwimAcceleration": 2000,
 				"MaxVerticalSwimSpeed": 150,
 				"GravityScale": 1,
