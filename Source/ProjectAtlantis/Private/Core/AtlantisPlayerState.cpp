@@ -221,3 +221,51 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 		}
 	}
 }
+
+bool AAtlantisPlayerState::RequestOxygen(const float RequestedOxygen)
+{
+	if (!HasAuthority() || RequestedOxygen < 0.f)
+	{
+		return false;
+	}
+	const bool bRequestAccepted = GetAvailableOxygen() >= RequestedOxygen;
+
+	if (bRequestAccepted)
+	{
+		SetCurrentOxygen(CurrentOxygen - RequestedOxygen);
+	}
+
+	return bRequestAccepted;
+}
+
+bool AAtlantisPlayerState::RequestOxygenAllocation(const float RequestedOxygen)
+{
+	if (!HasAuthority() || RequestedOxygen < 0.f)
+	{
+		return false;
+	}
+	const bool bRequestAccepted = GetAvailableOxygen() >= RequestedOxygen;
+
+	if (bRequestAccepted)
+	{
+		SetLockedOxygen(LockedOxygen + RequestedOxygen);
+	}
+
+	return bRequestAccepted;
+}
+
+bool AAtlantisPlayerState::ReleaseOxygen(const float ReleasedOxygen)
+{
+	if (!HasAuthority() || ReleasedOxygen < 0.f)
+	{
+		return false;
+	}
+	const bool bRequestAccepted = LockedOxygen >= ReleasedOxygen;
+
+	if (bRequestAccepted)
+	{
+		SetLockedOxygen(LockedOxygen - ReleasedOxygen);
+	}
+
+	return bRequestAccepted;
+}
