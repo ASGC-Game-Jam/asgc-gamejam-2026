@@ -28,7 +28,8 @@ FVector UAtlantisMovementComponent::ConstrainInputAcceleration(const FVector& In
 	if (IsSurfaceWalking() && CharacterOwner && CharacterOwner->GetController())
 	{
 		const FRotator Yaw(0.f, CharacterOwner->GetControlRotation().Yaw, 0.f);
-		FVector Forward = FVector::VectorPlaneProject(CharacterOwner->GetControlRotation().Vector(), SurfaceNormal).GetSafeNormal();
+		FVector Forward = FVector::VectorPlaneProject(CharacterOwner->GetControlRotation().Vector(), SurfaceNormal).
+			GetSafeNormal();
 		if (Forward.IsNearlyZero())
 		{
 			// Try camera yaw without pitch.
@@ -37,7 +38,8 @@ FVector UAtlantisMovementComponent::ConstrainInputAcceleration(const FVector& In
 		if (Forward.IsNearlyZero())
 		{
 			// Yaw can also point into a vertical surface, so use the character's facing.
-			Forward = FVector::VectorPlaneProject(CharacterOwner->GetActorForwardVector(), SurfaceNormal).GetSafeNormal();
+			Forward = FVector::VectorPlaneProject(CharacterOwner->GetActorForwardVector(), SurfaceNormal).
+				GetSafeNormal();
 		}
 		// Keep camera-right input pointing right even on an inverted ceiling.
 		FVector Right = FVector::CrossProduct(SurfaceNormal, Forward).GetSafeNormal();
@@ -288,18 +290,11 @@ bool UAtlantisMovementComponent::FindSupportingSurface(const FVector& Direction,
 	const float Extent = Radius + (HalfHeight - Radius) * FMath::Abs(FVector::DotProduct(Direction, Capsule->GetUpVector()));
 	FCollisionQueryParams Params(SCENE_QUERY_STAT(SurfaceWalkSupport), false, CharacterOwner);
 	const FVector Start = UpdatedComponent->GetComponentLocation();
-	bool bHit;
-	if (IsSwimming())
-	{
-		bHit = GetWorld()->SweepSingleByChannel(Hit, Start, Start + Direction * (ExtraDistance + 1.f),
-			Capsule->GetComponentQuat(), UpdatedComponent->GetCollisionObjectType(),
-			FCollisionShape::MakeCapsule(FMath::Max(Radius - 1.f, 1.f), FMath::Max(HalfHeight - 1.f, Radius)), Params);
-	}
-	else
-	{
-		bHit = GetWorld()->LineTraceSingleByChannel(Hit, Start, Start + Direction * (Extent + ExtraDistance),
-			UpdatedComponent->GetCollisionObjectType(), Params);
-	}
+	// Attachment needs support beneath the center, just like continued walking.
+	// A capsule sweep can still touch the lip after walking off and snap the
+	// character back onto it every swimming tick, preventing a drop.
+	const bool bHit = GetWorld()->LineTraceSingleByChannel(Hit, Start, Start + Direction * (Extent + ExtraDistance),
+		UpdatedComponent->GetCollisionObjectType(), Params);
 	return bHit && Hit.bBlockingHit && !Hit.bStartPenetrating && IsSurfaceAllowed(Hit.ImpactNormal);
 }
 
