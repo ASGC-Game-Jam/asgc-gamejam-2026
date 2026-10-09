@@ -513,11 +513,8 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 		if (!TrySurfaceStep(RemainingDelta))
 		{
 			SlideAlongSurface(Velocity * DeltaTime, 1.f - Hit.Time, Hit.Normal, Hit, true);
-			if (!Acceleration.IsNearlyZero() && FVector::VectorPlaneProject(UpdatedComponent->GetComponentLocation() - Start, SurfaceNormal).SizeSquared() < 0.01f)
-			{
-				DetachSurface(true);
-				return;
-			}
+			// An obstacle blocks travel, not support. Keep the current attachment;
+			// measured displacement below removes velocity into the wall, as on dry land.
 		}
 	}
 	if (!FindSupportingSurface(-SurfaceNormal, SurfaceDetachDistance, Support)

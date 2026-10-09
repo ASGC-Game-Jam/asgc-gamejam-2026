@@ -22,7 +22,9 @@ normal changes also respect Max Surface Normal Change Degrees.
 Small uneven ledges are crossed using swept movement away from support, forward,
 and back toward a valid surface, bounded by Max Step Height. This also works on
 ceiling undersides. Capsule clearance is restored before reorienting, and overlapping
-poses are rejected. Obstructed alignment or movement releases attachment to Swimming;
+poses are rejected. Walls that cannot be stepped over block movement while retaining
+floor or ceiling attachment. The player can turn or retreat, or change Ballast to
+Wander or the opposite direction to detach. Obstructed alignment releases attachment to Swimming;
 Blocked Surface Reattach Delay (default 0.2 seconds) prevents immediate retries
 against the same obstruction so the player can move clear.
 Attachment uses a capsule sweep, support uses a center trace, and movement uses
