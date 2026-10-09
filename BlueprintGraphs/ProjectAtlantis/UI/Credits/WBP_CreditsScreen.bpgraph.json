@@ -1,0 +1,81 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/Credits/WBP_CreditsScreen",
+	"asset": "WBP_CreditsScreen",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "b034e6844febcc11ddd61a9cd4eaccce",
+					"class": "K2Node_CallFunction",
+					"title": "Remove from Parent",
+					"x": 272,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b034e6844febcc11ddd61a9cd4eaccce:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e9b257a9450008cd8bc0888fea22c034:o:then"
+							]
+						},
+						{
+							"id": "b034e6844febcc11ddd61a9cd4eaccce:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b034e6844febcc11ddd61a9cd4eaccce:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e9b257a9450008cd8bc0888fea22c034",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (ExitButton)",
+					"x": 0,
+					"y": 15,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e9b257a9450008cd8bc0888fea22c034:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e9b257a9450008cd8bc0888fea22c034:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b034e6844febcc11ddd61a9cd4eaccce:i:execute"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}
