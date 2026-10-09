@@ -2587,6 +2587,98 @@
 					]
 				},
 				{
+					"guid": "129c28134e0a1a215f3d82b42a140427",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 3904,
+					"y": 1488,
+					"comment": null,
+					"pins": [
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"696fba644aa9868ff8758ba29d6dc7ec:o:else"
+							]
+						},
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Interaction Failed",
+							"links": []
+						},
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "129c28134e0a1a215f3d82b42a140427:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "13e99d724ae7ddaf0bbd52a5dbc5dace",
 					"class": "K2Node_CallFunction",
 					"title": "Stop Jumping",
@@ -3110,6 +3202,54 @@
 					]
 				},
 				{
+					"guid": "696fba644aa9868ff8758ba29d6dc7ec",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 3605,
+					"y": 1455,
+					"comment": null,
+					"pins": [
+						{
+							"id": "696fba644aa9868ff8758ba29d6dc7ec:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"95e2456d4a40dcddd35112b1662730e7:o:then"
+							]
+						},
+						{
+							"id": "696fba644aa9868ff8758ba29d6dc7ec:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"95e2456d4a40dcddd35112b1662730e7:o:Interaction Occured"
+							]
+						},
+						{
+							"id": "696fba644aa9868ff8758ba29d6dc7ec:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "696fba644aa9868ff8758ba29d6dc7ec:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"129c28134e0a1a215f3d82b42a140427:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "7579ef1340e9eec3f06f649089cbc0a8",
 					"class": "K2Node_CallFunction",
 					"title": "Aim",
@@ -3448,7 +3588,7 @@
 					"guid": "95e2456d4a40dcddd35112b1662730e7",
 					"class": "K2Node_Message",
 					"title": "Talk",
-					"x": 3216,
+					"x": 3214,
 					"y": 1440,
 					"comment": null,
 					"pins": [
@@ -3468,7 +3608,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"696fba644aa9868ff8758ba29d6dc7ec:i:execute"
+							]
 						},
 						{
 							"id": "95e2456d4a40dcddd35112b1662730e7:i:self",
@@ -3495,8 +3637,10 @@
 							"name": "Interaction Occured",
 							"direction": "output",
 							"type": "bool",
-							"defaultValue": "false",
-							"links": []
+							"defaultValue": null,
+							"links": [
+								"696fba644aa9868ff8758ba29d6dc7ec:i:Condition"
+							]
 						}
 					]
 				},
@@ -4038,8 +4182,8 @@
 					"guid": "e09ebfb447e52e7fb2b9f3b4de0c38ff",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 2882,
-					"y": 1423,
+					"x": 2880,
+					"y": 1424,
 					"comment": null,
 					"pins": [
 						{
