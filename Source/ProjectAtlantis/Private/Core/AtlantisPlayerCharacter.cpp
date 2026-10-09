@@ -52,7 +52,6 @@ void AAtlantisPlayerCharacter::UpdateTraversalMode()
 	}
 }
 
-//This function is meant to translate the Movement Options of our base Player Character to our own Terrestrial / Swimming Modes
 EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(EMovementMode MovementMode)
 {
 	switch (MovementMode)
