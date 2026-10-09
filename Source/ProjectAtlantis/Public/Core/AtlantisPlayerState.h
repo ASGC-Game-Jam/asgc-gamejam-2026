@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
+#include "Core/EAtlantisTraversalMode.h"
 #include "AtlantisPlayerState.generated.h"
 
 UENUM(BlueprintType)
@@ -33,8 +34,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, Old
  */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBallastChanged, bool, bIsAllocated, EAtlantisBallastState, BallastState);
 
-/** Traversal mode changed. */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTraversalModeChanged, int32, OldTraversalMode, int32, NewTraversalMode);
+/** Traversal mode changed(Terrestrial, Swimming, …). Carries the previous mode. */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTraversalModeChanged, EAtlantisTraversalMode, OldTraversalMode, EAtlantisTraversalMode, NewTraversalMode);
 
 /** Equipped item set changed. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEquippedItemsChanged, const TArray<FString>&, NewEquippedItems);
@@ -116,7 +117,7 @@ public:
 	bool IsUpperSurfaceWalkingAllowed() const { return BallastState == EAtlantisBallastState::Ascend; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
-	int32 GetTraversalMode() const { return TraversalMode; }
+	EAtlantisTraversalMode GetTraversalMode() const { return TraversalMode; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	const TArray<FString>& GetEquippedItems() const { return EquippedItems; }
@@ -148,7 +149,7 @@ public:
 	void SetBallastState(EAtlantisBallastState NewBallastState);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
-	void SetTraversalMode(int32 NewTraversalMode);
+	void SetTraversalMode(EAtlantisTraversalMode NewTraversalMode);
 
 	/** Consumes the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
@@ -168,7 +169,6 @@ protected:
 
 	//PlayerState Variables - Often includes things like health, ammo etc.
 	//TODO: note that these are placeholder variables and data types they may be swapped out for the real value upon implementation
-
 	/** Carries our custom state across seamless travel and PlayerState re-creation. */
 	virtual void CopyProperties(APlayerState* PlayerState) override;
 
@@ -190,9 +190,9 @@ private:
 	UPROPERTY(ReplicatedUsing = OnRep_BallastState, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
 	EAtlantisBallastState BallastState = EAtlantisBallastState::Descend;
 
-	/** Current traversal mode, stored as a placeholder integer until traversal modes are defined. */
+	/** Current traversal mode. Set by the player character from its movement mode; None when no pawn is possessed. */
 	UPROPERTY(ReplicatedUsing = OnRep_TraversalMode, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
-	int32 TraversalMode = 0;
+	EAtlantisTraversalMode TraversalMode = EAtlantisTraversalMode::None;
 
 	/** Identifiers for the items currently equipped by the player. */
 	UPROPERTY(ReplicatedUsing = OnRep_EquippedItems, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
@@ -224,7 +224,7 @@ private:
 	void OnRep_BallastState(EAtlantisBallastState OldBallastState) const;
 
 	UFUNCTION()
-	void OnRep_TraversalMode(int32 OldTraversalMode) const;
+	void OnRep_TraversalMode(EAtlantisTraversalMode OldTraversalMode) const;
 
 	UFUNCTION()
 	void OnRep_EquippedItems(const TArray<FString>& OldEquippedItems) const;
