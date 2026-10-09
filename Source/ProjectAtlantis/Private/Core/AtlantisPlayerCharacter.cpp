@@ -57,7 +57,6 @@ EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(EMovementMode M
 {
 	switch (MovementMode)
 	{
-		//We set up the Terrestrial movements, the ones that we know that will be on the ground and breathable environments.
 	case MOVE_Walking:
 	case MOVE_NavWalking:
 	case MOVE_Falling:
