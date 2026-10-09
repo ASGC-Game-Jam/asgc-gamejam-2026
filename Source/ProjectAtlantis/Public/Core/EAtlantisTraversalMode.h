@@ -18,6 +18,6 @@ enum class EAtlantisTraversalMode : uint8
 	Swimming,
 	
 	/** Attached to an underwater walkable surface */
-	SurfaceWalking //TODO: Check how water walking works
+	SurfaceWalking
 	
 };
