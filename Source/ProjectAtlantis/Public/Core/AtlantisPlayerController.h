@@ -85,6 +85,12 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls")
 	const TArray<UInputMappingContext*>& GetCurrentMappingContexts() const { return CurrentMappingContexts; }
 
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
+	void RestrictControls(FName ID, UInputMappingContext* MappingContext);
+
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
+	void UnrestrictControls(FName ID, UInputMappingContext* MappingContext);
+
 protected:
 	virtual void SetupInputComponent() override;
 	virtual void OnPossess(APawn* InPawn) override;
@@ -129,12 +135,6 @@ protected:
 	/** Whether CurrentMappingContexts is currently pushed to the input subsystem. */
 	UPROPERTY(BlueprintReadOnly, Category = "Atlantis|Controls")
 	bool bControlsEnabled = true;
-	
-	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
-	void RestrictControls(FName ID, UInputMappingContext* MappingContext);
-
-	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
-	void UnrestrictControls(FName ID, UInputMappingContext* MappingContext);
 
 	TMap<UInputMappingContext*, TSet<FName>> InputRestrictions;
 };
