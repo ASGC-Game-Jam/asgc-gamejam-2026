@@ -64,8 +64,6 @@ EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(EMovementMode M
 		return EAtlantisTraversalMode::Terrestrial;
 	case MOVE_Swimming:
 		return EAtlantisTraversalMode::Swimming;
-		
-		// Our back-up state in case of engine modes that are not supported by our traversal, like flying...they fly now
 	default:
 		return EAtlantisTraversalMode::None;
 	}
