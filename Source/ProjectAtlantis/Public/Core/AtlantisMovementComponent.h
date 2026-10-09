@@ -79,6 +79,7 @@ private:
 	FVector SurfaceNormal = FVector::UpVector;
 	EAtlantisBallastState AttachedBallastState = EAtlantisBallastState::None;
 	TWeakObjectPtr<AAtlantisPlayerState> BoundBallastState;
+	bool bDetachedThisFrame = false;
 	bool FindSupportingSurface(const FVector& Direction, float ExtraDistance, FHitResult& Hit) const;
 	bool IsSurfaceAllowed(const FVector& Normal) const;
 	bool TryAttachSurface();

@@ -237,6 +237,7 @@ void UAtlantisMovementComponent::PhysicsRotation(float DeltaTime)
 
 void UAtlantisMovementComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
+	bDetachedThisFrame = false;
 	AAtlantisPlayerState* State = CharacterOwner ? CharacterOwner->GetPlayerState<AAtlantisPlayerState>() : nullptr;
 	if (State != BoundBallastState.Get())
 	{
@@ -251,6 +252,10 @@ void UAtlantisMovementComponent::TickComponent(float DeltaTime, ELevelTick TickT
 		}
 	}
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	if (IsSurfaceWalking() && CharacterOwner->GetLocalRole() == ROLE_SimulatedProxy)
+	{
+		SurfaceNormal = CharacterOwner->GetActorUpVector();
+	}
 }
 
 bool UAtlantisMovementComponent::IsSurfaceAllowed(const FVector& Normal) const
@@ -293,7 +298,7 @@ bool UAtlantisMovementComponent::FindSupportingSurface(const FVector& Direction,
 
 bool UAtlantisMovementComponent::TryAttachSurface()
 {
-	if (!IsSwimming() || !GetPhysicsVolume() || !GetPhysicsVolume()->bWaterVolume || !CharacterOwner)
+	if (bDetachedThisFrame || !IsSwimming() || !GetPhysicsVolume() || !GetPhysicsVolume()->bWaterVolume || !CharacterOwner)
 	{
 		return false;
 	}
@@ -342,6 +347,7 @@ void UAtlantisMovementComponent::DetachSurface()
 	{
 		return;
 	}
+	bDetachedThisFrame = true;
 	SetBase(nullptr);
 	SurfaceNormal = FVector::UpVector;
 	FHitResult Hit;

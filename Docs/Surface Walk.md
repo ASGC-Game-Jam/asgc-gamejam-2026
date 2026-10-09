@@ -36,7 +36,9 @@ input or reorientation delay is introduced.
 Development Editor / Win64 builds. Local runtime fixtures exercise lower and
 upper attachment, wrong-side and Wander rejection, upright/inverted/sloped
 orientation, camera-right ceiling movement, slope movement, equal speed limits,
-support loss, selection preservation and synchronous Wander detachment.
+support loss, selection preservation and synchronous Wander detachment. The final
+audit also checks measured lower/upper speed equality, continuous normal changes
+to vertical support, water exit and editable attachment-distance behavior.
 First Playable validation runs the actual player Blueprint in L_Tutorial_Main's
 authored water with temporary lower/upper collision fixtures; no map changes are
 saved. Network validation checks server attachment, client custom mode and
