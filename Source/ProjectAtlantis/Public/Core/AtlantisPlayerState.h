@@ -169,7 +169,6 @@ protected:
 
 	//PlayerState Variables - Often includes things like health, ammo etc.
 	//TODO: note that these are placeholder variables and data types they may be swapped out for the real value upon implementation
-	
 	/** Carries our custom state across seamless travel and PlayerState re-creation. */
 	virtual void CopyProperties(APlayerState* PlayerState) override;
 
