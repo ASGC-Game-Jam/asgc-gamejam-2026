@@ -7,7 +7,6 @@
 #include "Core/EAtlantisTraversalMode.h"
 #include "AtlantisPlayerCharacter.generated.h"
 
-
 UCLASS()
 class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
 {

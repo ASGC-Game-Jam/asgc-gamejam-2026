@@ -133,8 +133,6 @@ void AAtlantisPlayerState::SetTraversalMode(const EAtlantisTraversalMode NewTrav
 
 	const EAtlantisTraversalMode OldTraversalMode = TraversalMode;
 	TraversalMode = NewTraversalMode;
-	UE_LOG(LogAtlantisPlayerState,Verbose, TEXT("Traversal mode: %s->%s"),*UEnum::GetValueAsString(OldTraversalMode),*UEnum::GetValueAsString(TraversalMode));
-	
 	OnRep_TraversalMode(OldTraversalMode);
 }
 
