@@ -832,6 +832,64 @@
 					]
 				},
 				{
+					"guid": "3444c69f4ca647efc28775abc5fec6c4",
+					"class": "K2Node_VariableSet",
+					"title": "Set Examine Mode",
+					"x": 0,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3444c69f4ca647efc28775abc5fec6c4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e54db27b4d142984268b77a8478e7d7f:o:then"
+							]
+						},
+						{
+							"id": "3444c69f4ca647efc28775abc5fec6c4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bcfc9d5e4976404f246066bca8084b0e:i:execute"
+							]
+						},
+						{
+							"id": "3444c69f4ca647efc28775abc5fec6c4:i:Examine Mode",
+							"name": "Examine Mode",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e54db27b4d142984268b77a8478e7d7f:o:TurnOn"
+							]
+						},
+						{
+							"id": "3444c69f4ca647efc28775abc5fec6c4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3444c69f4ca647efc28775abc5fec6c4:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"bcfc9d5e4976404f246066bca8084b0e:i:Condition"
+							]
+						}
+					]
+				},
+				{
 					"guid": "462324ae4a5b513d5be5a9ad32f1a080",
 					"class": "K2Node_VariableGet",
 					"title": "Get FirstPersonCamera",
@@ -1094,7 +1152,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"e54db27b4d142984268b77a8478e7d7f:o:then"
+								"3444c69f4ca647efc28775abc5fec6c4:o:then"
 							]
 						},
 						{
@@ -1104,7 +1162,7 @@
 							"type": "bool",
 							"defaultValue": null,
 							"links": [
-								"e54db27b4d142984268b77a8478e7d7f:o:TurnOn"
+								"3444c69f4ca647efc28775abc5fec6c4:o:Output_Get"
 							]
 						},
 						{
@@ -1133,7 +1191,7 @@
 					"guid": "e54db27b4d142984268b77a8478e7d7f",
 					"class": "K2Node_FunctionEntry",
 					"title": "Toggle Examine Mode Camera",
-					"x": -48,
+					"x": -336,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -1144,7 +1202,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"bcfc9d5e4976404f246066bca8084b0e:i:execute"
+								"3444c69f4ca647efc28775abc5fec6c4:i:execute"
 							]
 						},
 						{
@@ -1154,7 +1212,7 @@
 							"type": "bool",
 							"defaultValue": null,
 							"links": [
-								"bcfc9d5e4976404f246066bca8084b0e:i:Condition"
+								"3444c69f4ca647efc28775abc5fec6c4:i:Examine Mode"
 							]
 						}
 					]
@@ -2325,7 +2383,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"0e7eaa34497c309877b2fd9b1898b1e0:i:execute"
+								"d512a7bd40e4c23cc6d9efba2d58bdd8:i:execute"
 							]
 						},
 						{
@@ -2382,52 +2440,6 @@
 							"direction": "output",
 							"type": "object:/Script/EnhancedInput.InputAction",
 							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Interact.IA_Interact",
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "0e7eaa34497c309877b2fd9b1898b1e0",
-					"class": "K2Node_CallFunction",
-					"title": "Toggle Examine Mode Camera",
-					"x": 288,
-					"y": 1408,
-					"comment": null,
-					"pins": [
-						{
-							"id": "0e7eaa34497c309877b2fd9b1898b1e0:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"0a38e79d4757e5622acb7c89da1461f6:o:Started"
-							]
-						},
-						{
-							"id": "0e7eaa34497c309877b2fd9b1898b1e0:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"d512a7bd40e4c23cc6d9efba2d58bdd8:i:execute"
-							]
-						},
-						{
-							"id": "0e7eaa34497c309877b2fd9b1898b1e0:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:self",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "0e7eaa34497c309877b2fd9b1898b1e0:i:TurnOn",
-							"name": "TurnOn",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "false",
 							"links": []
 						}
 					]
@@ -2711,7 +2723,7 @@
 					"guid": "2a3da48345e90202f09ace99f8974cc9",
 					"class": "K2Node_Message",
 					"title": "Examine",
-					"x": 2544,
+					"x": 2512,
 					"y": 1408,
 					"comment": null,
 					"pins": [
@@ -2756,6 +2768,16 @@
 							]
 						},
 						{
+							"id": "2a3da48345e90202f09ace99f8974cc9:i:Examine Mode State",
+							"name": "Examine Mode State",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"367299204d4178eb37b8f0a5f952e97c:o:Examine Mode"
+							]
+						},
+						{
 							"id": "2a3da48345e90202f09ace99f8974cc9:o:Interaction Occured",
 							"name": "Interaction Occured",
 							"direction": "output",
@@ -2764,6 +2786,34 @@
 							"links": [
 								"e09ebfb447e52e7fb2b9f3b4de0c38ff:i:Condition"
 							]
+						}
+					]
+				},
+				{
+					"guid": "367299204d4178eb37b8f0a5f952e97c",
+					"class": "K2Node_VariableGet",
+					"title": "Get Examine Mode",
+					"x": 2224,
+					"y": 1536,
+					"comment": null,
+					"pins": [
+						{
+							"id": "367299204d4178eb37b8f0a5f952e97c:o:Examine Mode",
+							"name": "Examine Mode",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2a3da48345e90202f09ace99f8974cc9:i:Examine Mode State"
+							]
+						},
+						{
+							"id": "367299204d4178eb37b8f0a5f952e97c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -3175,7 +3225,7 @@
 					"guid": "87115fef4f4aee672c43a0a53d6a13b7",
 					"class": "K2Node_Self",
 					"title": "Self-Reference",
-					"x": 2400,
+					"x": 2368,
 					"y": 1568,
 					"comment": null,
 					"pins": [
@@ -3849,7 +3899,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"0e7eaa34497c309877b2fd9b1898b1e0:o:then"
+								"0a38e79d4757e5622acb7c89da1461f6:o:Started"
 							]
 						},
 						{
@@ -4371,11 +4421,11 @@
 				"defaultValue": "",
 				"instanceEditable": false
 			},
-			"Examine":
+			"Examine Mode":
 			{
 				"type": "bool",
 				"category": "Default",
-				"defaultValue": "",
+				"defaultValue": "True",
 				"instanceEditable": false
 			},
 			"As BP Atlantis Player Controller":
