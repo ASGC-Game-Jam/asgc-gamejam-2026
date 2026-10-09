@@ -199,10 +199,8 @@ void UAtlantisMovementComponent::PhysicsRotation(float DeltaTime)
 {
 	if (IsSurfaceWalking())
 	{
-		if (!OrientToSurface())
-		{
-			DetachSurface(true);
-		}
+		// A blocked facing change keeps the last safe pose and its support.
+		OrientToSurface();
 		return;
 	}
 	if (!IsSwimming())
@@ -423,6 +421,7 @@ bool UAtlantisMovementComponent::TrySurfaceStep(const FVector& Delta)
 bool UAtlantisMovementComponent::SnapToSurface(const FHitResult& Support)
 {
 	FScopedMovementUpdate ScopedAlignment(UpdatedComponent, EScopedUpdate::DeferredUpdates);
+	const FVector PreviousNormal = SurfaceNormal;
 	SurfaceNormal = Support.ImpactNormal;
 	const FVector Start = UpdatedComponent->GetComponentLocation();
 	const float HalfHeight = CharacterOwner->GetCapsuleComponent()->GetScaledCapsuleHalfHeight();
@@ -431,9 +430,13 @@ bool UAtlantisMovementComponent::SnapToSurface(const FHitResult& Support)
 	FHitResult Hit;
 	// Restore clearance before rotating onto a different normal, avoiding penetration of the support itself.
 	SafeMoveUpdatedComponent(Delta, UpdatedComponent->GetComponentQuat(), true, Hit);
-	if (!UpdatedComponent->GetComponentLocation().Equals(Start + Delta, 1.f) || !OrientToSurface())
+	// Rounded capsule contact at a small seam can block the downward snap
+	// before the center trace reaches the higher support. Keep that safe clearance.
+	const bool bSafePartialSnap = Hit.IsValidBlockingHit() && FVector::DotProduct(Delta, SurfaceNormal) < 0.f;
+	if ((!UpdatedComponent->GetComponentLocation().Equals(Start + Delta, 1.f) && !bSafePartialSnap) || !OrientToSurface())
 	{
 		ScopedAlignment.RevertMove();
+		SurfaceNormal = PreviousNormal;
 		return false;
 	}
 	return true;
@@ -495,8 +498,7 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 	}
 	if (!SnapToSurface(Support))
 	{
-		DetachSurface(true);
-		StartNewPhysics(DeltaTime, Iterations);
+		Velocity = FVector::ZeroVector;
 		return;
 	}
 	SetBase(Support.GetComponent(), Support.BoneName);
@@ -505,6 +507,8 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 	CalcVelocity(DeltaTime, GroundFriction, false, BrakingDecelerationWalking);
 	Velocity = FVector::VectorPlaneProject(Velocity, SurfaceNormal).GetClampedToMaxSize(GetMaxSpeed());
 	const FVector Start = UpdatedComponent->GetComponentLocation();
+	const FVector PreviousNormal = SurfaceNormal;
+	const FQuat PreviousRotation = UpdatedComponent->GetComponentQuat();
 	FHitResult Hit;
 	SafeMoveUpdatedComponent(Velocity * DeltaTime, UpdatedComponent->GetComponentQuat(), true, Hit);
 	if (Hit.IsValidBlockingHit())
@@ -512,20 +516,41 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 		const FVector RemainingDelta = Velocity * DeltaTime * (1.f - Hit.Time);
 		if (!TrySurfaceStep(RemainingDelta))
 		{
-			SlideAlongSurface(Velocity * DeltaTime, 1.f - Hit.Time, Hit.Normal, Hit, true);
+			// Custom movement does not use native walking's upward-slide clamp.
+			// Slide only along the support plane, so a steep obstacle cannot lift
+			// the capsule away from its floor (or push it off its ceiling).
+			const FVector TangentNormal = FVector::VectorPlaneProject(Hit.Normal, SurfaceNormal).GetSafeNormal();
+			if (!TangentNormal.IsNearlyZero())
+			{
+				SlideAlongSurface(Velocity * DeltaTime, 1.f - Hit.Time, TangentNormal, Hit, true);
+			}
 			// An obstacle blocks travel, not support. Keep the current attachment;
 			// measured displacement below removes velocity into the wall, as on dry land.
 		}
 	}
+	Support = FHitResult();
 	if (!FindSupportingSurface(-SurfaceNormal, SurfaceDetachDistance, Support)
 		|| FVector::DotProduct(SurfaceNormal, Support.ImpactNormal) < FMath::Cos(FMath::DegreesToRadians(MaxSurfaceNormalChangeDegrees)))
 	{
+		// A steep blocking surface is an obstacle, whereas an empty support
+		// trace is a ledge: allow walking off it and resume ballast swimming.
+		if (Support.IsValidBlockingHit())
+		{
+			SurfaceNormal = PreviousNormal;
+			FHitResult ReturnHit;
+			SafeMoveUpdatedComponent(Start - UpdatedComponent->GetComponentLocation(), PreviousRotation, true, ReturnHit);
+			Velocity = FVector::ZeroVector;
+			return;
+		}
 		DetachSurface();
 		return;
 	}
 	if (!SnapToSurface(Support))
 	{
-		DetachSurface(true);
+		SurfaceNormal = PreviousNormal;
+		FHitResult ReturnHit;
+		SafeMoveUpdatedComponent(Start - UpdatedComponent->GetComponentLocation(), PreviousRotation, true, ReturnHit);
+		Velocity = FVector::ZeroVector;
 		return;
 	}
 	SetBase(Support.GetComponent(), Support.BoneName);
