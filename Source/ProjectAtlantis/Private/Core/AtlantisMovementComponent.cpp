@@ -30,10 +30,12 @@ FVector UAtlantisMovementComponent::ConstrainInputAcceleration(const FVector& In
 		FVector Forward = FVector::VectorPlaneProject(CharacterOwner->GetControlRotation().Vector(), SurfaceNormal).GetSafeNormal();
 		if (Forward.IsNearlyZero())
 		{
+			// Try camera yaw without pitch.
 			Forward = FVector::VectorPlaneProject(Yaw.Vector(), SurfaceNormal).GetSafeNormal();
 		}
 		if (Forward.IsNearlyZero())
 		{
+			// Yaw can also point into a vertical surface, so use the character's facing.
 			Forward = FVector::VectorPlaneProject(CharacterOwner->GetActorForwardVector(), SurfaceNormal).GetSafeNormal();
 		}
 		// Keep camera-right input pointing right even on an inverted ceiling.
@@ -334,6 +336,7 @@ void UAtlantisMovementComponent::OrientToSurface()
 	}
 	if (Forward.IsNearlyZero())
 	{
+		// Facing or velocity along the normal has no tangent; choose a valid surface axis to build the rotation.
 		FVector Right;
 		SurfaceNormal.FindBestAxisVectors(Forward, Right);
 	}
