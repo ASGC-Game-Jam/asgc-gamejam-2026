@@ -12,11 +12,19 @@ attach. Changing away from the attachment's Ballast selection detaches immediate
 Support loss returns to Swimming while preserving the current Ballast state and
 Oxygen reservation. Leaving water returns to native falling.
 
-Compatible surfaces block the character capsule's collision channel. Initial
-contact must have an upward normal for Descend or downward normal for Ascend,
-with the configured minimum vertical component. Once attached, continuous support
-can change orientation, including becoming vertical, up to the configured normal
-change per step. Larger discontinuities detach instead of snapping around corners.
+Compatible surfaces block the character capsule's collision channel. Both initial
+contact and continued support must have an upward normal for Descend or downward
+normal for Ascend within Character Movement's Walkable Floor Angle. Min Surface
+Vertical Normal can tighten that slope limit. Walls and overly steep slopes cannot
+become support, including when reached from an existing attachment. Supported
+normal changes also respect Max Surface Normal Change Degrees.
+
+Small uneven ledges are crossed using swept movement away from support, forward,
+and back toward a valid surface, bounded by Max Step Height. This also works on
+ceiling undersides. Capsule clearance is restored before reorienting, and overlapping
+poses are rejected. Obstructed alignment or movement releases attachment to Swimming;
+Blocked Surface Reattach Delay (default 0.2 seconds) prevents immediate retries
+against the same obstruction so the player can move clear.
 Attachment uses a capsule sweep, support uses a center trace, and movement uses
 native swept collision and sliding. The capsule's up axis follows support.
 
@@ -28,7 +36,8 @@ owned by the existing swim physics. No Blueprint assets are modified.
 
 Tune Surface Attach Distance, Surface Detach Distance, Surface Contact Offset,
 Max Surface Normal Change Degrees and Min Surface Vertical Normal on the movement
-component. Distances are in centimetres. Attachment is immediate; no separate
+component, plus Walkable Floor Angle and Max Step Height in Character Movement.
+Distances are in centimetres. Attachment is immediate; no separate
 input or reorientation delay is introduced.
 
 ## Validation
@@ -38,7 +47,9 @@ upper attachment, wrong-side and Wander rejection, upright/inverted/sloped
 orientation, camera-right ceiling movement, slope movement, equal speed limits,
 support loss, selection preservation and synchronous Wander detachment. The final
 audit also checks measured lower/upper speed equality, continuous normal changes
-to vertical support, water exit and editable attachment-distance behavior.
+to steeper walkable support, water exit and editable attachment-distance behavior.
+Wall/steep-slope rejection, 10 cm floor/ceiling seams and retreat from tall obstacles
+are also covered by local regressions.
 First Playable validation runs the actual player Blueprint in L_Tutorial_Main's
 authored water with temporary lower/upper collision fixtures; no map changes are
 saved. Network validation checks server attachment, client custom mode and

@@ -72,7 +72,7 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Atlantis|Surface Walk", meta = (ClampMin = "0", ClampMax = "89"))
 	float MaxSurfaceNormalChangeDegrees = 60.f;
 
-	/** Minimum upward/downward component for initial lower/upper attachment. */
+	/** Additional normal threshold, combined with Walkable Floor Angle for all support checks. */
 	UPROPERTY(EditAnywhere, Category = "Atlantis|Surface Walk", meta = (ClampMin = "0.01", ClampMax = "1"))
 	float MinSurfaceVerticalNormal = 0.1f;
 
@@ -80,11 +80,19 @@ private:
 	EAtlantisBallastState AttachedBallastState = EAtlantisBallastState::None;
 	TWeakObjectPtr<AAtlantisPlayerState> BoundBallastState;
 	bool bDetachedThisFrame = false;
+	/** Delay retries after an obstructed pose or movement so Swimming can clear the geometry. */
+	UPROPERTY(EditAnywhere, Category = "Atlantis|Surface Walk", meta = (ClampMin = "0"))
+	float BlockedSurfaceReattachDelay = 0.2f;
+	float SurfaceReattachTimeRemaining = 0.f;
 	bool FindSupportingSurface(const FVector& Direction, float ExtraDistance, FHitResult& Hit) const;
 	bool IsSurfaceAllowed(const FVector& Normal) const;
 	bool TryAttachSurface();
-	void DetachSurface();
-	void OrientToSurface();
+	void DetachSurface(bool bBlocked = false);
+	bool OrientToSurface();
+	FQuat GetSurfaceRotation() const;
+	bool IsSurfacePoseBlocked(const FVector& Location, const FQuat& Rotation) const;
+	bool TrySurfaceStep(const FVector& Delta);
+	bool SnapToSurface(const FHitResult& Support);
 
 	UFUNCTION()
 	void OnSurfaceBallastChanged(bool bAllocated, EAtlantisBallastState State);
