@@ -13,10 +13,8 @@ class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
 
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 	virtual void OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode = 0) override;
@@ -25,10 +23,8 @@ public:
 	
 	virtual void UnPossessed() override;
 
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
 	/** Returns the character to the transform captured at BeginPlay. Authority only. */

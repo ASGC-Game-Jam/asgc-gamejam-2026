@@ -5,7 +5,6 @@
 #include "Core/AtlantisMovementComponent.h"
 #include "Core/AtlantisPlayerState.h"
 
-// Sets default values
 AAtlantisPlayerCharacter::AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer) : Super(
 	ObjectInitializer.SetDefaultSubobjectClass<UAtlantisMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
@@ -13,20 +12,17 @@ AAtlantisPlayerCharacter::AAtlantisPlayerCharacter(const FObjectInitializer& Obj
 	PrimaryActorTick.bCanEverTick = true;
 }
 
-// Called when the game starts or when spawned
 void AAtlantisPlayerCharacter::BeginPlay()
 {
 	StartTransform = GetActorTransform();
 	Super::BeginPlay();
 }
 
-// Called every frame
 void AAtlantisPlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
 
-// Called to bind functionality to input
 void AAtlantisPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -50,7 +46,7 @@ void AAtlantisPlayerCharacter::UpdateTraversalMode() const
 	}
 }
 
-EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(EMovementMode MovementMode)
+EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(const EMovementMode MovementMode)
 {
 	switch (MovementMode)
 	{
@@ -81,7 +77,6 @@ void AAtlantisPlayerCharacter::PossessedBy(AController* NewController)
 
 void AAtlantisPlayerCharacter::UnPossessed()
 {
-	// Clear the traversal mode before the Super
 	if (AAtlantisPlayerState* State  = GetPlayerState<AAtlantisPlayerState>())
 	{
 		State ->SetTraversalMode(EAtlantisTraversalMode::None);
