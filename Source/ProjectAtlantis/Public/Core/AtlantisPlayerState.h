@@ -136,7 +136,7 @@ public:
 	//~ Mutators. Server only; calls on a client are ignored.
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetOxygenCapacity(float NewOxygenCapacity);
-	
+
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetLockedOxygen(float NewLockedOxygen);
 
@@ -149,6 +149,18 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetTraversalMode(int32 NewTraversalMode);
+
+	/** Consumes the requested oxygen if enough is available. Returns whether the request was accepted. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	bool RequestOxygen(float RequestedOxygen);
+
+	/** Locks the requested oxygen if enough is available. Returns whether the request was accepted. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	bool RequestOxygenAllocation(float RequestedOxygen);
+
+	/** Releases the requested oxygen if enough is already locked. Returns whether the request was accepted. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	bool ReleaseOxygen(float RequestedOxygen);
 
 protected:
 

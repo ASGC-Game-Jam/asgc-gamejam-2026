@@ -85,8 +85,8 @@ void AAtlantisPlayerState::SetLockedOxygen(const float NewLockedOxygen)
 
 void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
 {
-	// Current oxygen includes the ballast allocation; consumption can only use the unlocked portion.
-	const float ClampedOxygen = FMath::Max(NewCurrentOxygen, LockedOxygen);
+	// Current oxygen includes the ballast allocation; consumption can only use the unlocked portion and cannot exceed capacity.
+	const float ClampedOxygen = FMath::Clamp(NewCurrentOxygen, LockedOxygen, OxygenCapacity);
 	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, ClampedOxygen))
 	{
 		return;
@@ -220,4 +220,52 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 			return -1.f;
 		}
 	}
+}
+
+bool AAtlantisPlayerState::RequestOxygen(const float RequestedOxygen)
+{
+	if (!HasAuthority() || RequestedOxygen < 0.f)
+	{
+		return false;
+	}
+	const bool bRequestAccepted = GetAvailableOxygen() >= RequestedOxygen;
+
+	if (bRequestAccepted)
+	{
+		SetCurrentOxygen(CurrentOxygen - RequestedOxygen);
+	}
+
+	return bRequestAccepted;
+}
+
+bool AAtlantisPlayerState::RequestOxygenAllocation(const float RequestedOxygen)
+{
+	if (!HasAuthority() || RequestedOxygen < 0.f)
+	{
+		return false;
+	}
+	const bool bRequestAccepted = GetAvailableOxygen() >= RequestedOxygen;
+
+	if (bRequestAccepted)
+	{
+		SetLockedOxygen(LockedOxygen + RequestedOxygen);
+	}
+
+	return bRequestAccepted;
+}
+
+bool AAtlantisPlayerState::ReleaseOxygen(const float ReleasedOxygen)
+{
+	if (!HasAuthority() || ReleasedOxygen < 0.f)
+	{
+		return false;
+	}
+	const bool bRequestAccepted = LockedOxygen >= ReleasedOxygen;
+
+	if (bRequestAccepted)
+	{
+		SetLockedOxygen(LockedOxygen - ReleasedOxygen);
+	}
+
+	return bRequestAccepted;
 }
