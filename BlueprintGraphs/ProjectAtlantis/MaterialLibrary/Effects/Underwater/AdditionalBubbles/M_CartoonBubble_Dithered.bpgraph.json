@@ -1,0 +1,1972 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered",
+	"asset": "M_CartoonBubble_Dithered",
+	"assetClass": "Material",
+	"parentClass": null,
+	"blueprintType": null,
+	"graphs": [
+		{
+			"name": "MaterialGraph",
+			"type": "Material",
+			"nodes": [
+				{
+					"guid": "00000000000000000000000000000001",
+					"class": "MaterialGraphNode_Root",
+					"title": "",
+					"x": 128,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "00000000000000000000000000000001:i:Base Color",
+							"name": "Base Color",
+							"direction": "input",
+							"type": "materialinput:rgba",
+							"defaultValue": "(R=0.500000,G=0.500000,B=0.500000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Metallic",
+							"name": "Metallic",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Specular",
+							"name": "Specular",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": "0.5",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Roughness",
+							"name": "Roughness",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": "0.5",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Anisotropy",
+							"name": "Anisotropy",
+							"direction": "input",
+							"type": "materialinput",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Emissive Color",
+							"name": "Emissive Color",
+							"direction": "input",
+							"type": "materialinput:rgba",
+							"defaultValue": null,
+							"links": [
+								"2b6cec184fe04c04fbcc65bdd1dadd2a:o:Output"
+							]
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Opacity Override",
+							"name": "Opacity Override",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Opacity Mask",
+							"name": "Opacity Mask",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": null,
+							"links": [
+								"aba0fd3a45683ff21ddc88a07e9069ec:o:Output"
+							]
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Normal",
+							"name": "Normal",
+							"direction": "input",
+							"type": "materialinput:rgb",
+							"defaultValue": "0.0,0.0,1.0",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Tangent",
+							"name": "Tangent",
+							"direction": "input",
+							"type": "materialinput:rgb",
+							"defaultValue": "1.0,0.0,0.0",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:World Position Offset",
+							"name": "World Position Offset",
+							"direction": "input",
+							"type": "materialinput",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Subsurface Color",
+							"name": "Subsurface Color",
+							"direction": "input",
+							"type": "materialinput:rgba",
+							"defaultValue": "(R=1.000000,G=1.000000,B=1.000000,A=0.000000)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Custom Data 0",
+							"name": "Custom Data 0",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Custom Data 1",
+							"name": "Custom Data 1",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": "0.1",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Ambient Occlusion",
+							"name": "Ambient Occlusion",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Refraction (Disabled)",
+							"name": "Refraction (Disabled)",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Customized UV0",
+							"name": "Customized UV0",
+							"direction": "input",
+							"type": "materialinput:rg",
+							"defaultValue": "(X=0.0,Y=0.0)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Customized UV1",
+							"name": "Customized UV1",
+							"direction": "input",
+							"type": "materialinput:rg",
+							"defaultValue": "(X=0.0,Y=0.0)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Customized UV2",
+							"name": "Customized UV2",
+							"direction": "input",
+							"type": "materialinput:rg",
+							"defaultValue": "(X=0.0,Y=0.0)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Customized UV3",
+							"name": "Customized UV3",
+							"direction": "input",
+							"type": "materialinput:rg",
+							"defaultValue": "(X=0.0,Y=0.0)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Customized UV4",
+							"name": "Customized UV4",
+							"direction": "input",
+							"type": "materialinput:rg",
+							"defaultValue": "(X=0.0,Y=0.0)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Customized UV5",
+							"name": "Customized UV5",
+							"direction": "input",
+							"type": "materialinput:rg",
+							"defaultValue": "(X=0.0,Y=0.0)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Customized UV6",
+							"name": "Customized UV6",
+							"direction": "input",
+							"type": "materialinput:rg",
+							"defaultValue": "(X=0.0,Y=0.0)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Customized UV7",
+							"name": "Customized UV7",
+							"direction": "input",
+							"type": "materialinput:rg",
+							"defaultValue": "(X=0.0,Y=0.0)",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Pixel Depth Offset",
+							"name": "Pixel Depth Offset",
+							"direction": "input",
+							"type": "materialinput",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Shading Model",
+							"name": "Shading Model",
+							"direction": "input",
+							"type": "materialinput",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Surface Thickness",
+							"name": "Surface Thickness",
+							"direction": "input",
+							"type": "materialinput:red",
+							"defaultValue": "0.01",
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Displacement",
+							"name": "Displacement",
+							"direction": "input",
+							"type": "materialinput",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Material Attributes",
+							"name": "Material Attributes",
+							"direction": "input",
+							"type": "materialinput",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "00000000000000000000000000000001:i:Front Material",
+							"name": "Front Material",
+							"direction": "input",
+							"type": "materialinput",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0e2dde5d4f44c984f2de04b80f23736d",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Sample",
+					"x": -768,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional:byte",
+							"defaultValue": null,
+							"links": [
+								"a59105964021a1823dc27180e65d6421:o:Output"
+							]
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:i:Tex",
+							"name": "Tex",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:i:Apply View MipBias",
+							"name": "Apply View MipBias",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:i:MipValueMode",
+							"name": "MipValueMode",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ETextureMipValueMode",
+							"defaultValue": "None (use computed mip level)",
+							"links": []
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:i:Sampler Source",
+							"name": "Sampler Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ESamplerSourceMode",
+							"defaultValue": "From texture asset",
+							"links": []
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:i:Sampler Type",
+							"name": "Sampler Type",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialSamplerType",
+							"defaultValue": "Color",
+							"links": []
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:o:RGB",
+							"name": "RGB",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": [
+								"28327d6f49bc9f0b8bd9e7a351e98bbf:i:A"
+							]
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "mask:alpha",
+							"defaultValue": null,
+							"links": [
+								"94deecff474e06c71c9464885027b6c2:i:InputPin"
+							]
+						},
+						{
+							"id": "0e2dde5d4f44c984f2de04b80f23736d:o:RGBA",
+							"name": "RGBA",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0ec4f8c84bba11b3669504802070f480",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Scalar Parameter",
+					"x": -240,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0ec4f8c84bba11b3669504802070f480:i:Default Value",
+							"name": "Default Value",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "0ec4f8c84bba11b3669504802070f480:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"2b6cec184fe04c04fbcc65bdd1dadd2a:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "234e10824b9f40ac6344be976d73d4bb",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Multiply",
+					"x": -1008,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "234e10824b9f40ac6344be976d73d4bb:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"744374234d6c8a1591fcc9a29c2499b9:o:R"
+							]
+						},
+						{
+							"id": "234e10824b9f40ac6344be976d73d4bb:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "0.041",
+							"links": []
+						},
+						{
+							"id": "234e10824b9f40ac6344be976d73d4bb:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"a59105964021a1823dc27180e65d6421:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "28327d6f49bc9f0b8bd9e7a351e98bbf",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Multiply",
+					"x": -224,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "28327d6f49bc9f0b8bd9e7a351e98bbf:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"0e2dde5d4f44c984f2de04b80f23736d:o:RGB"
+							]
+						},
+						{
+							"id": "28327d6f49bc9f0b8bd9e7a351e98bbf:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"fe1b8cfc4797a5b55bbaed8a468ef330:o:RGB"
+							]
+						},
+						{
+							"id": "28327d6f49bc9f0b8bd9e7a351e98bbf:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"2b6cec184fe04c04fbcc65bdd1dadd2a:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2b6cec184fe04c04fbcc65bdd1dadd2a",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Multiply",
+					"x": -64,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2b6cec184fe04c04fbcc65bdd1dadd2a:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"28327d6f49bc9f0b8bd9e7a351e98bbf:o:Output"
+							]
+						},
+						{
+							"id": "2b6cec184fe04c04fbcc65bdd1dadd2a:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"0ec4f8c84bba11b3669504802070f480:o:Output"
+							]
+						},
+						{
+							"id": "2b6cec184fe04c04fbcc65bdd1dadd2a:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"00000000000000000000000000000001:i:Emissive Color"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2e7392a540b5a5551f7196b93763ab3d",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Panner",
+					"x": -1504,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2e7392a540b5a5551f7196b93763ab3d:i:Coordinate",
+							"name": "Coordinate",
+							"direction": "input",
+							"type": "optional:int",
+							"defaultValue": null,
+							"links": [
+								"bc9c26fd412b04281600b4a5767bef8d:o:Output"
+							]
+						},
+						{
+							"id": "2e7392a540b5a5551f7196b93763ab3d:i:Time",
+							"name": "Time",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2e7392a540b5a5551f7196b93763ab3d:i:Speed",
+							"name": "Speed",
+							"direction": "input",
+							"type": "optional:rg",
+							"defaultValue": "X=0.100 Y=0.100",
+							"links": []
+						},
+						{
+							"id": "2e7392a540b5a5551f7196b93763ab3d:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"744374234d6c8a1591fcc9a29c2499b9:i:UVs"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3b7e4e594ae12b09cc7dcd9105d6d1f8",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Sphere Mask",
+					"x": -1024,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3b7e4e594ae12b09cc7dcd9105d6d1f8:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"a9b5a8e341d41a28485518b81b02140c:o:Output"
+							]
+						},
+						{
+							"id": "3b7e4e594ae12b09cc7dcd9105d6d1f8:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"467be65a472af7a83cdbbb9ee6eef142:o:Output"
+							]
+						},
+						{
+							"id": "3b7e4e594ae12b09cc7dcd9105d6d1f8:i:Radius",
+							"name": "Radius",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"f2f881b8458465ed8148f28a731c6d95:o:Output"
+							]
+						},
+						{
+							"id": "3b7e4e594ae12b09cc7dcd9105d6d1f8:i:Hardness",
+							"name": "Hardness",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "40.0",
+							"links": []
+						},
+						{
+							"id": "3b7e4e594ae12b09cc7dcd9105d6d1f8:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"74deb82a4bed2200b49b54874807da38:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "467be65a472af7a83cdbbb9ee6eef142",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Constant 2Vector",
+					"x": -1280,
+					"y": 512,
+					"comment": null,
+					"pins": [
+						{
+							"id": "467be65a472af7a83cdbbb9ee6eef142:i:X",
+							"name": "X",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "0.5",
+							"links": []
+						},
+						{
+							"id": "467be65a472af7a83cdbbb9ee6eef142:i:Y",
+							"name": "Y",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "0.5",
+							"links": []
+						},
+						{
+							"id": "467be65a472af7a83cdbbb9ee6eef142:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": [
+								"3b7e4e594ae12b09cc7dcd9105d6d1f8:i:B"
+							]
+						},
+						{
+							"id": "467be65a472af7a83cdbbb9ee6eef142:o:Output2",
+							"name": "Output2",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "467be65a472af7a83cdbbb9ee6eef142:o:Output3",
+							"name": "Output3",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6fb53508494cbc9c469ca59b90d1ff9a",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Coordinate",
+					"x": -1184,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6fb53508494cbc9c469ca59b90d1ff9a:i:Coordinate Index",
+							"name": "Coordinate Index",
+							"direction": "input",
+							"type": "optional:int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "6fb53508494cbc9c469ca59b90d1ff9a:i:UTiling",
+							"name": "UTiling",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "6fb53508494cbc9c469ca59b90d1ff9a:i:VTiling",
+							"name": "VTiling",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "6fb53508494cbc9c469ca59b90d1ff9a:i:Un Mirror U",
+							"name": "Un Mirror U",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "6fb53508494cbc9c469ca59b90d1ff9a:i:Un Mirror V",
+							"name": "Un Mirror V",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "6fb53508494cbc9c469ca59b90d1ff9a:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"a59105964021a1823dc27180e65d6421:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "744374234d6c8a1591fcc9a29c2499b9",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Sample",
+					"x": -1248,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional:byte",
+							"defaultValue": null,
+							"links": [
+								"2e7392a540b5a5551f7196b93763ab3d:o:Output"
+							]
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:i:Tex",
+							"name": "Tex",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:i:Apply View MipBias",
+							"name": "Apply View MipBias",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:i:MipValueMode",
+							"name": "MipValueMode",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ETextureMipValueMode",
+							"defaultValue": "None (use computed mip level)",
+							"links": []
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:i:Sampler Source",
+							"name": "Sampler Source",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ESamplerSourceMode",
+							"defaultValue": "From texture asset",
+							"links": []
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:i:Sampler Type",
+							"name": "Sampler Type",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialSamplerType",
+							"defaultValue": "Color",
+							"links": []
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:o:RGB",
+							"name": "RGB",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": [
+								"234e10824b9f40ac6344be976d73d4bb:i:A"
+							]
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "mask:alpha",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "744374234d6c8a1591fcc9a29c2499b9:o:RGBA",
+							"name": "RGBA",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "74deb82a4bed2200b49b54874807da38",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression One Minus",
+					"x": -784,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "74deb82a4bed2200b49b54874807da38:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"3b7e4e594ae12b09cc7dcd9105d6d1f8:o:Output"
+							]
+						},
+						{
+							"id": "74deb82a4bed2200b49b54874807da38:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"c0da8e634b03bd475a13c19ba9629e2e:i:Alpha Threshold (S)"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7d2c535941a256f61fcfb088c686f87a",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Scalar Parameter",
+					"x": -1024,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7d2c535941a256f61fcfb088c686f87a:i:Default Value",
+							"name": "Default Value",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "0.8",
+							"links": []
+						},
+						{
+							"id": "7d2c535941a256f61fcfb088c686f87a:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"c0da8e634b03bd475a13c19ba9629e2e:i:Random (S)"
+							]
+						}
+					]
+				},
+				{
+					"guid": "94deecff474e06c71c9464885027b6c2",
+					"class": "MaterialGraphNode_Knot",
+					"title": "Reroute Node",
+					"x": -480,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "94deecff474e06c71c9464885027b6c2:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"0e2dde5d4f44c984f2de04b80f23736d:o:A"
+							]
+						},
+						{
+							"id": "94deecff474e06c71c9464885027b6c2:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"bd36238b40be18f17c7048926cf93d5a:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a59105964021a1823dc27180e65d6421",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Add",
+					"x": -944,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a59105964021a1823dc27180e65d6421:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"6fb53508494cbc9c469ca59b90d1ff9a:o:Output"
+							]
+						},
+						{
+							"id": "a59105964021a1823dc27180e65d6421:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"234e10824b9f40ac6344be976d73d4bb:o:Output"
+							]
+						},
+						{
+							"id": "a59105964021a1823dc27180e65d6421:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"0e2dde5d4f44c984f2de04b80f23736d:i:UVs"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a9b5a8e341d41a28485518b81b02140c",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Coordinate",
+					"x": -1360,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a9b5a8e341d41a28485518b81b02140c:i:Coordinate Index",
+							"name": "Coordinate Index",
+							"direction": "input",
+							"type": "optional:int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "a9b5a8e341d41a28485518b81b02140c:i:UTiling",
+							"name": "UTiling",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "a9b5a8e341d41a28485518b81b02140c:i:VTiling",
+							"name": "VTiling",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "a9b5a8e341d41a28485518b81b02140c:i:Un Mirror U",
+							"name": "Un Mirror U",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "a9b5a8e341d41a28485518b81b02140c:i:Un Mirror V",
+							"name": "Un Mirror V",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "a9b5a8e341d41a28485518b81b02140c:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"3b7e4e594ae12b09cc7dcd9105d6d1f8:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "aba0fd3a45683ff21ddc88a07e9069ec",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Multiply",
+					"x": -64,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "aba0fd3a45683ff21ddc88a07e9069ec:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"eef7cf0041cf5109d7c1e0a663091cc6:o:Output"
+							]
+						},
+						{
+							"id": "aba0fd3a45683ff21ddc88a07e9069ec:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"e1b662484e6b5d9d81802bbf9ce6f73d:o:Output"
+							]
+						},
+						{
+							"id": "aba0fd3a45683ff21ddc88a07e9069ec:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"00000000000000000000000000000001:i:Opacity Mask"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bc9c26fd412b04281600b4a5767bef8d",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Texture Coordinate",
+					"x": -1744,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bc9c26fd412b04281600b4a5767bef8d:i:Coordinate Index",
+							"name": "Coordinate Index",
+							"direction": "input",
+							"type": "optional:int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "bc9c26fd412b04281600b4a5767bef8d:i:UTiling",
+							"name": "UTiling",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "bc9c26fd412b04281600b4a5767bef8d:i:VTiling",
+							"name": "VTiling",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "bc9c26fd412b04281600b4a5767bef8d:i:Un Mirror U",
+							"name": "Un Mirror U",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "bc9c26fd412b04281600b4a5767bef8d:i:Un Mirror V",
+							"name": "Un Mirror V",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "bc9c26fd412b04281600b4a5767bef8d:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"2e7392a540b5a5551f7196b93763ab3d:i:Coordinate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bd36238b40be18f17c7048926cf93d5a",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Multiply",
+					"x": -288,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bd36238b40be18f17c7048926cf93d5a:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"fe1b8cfc4797a5b55bbaed8a468ef330:o:A"
+							]
+						},
+						{
+							"id": "bd36238b40be18f17c7048926cf93d5a:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"94deecff474e06c71c9464885027b6c2:o:OutputPin"
+							]
+						},
+						{
+							"id": "bd36238b40be18f17c7048926cf93d5a:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"eef7cf0041cf5109d7c1e0a663091cc6:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c0da8e634b03bd475a13c19ba9629e2e",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Material Function Call",
+					"x": -512,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0da8e634b03bd475a13c19ba9629e2e:i:Alpha Threshold (S)",
+							"name": "Alpha Threshold (S)",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"74deb82a4bed2200b49b54874807da38:o:Output"
+							]
+						},
+						{
+							"id": "c0da8e634b03bd475a13c19ba9629e2e:i:Random (S)",
+							"name": "Random (S)",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": [
+								"7d2c535941a256f61fcfb088c686f87a:o:Output"
+							]
+						},
+						{
+							"id": "c0da8e634b03bd475a13c19ba9629e2e:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"eef7cf0041cf5109d7c1e0a663091cc6:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e1b662484e6b5d9d81802bbf9ce6f73d",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Scalar Parameter",
+					"x": -176,
+					"y": 640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e1b662484e6b5d9d81802bbf9ce6f73d:i:Default Value",
+							"name": "Default Value",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "e1b662484e6b5d9d81802bbf9ce6f73d:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"aba0fd3a45683ff21ddc88a07e9069ec:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "eef7cf0041cf5109d7c1e0a663091cc6",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Multiply",
+					"x": -224,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eef7cf0041cf5109d7c1e0a663091cc6:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"bd36238b40be18f17c7048926cf93d5a:o:Output"
+							]
+						},
+						{
+							"id": "eef7cf0041cf5109d7c1e0a663091cc6:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"c0da8e634b03bd475a13c19ba9629e2e:o:Result"
+							]
+						},
+						{
+							"id": "eef7cf0041cf5109d7c1e0a663091cc6:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"aba0fd3a45683ff21ddc88a07e9069ec:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f2f881b8458465ed8148f28a731c6d95",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Scalar Parameter",
+					"x": -1296,
+					"y": 736,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f2f881b8458465ed8148f28a731c6d95:i:Default Value",
+							"name": "Default Value",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "0.38",
+							"links": []
+						},
+						{
+							"id": "f2f881b8458465ed8148f28a731c6d95:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"3b7e4e594ae12b09cc7dcd9105d6d1f8:i:Radius"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fe1b8cfc4797a5b55bbaed8a468ef330",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Particle Color",
+					"x": -736,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fe1b8cfc4797a5b55bbaed8a468ef330:o:RGB",
+							"name": "RGB",
+							"direction": "output",
+							"type": "mask",
+							"defaultValue": null,
+							"links": [
+								"28327d6f49bc9f0b8bd9e7a351e98bbf:i:B"
+							]
+						},
+						{
+							"id": "fe1b8cfc4797a5b55bbaed8a468ef330:o:R",
+							"name": "R",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fe1b8cfc4797a5b55bbaed8a468ef330:o:G",
+							"name": "G",
+							"direction": "output",
+							"type": "mask:green",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fe1b8cfc4797a5b55bbaed8a468ef330:o:B",
+							"name": "B",
+							"direction": "output",
+							"type": "mask:blue",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fe1b8cfc4797a5b55bbaed8a468ef330:o:A",
+							"name": "A",
+							"direction": "output",
+							"type": "mask:alpha",
+							"defaultValue": null,
+							"links": [
+								"bd36238b40be18f17c7048926cf93d5a:i:A"
+							]
+						},
+						{
+							"id": "fe1b8cfc4797a5b55bbaed8a468ef330:o:RGBA",
+							"name": "RGBA",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "a99177ae4deb9af01c3674a89ccf4667",
+					"text": "For in-texture wobble",
+					"x": -1792,
+					"y": -288,
+					"width": 976,
+					"height": 608
+				}
+			]
+		}
+	],
+	"properties":
+	{
+		"PhysMaterial": null,
+		"PhysMaterialMask": null,
+		"PhysicalMaterialMap": null,
+		"RenderTracePhysicalMaterialOutputs": [],
+		"MaterialDomain": "MD_Surface",
+		"BlendMode": "BLEND_Masked",
+		"DecalBlendMode": "DBM_Translucent",
+		"MaterialDecalResponse": "MDR_ColorNormalRoughness",
+		"NaniteOverrideMaterial":
+		{
+			"bEnableOverride": true,
+			"OverrideMaterialEditor": null,
+			"OverrideMaterial": null,
+			"OverrideMaterialRef": null
+		},
+		"DisplacementScaling":
+		{
+			"Magnitude": 4,
+			"Center": 0.5
+		},
+		"DisplacementFadeRange":
+		{
+			"StartSizePixels": 4,
+			"EndSizePixels": 1
+		},
+		"ShadingModel": "MSM_Unlit",
+		"bCastDynamicShadowAsMasked": false,
+		"ShadingModels":
+		{
+			"ShadingModelField": 1
+		},
+		"OpacityMaskClipValue": 0.33329999999999999,
+		"bEnableResponsiveAA": false,
+		"bScreenSpaceReflections": false,
+		"bContactShadows": false,
+		"TwoSided": false,
+		"bIsThinSurface": false,
+		"DitheredLODTransition": false,
+		"DitherOpacityMask": false,
+		"bAllowNegativeEmissiveColor": false,
+		"bHasPixelAnimation": false,
+		"bEnableTessellation": false,
+		"bEnableDisplacementFade": false,
+		"TranslucencyPass": "MTP_AfterDOF",
+		"TranslucencyLightingMode": "TLM_VolumetricNonDirectional",
+		"bEnableMobileSeparateTranslucency": false,
+		"NumCustomizedUVs": 0,
+		"TranslucencyDirectionalLightingIntensity": 1,
+		"TranslucentShadowDensityScale": 0.5,
+		"TranslucentSelfShadowDensityScale": 2,
+		"TranslucentSelfShadowSecondDensityScale": 10,
+		"TranslucentSelfShadowSecondOpacity": 0,
+		"TranslucentBackscatteringExponent": 30,
+		"TranslucentMultipleScatteringExtinction":
+		{
+			"R": 1,
+			"G": 0.83299999999999996,
+			"B": 0.58799999999999997,
+			"A": 1
+		},
+		"TranslucentShadowStartOffset": 100,
+		"bDisableDepthTest": false,
+		"bWriteOnlyAlpha": false,
+		"bGenerateSphericalParticleNormals": false,
+		"bTangentSpaceNormal": true,
+		"bUseEmissiveForDynamicAreaLighting": false,
+		"bSubstrateRoughnessTracking": true,
+		"bUsedWithSkeletalMesh": false,
+		"bUsedWithEditorCompositing": false,
+		"bUsedWithParticleSprites": false,
+		"bUsedWithBeamTrails": false,
+		"bUsedWithMeshParticles": false,
+		"bUsedWithNiagaraSprites": true,
+		"bUsedWithNiagaraRibbons": false,
+		"bUsedWithNiagaraMeshParticles": false,
+		"bUsedWithGeometryCache": false,
+		"bUsedWithStaticLighting": false,
+		"bUsedWithMorphTargets": false,
+		"bUsedWithSplineMeshes": false,
+		"bUsedWithInstancedStaticMeshes": false,
+		"bUsedWithGeometryCollections": false,
+		"bUsesDistortion": false,
+		"bUsedWithClothing": false,
+		"bUsedWithWater": false,
+		"bUsedWithHairStrands": false,
+		"bUsedWithLidarPointCloud": false,
+		"bUsedWithVirtualHeightfieldMesh": false,
+		"bUsedWithNanite": false,
+		"bUsedWithVoxels": false,
+		"bUsedWithVolumetricCloud": false,
+		"bUsedWithHeterogeneousVolumes": false,
+		"bUsedWithStaticMesh": true,
+		"bForceCompatibleWithLightFunctionAtlas": false,
+		"bAutomaticallySetUsageInEditor": true,
+		"bFullyRough": false,
+		"FloatPrecisionMode": "MFPM_Default",
+		"bUseLightmapDirectionality": true,
+		"bUseAlphaToCoverage": false,
+		"bForwardRenderUsePreintegratedGFForSimpleIBL": false,
+		"bUseHQForwardReflections": false,
+		"bForwardBlendsSkyLightCubemaps": false,
+		"bUsePlanarForwardReflections": false,
+		"bNormalCurvatureToRoughness": false,
+		"AllowTranslucentCustomDepthWrites": false,
+		"bAllowFrontLayerTranslucency": true,
+		"bCompatibleWithLumenCardSharing": false,
+		"Wireframe": false,
+		"bAllowTranslucentLocalLightShadow": false,
+		"TranslucentLocalLightShadowQuality": 0,
+		"TranslucentDirectionalLightShadowQuality": 0,
+		"ShadingRate": "MSR_1x1",
+		"bAllowVariableRateShading": true,
+		"EditorX": 128,
+		"EditorY": 0,
+		"EditorPitch": 0,
+		"EditorYaw": 0,
+		"bCanMaskedBeAssumedOpaque": false,
+		"bUseMaterialAttributes": false,
+		"bEnableExecWire": false,
+		"bEnableNewHLSLGenerator": false,
+		"bCastRayTracedShadows": true,
+		"bUseTranslucencyVertexFog": true,
+		"bApplyCloudFogging": false,
+		"bIsSky": false,
+		"bComputeFogPerPixel": false,
+		"bOutputTranslucentVelocity": true,
+		"bIsTranslucencyVelocityFromDepth": false,
+		"bRelaxRuntimeVirtualTextureRestrictions": false,
+		"BlendableLocation": "BL_SceneColorAfterTonemapping",
+		"BlendableOutputAlpha": false,
+		"UserSceneTexture": "None",
+		"UserTextureDivisor":
+		{
+			"X": 0,
+			"Y": 0
+		},
+		"ResolutionRelativeToInput": "None",
+		"bDisablePreExposureScale": false,
+		"bUsedWithNeuralNetworks": false,
+		"bEnableStencilTest": false,
+		"StencilCompare": "MSC_Less",
+		"StencilRefValue": 0,
+		"NeuralProfileId": -1,
+		"RefractionMethod": "RM_None",
+		"RefractionCoverageMode": "RCM_CoverageAccountedFor",
+		"PixelDepthOffsetMode": "PDOM_AlongCameraVector",
+		"BlendablePriority": 0,
+		"bIsBlendable": true,
+		"PreshaderGap": 0,
+		"RefractionDepthBias": 0,
+		"MaxWorldPositionOffsetDisplacement": 0,
+		"bAlwaysEvaluateWorldPositionOffset": false,
+		"ReferencedTextureGuids": [
+			"B7724CBC45D49AC084B402A14193A5DD",
+			"7B84B7D049DA5A9F73366E8D315FD603",
+			"307757E1458E615C7D97A39E32219707"
+		],
+		"EditorOnlyData":
+		{
+			"_class": "MaterialEditorOnlyData",
+			"_name": "M_CartoonBubble_DitheredEditorOnlyData",
+			"BaseColor":
+			{
+				"UseConstant": true,
+				"Constant":
+				{
+					"R": 0.5,
+					"G": 0.5,
+					"B": 0.5,
+					"A": 1
+				},
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"Metallic":
+			{
+				"UseConstant": true,
+				"Constant": 0,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"Specular":
+			{
+				"UseConstant": true,
+				"Constant": 0.5,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"Roughness":
+			{
+				"UseConstant": true,
+				"Constant": 0.5,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"Anisotropy":
+			{
+				"UseConstant": false,
+				"Constant": 0,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"Normal":
+			{
+				"UseConstant": true,
+				"Constant":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 1
+				},
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"Tangent":
+			{
+				"UseConstant": true,
+				"Constant":
+				{
+					"X": 1,
+					"Y": 0,
+					"Z": 0
+				},
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"EmissiveColor":
+			{
+				"UseConstant": false,
+				"Constant":
+				{
+					"R": 0,
+					"G": 0,
+					"B": 0,
+					"A": 0
+				},
+				"Expression": "/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionMultiply_4",
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"Opacity":
+			{
+				"UseConstant": true,
+				"Constant": 1,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"OpacityMask":
+			{
+				"UseConstant": false,
+				"Constant": 1,
+				"Expression": "/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionMultiply_5",
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"WorldPositionOffset":
+			{
+				"UseConstant": false,
+				"Constant":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"Displacement":
+			{
+				"UseConstant": false,
+				"Constant": 0.5,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"SubsurfaceColor":
+			{
+				"UseConstant": true,
+				"Constant":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 0
+				},
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"ClearCoat":
+			{
+				"UseConstant": true,
+				"Constant": 1,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"ClearCoatRoughness":
+			{
+				"UseConstant": true,
+				"Constant": 0.10000000000000001,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"AmbientOcclusion":
+			{
+				"UseConstant": true,
+				"Constant": 1,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"Refraction":
+			{
+				"UseConstant": true,
+				"Constant": 1,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"CustomizedUVs":
+			{
+				"UseConstant": true,
+				"ConstantX": 0,
+				"ConstantY": 0,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"MaterialAttributes":
+			{
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"PixelDepthOffset":
+			{
+				"UseConstant": false,
+				"Constant": 0,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"ShadingModelFromMaterialExpression":
+			{
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"SurfaceThickness":
+			{
+				"UseConstant": true,
+				"Constant": 0.01,
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"FrontMaterial":
+			{
+				"Expression": null,
+				"OutputIndex": 0,
+				"InputName": "None",
+				"Mask": 0,
+				"MaskR": 0,
+				"MaskG": 0,
+				"MaskB": 0,
+				"MaskA": 0
+			},
+			"ExpressionCollection":
+			{
+				"Expressions": [
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionMultiply_4",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionMultiply_5",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionMultiply_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionMultiply_1",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionMultiply_2",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionTextureSample_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionTextureSample_1",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionTextureCoordinate_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionPanner_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionMultiply_3",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionTextureCoordinate_1",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionAdd_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionParticleColor_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionReroute_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionMaterialFunctionCall_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionConstant2Vector_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionScalarParameter_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionSphereMask_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionOneMinus_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionTextureCoordinate_2",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionScalarParameter_1",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionScalarParameter_2",
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionScalarParameter_3"
+				],
+				"EditorComments": [
+					"/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/M_CartoonBubble_Dithered.M_CartoonBubble_Dithered:MaterialExpressionComment_0"
+				],
+				"ExpressionExecBegin": null,
+				"ExpressionExecEnd": null
+			},
+			"ParameterGroupData": [
+				{
+					"GroupName": "None",
+					"GroupSortPriority": 0
+				}
+			],
+			"SubstrateConversionVersion": -1,
+			"SubstrateVersion": -1,
+			"bIsSubsutrateAutoConvertedAndNotSaved": false
+		},
+		"SubsurfaceProfile": null,
+		"SubsurfaceProfiles": [],
+		"SpecularProfiles": [],
+		"NeuralProfile": null,
+		"LightmassSettings":
+		{
+			"EmissiveBoost": 1,
+			"DiffuseBoost": 1,
+			"ExportResolutionScale": 1,
+			"bCastShadowAsMasked": false,
+			"bOverrideCastShadowAsMasked": false,
+			"bOverrideEmissiveBoost": false,
+			"bOverrideDiffuseBoost": false,
+			"bOverrideExportResolutionScale": false
+		},
+		"TextureStreamingDataVersion": 1,
+		"TextureStreamingData": [
+			{
+				"SamplingScale": 0.5,
+				"UVChannelIndex": 0,
+				"TextureName": "Good64x64TilingNoiseHighFreq",
+				"TextureReference": "/Engine/EngineMaterials/Good64x64TilingNoiseHighFreq.Good64x64TilingNoiseHighFreq"
+			},
+			{
+				"SamplingScale": 0.97625729999999999,
+				"UVChannelIndex": 0,
+				"TextureName": "T_CartoonBubble_Opaque",
+				"TextureReference": "/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/T_CartoonBubble_Opaque.T_CartoonBubble_Opaque"
+			},
+			{
+				"SamplingScale": 1,
+				"UVChannelIndex": 0,
+				"TextureName": "T_SoftCloudNoise",
+				"TextureReference": "/Game/ProjectAtlantis/MaterialLibrary/Effects/Underwater/AdditionalBubbles/T_SoftCloudNoise.T_SoftCloudNoise"
+			}
+		],
+		"AssetUserData": [],
+		"bIncludedInBaseGame": false,
+		"PreviewMesh": "None",
+		"ThumbnailInfo": null,
+		"LayerParameterExpansion":
+		{
+		},
+		"ParameterOverviewExpansion":
+		{
+		},
+		"AssetImportData": null
+	}
+}
