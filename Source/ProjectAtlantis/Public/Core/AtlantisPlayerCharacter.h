@@ -16,6 +16,7 @@ public:
 
 	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
 
+	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 	virtual void OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode = 0) override;
@@ -24,6 +25,7 @@ public:
 	
 	virtual void UnPossessed() override;
 
+	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
