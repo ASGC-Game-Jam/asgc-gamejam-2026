@@ -62,8 +62,6 @@ EAtlantisTraversalMode AAtlantisPlayerCharacter::ToTraversalMode(EMovementMode M
 	case MOVE_NavWalking:
 	case MOVE_Falling:
 		return EAtlantisTraversalMode::Terrestrial;
-		
-		// The really short list of movements that indicate when we are underwater
 	case MOVE_Swimming:
 		return EAtlantisTraversalMode::Swimming;
 		
