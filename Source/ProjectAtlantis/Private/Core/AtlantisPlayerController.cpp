@@ -2,10 +2,15 @@
 
 
 #include "Core/AtlantisPlayerController.h"
+#include "Core/AtlantisPlayerState.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PhysicsVolume.h"
+#include "EnhancedInputComponent.h"
 
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
+#include "HAL/PlatformProperties.h"
 
 // Anonymous namespace: everything inside has internal linkage, so these helpers are private to
 // this .cpp. Another file can define its own MakeControlOptions without a duplicate-symbol link
@@ -38,9 +43,94 @@ namespace
 	}
 }
 
+void AAtlantisPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
+	{
+		if (DescendBallastAction)
+		{
+			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this,
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Descend);
+		}
+		if (WanderBallastAction)
+		{
+			EnhancedInput->BindAction(WanderBallastAction, ETriggerEvent::Started, this,
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
+		}
+		if (AscendBallastAction)
+		{
+			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this,
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
+		}
+	}
+	RefreshMovementControls();
+}
+
+void AAtlantisPlayerController::OnPossess(APawn* InPawn)
+{
+	Super::OnPossess(InPawn);
+	RefreshMovementControls();
+}
+
+void AAtlantisPlayerController::OnRep_Pawn()
+{
+	Super::OnRep_Pawn();
+	RefreshMovementControls();
+}
+
+void AAtlantisPlayerController::RefreshMovementControls()
+{
+	if (const APawn* ControlledPawn = GetPawn())
+	{
+		const APhysicsVolume* Volume = ControlledPawn->GetPhysicsVolume();
+		UpdateMovementControls(Volume && Volume->bWaterVolume);
+	}
+}
+
+void AAtlantisPlayerController::UpdateMovementControls(bool bInWater)
+{
+	UInputMappingContext* ActiveContext = bInWater ? SwimmingMappingContext : DefaultMovementMappingContext;
+	UInputMappingContext* InactiveContext = bInWater ? DefaultMovementMappingContext : SwimmingMappingContext;
+	RemoveControls(InactiveContext);
+	if (ActiveContext && !CurrentMappingContexts.Contains(ActiveContext))
+	{
+		AddControls(ActiveContext);
+	}
+}
+
+void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& ActionValue, const EAtlantisBallastState NewBallastState)
+{
+	if (bControlsEnabled && GetPawn())
+	{
+		ServerSetBallastState(NewBallastState);
+	}
+}
+
+void AAtlantisPlayerController::ServerSetBallastState_Implementation(const EAtlantisBallastState NewBallastState)
+{
+	if (!bControlsEnabled || !GetPawn() || NewBallastState == EAtlantisBallastState::None)
+	{
+		return;
+	}
+
+	// PlayerState accepts the request only when the required oxygen can be reserved.
+	if (AAtlantisPlayerState* AtlantisPlayerState = GetPlayerState<AAtlantisPlayerState>())
+	{
+		AtlantisPlayerState->SetBallastState(NewBallastState);
+	}
+}
+
 UEnhancedInputLocalPlayerSubsystem* AAtlantisPlayerController::GetEnhancedInputSubsystem() const
 {
 	return ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
+}
+
+bool AAtlantisPlayerController::ShouldUseTouchControls() const
+{
+	const FString PlatformName(FPlatformProperties::PlatformName());
+	const bool bIsMobilePlatform = PlatformName == TEXT("IOS") || PlatformName == TEXT("Android");
+	return bIsMobilePlatform || bForceTouchControls;
 }
 
 void AAtlantisPlayerController::AddControls(UInputMappingContext* NewControlMappingContext)
@@ -87,8 +177,6 @@ void AAtlantisPlayerController::RemoveControls(UInputMappingContext* MappingCont
 
 void AAtlantisPlayerController::ClearAllControls()
 {
-	// Withdraw from the subsystem BEFORE emptying the list. The Blueprint cleared the array
-	// first and then iterated it, so the contexts were forgotten while staying applied.
 	ClearMappingContexts();
 
 	CurrentMappingContexts.Empty();
@@ -120,7 +208,7 @@ void AAtlantisPlayerController::EstablishMappingContexts()
 	}
 
 	const FModifyContextOptions Options = MakeControlOptions();
-	for (UInputMappingContext* MappingContext : CurrentMappingContexts)
+	for (const UInputMappingContext* MappingContext : CurrentMappingContexts)
 	{
 		if (MappingContext)
 		{
@@ -138,11 +226,51 @@ void AAtlantisPlayerController::ClearMappingContexts()
 	}
 
 	const FModifyContextOptions Options = MakeControlOptions();
-	for (UInputMappingContext* MappingContext : CurrentMappingContexts)
+	for (const UInputMappingContext* MappingContext : CurrentMappingContexts)
 	{
 		if (MappingContext)
 		{
 			Subsystem->RemoveMappingContext(MappingContext, Options);
 		}
+	}
+}
+
+void AAtlantisPlayerController::RestrictControls(FName Requester, UInputMappingContext* MappingContext)
+{
+	if (Requester.IsNone() || !IsValid(MappingContext))
+	{
+		return;
+	}
+
+	TSet<FName>& Restrictions = InputRestrictions.FindOrAdd(MappingContext);
+
+	const bool bWasUnrestricted = Restrictions.IsEmpty();
+	Restrictions.Add(Requester);
+
+	if (bWasUnrestricted)
+	{
+		RemoveControls(MappingContext);
+	}
+}
+void AAtlantisPlayerController::UnrestrictControls(FName Requester, UInputMappingContext* MappingContext)
+{
+	if (Requester.IsNone() || !IsValid(MappingContext))
+	{
+		return;
+	}
+
+	TSet<FName>* Restrictions = InputRestrictions.Find(MappingContext);
+
+	if (!Restrictions)
+	{
+		return;
+	}
+
+	Restrictions->Remove(Requester);
+
+	if (Restrictions->IsEmpty())
+	{
+		AddControls(MappingContext);
+		InputRestrictions.Remove(MappingContext);
 	}
 }
