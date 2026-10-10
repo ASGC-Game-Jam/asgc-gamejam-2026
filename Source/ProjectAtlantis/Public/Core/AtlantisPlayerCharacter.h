@@ -26,15 +26,23 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-
+	
 	/** Returns the character to the transform captured at BeginPlay. Authority only. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
 	void MoveToStart();
-
+	
 	/** Moves the character to an arbitrary transform. Authority only. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
 	void MoveToTransform(const FTransform& Transform);
 
+	/** Horizontal speed in cm/s, will ignore vertical movement */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
+	float GetGroundSpeed() const;
+	
+	/** True while the player is trying to move */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
+	bool HasMovementInput() const;
+	
 private:
 	UPROPERTY(BlueprintReadOnly, Category = "Atlantis|Movement", meta = (AllowPrivateAccess = "true"))
 	FTransform StartTransform;
