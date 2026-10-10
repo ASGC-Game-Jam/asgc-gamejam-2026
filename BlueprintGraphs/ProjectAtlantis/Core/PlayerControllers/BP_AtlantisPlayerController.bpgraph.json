@@ -2032,7 +2032,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"de82f60f4ff9b718667793bb2cb3b724:i:InputPin"
+							]
 						},
 						{
 							"id": "377c06d543065dee031a638a4b945bd7:i:self",
@@ -2187,6 +2189,44 @@
 					]
 				},
 				{
+					"guid": "6db245d2499268ea1d1fb395dde90673",
+					"class": "K2Node_CallFunction",
+					"title": "HandleJournal",
+					"x": 2512,
+					"y": 304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6db245d2499268ea1d1fb395dde90673:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9398a3ff4e4b73bfa36357b08c39d0e7:o:Started"
+							]
+						},
+						{
+							"id": "6db245d2499268ea1d1fb395dde90673:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6db245d2499268ea1d1fb395dde90673:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": [
+								"8b68262c40ce7bbf20928e94e7e4c5e3:o:JournalWidget"
+							]
+						}
+					]
+				},
+				{
 					"guid": "75ee305f4d60765a3abf15a3bf6f486d",
 					"class": "K2Node_GetSubsystem",
 					"title": "Get EnhancedInputLocalPlayerSubsystem",
@@ -2203,6 +2243,92 @@
 							"links": [
 								"377c06d543065dee031a638a4b945bd7:i:self"
 							]
+						}
+					]
+				},
+				{
+					"guid": "7d53a91b40fae73f57f8b3a07f112dd7",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 2272,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7d53a91b40fae73f57f8b3a07f112dd7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"de82f60f4ff9b718667793bb2cb3b724:o:OutputPin"
+							]
+						},
+						{
+							"id": "7d53a91b40fae73f57f8b3a07f112dd7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c682d75e4cfe786b65e4009f382dfbc8:i:execute"
+							]
+						},
+						{
+							"id": "7d53a91b40fae73f57f8b3a07f112dd7:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"links": []
+						},
+						{
+							"id": "7d53a91b40fae73f57f8b3a07f112dd7:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": [
+								"c682d75e4cfe786b65e4009f382dfbc8:i:JournalWidget"
+							]
+						},
+						{
+							"id": "7d53a91b40fae73f57f8b3a07f112dd7:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"988db29d41b0f22a4d4aeb9d742c0542:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8b68262c40ce7bbf20928e94e7e4c5e3",
+					"class": "K2Node_VariableGet",
+					"title": "Get JournalWidget",
+					"x": 2336,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8b68262c40ce7bbf20928e94e7e4c5e3:o:JournalWidget",
+							"name": "JournalWidget",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": [
+								"6db245d2499268ea1d1fb395dde90673:i:self"
+							]
+						},
+						{
+							"id": "8b68262c40ce7bbf20928e94e7e4c5e3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -2231,6 +2357,134 @@
 							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9398a3ff4e4b73bfa36357b08c39d0e7",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_Journal",
+					"x": 2064,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9398a3ff4e4b73bfa36357b08c39d0e7:o:Triggered",
+							"name": "Triggered",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9398a3ff4e4b73bfa36357b08c39d0e7:o:Started",
+							"name": "Started",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6db245d2499268ea1d1fb395dde90673:i:execute"
+							]
+						},
+						{
+							"id": "9398a3ff4e4b73bfa36357b08c39d0e7:o:Ongoing",
+							"name": "Ongoing",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9398a3ff4e4b73bfa36357b08c39d0e7:o:Canceled",
+							"name": "Canceled",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9398a3ff4e4b73bfa36357b08c39d0e7:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9398a3ff4e4b73bfa36357b08c39d0e7:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "9398a3ff4e4b73bfa36357b08c39d0e7:o:ElapsedSeconds",
+							"name": "ElapsedSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9398a3ff4e4b73bfa36357b08c39d0e7:o:TriggeredSeconds",
+							"name": "TriggeredSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9398a3ff4e4b73bfa36357b08c39d0e7:o:InputAction",
+							"name": "InputAction",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Journal.IA_Journal",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "988db29d41b0f22a4d4aeb9d742c0542",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 1952,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "988db29d41b0f22a4d4aeb9d742c0542:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "988db29d41b0f22a4d4aeb9d742c0542:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "988db29d41b0f22a4d4aeb9d742c0542:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "988db29d41b0f22a4d4aeb9d742c0542:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"7d53a91b40fae73f57f8b3a07f112dd7:i:OwningPlayer"
+							]
 						}
 					]
 				},
@@ -2375,6 +2629,90 @@
 					]
 				},
 				{
+					"guid": "c682d75e4cfe786b65e4009f382dfbc8",
+					"class": "K2Node_VariableSet",
+					"title": "Set JournalWidget",
+					"x": 2608,
+					"y": 672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c682d75e4cfe786b65e4009f382dfbc8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7d53a91b40fae73f57f8b3a07f112dd7:o:then"
+							]
+						},
+						{
+							"id": "c682d75e4cfe786b65e4009f382dfbc8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c682d75e4cfe786b65e4009f382dfbc8:i:JournalWidget",
+							"name": "JournalWidget",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": [
+								"7d53a91b40fae73f57f8b3a07f112dd7:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c682d75e4cfe786b65e4009f382dfbc8:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c682d75e4cfe786b65e4009f382dfbc8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "de82f60f4ff9b718667793bb2cb3b724",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1984,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "de82f60f4ff9b718667793bb2cb3b724:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"377c06d543065dee031a638a4b945bd7:o:then"
+							]
+						},
+						{
+							"id": "de82f60f4ff9b718667793bb2cb3b724:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7d53a91b40fae73f57f8b3a07f112dd7:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "ff302ef747ad384f949b5d9d09b04c6b",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
@@ -2419,6 +2757,22 @@
 					"y": -512,
 					"width": 2633,
 					"height": 1492
+				},
+				{
+					"guid": "77216b414a103ee9642e89a4083573ae",
+					"text": "Add Journal",
+					"x": 1936,
+					"y": 576,
+					"width": 944,
+					"height": 368
+				},
+				{
+					"guid": "9af88c5c4bfe4d6cd11575b77e8fd675",
+					"text": "journal is mainly handled within the widget itself",
+					"x": 2048,
+					"y": 144,
+					"width": 683,
+					"height": 362
 				},
 				{
 					"guid": "bf5f8e0142dfe39c87aa049200bf4d41",
