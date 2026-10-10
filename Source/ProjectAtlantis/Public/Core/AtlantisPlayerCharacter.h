@@ -13,8 +13,10 @@ class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
+
 	AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer);
 
+	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 	virtual void OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode = 0) override;
@@ -23,10 +25,13 @@ public:
 	
 	virtual void UnPossessed() override;
 
+	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-	
+
+	virtual void FaceRotation(FRotator NewControlRotation, float DeltaTime = 0.f) override;
+
 	/** Returns the character to the transform captured at BeginPlay. Authority only. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Movement")
 	void MoveToStart();

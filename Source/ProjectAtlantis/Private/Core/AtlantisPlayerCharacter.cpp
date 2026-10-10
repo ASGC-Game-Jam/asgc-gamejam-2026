@@ -95,4 +95,10 @@ void AAtlantisPlayerCharacter::UnPossessed()
 	Super::UnPossessed();
 }
 
-
+void AAtlantisPlayerCharacter::FaceRotation(FRotator NewControlRotation, float DeltaTime)
+{
+	if (!GetCharacterMovement()->IsSwimming())
+	{
+		Super::FaceRotation(NewControlRotation, DeltaTime);
+	}
+}
