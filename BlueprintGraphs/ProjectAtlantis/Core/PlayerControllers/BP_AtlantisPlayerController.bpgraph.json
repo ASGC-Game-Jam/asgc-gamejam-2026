@@ -1385,8 +1385,18 @@
 							"id": "d4fd676840bb5b0db3923d98df7744a9:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Script/Engine.KismetSystemLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b21ec2154f1865f9f844beaa023875fc:o:OutputPin"
+							]
+						},
+						{
+							"id": "377c06d543065dee031a638a4b945bd7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
 							"links": []
 						},
 						{
@@ -1430,8 +1440,28 @@
 							"links": []
 						},
 						{
-							"id": "d4fd676840bb5b0db3923d98df7744a9:i:Duration",
-							"name": "Duration",
+							"id": "42cabebf4718c471ef1ee48b18e6b194:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"266f6b2649ce3e0c3a5f5895581d6f2e:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "53d13d4b49304115cd79628e2bb947c7",
+					"class": "K2Node_CallFunction",
+					"title": "Should Use Touch Controls",
+					"x": 496,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "53d13d4b49304115cd79628e2bb947c7:i:self",
+							"name": "self",
 							"direction": "input",
 							"type": "real:float",
 							"defaultValue": "2.000000",
@@ -1580,6 +1610,104 @@
 					]
 				},
 				{
+					"guid": "a638a2c84a627c0f3284e19e6c974a57",
+					"class": "K2Node_VariableSet",
+					"title": "Set JournalWidget",
+					"x": 2352,
+					"y": 672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a638a2c84a627c0f3284e19e6c974a57:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5fe89fbc4ee0db376e9ba0804e6c8797:o:then"
+							]
+						},
+						{
+							"id": "a638a2c84a627c0f3284e19e6c974a57:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a638a2c84a627c0f3284e19e6c974a57:i:JournalWidget",
+							"name": "JournalWidget",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": [
+								"5fe89fbc4ee0db376e9ba0804e6c8797:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a638a2c84a627c0f3284e19e6c974a57:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/PlayerControllers/BP_AtlantisPlayerController.BP_AtlantisPlayerController_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a638a2c84a627c0f3284e19e6c974a57:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ae0d62d54e4fc79483db918814784d1b",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 1952,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ae0d62d54e4fc79483db918814784d1b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "ae0d62d54e4fc79483db918814784d1b:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ae0d62d54e4fc79483db918814784d1b:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "ae0d62d54e4fc79483db918814784d1b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"5fe89fbc4ee0db376e9ba0804e6c8797:i:OwningPlayer"
+							]
+						}
+					]
+				},
+				{
 					"guid": "f5c186294bca1efa2c9542875706289b",
 					"class": "K2Node_InputKey",
 					"title": "V",
@@ -1652,6 +1780,26 @@
 					]
 				},
 				{
+					"guid": "c419965a432707f21ca679983c3d478a",
+					"class": "K2Node_Self",
+					"title": "Self-Reference",
+					"x": 1040,
+					"y": 304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c419965a432707f21ca679983c3d478a:o:self",
+							"name": "self",
+							"direction": "output",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": [
+								"63233de94316f17985514482daff70b2:i:OwningPlayer"
+							]
+						}
+					]
+				},
+				{
 					"guid": "ff302ef747ad384f949b5d9d09b04c6b",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
@@ -1688,6 +1836,22 @@
 					"y": 544,
 					"width": 736,
 					"height": 384
+				},
+				{
+					"guid": "2a8b74c74722180e2774ab94b2752c79",
+					"text": "execute open/close commands for journal",
+					"x": 1904,
+					"y": 144,
+					"width": 699,
+					"height": 431
+				},
+				{
+					"guid": "3df1fef84ace16f74e4623ad26b897ec",
+					"text": "create the journal widget to be shown/hidden from the player",
+					"x": 1888,
+					"y": 592,
+					"width": 689,
+					"height": 342
 				},
 				{
 					"guid": "5e35b0c14cf3982ff1cd8f8b25deaaf3",
