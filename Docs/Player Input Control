@@ -1,0 +1,6 @@
+#Summary
+
+I made two functions to restrict and unrestrict controls; RestrictControls(FName, InputMappingContxt) and UnrestrictControls(FName, InputMappingContxt). Both functios take a name and input as paramaters and the idea is another gameplay system can request to restrict and unrestrict controls by passing in the name of the system and their respective inputs. These functions are also blueprint callable so they can be tested. 
+As an example:
+  RestrictControls("Dialogue", DialogueInputs) to call first then when the player is done using said gameplay system then call UnrestrictControls passing in the same paramaters.
+I tested this with IMC_Default and IMC_Look in AAtlantisPlayerController and for the blueprint I hooked up the functions to V B N M then wired all to PrintString. As the FName is a string make sure the names in both functions match exactly.
