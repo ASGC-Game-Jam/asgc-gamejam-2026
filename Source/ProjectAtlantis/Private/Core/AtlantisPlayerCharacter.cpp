@@ -38,6 +38,16 @@ void AAtlantisPlayerCharacter::MoveToTransform(const FTransform& Transform)
 	SetActorTransform(Transform);
 }
 
+float AAtlantisPlayerCharacter::GetGroundSpeed() const
+{
+	return GetVelocity().Size2D();
+}
+
+bool AAtlantisPlayerCharacter::HasMovementInput() const
+{
+	return !GetCharacterMovement()->GetCurrentAcceleration().IsNearlyZero();
+}
+
 void AAtlantisPlayerCharacter::UpdateTraversalMode() const
 {
 	if (AAtlantisPlayerState* State  = GetPlayerState<AAtlantisPlayerState>())
@@ -84,3 +94,5 @@ void AAtlantisPlayerCharacter::UnPossessed()
 
 	Super::UnPossessed();
 }
+
+
