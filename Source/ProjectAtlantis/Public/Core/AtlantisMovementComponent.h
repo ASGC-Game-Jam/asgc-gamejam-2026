@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Core/AtlantisPlayerState.h"
 #include "AtlantisMovementComponent.generated.h"
 
 /**
@@ -17,8 +18,18 @@ class PROJECTATLANTIS_API UAtlantisMovementComponent : public UCharacterMovement
 public:
 	UAtlantisMovementComponent();
 
-	virtual void PhysicsRotation(float DeltaTime) override;
+	/** Surface Walk uses a native custom movement mode; normal swimming resumes on detachment. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Surface Walk")
+	bool IsSurfaceWalking() const { return MovementMode == MOVE_Custom && (CustomMovementMode == 1 || CustomMovementMode == 2); }
+
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Surface Walk")
+	FVector GetSupportingSurfaceNormal() const { return SurfaceNormal; }
+
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	virtual void PhysCustom(float DeltaTime, int32 Iterations) override;
 	virtual void OnMovementModeChanged(EMovementMode PreviousMovementMode, uint8 PreviousCustomMode) override;
+	virtual void PhysicsRotation(float DeltaTime) override;
+	virtual float GetMaxSpeed() const override;
 	virtual void PhysicsVolumeChanged(APhysicsVolume* NewVolume) override;
 	virtual float ImmersionDepth() const override;
 	virtual float GetMaxAcceleration() const override;
@@ -46,6 +57,46 @@ protected:
 	float AscendBuoyancy = 1.5f;
 
 private:
+	/** Distance beyond the capsule at which automatic attachment is allowed, in cm. */
+	UPROPERTY(EditAnywhere, Category = "Atlantis|Surface Walk", meta = (ClampMin = "0"))
+	float SurfaceAttachDistance = 8.f;
+
+	/** Support can remain this far beyond the capsule before detachment, in cm. */
+	UPROPERTY(EditAnywhere, Category = "Atlantis|Surface Walk", meta = (ClampMin = "0"))
+	float SurfaceDetachDistance = 20.f;
+
+	UPROPERTY(EditAnywhere, Category = "Atlantis|Surface Walk", meta = (ClampMin = "0"))
+	float SurfaceContactOffset = 2.f;
+
+	/** Largest normal change accepted in one step; larger corners detach. */
+	UPROPERTY(EditAnywhere, Category = "Atlantis|Surface Walk", meta = (ClampMin = "0", ClampMax = "89"))
+	float MaxSurfaceNormalChangeDegrees = 60.f;
+
+	/** Additional normal threshold, combined with Walkable Floor Angle for all support checks. */
+	UPROPERTY(EditAnywhere, Category = "Atlantis|Surface Walk", meta = (ClampMin = "0.01", ClampMax = "1"))
+	float MinSurfaceVerticalNormal = 0.1f;
+
+	FVector SurfaceNormal = FVector::UpVector;
+	EAtlantisBallastState AttachedBallastState = EAtlantisBallastState::None;
+	TWeakObjectPtr<AAtlantisPlayerState> BoundBallastState;
+	bool bDetachedThisFrame = false;
+	/** Delay retries after an obstructed pose or movement so Swimming can clear the geometry. */
+	UPROPERTY(EditAnywhere, Category = "Atlantis|Surface Walk", meta = (ClampMin = "0"))
+	float BlockedSurfaceReattachDelay = 0.2f;
+	float SurfaceReattachTimeRemaining = 0.f;
+	bool FindSupportingSurface(const FVector& Direction, float ExtraDistance, FHitResult& Hit) const;
+	bool IsSurfaceAllowed(const FVector& Normal) const;
+	bool TryAttachSurface();
+	void DetachSurface(bool bBlocked = false);
+	bool OrientToSurface();
+	FQuat GetSurfaceRotation() const;
+	bool IsSurfacePoseBlocked(const FVector& Location, const FQuat& Rotation) const;
+	bool TrySurfaceStep(const FVector& Delta);
+	bool SnapToSurface(const FHitResult& Support);
+
+	UFUNCTION()
+	void OnSurfaceBallastChanged(bool bAllocated, EAtlantisBallastState State);
+
 	/** 
 	 * Acceleration while swimming. Separate from walking's Max Acceleration so swim feel can be tuned independently 
 	 * See also Braking Deceleration Swimming
