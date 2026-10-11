@@ -103,6 +103,27 @@ files must be explicitly added with `git add`. Commit/push using Git to retain
 locks through PR merge, or use asset-specific Check In with the patched plugin:
 editor Check In and push now retain locks regardless of **Keep Files Checked Out**.
 Release locks explicitly after merge; the plugin does not monitor PR status.
+## Refresh IDE Projects After an Engine Upgrade
+
+Rider and Visual Studio can retain generated build paths for the previous
+engine even when `ProjectAtlantis.uproject` has the correct engine association.
+After switching to Unreal 5.8, regenerate both project formats from the
+repository root using the new engine:
+
+```powershell
+$UnrealBuild = 'C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\Build.bat'
+& $UnrealBuild -projectfiles "-project=$PWD\ProjectAtlantis.uproject" -game -engine -Rider
+& $UnrealBuild -projectfiles "-project=$PWD\ProjectAtlantis.uproject" -game -engine -2022
+```
+
+Run the two generators separately. Reload the project in Rider, or close and
+reopen `ProjectAtlantis.uproject` (native Unreal project) or `ProjectAtlantis.sln`
+(MSBuild solution). Build **Development Editor / Win64**.
+
+Errors saying `BuildSettingsVersion.V7` or `EngineIncludeOrderVersion.Unreal5_8`
+do not exist indicate that the old engine's UnrealBuildTool is being invoked.
+Check that `Intermediate/ProjectFiles/UECommon.props` points to `UE_5.8`.
+The 5.8 build log uses the bundled .NET 10 SDK.
 
 ## Verify Your Setup
 
