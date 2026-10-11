@@ -19,7 +19,8 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisJournalObjectivesTest,
 
 bool FAtlantisJournalObjectivesTest::RunTest(const FString& Parameters)
 {
-	TStrongObjectPtr<UAtlantisJournalObjectivesSubsystem> Journal(NewObject<UAtlantisJournalObjectivesSubsystem>());
+	TStrongObjectPtr<UGameInstance> SnapshotOwner(NewObject<UGameInstance>());
+	TStrongObjectPtr<UAtlantisJournalObjectivesSubsystem> Journal(NewObject<UAtlantisJournalObjectivesSubsystem>(SnapshotOwner.Get()));
 	TestEqual(TEXT("Starts empty"), Journal->GetVisibleObjectives().Num(), 0);
 	FJournalObjectivePresentation Active;
 	Active.ObjectiveId = TEXT("InspectRoom");
