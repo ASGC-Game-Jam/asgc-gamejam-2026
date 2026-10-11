@@ -3,6 +3,13 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "Journal/AtlantisJournalObjectivesSubsystem.h"
+#include "Journal/AtlantisJournalObjectivesWidget.h"
+#include "Journal/AtlantisJournalSubsystem.h"
+#include "Blueprint/WidgetTree.h"
+#include "Components/TextBlock.h"
+#include "Engine/Engine.h"
+#include "Engine/GameInstance.h"
+#include "Engine/World.h"
 #include "Misc/AutomationTest.h"
 #include "UObject/StrongObjectPtr.h"
 
@@ -77,6 +84,55 @@ bool FAtlantisJournalObjectivesTest::RunTest(const FString& Parameters)
 	Journal->SubmitObjectiveSnapshot({Active});
 	Journal->ClearObjectives();
 	TestEqual(TEXT("Run reset removes objective presentation"), Journal->GetVisibleObjectives().Num(), 0);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisJournalObjectivesViewTest,
+	"Atlantis.Journal.ObjectivesViewUpdates",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FAtlantisJournalObjectivesViewTest::RunTest(const FString& Parameters)
+{
+	TStrongObjectPtr<UGameInstance> GameInstance(NewObject<UGameInstance>(GEngine));
+	GameInstance->InitializeStandalone();
+	UWorld* World = GameInstance->GetWorld();
+	UAtlantisJournalObjectivesSubsystem* Objectives = GameInstance->GetSubsystem<UAtlantisJournalObjectivesSubsystem>();
+	UAtlantisJournalObjectivesWidget* Widget = CreateWidget<UAtlantisJournalObjectivesWidget>(GameInstance.Get());
+	if (TestNotNull(TEXT("Objectives widget created without a binary asset"), Widget))
+	{
+		const auto ContainsText = [Widget](const FString& Text)
+		{
+			bool bFound = false;
+			Widget->WidgetTree->ForEachWidget([&bFound, &Text](UWidget* Child)
+			{
+				if (const UTextBlock* Label = Cast<UTextBlock>(Child))
+				{
+					bFound |= Label->GetText().ToString().Contains(Text);
+				}
+			});
+			return bFound;
+		};
+		TSharedRef<SWidget> SlateWidget = Widget->TakeWidget();
+		TestTrue(TEXT("Opening empty view renders empty state"), ContainsText(TEXT("No objectives")));
+		FJournalObjectivePresentation Objective;
+		Objective.ObjectiveId = TEXT("ReadNote");
+		Objective.Text = FText::FromString(TEXT("Read the crew note"));
+		Objectives->SubmitObjectiveSnapshot({Objective});
+		TestTrue(TEXT("Owner update refreshes an already open view"), ContainsText(TEXT("Read the crew note")));
+		Objective.Text = FText::FromString(TEXT("Crew note read"));
+		Objective.State = EJournalObjectiveDisplayState::Completed;
+		Objectives->SubmitObjectiveSnapshot({Objective});
+		TestFalse(TEXT("Completed objective disappears under default policy"), ContainsText(TEXT("Crew note read")));
+		Objectives->SetHistoryVisibility(true, false);
+		TestTrue(TEXT("Policy change refreshes supplied completed text"), ContainsText(TEXT("Completed: Crew note read")));
+		GameInstance->GetSubsystem<UAtlantisJournalSubsystem>()->ClearAll();
+		TestTrue(TEXT("Legacy ClearAll updates open Objectives view"), ContainsText(TEXT("No objectives")));
+		TestEqual(TEXT("Legacy run reset clears snapshot"), Objectives->GetVisibleObjectives().Num(), 0);
+		Widget->ReleaseSlateResources(true);
+	}
+	GameInstance->Shutdown();
+	GEngine->DestroyWorldContext(World);
+	World->DestroyWorld(false);
 	return true;
 }
 
