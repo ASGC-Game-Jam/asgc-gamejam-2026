@@ -9,6 +9,10 @@
 #include "Components/CanvasPanelSlot.h"
 #include "Components/HorizontalBox.h"
 #include "Components/HorizontalBoxSlot.h"
+#include "Components/GridPanel.h"
+#include "Components/GridSlot.h"
+#include "Components/VerticalBox.h"
+#include "Components/VerticalBoxSlot.h"
 #include "Components/Overlay.h"
 #include "Components/OverlaySlot.h"
 #include "Components/TextBlock.h"
@@ -41,6 +45,16 @@ namespace
 			Slot->SetVerticalAlignment(ExistingSlot->GetVerticalAlignment());
 			return true;
 		}
+		if (UVerticalBox* Column = Cast<UVerticalBox>(Existing->GetParent()))
+		{
+			const UVerticalBoxSlot* ExistingSlot = Cast<UVerticalBoxSlot>(Existing->Slot);
+			UVerticalBoxSlot* Slot = Column->AddChildToVerticalBox(Added);
+			Slot->SetSize(ExistingSlot->GetSize());
+			Slot->SetPadding(ExistingSlot->GetPadding());
+			Slot->SetHorizontalAlignment(ExistingSlot->GetHorizontalAlignment());
+			Slot->SetVerticalAlignment(ExistingSlot->GetVerticalAlignment());
+			return true;
+		}
 		return false;
 	}
 }
@@ -57,7 +71,8 @@ void UAtlantisJournalShellExtension::Construct()
 	UButton* Dialogue = Cast<UButton>(Journal->GetWidgetFromName(TEXT("DialogueTabButton")));
 	UWidget* Content = Journal->GetWidgetFromName(TEXT("WBP_JournalInvestigationTab"));
 	UHorizontalBox* TabRow = Investigation ? Cast<UHorizontalBox>(Investigation->GetParent()) : nullptr;
-	if (!TabRow || !Puzzle || !Dialogue || !Content || GetCurrentTab() == INDEX_NONE)
+	UGridPanel* TabGrid = Investigation ? Cast<UGridPanel>(Investigation->GetParent()) : nullptr;
+	if ((!TabRow && !TabGrid) || !Puzzle || !Dialogue || !Content || GetCurrentTab() == INDEX_NONE)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Journal Objectives extension could not find the supported existing shell layout."));
 		return;
@@ -67,16 +82,36 @@ void UAtlantisJournalShellExtension::Construct()
 	if (!AddContentSibling(Content, ObjectivesView))
 	{
 		ObjectivesView = nullptr;
-		UE_LOG(LogTemp, Warning, TEXT("Journal Objectives content requires a CanvasPanel or Overlay parent; found %s."),
+		UE_LOG(LogTemp, Warning, TEXT("Journal Objectives content requires a CanvasPanel, Overlay or VerticalBox parent; found %s."),
 			Content->GetParent() ? *Content->GetParent()->GetClass()->GetName() : TEXT("None"));
 		return;
 	}
 	LegacyContent = Content;
 	ObjectivesButton = Journal->WidgetTree->ConstructWidget<UButton>(UButton::StaticClass(), TEXT("ObjectivesTabButton"));
+	ObjectivesButton->SetStyle(Investigation->GetStyle());
 	UTextBlock* Label = Journal->WidgetTree->ConstructWidget<UTextBlock>();
 	Label->SetText(NSLOCTEXT("AtlantisJournal", "ObjectivesTab", "Objectives"));
 	ObjectivesButton->AddChild(Label);
-	TabRow->AddChildToHorizontalBox(ObjectivesButton)->SetPadding(FMargin(4.f, 0.f));
+	if (TabGrid)
+	{
+		int32 LastColumn = 0;
+		for (UWidget* Child : TabGrid->GetAllChildren())
+		{
+			if (const UGridSlot* Slot = Cast<UGridSlot>(Child->Slot))
+			{
+				LastColumn = FMath::Max(LastColumn, Slot->GetColumn() + Slot->GetColumnSpan() - 1);
+			}
+		}
+		const UGridSlot* ExistingSlot = Cast<UGridSlot>(Investigation->Slot);
+		UGridSlot* Slot = TabGrid->AddChildToGrid(ObjectivesButton, ExistingSlot->GetRow(), LastColumn + 1);
+		Slot->SetPadding(ExistingSlot->GetPadding());
+		Slot->SetHorizontalAlignment(ExistingSlot->GetHorizontalAlignment());
+		Slot->SetVerticalAlignment(ExistingSlot->GetVerticalAlignment());
+	}
+	else
+	{
+		TabRow->AddChildToHorizontalBox(ObjectivesButton)->SetPadding(FMargin(4.f, 0.f));
+	}
 	ObjectivesButton->OnClicked.AddUniqueDynamic(this, &ThisClass::OnObjectivesClicked);
 	LegacyButtons = {Investigation, Puzzle, Dialogue};
 	for (UButton* Button : LegacyButtons)
