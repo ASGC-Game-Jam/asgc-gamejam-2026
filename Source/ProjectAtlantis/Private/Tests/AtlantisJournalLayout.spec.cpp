@@ -135,6 +135,9 @@ bool FAtlantisJournalShellExtensionTest::RunTest(const FString& Parameters)
 				TestEqual(TEXT("Objectives selection preserves authored tab state"), CurrentTab(), static_cast<uint8>(0));
 				TestTrue(TEXT("Objectives click displays view"), View->GetVisibility() == ESlateVisibility::Visible);
 				TestTrue(TEXT("Objectives hides legacy content"), LegacyContent->GetVisibility() == ESlateVisibility::Collapsed);
+				Investigation->OnClicked.Broadcast();
+				TestTrue(TEXT("Clicking the unchanged authored tab exits Objectives"), View->GetVisibility() == ESlateVisibility::Collapsed);
+				Objectives->OnClicked.Broadcast();
 				FJournalObjectivePresentation Objective;
 				Objective.ObjectiveId = TEXT("ShellTest");
 				Objective.Text = FText::FromString(TEXT("Owner update inside the existing shell"));

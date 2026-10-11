@@ -250,8 +250,12 @@ void UAtlantisJournalShellExtension::OnLegacyTabClicked()
 {
 	// Blueprint delegates were bound first: its selected section is now authoritative,
 	// including an unchanged Collapsed value that produces no visibility notification.
-	AuthoredContentVisibility = LegacyContent->GetVisibility();
-	bOverridingContent = false;
+	const int64 OverriddenTab = bShowingObjectives ? PreviousTab : LastKnowledgeTab;
+	if (!bOverridingContent || GetCurrentTab() != OverriddenTab)
+	{
+		AuthoredContentVisibility = LegacyContent->GetVisibility();
+		bOverridingContent = false;
+	}
 	ShowLegacyContent();
 	RefreshKnowledgeView();
 }
