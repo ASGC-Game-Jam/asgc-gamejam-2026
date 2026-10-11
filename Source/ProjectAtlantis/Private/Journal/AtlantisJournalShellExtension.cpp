@@ -22,8 +22,6 @@
 
 namespace
 {
-	constexpr int64 ObjectivesTab = 3;
-
 	// Only supported sibling layouts are extended. Never restructure an unknown authored layout.
 	bool AddContentSibling(UWidget* Existing, UUserWidget* Added)
 	{
@@ -87,6 +85,11 @@ void UAtlantisJournalShellExtension::Construct()
 		return;
 	}
 	LegacyContent = Content;
+	AuthoredContentVisibility = Content->GetVisibility();
+	if (UUserWidget* AuthoredView = Cast<UUserWidget>(Content))
+	{
+		VisibilityChangedHandle = AuthoredView->OnNativeVisibilityChanged.AddUObject(this, &ThisClass::OnLegacyVisibilityChanged);
+	}
 	ObjectivesButton = Journal->WidgetTree->ConstructWidget<UButton>(UButton::StaticClass(), TEXT("ObjectivesTabButton"));
 	ObjectivesButton->SetStyle(Investigation->GetStyle());
 	UTextBlock* Label = Journal->WidgetTree->ConstructWidget<UTextBlock>();
@@ -134,6 +137,12 @@ void UAtlantisJournalShellExtension::Construct()
 void UAtlantisJournalShellExtension::Destruct()
 {
 	ShowLegacyContent();
+	RestoreLegacyContent();
+	if (UUserWidget* AuthoredView = Cast<UUserWidget>(LegacyContent))
+	{
+		AuthoredView->OnNativeVisibilityChanged.Remove(VisibilityChangedHandle);
+	}
+	VisibilityChangedHandle.Reset();
 	for (UButton* Button : LegacyButtons)
 	{
 		if (Button)
@@ -176,17 +185,33 @@ int64 UAtlantisJournalShellExtension::GetCurrentTab() const
 	return INDEX_NONE;
 }
 
-void UAtlantisJournalShellExtension::SetCurrentTab(int64 Tab)
+void UAtlantisJournalShellExtension::OnLegacyVisibilityChanged(ESlateVisibility Visibility)
 {
-	FProperty* Property = GetUserWidget()->GetClass()->FindPropertyByName(TEXT("CurrentTabType"));
-	if (FEnumProperty* Enum = CastField<FEnumProperty>(Property))
+	if (!bChangingContentVisibility)
 	{
-		Enum->GetUnderlyingProperty()->SetIntPropertyValue(Enum->ContainerPtrToValuePtr<void>(GetUserWidget()), Tab);
+		AuthoredContentVisibility = Visibility;
 	}
-	else if (FByteProperty* Byte = CastField<FByteProperty>(Property))
+}
+
+void UAtlantisJournalShellExtension::OverrideLegacyContent()
+{
+	if (!bOverridingContent)
 	{
-		Byte->SetPropertyValue_InContainer(GetUserWidget(), static_cast<uint8>(Tab));
+		AuthoredContentVisibility = LegacyContent->GetVisibility();
+		bOverridingContent = true;
 	}
+	TGuardValue<bool> Guard(bChangingContentVisibility, true);
+	LegacyContent->SetVisibility(ESlateVisibility::Collapsed);
+}
+
+void UAtlantisJournalShellExtension::RestoreLegacyContent()
+{
+	if (bOverridingContent && LegacyContent)
+	{
+		TGuardValue<bool> Guard(bChangingContentVisibility, true);
+		LegacyContent->SetVisibility(AuthoredContentVisibility);
+	}
+	bOverridingContent = false;
 }
 
 void UAtlantisJournalShellExtension::OnObjectivesClicked()
@@ -198,11 +223,9 @@ void UAtlantisJournalShellExtension::OnObjectivesClicked()
 	if (!bShowingObjectives)
 	{
 		PreviousTab = GetCurrentTab();
-		PreviousContentVisibility = LegacyContent->GetVisibility();
 	}
 	bShowingObjectives = true;
-	SetCurrentTab(ObjectivesTab);
-	LegacyContent->SetVisibility(ESlateVisibility::Collapsed);
+	OverrideLegacyContent();
 	ObjectivesView->SetVisibility(ESlateVisibility::Visible);
 	RefreshKnowledgeView();
 }
@@ -211,13 +234,9 @@ void UAtlantisJournalShellExtension::ShowLegacyContent()
 {
 	if (bShowingObjectives)
 	{
-		if (GetCurrentTab() == ObjectivesTab)
+		if (GetCurrentTab() == PreviousTab)
 		{
-			SetCurrentTab(PreviousTab);
-			if (LegacyContent)
-			{
-				LegacyContent->SetVisibility(PreviousContentVisibility);
-			}
+			RestoreLegacyContent();
 		}
 		bShowingObjectives = false;
 	}
@@ -229,6 +248,10 @@ void UAtlantisJournalShellExtension::ShowLegacyContent()
 
 void UAtlantisJournalShellExtension::OnLegacyTabClicked()
 {
+	// Blueprint delegates were bound first: its selected section is now authoritative,
+	// including an unchanged Collapsed value that produces no visibility notification.
+	AuthoredContentVisibility = LegacyContent->GetVisibility();
+	bOverridingContent = false;
 	ShowLegacyContent();
 	RefreshKnowledgeView();
 }
@@ -253,14 +276,25 @@ void UAtlantisJournalShellExtension::RefreshKnowledgeView()
 			}
 			LastKnowledgeTab = Tab;
 		}
-		LegacyContent->SetVisibility(ESlateVisibility::Collapsed);
+		OverrideLegacyContent();
+	}
+	else if (!bShowingObjectives)
+	{
+		RestoreLegacyContent();
 	}
 }
 
 void UAtlantisJournalShellExtension::Tick(const FGeometry& MyGeometry, float InDeltaTime)
 {
-	if (bShowingObjectives && GetCurrentTab() != ObjectivesTab)
+	if (!bShowingObjectives && bOverridingContent && KnowledgeView && GetCurrentTab() != LastKnowledgeTab)
 	{
+		AuthoredContentVisibility = LegacyContent->GetVisibility();
+		bOverridingContent = false;
+	}
+	if (bShowingObjectives && GetCurrentTab() != PreviousTab)
+	{
+		AuthoredContentVisibility = LegacyContent->GetVisibility();
+		bOverridingContent = false;
 		ShowLegacyContent();
 	}
 	RefreshKnowledgeView();

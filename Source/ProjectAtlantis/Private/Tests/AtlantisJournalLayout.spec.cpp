@@ -100,6 +100,7 @@ bool FAtlantisJournalShellExtensionTest::RunTest(const FString& Parameters)
 	{
 		TSharedRef<SWidget> SlateWidget = Journal->TakeWidget();
 		UWidget* LegacyContent = Journal->GetWidgetFromName(TEXT("WBP_JournalInvestigationTab"));
+		const ESlateVisibility OriginalVisibility = LegacyContent->GetVisibility();
 		UPanelWidget* OriginalParent = LegacyContent->GetParent();
 		UButton* Investigation = Cast<UButton>(Journal->GetWidgetFromName(TEXT("InvestigationTabButton")));
 		UButton* Puzzle = Cast<UButton>(Journal->GetWidgetFromName(TEXT("PuzzleTabButton")));
@@ -113,6 +114,10 @@ bool FAtlantisJournalShellExtensionTest::RunTest(const FString& Parameters)
 		UButton* Objectives = Cast<UButton>(Journal->GetWidgetFromName(TEXT("ObjectivesTabButton")));
 		if (TestNotNull(TEXT("Objectives button added to existing shell"), Objectives))
 		{
+			Extension->Destruct();
+			TestTrue(TEXT("Removing knowledge extension restores authored Investigation visibility"), LegacyContent->GetVisibility() == OriginalVisibility);
+			Extension->Construct();
+			Objectives = Cast<UButton>(Journal->GetWidgetFromName(TEXT("ObjectivesTabButton")));
 			TestEqual(TEXT("Existing content hierarchy preserved"), LegacyContent->GetParent(), OriginalParent);
 			TestEqual(TEXT("Objectives joins existing tab row"), Objectives->GetParent(), Investigation->GetParent());
 			UAtlantisJournalObjectivesWidget* View = nullptr;
@@ -127,7 +132,7 @@ bool FAtlantisJournalShellExtensionTest::RunTest(const FString& Parameters)
 			{
 				TestTrue(TEXT("Objectives starts hidden"), View->GetVisibility() == ESlateVisibility::Collapsed);
 				Objectives->OnClicked.Broadcast();
-				TestEqual(TEXT("Objectives selection updates shell tab state"), CurrentTab(), static_cast<uint8>(3));
+				TestEqual(TEXT("Objectives selection preserves authored tab state"), CurrentTab(), static_cast<uint8>(0));
 				TestTrue(TEXT("Objectives click displays view"), View->GetVisibility() == ESlateVisibility::Visible);
 				TestTrue(TEXT("Objectives hides legacy content"), LegacyContent->GetVisibility() == ESlateVisibility::Collapsed);
 				FJournalObjectivePresentation Objective;
@@ -149,12 +154,16 @@ bool FAtlantisJournalShellExtensionTest::RunTest(const FString& Parameters)
 				Objectives->OnClicked.Broadcast();
 				Dialogue->OnClicked.Broadcast();
 				TestEqual(TEXT("Existing Dialogue button retains navigation"), CurrentTab(), static_cast<uint8>(2));
+				const ESlateVisibility DialogueVisibility = LegacyContent->GetVisibility();
+				Extension->Tick(FGeometry(), 0.f);
+				TestTrue(TEXT("Leaving native content preserves authored Dialogue visibility"), LegacyContent->GetVisibility() == DialogueVisibility);
 				Investigation->OnClicked.Broadcast();
 				TestEqual(TEXT("Existing Investigation button retains navigation"), CurrentTab(), static_cast<uint8>(0));
 				Objectives->OnClicked.Broadcast();
-				FindFProperty<FByteProperty>(Journal->GetClass(), TEXT("CurrentTabType"))->SetPropertyValue_InContainer(Journal, 1);
+				FindFProperty<FByteProperty>(Journal->GetClass(), TEXT("CurrentTabType"))->SetPropertyValue_InContainer(Journal, 3);
 				Extension->Tick(FGeometry(), 0.f);
 				TestTrue(TEXT("Blueprint tab state updates also exit Objectives"), View->GetVisibility() == ESlateVisibility::Collapsed);
+				TestEqual(TEXT("Reserved Map selection remains unchanged"), CurrentTab(), static_cast<uint8>(3));
 			}
 			Extension->Destruct();
 			const uint8 TabAfterDestruct = CurrentTab();

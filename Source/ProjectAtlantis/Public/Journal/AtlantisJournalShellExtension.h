@@ -30,8 +30,10 @@ private:
 	void OnLegacyTabClicked();
 	void ShowLegacyContent();
 	int64 GetCurrentTab() const;
-	void SetCurrentTab(int64 Tab);
 	void RefreshKnowledgeView();
+	void OverrideLegacyContent();
+	void RestoreLegacyContent();
+	void OnLegacyVisibilityChanged(ESlateVisibility Visibility);
 
 	UPROPERTY(Transient)
 	TObjectPtr<UButton> ObjectivesButton;
@@ -46,7 +48,10 @@ private:
 	bool bShowingObjectives = false;
 	int64 PreviousTab = 0;
 	int64 LastKnowledgeTab = INDEX_NONE;
-	ESlateVisibility PreviousContentVisibility = ESlateVisibility::Visible;
+	ESlateVisibility AuthoredContentVisibility = ESlateVisibility::Visible;
+	bool bOverridingContent = false;
+	bool bChangingContentVisibility = false;
+	FDelegateHandle VisibilityChangedHandle;
 };
 
 /** Discovers Journal instances created by the existing player-controller Blueprint. */
