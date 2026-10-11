@@ -344,7 +344,8 @@ bool UAtlantisMovementComponent::TryAttachSurface()
 	AttachedBallastState = State->GetBallastState();
 	Velocity = FVector::VectorPlaneProject(Velocity, SurfaceNormal);
 	SetMovementMode(MOVE_Custom, State->IsUpperSurfaceWalkingAllowed() ? 2 : 1);
-	SetBase(Hit.GetComponent(), Hit.BoneName);
+	FMovementBaseInterfaceData MovementBaseData = MovementBaseUtility::GetMovementBaseDataFromHitResult(&Hit);
+	SetBase(&MovementBaseData, Hit.BoneName);
 	OrientToSurface();
 	return true;
 }
@@ -475,7 +476,8 @@ void UAtlantisMovementComponent::DetachSurface(bool bBlocked)
 		SurfaceReattachTimeRemaining = BlockedSurfaceReattachDelay;
 	}
 	
-	SetBase(nullptr);
+	FMovementBaseInterfaceData EmptyMovementBaseData;
+	SetBase(&EmptyMovementBaseData);
 	SurfaceNormal = FVector::UpVector;
 	
 	FHitResult Hit;
@@ -531,7 +533,8 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 		return;
 	}
 	
-	SetBase(Support.GetComponent(), Support.BoneName);
+	FMovementBaseInterfaceData MovementBaseData = MovementBaseUtility::GetMovementBaseDataFromHitResult(&Support);
+	SetBase(&MovementBaseData, Support.BoneName);
 	Acceleration = FVector::VectorPlaneProject(Acceleration, SurfaceNormal);
 	Velocity = FVector::VectorPlaneProject(Velocity, SurfaceNormal);
 	CalcVelocity(DeltaTime, GroundFriction, false, BrakingDecelerationWalking);
@@ -593,7 +596,8 @@ void UAtlantisMovementComponent::PhysCustom(float DeltaTime, int32 Iterations)
 		return;
 	}
 
-	SetBase(Support.GetComponent(), Support.BoneName);
+	MovementBaseData = MovementBaseUtility::GetMovementBaseDataFromHitResult(&Support);
+	SetBase(&MovementBaseData, Support.BoneName);
 	if (DeltaTime > MIN_TICK_TIME)
 	{
 		Velocity = FVector::VectorPlaneProject((UpdatedComponent->GetComponentLocation() - Start) / DeltaTime,

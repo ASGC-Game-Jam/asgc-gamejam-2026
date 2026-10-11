@@ -9,7 +9,7 @@ Install the following before cloning the repository
 
 - [Git](https://git-scm.com/install/)
 - [Git LFS](https://git-lfs.com/)
-- Unreal Engine 5.7.4
+- Unreal Engine 5.8.3
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/older-downloads/) or [Rider](https://www.jetbrains.com/rider/download/) (or another IDE configured for Unreal Engine C++ development)
   - [Setting up Visual Studio](https://dev.epicgames.com/documentation/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)
   - [Setting up Rider](https://tomlooman.com/setup-unreal-engine-cpp-rider/)
