@@ -8,7 +8,8 @@ public class ProjectAtlantisTarget : TargetRules
 	public ProjectAtlantisTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V6;
+		DefaultBuildSettings = BuildSettingsVersion.V7;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_8;
 
 		// Keep the opt-out in target rules so UBT tracks it when invalidating cached build graphs.
 		bool bWithScreenshotCapture = !(Target.Arguments?.HasOption("-WithoutScreenshotCapture") ?? false);
