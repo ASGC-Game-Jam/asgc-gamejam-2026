@@ -8,8 +8,8 @@ public class ProjectAtlantisEditorTarget : TargetRules
 	public ProjectAtlantisEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V6;
-		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_7;
+		DefaultBuildSettings = BuildSettingsVersion.V7;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_8;
 		bool bWithScreenshotCapture = !(Target.Arguments?.HasOption("-WithoutScreenshotCapture") ?? false);
 		ProjectDefinitions.Add("WITH_SCREENSHOT_CAPTURE=" + (bWithScreenshotCapture ? "1" : "0"));
 
