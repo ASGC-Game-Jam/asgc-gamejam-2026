@@ -123,6 +123,7 @@ void UAtlantisJournalShellExtension::Destruct()
 		KnowledgeView = nullptr;
 	}
 	LegacyContent = nullptr;
+	LastKnowledgeTab = INDEX_NONE;
 }
 
 int64 UAtlantisJournalShellExtension::GetCurrentTab() const
@@ -207,10 +208,14 @@ void UAtlantisJournalShellExtension::RefreshKnowledgeView()
 	KnowledgeView->SetVisibility(bShowKnowledge ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 	if (bShowKnowledge)
 	{
-		if (UFunction* Filter = KnowledgeView->FindFunction(TEXT("SetKnowledgeFilter")))
+		if (Tab != LastKnowledgeTab)
 		{
-			struct FFilterParameters { bool bShowPuzzles; } Parameters{Tab == 1};
-			KnowledgeView->ProcessEvent(Filter, &Parameters);
+			if (UFunction* Filter = KnowledgeView->FindFunction(TEXT("SetKnowledgeFilter")))
+			{
+				struct FFilterParameters { bool bShowPuzzles; } Parameters{Tab == 1};
+				KnowledgeView->ProcessEvent(Filter, &Parameters);
+			}
+			LastKnowledgeTab = Tab;
 		}
 		LegacyContent->SetVisibility(ESlateVisibility::Collapsed);
 	}

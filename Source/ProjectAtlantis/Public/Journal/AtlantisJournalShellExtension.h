@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/SlateWrapperTypes.h"
 #include "Extensions/UserWidgetExtension.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "Containers/Ticker.h"
@@ -44,6 +45,7 @@ private:
 	TArray<TObjectPtr<UButton>> LegacyButtons;
 	bool bShowingObjectives = false;
 	int64 PreviousTab = 0;
+	int64 LastKnowledgeTab = INDEX_NONE;
 	ESlateVisibility PreviousContentVisibility = ESlateVisibility::Visible;
 };
 
