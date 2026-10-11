@@ -55,6 +55,18 @@ bool FAtlantisJournalLayoutTest::RunTest(const FString& Parameters)
 				FString Value;
 				It->ExportText_InContainer(0, Value, Journal, Journal, Journal, PPF_None);
 				AddInfo(FString::Printf(TEXT("JournalProperty %s=%s"), *It->GetName(), *Value));
+				if (const FByteProperty* Byte = CastField<FByteProperty>(*It))
+				{
+					if (const UEnum* Enum = Byte->Enum)
+					{
+						for (int32 Index = 0; Index < Enum->NumEnums(); ++Index)
+						{
+							AddInfo(FString::Printf(TEXT("JournalEnum Property=%s Value=%lld Name=%s Display=%s"),
+								*It->GetName(), Enum->GetValueByIndex(Index), *Enum->GetNameStringByIndex(Index),
+								*Enum->GetDisplayNameTextByIndex(Index).ToString()));
+						}
+					}
+				}
 			}
 		}
 	}
