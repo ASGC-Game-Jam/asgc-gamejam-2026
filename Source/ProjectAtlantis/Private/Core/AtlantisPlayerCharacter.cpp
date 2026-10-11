@@ -32,7 +32,22 @@ void AAtlantisPlayerCharacter::SetupPlayerInputComponent(UInputComponent* Player
 
 void AAtlantisPlayerCharacter::MoveToStart()
 {
-	SetActorTransform(StartTransform);
+	if (!HasAuthority())
+	{
+		return;
+	}
+	// TeleportTo performs collision handling and notifies CharacterMovement.
+	if (TeleportTo(StartTransform.GetLocation(), StartTransform.Rotator()))
+	{
+		ConsumeMovementInputVector();
+		GetCharacterMovement()->StopMovementImmediately();
+		GetCharacterMovement()->SetDefaultMovementMode();
+		if (AController* PlayerController = GetController())
+		{
+			PlayerController->SetControlRotation(StartTransform.Rotator());
+		}
+		ForceNetUpdate();
+	}
 }
 
 void AAtlantisPlayerCharacter::MoveToTransform(const FTransform& Transform)

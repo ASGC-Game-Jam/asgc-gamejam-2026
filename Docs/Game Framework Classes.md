@@ -236,8 +236,9 @@ members and the reparent will error. Then recompile and read the Message Log.
 Empty this list as items land — it is a snapshot, not part of the convention.
 
 - The touch widget is still spawned by the controller's Blueprint `BeginPlay` graph.
-- **`MoveToStart` and `MoveToTransform` are not authority-guarded or replicated.** Called on a
-  client, they teleport the actor locally and desync it.
+- **`MoveToTransform` is not authority-guarded.** Call it only on the server.
+  `MoveToStart` is authority-guarded; the [debug menu](./Debug%20Menu.md) routes requests
+  through the owning controller's server RPC.
 - **`StartTransform` is captured before `Super::BeginPlay()`** in
   `AAtlantisPlayerCharacter::BeginPlay`. It works, but calling `Super` first is the convention.
 - **`AAtlantisPlayerState` properties are `protected`,** so a C++ subclass can write them

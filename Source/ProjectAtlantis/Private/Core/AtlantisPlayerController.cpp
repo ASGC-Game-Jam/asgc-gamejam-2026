@@ -11,6 +11,111 @@
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
 #include "HAL/PlatformProperties.h"
+#include "Core/AtlantisPlayerCharacter.h"
+#include "Debug/AtlantisCheatManager.h"
+#include "Debug/AtlantisDebugMenu.h"
+
+AAtlantisPlayerController::AAtlantisPlayerController()
+{
+	CheatClass = UAtlantisCheatManager::StaticClass();
+}
+
+void AAtlantisPlayerController::AddCheats(bool bForce)
+{
+	// Existing controller Blueprints serialize the old engine CheatManager default.
+	// Upgrade only that default, preserving explicitly configured project subclasses.
+	if (CheatClass == UCheatManager::StaticClass())
+	{
+		CheatClass = UAtlantisCheatManager::StaticClass();
+	}
+	Super::AddCheats(bForce);
+}
+
+void AAtlantisPlayerController::ToggleDebugMenu()
+{
+#if !UE_BUILD_SHIPPING
+	if (!IsLocalController())
+	{
+		return;
+	}
+	if (DebugMenu)
+	{
+		DebugMenu->RemoveFromParent();
+		DebugMenu = nullptr;
+		SetIgnoreMoveInput(false);
+		SetIgnoreLookInput(false);
+		bShowMouseCursor = false;
+		SetInputMode(FInputModeGameOnly());
+		return;
+	}
+	// Do not take input ownership from another menu.
+	if (bShowMouseCursor || !GetPawn())
+	{
+		return;
+	}
+	EnableCheats();
+	if (!Cast<UAtlantisCheatManager>(CheatManager))
+	{
+		return;
+	}
+	DebugMenu = CreateWidget<UAtlantisDebugMenu>(this);
+	if (!DebugMenu)
+	{
+		return;
+	}
+	if (!DebugMenu->AddToPlayerScreen(10000))
+	{
+		DebugMenu = nullptr;
+		return;
+	}
+	SetIgnoreMoveInput(true);
+	SetIgnoreLookInput(true);
+	bShowMouseCursor = true;
+	FInputModeGameAndUI Mode;
+	Mode.SetWidgetToFocus(DebugMenu->TakeWidget());
+	Mode.SetHideCursorDuringCapture(false);
+	SetInputMode(Mode);
+	DebugMenu->FocusFirstAction();
+#endif
+}
+
+void AAtlantisPlayerController::RequestDebugReset()
+{
+#if !UE_BUILD_SHIPPING
+	if (IsLocalController())
+	{
+		if (HasAuthority())
+		{
+			ServerDebugReset_Implementation();
+		}
+		else
+		{
+			ServerDebugReset();
+		}
+	}
+#endif
+}
+
+void AAtlantisPlayerController::ServerDebugReset_Implementation()
+{
+#if !UE_BUILD_SHIPPING
+	if (AAtlantisPlayerCharacter* PlayerCharacter = Cast<AAtlantisPlayerCharacter>(GetPawn()))
+	{
+		PlayerCharacter->MoveToStart();
+		ClientSetRotation(GetControlRotation(), true);
+	}
+#endif
+}
+
+void AAtlantisPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	if (DebugMenu)
+	{
+		DebugMenu->RemoveFromParent();
+		DebugMenu = nullptr;
+	}
+	Super::EndPlay(EndPlayReason);
+}
 
 // Anonymous namespace: everything inside has internal linkage, so these helpers are private to
 // this .cpp. Another file can define its own MakeControlOptions without a duplicate-symbol link
@@ -46,6 +151,13 @@ namespace
 void AAtlantisPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
+#if !UE_BUILD_SHIPPING
+	// Independent of gameplay mapping contexts so QA can escape disabled controls.
+	InputComponent->BindKey(EKeys::F9, IE_Pressed, this, &AAtlantisPlayerController::ToggleDebugMenu).bExecuteWhenPaused = true;
+	InputComponent->BindKey(EKeys::Gamepad_Special_Left, IE_Pressed, this, &AAtlantisPlayerController::ToggleDebugMenu).bExecuteWhenPaused = true;
+	InputComponent->BindKey(EKeys::F10, IE_Pressed, this, &AAtlantisPlayerController::RequestDebugReset).bExecuteWhenPaused = true;
+	InputComponent->BindKey(EKeys::Gamepad_RightThumbstick, IE_Pressed, this, &AAtlantisPlayerController::RequestDebugReset).bExecuteWhenPaused = true;
+#endif
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
 	{
 		if (DescendBallastAction)
