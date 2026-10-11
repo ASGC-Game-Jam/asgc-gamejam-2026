@@ -13,6 +13,7 @@
 #include "Components/OverlaySlot.h"
 #include "Components/TextBlock.h"
 #include "Engine/GameInstance.h"
+#include "Engine/World.h"
 #include "UObject/UnrealType.h"
 
 namespace
