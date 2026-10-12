@@ -71,10 +71,6 @@ Use an empty second argument to keep the default engine path:
 ./Scripts/build.sh 1.2.0 "" arm64
 ```
 
-**Note:** In `Config/DefaultEngine.ini`, under
-`[/Script/MacTargetPlatform.MacTargetSettings]`, replace
-`-TargetedRHIs=SF_METAL_SM5` with `+TargetedRHIs=SF_METAL_SM5` if needed.
-
 For distribution without an unidentified-developer warning, use Developer ID
 signing and [Apple notarization](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
 
