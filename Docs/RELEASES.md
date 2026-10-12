@@ -55,8 +55,9 @@ On a Mac with Xcode 26.6 and the project's Unreal Engine version installed, run
 ./Scripts/build.sh 1.2.0
 ```
 
-The script creates a universal Shipping app for Apple Silicon and Intel in
-`Builds/ProjectAtlantis-<version>-Mac/Mac`. The engine defaults to
+The script keeps the package, staging files, and build log together under
+`Builds/ProjectAtlantis-build-<version>/`. The universal Shipping app for Apple Silicon
+and Intel is in `Package/Mac`. The engine defaults to
 `/Users/Shared/Epic Games/UE_5.7`; pass a different installation as the second argument:
 
 ```sh
@@ -90,8 +91,9 @@ On macOS, after completing the smoke tests, archive the output folder with:
 
 ```sh
 VERSION="1.2.0"
-OUTPUT_PATH="Builds/ProjectAtlantis-$VERSION-Mac"
-ditto -c -k --sequesterRsrc --keepParent "$OUTPUT_PATH" "$OUTPUT_PATH.zip"
+BUILD_PATH="Builds/ProjectAtlantis-build-$VERSION"
+ditto -c -k --sequesterRsrc --keepParent "$BUILD_PATH/Package/Mac" \
+  "$BUILD_PATH/ProjectAtlantis-$VERSION-Mac.zip"
 ```
 
 ## Make a GitHub Release
