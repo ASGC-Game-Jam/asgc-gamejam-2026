@@ -49,10 +49,10 @@ There are a lot of options and awesome things that the UAT can do. Please [read 
 ### Build for macOS
 
 On a Mac with Xcode 26.6 and the project's Unreal Engine version installed, run
-[Scripts/BuildMac.sh](../Scripts/BuildMac.sh) with the release version. For example:
+[Scripts/build.sh](../Scripts/build.sh) with the release version. For example:
 
 ```sh
-./Scripts/BuildMac.sh 1.2.0
+./Scripts/build.sh 1.2.0
 ```
 
 The script creates a universal Shipping app for Apple Silicon and Intel in
@@ -60,7 +60,7 @@ The script creates a universal Shipping app for Apple Silicon and Intel in
 `/Users/Shared/Epic Games/UE_5.7`; pass a different installation as the second argument:
 
 ```sh
-./Scripts/BuildMac.sh 1.2.0 "/path/to/Unreal Engine"
+./Scripts/build.sh 1.2.0 "/path/to/Unreal Engine"
 ```
 
 **Note:** In `Config/DefaultEngine.ini`, under
