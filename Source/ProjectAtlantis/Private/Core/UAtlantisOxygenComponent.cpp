@@ -2,6 +2,23 @@
 
 #include "Core/UAtlantisOxygenComponent.h"
 
+#include "Net/UnrealNetwork.h"
+
+
+UAtlantisOxygenComponent::UAtlantisOxygenComponent()
+{
+	
+}
+
+void UAtlantisOxygenComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(UAtlantisOxygenComponent, OxygenCapacity);
+	DOREPLIFETIME(UAtlantisOxygenComponent, AllocatedOxygen);
+	DOREPLIFETIME(UAtlantisOxygenComponent, CurrentOxygen);
+	DOREPLIFETIME(UAtlantisOxygenComponent, bCriticalOxygen);
+}
+
 void UAtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
 {
 	if (!HasOwnerAuthority() ||FMath::IsNearlyEqual(OxygenCapacity, NewOxygenCapacity))
@@ -27,6 +44,23 @@ void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen
 
 	OnRep_AllocatedOxygen(OldAllocatedOxygen);
 	UpdateCriticalOxygen();
+}
+
+void UAtlantisOxygenComponent::ModifyCurrentOxygen(float OxygenDelta, bool bModifiesAllocatedOxygen)
+{
+	float NewOxygenAmount = CurrentOxygen + OxygenDelta; 
+	
+	//TODO: ADD A bModifies... 
+	//true branch
+	if (bModifiesAllocatedOxygen)
+	{
+		float AllocatedPercent =  AllocatedOxygen/OxygenCapacity; // we get the allocated percentage
+		
+	}
+	else
+	{
+		SetCurrentOxygen(NewOxygenAmount);
+	}
 }
 
 void UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
@@ -62,13 +96,14 @@ void UAtlantisOxygenComponent::OnRep_OxygenCapacity(const float OldOxygenCapacit
 
 void UAtlantisOxygenComponent::OnRep_AllocatedOxygen(const float OldAllocatedOxygen) const
 {
-	OnAllocatedOxygenChanged	.Broadcast(OldAllocatedOxygen, AllocatedOxygen);
+	OnAllocatedOxygenChanged.Broadcast(OldAllocatedOxygen, AllocatedOxygen);
 }
 
 void UAtlantisOxygenComponent::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
 {
 	OnCurrentOxygenChanged.Broadcast(OldCurrentOxygen, CurrentOxygen);
 }
+
 void UAtlantisOxygenComponent::OnRep_CriticalOxygen() const
 {
 	OnCriticalOxygenChanged.Broadcast(bCriticalOxygen);
@@ -102,6 +137,7 @@ bool UAtlantisOxygenComponent::RequestOxygen(const float RequestedOxygen)
 
 	return bRequestAccepted;
 }
+
 bool UAtlantisOxygenComponent::RequestOxygenAllocation(const float RequestedOxygen)
 {
 	if (!HasOwnerAuthority() || RequestedOxygen < 0.f)
@@ -133,6 +169,7 @@ bool UAtlantisOxygenComponent::ReleaseOxygen(const float ReleasedOxygen)
 
 	return bRequestAccepted;
 }
+
 bool UAtlantisOxygenComponent::HasOwnerAuthority() const
 {
 	return GetOwnerRole() == ROLE_Authority;

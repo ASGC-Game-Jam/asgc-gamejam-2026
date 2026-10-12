@@ -20,13 +20,13 @@ void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(AAtlantisPlayerState, OxygenCapacity);
-	DOREPLIFETIME(AAtlantisPlayerState, LockedOxygen);
-	DOREPLIFETIME(AAtlantisPlayerState, CurrentOxygen);
+	//DOREPLIFETIME(AAtlantisPlayerState, OxygenCapacity);
+	//DOREPLIFETIME(AAtlantisPlayerState, LockedOxygen);
+	//DOREPLIFETIME(AAtlantisPlayerState, CurrentOxygen);
 	DOREPLIFETIME(AAtlantisPlayerState, BallastState);
 	DOREPLIFETIME(AAtlantisPlayerState, TraversalMode);
 	DOREPLIFETIME(AAtlantisPlayerState, EquippedItems);
-	DOREPLIFETIME(AAtlantisPlayerState, bCriticalOxygen);
+	//DOREPLIFETIME(AAtlantisPlayerState, bCriticalOxygen);
 }
 
 void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
@@ -149,17 +149,17 @@ void AAtlantisPlayerState::SetCriticalOxygen(bool bNewCriticalOxygen)
 
 void AAtlantisPlayerState::OnRep_OxygenCapacity(const float OldOxygenCapacity) const
 {
-	OnOxygenCapacityChanged.Broadcast(OldOxygenCapacity, OxygenCapacity);
+	//OnOxygenCapacityChanged.Broadcast(OldOxygenCapacity, OxygenCapacity);
 }
 
 void AAtlantisPlayerState::OnRep_LockedOxygen(const float OldLockedOxygen) const
 {
-	OnLockedOxygenChanged.Broadcast(OldLockedOxygen, LockedOxygen);
+	//OnLockedOxygenChanged.Broadcast(OldLockedOxygen, LockedOxygen);
 }
 
 void AAtlantisPlayerState::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
 {
-	OnCurrentOxygenChanged.Broadcast(OldCurrentOxygen, CurrentOxygen);
+	//OnCurrentOxygenChanged.Broadcast(OldCurrentOxygen, CurrentOxygen);
 }
 
 void AAtlantisPlayerState::OnRep_BallastState(const EAtlantisBallastState OldBallastState) const
@@ -179,7 +179,7 @@ void AAtlantisPlayerState::OnRep_EquippedItems(const TArray<FString>& OldEquippe
 
 void AAtlantisPlayerState::OnRep_CriticalOxygen() const
 {
-	OnCriticalOxygenChanged.Broadcast(bCriticalOxygen);
+	//OnCriticalOxygenChanged.Broadcast(bCriticalOxygen);
 }
 
 void AAtlantisPlayerState::UpdateCriticalOxygen()

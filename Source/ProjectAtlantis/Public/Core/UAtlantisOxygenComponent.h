@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "UAtlantisOxygenComponent.generated.h"
 
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
@@ -24,6 +25,10 @@ class PROJECTATLANTIS_API UAtlantisOxygenComponent : public UActorComponent
 	GENERATED_BODY()
 	
 public:
+	UAtlantisOxygenComponent();
+	
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState|Oxygen")
 	FOnOxygenCapacityChanged OnOxygenCapacityChanged;
@@ -67,8 +72,13 @@ public:
 	/** Oxygen above the critical threshold required to leave Critical Oxygen. */
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
 	float GetCriticalOxygenRecoveryMargin() const { return CriticalOxygenRecoveryMargin; }
-
+	
+	/** Allows to modification of the Player's oxygen resource + or - ; bModifiesAllocatedOxygen is a flag for if it affects allocated Oxygen*/
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState|Oxygen")
+	void ModifyCurrentOxygen(float OxygenDelta, bool bModifiesAllocatedOxygen = false);
+	
 	//~ Mutators. Server only; calls on a client are ignored.
+	// TODO: Reconsider Protection level
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState|Oxygen")
 	void SetOxygenCapacity(float NewOxygenCapacity);
 

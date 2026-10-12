@@ -38,7 +38,7 @@ namespace
 			if (State)
 			{
 				State->OnBallastChanged.AddDynamic(Listener.Get(), &UAtlantisBallastTestListener::RecordBallastChanged);
-				State->OnLockedOxygenChanged.AddDynamic(Listener.Get(), &UAtlantisBallastTestListener::RecordLockedOxygenChanged);
+				//State->OnLockedOxygenChanged.AddDynamic(Listener.Get(), &UAtlantisBallastTestListener::RecordLockedOxygenChanged);
 			}
 		}
 

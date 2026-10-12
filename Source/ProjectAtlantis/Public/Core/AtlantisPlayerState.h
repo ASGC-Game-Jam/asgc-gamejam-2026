@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
 #include "Core/EAtlantisTraversalMode.h"
+#include "Core/UAtlantisOxygenComponent.h"
+
 #include "AtlantisPlayerState.generated.h"
 
 UENUM(BlueprintType)
@@ -21,13 +23,13 @@ enum class EAtlantisBallastState : uint8
 };
 
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnOxygenCapacityChanged, float, OldOxygenCapacity, float, NewOxygenCapacity);
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnOxygenCapacityChanged, float, OldOxygenCapacity, float, NewOxygenCapacity);
 
 /** Amount of Oxygen locked changed. Carries the previous value so listeners can compute a delta. */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockedOxygenChanged, float, OldLockedOxygen, float, NewLockedOxygen);
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockedOxygenChanged, float, OldLockedOxygen, float, NewLockedOxygen);
 
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, OldCurrentOxygen, float, NewCurrentOxygen);
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, OldCurrentOxygen, float, NewCurrentOxygen);
 
 /**
  * Ballast mode changed. Includes the allocation status derived from locked oxygen.
@@ -43,7 +45,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEquippedItemsChanged, const TArra
 /**
  * CriticalOxygen changed. True while oxygen level is critical.
  */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCriticalOxygenChanged, bool, bCriticalOxygen);
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCriticalOxygenChanged, bool, bCriticalOxygen);
 
 /**
  * Per-player state that survives respawn. Every property here is server-authoritative:
@@ -61,16 +63,16 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
-	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
-	FOnOxygenCapacityChanged OnOxygenCapacityChanged;
+	//UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
+	//FOnOxygenCapacityChanged OnOxygenCapacityChanged;
 
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
-	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
-	FOnLockedOxygenChanged OnLockedOxygenChanged;
+	//UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
+	//FOnLockedOxygenChanged OnLockedOxygenChanged;
 
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
-	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
-	FOnCurrentOxygenChanged OnCurrentOxygenChanged;
+	//UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
+	//FOnCurrentOxygenChanged OnCurrentOxygenChanged;
 
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnBallastChanged OnBallastChanged;
@@ -81,8 +83,8 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnEquippedItemsChanged OnEquippedItemsChanged;
 
-	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
-	FOnCriticalOxygenChanged OnCriticalOxygenChanged;
+	//UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
+	//FOnCriticalOxygenChanged OnCriticalOxygenChanged;
 
 	//~ Accessors.
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
