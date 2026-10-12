@@ -56,12 +56,19 @@ On a Mac with Xcode 26.6 and the project's Unreal Engine version installed, run
 ```
 
 The script keeps the package, staging files, and build log together under
-`Builds/ProjectAtlantis-build-<version>/`. The universal Shipping app for Apple Silicon
-and Intel is in `Package/Mac`. The engine defaults to
+`Builds/ProjectAtlantis-build-<version>/`. The Shipping app is in `Package/Mac` and
+defaults to both Apple Silicon and Intel (`arm64+x64`). The engine defaults to
 `/Users/Shared/Epic Games/UE_5.7`; pass a different installation as the second argument:
 
 ```sh
 ./Scripts/build.sh 1.2.0 "/path/to/Unreal Engine"
+```
+
+Pass `arm64`, `x64`, or `arm64+x64` as the third argument to select architectures.
+Use an empty second argument to keep the default engine path:
+
+```sh
+./Scripts/build.sh 1.2.0 "" arm64
 ```
 
 **Note:** In `Config/DefaultEngine.ini`, under
