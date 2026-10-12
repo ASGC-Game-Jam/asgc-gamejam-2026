@@ -48,28 +48,20 @@ There are a lot of options and awesome things that the UAT can do. Please [read 
 
 ### Build for macOS
 
-The 0.1.0 Mac build used macOS 26.5.2, Xcode 26.6 (17F113), and Unreal Engine 5.7.4.
-
-On a Mac with Xcode and the project's Unreal Engine version installed, run the
-following from the repository root. Adjust the engine path and release version:
+On a Mac with Xcode 26.6 and the project's Unreal Engine version installed, run
+[Scripts/BuildMac.sh](../Scripts/BuildMac.sh) with the release version. For example:
 
 ```sh
-UE_PATH="/Users/Shared/Epic Games/UE_5.7"
-PROJECT_PATH="$PWD/ProjectAtlantis.uproject"
-OUTPUT_PATH="$PWD/Builds/ProjectAtlantis-0.1.0-Mac"
-
-"$UE_PATH/Engine/Build/BatchFiles/Mac/Build.sh" ProjectAtlantisEditor Mac Development -Project="$PROJECT_PATH" -buildscw
-
-"$UE_PATH/Engine/Build/BatchFiles/RunUAT.sh" BuildCookRun \
-  -project="$PROJECT_PATH" -noP4 -platform=Mac -specifiedarchitecture=arm64+x64 \
-  -clientconfig=Shipping -serverconfig=Shipping -nodebuginfo \
-  -nocompileeditor -skipbuildeditor -cook -allmaps -build -stage -pak -package -archive \
-  -archivedirectory="$OUTPUT_PATH" -unattended -utf8output
+./Scripts/BuildMac.sh 1.2.0
 ```
 
-This creates a universal Shipping app for Apple Silicon and Intel in
-`$OUTPUT_PATH/Mac`. Include `-package` so the app contains the staged game data
-before it is archived.
+The script creates a universal Shipping app for Apple Silicon and Intel in
+`Builds/ProjectAtlantis-<version>-Mac/Mac`. The engine defaults to
+`/Users/Shared/Epic Games/UE_5.7`; pass a different installation as the second argument:
+
+```sh
+./Scripts/BuildMac.sh 1.2.0 "/path/to/Unreal Engine"
+```
 
 **Note:** In `Config/DefaultEngine.ini`, under
 `[/Script/MacTargetPlatform.MacTargetSettings]`, replace
@@ -97,6 +89,8 @@ e.g. `ProjectAtlantis-1.2.0-Windows.zip`.
 On macOS, after completing the smoke tests, archive the output folder with:
 
 ```sh
+VERSION="1.2.0"
+OUTPUT_PATH="Builds/ProjectAtlantis-$VERSION-Mac"
 ditto -c -k --sequesterRsrc --keepParent "$OUTPUT_PATH" "$OUTPUT_PATH.zip"
 ```
 
