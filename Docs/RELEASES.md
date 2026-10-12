@@ -46,6 +46,38 @@ $env:UE_PATH\Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="$env:PROJ
 
 There are a lot of options and awesome things that the UAT can do. Please [read the docs](https://dev.epicgames.com/documentation/unreal-engine/unreal-automation-tool-for-unreal-engine?application_version=5.7).
 
+### Build for macOS
+
+The 0.1.0 Mac build used macOS 26.5.2, Xcode 26.6 (17F113), and Unreal Engine 5.7.4.
+
+On a Mac with Xcode and the project's Unreal Engine version installed, run the
+following from the repository root. Adjust the engine path and release version:
+
+```sh
+UE_PATH="/Users/Shared/Epic Games/UE_5.7"
+PROJECT_PATH="$PWD/ProjectAtlantis.uproject"
+OUTPUT_PATH="$PWD/Builds/ProjectAtlantis-0.1.0-Mac"
+
+"$UE_PATH/Engine/Build/BatchFiles/Mac/Build.sh" ProjectAtlantisEditor Mac Development -Project="$PROJECT_PATH" -buildscw
+
+"$UE_PATH/Engine/Build/BatchFiles/RunUAT.sh" BuildCookRun \
+  -project="$PROJECT_PATH" -noP4 -platform=Mac -specifiedarchitecture=arm64+x64 \
+  -clientconfig=Shipping -serverconfig=Shipping -nodebuginfo \
+  -nocompileeditor -skipbuildeditor -cook -allmaps -build -stage -pak -package -archive \
+  -archivedirectory="$OUTPUT_PATH" -unattended -utf8output
+```
+
+This creates a universal Shipping app for Apple Silicon and Intel in
+`$OUTPUT_PATH/Mac`. Include `-package` so the app contains the staged game data
+before it is archived.
+
+**Note:** In `Config/DefaultEngine.ini`, under
+`[/Script/MacTargetPlatform.MacTargetSettings]`, replace
+`-TargetedRHIs=SF_METAL_SM5` with `+TargetedRHIs=SF_METAL_SM5` if needed.
+
+For distribution without an unidentified-developer warning, use Developer ID
+signing and [Apple notarization](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
+
 ## Smoke tests
 
 It is important to make sure that your build does not fail in basic ways. The first test is always that the packaging
@@ -61,6 +93,12 @@ critical path hasn't been accidentally broken, even if the game binary built suc
 Rather than a folder full of files, it's generally more useful to have a single archive (`.zip` file) that can be
 uploaded and attached as needed. This archive file should follow the naming pattern `<project>-<version>-<platform>`
 e.g. `ProjectAtlantis-1.2.0-Windows.zip`.
+
+On macOS, after completing the smoke tests, archive the output folder with:
+
+```sh
+ditto -c -k --sequesterRsrc --keepParent "$OUTPUT_PATH" "$OUTPUT_PATH.zip"
+```
 
 ## Make a GitHub Release
 
