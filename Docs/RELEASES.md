@@ -87,13 +87,11 @@ Rather than a folder full of files, it's generally more useful to have a single 
 uploaded and attached as needed. This archive file should follow the naming pattern `<project>-<version>-<platform>`
 e.g. `ProjectAtlantis-1.2.0-Windows.zip`.
 
-On macOS, after completing the smoke tests, archive the output folder with:
+On macOS, after completing the smoke tests, run [Scripts/archive.sh](../Scripts/archive.sh)
+with the version that was built:
 
 ```sh
-VERSION="1.2.0"
-BUILD_PATH="Builds/ProjectAtlantis-build-$VERSION"
-ditto -c -k --sequesterRsrc --keepParent "$BUILD_PATH/Package/Mac" \
-  "$BUILD_PATH/ProjectAtlantis-$VERSION-Mac.zip"
+./Scripts/archive.sh 0.1.0
 ```
 
 ## Make a GitHub Release
