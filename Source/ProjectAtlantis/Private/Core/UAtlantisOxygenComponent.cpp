@@ -7,7 +7,9 @@
 
 UAtlantisOxygenComponent::UAtlantisOxygenComponent()
 {
+	PrimaryComponentTick.bCanEverTick = false; //Does it tick?!
 	
+	SetIsReplicatedByDefault(true);
 }
 
 void UAtlantisOxygenComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

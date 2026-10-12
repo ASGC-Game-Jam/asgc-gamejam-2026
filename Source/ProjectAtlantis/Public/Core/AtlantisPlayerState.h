@@ -5,9 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
 #include "Core/EAtlantisTraversalMode.h"
-#include "Core/UAtlantisOxygenComponent.h"
 
 #include "AtlantisPlayerState.generated.h"
+
+
+class UAtlantisOxygenComponent;
 
 UENUM(BlueprintType)
 enum class EAtlantisBallastState : uint8
@@ -62,18 +64,6 @@ public:
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
-	//~ Change events. Bind from UI, audio, and VFX rather than polling.
-	//UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
-	//FOnOxygenCapacityChanged OnOxygenCapacityChanged;
-
-	//~ Change events. Bind from UI, audio, and VFX rather than polling.
-	//UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
-	//FOnLockedOxygenChanged OnLockedOxygenChanged;
-
-	//~ Change events. Bind from UI, audio, and VFX rather than polling.
-	//UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
-	//FOnCurrentOxygenChanged OnCurrentOxygenChanged;
-
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnBallastChanged OnBallastChanged;
 
@@ -82,11 +72,13 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnEquippedItemsChanged OnEquippedItemsChanged;
+	
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category = "Atlantis|PlayerState",Instanced)
+	UAtlantisOxygenComponent* UAtlantisOxygenComponent;
 
-	//UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
-	//FOnCriticalOxygenChanged OnCriticalOxygenChanged;
-
+	
 	//~ Accessors.
+	
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	float GetOxygenCapacity() const { return OxygenCapacity; }
 	

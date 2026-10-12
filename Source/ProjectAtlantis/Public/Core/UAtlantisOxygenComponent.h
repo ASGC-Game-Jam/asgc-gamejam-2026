@@ -5,6 +5,7 @@
 
 #include "UAtlantisOxygenComponent.generated.h"
 
+
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnOxygenCapacityChanged, float, OldOxygenCapacity, float, NewOxygenCapacity);
 
@@ -28,7 +29,7 @@ public:
 	UAtlantisOxygenComponent();
 	
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-	
+
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState|Oxygen")
 	FOnOxygenCapacityChanged OnOxygenCapacityChanged;
