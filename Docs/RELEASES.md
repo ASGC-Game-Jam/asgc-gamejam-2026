@@ -74,6 +74,12 @@ Use an empty second argument to keep the default engine path:
 For distribution without an unidentified-developer warning, use Developer ID
 signing and [Apple notarization](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
 
+**Note:** The current Mac build is not notarized. To run a trusted team build:
+
+1. Download and extract the ZIP, then open `Mac/ProjectAtlantis-Mac-Shipping.app`.
+2. If macOS blocks it because the developer cannot be verified, open **System Settings > Privacy & Security** and click **Open Anyway**.
+3. Confirm **Open**. Subsequent launches can use the app normally.
+
 ## Smoke tests
 
 It is important to make sure that your build does not fail in basic ways. The first test is always that the packaging
