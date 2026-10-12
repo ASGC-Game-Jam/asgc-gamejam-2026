@@ -49,7 +49,7 @@ There are a lot of options and awesome things that the UAT can do. Please [read 
 ### Build for macOS
 
 On a Mac with Xcode 26.6 and the project's Unreal Engine version installed, run
-[Scripts/build.sh](../Scripts/build.sh) with the release version. For example:
+[Scripts/build.sh](../Scripts/build.sh). For example:
 
 ```sh
 ./Scripts/build.sh 1.2.0
