@@ -8,7 +8,18 @@ public class ProjectAtlantis : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "EngineSettings", "AIModule", "GameplayStateTreeModule" });
+		PublicDependencyModuleNames.AddRange(new string[]
+		{
+			"Core",
+			"CoreUObject",
+			"Engine",
+			"InputCore",
+			"EnhancedInput",
+			"EngineSettings",
+			"AIModule",
+			"StateTreeModule",
+			"GameplayStateTreeModule"
+		});
 
         PrivateDependencyModuleNames.AddRange(new string[] {
             "GameAnalytics",
