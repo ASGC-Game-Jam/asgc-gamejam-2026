@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
+#include "Core/EAtlantisTraversalMode.h"
 #include "AtlantisPlayerState.generated.h"
 
 UENUM(BlueprintType)
@@ -33,11 +34,16 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, Old
  */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBallastChanged, bool, bIsAllocated, EAtlantisBallastState, BallastState);
 
-/** Traversal mode changed. */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTraversalModeChanged, int32, OldTraversalMode, int32, NewTraversalMode);
+/** Traversal mode changed(Terrestrial, Swimming, …). Carries the previous mode. */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTraversalModeChanged, EAtlantisTraversalMode, OldTraversalMode, EAtlantisTraversalMode, NewTraversalMode);
 
 /** Equipped item set changed. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEquippedItemsChanged, const TArray<FString>&, NewEquippedItems);
+
+/**
+ * CriticalOxygen changed. True while oxygen level is critical.
+ */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCriticalOxygenChanged, bool, bCriticalOxygen);
 
 /**
  * Per-player state that survives respawn. Every property here is server-authoritative:
@@ -53,9 +59,6 @@ public:
 	AAtlantisPlayerState();
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-
-	/** Carries our custom state across seamless travel and PlayerState re-creation. */
-	virtual void CopyProperties(APlayerState* PlayerState) override;
 
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
@@ -78,6 +81,9 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnEquippedItemsChanged OnEquippedItemsChanged;
 
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
+	FOnCriticalOxygenChanged OnCriticalOxygenChanged;
+
 	//~ Accessors.
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	float GetOxygenCapacity() const { return OxygenCapacity; }
@@ -98,16 +104,40 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	EAtlantisBallastState GetBallastState() const { return BallastState; }
 
+	/** Ballast permits player-controlled vertical swimming only in Wander. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Ballast")
+	bool IsVerticalSwimmingAllowed() const { return BallastState == EAtlantisBallastState::Wander; }
+
+	/** Ballast permits lower-surface attachment only in Descend; Surface Walking owns attachment. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Ballast")
+	bool IsLowerSurfaceWalkingAllowed() const { return BallastState == EAtlantisBallastState::Descend; }
+
+	/** Ballast permits upper-surface attachment only in Ascend; Surface Walking owns attachment. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Ballast")
+	bool IsUpperSurfaceWalkingAllowed() const { return BallastState == EAtlantisBallastState::Ascend; }
+
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
-	int32 GetTraversalMode() const { return TraversalMode; }
+	EAtlantisTraversalMode GetTraversalMode() const { return TraversalMode; }
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	const TArray<FString>& GetEquippedItems() const { return EquippedItems; }
 
+	/** Indicates whether oxygen level is critical. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	bool IsCriticalOxygen() const { return bCriticalOxygen; }
+
+	/** Oxygen level is critical when AvailableOxygen is below this value. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	float GetCriticalOxygenThreshold() const { return CriticalOxygenThreshold; }
+
+	/** Oxygen above the critical threshold required to leave Critical Oxygen. */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
+	float GetCriticalOxygenRecoveryMargin() const { return CriticalOxygenRecoveryMargin; }
+
 	//~ Mutators. Server only; calls on a client are ignored.
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetOxygenCapacity(float NewOxygenCapacity);
-	
+
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetLockedOxygen(float NewLockedOxygen);
 
@@ -119,35 +149,66 @@ public:
 	void SetBallastState(EAtlantisBallastState NewBallastState);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
-	void SetTraversalMode(int32 NewTraversalMode);
+	void SetTraversalMode(EAtlantisTraversalMode NewTraversalMode);
+
+	/** Consumes the requested oxygen if enough is available. Returns whether the request was accepted. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	bool RequestOxygen(float RequestedOxygen);
+
+	/** Locks the requested oxygen if enough is available. Returns whether the request was accepted. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	bool RequestOxygenAllocation(float RequestedOxygen);
+
+	/** Releases the requested oxygen if enough is already locked. Returns whether the request was accepted. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	bool ReleaseOxygen(float RequestedOxygen);
 
 protected:
+
+	virtual void BeginPlay() override;
+
 	//PlayerState Variables - Often includes things like health, ammo etc.
 	//TODO: note that these are placeholder variables and data types they may be swapped out for the real value upon implementation
+	/** Carries our custom state across seamless travel and PlayerState re-creation. */
+	virtual void CopyProperties(APlayerState* PlayerState) override;
+
+private:
 
 	/** Maximum oxygen the player can hold. */
-	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
+	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
 	float OxygenCapacity = 100.f;
 
 	/** Oxygen reserved for ballast and unavailable for consumption. */
-	UPROPERTY(ReplicatedUsing = OnRep_LockedOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
+	UPROPERTY(ReplicatedUsing = OnRep_LockedOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
 	float LockedOxygen = 0.f;
 
 	/** Total oxygen, including LockedOxygen. Consumption cannot reduce it below the reservation. */
-	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState")
+	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, EditAnywhere, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
 	float CurrentOxygen = 100.f;
 
 	/** Initial and current ballast mode; None is an invalid gameplay state. */
-	UPROPERTY(ReplicatedUsing = OnRep_BallastState, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
+	UPROPERTY(ReplicatedUsing = OnRep_BallastState, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
 	EAtlantisBallastState BallastState = EAtlantisBallastState::Descend;
 
-	/** Current traversal mode, stored as a placeholder integer until traversal modes are defined. */
-	UPROPERTY(ReplicatedUsing = OnRep_TraversalMode, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
-	int32 TraversalMode = 0;
+	/** Current traversal mode. Set by the player character from its movement mode; None when no pawn is possessed. */
+	UPROPERTY(ReplicatedUsing = OnRep_TraversalMode, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
+	EAtlantisTraversalMode TraversalMode = EAtlantisTraversalMode::None;
 
 	/** Identifiers for the items currently equipped by the player. */
-	UPROPERTY(ReplicatedUsing = OnRep_EquippedItems, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState")
+	UPROPERTY(ReplicatedUsing = OnRep_EquippedItems, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
 	TArray<FString> EquippedItems;
+
+	/** Indicates whether oxygen level is critical. */
+	UPROPERTY(ReplicatedUsing = OnRep_CriticalOxygen, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
+	bool bCriticalOxygen = false;
+
+	/** Oxygen level is critical when AvailableOxygen is below this value. */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
+	float CriticalOxygenThreshold = 5.f;
+
+	/** Oxygen above the critical threshold required to leave Critical Oxygen. */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
+	float CriticalOxygenRecoveryMargin = 1.f;
 
 	//RepNotifies - These allow the server to notify clients of changes to replicated variables. It can alos be used as a change event when non-multiplayer
 	UFUNCTION()
@@ -163,10 +224,20 @@ protected:
 	void OnRep_BallastState(EAtlantisBallastState OldBallastState) const;
 
 	UFUNCTION()
-	void OnRep_TraversalMode(int32 OldTraversalMode) const;
+	void OnRep_TraversalMode(EAtlantisTraversalMode OldTraversalMode) const;
 
 	UFUNCTION()
 	void OnRep_EquippedItems(const TArray<FString>& OldEquippedItems) const;
+
+	UFUNCTION()
+	void OnRep_CriticalOxygen() const;
+
+	/** Toggles the flag indicating whether oxygen is at critical level or not. */
+	UFUNCTION()
+	void SetCriticalOxygen(bool bNewCriticalOxygen);
+
+	/** Recomputes Critical Oxygen from available Oxygen. */
+	void UpdateCriticalOxygen();
 
 	// Ballast reservations, not consumption rates; tune in Blueprint class defaults.
  

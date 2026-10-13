@@ -6,8 +6,11 @@
 #include "GameFramework/PlayerController.h"
 #include "AtlantisPlayerController.generated.h"
 
+struct FInputActionValue;
 class UInputMappingContext;
+class UInputAction;
 class UEnhancedInputLocalPlayerSubsystem;
+enum class EAtlantisBallastState : uint8;
 
 /** The desired set of control mapping contexts changed. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnControlsChanged);
@@ -35,6 +38,9 @@ class PROJECTATLANTIS_API AAtlantisPlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
+	void UpdateMovementControls(bool bInWater);
+	virtual void OnRep_Pawn() override;
+
 	//~ Change events. Bind from UI rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Controls")
 	FOnControlsChanged OnControlsChanged;
@@ -79,7 +85,38 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls")
 	const TArray<UInputMappingContext*>& GetCurrentMappingContexts() const { return CurrentMappingContexts; }
 
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
+	void RestrictControls(FName ID, UInputMappingContext* MappingContext);
+
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
+	void UnrestrictControls(FName ID, UInputMappingContext* MappingContext);
+
 protected:
+	virtual void SetupInputComponent() override;
+	virtual void OnPossess(APawn* InPawn) override;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls")
+	TObjectPtr<UInputMappingContext> SwimmingMappingContext;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls")
+	TObjectPtr<UInputMappingContext> DefaultMovementMappingContext;
+
+	void RefreshMovementControls();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> DescendBallastAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> WanderBallastAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> AscendBallastAction;
+
+	void RequestBallastState(const FInputActionValue& ActionValue, EAtlantisBallastState NewBallastState);
+
+	UFUNCTION(Server, Reliable)
+	void ServerSetBallastState(EAtlantisBallastState NewBallastState);
+
 	/** Pushes every context in the desired set to the input subsystem. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
 	void EstablishMappingContexts();
@@ -98,4 +135,6 @@ protected:
 	/** Whether CurrentMappingContexts is currently pushed to the input subsystem. */
 	UPROPERTY(BlueprintReadOnly, Category = "Atlantis|Controls")
 	bool bControlsEnabled = true;
+
+	TMap<UInputMappingContext*, TSet<FName>> InputRestrictions;
 };

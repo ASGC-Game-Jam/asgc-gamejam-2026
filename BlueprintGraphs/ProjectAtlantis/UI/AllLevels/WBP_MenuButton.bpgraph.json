@@ -1,0 +1,246 @@
+{
+	"version": 1,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/AllLevels/WBP_MenuButton",
+	"asset": "WBP_MenuButton",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "OnClicked",
+			"type": "Delegate",
+			"nodes": [
+				{
+					"guid": "29e4709547fc16f23a5ec38a4a662f83",
+					"class": "K2Node_FunctionEntry",
+					"title": "OnClicked",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "29e4709547fc16f23a5ec38a4a662f83:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "1f65f5f648c3a61a77b9c7a2ec884342",
+					"class": "K2Node_VariableGet",
+					"title": "Get ButtonLabel",
+					"x": 224,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1f65f5f648c3a61a77b9c7a2ec884342:o:ButtonLabel",
+							"name": "ButtonLabel",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"3866806f413544e7a0cbd39c8cfd0659:i:self"
+							]
+						},
+						{
+							"id": "1f65f5f648c3a61a77b9c7a2ec884342:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_MenuButton.WBP_MenuButton_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3866806f413544e7a0cbd39c8cfd0659",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 384,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3866806f413544e7a0cbd39c8cfd0659:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f0029d0d4e6ad9a1c7bc73a2e94930a5:o:then"
+							]
+						},
+						{
+							"id": "3866806f413544e7a0cbd39c8cfd0659:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3866806f413544e7a0cbd39c8cfd0659:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"1f65f5f648c3a61a77b9c7a2ec884342:o:ButtonLabel"
+							]
+						},
+						{
+							"id": "3866806f413544e7a0cbd39c8cfd0659:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"c7e790954c4870449fcd9eb6a9c53fc4:o:ButtonText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5347327b474946e7922f189a1ed67170",
+					"class": "K2Node_CallDelegate",
+					"title": "Call On Clicked",
+					"x": 224,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5347327b474946e7922f189a1ed67170:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"841641554b651fea58e75db8914a137f:o:then"
+							]
+						},
+						{
+							"id": "5347327b474946e7922f189a1ed67170:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5347327b474946e7922f189a1ed67170:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_MenuButton.WBP_MenuButton_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "841641554b651fea58e75db8914a137f",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (Button)",
+					"x": 0,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "841641554b651fea58e75db8914a137f:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "841641554b651fea58e75db8914a137f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5347327b474946e7922f189a1ed67170:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c7e790954c4870449fcd9eb6a9c53fc4",
+					"class": "K2Node_VariableGet",
+					"title": "Get ButtonText",
+					"x": 224,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c7e790954c4870449fcd9eb6a9c53fc4:o:ButtonText",
+							"name": "ButtonText",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"3866806f413544e7a0cbd39c8cfd0659:i:InText"
+							]
+						},
+						{
+							"id": "c7e790954c4870449fcd9eb6a9c53fc4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_MenuButton.WBP_MenuButton_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f0029d0d4e6ad9a1c7bc73a2e94930a5",
+					"class": "K2Node_Event",
+					"title": "Event Pre Construct",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f0029d0d4e6ad9a1c7bc73a2e94930a5:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f0029d0d4e6ad9a1c7bc73a2e94930a5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3866806f413544e7a0cbd39c8cfd0659:i:execute"
+							]
+						},
+						{
+							"id": "f0029d0d4e6ad9a1c7bc73a2e94930a5:o:IsDesignTime",
+							"name": "IsDesignTime",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	]
+}

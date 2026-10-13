@@ -137,6 +137,15 @@ framework class from another.
 Bind to the delegates on `AAtlantisPlayerState` rather than polling it each tick. See
 [Replicated State Pattern.md](./Replicated%20State%20Pattern.md).
 
+Ballast consumers read `GetBallastState()` and subscribe to `OnBallastChanged`.
+`IsVerticalSwimmingAllowed()` exposes the shared rule: only Wander permits vertical
+swimming input. Native swimming uses this query to constrain input acceleration.
+`IsLowerSurfaceWalkingAllowed()` permits lower surfaces in Descend, and
+`IsUpperSurfaceWalkingAllowed()` permits upper surfaces in Ascend. Both return false
+in Wander and for the invalid None state. Surface Walking reads these queries on
+initialization and after `OnBallastChanged`; it owns surface detection, attachment,
+and detachment. These queries describe ballast compatibility, not traversal availability.
+
 ### Controls
 
 `AAtlantisPlayerController` owns the player's Enhanced Input mapping contexts, and separates two
@@ -171,6 +180,17 @@ rather than re-reading the array each frame. All three are `BlueprintAssignable`
 Every context is applied at priority `0`. Supporting per-context priority means
 `CurrentMappingContexts` becomes an array of structs, because `EstablishMappingContexts`
 re-applies the whole set at one priority.
+
+Ballast selection uses three Enhanced Input actions: `IA_BallastDescend`, `IA_BallastWander` and `IA_BallastAscend`.
+Default keyboard bindings are 2 (Descend), 3 (Wander), and 4 (Ascend). Gamepad face buttons use B/right (Descend),
+X/left (Wander), and Y/top (Ascend) in `IMC_Swim`.
+
+Movement contexts follow the pawn's physics volume. `AAtlantisPlayerController` initializes
+them on possession and client pawn replication; `UAtlantisMovementComponent` updates them
+when the physics volume changes. A water volume selects `IMC_Swim` and removes `IMC_Default`;
+leaving water reverses that selection. The controller Blueprint assigns both context references
+in Class Defaults. Context changes use `AddControls` and `RemoveControls`, so switching volumes
+while controls are disabled updates the desired set without enabling input.
 
 ### Repositioning the player character
 
