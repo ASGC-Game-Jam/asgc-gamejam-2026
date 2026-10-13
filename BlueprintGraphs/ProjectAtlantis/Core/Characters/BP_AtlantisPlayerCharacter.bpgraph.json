@@ -2928,6 +2928,50 @@
 					]
 				},
 				{
+					"guid": "32822c2d496108e2b04aebaa2be39e06",
+					"class": "K2Node_CallFunction",
+					"title": "Toggle Examine Mode Camera",
+					"x": 3072,
+					"y": 1648,
+					"comment": null,
+					"pins": [
+						{
+							"id": "32822c2d496108e2b04aebaa2be39e06:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"434678404c0a3a65d25191960ba288c6:o:else"
+							]
+						},
+						{
+							"id": "32822c2d496108e2b04aebaa2be39e06:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "32822c2d496108e2b04aebaa2be39e06:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "32822c2d496108e2b04aebaa2be39e06:i:TurnOn",
+							"name": "TurnOn",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "367299204d4178eb37b8f0a5f952e97c",
 					"class": "K2Node_VariableGet",
 					"title": "Get Examine Mode",
@@ -3047,7 +3091,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"32822c2d496108e2b04aebaa2be39e06:i:execute"
+							]
 						}
 					]
 				},
@@ -4568,11 +4614,11 @@
 			"comments": [
 				{
 					"guid": "0d0254b84c4b0e3b60bd5ca3437e27da",
-					"text": "Disabling FP Cam if interacting far from interactables",
+					"text": "Disabling FP Cam if interaction Doesn't have any valid interactible in trace line",
 					"x": 3021,
-					"y": 1335,
+					"y": 1271,
 					"width": 368,
-					"height": 288
+					"height": 560
 				},
 				{
 					"guid": "490bd8af49aeb89b27692bb8114d7574",
