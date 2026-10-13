@@ -25,7 +25,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"44e2915d43a3302e12a9e0a4e0493e92:i:execute"
+							]
 						},
 						{
 							"id": "27a0951e4268ecdd0ce9df84445401cf:o:PlayerCharacter",
@@ -33,6 +35,34 @@
 							"direction": "output",
 							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
 							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "44e2915d43a3302e12a9e0a4e0493e92",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "44e2915d43a3302e12a9e0a4e0493e92:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"27a0951e4268ecdd0ce9df84445401cf:o:then"
+							]
+						},
+						{
+							"id": "44e2915d43a3302e12a9e0a4e0493e92:i:Interaction Occured",
+							"name": "Interaction Occured",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
 							"links": []
 						}
 					]
@@ -44,6 +74,34 @@
 			"name": "Talk",
 			"type": "Function",
 			"nodes": [
+				{
+					"guid": "954267324c41d0767fcd8fa290530de9",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "954267324c41d0767fcd8fa290530de9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b9b64a524b17eac4a411a786ace6f713:o:then"
+							]
+						},
+						{
+							"id": "954267324c41d0767fcd8fa290530de9:i:Interaction Occured",
+							"name": "Interaction Occured",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
 				{
 					"guid": "b9b64a524b17eac4a411a786ace6f713",
 					"class": "K2Node_FunctionEntry",
@@ -58,7 +116,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"954267324c41d0767fcd8fa290530de9:i:execute"
+							]
 						},
 						{
 							"id": "b9b64a524b17eac4a411a786ace6f713:o:PlayerCharacter",

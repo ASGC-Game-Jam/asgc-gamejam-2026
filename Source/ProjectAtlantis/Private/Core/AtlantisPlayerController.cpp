@@ -234,3 +234,43 @@ void AAtlantisPlayerController::ClearMappingContexts()
 		}
 	}
 }
+
+void AAtlantisPlayerController::RestrictControls(FName Requester, UInputMappingContext* MappingContext)
+{
+	if (Requester.IsNone() || !IsValid(MappingContext))
+	{
+		return;
+	}
+
+	TSet<FName>& Restrictions = InputRestrictions.FindOrAdd(MappingContext);
+
+	const bool bWasUnrestricted = Restrictions.IsEmpty();
+	Restrictions.Add(Requester);
+
+	if (bWasUnrestricted)
+	{
+		RemoveControls(MappingContext);
+	}
+}
+void AAtlantisPlayerController::UnrestrictControls(FName Requester, UInputMappingContext* MappingContext)
+{
+	if (Requester.IsNone() || !IsValid(MappingContext))
+	{
+		return;
+	}
+
+	TSet<FName>* Restrictions = InputRestrictions.Find(MappingContext);
+
+	if (!Restrictions)
+	{
+		return;
+	}
+
+	Restrictions->Remove(Requester);
+
+	if (Restrictions->IsEmpty())
+	{
+		AddControls(MappingContext);
+		InputRestrictions.Remove(MappingContext);
+	}
+}
