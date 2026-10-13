@@ -41,10 +41,13 @@ without needing to load the full Unreal Editor.
 
 Assuming that your Unreal Engine path, project path and output path are defined as environment variables, a build may look like:
 ```ps
-$env:UE_PATH\Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="$env:PROJECT_PATH" -noP4 -platform=Win64 -clientconfig=Shipping -serverconfig=Shipping -nodebuginfo -nocompileeditor -skipbuildeditor -cook -allmaps -build -stage -pak -archive -archivedirectory="$env:OUTPUT_PATH"
+$env:UE_PATH\Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="$env:PROJECT_PATH" -noP4 -platform=Win64 -clientconfig=Shipping -serverconfig=Shipping -nodebuginfo -cook -build -stage -pak -package -archive -archivedirectory="$env:OUTPUT_PATH" -unattended -utf8output
 ```
 
 There are a lot of options and awesome things that the UAT can do. Please [read the docs](https://dev.epicgames.com/documentation/unreal-engine/unreal-automation-tool-for-unreal-engine?application_version=5.7).
+
+UAT builds the project editor needed for cooking and the Shipping game. Maps come
+from the project's **Packaging > List of maps to include in a packaged build** settings.
 
 ### Build for macOS
 
@@ -52,24 +55,23 @@ On a Mac with Xcode 26.6 and the project's Unreal Engine version installed, run
 [Scripts/build.sh](../Scripts/build.sh). For example:
 
 ```sh
-./Scripts/build.sh 1.2.0
+./Scripts/build.sh
 ```
 
 The script keeps the package, staging files, and build log together under
 `Builds/ProjectAtlantis-build-<version>/`. The Shipping app is in `Package/Mac` and
-defaults to both Apple Silicon and Intel (`arm64+x64`). The engine defaults to
+targets both Apple Silicon and Intel through the shared Mac architecture settings
+in `Config/DefaultEngine.ini`. The engine defaults to
 `/Users/Shared/Epic Games/UE_5.7`; pass a different installation as the second argument:
 
 ```sh
 ./Scripts/build.sh 1.2.0 "/path/to/Unreal Engine"
 ```
 
-Pass `arm64`, `x64`, or `arm64+x64` as the third argument to select architectures.
-Use an empty second argument to keep the default engine path:
-
-```sh
-./Scripts/build.sh 1.2.0 "" arm64
-```
+The version defaults to the latest reachable release tag. Commits after that tag
+add `-wip-<commit>`; local changes add `-dirty`. Pass a version as the first argument
+to override the label. Keep that label when archiving an existing build if the
+checkout has changed since it was built. All output under `Builds/` is ignored by Git.
 
 For distribution without an unidentified-developer warning, use Developer ID
 signing and [Apple notarization](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
@@ -96,12 +98,15 @@ Rather than a folder full of files, it's generally more useful to have a single 
 uploaded and attached as needed. This archive file should follow the naming pattern `<project>-<version>-<platform>`
 e.g. `ProjectAtlantis-1.2.0-Windows.zip`.
 
-On macOS, after completing the smoke tests, run [Scripts/archive.sh](../Scripts/archive.sh)
-with the version that was built:
+On macOS, after completing the smoke tests, run [Scripts/archive.sh](../Scripts/archive.sh):
 
 ```sh
-./Scripts/archive.sh 0.1.0
+./Scripts/archive.sh
 ```
+
+It uses the same version inference as the build script; pass the built version as
+an argument if needed (for example, `./Scripts/archive.sh 0.1.0`). The ZIP includes
+only the Shipping app bundle under `Mac/`, excluding adjacent manifests and reports.
 
 ## Make a GitHub Release
 
