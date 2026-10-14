@@ -53,13 +53,13 @@ struct PROJECTATLANTIS_API FSTEval_PerceptionSysInstanceData
 /**
  * Uses an Atlantis Enemy's Perception Component in order to reflect perception in our AI.
  */
-USTRUCT()
+USTRUCT(DisplayName = "Perception Evaluator")
 struct PROJECTATLANTIS_API FSTEval_PerceptionSys : public FStateTreeEvaluatorCommonBase
 {
 	GENERATED_BODY()
 	
 	// Required to properly get instance data.
-	virtual const UStruct* GetInstanceDataType() const override {return FSTEval_PerceptionSysInstanceData::StaticStruct();};
+	virtual const UStruct* GetInstanceDataType() const override {return FSTEval_PerceptionSysInstanceData::StaticStruct();}
 
 	void SetEnemyStatus(AAtlantisEnemyController* EnemyController, EMonsterStatus NewStatus) const;
 	virtual void Tick(FStateTreeExecutionContext& Context, const float DeltaTime) const override;

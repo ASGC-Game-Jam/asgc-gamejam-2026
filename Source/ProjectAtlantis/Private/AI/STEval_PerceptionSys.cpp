@@ -65,7 +65,7 @@ void FSTEval_PerceptionSys::Tick(FStateTreeExecutionContext& Context, const floa
 	
 	// TODO: This is just Sight for now. Hearing will be later.
 	TArray<AActor*> OutSensedActors;
-	PerceptionComponent->GetHostileActorsBySense(UAISense_Sight::StaticClass(), OutSensedActors);
+	PerceptionComponent->GetCurrentlyPerceivedActors(UAISense_Sight::StaticClass(), OutSensedActors);
 	
 	for (auto* SensedActor : OutSensedActors)
 	{

@@ -10,14 +10,14 @@
 	"properties":
 	{
 		"EditorData": "/Game/ProjectAtlantis/Core/AI/ST_Enemy.ST_Enemy:StateTreeEditorData_0",
-		"LastCompiledEditorDataHash": 4106130842,
+		"LastCompiledEditorDataHash": 727029073,
 		"Schema":
 		{
 			"_class": "StateTreeAIComponentSchema",
 			"_name": "StateTreeAIComponentSchema_0",
 			"AIControllerClass": "/Game/ProjectAtlantis/Core/EnemyControllers/BP_AtlantisEnemyController.BP_AtlantisEnemyController_C",
 			"ContextActorClass": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisEnemyCharacter.BP_AtlantisEnemyCharacter_C",
-			"ScheduledTickPolicy": "Default",
+			"ScheduledTickPolicy": "Allowed",
 			"ContextDataDescs": [
 				{
 					"Struct": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisEnemyCharacter.BP_AtlantisEnemyCharacter_C",
@@ -154,7 +154,7 @@
 						"TagName": "None"
 					}
 				},
-				"Name": "None",
+				"Name": "Test",
 				"Tag":
 				{
 					"TagName": "None"
@@ -203,7 +203,7 @@
 				"CompletionTasksControl": "Any",
 				"EnterConditionsNum": 0,
 				"UtilityConsiderationsNum": 0,
-				"TransitionsNum": 0,
+				"TransitionsNum": 1,
 				"TasksNum": 1,
 				"EnabledTasksNum": 1,
 				"InstanceDataNum": 2,
@@ -215,17 +215,49 @@
 				"bHasTickTriggerTransitions": false,
 				"bHasEventTriggerTransitions": false,
 				"bHasDelegateTriggerTransitions": false,
-				"bHasCompletedTriggerTransitions": false,
-				"bHasSucceededTriggerTransitions": false,
-				"bHasFailedTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
 				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
 				"bEnabled": true,
 				"bConsumeEventOnSelect": true,
 				"bHasCustomTickRate": false
 			}
 		],
-		"Transitions": [],
-		"Nodes": "(/Script/ProjectAtlantis.STEval_PerceptionSys(SightInstantAggroRadius=1000.000000,InitialPerceptionHysteresisTime=5.000000,PerceptionDecayPerSecond=0.100000,SightDistanceCurve=\"/Script/Engine.CurveFloat'/Game/ProjectAtlantis/Core/AI/SightDistanceCurve.SightDistanceCurve'\",Name=\"STEval Perception Sys\",BindingsBatch=(Value=0),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=0),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535))),/Script/StateTreeModule.StateTreeDelayTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Delay Task\",BindingsBatch=(Value=65535),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=3),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=1))))",
+		"Transitions": [
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 2,
+				"State":
+				{
+					"Index": 1
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateCompleted",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			}
+		],
+		"Nodes": "(/Script/ProjectAtlantis.STEval_PerceptionSys(SightInstantAggroRadius=1000.000000,InitialPerceptionHysteresisTime=5.000000,PerceptionDecayPerSecond=0.100000,SightDistanceCurve=\"/Script/Engine.CurveFloat'/Game/ProjectAtlantis/Core/AI/SightDistanceCurve.SightDistanceCurve'\",Name=\"Perception Evaluator\",BindingsBatch=(Value=0),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=0),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535))),/Script/ProjectAtlantis.STTask_Delay(DelayTime=5.000000,bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"STTask Delay\",BindingsBatch=(Value=65535),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=3),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=1))))",
 		"DefaultInstanceData":
 		{
 		},
@@ -341,7 +373,7 @@
 					},
 					"DataSource": "Evaluator",
 					"Struct": "/Script/ProjectAtlantis.STEval_PerceptionSysInstanceData",
-					"Name": "STEval Perception Sys",
+					"Name": "Perception Evaluator",
 					"ID": "8F74AEFD4078D3CFC6BB4FACF0EFE310",
 					"Category": ""
 				},
@@ -388,9 +420,9 @@
 						}
 					},
 					"DataSource": "Task",
-					"Struct": "/Script/StateTreeModule.StateTreeDelayTaskInstanceData",
-					"Name": "Delay Task",
-					"ID": "B09919A248B371735C4C5D959B96E702",
+					"Struct": "/Script/ProjectAtlantis.STTask_DelayInstanceData",
+					"Name": "STTask Delay",
+					"ID": "B45F7AC44C16CCD7D2D6BE82BF6AFF9F",
 					"Category": ""
 				}
 			],
@@ -430,7 +462,7 @@
 			"PropertyAccesses": [],
 			"CopyBatches": [
 				{
-					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535)),DataSource=Evaluator,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.STEval_PerceptionSysInstanceData'\",Name=\"STEval Perception Sys\",ID=8F74AEFD4078D3CFC6BB4FACF0EFE310,Category=\"\")",
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535)),DataSource=Evaluator,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.STEval_PerceptionSysInstanceData'\",Name=\"Perception Evaluator\",ID=8F74AEFD4078D3CFC6BB4FACF0EFE310,Category=\"\")",
 					"BindingsBegin":
 					{
 						"Value": 0
@@ -476,14 +508,22 @@
 				}
 			},
 			{
-				"Id": "B09919A248B371735C4C5D959B96E702",
+				"Id": "B45F7AC44C16CCD7D2D6BE82BF6AFF9F",
 				"Index":
 				{
 					"Value": 1
 				}
 			}
 		],
-		"IDToTransitionMappings": [],
+		"IDToTransitionMappings": [
+			{
+				"Id": "078A92B94F3866B2ABF647AFBBE147E9",
+				"Index":
+				{
+					"Value": 0
+				}
+			}
+		],
 		"Parameters":
 		{
 			"Value": "None"
