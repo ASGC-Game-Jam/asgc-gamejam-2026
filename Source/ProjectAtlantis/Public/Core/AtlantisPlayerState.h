@@ -119,14 +119,6 @@ private:
 	UPROPERTY(ReplicatedUsing = OnRep_EquippedItems, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))
 	TArray<FString> EquippedItems;
 	
-	/** Oxygen level is critical when AvailableOxygen is below this value. */
-	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
-	float CriticalOxygenThreshold = 5.f;
-
-	/** Oxygen above the critical threshold required to leave Critical Oxygen. */
-	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState", meta = (ClampMin = "0.0"))
-	float CriticalOxygenRecoveryMargin = 1.f;
-	
 	UFUNCTION()
 	void OnRep_BallastState(EAtlantisBallastState OldBallastState) const;
 

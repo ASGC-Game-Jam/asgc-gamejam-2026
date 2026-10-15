@@ -194,7 +194,7 @@ void FAtlantisBallastStateSpec::Define()
 			TestFalse(TEXT("Descend event reports unallocated"), Fixture->Listener->bLastAllocated);
 			TestTrue(TEXT("Descend event reports mode"), Fixture->Listener->LastBallastState == EAtlantisBallastState::Descend);
 			Fixture->Oxygen->SetCurrentOxygen(0.f);
-			//TestEqual(TEXT("Released oxygen can be consumed"), Fixture->State->GetCurrentOxygen(), 0.f);
+			TestEqual(TEXT("Released oxygen can be consumed"), Fixture->Oxygen->GetCurrentOxygen(), 0.f);
 		});
 	});
 
