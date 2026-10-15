@@ -72,26 +72,11 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState")
 	FOnEquippedItemsChanged OnEquippedItemsChanged;
-	
-	UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category = "Atlantis|PlayerState",Instanced)
-	UAtlantisOxygenComponent* UAtlantisOxygenComponent;
 
-	
 	//~ Accessors.
+	UFUNCTION(BlueprintPure,Category="Atlantis|Oxygen")
+	UAtlantisOxygenComponent* GetOxygenComponent() const { return OxygenComponent;}
 	
-	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
-	float GetOxygenCapacity() const { return OxygenCapacity; }
-	
-	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
-	float GetLockedOxygen() const { return LockedOxygen; }
-
-	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
-	float GetCurrentOxygen() const { return CurrentOxygen; }
-
-	/** Oxygen available for consumption after excluding the ballast reservation. */
-	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
-	float GetAvailableOxygen() const { return FMath::Max(CurrentOxygen - LockedOxygen, 0.f); }
-
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	bool IsBallastAllocated() const { return LockedOxygen > 0.f; }
 
@@ -144,7 +129,15 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetTraversalMode(EAtlantisTraversalMode NewTraversalMode);
-
+	
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	float GetLockedOxygen();
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	float GetCurrentOxygen();
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
+	float GetAvailableOxygen();
+	
+	
 	/** Consumes the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	bool RequestOxygen(float RequestedOxygen);
@@ -167,6 +160,8 @@ protected:
 	virtual void CopyProperties(APlayerState* PlayerState) override;
 
 private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Atlantis|Oxygen", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UAtlantisOxygenComponent> OxygenComponent;
 
 	/** Maximum oxygen the player can hold. */
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))

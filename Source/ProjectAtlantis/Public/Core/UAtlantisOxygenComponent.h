@@ -9,7 +9,7 @@
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnOxygenCapacityChanged, float, OldOxygenCapacity, float, NewOxygenCapacity);
 
-/** Amount of Oxygen locked changed. Carries the previous value so listeners can compute a delta. */
+/** Amount of Oxygen allocated changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAllocatedOxygenChanged, float, OldAllocatedOxygen, float, NewAllocatedOxygen);
 
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
@@ -42,6 +42,7 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState|Oxygen")
 	FOnCurrentOxygenChanged OnCurrentOxygenChanged;
 	
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState|Oxygen")
 	FOnCriticalOxygenChanged OnCriticalOxygenChanged;
 	
 	//~ Accessors.
@@ -84,7 +85,7 @@ public:
 	void SetOxygenCapacity(float NewOxygenCapacity);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState|Oxygen")
-	void SetAllocatedOxygen(float NewLockedOxygen);
+	void SetAllocatedOxygen(float NewAllocatedOxygen);
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState|Oxygen")
 	void SetCurrentOxygen(float NewCurrentOxygen);
@@ -134,7 +135,7 @@ private:
 	void OnRep_OxygenCapacity(float OldOxygenCapacity) const;
 	
 	UFUNCTION()
-	void OnRep_AllocatedOxygen(float OldLockedOxygen) const;
+	void OnRep_AllocatedOxygen(float OldAllocatedOxygen) const;
 
 	UFUNCTION()
 	void OnRep_CurrentOxygen(float OldCurrentOxygen) const;
