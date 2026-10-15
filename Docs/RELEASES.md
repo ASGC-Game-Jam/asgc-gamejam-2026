@@ -70,8 +70,8 @@ in `Config/DefaultEngine.ini`. The engine defaults to
 
 The version defaults to the latest reachable release tag. Commits after that tag
 add `-wip-<commit>`; local changes add `-dirty`. Pass a version as the first argument
-to override the label. Keep that label when archiving an existing build if the
-checkout has changed since it was built. All output under `Builds/` is ignored by Git.
+to override the label. Successful builds record their version for the archive
+script. All output under `Builds/` is ignored by Git.
 
 For distribution without an unidentified-developer warning, use Developer ID
 signing and [Apple notarization](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
@@ -104,9 +104,10 @@ On macOS, after completing the smoke tests, run [Scripts/archive.sh](../Scripts/
 ./Scripts/archive.sh
 ```
 
-It uses the same version inference as the build script; pass the built version as
-an argument if needed (for example, `./Scripts/archive.sh 0.1.0`). The ZIP includes
-only the Shipping app bundle under `Mac/`, excluding adjacent manifests and reports.
+It archives the latest successful Mac build using its saved version, even if the
+checkout has changed since building. To select an older build, pass its version
+(for example, `./Scripts/archive.sh 0.1.0`). The ZIP includes only the Shipping app
+bundle under `Mac/`, excluding adjacent manifests and reports.
 
 ## Make a GitHub Release
 

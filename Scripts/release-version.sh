@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Shared by build.sh and archive.sh; callers set PROJECT_ROOT first.
+# Used by build.sh to determine the build version; caller sets PROJECT_ROOT first.
 release_version()
 {
 	local version="${1:-}" tag

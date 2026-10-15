@@ -7,8 +7,19 @@ if [[ $# -gt 1 ]]; then
 fi
 
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-source "$PROJECT_ROOT/Scripts/release-version.sh"
-RELEASE_VERSION="$(release_version "${1:-}")"
+RELEASE_VERSION="${1:-}"
+if [[ -z "$RELEASE_VERSION" ]]; then
+	BUILD_RECORD="$PROJECT_ROOT/Builds/latest-mac-build.txt"
+	if [[ ! -f "$BUILD_RECORD" ]]; then
+		printf 'No successful Mac build recorded. Run build.sh or pass an existing build version.\n' >&2
+		exit 1
+	fi
+	RELEASE_VERSION="$(cat "$BUILD_RECORD")"
+fi
+if [[ ! "$RELEASE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-+][A-Za-z0-9.+-]+)?$ ]]; then
+	printf 'Invalid build version: %s\n' "$RELEASE_VERSION" >&2
+	exit 1
+fi
 BUILD_PATH="$PROJECT_ROOT/Builds/ProjectAtlantis-build-$RELEASE_VERSION"
 PACKAGE_PATH="$BUILD_PATH/Package/Mac"
 ARCHIVE_PATH="$BUILD_PATH/ProjectAtlantis-$RELEASE_VERSION-Mac.zip"
