@@ -1,0 +1,543 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/AI/ST_Enemy",
+	"asset": "ST_Enemy",
+	"assetClass": "StateTree",
+	"parentClass": null,
+	"blueprintType": null,
+	"graphs": [],
+	"properties":
+	{
+		"EditorData": "/Game/ProjectAtlantis/Core/AI/ST_Enemy.ST_Enemy:StateTreeEditorData_0",
+		"LastCompiledEditorDataHash": 727029073,
+		"Schema":
+		{
+			"_class": "StateTreeAIComponentSchema",
+			"_name": "StateTreeAIComponentSchema_0",
+			"AIControllerClass": "/Game/ProjectAtlantis/Core/EnemyControllers/BP_AtlantisEnemyController.BP_AtlantisEnemyController_C",
+			"ContextActorClass": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisEnemyCharacter.BP_AtlantisEnemyCharacter_C",
+			"ScheduledTickPolicy": "Allowed",
+			"ContextDataDescs": [
+				{
+					"Struct": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisEnemyCharacter.BP_AtlantisEnemyCharacter_C",
+					"Name": "Actor",
+					"Handle":
+					{
+						"DataHandle":
+						{
+							"Source": "None",
+							"Index": 65535,
+							"StateHandle":
+							{
+								"Index": 65535
+							}
+						}
+					},
+					"Requirement": "Required",
+					"ID": "1D971B0028884FDEB543680236984FD5"
+				},
+				{
+					"Struct": "/Game/ProjectAtlantis/Core/EnemyControllers/BP_AtlantisEnemyController.BP_AtlantisEnemyController_C",
+					"Name": "AIController",
+					"Handle":
+					{
+						"DataHandle":
+						{
+							"Source": "None",
+							"Index": 65535,
+							"StateHandle":
+							{
+								"Index": 65535
+							}
+						}
+					},
+					"Requirement": "Required",
+					"ID": "EDB3CD9795F94E0ABD15207B98645CDC"
+				}
+			]
+		},
+		"Frames": [
+			{
+				"RootState":
+				{
+					"Index": 0
+				},
+				"NumberOfTasksStatusMasks": 1
+			}
+		],
+		"States": [
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "Root",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 65535
+				},
+				"ChildrenBegin": 1,
+				"ChildrenEnd": 2,
+				"EnterConditionsBegin": 2,
+				"UtilityConsiderationsBegin": 2,
+				"TransitionsBegin": 0,
+				"TasksBegin": 1,
+				"ParameterTemplateIndex":
+				{
+					"Value": 1
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 0,
+					"StateHandle":
+					{
+						"Index": 0
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 2,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 1,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 0,
+				"TasksNum": 0,
+				"EnabledTasksNum": 0,
+				"InstanceDataNum": 1,
+				"Depth": 0,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": false,
+				"bHasSucceededTriggerTransitions": false,
+				"bHasFailedTriggerTransitions": false,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "Test",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 0
+				},
+				"ChildrenBegin": 2,
+				"ChildrenEnd": 2,
+				"EnterConditionsBegin": 2,
+				"UtilityConsiderationsBegin": 2,
+				"TransitionsBegin": 0,
+				"TasksBegin": 1,
+				"ParameterTemplateIndex":
+				{
+					"Value": 2
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 1,
+					"StateHandle":
+					{
+						"Index": 1
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 4,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 2,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 1,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			}
+		],
+		"Transitions": [
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 2,
+				"State":
+				{
+					"Index": 1
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateCompleted",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			}
+		],
+		"Nodes": "(/Script/ProjectAtlantis.STEval_PerceptionSys(SightInstantAggroRadius=1000.000000,InitialPerceptionHysteresisTime=5.000000,PerceptionDecayPerSecond=0.100000,SightDistanceCurve=\"/Script/Engine.CurveFloat'/Game/ProjectAtlantis/Core/AI/SightDistanceCurve.SightDistanceCurve'\",Name=\"Perception Evaluator\",BindingsBatch=(Value=0),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=0),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535))),/Script/ProjectAtlantis.STTask_Delay(DelayTime=5.000000,bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"STTask Delay\",BindingsBatch=(Value=65535),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=3),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=1))))",
+		"DefaultInstanceData":
+		{
+		},
+		"DefaultEvaluationScopeInstanceData":
+		{
+			"InstanceStructs": "()"
+		},
+		"DefaultExecutionRuntimeData":
+		{
+			"InstanceStructs": "()"
+		},
+		"SharedInstanceData":
+		{
+		},
+		"ContextDataDescs": [
+			{
+				"Struct": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisEnemyCharacter.BP_AtlantisEnemyCharacter_C",
+				"Name": "Actor",
+				"Handle":
+				{
+					"DataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					}
+				},
+				"Requirement": "Required",
+				"ID": "1D971B0028884FDEB543680236984FD5"
+			},
+			{
+				"Struct": "/Game/ProjectAtlantis/Core/EnemyControllers/BP_AtlantisEnemyController.BP_AtlantisEnemyController_C",
+				"Name": "AIController",
+				"Handle":
+				{
+					"DataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					}
+				},
+				"Requirement": "Required",
+				"ID": "EDB3CD9795F94E0ABD15207B98645CDC"
+			}
+		],
+		"PropertyBindings":
+		{
+			"SourceStructs": [
+				{
+					"DataHandle":
+					{
+						"Source": "GlobalParameterData",
+						"Index": 65535,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Parameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "56581FD14D314F5A6F96B3946ADE95A9",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Context",
+					"Struct": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisEnemyCharacter.BP_AtlantisEnemyCharacter_C",
+					"Name": "Actor",
+					"ID": "1D971B0028884FDEB543680236984FD5",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Context",
+					"Struct": "/Game/ProjectAtlantis/Core/EnemyControllers/BP_AtlantisEnemyController.BP_AtlantisEnemyController_C",
+					"Name": "AIController",
+					"ID": "EDB3CD9795F94E0ABD15207B98645CDC",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Evaluator",
+					"Struct": "/Script/ProjectAtlantis.STEval_PerceptionSysInstanceData",
+					"Name": "Perception Evaluator",
+					"ID": "8F74AEFD4078D3CFC6BB4FACF0EFE310",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 0
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "C57D01684CBEFA4F15AC9C925792BB91",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 1
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "2057C9E0469D590B1AB30E8E29B18FD3",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 1
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.STTask_DelayInstanceData",
+					"Name": "STTask Delay",
+					"ID": "B45F7AC44C16CCD7D2D6BE82BF6AFF9F",
+					"Category": ""
+				}
+			],
+			"PropertyPathBindings": [
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "8F74AEFD4078D3CFC6BB4FACF0EFE310",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				}
+			],
+			"PropertyReferencePaths": [],
+			"PropertyAccesses": [],
+			"CopyBatches": [
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535)),DataSource=Evaluator,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.STEval_PerceptionSysInstanceData'\",Name=\"Perception Evaluator\",ID=8F74AEFD4078D3CFC6BB4FACF0EFE310,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 0
+					},
+					"BindingsEnd":
+					{
+						"Value": 1
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				}
+			]
+		},
+		"Extensions": [],
+		"IDToStateMappings": [
+			{
+				"Id": "F30C2DAD49895356CA580A8FC1EEA2EE",
+				"Handle":
+				{
+					"Index": 0
+				}
+			},
+			{
+				"Id": "CB7DE8B246CF14A1EB6FBBA772E3D6AD",
+				"Handle":
+				{
+					"Index": 1
+				}
+			}
+		],
+		"IDToNodeMappings": [
+			{
+				"Id": "8F74AEFD4078D3CFC6BB4FACF0EFE310",
+				"Index":
+				{
+					"Value": 0
+				}
+			},
+			{
+				"Id": "B45F7AC44C16CCD7D2D6BE82BF6AFF9F",
+				"Index":
+				{
+					"Value": 1
+				}
+			}
+		],
+		"IDToTransitionMappings": [
+			{
+				"Id": "078A92B94F3866B2ABF647AFBBE147E9",
+				"Index":
+				{
+					"Value": 0
+				}
+			}
+		],
+		"Parameters":
+		{
+			"Value": "None"
+		},
+		"CompletionGlobalTasksMask": 1,
+		"NumContextData": 2,
+		"NumGlobalInstanceData": 1,
+		"EvaluatorsBegin": 0,
+		"EvaluatorsNum": 1,
+		"GlobalTasksBegin": 1,
+		"GlobalTasksNum": 0,
+		"CompletionGlobalTasksControl": "Any",
+		"ParameterDataType": "GlobalParameterData",
+		"bHasGlobalTransitionTasks": false,
+		"NativeClass": "/Script/StateTreeModule.StateTree"
+	}
+}
