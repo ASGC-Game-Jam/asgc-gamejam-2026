@@ -2,3 +2,4 @@
 
 
 #include "AI/AtlantisAITypes.h"
+DEFINE_LOG_CATEGORY(LogAtlantisAI);

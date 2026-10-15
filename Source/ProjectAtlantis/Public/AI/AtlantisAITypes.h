@@ -6,6 +6,8 @@
 #include "UObject/Object.h"
 #include "AtlantisAITypes.generated.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(LogAtlantisAI, Log, All);
+
 UENUM()
 enum class EMonsterStatus : uint8
 {
