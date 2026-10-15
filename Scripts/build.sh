@@ -26,4 +26,16 @@ mkdir -p "$BUILD_PATH"
 		-unattended -utf8output
 } 2>&1 | tee "$BUILD_PATH/build.log"
 
+APP_PATH="$OUTPUT_PATH/Mac/ProjectAtlantis-Mac-Shipping.app"
+if [[ ! -d "$APP_PATH" ]]; then
+	printf 'Shipping app not found: %s\n' "$APP_PATH" >&2
+	exit 1
+fi
+
+# Publish the version only after packaging succeeds, for archive.sh to reuse.
+BUILD_RECORD="$(mktemp "$PROJECT_ROOT/Builds/.latest-mac-build.XXXXXX")"
+trap 'rm -f "$BUILD_RECORD"' EXIT
+printf '%s\n' "$RELEASE_VERSION" > "$BUILD_RECORD"
+mv "$BUILD_RECORD" "$PROJECT_ROOT/Builds/latest-mac-build.txt"
+
 printf 'Mac build archived to: %s/Mac\n' "$OUTPUT_PATH"
