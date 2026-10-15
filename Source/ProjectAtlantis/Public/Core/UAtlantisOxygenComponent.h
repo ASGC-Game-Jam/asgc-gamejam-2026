@@ -125,7 +125,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
 	float CriticalOxygenRecoveryMargin = 1.f;
 	
-	//RepNotifies - These allow the server to notify clients of changes to replicated variables. It can alos be used as a change event when non-multiplayer
+	// RepNotifies - These allow the server to notify clients of changes to replicated variables. It can also be used as a change event when non-multiplayer
 	UFUNCTION()
 	void OnRep_OxygenCapacity(float OldOxygenCapacity) const;
 	
