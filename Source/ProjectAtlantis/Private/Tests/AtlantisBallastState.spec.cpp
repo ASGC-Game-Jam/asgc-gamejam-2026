@@ -4,6 +4,7 @@
 
 #include "Core/AtlantisPlayerState.h"
 #include "Tests/AtlantisBallastTestListener.h"
+#include "Core/AtlantisPlayerState.h"
 #include "Engine/World.h"
 #include "UObject/StrongObjectPtr.h"
 #include "Misc/AutomationTest.h"

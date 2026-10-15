@@ -20,7 +20,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, Old
  */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCriticalOxygenChanged, bool, bCriticalOxygen);
 
-UCLASS()
+UCLASS(ClassGroup = (Atlantis), meta = (BlueprintSpawnableComponent))
 class PROJECTATLANTIS_API UAtlantisOxygenComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -29,7 +29,9 @@ public:
 	UAtlantisOxygenComponent();
 	
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-
+	
+	void CopyStateTo(UAtlantisOxygenComponent &Target) const;
+	
 	//~ Change events. Bind from UI, audio, and VFX rather than polling.
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState|Oxygen")
 	FOnOxygenCapacityChanged OnOxygenCapacityChanged;
@@ -59,10 +61,6 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
 	float GetAvailableOxygen() const { return FMath::Max(CurrentOxygen - AllocatedOxygen, 0.f); }
 	
-	//TODO: Allocated from ballast
-	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
-	bool IsBallastAllocated() const { return AllocatedOxygen > 0.f; }
-	
 	/** Indicates whether oxygen level is critical. */
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
 	bool IsCriticalOxygen() const { return bCriticalOxygen; }
@@ -74,10 +72,6 @@ public:
 	/** Oxygen above the critical threshold required to leave Critical Oxygen. */
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
 	float GetCriticalOxygenRecoveryMargin() const { return CriticalOxygenRecoveryMargin; }
-	
-	/** Allows to modification of the Player's oxygen resource + or - ; bModifiesAllocatedOxygen is a flag for if it affects allocated Oxygen*/
-	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState|Oxygen")
-	void ModifyCurrentOxygen(float OxygenDelta, bool bModifiesAllocatedOxygen = false);
 	
 	//~ Mutators. Server only; calls on a client are ignored.
 	// TODO: Reconsider Protection level
@@ -101,6 +95,9 @@ public:
 	/** Releases the requested oxygen if enough is already locked. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState|Oxygen")
 	bool ReleaseOxygen(float RequestedOxygen);
+	
+protected:
+	virtual void BeginPlay() override;
 	
 private:
 	/** Maximum oxygen the player can hold. */
@@ -128,8 +125,6 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
 	float CriticalOxygenRecoveryMargin = 1.f;
 	
-
-	
 	//RepNotifies - These allow the server to notify clients of changes to replicated variables. It can alos be used as a change event when non-multiplayer
 	UFUNCTION()
 	void OnRep_OxygenCapacity(float OldOxygenCapacity) const;
@@ -149,7 +144,6 @@ private:
 
 	/** Recomputes Critical Oxygen from available Oxygen. */
 	void UpdateCriticalOxygen();
-	
 	
 	/** Returns true when the owning actor has network authority */
 	bool HasOwnerAuthority() const;

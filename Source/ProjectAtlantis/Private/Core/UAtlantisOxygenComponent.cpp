@@ -21,6 +21,24 @@ void UAtlantisOxygenComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProper
 	DOREPLIFETIME(UAtlantisOxygenComponent, bCriticalOxygen);
 }
 
+void UAtlantisOxygenComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	if (HasOwnerAuthority())
+	{
+		UpdateCriticalOxygen();
+	}
+}
+
+void UAtlantisOxygenComponent::CopyStateTo(UAtlantisOxygenComponent& Target) const
+{
+	Target.OxygenCapacity = OxygenCapacity;
+	Target.AllocatedOxygen = AllocatedOxygen;
+	Target.CurrentOxygen = CurrentOxygen;
+	Target.bCriticalOxygen = bCriticalOxygen;
+}
+
 void UAtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
 {
 	if (!HasOwnerAuthority() ||FMath::IsNearlyEqual(OxygenCapacity, NewOxygenCapacity))
@@ -48,22 +66,6 @@ void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen
 	UpdateCriticalOxygen();
 }
 
-void UAtlantisOxygenComponent::ModifyCurrentOxygen(float OxygenDelta, bool bModifiesAllocatedOxygen)
-{
-	float NewOxygenAmount = CurrentOxygen + OxygenDelta; 
-	
-	//TODO: ADD A bModifies... 
-	//true branch
-	if (bModifiesAllocatedOxygen)
-	{
-		float AllocatedPercent =  AllocatedOxygen/OxygenCapacity; // we get the allocated percentage
-		
-	}
-	else
-	{
-		SetCurrentOxygen(NewOxygenAmount);
-	}
-}
 
 void UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
 {
