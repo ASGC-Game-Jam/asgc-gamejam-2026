@@ -1,27 +1,27 @@
 ﻿// Copyright (c) 2026 ASGC
 
-#include "Core/UAtlantisOxygenComponent.h"
+#include "Core/AtlantisOxygenComponent.h"
 
 #include "Net/UnrealNetwork.h"
 
 
-UAtlantisOxygenComponent::UAtlantisOxygenComponent()
+AtlantisOxygenComponent::AtlantisOxygenComponent()
 {
 	PrimaryComponentTick.bCanEverTick = false; //Does it tick?!
 	
 	SetIsReplicatedByDefault(true);
 }
 
-void UAtlantisOxygenComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+void AtlantisOxygenComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(UAtlantisOxygenComponent, OxygenCapacity);
-	DOREPLIFETIME(UAtlantisOxygenComponent, AllocatedOxygen);
-	DOREPLIFETIME(UAtlantisOxygenComponent, CurrentOxygen);
-	DOREPLIFETIME(UAtlantisOxygenComponent, bCriticalOxygen);
+	DOREPLIFETIME(AtlantisOxygenComponent, OxygenCapacity);
+	DOREPLIFETIME(AtlantisOxygenComponent, AllocatedOxygen);
+	DOREPLIFETIME(AtlantisOxygenComponent, CurrentOxygen);
+	DOREPLIFETIME(AtlantisOxygenComponent, bCriticalOxygen);
 }
 
-void UAtlantisOxygenComponent::BeginPlay()
+void AtlantisOxygenComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	
@@ -31,7 +31,7 @@ void UAtlantisOxygenComponent::BeginPlay()
 	}
 }
 
-void UAtlantisOxygenComponent::CopyStateTo(UAtlantisOxygenComponent& Target) const
+void AtlantisOxygenComponent::CopyStateTo(AtlantisOxygenComponent& Target) const
 {
 	Target.OxygenCapacity = OxygenCapacity;
 	Target.AllocatedOxygen = AllocatedOxygen;
@@ -39,7 +39,7 @@ void UAtlantisOxygenComponent::CopyStateTo(UAtlantisOxygenComponent& Target) con
 	Target.bCriticalOxygen = bCriticalOxygen;
 }
 
-void UAtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
+void AtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
 {
 	if (!HasOwnerAuthority() ||FMath::IsNearlyEqual(OxygenCapacity, NewOxygenCapacity))
 	{
@@ -52,7 +52,7 @@ void UAtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
 	OnRep_OxygenCapacity(OldOxygenCapacity);
 }
 
-void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen)
+void AtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen)
 {
 	if (!HasOwnerAuthority() || FMath::IsNearlyEqual(AllocatedOxygen, NewAllocatedOxygen))
 	{
@@ -67,7 +67,7 @@ void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen
 }
 
 
-void UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
+void AtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
 {
 	// Current oxygen includes the ballast allocation; consumption can only use the unlocked portion and cannot exceed capacity.
 	const float ClampedOxygen = FMath::Clamp(NewCurrentOxygen, AllocatedOxygen, OxygenCapacity);
@@ -82,7 +82,7 @@ void UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
 	UpdateCriticalOxygen();
 }
 
-void UAtlantisOxygenComponent::SetCriticalOxygen(bool bNewCriticalOxygen)
+void AtlantisOxygenComponent::SetCriticalOxygen(bool bNewCriticalOxygen)
 {
 	if (!HasOwnerAuthority() || bCriticalOxygen == bNewCriticalOxygen)
 	{
@@ -93,27 +93,27 @@ void UAtlantisOxygenComponent::SetCriticalOxygen(bool bNewCriticalOxygen)
 	OnRep_CriticalOxygen();
 }
 
-void UAtlantisOxygenComponent::OnRep_OxygenCapacity(const float OldOxygenCapacity) const
+void AtlantisOxygenComponent::OnRep_OxygenCapacity(const float OldOxygenCapacity) const
 {
 	OnOxygenCapacityChanged.Broadcast(OldOxygenCapacity, OxygenCapacity);
 }
 
-void UAtlantisOxygenComponent::OnRep_AllocatedOxygen(const float OldAllocatedOxygen) const
+void AtlantisOxygenComponent::OnRep_AllocatedOxygen(const float OldAllocatedOxygen) const
 {
 	OnAllocatedOxygenChanged.Broadcast(OldAllocatedOxygen, AllocatedOxygen);
 }
 
-void UAtlantisOxygenComponent::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
+void AtlantisOxygenComponent::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
 {
 	OnCurrentOxygenChanged.Broadcast(OldCurrentOxygen, CurrentOxygen);
 }
 
-void UAtlantisOxygenComponent::OnRep_CriticalOxygen() const
+void AtlantisOxygenComponent::OnRep_CriticalOxygen() const
 {
 	OnCriticalOxygenChanged.Broadcast(bCriticalOxygen);
 }
 
-void UAtlantisOxygenComponent::UpdateCriticalOxygen()
+void AtlantisOxygenComponent::UpdateCriticalOxygen()
 {
 	const float AvailableOxygen = CurrentOxygen - AllocatedOxygen;
 	if (!bCriticalOxygen && AvailableOxygen <= CriticalOxygenThreshold)
@@ -126,7 +126,7 @@ void UAtlantisOxygenComponent::UpdateCriticalOxygen()
 	}
 }
 
-bool UAtlantisOxygenComponent::RequestOxygen(const float RequestedOxygen)
+bool AtlantisOxygenComponent::RequestOxygen(const float RequestedOxygen)
 {
 	if (!HasOwnerAuthority() || RequestedOxygen < 0.f)
 	{
@@ -142,7 +142,7 @@ bool UAtlantisOxygenComponent::RequestOxygen(const float RequestedOxygen)
 	return bRequestAccepted;
 }
 
-bool UAtlantisOxygenComponent::RequestOxygenAllocation(const float RequestedOxygen)
+bool AtlantisOxygenComponent::RequestOxygenAllocation(const float RequestedOxygen)
 {
 	if (!HasOwnerAuthority() || RequestedOxygen < 0.f)
 	{
@@ -158,7 +158,7 @@ bool UAtlantisOxygenComponent::RequestOxygenAllocation(const float RequestedOxyg
 	return bRequestAccepted;
 }
 
-bool UAtlantisOxygenComponent::ReleaseOxygen(const float ReleasedOxygen)
+bool AtlantisOxygenComponent::ReleaseOxygen(const float ReleasedOxygen)
 {
 	if (!HasOwnerAuthority() || ReleasedOxygen < 0.f)
 	{
@@ -174,7 +174,7 @@ bool UAtlantisOxygenComponent::ReleaseOxygen(const float ReleasedOxygen)
 	return bRequestAccepted;
 }
 
-bool UAtlantisOxygenComponent::HasOwnerAuthority() const
+bool AtlantisOxygenComponent::HasOwnerAuthority() const
 {
 	return GetOwnerRole() == ROLE_Authority;
 }

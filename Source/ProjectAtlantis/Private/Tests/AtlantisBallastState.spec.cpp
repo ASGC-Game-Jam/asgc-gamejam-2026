@@ -4,7 +4,7 @@
 
 #include "Core/AtlantisPlayerState.h"
 #include "Tests/AtlantisBallastTestListener.h"
-#include "Core/UAtlantisOxygenComponent.h"
+#include "Core/AtlantisOxygenComponent.h"
 #include "Engine/World.h"
 #include "UObject/StrongObjectPtr.h"
 #include "Misc/AutomationTest.h"
@@ -23,7 +23,7 @@ namespace
 	{
 		TStrongObjectPtr<UWorld> World;
 		AAtlantisPlayerState* State = nullptr;
-		UAtlantisOxygenComponent* Oxygen = nullptr;
+		AtlantisOxygenComponent* Oxygen = nullptr;
 		TStrongObjectPtr<UAtlantisBallastTestListener> Listener;
 
 		FAtlantisBallastFixture()
