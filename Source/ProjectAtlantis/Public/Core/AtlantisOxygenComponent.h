@@ -101,7 +101,7 @@ public:
 
 private:
 	/** Maximum oxygen the player can hold. */
-	UPROPERTY(ReplicatedUsing = OnRep_AllocatedOxygen, EditDefaultsOnly, BlueprintReadOnly,
+	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float OxygenCapacity = 100.f;
 
@@ -110,8 +110,8 @@ private:
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float AllocatedOxygen = 0.f;
 
-	/** Total oxygen, including LockedOxygen. Consumption cannot reduce it below the reservation. */
-	UPROPERTY(ReplicatedUsing = OnRep_AllocatedOxygen, VisibleInstanceOnly, BlueprintReadOnly,
+	/** Total oxygen, including Allocated Oxygen. Consumption cannot reduce it below the reservation. */
+	UPROPERTY(ReplicatedUsing =  OnRep_CurrentOxygen, VisibleInstanceOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float CurrentOxygen = 100.f;
 
