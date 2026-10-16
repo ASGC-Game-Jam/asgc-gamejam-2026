@@ -15,16 +15,18 @@ loading / exclusion rules.
 
 | Action | Keyboard | Gamepad |
 | --- | --- | --- |
-| Open / close menu | F7 | View / Back |
-| Reset immediately | F10 | Right stick click |
-| Close menu | Escape | B / Circle |
+| Open menu | F7 | Hold left stick click + press View / Back |
+| Reset immediately | F10 | Right stick click while menu is open |
+| Close menu | Escape / F7 | B / Circle / View / Back |
 | Navigate / activate | Arrow keys / Enter | D-pad / A / Cross |
 
 Like Screenshot Capture, bindings use `UDeveloperSettings` and Game.ini:
 **Project Settings > Game > Debug Menu** exposes keyboard and gamepad toggle /
-reset keys. Set a key to None to disable that shortcut, then restart PIE or the
-game. Keep them distinct from the configured Screenshot Capture key and gameplay
-actions. The menu displays the configured shortcuts.
+reset keys and a gamepad toggle modifier. Set a key to None to disable that
+shortcut, then restart PIE or the game. The default modifier avoids taking over
+the View button's existing Input Action. Right-stick reset is available only
+inside the menu. Keep keyboard bindings distinct from Screenshot Capture.
+The menu displays the configured shortcuts.
 
 The panel is 720 units wide with a 32-point heading, 24-point action labels,
 larger buttons, and a high-contrast background. It scales down to fit small
@@ -43,7 +45,13 @@ gameplay state are preserved. Reset is not a respawn or a level reload.
 The owning controller sends reset to the server in network PIE. The menu belongs
 to each local player. Menu input suppression is balanced with Unreal's move/look
 ignore counters; it does not remove Enhanced Input contexts or release another
-system's restrictions. Open it from gameplay: it refuses to take ownership while
+system's restrictions. While open it uses UI-only input and flushes held gameplay
+keys. A Slate input preprocessor scopes debug controls to the owning local player
+and game viewport, ahead of CommonUI / Enhanced Input. It consumes both the
+press and release of B and other debug shortcuts, including the release after
+the menu has closed, so one button cannot also trigger a gameplay Input Action.
+Unmodified View and right-stick presses pass through normally outside the menu.
+Open it from gameplay: it refuses to take ownership while
 another menu is displaying the mouse cursor. Close it before opening another UI.
 
 ## Adding actions
@@ -72,6 +80,11 @@ implementations behind `!UE_BUILD_SHIPPING`, including any server RPC body.
 8. With the menu focused, press F9. Verify #303 still saves a screenshot and
    matching location metadata. Change the Debug Menu key, restart PIE, and verify
    the configured key and displayed hint agree.
+9. Verify View and right-stick gameplay actions work with the menu closed.
+   Hold left-stick click and press View to open it; verify View does not also
+   trigger its Input Action. Close with B while swimming and verify no swim action
+   occurs on either press or release. Hold B and verify it closes only once.
+   Repeat with different focused buttons and after clicking empty menu space.
 
 Automated reset regression: `Atlantis.Debug.ResetPlayer`.
 
@@ -118,3 +131,9 @@ isolated config-binding specs for remapping and disabling shortcuts.
 Only source / diff checks and PowerShell syntax checks were performed for this
 update. No rebuild or automation execution was requested; the prior build and
 test results above do not validate the new settings, spec conversion, or layout.
+
+The gamepad routing fix adds `Atlantis.Debug.InputRouting` spec coverage for
+modifier chords, normal gameplay pass-through, B press / release across closing,
+repeat suppression, menu-only reset, and leaving F9 to screenshot capture.
+These new specs have not been built or executed; hardware PIE verification
+of the checklist above is still required.

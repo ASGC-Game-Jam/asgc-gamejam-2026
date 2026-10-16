@@ -11,6 +11,7 @@ class UInputMappingContext;
 class UInputAction;
 class UEnhancedInputLocalPlayerSubsystem;
 class UAtlantisDebugMenu;
+class IInputProcessor;
 enum class EAtlantisBallastState : uint8;
 
 /** The desired set of control mapping contexts changed. */
@@ -48,6 +49,7 @@ public:
 
 	/** Development-only reset, routed to authority for network PIE sessions. */
 	void RequestDebugReset();
+	bool IsDebugMenuOpen() const { return DebugMenu != nullptr; }
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
@@ -110,6 +112,8 @@ protected:
 
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisDebugMenu> DebugMenu;
+
+	TSharedPtr<IInputProcessor> DebugInputProcessor;
 
 	virtual void SetupInputComponent() override;
 	virtual void OnPossess(APawn* InPawn) override;

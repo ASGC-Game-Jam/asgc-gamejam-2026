@@ -22,6 +22,10 @@ TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 	const FSlateFontInfo TitleFont = FCoreStyle::GetDefaultFontStyle("Bold", 32);
 	const FSlateFontInfo ActionFont = FCoreStyle::GetDefaultFontStyle("Regular", 24);
 	const UAtlantisDebugMenuSettings* Settings = GetDefault<UAtlantisDebugMenuSettings>();
+	const FText GamepadToggleHint = Settings->ToggleMenuGamepadModifier.IsValid()
+		? FText::Format(NSLOCTEXT("AtlantisDebug", "GamepadToggleChord", "{0} + {1}"),
+			Settings->ToggleMenuGamepadModifier.GetDisplayName(), Settings->ToggleMenuGamepadKey.GetDisplayName())
+		: Settings->ToggleMenuGamepadKey.GetDisplayName();
 	TSharedRef<SVerticalBox> Entries = SNew(SVerticalBox);
 	Entries->AddSlot().AutoHeight().Padding(12.f, 8.f, 12.f, 16.f)
 	[
@@ -34,8 +38,8 @@ TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 		.Font(FCoreStyle::GetDefaultFontStyle("Regular", 18))
 		.AutoWrapText(true)
 		.Text(FText::Format(NSLOCTEXT("AtlantisDebug", "Shortcuts",
-			"Menu: {0} / {1}\nReset: {2} / {3}"),
-			Settings->ToggleMenuKey.GetDisplayName(), Settings->ToggleMenuGamepadKey.GetDisplayName(),
+			"Menu: {0} / {1}\nReset: {2} / {3} (in menu)"),
+			Settings->ToggleMenuKey.GetDisplayName(), GamepadToggleHint,
 			Settings->ResetPlayerKey.GetDisplayName(), Settings->ResetPlayerGamepadKey.GetDisplayName()))
 	];
 	AAtlantisPlayerController* Controller = Cast<AAtlantisPlayerController>(GetOwningPlayer());
@@ -122,29 +126,4 @@ void UAtlantisDebugMenu::ReleaseSlateResources(bool bReleaseChildren)
 {
 	Super::ReleaseSlateResources(bReleaseChildren);
 	FirstAction.Reset();
-}
-
-FReply UAtlantisDebugMenu::NativeOnPreviewKeyDown(const FGeometry& Geometry, const FKeyEvent& Event)
-{
-	AAtlantisPlayerController* Player = Cast<AAtlantisPlayerController>(GetOwningPlayer());
-	const FKey Key = Event.GetKey();
-	const UAtlantisDebugMenuSettings* Settings = GetDefault<UAtlantisDebugMenuSettings>();
-	if (Player && (Settings->IsToggleKey(Key) || Key == EKeys::Escape ||
-		Key == EKeys::Gamepad_FaceButton_Right))
-	{
-		if (!Event.IsRepeat())
-		{
-			Player->ToggleDebugMenu();
-		}
-		return FReply::Handled();
-	}
-	if (Player && Settings->IsResetKey(Key))
-	{
-		if (!Event.IsRepeat())
-		{
-			Player->RequestDebugReset();
-		}
-		return FReply::Handled();
-	}
-	return Super::NativeOnPreviewKeyDown(Geometry, Event);
 }

@@ -23,9 +23,14 @@ public:
 	UPROPERTY(Config, EditAnywhere, Category = "Input")
 	FKey ToggleMenuGamepadKey = EKeys::Gamepad_Special_Left;
 
+	/** Hold this button while pressing the gamepad toggle. None allows a single button. */
+	UPROPERTY(Config, EditAnywhere, Category = "Input")
+	FKey ToggleMenuGamepadModifier = EKeys::Gamepad_LeftThumbstick;
+
 	UPROPERTY(Config, EditAnywhere, Category = "Input")
 	FKey ResetPlayerKey = EKeys::F10;
 
+	/** Applies only while the debug menu is open, preserving gameplay bindings. */
 	UPROPERTY(Config, EditAnywhere, Category = "Input")
 	FKey ResetPlayerGamepadKey = EKeys::Gamepad_RightThumbstick;
 

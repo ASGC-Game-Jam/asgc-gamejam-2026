@@ -14,7 +14,8 @@
 #include "Core/AtlantisPlayerCharacter.h"
 #include "Debug/AtlantisCheatManager.h"
 #include "Debug/AtlantisDebugMenu.h"
-#include "Debug/AtlantisDebugMenuSettings.h"
+#include "Debug/AtlantisDebugInputProcessor.h"
+#include "Framework/Application/SlateApplication.h"
 
 AAtlantisPlayerController::AAtlantisPlayerController()
 {
@@ -72,9 +73,9 @@ void AAtlantisPlayerController::ToggleDebugMenu()
 	SetIgnoreMoveInput(true);
 	SetIgnoreLookInput(true);
 	bShowMouseCursor = true;
-	FInputModeGameAndUI Mode;
+	FlushPressedKeys();
+	FInputModeUIOnly Mode;
 	Mode.SetWidgetToFocus(DebugMenu->TakeWidget());
-	Mode.SetHideCursorDuringCapture(false);
 	SetInputMode(Mode);
 	DebugMenu->FocusFirstAction();
 #endif
@@ -110,6 +111,11 @@ void AAtlantisPlayerController::ServerDebugReset_Implementation()
 
 void AAtlantisPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+	if (DebugInputProcessor && FSlateApplication::IsInitialized())
+	{
+		FSlateApplication::Get().UnregisterInputPreProcessor(DebugInputProcessor);
+	}
+	DebugInputProcessor.Reset();
 	if (DebugMenu)
 	{
 		DebugMenu->RemoveFromParent();
@@ -153,24 +159,15 @@ void AAtlantisPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 #if !UE_BUILD_SHIPPING
-	// Independent of gameplay mapping contexts so QA can escape disabled controls.
-	const UAtlantisDebugMenuSettings* DebugSettings = GetDefault<UAtlantisDebugMenuSettings>();
-	TSet<FKey> BoundDebugKeys;
-	for (const FKey& Key : {DebugSettings->ToggleMenuKey, DebugSettings->ToggleMenuGamepadKey})
+	// Run before CommonUI / Enhanced Input, consuming both edges of debug button presses.
+	if (FSlateApplication::IsInitialized())
 	{
-		if (Key.IsValid() && !BoundDebugKeys.Contains(Key))
+		if (DebugInputProcessor)
 		{
-			InputComponent->BindKey(Key, IE_Pressed, this, &AAtlantisPlayerController::ToggleDebugMenu).bExecuteWhenPaused = true;
-			BoundDebugKeys.Add(Key);
+			FSlateApplication::Get().UnregisterInputPreProcessor(DebugInputProcessor);
 		}
-	}
-	for (const FKey& Key : {DebugSettings->ResetPlayerKey, DebugSettings->ResetPlayerGamepadKey})
-	{
-		if (Key.IsValid() && !BoundDebugKeys.Contains(Key))
-		{
-			InputComponent->BindKey(Key, IE_Pressed, this, &AAtlantisPlayerController::RequestDebugReset).bExecuteWhenPaused = true;
-			BoundDebugKeys.Add(Key);
-		}
+		DebugInputProcessor = MakeShared<FAtlantisDebugInputProcessor>(this);
+		FSlateApplication::Get().RegisterInputPreProcessor(DebugInputProcessor, 0);
 	}
 #endif
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
