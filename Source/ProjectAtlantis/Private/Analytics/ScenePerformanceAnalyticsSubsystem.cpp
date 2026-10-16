@@ -1,4 +1,5 @@
 #include "Analytics/ScenePerformanceAnalyticsSubsystem.h"
+#include "Analytics/GameplayAnalyticsSubsystem.h"
 
 #include "Engine/Engine.h"
 #include "Engine/World.h"
@@ -177,13 +178,13 @@ void UScenePerformanceAnalyticsSubsystem::SubmitTiming(const FString& EventId, c
 		return;
 	}
 
-#if !WITH_EDITOR
-
-	if (UGameAnalytics* GameAnalytics = UGameAnalytics::GetInstance())
+if (const UGameInstance* GameInstance = GetGameInstance())
 	{
-		GameAnalytics->AddDesignEventWithValue(EventId, Milliseconds);
+		if (UGameplayAnalyticsSubsystem* GameplayAnalytics = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>())
+		{
+			GameplayAnalytics->RecordPerformanceValue(EventId, Milliseconds);
+		}
 	}
-#endif
 }
 
 FString UScenePerformanceAnalyticsSubsystem::GetSceneName(const UWorld* World)
