@@ -44,6 +44,13 @@ Assuming that your Unreal Engine path, project path and output path are defined 
 $env:UE_PATH\Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="$env:PROJECT_PATH" -noP4 -platform=Win64 -clientconfig=Shipping -serverconfig=Shipping -nodebuginfo -nocompileeditor -skipbuildeditor -cook -allmaps -build -stage -pak -archive -archivedirectory="$env:OUTPUT_PATH"
 ```
 
+Shipping includes screenshot capture by default, activated by the `-debug`
+launch option (including Steam Launch Options). To exclude capture entirely,
+append `-ubtargs="-WithoutScreenshotCapture"` to the command above and use a
+separate output folder. Captures use Unreal's screenshot directory, normally
+`Saved/Screenshots/<Platform>/`; see
+[Screenshot Captures.md](./Screenshot%20Captures.md).
+
 There are a lot of options and awesome things that the UAT can do. Please [read the docs](https://dev.epicgames.com/documentation/unreal-engine/unreal-automation-tool-for-unreal-engine?application_version=5.7).
 
 ## Smoke tests
