@@ -86,7 +86,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState|Oxygen")
 	void SetCurrentOxygen(float NewCurrentOxygen);
-	
+
 	/** Consumes the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestOxygen(float RequestedOxygen);
@@ -96,24 +96,22 @@ public:
 	bool RequestOxygenAllocation(float RequestedOxygen);
 
 	/** Releases the requested oxygen if enough is already locked. Returns whether the request was accepted. */
-	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly,Category = "Atlantis|PlayerState|Oxygen")
+	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool ReleaseOxygen(float RequestedOxygen);
 
 private:
-
-
 	/** Maximum oxygen the player can hold. */
-	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly,
+	UPROPERTY(ReplicatedUsing = OnRep_AllocatedOxygen, EditDefaultsOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float OxygenCapacity = 100.f;
 
 	/** Oxygen reserved for ballast and unavailable for consumption. */
-	UPROPERTY(ReplicatedUsing = OnRep_AllocatedOxygen, EditAnywhere, BlueprintReadOnly,
+	UPROPERTY(ReplicatedUsing = OnRep_AllocatedOxygen, VisibleInstanceOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float AllocatedOxygen = 0.f;
 
 	/** Total oxygen, including LockedOxygen. Consumption cannot reduce it below the reservation. */
-	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, EditAnywhere, BlueprintReadOnly,
+	UPROPERTY(ReplicatedUsing = OnRep_AllocatedOxygen, VisibleInstanceOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float CurrentOxygen = 100.f;
 
@@ -130,7 +128,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
 	float CriticalOxygenRecoveryMargin = 1.f;
 
-	//RepNotifies - These allow the server to notify clients of changes to replicated variables. It can alos be used as a change event when non-multiplayer
+	//RepNotifies - These allow the server to notify clients of changes to replicated variables. It can also be used as a change event when non-multiplayer
 	UFUNCTION()
 	void OnRep_OxygenCapacity(float OldOxygenCapacity) const;
 

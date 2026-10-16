@@ -27,6 +27,9 @@ void UAtlantisOxygenComponent::BeginPlay()
 	
 	if (HasOwnerAuthority())
 	{
+		CurrentOxygen = OxygenCapacity;
+		AllocatedOxygen = 0.f;
+		
 		UpdateCriticalOxygen();
 	}
 }
@@ -65,8 +68,6 @@ void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen
 	OnRep_AllocatedOxygen(OldAllocatedOxygen);
 	UpdateCriticalOxygen();
 }
-
-
 void UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
 {
 	// Current oxygen includes the ballast allocation; consumption can only use the unlocked portion and cannot exceed capacity.
