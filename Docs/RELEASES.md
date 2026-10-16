@@ -40,6 +40,16 @@ rejects configurations that would enable cheats in production or disable them
 in QA. Default archives are `Saved/Packages/Production` and `Saved/Packages/QA`;
 use `-OutputPath` to override them.
 
+The helper also accepts `-WithoutScreenshotCapture` and forwards #303's UBT
+opt-out, for example:
+
+```ps
+.\Scripts\PackageGame.ps1 -Channel Production -EnginePath $env:UE_PATH -WithoutScreenshotCapture
+```
+
+The screenshot module's Shipping `-debug` launch option does not enable the
+debug menu or cheats; those remain compiled out of Shipping.
+
 ### Build with Editor
 
 After checking out the appropriate tagged commit in git, open the project in the Unreal Editor.

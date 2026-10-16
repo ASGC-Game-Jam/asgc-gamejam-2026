@@ -14,6 +14,7 @@
 #include "Core/AtlantisPlayerCharacter.h"
 #include "Debug/AtlantisCheatManager.h"
 #include "Debug/AtlantisDebugMenu.h"
+#include "Debug/AtlantisDebugMenuSettings.h"
 
 AAtlantisPlayerController::AAtlantisPlayerController()
 {
@@ -153,10 +154,24 @@ void AAtlantisPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 #if !UE_BUILD_SHIPPING
 	// Independent of gameplay mapping contexts so QA can escape disabled controls.
-	InputComponent->BindKey(EKeys::F7, IE_Pressed, this, &AAtlantisPlayerController::ToggleDebugMenu).bExecuteWhenPaused = true;
-	InputComponent->BindKey(EKeys::Gamepad_Special_Left, IE_Pressed, this, &AAtlantisPlayerController::ToggleDebugMenu).bExecuteWhenPaused = true;
-	InputComponent->BindKey(EKeys::F10, IE_Pressed, this, &AAtlantisPlayerController::RequestDebugReset).bExecuteWhenPaused = true;
-	InputComponent->BindKey(EKeys::Gamepad_RightThumbstick, IE_Pressed, this, &AAtlantisPlayerController::RequestDebugReset).bExecuteWhenPaused = true;
+	const UAtlantisDebugMenuSettings* DebugSettings = GetDefault<UAtlantisDebugMenuSettings>();
+	TSet<FKey> BoundDebugKeys;
+	for (const FKey& Key : {DebugSettings->ToggleMenuKey, DebugSettings->ToggleMenuGamepadKey})
+	{
+		if (Key.IsValid() && !BoundDebugKeys.Contains(Key))
+		{
+			InputComponent->BindKey(Key, IE_Pressed, this, &AAtlantisPlayerController::ToggleDebugMenu).bExecuteWhenPaused = true;
+			BoundDebugKeys.Add(Key);
+		}
+	}
+	for (const FKey& Key : {DebugSettings->ResetPlayerKey, DebugSettings->ResetPlayerGamepadKey})
+	{
+		if (Key.IsValid() && !BoundDebugKeys.Contains(Key))
+		{
+			InputComponent->BindKey(Key, IE_Pressed, this, &AAtlantisPlayerController::RequestDebugReset).bExecuteWhenPaused = true;
+			BoundDebugKeys.Add(Key);
+		}
+	}
 #endif
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
 	{

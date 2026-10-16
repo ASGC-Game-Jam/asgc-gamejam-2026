@@ -2,6 +2,7 @@
 
 #include "Debug/AtlantisDebugMenu.h"
 #include "Debug/AtlantisCheatManager.h"
+#include "Debug/AtlantisDebugMenuSettings.h"
 #include "Core/AtlantisPlayerController.h"
 #include "Framework/Application/SlateApplication.h"
 #include "Framework/Application/SlateUser.h"
@@ -10,16 +11,32 @@
 #include "Widgets/Layout/SBorder.h"
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Layout/SScrollBox.h"
+#include "Widgets/Layout/SScaleBox.h"
+#include "Styling/CoreStyle.h"
 #include "Widgets/SBoxPanel.h"
 #include "Widgets/Text/STextBlock.h"
 
 TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 {
 #if !UE_BUILD_SHIPPING
+	const FSlateFontInfo TitleFont = FCoreStyle::GetDefaultFontStyle("Bold", 32);
+	const FSlateFontInfo ActionFont = FCoreStyle::GetDefaultFontStyle("Regular", 24);
+	const UAtlantisDebugMenuSettings* Settings = GetDefault<UAtlantisDebugMenuSettings>();
 	TSharedRef<SVerticalBox> Entries = SNew(SVerticalBox);
-	Entries->AddSlot().AutoHeight().Padding(8.f)
+	Entries->AddSlot().AutoHeight().Padding(12.f, 8.f, 12.f, 16.f)
 	[
 		SNew(STextBlock).Text(NSLOCTEXT("AtlantisDebug", "Title", "Development Debug Menu"))
+		.Font(TitleFont)
+	];
+	Entries->AddSlot().AutoHeight().Padding(12.f, 0.f, 12.f, 20.f)
+	[
+		SNew(STextBlock)
+		.Font(FCoreStyle::GetDefaultFontStyle("Regular", 18))
+		.AutoWrapText(true)
+		.Text(FText::Format(NSLOCTEXT("AtlantisDebug", "Shortcuts",
+			"Menu: {0} / {1}\nReset: {2} / {3}"),
+			Settings->ToggleMenuKey.GetDisplayName(), Settings->ToggleMenuGamepadKey.GetDisplayName(),
+			Settings->ResetPlayerKey.GetDisplayName(), Settings->ResetPlayerGamepadKey.GetDisplayName()))
 	];
 	AAtlantisPlayerController* Controller = Cast<AAtlantisPlayerController>(GetOwningPlayer());
 	UAtlantisCheatManager* Cheats = Controller ? Cast<UAtlantisCheatManager>(Controller->CheatManager) : nullptr;
@@ -29,7 +46,8 @@ TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 		{
 			const TWeakObjectPtr<AAtlantisPlayerController> WeakController(Controller);
 			TSharedRef<SButton> Button = SNew(SButton)
-				.Text(Action.Label)
+				.ContentPadding(FMargin(24.f, 18.f))
+				.HAlign(HAlign_Center)
 				.OnClicked_Lambda([WeakController, Command = Action.Command]()
 				{
 					if (AAtlantisPlayerController* Player = WeakController.Get())
@@ -37,18 +55,22 @@ TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 						Player->ConsoleCommand(Command, false);
 					}
 					return FReply::Handled();
-				});
+				})
+				[
+					SNew(STextBlock).Text(Action.Label).Font(ActionFont)
+				];
 			if (!FirstAction)
 			{
 				FirstAction = Button;
 			}
-			Entries->AddSlot().AutoHeight().Padding(8.f)[Button];
+			Entries->AddSlot().AutoHeight().Padding(12.f, 8.f)[Button];
 		}
 	}
-	Entries->AddSlot().AutoHeight().Padding(8.f)
+	Entries->AddSlot().AutoHeight().Padding(12.f, 8.f)
 	[
 		SNew(SButton)
-		.Text(NSLOCTEXT("AtlantisDebug", "Close", "Close (F7 / View / B)"))
+		.ContentPadding(FMargin(24.f, 18.f))
+		.HAlign(HAlign_Center)
 		.OnClicked_Lambda([this]()
 		{
 			if (AAtlantisPlayerController* Player = Cast<AAtlantisPlayerController>(GetOwningPlayer()))
@@ -57,15 +79,26 @@ TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 			}
 			return FReply::Handled();
 		})
-	];
-	return SNew(SBox).HAlign(HAlign_Center).VAlign(VAlign_Center)
-	[
-		SNew(SBox).WidthOverride(420.f).MaxDesiredHeight(600.f)
 		[
-			SNew(SBorder).Padding(16.f)
+			SNew(STextBlock)
+			.Text(NSLOCTEXT("AtlantisDebug", "Close", "Close (Esc / B)"))
+			.Font(ActionFont)
+		]
+	];
+	return SNew(SBox).HAlign(HAlign_Center).VAlign(VAlign_Center).Padding(24.f)
+	[
+		SNew(SScaleBox).Stretch(EStretch::ScaleToFit).StretchDirection(EStretchDirection::DownOnly)
+		[
+			SNew(SBox).WidthOverride(720.f).MinDesiredHeight(380.f).MaxDesiredHeight(720.f)
 			[
-				SNew(SScrollBox)
-				+ SScrollBox::Slot()[Entries]
+				SNew(SBorder).Padding(24.f)
+				.BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
+				.BorderBackgroundColor(FLinearColor(0.025f, 0.035f, 0.05f, 1.f))
+				.ForegroundColor(FLinearColor::White)
+				[
+					SNew(SScrollBox)
+					+ SScrollBox::Slot()[Entries]
+				]
 			]
 		]
 	];
@@ -95,15 +128,22 @@ FReply UAtlantisDebugMenu::NativeOnPreviewKeyDown(const FGeometry& Geometry, con
 {
 	AAtlantisPlayerController* Player = Cast<AAtlantisPlayerController>(GetOwningPlayer());
 	const FKey Key = Event.GetKey();
-	if (Player && (Key == EKeys::F7 || Key == EKeys::Escape ||
-		Key == EKeys::Gamepad_Special_Left || Key == EKeys::Gamepad_FaceButton_Right))
+	const UAtlantisDebugMenuSettings* Settings = GetDefault<UAtlantisDebugMenuSettings>();
+	if (Player && (Settings->IsToggleKey(Key) || Key == EKeys::Escape ||
+		Key == EKeys::Gamepad_FaceButton_Right))
 	{
-		Player->ToggleDebugMenu();
+		if (!Event.IsRepeat())
+		{
+			Player->ToggleDebugMenu();
+		}
 		return FReply::Handled();
 	}
-	if (Player && (Key == EKeys::F10 || Key == EKeys::Gamepad_RightThumbstick))
+	if (Player && Settings->IsResetKey(Key))
 	{
-		Player->RequestDebugReset();
+		if (!Event.IsRepeat())
+		{
+			Player->RequestDebugReset();
+		}
 		return FReply::Handled();
 	}
 	return Super::NativeOnPreviewKeyDown(Geometry, Event);

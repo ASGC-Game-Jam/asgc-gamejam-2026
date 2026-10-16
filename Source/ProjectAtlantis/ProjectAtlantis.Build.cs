@@ -8,6 +8,7 @@ public class ProjectAtlantis : ModuleRules
 	public ProjectAtlantis(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+		PublicDependencyModuleNames.Add("DeveloperSettings");
 
 		PublicDependencyModuleNames.AddRange(new string[]
 			{

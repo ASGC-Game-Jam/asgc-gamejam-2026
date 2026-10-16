@@ -9,7 +9,9 @@ param(
 	[Parameter(Mandatory = $true)]
 	[string] $EnginePath,
 
-	[string] $OutputPath
+	[string] $OutputPath,
+
+	[switch] $WithoutScreenshotCapture
 )
 
 $ErrorActionPreference = "Stop"
@@ -45,6 +47,10 @@ $UatArguments = @(
 	"-nocompileeditor", "-skipbuildeditor", "-cook", "-allmaps", "-build", "-stage",
 	"-pak", "-archive", "-archivedirectory=$OutputPath"
 )
+if ($WithoutScreenshotCapture)
+{
+	$UatArguments += "-ubtargs=-WithoutScreenshotCapture"
+}
 & $UatPath @UatArguments
 if ($LASTEXITCODE -ne 0)
 {

@@ -8,12 +8,27 @@ Shipping production builds have no menu contents, shortcuts, or functional debug
 commands; the server reset body is also compiled out.
 No Blueprint or map edits are needed.
 
+This branch is stacked on [screenshot capture PR #303](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/pull/303).
+F9 remains owned by its screenshot module, including when this menu has focus.
+The menu does not replace its input processor, capture implementation, or module
+loading / exclusion rules.
+
 | Action | Keyboard | Gamepad |
 | --- | --- | --- |
 | Open / close menu | F7 | View / Back |
 | Reset immediately | F10 | Right stick click |
 | Close menu | Escape | B / Circle |
 | Navigate / activate | Arrow keys / Enter | D-pad / A / Cross |
+
+Like Screenshot Capture, bindings use `UDeveloperSettings` and Game.ini:
+**Project Settings > Game > Debug Menu** exposes keyboard and gamepad toggle /
+reset keys. Set a key to None to disable that shortcut, then restart PIE or the
+game. Keep them distinct from the configured Screenshot Capture key and gameplay
+actions. The menu displays the configured shortcuts.
+
+The panel is 720 units wide with a 32-point heading, 24-point action labels,
+larger buttons, and a high-contrast background. It scales down to fit small
+windows and scrolls as more actions are added.
 
 Click **Reset Player to Start** for the same action, or enter `ResetPlayer` in the
 Unreal console (use `EnableCheats` first in network sessions if needed).
@@ -54,6 +69,9 @@ implementations behind `!UE_BUILD_SHIPPING`, including any server RPC body.
 6. In two-player network PIE, reset each client and verify the server and other
    client see its corrected position. Test split-screen focus per local player.
 7. In a Shipping package, verify menu keys and reset commands have no effect.
+8. With the menu focused, press F9. Verify #303 still saves a screenshot and
+   matching location metadata. Change the Debug Menu key, restart PIE, and verify
+   the configured key and displayed hint agree.
 
 Automated reset regression: `Atlantis.Debug.ResetPlayer`.
 
@@ -73,6 +91,10 @@ Upload the QA package only to `qa`; build a separate Shipping package for
 production. Never promote the QA artifact to `default`. See
 [Release Process](./RELEASES.md) for commands and upload steps.
 
+#303's Shipping `-debug` option enables screenshot capture only. It does not
+enable this menu or cheats. The packaging helper forwards
+`-WithoutScreenshotCapture` to UBT to omit #303's optional module when requested.
+
 ## Implementation validation (2026-10-11)
 
 - UE 5.7.4 Win64 Development Editor, Development game, and Shipping game: built successfully.
@@ -85,3 +107,14 @@ production. Never promote the QA artifact to `default`. See
 - Test configuration could not be compiled with this installed engine distribution.
 - Full cooking / packaging, Steam upload, hardware gamepad input, visual PIE,
   water transitions, blocked spawn, and network / split-screen checks remain manual.
+
+## Stack and readability update (2026-10-15)
+
+Stacked locally on #303 at `254e6a3`; the screenshot module remains unchanged.
+Reset tests now use isolated fixtures, Describe / It cases, and BeforeEach /
+AfterEach, matching #303 and the repository's current test convention. Added
+isolated config-binding specs for remapping and disabling shortcuts.
+
+Only source / diff checks and PowerShell syntax checks were performed for this
+update. No rebuild or automation execution was requested; the prior build and
+test results above do not validate the new settings, spec conversion, or layout.
