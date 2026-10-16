@@ -23,7 +23,7 @@ namespace
 	{
 		TStrongObjectPtr<UWorld> World;
 		AAtlantisPlayerState* State = nullptr;
-		AtlantisOxygenComponent* Oxygen = nullptr;
+		UAtlantisOxygenComponent* Oxygen = nullptr;
 		TStrongObjectPtr<UAtlantisBallastTestListener> Listener;
 
 		FAtlantisBallastFixture()

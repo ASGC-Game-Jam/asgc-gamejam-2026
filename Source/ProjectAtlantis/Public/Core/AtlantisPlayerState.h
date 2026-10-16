@@ -8,9 +8,6 @@
 
 #include "AtlantisPlayerState.generated.h"
 
-
-class AtlantisOxygenComponent;
-
 UENUM(BlueprintType)
 enum class EAtlantisBallastState : uint8
 {
@@ -63,7 +60,7 @@ public:
 
 	//~ Accessors.
 	UFUNCTION(BlueprintPure,Category="Atlantis|Oxygen")
-	AtlantisOxygenComponent* GetOxygenComponent() const { return OxygenComponent;}
+	UAtlantisOxygenComponent* GetOxygenComponent() const { return OxygenComponent;}
 	
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	bool IsBallastAllocated() const;
@@ -105,7 +102,7 @@ protected:
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Atlantis|Oxygen", meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<AtlantisOxygenComponent> OxygenComponent;
+	TObjectPtr<UAtlantisOxygenComponent> OxygenComponent;
 	
 	/** Initial and current ballast mode; None is an invalid gameplay state. */
 	UPROPERTY(ReplicatedUsing = OnRep_BallastState, EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|PlayerState", meta = (AllowPrivateAccess = "true"))

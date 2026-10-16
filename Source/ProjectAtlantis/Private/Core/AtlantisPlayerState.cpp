@@ -2,7 +2,6 @@
 
 
 #include "Core/AtlantisPlayerState.h"
-
 #include "Core/AtlantisOxygenComponent.h"
 #include "Net/UnrealNetwork.h"
 
@@ -14,7 +13,7 @@ AAtlantisPlayerState::AAtlantisPlayerState()
 	// constructor, so there is no bReplicates to set here. It does however default to 1 Hz,
 	// which is far too slow for a value like oxygen that the HUD reads continuously.
 	SetNetUpdateFrequency(10.f);
-	OxygenComponent = CreateDefaultSubobject<AtlantisOxygenComponent>(TEXT("OxygenComponent"));
+	OxygenComponent = CreateDefaultSubobject<UAtlantisOxygenComponent>(TEXT("OxygenComponent"));
 	EquippedItems = TArray<FString>();
 }
 
