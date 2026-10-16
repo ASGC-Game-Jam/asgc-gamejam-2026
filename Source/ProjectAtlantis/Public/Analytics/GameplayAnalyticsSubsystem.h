@@ -2,9 +2,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/EngineBaseTypes.h"
 #include "GameFramework/SaveGame.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "GameplayAnalyticsSubsystem.generated.h"
+
+class UWorld;
+struct FWorldContext;
 
 UENUM(BlueprintType)
 enum class EGameplayAnalyticsAggregation : uint8
@@ -117,5 +121,5 @@ private:
 	static constexpr double FirstPhaseSeconds = 14400.0;
 	static constexpr double EndPhaseSeconds = 28800.0;
 	static constexpr int32 MaxMetricKeys = 1024;
-	static constexpr TCHAR SaveSlot[] = TEXT("GameplayAnalyticsBudget");
+	static constexpr const TCHAR* SaveSlot = TEXT("GameplayAnalyticsBudget");
 };
