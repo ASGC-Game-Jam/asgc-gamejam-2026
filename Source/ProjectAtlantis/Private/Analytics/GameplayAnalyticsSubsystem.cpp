@@ -209,6 +209,10 @@ void UGameplayAnalyticsSubsystem::RefreshUtcDay()
 	State->PeriodicSubmitted = 0;
 	State->SummarySubmitted = 0;
 	State->ActiveGameplaySeconds = 0.0;
+	for (TPair<FString, FGameplayAnalyticsMetric>& Pair : State->Metrics)
+	{
+		Pair.Value.LastSubmittedGameplaySeconds = -1.0;
+	}
 	IntervalAccumulatorSeconds = 0.0;
 	Persist();
 }
