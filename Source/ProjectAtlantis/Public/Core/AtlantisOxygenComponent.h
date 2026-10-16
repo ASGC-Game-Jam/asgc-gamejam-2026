@@ -81,12 +81,6 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	void SetOxygenCapacity(float NewOxygenCapacity);
 
-	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState|Oxygen")
-	void SetAllocatedOxygen(float NewAllocatedOxygen);
-
-	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState|Oxygen")
-	void SetCurrentOxygen(float NewCurrentOxygen);
-
 	/** Consumes the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestOxygen(float RequestedOxygen);
@@ -98,8 +92,12 @@ public:
 	/** Releases the requested oxygen if enough is already locked. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool ReleaseOxygen(float RequestedOxygen);
+	
+	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
+	bool ReallocateOxygen(float RequestedOxygen);
 
 private:
+	
 	/** Maximum oxygen the player can hold. */
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
@@ -147,7 +145,10 @@ private:
 
 	/** Recomputes Critical Oxygen from available Oxygen. */
 	void UpdateCriticalOxygen();
-
+	
+	void SetAllocatedOxygen(float NewAllocatedOxygen);
+	void SetCurrentOxygen(float NewCurrentOxygen);
+	
 	/** Returns true when the owning actor has network authority */
 	bool HasOwnerAuthority() const;
 };

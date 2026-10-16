@@ -61,10 +61,14 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 	{
 		return;
 	}
+	
+	if (!OxygenComponent->ReallocateOxygen(RequiredAllocation))
+	{
+		return;
+	}
 
 	const EAtlantisBallastState OldBallastState = BallastState;
 	BallastState = NewBallastState;
-	OxygenComponent->SetAllocatedOxygen(RequiredAllocation);
 
 	OnRep_BallastState(OldBallastState);
 }

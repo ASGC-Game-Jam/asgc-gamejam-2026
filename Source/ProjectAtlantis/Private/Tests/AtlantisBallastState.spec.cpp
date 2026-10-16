@@ -101,9 +101,10 @@ void FAtlantisBallastStateSpec::Define()
 			{
 				return;
 			}
-			for (const float Oxygen : {0.5f, 1.f})
+			// Descending, because consumption lowers oxygen
+			for (const float Oxygen : {1.f, 0.5f})
 			{
-				Fixture->Oxygen->SetCurrentOxygen(Oxygen);
+				TestTrue(TEXT("Oxygen drained to test level"), Fixture->Oxygen->RequestOxygen(Fixture->Oxygen->GetCurrentOxygen() - Oxygen));
 				Fixture->State->SetBallastState(EAtlantisBallastState::Wander);
 				TestTrue(TEXT("Insufficient or exact allocation is rejected"), Fixture->State->GetBallastState() == EAtlantisBallastState::Descend);
 				TestEqual(TEXT("Rejected mode preserves reservation"), Fixture->Oxygen->GetAllocatedOxygen(), 0.f);
@@ -122,7 +123,7 @@ void FAtlantisBallastStateSpec::Define()
 			{
 				return;
 			}
-			Fixture->Oxygen->SetCurrentOxygen(3.f);
+			TestTrue(TEXT("Oxygen drained to test level"), Fixture->Oxygen->RequestOxygen(Fixture->Oxygen->GetCurrentOxygen() - 3.f));
 			Fixture->State->SetBallastState(EAtlantisBallastState::Wander);
 			TestEqual(TEXT("Wander reservation"), Fixture->Oxygen->GetAllocatedOxygen(), 1.f);
 			TestTrue(TEXT("Wander is allocated"), Fixture->State->IsBallastAllocated());
@@ -170,7 +171,8 @@ void FAtlantisBallastStateSpec::Define()
 				return;
 			}
 			Fixture->State->SetBallastState(EAtlantisBallastState::Ascend);
-			Fixture->Oxygen->SetCurrentOxygen(0.f);
+			TestFalse(TEXT("Consuming reserved oxygen is rejected"), Fixture->Oxygen->RequestOxygen(Fixture->Oxygen->GetCurrentOxygen()));
+			TestTrue(TEXT("Unreserved oxygen can be consumed"), Fixture->Oxygen->RequestOxygen(Fixture->Oxygen->GetAvailableOxygen()));
 			TestEqual(TEXT("Consumption preserves reserved oxygen"), Fixture->Oxygen->GetCurrentOxygen(), 2.f);
 			TestEqual(TEXT("Reservation remains unchanged"), Fixture->Oxygen->GetAllocatedOxygen(), 2.f);
 			TestEqual(TEXT("Reserved oxygen is unavailable for consumption"), Fixture->Oxygen->GetAvailableOxygen(), 0.f);
@@ -193,7 +195,7 @@ void FAtlantisBallastStateSpec::Define()
 			TestEqual(TEXT("Descend emits exactly one ballast event"), Fixture->Listener->BallastEventCount, 1);
 			TestFalse(TEXT("Descend event reports unallocated"), Fixture->Listener->bLastAllocated);
 			TestTrue(TEXT("Descend event reports mode"), Fixture->Listener->LastBallastState == EAtlantisBallastState::Descend);
-			Fixture->Oxygen->SetCurrentOxygen(0.f);
+			TestTrue(TEXT("Released oxygen can be requested"), Fixture->Oxygen->RequestOxygen(Fixture->Oxygen->GetAvailableOxygen()));
 			TestEqual(TEXT("Released oxygen can be consumed"), Fixture->Oxygen->GetCurrentOxygen(), 0.f);
 		});
 	});
@@ -206,14 +208,14 @@ void FAtlantisBallastStateSpec::Define()
 			{
 				return;
 			}
-			Fixture->Oxygen->SetAllocatedOxygen(1.f);
+			TestTrue(TEXT("Direct reservation accepted"), Fixture->Oxygen->ReallocateOxygen(1.f));
 			TestTrue(TEXT("Direct reservation sets derived allocation"), Fixture->State->IsBallastAllocated());
 			TestEqual(TEXT("Direct reservation emits one oxygen event"), Fixture->Listener->LockedOxygenEventCount, 1);
 			TestEqual(TEXT("Direct reservation reports old oxygen"), Fixture->Listener->LastOldLockedOxygen, 0.f);
 			TestEqual(TEXT("Direct reservation reports new oxygen"), Fixture->Listener->LastNewLockedOxygen, 1.f);
 			TestEqual(TEXT("Direct reservation emits no ballast event"), Fixture->Listener->BallastEventCount, 0);
 			Fixture->Listener->Reset();
-			Fixture->Oxygen->SetAllocatedOxygen(0.f);
+			TestTrue(TEXT("Direct release accepted"), Fixture->Oxygen->ReallocateOxygen(0.f));
 			TestFalse(TEXT("Direct release clears derived allocation"), Fixture->State->IsBallastAllocated());
 			TestEqual(TEXT("Direct release emits one oxygen event"), Fixture->Listener->LockedOxygenEventCount, 1);
 			TestEqual(TEXT("Direct release reports old oxygen"), Fixture->Listener->LastOldLockedOxygen, 1.f);

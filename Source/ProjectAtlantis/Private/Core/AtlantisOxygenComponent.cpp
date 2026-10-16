@@ -68,6 +68,7 @@ void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen
 	OnRep_AllocatedOxygen(OldAllocatedOxygen);
 	UpdateCriticalOxygen();
 }
+
 void UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
 {
 	// Current oxygen includes the ballast allocation; consumption can only use the unlocked portion and cannot exceed capacity.
@@ -173,6 +174,17 @@ bool UAtlantisOxygenComponent::ReleaseOxygen(const float ReleasedOxygen)
 	}
 
 	return bRequestAccepted;
+}
+
+bool UAtlantisOxygenComponent::ReallocateOxygen(float NewRequestedOxygen)
+{
+	if (!HasOwnerAuthority() || NewRequestedOxygen < 0.f || NewRequestedOxygen > CurrentOxygen)
+	{
+		return false;
+	}
+	
+	SetAllocatedOxygen(NewRequestedOxygen);
+	return true;
 }
 
 bool UAtlantisOxygenComponent::HasOwnerAuthority() const
