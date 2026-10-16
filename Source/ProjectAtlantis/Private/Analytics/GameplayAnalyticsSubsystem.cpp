@@ -154,7 +154,7 @@ bool UGameplayAnalyticsSubsystem::IsActiveGameplayWorld(const UWorld* World) con
 		return false;
 	}
 	const FString Map = FPackageName::GetShortName(World->GetMapName());
-	return !Map.Contains(TEXT("MainMenu")) && !Map.Contains(TEXT("Entry"));
+	return !Map.Contains(TEXT("MainMenu"));
 }
 
 void UGameplayAnalyticsSubsystem::OnWorldPostActorTick(UWorld* World, ELevelTick TickType, float DeltaSeconds)
@@ -182,8 +182,15 @@ void UGameplayAnalyticsSubsystem::OnPreLoadMap(const FWorldContext& Context, con
 	{
 		return;
 	}
-	// Map transitions close the current gameplay session; subsequent gameplay creates a new one.
-	EndGameplaySession();
+	// Keep the session continuous across gameplay maps; leaving for the main menu ends it.
+	if (FPackageName::GetShortName(MapName).Contains(TEXT("MainMenu")))
+	{
+		EndGameplaySession();
+	}
+	else
+	{
+		Persist();
+	}
 }
 
 void UGameplayAnalyticsSubsystem::RefreshUtcDay()
@@ -250,7 +257,7 @@ void UGameplayAnalyticsSubsystem::FlushPendingWithBudget(int32 Available)
 		}
 		const double Wait = Pair.Value.LastSubmittedGameplaySeconds < 0.0
 			? 28800.0 : FMath::Max(0.0, State->ActiveGameplaySeconds - Pair.Value.LastSubmittedGameplaySeconds);
-		Candidates.Add({Pair.Key, Wait + (Pair.Value.Priority * 300.0)});
+		Candidates.Add({Pair.Key, Wait + (Pair.Value.Priority * 30.0)});
 	}
 	Candidates.Sort([](const FCandidate& A, const FCandidate& B)
 	{
