@@ -10,7 +10,7 @@ No Blueprint or map edits are needed.
 
 | Action | Keyboard | Gamepad |
 | --- | --- | --- |
-| Open / close menu | F9 | View / Back |
+| Open / close menu | F7 | View / Back |
 | Reset immediately | F10 | Right stick click |
 | Close menu | Escape | B / Circle |
 | Navigate / activate | Arrow keys / Enter | D-pad / A / Cross |
@@ -44,7 +44,7 @@ implementations behind `!UE_BUILD_SHIPPING`, including any server RPC body.
 
 1. In PIE, move away from spawn, look elsewhere, then press F10 while moving or
    falling. Verify return to spawn, original facing, and zero residual velocity.
-2. Open with F9, click reset, navigate buttons with arrows / Enter, then close.
+2. Open with F7, click reset, navigate buttons with arrows / Enter, then close.
    Verify normal movement/look resumes. Repeat with a gamepad.
 3. Reset between land and water. Verify traversal mode and input match the destination.
 4. Disable gameplay controls before opening. Verify reset works and closing does

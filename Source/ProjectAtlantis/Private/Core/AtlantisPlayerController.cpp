@@ -153,7 +153,7 @@ void AAtlantisPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 #if !UE_BUILD_SHIPPING
 	// Independent of gameplay mapping contexts so QA can escape disabled controls.
-	InputComponent->BindKey(EKeys::F9, IE_Pressed, this, &AAtlantisPlayerController::ToggleDebugMenu).bExecuteWhenPaused = true;
+	InputComponent->BindKey(EKeys::F7, IE_Pressed, this, &AAtlantisPlayerController::ToggleDebugMenu).bExecuteWhenPaused = true;
 	InputComponent->BindKey(EKeys::Gamepad_Special_Left, IE_Pressed, this, &AAtlantisPlayerController::ToggleDebugMenu).bExecuteWhenPaused = true;
 	InputComponent->BindKey(EKeys::F10, IE_Pressed, this, &AAtlantisPlayerController::RequestDebugReset).bExecuteWhenPaused = true;
 	InputComponent->BindKey(EKeys::Gamepad_RightThumbstick, IE_Pressed, this, &AAtlantisPlayerController::RequestDebugReset).bExecuteWhenPaused = true;

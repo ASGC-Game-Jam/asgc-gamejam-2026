@@ -48,7 +48,7 @@ TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 	Entries->AddSlot().AutoHeight().Padding(8.f)
 	[
 		SNew(SButton)
-		.Text(NSLOCTEXT("AtlantisDebug", "Close", "Close (F9 / View / B)"))
+		.Text(NSLOCTEXT("AtlantisDebug", "Close", "Close (F7 / View / B)"))
 		.OnClicked_Lambda([this]()
 		{
 			if (AAtlantisPlayerController* Player = Cast<AAtlantisPlayerController>(GetOwningPlayer()))
@@ -95,7 +95,7 @@ FReply UAtlantisDebugMenu::NativeOnPreviewKeyDown(const FGeometry& Geometry, con
 {
 	AAtlantisPlayerController* Player = Cast<AAtlantisPlayerController>(GetOwningPlayer());
 	const FKey Key = Event.GetKey();
-	if (Player && (Key == EKeys::F9 || Key == EKeys::Escape ||
+	if (Player && (Key == EKeys::F7 || Key == EKeys::Escape ||
 		Key == EKeys::Gamepad_Special_Left || Key == EKeys::Gamepad_FaceButton_Right))
 	{
 		Player->ToggleDebugMenu();
