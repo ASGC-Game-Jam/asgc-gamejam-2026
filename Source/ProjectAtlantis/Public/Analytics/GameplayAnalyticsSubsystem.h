@@ -5,6 +5,7 @@
 #include "Engine/EngineBaseTypes.h"
 #include "GameFramework/SaveGame.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "Templates/Function.h"
 #include "GameplayAnalyticsSubsystem.generated.h"
 
 class UWorld;
@@ -26,14 +27,19 @@ struct FGameplayAnalyticsMetric
 
 	UPROPERTY(SaveGame)
 	EGameplayAnalyticsAggregation Aggregation = EGameplayAnalyticsAggregation::Count;
+
 	UPROPERTY(SaveGame)
 	int32 Priority = 0;
+
 	UPROPERTY(SaveGame)
 	int64 Count = 0;
+
 	UPROPERTY(SaveGame)
 	double Sum = 0.0;
+
 	UPROPERTY(SaveGame)
 	double Latest = 0.0;
+
 	UPROPERTY(SaveGame)
 	double LastSubmittedGameplaySeconds = -1.0;
 };
@@ -42,23 +48,34 @@ UCLASS()
 class PROJECTATLANTIS_API UGameplayAnalyticsSaveGame : public USaveGame
 {
 	GENERATED_BODY()
+
 public:
+	static constexpr int32 CurrentVersion = 2;
+
 	UPROPERTY(SaveGame)
-	int32 Version = 2;
+	int32 Version = CurrentVersion;
+
 	UPROPERTY(SaveGame)
 	FString UtcDay;
+
 	UPROPERTY(SaveGame)
 	int32 PeriodicSubmitted = 0;
+
 	UPROPERTY(SaveGame)
 	int32 SummarySubmitted = 0;
+
 	UPROPERTY(SaveGame)
 	double ActiveGameplaySeconds = 0.0;
+
 	UPROPERTY(SaveGame)
 	double PendingSessionSeconds = 0.0;
+
 	UPROPERTY(SaveGame)
 	double OpenSessionSeconds = 0.0;
+
 	UPROPERTY(SaveGame)
 	double IntervalSeconds = 0.0;
+
 	UPROPERTY(SaveGame)
 	TMap<FString, FGameplayAnalyticsMetric> Metrics;
 };
@@ -76,13 +93,15 @@ public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 
-	/** Register an identifier once; duplicate registration with a different strategy is rejected. */
+	/** Register a stable ID and aggregation strategy. Priority is clamped to [-100, 100]; higher values send sooner. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Analytics")
 	bool RegisterMetric(const FString& EventId, EGameplayAnalyticsAggregation Aggregation, int32 Priority = 0);
 
+	/** Add one occurrence to a Count metric without submitting it. Unregistered IDs default to Count. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Analytics")
 	void RecordEvent(const FString& EventId);
 
+	/** Aggregate a finite observation in producer-defined units. Unregistered IDs default to Sum. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Analytics")
 	void RecordValue(const FString& EventId, float Value);
 
@@ -94,7 +113,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Analytics")
 	void EndGameplaySession();
 
-	/** Shared path for existing scene-performance events. Counts toward the periodic budget. */
+	/** Record a scene-performance sample in milliseconds using Average and the shared periodic budget. */
 	void RecordPerformanceValue(const FString& EventId, float Value);
 
 private:
