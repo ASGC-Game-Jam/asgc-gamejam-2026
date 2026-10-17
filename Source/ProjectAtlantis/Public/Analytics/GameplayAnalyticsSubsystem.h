@@ -44,7 +44,7 @@ class PROJECTATLANTIS_API UGameplayAnalyticsSaveGame : public USaveGame
 	GENERATED_BODY()
 public:
 	UPROPERTY(SaveGame)
-	int32 Version = 1;
+	int32 Version = 2;
 	UPROPERTY(SaveGame)
 	FString UtcDay;
 	UPROPERTY(SaveGame)
@@ -55,6 +55,10 @@ public:
 	double ActiveGameplaySeconds = 0.0;
 	UPROPERTY(SaveGame)
 	double PendingSessionSeconds = 0.0;
+	UPROPERTY(SaveGame)
+	double OpenSessionSeconds = 0.0;
+	UPROPERTY(SaveGame)
+	double IntervalSeconds = 0.0;
 	UPROPERTY(SaveGame)
 	TMap<FString, FGameplayAnalyticsMetric> Metrics;
 };
@@ -94,25 +98,37 @@ public:
 	void RecordPerformanceValue(const FString& EventId, float Value);
 
 private:
+	friend struct FGameplayAnalyticsTestAccess;
+	void AdvanceGameplayTime(double Seconds);
+	void ValidateState();
+	FString GetUtcDay() const;
 	void OnWorldPostActorTick(UWorld* World, ELevelTick TickType, float DeltaSeconds);
 	void OnPreLoadMap(const FWorldContext& Context, const FString& MapName);
 	bool IsActiveGameplayWorld(const UWorld* World) const;
 	bool IsEventIdValid(const FString& EventId) const;
 	void RefreshUtcDay();
-	void Persist() const;
+	bool Persist() const;
 	void SubmitSessionSummary();
 	int32 EarnedPeriodicAllowance() const;
 	bool SubmitValue(const FString& Id, double Value) const;
+	bool CanSubmit() const;
 	void FlushPendingWithBudget(int32 Available);
 
 	FDelegateHandle TickHandle;
 	FDelegateHandle PreLoadHandle;
 	UPROPERTY()
 	TObjectPtr<UGameplayAnalyticsSaveGame> State;
-	double IntervalAccumulatorSeconds = 0.0;
-	double CurrentSessionSeconds = 0.0;
 	bool bSessionOpen = false;
-	bool bInitialized = false;
+	bool bFlushing = false;
+	bool bDirty = false;
+	double CheckpointSeconds = 0.0;
+	FString SlotName = TEXT("GameplayAnalyticsBudget");
+#if WITH_DEV_AUTOMATION_TESTS
+	TFunction<bool(const FString&, double)> TestSink;
+	TFunction<bool()> TestPersist;
+	FString TestUtcDay;
+	bool bTestProviderUnavailable = false;
+#endif
 
 	static constexpr int32 FirstPhaseBudget = 320;
 	static constexpr int32 SecondPhaseBudget = 150;
@@ -121,5 +137,4 @@ private:
 	static constexpr double FirstPhaseSeconds = 14400.0;
 	static constexpr double EndPhaseSeconds = 28800.0;
 	static constexpr int32 MaxMetricKeys = 1024;
-	static constexpr const TCHAR* SaveSlot = TEXT("GameplayAnalyticsBudget");
 };

@@ -20,6 +20,7 @@ class PROJECTATLANTIS_API UScenePerformanceAnalyticsSubsystem : public UGameInst
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
+	bool IsAnalyticsReady() const { return bAnalyticsReady; }
 
 private:
 	void OnPreLoadMap(const FWorldContext& WorldContext, const FString& MapName);
@@ -50,4 +51,5 @@ private:
 	bool bLoadInProgress = false;
 	bool bWaitingForFirstTick = false;
 	bool bStartupReported = false;
+	bool bAnalyticsReady = false;
 };
