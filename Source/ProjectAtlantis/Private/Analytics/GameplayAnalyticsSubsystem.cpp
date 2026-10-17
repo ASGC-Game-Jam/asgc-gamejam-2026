@@ -2,6 +2,8 @@
 #include "Analytics/GameplayAnalyticsSubsystem.h"
 
 #include "Analytics/ScenePerformanceAnalyticsSubsystem.h"
+#include "Async/Async.h"
+#include "CoreGlobals.h"
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "GameAnalytics.h"
@@ -9,6 +11,8 @@
 #include "Misc/App.h"
 #include "Misc/DateTime.h"
 #include "Misc/PackageName.h"
+#include "PlatformFeatures.h"
+#include "SaveGameSystem.h"
 #include "UObject/UObjectGlobals.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogGameplayAnalytics, Log, All);
@@ -57,14 +61,17 @@ void UGameplayAnalyticsSubsystem::Initialize(FSubsystemCollectionBase& Collectio
 	TickHandle = FWorldDelegates::OnWorldPostActorTick.AddUObject(this, &UGameplayAnalyticsSubsystem::OnWorldPostActorTick);
 	PreLoadHandle = FCoreUObjectDelegates::PreLoadMapWithContext.AddUObject(this, &UGameplayAnalyticsSubsystem::OnPreLoadMap);
 	bDirty = true;
+	PersistenceTickerHandle = FTSTicker::GetCoreTicker().AddTicker(
+		FTickerDelegate::CreateUObject(this, &UGameplayAnalyticsSubsystem::TickPersistence));
 }
 
 void UGameplayAnalyticsSubsystem::Deinitialize()
 {
-	EndGameplaySession();
+	bShuttingDown = true;
+	FTSTicker::RemoveTicker(PersistenceTickerHandle);
 	FWorldDelegates::OnWorldPostActorTick.Remove(TickHandle);
 	FCoreUObjectDelegates::PreLoadMapWithContext.Remove(PreLoadHandle);
-	Persist();
+	FinishPersistence();
 	Super::Deinitialize();
 }
 
@@ -293,10 +300,7 @@ void UGameplayAnalyticsSubsystem::AdvanceGameplayTime(double Seconds)
 	if (bDirty && CheckpointSeconds >= GameplayAnalytics::CheckpointIntervalSeconds)
 	{
 		CheckpointSeconds = 0.0;
-		if (Persist())
-		{
-			bDirty = false;
-		}
+		RequestCheckpoint();
 	}
 }
 
@@ -313,7 +317,7 @@ void UGameplayAnalyticsSubsystem::OnPreLoadMap(const FWorldContext& Context, con
 	}
 	else
 	{
-		Persist();
+		RequestCheckpoint();
 	}
 }
 
@@ -339,6 +343,7 @@ void UGameplayAnalyticsSubsystem::RefreshUtcDay()
 		Pair.Value.LastSubmittedGameplaySeconds = 0.0;
 	}
 	bDirty = true;
+	RequestCheckpoint();
 }
 
 int32 UGameplayAnalyticsSubsystem::EarnedPeriodicAllowance() const
@@ -396,122 +401,284 @@ bool UGameplayAnalyticsSubsystem::SubmitValue(const FString& Id, double Value) c
 	return false;
 }
 
-void UGameplayAnalyticsSubsystem::FlushPendingWithBudget(int32 Available)
+double UGameplayAnalyticsSubsystem::GetAggregatedValue(const FGameplayAnalyticsMetric& Metric)
 {
-	struct FCandidate
+	switch (Metric.Aggregation)
 	{
-		FString Id;
-		double Score;
-	};
-	TArray<FCandidate> Candidates;
+		case EGameplayAnalyticsAggregation::Count:
+			return static_cast<double>(Metric.Count);
+		case EGameplayAnalyticsAggregation::Sum:
+			return Metric.Sum;
+		case EGameplayAnalyticsAggregation::Average:
+			return Metric.Sum / Metric.Count;
+		case EGameplayAnalyticsAggregation::Latest:
+			return Metric.Latest;
+	}
+	return 0.0;
+}
+
+bool UGameplayAnalyticsSubsystem::TryReserveSummary()
+{
+	if (bSummaryAttemptedInFlush || State->PendingSessionSeconds <= 0.0 || State->SummarySubmitted >= SummaryBudget)
+	{
+		return false;
+	}
+	bSummaryAttemptedInFlush = true;
+	Reservation.EventId = TEXT("Session:GameplayDuration");
+	Reservation.UtcDay = State->UtcDay;
+	Reservation.Value = State->PendingSessionSeconds;
+	Reservation.bSummary = true;
+	State->PendingSessionSeconds = 0.0;
+	++State->SummarySubmitted;
+	bDirty = true;
+	return true;
+}
+
+bool UGameplayAnalyticsSubsystem::TryReservePeriodicMetric()
+{
+	if (State->ActiveGameplaySeconds > EndPhaseSeconds || State->PeriodicSubmitted >= EarnedPeriodicAllowance())
+	{
+		return false;
+	}
+
+	FString SelectedId;
+	double SelectedValue = 0.0;
+	double HighestScore = -MAX_dbl;
 	for (const TPair<FString, FGameplayAnalyticsMetric>& Pair : State->Metrics)
 	{
-		if (Pair.Value.Count <= 0)
+		if (Pair.Value.Count <= 0 || FlushMetricIds.Contains(Pair.Key))
 		{
 			continue;
 		}
-		const double Wait = FMath::Max(0.0, State->ActiveGameplaySeconds - Pair.Value.LastSubmittedGameplaySeconds);
-		Candidates.Add({Pair.Key, Wait + Pair.Value.Priority * GameplayAnalytics::PriorityAgeBonusSeconds});
-	}
-	Candidates.Sort(
-		[](const FCandidate& Left, const FCandidate& Right)
-		{
-			return Left.Score == Right.Score ? Left.Id < Right.Id : Left.Score > Right.Score;
-		});
-	for (const FCandidate& Candidate : Candidates)
-	{
-		if (Available <= 0 || !CanSubmit())
-		{
-			break;
-		}
-		const FGameplayAnalyticsMetric Snapshot = State->Metrics.FindChecked(Candidate.Id);
-		double Value = 0.0;
-		switch (Snapshot.Aggregation)
-		{
-			case EGameplayAnalyticsAggregation::Count:
-				Value = static_cast<double>(Snapshot.Count);
-				break;
-			case EGameplayAnalyticsAggregation::Sum:
-				Value = Snapshot.Sum;
-				break;
-			case EGameplayAnalyticsAggregation::Average:
-				Value = Snapshot.Sum / Snapshot.Count;
-				break;
-			case EGameplayAnalyticsAggregation::Latest:
-				Value = Snapshot.Latest;
-				break;
-		}
+		const double Value = GetAggregatedValue(Pair.Value);
 		if (!FMath::IsFinite(Value) || FMath::Abs(Value) > MAX_flt)
 		{
 			continue;
 		}
-		// Checkpoint the reservation and removal BEFORE SDK enqueue. A crash cannot replay
-		// an event already enqueued. A crash between checkpoint and enqueue can lose it.
-		FGameplayAnalyticsMetric& Pending = State->Metrics.FindChecked(Candidate.Id);
-		Pending.Count = 0;
-		Pending.Sum = 0.0;
-		Pending.Latest = 0.0;
-		Pending.LastSubmittedGameplaySeconds = State->ActiveGameplaySeconds;
-		++State->PeriodicSubmitted;
-		if (!Persist() || !SubmitValue(Candidate.Id, Value))
+		const double WaitSeconds = FMath::Max(0.0, State->ActiveGameplaySeconds - Pair.Value.LastSubmittedGameplaySeconds);
+		const double Score = WaitSeconds + Pair.Value.Priority * GameplayAnalytics::PriorityAgeBonusSeconds;
+		if (SelectedId.IsEmpty() || Score > HighestScore || (Score == HighestScore && Pair.Key < SelectedId))
 		{
-			// Reacquire after callback: a producer can rehash the map during submission.
-			FGameplayAnalyticsMetric& Restore = State->Metrics.FindChecked(Candidate.Id);
-			if (Restore.Count == 0)
-			{
-				Restore.Latest = Snapshot.Latest;
-			}
-			Restore.Count += Snapshot.Count;
-			Restore.Sum += Snapshot.Sum;
-			Restore.LastSubmittedGameplaySeconds = Snapshot.LastSubmittedGameplaySeconds;
-			--State->PeriodicSubmitted;
-			bDirty = true;
-			Persist();
-			break;
+			SelectedId = Pair.Key;
+			SelectedValue = Value;
+			HighestScore = Score;
 		}
-		--Available;
 	}
+	if (SelectedId.IsEmpty())
+	{
+		return false;
+	}
+
+	Reservation.EventId = SelectedId;
+	Reservation.UtcDay = State->UtcDay;
+	Reservation.Value = SelectedValue;
+	Reservation.Metric = State->Metrics.FindChecked(SelectedId);
+	FGameplayAnalyticsMetric& PendingMetric = State->Metrics.FindChecked(SelectedId);
+	PendingMetric.Count = 0;
+	PendingMetric.Sum = 0.0;
+	PendingMetric.Latest = 0.0;
+	PendingMetric.LastSubmittedGameplaySeconds = State->ActiveGameplaySeconds;
+	++State->PeriodicSubmitted;
+	FlushMetricIds.Add(SelectedId);
+	bDirty = true;
+	return true;
+}
+
+bool UGameplayAnalyticsSubsystem::TryReserveSubmission()
+{
+	if (!CanSubmit())
+	{
+		return false;
+	}
+	return TryReserveSummary() || TryReservePeriodicMetric();
+}
+
+void UGameplayAnalyticsSubsystem::RestoreReservation(const FSubmissionReservation& SavedReservation)
+{
+	const bool bSameDay = SavedReservation.UtcDay == State->UtcDay;
+	if (SavedReservation.bSummary)
+	{
+		State->PendingSessionSeconds += SavedReservation.Value;
+		if (bSameDay)
+		{
+			--State->SummarySubmitted;
+		}
+	}
+	else
+	{
+		FGameplayAnalyticsMetric& PendingMetric = State->Metrics.FindChecked(SavedReservation.EventId);
+		if (PendingMetric.Count == 0)
+		{
+			PendingMetric.Latest = SavedReservation.Metric.Latest;
+		}
+		PendingMetric.Count = SavedReservation.Metric.Count > MAX_int64 - PendingMetric.Count
+			? MAX_int64 : PendingMetric.Count + SavedReservation.Metric.Count;
+		PendingMetric.Sum += SavedReservation.Metric.Sum;
+		PendingMetric.LastSubmittedGameplaySeconds = bSameDay ? SavedReservation.Metric.LastSubmittedGameplaySeconds : 0.0;
+		if (bSameDay)
+		{
+			--State->PeriodicSubmitted;
+		}
+	}
+	bDirty = true;
+	RequestCheckpoint();
+}
+
+void UGameplayAnalyticsSubsystem::RequestCheckpoint()
+{
+	bSaveRequested |= bDirty;
+}
+
+void UGameplayAnalyticsSubsystem::BeginAsyncSave()
+{
+	check(!SaveFuture.IsValid());
+	TArray<uint8> SaveBytes;
+#if WITH_DEV_AUTOMATION_TESTS
+	if (!TestPersist || TestAsyncSave)
+#endif
+	{
+		if (!UGameplayStatics::SaveGameToMemory(State, SaveBytes))
+		{
+			CompleteAsyncSave(false);
+			return;
+		}
+	}
+	// Serialization stays on the game thread. The worker owns immutable bytes and never touches UObjects.
+	bDirty = false;
+	bSaveRequested = false;
+	CheckpointSeconds = 0.0;
+#if WITH_DEV_AUTOMATION_TESTS
+	if (TestAsyncSave)
+	{
+		SaveFuture = TestAsyncSave(MoveTemp(SaveBytes));
+		return;
+	}
+	if (TestPersist)
+	{
+		TPromise<bool> SavePromise;
+		SaveFuture = SavePromise.GetFuture();
+		SavePromise.SetValue(TestPersist());
+		return;
+	}
+#endif
+	// Resolve the platform backend on the game thread before handing immutable data to the worker.
+	ISaveGameSystem* const SaveSystem = IPlatformFeaturesModule::Get().GetSaveGameSystem();
+	if (!SaveSystem)
+	{
+		CompleteAsyncSave(false);
+		return;
+	}
+	const FString TargetSlot = SlotName;
+	SaveFuture = Async(EAsyncExecution::ThreadPool,
+		[SaveSystem, TargetSlot, SaveBytes = MoveTemp(SaveBytes)]()
+		{
+			return SaveSystem->SaveGame(false, *TargetSlot, 0, SaveBytes);
+		});
+}
+
+void UGameplayAnalyticsSubsystem::CompleteAsyncSave(bool bSuccess)
+{
+	RefreshUtcDay();
+	FSubmissionReservation SavedReservation = MoveTemp(Reservation);
+	Reservation = FSubmissionReservation();
+	if (!SavedReservation.EventId.IsEmpty())
+	{
+		const bool bSameDay = SavedReservation.UtcDay == State->UtcDay;
+		const bool bWithinActiveTime = SavedReservation.bSummary || State->ActiveGameplaySeconds <= EndPhaseSeconds;
+		if (!bSuccess || bShuttingDown || !bSameDay || !bWithinActiveTime || !CanSubmit()
+			|| !SubmitValue(SavedReservation.EventId, SavedReservation.Value))
+		{
+			RestoreReservation(SavedReservation);
+			// An old-day reservation is retried using the new day's allowance, never its old quota.
+			if (bSameDay)
+			{
+				bFlushRequested = false;
+			}
+			else
+			{
+				bSummaryAttemptedInFlush = false;
+			}
+		}
+	}
+	if (!bSuccess)
+	{
+		bDirty = true;
+		RequestCheckpoint();
+		SaveRetrySeconds = GameplayAnalytics::CheckpointIntervalSeconds;
+		UE_LOG(LogGameplayAnalytics, Warning, TEXT("Analytics checkpoint failed; retry deferred for one minute"));
+	}
+}
+
+bool UGameplayAnalyticsSubsystem::TickPersistence(float DeltaSeconds)
+{
+	if (bShuttingDown || !State)
+	{
+		return false;
+	}
+	uint64 CurrentFrame = GFrameCounter;
+#if WITH_DEV_AUTOMATION_TESTS
+	if (TestFrame.IsSet())
+	{
+		CurrentFrame = TestFrame.GetValue();
+	}
+#endif
+	if (CurrentFrame == LastPersistenceFrame)
+	{
+		return true;
+	}
+	LastPersistenceFrame = CurrentFrame;
+	if (SaveFuture.IsValid())
+	{
+		if (SaveFuture.IsReady())
+		{
+			const bool bSuccess = SaveFuture.Get();
+			SaveFuture = TFuture<bool>();
+			CompleteAsyncSave(bSuccess);
+		}
+		// Complete at most one operation per frame; never start the next save in this callback.
+		return true;
+	}
+	SaveRetrySeconds = FMath::Max(0.0, SaveRetrySeconds - FMath::Max(0.0f, DeltaSeconds));
+	if (SaveRetrySeconds > 0.0)
+	{
+		return true;
+	}
+	RefreshUtcDay();
+	if (bFlushRequested)
+	{
+		if (TryReserveSubmission())
+		{
+			BeginAsyncSave();
+			return true;
+		}
+		bFlushRequested = false;
+		RequestCheckpoint();
+	}
+	if (bSaveRequested)
+	{
+		bSaveRequested = false;
+		if (bDirty)
+		{
+			BeginAsyncSave();
+		}
+	}
+	return true;
 }
 
 void UGameplayAnalyticsSubsystem::FlushAnalytics()
 {
-	if (!State || bFlushing)
+	if (!State || bShuttingDown)
 	{
 		return;
 	}
-	TGuardValue<bool> Guard(bFlushing, true);
 	RefreshUtcDay();
-	if (CanSubmit())
+	if (!bFlushRequested)
 	{
-		if (State->ActiveGameplaySeconds <= EndPhaseSeconds)
-		{
-			FlushPendingWithBudget(FMath::Max(0, EarnedPeriodicAllowance() - State->PeriodicSubmitted));
-		}
-		SubmitSessionSummary();
+		FlushMetricIds.Empty();
+		bSummaryAttemptedInFlush = false;
 	}
-	// Explicit flush also checkpoints observations when no allowance/provider is available.
-	if (bDirty && Persist())
-	{
-		bDirty = false;
-	}
-}
-
-void UGameplayAnalyticsSubsystem::SubmitSessionSummary()
-{
-	if (!CanSubmit() || State->PendingSessionSeconds <= 0.0 || State->SummarySubmitted >= SummaryBudget)
-	{
-		return;
-	}
-	const double Duration = State->PendingSessionSeconds;
-	State->PendingSessionSeconds = 0.0;
-	++State->SummarySubmitted;
-	if (!Persist() || !SubmitValue(TEXT("Session:GameplayDuration"), Duration))
-	{
-		State->PendingSessionSeconds += Duration;
-		--State->SummarySubmitted;
-		bDirty = true;
-		Persist();
-	}
+	bFlushRequested = true;
+	RequestCheckpoint();
 }
 
 void UGameplayAnalyticsSubsystem::EndGameplaySession()
@@ -531,22 +698,56 @@ void UGameplayAnalyticsSubsystem::EndGameplaySession()
 	FlushAnalytics();
 }
 
-bool UGameplayAnalyticsSubsystem::Persist() const
+bool UGameplayAnalyticsSubsystem::PersistSynchronously()
 {
+	check(!SaveFuture.IsValid());
 #if WITH_DEV_AUTOMATION_TESTS
 	if (TestPersist)
 	{
 		return TestPersist();
 	}
 #endif
-	if (!State)
+	const bool bSuccess = UGameplayStatics::SaveGameToSlot(State, SlotName, 0);
+	if (!bSuccess)
 	{
-		return false;
+		UE_LOG(LogGameplayAnalytics, Warning, TEXT("Final analytics checkpoint failed"));
 	}
-	const bool bSaved = UGameplayStatics::SaveGameToSlot(State, SlotName, 0);
-	if (!bSaved)
+	return bSuccess;
+}
+
+void UGameplayAnalyticsSubsystem::FinishPersistence()
+{
+	// Shutdown is the only blocking path: joining our worker does not require a game-thread callback.
+	if (SaveFuture.IsValid())
 	{
-		UE_LOG(LogGameplayAnalytics, Warning, TEXT("Analytics checkpoint failed; submissions deferred"));
+		const bool bSuccess = SaveFuture.Get();
+		SaveFuture = TFuture<bool>();
+		CompleteAsyncSave(bSuccess);
 	}
-	return bSaved;
+	EndGameplaySession();
+	bSummaryAttemptedInFlush = false;
+	if (CanSubmit() && TryReserveSummary())
+	{
+		const FSubmissionReservation SummaryReservation = MoveTemp(Reservation);
+		Reservation = FSubmissionReservation();
+		if (PersistSynchronously())
+		{
+			bDirty = false;
+			RefreshUtcDay();
+			if (State->UtcDay != SummaryReservation.UtcDay || !SubmitValue(SummaryReservation.EventId, SummaryReservation.Value))
+			{
+				RestoreReservation(SummaryReservation);
+			}
+		}
+		else
+		{
+			RestoreReservation(SummaryReservation);
+		}
+	}
+	if (bDirty)
+	{
+		PersistSynchronously();
+	}
+	bFlushRequested = false;
+	bSaveRequested = false;
 }

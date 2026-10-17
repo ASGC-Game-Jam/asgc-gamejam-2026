@@ -46,6 +46,30 @@ public:
 		{
 			return Fixture.TestBoundsAndBlueprint(Test);
 		}
+		if (TestCase == TEXT("AsyncOrderingAndSnapshots"))
+		{
+			return Fixture.TestAsyncOrderingAndSnapshots(Test);
+		}
+		if (TestCase == TEXT("AsyncDayRollover"))
+		{
+			return Fixture.TestAsyncDayRollover(Test);
+		}
+		if (TestCase == TEXT("AsyncEightHourCutoff"))
+		{
+			return Fixture.TestAsyncEightHourCutoff(Test);
+		}
+		if (TestCase == TEXT("AsyncFailureAndRetry"))
+		{
+			return Fixture.TestAsyncFailureAndRetry(Test);
+		}
+		if (TestCase == TEXT("AsyncShutdownOrdering"))
+		{
+			return Fixture.TestAsyncShutdownOrdering(Test);
+		}
+		if (TestCase == TEXT("AsyncSpacingBudget"))
+		{
+			return Fixture.TestAsyncSpacingBudget(Test);
+		}
 		Test.AddError(FString::Printf(TEXT("Unknown analytics test case: %s"), *TestCase));
 		return false;
 	}
@@ -68,12 +92,42 @@ private:
 		UGameplayAnalyticsSubsystem* const CreatedManager = NewObject<UGameplayAnalyticsSubsystem>(OwningGameInstance);
 		CreatedManager->State = NewObject<UGameplayAnalyticsSaveGame>(CreatedManager);
 		CreatedManager->TestUtcDay = TEXT("2026-10-17");
+		CreatedManager->TestFrame = 0;
 		CreatedManager->RefreshUtcDay();
 		CreatedManager->TestPersist = []
 		{
 			return true;
 		};
 		return CreatedManager;
+	}
+
+	static void PumpPersistenceFrame(UGameplayAnalyticsSubsystem* Manager, float DeltaSeconds = 0.0f)
+	{
+		const uint64 Frame = Manager->TestFrame.IsSet() ? Manager->TestFrame.GetValue() : 0;
+		Manager->TestFrame = Frame + 1;
+		Manager->TickPersistence(DeltaSeconds);
+	}
+
+	void DrainPersistence()
+	{
+		for (int32 Step = 0; Step < 4096; ++Step)
+		{
+			if (AnalyticsSubsystem->SaveRetrySeconds > 0.0)
+			{
+				return;
+			}
+			if (AnalyticsSubsystem->SaveFuture.IsValid())
+			{
+				// Waiting is test-only; production polls the worker without blocking gameplay.
+				AnalyticsSubsystem->SaveFuture.Wait();
+			}
+			else if (!AnalyticsSubsystem->bFlushRequested && !AnalyticsSubsystem->bSaveRequested)
+			{
+				return;
+			}
+			PumpPersistenceFrame(AnalyticsSubsystem);
+		}
+		checkNoEntry();
 	}
 
 	bool TestAggregation(FAutomationTestBase& Test)
@@ -97,16 +151,20 @@ private:
 		AnalyticsSubsystem->RecordPerformanceValue(TEXT("Performance:MapLoad:Test"), 30.f);
 		Test.TestEqual(TEXT("Recording does not submit"), SubmissionCount, 0);
 		AnalyticsSubsystem->FlushAnalytics();
+		DrainPersistence();
 		Test.TestEqual(TEXT("Early manual flush earns nothing"), SubmissionCount, 0);
 		AnalyticsSubsystem->AdvanceGameplayTime(299);
+		DrainPersistence();
 		Test.TestEqual(TEXT("No early scheduled send"), SubmissionCount, 0);
 		AnalyticsSubsystem->AdvanceGameplayTime(1);
+		DrainPersistence();
 		Test.TestEqual(TEXT("Count"), SubmittedValues.FindRef(TEXT("Test:Count")), 3.0);
 		Test.TestEqual(TEXT("Sum"), SubmittedValues.FindRef(TEXT("Test:Sum")), 18.0);
 		Test.TestEqual(TEXT("Average is sample-weighted across pending intervals"), SubmittedValues.FindRef(TEXT("Test:Average")), 6.0);
 		Test.TestEqual(TEXT("Latest"), SubmittedValues.FindRef(TEXT("Test:Latest")), 12.0);
 		Test.TestEqual(TEXT("Performance mean milliseconds"), SubmittedValues.FindRef(TEXT("Performance:MapLoad:Test")), 20.0);
 		AnalyticsSubsystem->FlushAnalytics();
+		DrainPersistence();
 		Test.TestEqual(TEXT("Unchanged metrics not resent"), SubmissionCount, 5);
 		return true;
 	}
@@ -127,6 +185,7 @@ private:
 			AnalyticsSubsystem->AdvanceGameplayTime(300);
 			AnalyticsSubsystem->FlushAnalytics();
 			AnalyticsSubsystem->EndGameplaySession(); // repeated short sessions cannot replenish periodic allowance
+			DrainPersistence();
 			if (Interval == 47)
 			{
 				Test.TestEqual(TEXT("Four-hour phase cap"), AnalyticsSubsystem->State->PeriodicSubmitted, 320);
@@ -137,9 +196,11 @@ private:
 		Test.TestTrue(TEXT("Aging eventually serves lowest priority"), SubmittedValues.Contains(TEXT("Test:M99")));
 		Test.TestTrue(TEXT("Combined day cap"), SubmissionCount <= 480);
 		AnalyticsSubsystem->AdvanceGameplayTime(300);
+		DrainPersistence();
 		AnalyticsSubsystem->RecordEvent(TEXT("Test:AfterEight"));
 		const int32 PreviousSubmissionCount = SubmissionCount;
 		AnalyticsSubsystem->FlushAnalytics();
+		DrainPersistence();
 		Test.TestEqual(TEXT("No periodic submission after eight hours"), SubmissionCount, PreviousSubmissionCount);
 		Test.TestEqual(
 			TEXT("Post-cap observation retained"), AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Test:AfterEight")).Count, int64(1));
@@ -148,9 +209,12 @@ private:
 
 	bool TestFailureAndReentrancy(FAutomationTestBase& Test)
 	{
+		Test.AddExpectedMessagePlain(TEXT("Analytics checkpoint failed; retry deferred for one minute"), ELogVerbosity::Warning,
+			EAutomationExpectedMessageFlags::Contains, 2);
 		AnalyticsSubsystem->bTestProviderUnavailable = true;
 		AnalyticsSubsystem->RecordValue(TEXT("Test:Value"), 5.f);
 		AnalyticsSubsystem->AdvanceGameplayTime(300);
+		DrainPersistence();
 		Test.TestEqual(TEXT("Unavailable provider retains pending"),
 			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Test:Value")).Count, int64(1));
 		AnalyticsSubsystem->bTestProviderUnavailable = false;
@@ -160,6 +224,7 @@ private:
 			return false;
 		};
 		AnalyticsSubsystem->FlushAnalytics();
+		DrainPersistence();
 		Test.TestEqual(TEXT("Failed enqueue keeps pending"), AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Test:Value")).Sum, 5.0);
 		Test.TestEqual(TEXT("Failed enqueue restores quota"), AnalyticsSubsystem->State->PeriodicSubmitted, 0);
 		AnalyticsSubsystem->TestPersist = []
@@ -168,6 +233,7 @@ private:
 		};
 		const int32 PreviousSubmissionCount = SubmissionCount;
 		AnalyticsSubsystem->FlushAnalytics();
+		DrainPersistence();
 		Test.TestEqual(TEXT("Disk failure blocks SDK call"), SubmissionCount, PreviousSubmissionCount);
 		int32 FailedCheckpoints = 0;
 		AnalyticsSubsystem->CheckpointSeconds = 0.0;
@@ -177,12 +243,17 @@ private:
 			return false;
 		};
 		AnalyticsSubsystem->AdvanceGameplayTime(60);
+		PumpPersistenceFrame(AnalyticsSubsystem, 60.0f);
+		DrainPersistence();
 		AnalyticsSubsystem->AdvanceGameplayTime(1);
+		DrainPersistence();
 		Test.TestEqual(TEXT("Disk failure does not retry every frame"), FailedCheckpoints, 1);
 		AnalyticsSubsystem->TestPersist = []
 		{
 			return true;
 		};
+		PumpPersistenceFrame(AnalyticsSubsystem, 60.0f);
+		DrainPersistence();
 		AnalyticsSubsystem->TestSink = [this, &Test](const FString& Id, double Value)
 		{
 			Test.TestEqual(TEXT("Snapshot numeric value"), Value, 5.0);
@@ -196,6 +267,7 @@ private:
 			return true;
 		};
 		AnalyticsSubsystem->FlushAnalytics();
+		DrainPersistence();
 		Test.TestEqual(
 			TEXT("New observation survives snapshot"), AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Test:Value")).Sum, 7.0);
 		Test.TestEqual(TEXT("One reservation committed"), AnalyticsSubsystem->State->PeriodicSubmitted, 1);
@@ -205,18 +277,24 @@ private:
 	bool TestRolloverAndSessions(FAutomationTestBase& Test)
 	{
 		AnalyticsSubsystem->AdvanceGameplayTime(100);
+		DrainPersistence();
 		AnalyticsSubsystem->EndGameplaySession();
+		DrainPersistence();
 		AnalyticsSubsystem->EndGameplaySession();
+		DrainPersistence();
 		Test.TestEqual(TEXT("Duplicate lifecycle callback"), AnalyticsSubsystem->State->SummarySubmitted, 1);
 		Test.TestEqual(TEXT("Duration seconds"), SubmittedValues.FindRef(TEXT("Session:GameplayDuration")), 100.0);
 		AnalyticsSubsystem->AdvanceGameplayTime(200);
+		DrainPersistence();
 		Test.TestEqual(TEXT("Sessions share active day time"), AnalyticsSubsystem->State->ActiveGameplaySeconds, 300.0);
 		AnalyticsSubsystem->State->SummarySubmitted = 10;
 		AnalyticsSubsystem->EndGameplaySession();
+		DrainPersistence();
 		Test.TestEqual(TEXT("Excess summary deferred"), AnalyticsSubsystem->State->PendingSessionSeconds, 200.0);
 		AnalyticsSubsystem->RecordValue(TEXT("Test:Pending"), 42.f);
 		AnalyticsSubsystem->TestUtcDay = TEXT("2026-10-18");
 		AnalyticsSubsystem->FlushAnalytics();
+		DrainPersistence();
 		Test.TestEqual(TEXT("UTC quota resets"), AnalyticsSubsystem->State->PeriodicSubmitted, 0);
 		Test.TestEqual(TEXT("UTC active time resets"), AnalyticsSubsystem->State->ActiveGameplaySeconds, 0.0);
 		Test.TestEqual(TEXT("Deferred summary retried"), AnalyticsSubsystem->State->SummarySubmitted, 1);
@@ -233,7 +311,10 @@ private:
 		AnalyticsSubsystem->TestPersist = nullptr;
 		AnalyticsSubsystem->RecordEvent(TEXT("Test:Pending"));
 		AnalyticsSubsystem->AdvanceGameplayTime(150);
-		Test.TestTrue(TEXT("Real SaveGame checkpoint"), AnalyticsSubsystem->Persist());
+		DrainPersistence();
+		AnalyticsSubsystem->RequestCheckpoint();
+		DrainPersistence();
+		Test.TestTrue(TEXT("Real async SaveGame checkpoint"), UGameplayStatics::DoesSaveGameExist(AnalyticsSubsystem->SlotName, 0));
 		UGameplayAnalyticsSubsystem* const RestoredAnalytics = CreateManager(GameInstance.Get());
 		RestoredAnalytics->State = Cast<UGameplayAnalyticsSaveGame>(UGameplayStatics::LoadGameFromSlot(AnalyticsSubsystem->SlotName, 0));
 		if (!Test.TestNotNull(TEXT("SaveGame restored"), RestoredAnalytics->State.Get()))
@@ -246,6 +327,7 @@ private:
 		Test.TestEqual(TEXT("Open session survives checkpoint"), RestoredAnalytics->State->OpenSessionSeconds, 150.0);
 		Test.TestEqual(TEXT("Scheduler survives restart"), RestoredAnalytics->State->IntervalSeconds, 150.0);
 		AnalyticsSubsystem->AdvanceGameplayTime(150); // submits and persists reservation
+		DrainPersistence();
 		RestoredAnalytics->State = Cast<UGameplayAnalyticsSaveGame>(UGameplayStatics::LoadGameFromSlot(AnalyticsSubsystem->SlotName, 0));
 		Test.TestEqual(TEXT("Sent snapshot not replayed after restart"),
 			RestoredAnalytics->State->Metrics.FindChecked(TEXT("Test:Pending")).Count, int64(0));
@@ -262,6 +344,7 @@ private:
 		{
 			return false;
 		}
+		AnalyticsSubsystem->TestFrame = 0;
 		AnalyticsSubsystem->State = NewObject<UGameplayAnalyticsSaveGame>(AnalyticsSubsystem);
 		AnalyticsSubsystem->TestPersist = []
 		{
@@ -281,11 +364,16 @@ private:
 		World->GetWorldSettings()->SetPauserPlayerState(nullptr);
 		Test.TestTrue(TEXT("Resumed world accepted"), AnalyticsSubsystem->IsActiveGameplayWorld(World));
 		AnalyticsSubsystem->AdvanceGameplayTime(100);
+		DrainPersistence();
 		AnalyticsSubsystem->OnPreLoadMap(*GameInstance->GetWorldContext(), TEXT("/Game/Maps/L_SecondGameplay"));
+		DrainPersistence();
 		Test.TestTrue(TEXT("Gameplay transition preserves session"), AnalyticsSubsystem->bSessionOpen);
 		AnalyticsSubsystem->AdvanceGameplayTime(50);
+		DrainPersistence();
 		AnalyticsSubsystem->OnPreLoadMap(*GameInstance->GetWorldContext(), TEXT("/Game/Maps/L_MainMenu"));
+		DrainPersistence();
 		AnalyticsSubsystem->OnPreLoadMap(*GameInstance->GetWorldContext(), TEXT("/Game/Maps/L_MainMenu"));
+		DrainPersistence();
 		Test.TestEqual(TEXT("Menu transition deduplicated"), AnalyticsSubsystem->State->SummarySubmitted, 1);
 		Test.TestEqual(TEXT("Cross-map active duration"), SubmittedValues.FindRef(TEXT("Session:GameplayDuration")), 150.0);
 		GameInstance->Shutdown();
@@ -335,6 +423,214 @@ private:
 		return true;
 	}
 
+	bool TestAsyncOrderingAndSnapshots(FAutomationTestBase& Test)
+	{
+		AnalyticsSubsystem->RecordValue(TEXT("Async:First"), 1.f);
+		AnalyticsSubsystem->RecordValue(TEXT("Async:Second"), 2.f);
+		AnalyticsSubsystem->AdvanceGameplayTime(300);
+		TArray<TSharedPtr<TPromise<bool>>> SavePromises;
+		TArray<TArray<uint8>> SavedSnapshots;
+		AnalyticsSubsystem->TestAsyncSave = [&SavePromises, &SavedSnapshots](TArray<uint8>&& Bytes)
+		{
+			SavedSnapshots.Add(MoveTemp(Bytes));
+			TSharedPtr<TPromise<bool>> Promise = MakeShared<TPromise<bool>>();
+			SavePromises.Add(Promise);
+			return Promise->GetFuture();
+		};
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestEqual(TEXT("Only one async save starts"), SavePromises.Num(), 1);
+		Test.TestEqual(TEXT("No SDK call before successful disk completion"), SubmissionCount, 0);
+		UGameplayAnalyticsSaveGame* const SavedState = Cast<UGameplayAnalyticsSaveGame>(
+			UGameplayStatics::LoadGameFromMemory(SavedSnapshots[0]));
+		if (!Test.TestNotNull(TEXT("Immutable reservation snapshot deserializes"), SavedState))
+		{
+			SavePromises[0]->SetValue(false);
+			return false;
+		}
+		Test.TestEqual(TEXT("Snapshot reserves one quota unit"), SavedState->PeriodicSubmitted, 1);
+		Test.TestEqual(TEXT("Snapshot removes only the reserved observation"), SavedState->Metrics.FindChecked(TEXT("Async:First")).Count, int64(0));
+		AnalyticsSubsystem->RecordValue(TEXT("Async:First"), 5.f);
+		for (int32 Request = 0; Request < 100; ++Request)
+		{
+			AnalyticsSubsystem->FlushAnalytics();
+			AnalyticsSubsystem->TickPersistence(0.0f);
+		}
+		Test.TestEqual(TEXT("Repeated requests do not start overlapping saves"), SavePromises.Num(), 1);
+		Test.TestEqual(TEXT("Repeated requests do not increase reserved quota"), AnalyticsSubsystem->State->PeriodicSubmitted, 1);
+		SavePromises[0]->SetValue(true);
+		AnalyticsSubsystem->TickPersistence(0.0f);
+		Test.TestEqual(TEXT("Same-frame completion cannot send"), SubmissionCount, 0);
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestEqual(TEXT("Successful reservation permits one SDK call"), SubmissionCount, 1);
+		Test.TestEqual(TEXT("Completing a save does not start another in that frame"), SavePromises.Num(), 1);
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestEqual(TEXT("Next reservation starts on a later frame"), SavePromises.Num(), 2);
+		Test.TestEqual(TEXT("Second event also waits for its disk write"), SubmissionCount, 1);
+		SavePromises[1]->SetValue(true);
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestEqual(TEXT("Second completion permits its own event"), SubmissionCount, 2);
+		Test.TestEqual(TEXT("Each observation uses exactly one quota unit"), AnalyticsSubsystem->State->PeriodicSubmitted, 2);
+		Test.TestEqual(TEXT("First snapshot keeps its original value"), SubmittedValues.FindRef(TEXT("Async:First")), 1.0);
+		Test.TestEqual(TEXT("New observations remain pending"), AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Async:First")).Sum, 5.0);
+		AnalyticsSubsystem->TestAsyncSave = nullptr;
+		DrainPersistence();
+		Test.TestEqual(TEXT("An ID is only selected once in one flush cycle"), SubmissionCount, 2);
+		return true;
+	}
+
+	bool TestAsyncDayRollover(FAutomationTestBase& Test)
+	{
+		AnalyticsSubsystem->RecordValue(TEXT("Async:Carry"), 42.f);
+		AnalyticsSubsystem->AdvanceGameplayTime(300);
+		TPromise<bool> SavePromise;
+		AnalyticsSubsystem->TestAsyncSave = [&SavePromise](TArray<uint8>&&)
+		{
+			return SavePromise.GetFuture();
+		};
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestEqual(TEXT("Old day reserves quota before I/O"), AnalyticsSubsystem->State->PeriodicSubmitted, 1);
+		AnalyticsSubsystem->TestUtcDay = TEXT("2026-10-18");
+		AnalyticsSubsystem->RecordValue(TEXT("Async:Carry"), 7.f);
+		SavePromise.SetValue(true);
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestEqual(TEXT("Old reservation cannot send using yesterday's quota"), SubmissionCount, 0);
+		Test.TestEqual(TEXT("Refund cannot decrement new-day quota"), AnalyticsSubsystem->State->PeriodicSubmitted, 0);
+		Test.TestEqual(TEXT("Rollover merges older and newer observations"), AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Async:Carry")).Sum, 49.0);
+		AnalyticsSubsystem->TestAsyncSave = nullptr;
+		DrainPersistence();
+		AnalyticsSubsystem->AdvanceGameplayTime(300);
+		DrainPersistence();
+		Test.TestEqual(TEXT("New day must earn its own allowance"), AnalyticsSubsystem->State->PeriodicSubmitted, 1);
+		Test.TestEqual(TEXT("Carried data is reported once"), SubmittedValues.FindRef(TEXT("Async:Carry")), 49.0);
+		return true;
+	}
+
+	bool TestAsyncEightHourCutoff(FAutomationTestBase& Test)
+	{
+		AnalyticsSubsystem->State->ActiveGameplaySeconds = 28800.0;
+		AnalyticsSubsystem->State->PeriodicSubmitted = 469;
+		AnalyticsSubsystem->RecordEvent(TEXT("Async:Cutoff"));
+		AnalyticsSubsystem->FlushAnalytics();
+		TPromise<bool> SavePromise;
+		AnalyticsSubsystem->TestAsyncSave = [&SavePromise](TArray<uint8>&&)
+		{
+			return SavePromise.GetFuture();
+		};
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestEqual(TEXT("Final reservation still obeys 470 periodic cap"), AnalyticsSubsystem->State->PeriodicSubmitted, 470);
+		AnalyticsSubsystem->AdvanceGameplayTime(1);
+		SavePromise.SetValue(true);
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestEqual(TEXT("Delayed callback cannot submit after eight hours"), SubmissionCount, 0);
+		Test.TestEqual(TEXT("Cancelled reservation refunds only its own charge"), AnalyticsSubsystem->State->PeriodicSubmitted, 469);
+		Test.TestEqual(TEXT("Cancelled event remains pending"), AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Async:Cutoff")).Count, int64(1));
+		AnalyticsSubsystem->TestAsyncSave = nullptr;
+		for (int32 Frame = 0; Frame < 100; ++Frame)
+		{
+			AnalyticsSubsystem->FlushAnalytics();
+			PumpPersistenceFrame(AnalyticsSubsystem);
+		}
+		DrainPersistence();
+		Test.TestEqual(TEXT("Extra frames and flushes never reopen the daily allowance"), AnalyticsSubsystem->State->PeriodicSubmitted, 469);
+		Test.TestEqual(TEXT("Spacing cannot bypass eight-hour stop"), SubmissionCount, 0);
+		return true;
+	}
+
+	bool TestAsyncFailureAndRetry(FAutomationTestBase& Test)
+	{
+		Test.AddExpectedMessagePlain(TEXT("Analytics checkpoint failed; retry deferred for one minute"), ELogVerbosity::Warning);
+		AnalyticsSubsystem->RecordValue(TEXT("Async:Failure"), 1.f);
+		AnalyticsSubsystem->AdvanceGameplayTime(300);
+		TPromise<bool> SavePromise;
+		int32 AsyncSaveCount = 0;
+		AnalyticsSubsystem->TestAsyncSave = [&SavePromise, &AsyncSaveCount](TArray<uint8>&&)
+		{
+			++AsyncSaveCount;
+			return SavePromise.GetFuture();
+		};
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		AnalyticsSubsystem->RecordValue(TEXT("Async:Failure"), 2.f);
+		SavePromise.SetValue(false);
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestEqual(TEXT("Failed write cannot call SDK"), SubmissionCount, 0);
+		Test.TestEqual(TEXT("Failed write restores quota"), AnalyticsSubsystem->State->PeriodicSubmitted, 0);
+		Test.TestEqual(TEXT("Failed write preserves newer observations"), AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Async:Failure")).Sum, 3.0);
+		for (int32 Frame = 0; Frame < 10; ++Frame)
+		{
+			AnalyticsSubsystem->FlushAnalytics();
+			PumpPersistenceFrame(AnalyticsSubsystem, 1.0f);
+		}
+		Test.TestEqual(TEXT("Failure cooldown prevents a per-frame disk retry loop"), AsyncSaveCount, 1);
+		AnalyticsSubsystem->TestAsyncSave = nullptr;
+		PumpPersistenceFrame(AnalyticsSubsystem, 60.0f);
+		DrainPersistence();
+		Test.TestEqual(TEXT("Recovered provider submits one combined observation"), SubmittedValues.FindRef(TEXT("Async:Failure")), 3.0);
+		Test.TestEqual(TEXT("Retry is charged exactly once"), AnalyticsSubsystem->State->PeriodicSubmitted, 1);
+		return true;
+	}
+
+	bool TestAsyncShutdownOrdering(FAutomationTestBase& Test)
+	{
+		AnalyticsSubsystem->SlotName = TEXT("AnalyticsShutdown_") + FGuid::NewGuid().ToString(EGuidFormats::Digits);
+		AnalyticsSubsystem->TestPersist = nullptr;
+		AnalyticsSubsystem->RecordEvent(TEXT("Async:Shutdown"));
+		AnalyticsSubsystem->AdvanceGameplayTime(300);
+		PumpPersistenceFrame(AnalyticsSubsystem);
+		Test.TestTrue(TEXT("A real worker write is outstanding before shutdown"), AnalyticsSubsystem->SaveFuture.IsValid());
+		AnalyticsSubsystem->RecordEvent(TEXT("Async:Shutdown"));
+		AnalyticsSubsystem->bShuttingDown = true;
+		AnalyticsSubsystem->FinishPersistence();
+		Test.TestFalse(TEXT("Shutdown joins the worker before its final save"), AnalyticsSubsystem->SaveFuture.IsValid());
+		Test.TestEqual(TEXT("Shutdown sends only the reserved duration summary"), SubmissionCount, 1);
+		Test.TestEqual(TEXT("Unsent periodic reservation is refunded"), AnalyticsSubsystem->State->PeriodicSubmitted, 0);
+		Test.TestEqual(TEXT("Shutdown summary uses its own reserve"), AnalyticsSubsystem->State->SummarySubmitted, 1);
+		UGameplayAnalyticsSaveGame* const SavedState = Cast<UGameplayAnalyticsSaveGame>(
+			UGameplayStatics::LoadGameFromSlot(AnalyticsSubsystem->SlotName, 0));
+		if (!Test.TestNotNull(TEXT("Final shutdown save is readable"), SavedState))
+		{
+			return false;
+		}
+		Test.TestEqual(TEXT("An older async snapshot cannot overwrite the final summary counter"), SavedState->SummarySubmitted, 1);
+		Test.TestEqual(TEXT("Unsent and newer periodic data survive shutdown"), SavedState->Metrics.FindChecked(TEXT("Async:Shutdown")).Count, int64(2));
+		Test.TestEqual(TEXT("Completed duration is not recovered again after restart"), SavedState->OpenSessionSeconds, 0.0);
+		UGameplayStatics::DeleteGameInSlot(AnalyticsSubsystem->SlotName, 0);
+		return true;
+	}
+
+	bool TestAsyncSpacingBudget(FAutomationTestBase& Test)
+	{
+		for (int32 Index = 0; Index < 32; ++Index)
+		{
+			AnalyticsSubsystem->RecordEvent(FString::Printf(TEXT("Async:Spacing:Metric%d"), Index));
+		}
+		AnalyticsSubsystem->AdvanceGameplayTime(299);
+		AnalyticsSubsystem->FlushAnalytics();
+		DrainPersistence();
+		Test.TestEqual(TEXT("Async frames do not earn allowance before five active minutes"), SubmissionCount, 0);
+		AnalyticsSubsystem->AdvanceGameplayTime(1);
+		for (int32 Frame = 0; Frame < 100; ++Frame)
+		{
+			for (int32 Index = 0; Index < 32; ++Index)
+			{
+				AnalyticsSubsystem->RecordEvent(FString::Printf(TEXT("Async:Spacing:Metric%d"), Index));
+			}
+			AnalyticsSubsystem->FlushAnalytics();
+			PumpPersistenceFrame(AnalyticsSubsystem);
+		}
+		DrainPersistence();
+		for (int32 Request = 0; Request < 100; ++Request)
+		{
+			AnalyticsSubsystem->FlushAnalytics();
+			DrainPersistence();
+		}
+		Test.TestEqual(TEXT("Save processing does not advance gameplay time"), AnalyticsSubsystem->State->ActiveGameplaySeconds, 300.0);
+		Test.TestEqual(TEXT("Five active minutes still earn only six periodic events"), AnalyticsSubsystem->EarnedPeriodicAllowance(), 6);
+		Test.TestEqual(TEXT("Extra frames and flush cycles cannot increase submissions"), SubmissionCount, 6);
+		Test.TestEqual(TEXT("Persisted periodic usage matches actual submissions"), AnalyticsSubsystem->State->PeriodicSubmitted, 6);
+		Test.TestEqual(TEXT("Periodic work cannot spend the summary reserve"), AnalyticsSubsystem->State->SummarySubmitted, 0);
+		return true;
+	}
+
 	TStrongObjectPtr<UGameInstance> GameInstance;
 	UGameplayAnalyticsSubsystem* AnalyticsSubsystem;
 	TMap<FString, double> SubmittedValues;
@@ -354,7 +650,13 @@ void FGameplayAnalyticsManagerTest::GetTests(TArray<FString>& OutNames, TArray<F
 		TEXT("RolloverAndSessions"),
 		TEXT("Persistence"),
 		TEXT("BoundsAndBlueprint"),
-		TEXT("WorldLifecycle")
+		TEXT("WorldLifecycle"),
+		TEXT("AsyncOrderingAndSnapshots"),
+		TEXT("AsyncDayRollover"),
+		TEXT("AsyncEightHourCutoff"),
+		TEXT("AsyncFailureAndRetry"),
+		TEXT("AsyncShutdownOrdering"),
+		TEXT("AsyncSpacingBudget")
 	};
 	for (const TCHAR* CaseDisplayName : TestNames)
 	{

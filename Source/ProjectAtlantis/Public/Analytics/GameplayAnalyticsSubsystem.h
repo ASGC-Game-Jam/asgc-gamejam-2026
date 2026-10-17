@@ -2,6 +2,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Async/Future.h"
+#include "Containers/Ticker.h"
 #include "Engine/EngineBaseTypes.h"
 #include "GameFramework/SaveGame.h"
 #include "Subsystems/GameInstanceSubsystem.h"
@@ -105,7 +107,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Analytics")
 	void RecordValue(const FString& EventId, float Value);
 
-	/** Submit only within the earned shared budget. Safe to call manually. */
+	/** Request deferred submissions within the earned budget. Repeated requests never increase the allowance. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Analytics")
 	void FlushAnalytics();
 
@@ -118,6 +120,16 @@ public:
 
 private:
 	friend struct FGameplayAnalyticsTestAccess;
+
+	struct FSubmissionReservation
+	{
+		FString EventId;
+		FString UtcDay;
+		FGameplayAnalyticsMetric Metric;
+		double Value = 0.0;
+		bool bSummary = false;
+	};
+
 	void AdvanceGameplayTime(double Seconds);
 	void ValidateState();
 	FString GetUtcDay() const;
@@ -126,26 +138,45 @@ private:
 	bool IsActiveGameplayWorld(const UWorld* World) const;
 	bool IsEventIdValid(const FString& EventId) const;
 	void RefreshUtcDay();
-	bool Persist() const;
-	void SubmitSessionSummary();
+	void RequestCheckpoint();
+	bool TickPersistence(float DeltaSeconds);
+	void BeginAsyncSave();
+	void CompleteAsyncSave(bool bSuccess);
+	bool TryReserveSubmission();
+	bool TryReserveSummary();
+	bool TryReservePeriodicMetric();
+	void RestoreReservation(const FSubmissionReservation& SavedReservation);
+	void FinishPersistence();
+	bool PersistSynchronously();
+	static double GetAggregatedValue(const FGameplayAnalyticsMetric& Metric);
 	int32 EarnedPeriodicAllowance() const;
 	bool SubmitValue(const FString& Id, double Value) const;
 	bool CanSubmit() const;
-	void FlushPendingWithBudget(int32 Available);
 
 	FDelegateHandle TickHandle;
 	FDelegateHandle PreLoadHandle;
+	FTSTicker::FDelegateHandle PersistenceTickerHandle;
 	UPROPERTY()
 	TObjectPtr<UGameplayAnalyticsSaveGame> State;
 	bool bSessionOpen = false;
-	bool bFlushing = false;
 	bool bDirty = false;
+	bool bSaveRequested = false;
+	bool bFlushRequested = false;
+	bool bSummaryAttemptedInFlush = false;
+	bool bShuttingDown = false;
+	TFuture<bool> SaveFuture;
+	FSubmissionReservation Reservation;
+	TSet<FString> FlushMetricIds;
+	uint64 LastPersistenceFrame = MAX_uint64;
+	double SaveRetrySeconds = 0.0;
 	double CheckpointSeconds = 0.0;
 	FString SlotName = TEXT("GameplayAnalyticsBudget");
 #if WITH_DEV_AUTOMATION_TESTS
 	TFunction<bool(const FString&, double)> TestSink;
 	TFunction<bool()> TestPersist;
+	TFunction<TFuture<bool>(TArray<uint8>&&)> TestAsyncSave;
 	FString TestUtcDay;
+	TOptional<uint64> TestFrame;
 	bool bTestProviderUnavailable = false;
 #endif
 
