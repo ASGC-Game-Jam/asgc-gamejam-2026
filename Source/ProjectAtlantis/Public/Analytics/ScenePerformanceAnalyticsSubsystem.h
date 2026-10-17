@@ -21,6 +21,12 @@ public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 
+	/** Whether the configured analytics provider successfully started its session. */
+	bool IsAnalyticsReady() const
+	{
+		return bAnalyticsReady;
+	}
+
 private:
 	void OnPreLoadMap(const FWorldContext& WorldContext, const FString& MapName);
 	void OnPostLoadMap(UWorld* LoadedWorld);
@@ -50,4 +56,5 @@ private:
 	bool bLoadInProgress = false;
 	bool bWaitingForFirstTick = false;
 	bool bStartupReported = false;
+	bool bAnalyticsReady = false;
 };
