@@ -1,0 +1,11 @@
+# Player-based underwater material (#289)
+
+`AAtlantisPlayerWaterPostProcess` applies the existing underwater material for each local player's view using that player's possessed pawn. A dry player's third-person camera can cross below the water plane without enabling the material. A wet player's camera can leave the original region without disabling it while the pawn remains inside.
+
+The actor hosts a material-only unbound postprocess component. Its blendable callback resolves the view's LocalPlayer controller ID, then reads the possessed pawn's current PhysicsVolume `bWaterVolume`. It tests the pawn position against the original authored underwater postprocess brush, with the original blend radius and weight. Source enabled state is respected. Missing players, source geometry, or water state fail closed; non-player scene captures and editor previews receive no water material. Each split-screen view resolves its own pawn, independently of its camera's view target.
+
+The tutorial's original underwater postprocess volume retains its brush, transform, enabled state and other settings. Only its reference to `MPPI_Underwater_1` moves into the native gate, at the existing priority and weight. Both region and gate are always loaded so the per-player inclusion test can run regardless of camera location. The material asset and the separate generic unbound postprocess volume remain unchanged. Runtime code does not use actor labels, mutate world postprocess enable flags, or replace global registration.
+
+`Scripts/ConfigurePlayerWaterPostProcess.py` performs the functional migration through Unreal Editor and verifies its references. It requires LFS locks on the tutorial map and original external actor package; `-WaterGateVerifyOnly` reloads and validates without saving. Re-running it does not add duplicate gates. New maps need explicit gate/material/region authoring rather than runtime discovery by actor name.
+
+Regression specs cover pawn water state, original brush inclusion, preserved weights, independent local-view ownership, unknown captures and missing data. Read-only asset validation confirms saved map references and unrelated volume state. NullRHI tests exercise inclusion and asset wiring; they do not prove rendered pixel appearance. A graphical dry-shore camera-tilt and wet-player camera-orbit smoke test remains a useful release check.
