@@ -74,6 +74,17 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls")
 	bool AreControlsEnabled() const { return bControlsEnabled; }
 
+	/** Temporarily suppress gameplay mappings without discarding desired controls. Multiple owners compose by intersection. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
+	void PushControlSuppression(FName Requester, UInputMappingContext* AllowedContext = nullptr);
+
+	/** Remove only this owner's suppression; other owners and global enable/disable state remain authoritative. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
+	void PopControlSuppression(FName Requester);
+
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls")
+	bool AreGameplayControlsSuppressed() const { return !ControlSuppressions.IsEmpty(); }
+
 	/** Whether UMG touch controls should be shown on this platform or by configuration. */
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Controls", meta = (DisplayName = "Should Use Touch Controls"))
 	bool ShouldUseTouchControls() const;
@@ -137,4 +148,10 @@ protected:
 	bool bControlsEnabled = true;
 
 	TMap<UInputMappingContext*, TSet<FName>> InputRestrictions;
+
+	/** Allowed contexts are temporary extras, never inserted into the desired mapping list. */
+	UPROPERTY(Transient)
+	TMap<FName, TObjectPtr<UInputMappingContext>> ControlSuppressions;
+
+	UInputMappingContext* GetSuppressionAllowedContext() const;
 };

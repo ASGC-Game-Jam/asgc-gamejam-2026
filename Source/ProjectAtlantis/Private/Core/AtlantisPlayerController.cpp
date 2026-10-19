@@ -101,7 +101,7 @@ void AAtlantisPlayerController::UpdateMovementControls(bool bInWater)
 
 void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& ActionValue, const EAtlantisBallastState NewBallastState)
 {
-	if (bControlsEnabled && GetPawn())
+	if (bControlsEnabled && !AreGameplayControlsSuppressed() && GetPawn())
 	{
 		ServerSetBallastState(NewBallastState);
 	}
@@ -109,7 +109,7 @@ void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& Act
 
 void AAtlantisPlayerController::ServerSetBallastState_Implementation(const EAtlantisBallastState NewBallastState)
 {
-	if (!bControlsEnabled || !GetPawn() || NewBallastState == EAtlantisBallastState::None)
+	if (!bControlsEnabled || AreGameplayControlsSuppressed() || !GetPawn() || NewBallastState == EAtlantisBallastState::None)
 	{
 		return;
 	}
@@ -143,7 +143,7 @@ void AAtlantisPlayerController::AddControls(UInputMappingContext* NewControlMapp
 	CurrentMappingContexts.Add(NewControlMappingContext);
 	OnControlsChanged.Broadcast();
 
-	if (!bControlsEnabled)
+	if (!bControlsEnabled || AreGameplayControlsSuppressed())
 	{
 		return;
 	}
@@ -164,7 +164,7 @@ void AAtlantisPlayerController::RemoveControls(UInputMappingContext* MappingCont
 	CurrentMappingContexts.Remove(MappingContext);
 	OnControlsChanged.Broadcast();
 
-	if (!bControlsEnabled)
+	if (!bControlsEnabled || AreGameplayControlsSuppressed())
 	{
 		return;
 	}
@@ -202,12 +202,20 @@ void AAtlantisPlayerController::DisableAllControls()
 void AAtlantisPlayerController::EstablishMappingContexts()
 {
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = GetEnhancedInputSubsystem();
-	if (!Subsystem)
+	if (!Subsystem || !bControlsEnabled)
 	{
 		return;
 	}
 
 	const FModifyContextOptions Options = MakeControlOptions();
+	if (AreGameplayControlsSuppressed())
+	{
+		if (const UInputMappingContext* AllowedContext = GetSuppressionAllowedContext())
+		{
+			Subsystem->AddMappingContext(AllowedContext, ControlMappingPriority + 1, Options);
+		}
+		return;
+	}
 	for (const UInputMappingContext* MappingContext : CurrentMappingContexts)
 	{
 		if (MappingContext)
@@ -224,6 +232,13 @@ void AAtlantisPlayerController::ClearMappingContexts()
 	{
 		return;
 	}
+	for (const auto& Suppression : ControlSuppressions)
+	{
+		if (Suppression.Value)
+		{
+			Subsystem->RemoveMappingContext(Suppression.Value, MakeControlOptions());
+		}
+	}
 
 	const FModifyContextOptions Options = MakeControlOptions();
 	for (const UInputMappingContext* MappingContext : CurrentMappingContexts)
@@ -233,6 +248,55 @@ void AAtlantisPlayerController::ClearMappingContexts()
 			Subsystem->RemoveMappingContext(MappingContext, Options);
 		}
 	}
+}
+
+UInputMappingContext* AAtlantisPlayerController::GetSuppressionAllowedContext() const
+{
+	UInputMappingContext* Allowed = nullptr;
+	bool bFirst = true;
+	for (const auto& Suppression : ControlSuppressions)
+	{
+		if (bFirst)
+		{
+			Allowed = Suppression.Value;
+			bFirst = false;
+		}
+		else if (Allowed != Suppression.Value)
+		{
+			return nullptr;
+		}
+	}
+	return Allowed;
+}
+
+void AAtlantisPlayerController::PushControlSuppression(FName Requester, UInputMappingContext* AllowedContext)
+{
+	if (Requester.IsNone())
+	{
+		return;
+	}
+	ClearMappingContexts();
+	ControlSuppressions.Add(Requester, AllowedContext);
+	if (bControlsEnabled)
+	{
+		EstablishMappingContexts();
+	}
+	OnControlsChanged.Broadcast();
+}
+
+void AAtlantisPlayerController::PopControlSuppression(FName Requester)
+{
+	if (!ControlSuppressions.Contains(Requester))
+	{
+		return;
+	}
+	ClearMappingContexts();
+	ControlSuppressions.Remove(Requester);
+	if (bControlsEnabled)
+	{
+		EstablishMappingContexts();
+	}
+	OnControlsChanged.Broadcast();
 }
 
 void AAtlantisPlayerController::RestrictControls(FName Requester, UInputMappingContext* MappingContext)
