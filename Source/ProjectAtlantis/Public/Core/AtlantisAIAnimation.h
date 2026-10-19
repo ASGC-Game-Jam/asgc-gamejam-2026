@@ -6,7 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "AtlantisAIAnimation.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAnimationPlay, FString, GroupName, FString, AnimationName);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAnimationPlay, FString, GroupName, FString, AnimationName, float, Duration);
 
 USTRUCT(BlueprintType)
 struct FAtlantisAIAnimationGroup

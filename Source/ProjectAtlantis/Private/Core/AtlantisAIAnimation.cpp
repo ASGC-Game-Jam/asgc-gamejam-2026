@@ -118,7 +118,7 @@ void UAtlantisAIAnimation::PlayNextAnimation(const FString& Name, bool bIsLoopin
 		if (Mesh != nullptr)
 		{
 			Mesh->PlayAnimation(NextAnimation, bIsLooping);
-			OnAnimationPlay.Broadcast(Name, NextAnimation->GetName());
+			OnAnimationPlay.Broadcast(Name, NextAnimation->GetName(), NextAnimation->GetPlayLength());
 		}
 	}
 }
