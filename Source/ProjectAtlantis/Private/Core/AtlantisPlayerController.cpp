@@ -11,6 +11,9 @@
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
 #include "HAL/PlatformProperties.h"
+#include "Blueprint/UserWidget.h"
+#include "Journal/AtlantisJournalEmptyStateExtension.h"
+#include "UObject/UnrealType.h"
 
 // Anonymous namespace: everything inside has internal linkage, so these helpers are private to
 // this .cpp. Another file can define its own MakeControlOptions without a duplicate-symbol link
@@ -40,6 +43,25 @@ namespace
 		Options.bNotifyUserSettings = false;
 
 		return Options;
+	}
+}
+
+void AAtlantisPlayerController::BeginPlay()
+{
+	// Super invokes the authored Blueprint BeginPlay, which already creates the Journal shell.
+	Super::BeginPlay();
+	if (IsLocalController())
+	{
+		if (const FObjectPropertyBase* Property = FindFProperty<FObjectPropertyBase>(GetClass(), TEXT("JournalWidget")))
+		{
+			if (UUserWidget* Journal = Cast<UUserWidget>(Property->GetObjectPropertyValue_InContainer(this)))
+			{
+				if (!Journal->GetExtension<UAtlantisJournalEmptyStateExtension>())
+				{
+					Journal->AddExtension<UAtlantisJournalEmptyStateExtension>();
+				}
+			}
+		}
 	}
 }
 
