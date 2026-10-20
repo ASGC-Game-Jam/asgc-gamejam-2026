@@ -26,12 +26,12 @@ bool FAtlantisSwimmingAnimationTest::RunTest(const FString& Parameters)
 		World->DestroyWorld(false);
 		return false;
 	}
-	USkeletalMeshComponent* Mesh = Character->GetMesh();
-	Mesh->SetSkeletalMesh(LoadObject<USkeletalMesh>(nullptr,
+	USkeletalMeshComponent* MeshComponent = Character->GetMesh();
+	MeshComponent->SetSkeletalMesh(LoadObject<USkeletalMesh>(nullptr,
 		TEXT("/Game/ProjectAtlantis/Characters/Common/Mannequins/SKM_Quinn_Simple.SKM_Quinn_Simple")));
-	Mesh->SetAnimInstanceClass(LoadClass<UAnimInstance>(nullptr,
+	MeshComponent->SetAnimInstanceClass(LoadClass<UAnimInstance>(nullptr,
 		TEXT("/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/ABP_Player.ABP_Player_C")));
-	UAtlantisPlayerAnimInstance* Anim = Cast<UAtlantisPlayerAnimInstance>(Mesh->GetAnimInstance());
+	UAtlantisPlayerAnimInstance* Anim = Cast<UAtlantisPlayerAnimInstance>(MeshComponent->GetAnimInstance());
 	if (!TestNotNull(TEXT("Swimming animation Blueprint uses native player state"), Anim))
 	{
 		World->DestroyWorld(false);
@@ -70,14 +70,14 @@ bool FAtlantisSwimmingAnimationTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("Walking after exit stays on original graph"), Anim->bIsSwimming);
 	Update(MOVE_Swimming, FVector::ZeroVector, FVector::ZeroVector);
 	TestTrue(TEXT("Re-entering water selects swimming again"), Anim->bIsSwimming);
-	auto EvaluatePose = [Mesh]()
+	auto EvaluatePose = [MeshComponent]()
 	{
 		for (int32 Frame = 0; Frame < 15; ++Frame)
 		{
-			Mesh->TickAnimation(1.f / 30.f, false);
-			Mesh->RefreshBoneTransforms();
+			MeshComponent->TickAnimation(1.f / 30.f, false);
+			MeshComponent->RefreshBoneTransforms();
 		}
-		return Mesh->GetSocketTransform(TEXT("head"), RTS_Component).GetLocation();
+		return MeshComponent->GetSocketTransform(TEXT("head"), RTS_Component).GetLocation();
 	};
 	const FVector IdleHead = EvaluatePose();
 	Update(MOVE_Swimming, FVector(100.f, 0.f, 0.f), FVector::ForwardVector);
