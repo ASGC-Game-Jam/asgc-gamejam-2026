@@ -36,6 +36,7 @@ UCLASS(Config = Game)
 class PROJECTATLANTIS_API AAtlantisPlayerController : public APlayerController
 {
 	GENERATED_BODY()
+	friend class FAtlantisLandBallastSpec;
 
 public:
 	void UpdateMovementControls(bool bInWater);
