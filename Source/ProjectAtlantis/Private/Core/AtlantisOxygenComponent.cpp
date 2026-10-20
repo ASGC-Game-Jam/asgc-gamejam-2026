@@ -69,19 +69,24 @@ void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen
 	UpdateCriticalOxygen();
 }
 
-void UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
+bool UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
 {
+	bool status = false;
 	// Current oxygen includes the ballast allocation; consumption can only use the unlocked portion and cannot exceed capacity.
 	const float ClampedOxygen = FMath::Clamp(NewCurrentOxygen, AllocatedOxygen, OxygenCapacity);
 	if (!HasOwnerAuthority() || FMath::IsNearlyEqual(CurrentOxygen, ClampedOxygen))
 	{
-		return;
+		status = false;
 	}
-
-	const float OldCurrentOxygen = CurrentOxygen;
-	CurrentOxygen = ClampedOxygen;
-	OnRep_CurrentOxygen(OldCurrentOxygen);
-	UpdateCriticalOxygen();
+	else
+	{
+		const float OldCurrentOxygen = CurrentOxygen;
+		CurrentOxygen = ClampedOxygen;
+		OnRep_CurrentOxygen(OldCurrentOxygen);
+		UpdateCriticalOxygen();
+		status = true;
+	}
+	return status;
 }
 
 void UAtlantisOxygenComponent::SetCriticalOxygen(bool bNewCriticalOxygen)
@@ -142,6 +147,23 @@ bool UAtlantisOxygenComponent::RequestOxygen(const float RequestedOxygen)
 	}
 
 	return bRequestAccepted;
+}
+
+bool UAtlantisOxygenComponent::RestoreOxygen(const float RestoreOxygenAmount)
+{
+	// This acts as the mirror opposite of RequestOxygen: where RequestOxygen subtracts, this adds
+	bool status = false;
+	if (!HasOwnerAuthority() || RestoreOxygenAmount < 0.0f)
+	{
+		status = false;
+
+	}
+	else
+	{
+		status = SetCurrentOxygen(CurrentOxygen + RestoreOxygenAmount);
+	}
+
+	return status;
 }
 
 bool UAtlantisOxygenComponent::RequestOxygenAllocation(const float RequestedOxygen)
