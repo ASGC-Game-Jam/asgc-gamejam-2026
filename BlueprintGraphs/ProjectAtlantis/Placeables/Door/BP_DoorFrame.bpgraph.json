@@ -1,8 +1,9 @@
 {
-	"version": 1,
+	"version": 2,
 	"generatedBy": "keystone-blueprint-export",
 	"package": "/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame",
 	"asset": "BP_DoorFrame",
+	"assetClass": "Blueprint",
 	"parentClass": "Actor",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
@@ -7163,5 +7164,613 @@
 				}
 			]
 		}
-	]
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"Door Size":
+			{
+				"type": "struct:/Script/CoreUObject.Vector",
+				"category": "Door",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Door Frame":
+			{
+				"type": "bool",
+				"category": "Door Frame",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Door Frame Scale":
+			{
+				"type": "real:double",
+				"category": "Door Frame",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Door":
+			{
+				"type": "object:/Script/Engine.StaticMeshComponent",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Closed Position":
+			{
+				"type": "struct:/Script/CoreUObject.Vector",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Door Detection Adjust":
+			{
+				"type": "struct:/Script/CoreUObject.Vector",
+				"category": "Door",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Door Thickness":
+			{
+				"type": "real:double",
+				"category": "Door",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Split Door":
+			{
+				"type": "bool",
+				"category": "Door",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Door Frame Overide Material":
+			{
+				"type": "object:/Script/Engine.MaterialInterface",
+				"category": "Door Frame",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Add Door":
+			{
+				"type": "bool",
+				"category": "Door",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Door2":
+			{
+				"type": "object:/Script/Engine.StaticMeshComponent",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Closed Position_0":
+			{
+				"type": "struct:/Script/CoreUObject.Vector",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+			"DefaultSceneRoot":
+			{
+				"class": "SceneComponent",
+				"parent": null,
+				"properties":
+				{
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": false,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": true,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			},
+			"Box":
+			{
+				"class": "BoxComponent",
+				"parent": "DefaultSceneRoot",
+				"properties":
+				{
+					"BoxExtent":
+					{
+						"X": 32,
+						"Y": 32,
+						"Z": 32
+					},
+					"AreaClass": "/Script/NavigationSystem.NavArea_Obstacle",
+					"ShapeColor":
+					{
+						"B": 157,
+						"G": 149,
+						"R": 223,
+						"A": 255
+					},
+					"bDrawOnlyIfSelected": false,
+					"bShouldCollideWhenPlacing": false,
+					"bDynamicObstacle": false,
+					"bUseSystemDefaultObstacleAreaClass": true,
+					"AreaClassOverride": null,
+					"LineThickness": 0,
+					"MinDrawDistance": 0,
+					"LDMaxDrawDistance": 0,
+					"CachedMaxDrawDistance": 0,
+					"DepthPriorityGroup": "SDPG_World",
+					"ViewOwnerDepthPriorityGroup": "SDPG_World",
+					"IndirectLightingCacheQuality": "ILCQ_Point",
+					"LightmapType": "Default",
+					"HLODBatchingPolicy": "None",
+					"ShadowCacheInvalidationBehavior": "Auto",
+					"bEnableAutoLODGeneration": true,
+					"bIsActorTextureStreamingBuiltData": false,
+					"bIsValidTextureStreamingBuiltData": false,
+					"bNeverDistanceCull": false,
+					"bAlwaysCreatePhysicsState": false,
+					"bGenerateOverlapEvents": true,
+					"bMultiBodyOverlap": false,
+					"bTraceComplexOnMove": false,
+					"bReturnMaterialOnMove": false,
+					"bUseViewOwnerDepthPriorityGroup": false,
+					"bAllowCullDistanceVolume": true,
+					"bVisibleInReflectionCaptures": true,
+					"bVisibleInRealTimeSkyCaptures": true,
+					"bVisibleInRayTracing": true,
+					"bRenderInMainPass": true,
+					"bRenderInDepthPass": true,
+					"bReceivesDecals": true,
+					"bHoldout": false,
+					"bOwnerNoSee": false,
+					"bOnlyOwnerSee": false,
+					"bTreatAsBackgroundForOcclusion": false,
+					"bUseAsOccluder": false,
+					"bSelectable": true,
+					"bWantsEditorEffects": false,
+					"bConsiderForActorPlacementWhenHidden": false,
+					"bForceMipStreaming": false,
+					"bHasPerInstanceHitProxies": false,
+					"CastShadow": false,
+					"bEmissiveLightSource": false,
+					"bAffectDynamicIndirectLighting": true,
+					"bAffectIndirectLightingWhileHidden": false,
+					"bAffectDistanceFieldLighting": true,
+					"bCastDynamicShadow": false,
+					"bCastStaticShadow": true,
+					"bCastVolumetricTranslucentShadow": false,
+					"bCastContactShadow": true,
+					"bSelfShadowOnly": false,
+					"bCastFarShadow": false,
+					"bCastInsetShadow": false,
+					"bCastCinematicShadow": false,
+					"bCastHiddenShadow": false,
+					"bCastShadowAsTwoSided": false,
+					"bLightAttachmentsAsGroup": false,
+					"bExcludeFromLightAttachmentGroup": true,
+					"bReceiveMobileCSMShadows": true,
+					"bSingleSampleShadowFromStationaryLights": false,
+					"bIgnoreRadialImpulse": false,
+					"bIgnoreRadialForce": false,
+					"bApplyImpulseOnDamage": true,
+					"bReplicatePhysicsToAutonomousProxy": true,
+					"bFillCollisionUnderneathForNavmesh": false,
+					"bRasterizeAsFilledConvexVolume": false,
+					"AlwaysLoadOnClient": true,
+					"AlwaysLoadOnServer": true,
+					"bUseEditorCompositing": true,
+					"bRenderCustomDepth": false,
+					"bVisibleInSceneCaptureOnly": false,
+					"bHiddenInSceneCapture": false,
+					"bRayTracingFarField": false,
+					"bLumenHeightfield": false,
+					"FirstPersonPrimitiveType": "None",
+					"bHasNoStreamableTextures": false,
+					"bStaticWhenNotMoveable": true,
+					"bHasCustomNavigableGeometry": "Yes",
+					"HitProxyPriority": "HPP_World",
+					"CanCharacterStepUpOn": "ECB_Yes",
+					"LightingChannels":
+					{
+						"bChannel0": true,
+						"bChannel1": false,
+						"bChannel2": false
+					},
+					"RayTracingGroupCullingPriority": "CP_4_DEFAULT",
+					"CustomDepthStencilWriteMask": "ERSM_Default",
+					"ExcludeFromHLODLevels": 0,
+					"RayTracingGroupId": -1,
+					"VisibilityId": -1,
+					"CustomDepthStencilValue": 0,
+					"CustomPrimitiveData":
+					{
+						"Data": []
+					},
+					"TranslucencySortPriority": 0,
+					"TranslucencySortDistanceOffset": 0,
+					"RuntimeVirtualTextures": [],
+					"VirtualTextureLodBias": 0,
+					"VirtualTextureCullMips": 0,
+					"VirtualTextureMinCoverage": 0,
+					"VirtualTextureRenderPassType": "Exclusive",
+					"BoundsScale": 1,
+					"BodyInstance":
+					{
+						"PositionSolverIterationCount": 8,
+						"VelocitySolverIterationCount": 2,
+						"ProjectionSolverIterationCount": 1,
+						"ObjectType": "ECC_WorldDynamic",
+						"CollisionEnabled": "QueryOnly",
+						"SleepFamily": "Normal",
+						"DOFMode": "Default",
+						"bUseCCD": false,
+						"bUseMACD": false,
+						"bAllowPartialIslandSleep": true,
+						"bIgnoreAnalyticCollisions": false,
+						"bNotifyRigidBodyCollision": false,
+						"bSmoothEdgeCollisions": false,
+						"bLockTranslation": true,
+						"bLockRotation": true,
+						"bLockXTranslation": false,
+						"bLockYTranslation": false,
+						"bLockZTranslation": false,
+						"bLockXRotation": false,
+						"bLockYRotation": false,
+						"bLockZRotation": false,
+						"bOverrideMaxAngularVelocity": false,
+						"bOverrideMaxDepenetrationVelocity": false,
+						"bOverrideWalkableSlopeOnInstance": false,
+						"bOverrideIterationCounts": false,
+						"bInterpolateWhenSubStepping": true,
+						"bInertiaConditioning": true,
+						"bOneWayInteraction": false,
+						"bOverrideSolverAsyncDeltaTime": false,
+						"SolverAsyncDeltaTime": 0.016666670000000001,
+						"CollisionProfileName": "Custom",
+						"CollisionResponses":
+						{
+							"ResponseArray": [
+								{
+									"Channel": "WorldStatic",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "WorldDynamic",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Pawn",
+									"Response": "ECR_Overlap"
+								},
+								{
+									"Channel": "Visibility",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Camera",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "PhysicsBody",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Vehicle",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Destructible",
+									"Response": "ECR_Ignore"
+								}
+							]
+						},
+						"MaxDepenetrationVelocity": 0,
+						"MassInKgOverride": 100,
+						"LinearDamping": 0.01,
+						"AngularDamping": 0,
+						"CustomDOFPlaneNormal":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0
+						},
+						"COMNudge":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0
+						},
+						"MassScale": 1,
+						"GravityGroupIndex": 0,
+						"InertiaTensorScale":
+						{
+							"X": 1,
+							"Y": 1,
+							"Z": 1
+						},
+						"WalkableSlopeOverride":
+						{
+							"WalkableSlopeBehavior": "WalkableSlope_Default",
+							"WalkableSlopeAngle": 0
+						},
+						"PhysMaterialOverride": null,
+						"MaxAngularVelocity": 3600,
+						"CustomSleepThresholdMultiplier": 1,
+						"StabilizationThresholdMultiplier": 1,
+						"PhysicsBlendWeight": 0,
+						"bSimulatePhysics": false,
+						"bOverrideMass": false,
+						"bEnableGravity": true,
+						"bUpdateKinematicFromSimulation": false,
+						"bGyroscopicTorqueEnabled": false,
+						"bAutoWeld": true,
+						"bStartAwake": true,
+						"bGenerateWakeEvents": false,
+						"bUpdateMassWhenScaleChanges": true
+					},
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": true,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": false,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": true,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			}
+		},
+		"defaults":
+		{
+			"Box": null,
+			"DefaultSceneRoot": null,
+			"Door_Control_NewTrack_0_9027BDA34FB8CF4858BE4191F8EB344A": 0,
+			"Door_Control__Direction_9027BDA34FB8CF4858BE4191F8EB344A": "Forward",
+			"Door Control": null,
+			"Door Size":
+			{
+				"X": 400,
+				"Y": 100,
+				"Z": 400
+			},
+			"Door Frame": true,
+			"Door Frame Scale": 1,
+			"Door": null,
+			"Closed Position":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"Door Detection Adjust":
+			{
+				"X": 100,
+				"Y": 400,
+				"Z": 0
+			},
+			"Door Thickness": 0.20000000000000001,
+			"Split Door": false,
+			"Door Frame Overide Material": null,
+			"Add Door": true,
+			"Door2": null,
+			"Closed Position_0":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": true,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
 }
