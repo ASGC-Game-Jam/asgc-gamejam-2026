@@ -1,9 +1,9 @@
 ﻿#pragma once
 #include "StateTreeTaskBase.h"
-#include "STTask_ChooseRandomLocation.generated.h"
+#include "StateTreeChooseRandomLocationTask.generated.h"
 
 USTRUCT()
-struct PROJECTATLANTIS_API FSTTask_ChooseRandomLocationInstanceData
+struct PROJECTATLANTIS_API FStateTreeChooseRandomLocationTaskInstanceData
 {
 	GENERATED_BODY()
 	
@@ -12,11 +12,14 @@ struct PROJECTATLANTIS_API FSTTask_ChooseRandomLocationInstanceData
 };
 
 USTRUCT()
-struct PROJECTATLANTIS_API FSTTask_ChooseRandomLocation : public FStateTreeTaskCommonBase
+struct PROJECTATLANTIS_API FStateTreeChooseRandomLocationTask : public FStateTreeTaskCommonBase
 {
 	GENERATED_BODY()
 	
-	virtual const UStruct* GetInstanceDataType() const override {return FSTTask_ChooseRandomLocationInstanceData::StaticStruct();};
+	virtual const UStruct* GetInstanceDataType() const override
+	{
+		return FStateTreeChooseRandomLocationTaskInstanceData::StaticStruct();
+	};
 	
 	virtual EStateTreeRunStatus EnterState(FStateTreeExecutionContext& Context, const FStateTreeTransitionResult& Transition) const override;
 	

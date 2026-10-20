@@ -1,14 +1,11 @@
-﻿#include "AI/GameplayDebuggerCategory_EnemyAI.h"
+﻿#if WITH_GAMEPLAY_DEBUGGER
+#include "AI/GameplayDebuggerCategory_EnemyAI.h"
 
-#include "IMediaControls.h"
-#include "StateTree.h"
-#include "Components/StateTreeAIComponent.h"
 #include "Core/AtlantisAICharacter.h"
 #include "Core/AtlantisEnemyController.h"
 #include "Core/AtlantisPlayerCharacter.h"
 #include "Kismet/GameplayStatics.h"
 
-#if WITH_GAMEPLAY_DEBUGGER
 
 FGameplayDebuggerCategory_EnemyAI::FGameplayDebuggerCategory_EnemyAI()
 {
@@ -17,23 +14,33 @@ FGameplayDebuggerCategory_EnemyAI::FGameplayDebuggerCategory_EnemyAI()
 
 TSharedRef<FGameplayDebuggerCategory> FGameplayDebuggerCategory_EnemyAI::MakeInstance()
 {
-	return MakeShareable(new FGameplayDebuggerCategory_EnemyAI());
+	return MakeShared<FGameplayDebuggerCategory_EnemyAI>();
 }
 
 void FGameplayDebuggerCategory_EnemyAI::PrintEnemyStatus(AAtlantisPlayerCharacter* PlayerCharacter,
                                                          AController* Controller)
 {
+	if (PlayerCharacter == nullptr)
+	{
+		return;
+	}
 	FVector PlayerLocation = PlayerCharacter->GetActorLocation();
 	AAtlantisEnemyController* EnemyController = Cast<AAtlantisEnemyController>(Controller);
 	if (EnemyController == nullptr)
+	{
 		return;
+	}
 		
 	AAtlantisAICharacter* AICharacter = Cast<AAtlantisAICharacter>(EnemyController->GetCharacter());
 	if (AICharacter == nullptr)
+	{
 		return;
+	}
 		
 	if (FMath::Square(DrawDebugInfoRadius) < FVector::DistSquared(PlayerLocation, AICharacter->GetActorLocation()))
+	{
 		return;
+	}
 		
 	EMonsterStatus CurrentStatus = EnemyController->GetCurrentStatus();
 		
@@ -88,10 +95,14 @@ void FGameplayDebuggerCategory_EnemyAI::CollectData(APlayerController* OwnerPlay
 
 	auto* World = OwnerPlayerController->GetWorld();
 	if (World == nullptr)
+	{
 		return;
+	}
 
 	if (DebugActor == nullptr)
+	{
 		return;
+	}
 	
 	ResetReplicatedData();
 	
@@ -107,10 +118,14 @@ void FGameplayDebuggerCategory_EnemyAI::CollectData(APlayerController* OwnerPlay
 		{
 			AAtlantisEnemyController* EnemyController = Cast<AAtlantisEnemyController>(OutActor);
 			if (EnemyController == nullptr)
+			{
 				continue;
+			}
 			
 			if (EnemyController->PerceivedActors.Find(PlayerCharacter) == nullptr)
+			{
 				continue;
+			}
 			
 			Data.EnemyPerceptionData.Add(EnemyController);
 		}
@@ -143,13 +158,17 @@ void FGameplayDebuggerCategory_EnemyAI::DrawData(APlayerController* OwnerPlayerC
 		CanvasContext.Printf(TEXT("Enemies that have perception info on this character (%s):"), *OwnerPlayerController->GetCharacter()->GetName());
 		AAtlantisPlayerCharacter* PlayerCharacter = Cast<AAtlantisPlayerCharacter>(OwnerPlayerController->GetCharacter());
 		if (PlayerCharacter == nullptr)
+		{
 			return;
+		}
 		
 		for (AAtlantisEnemyController* EnemyController : Data.EnemyPerceptionData)
 		{
 			FPlayerPerceptionData* PerceptionStruct = EnemyController->PerceivedActors.Find(PlayerCharacter);
 			if (PerceptionStruct == nullptr)
+			{
 				return;
+			}
 			
 			FString EnemyName = EnemyController->GetCharacter()->GetName();
 			FString StatusString = UEnum::GetValueAsString(EnemyController->GetCurrentStatus());

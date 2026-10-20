@@ -6,7 +6,9 @@
 #include "AITypes.h"
 #include "AtlantisAITypes.h"
 #include "StateTreeEvaluatorBase.h"
-#include "STEval_PerceptionSys.generated.h"
+#include "Core/AtlantisAICharacter.h"
+#include "Core/AtlantisEnemyController.h"
+#include "StateTreePerceptionEvaluator.generated.h"
 
 class AAtlantisPlayerCharacter;
 class AAtlantisEnemyController;
@@ -20,12 +22,12 @@ class AAtlantisEnemyController;
 // (Unless you're storing it in some persistent object outside of the state tree system, like a controller)
 // This is because the state tree execution context is scrapped and recreated every tick.
 
-// In general, data, parameters, and anything external ought be stored in the Instance Data.
+// In general, data, parameters, and anything external ought to be stored in the Instance Data.
 // Any initial parameters, such as, say, the initial duration of timers, maximum distance to a location, etc. are fine
 // to store in the actual struct itself.
 
 USTRUCT()
-struct PROJECTATLANTIS_API FSTEval_PerceptionSysInstanceData
+struct PROJECTATLANTIS_API FStateTreePerceptionEvaluatorInstanceData
 {
 	GENERATED_BODY()
 	
@@ -54,29 +56,38 @@ struct PROJECTATLANTIS_API FSTEval_PerceptionSysInstanceData
  * Uses an Atlantis Enemy's Perception Component in order to reflect perception in our AI.
  */
 USTRUCT(DisplayName = "Perception Evaluator")
-struct PROJECTATLANTIS_API FSTEval_PerceptionSys : public FStateTreeEvaluatorCommonBase
+struct PROJECTATLANTIS_API FStateTreePerceptionEvaluator : public FStateTreeEvaluatorCommonBase
 {
 	GENERATED_BODY()
 	
 	// Required to properly get instance data.
-	virtual const UStruct* GetInstanceDataType() const override {return FSTEval_PerceptionSysInstanceData::StaticStruct();}
+	virtual const UStruct* GetInstanceDataType() const override
+	{
+		return FStateTreePerceptionEvaluatorInstanceData::StaticStruct();
+	}
 
 	void SetEnemyStatus(AAtlantisEnemyController* EnemyController, EMonsterStatus NewStatus) const;
+	void ProcessSensedActor(float DeltaTime, AAtlantisEnemyController* EnemyController, AActor* SensedActor) const;
+	void ProcessUnsensedActor(float DeltaTime, const AAtlantisAICharacter* EnemyPawn,
+	                           TPair<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceptionData)
+	const;
+	void HandleStatus(AAtlantisEnemyController* EnemyController,
+	                  TMap<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceivedActors) const;
 	virtual void Tick(FStateTreeExecutionContext& Context, const float DeltaTime) const override;
 	
 	// An example of a parameter that can logically exist in the struct itself, rather than the Instance Data.
 	// The Parameter Category denotes a value that should not use a different State Tree Node's output value,
 	// and instead use an explicit user-defined value.
-	// The distance at which we should instantly enter the combat state if we see a player, crouched or not.
+	/** The distance at which we should instantly enter the combat state if we see a player, crouched or not. */
 	UPROPERTY(EditDefaultsOnly, Category = Parameter, meta = (Units = "cm"))
 	float SightInstantAggroRadius = 1000.f;
 	
-	// When we lose all stimuli from a player character, how long do we wait until their
-	// associated perception value decays?
+	/** When we lose all stimuli from a player character, how long do we wait until their
+	associated perception value decays? */
 	UPROPERTY(EditDefaultsOnly, Category = Parameter, meta = (Units = "s", ClampMin = 0, UIMin = 0))
 	float InitialPerceptionHysteresisTime = 5.f;
 
-	// How quickly we should "forget" the associated player.
+	/** How quickly we should "forget" the associated player. */
 	UPROPERTY(EditDefaultsOnly, Category = Parameter, meta = (ClampMin = 0, UIMin = 0, ClampMax = 1, UIMax = 1))
 	float PerceptionDecayPerSecond = 0.1f;
 	
@@ -84,7 +95,7 @@ struct PROJECTATLANTIS_API FSTEval_PerceptionSys : public FStateTreeEvaluatorCom
 	// Even though both Sight Instant Aggro Radius and the maximum distance to see someone are separate values,
 	// I think this curve's X-axis should be purely distance-based, and not from 0-1. This should make it easier for
 	// designers to visualize how much perception value is accrued per second at specific distances.
-	// Speaking of which, the Y-axis should be the perception value per tick. Perception values exist from 0-1.
+	/** The Y-axis should be the perception value per tick. Perception values exist from 0-1.*/
 	UPROPERTY(EditDefaultsOnly, Category = Parameter)
 	TObjectPtr<UCurveFloat> SightDistanceCurve;
 };
