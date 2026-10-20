@@ -1,6 +1,8 @@
 #include "Analytics/ScenePerformanceAnalyticsSubsystem.h"
+#include "Analytics/GameplayAnalyticsSubsystem.h"
 
 #include "Engine/Engine.h"
+#include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "GameAnalytics.h"
 #include "Analytics.h"
@@ -22,6 +24,7 @@ void UScenePerformanceAnalyticsSubsystem::Initialize(FSubsystemCollectionBase& C
 	{
 		if (AnalyticsProvider->StartSession())
 		{
+			bAnalyticsReady = true;
 			UE_LOG(LogScenePerformanceAnalytics, Display, TEXT("GameAnalytics session started"));
 		}
 		else
@@ -177,13 +180,13 @@ void UScenePerformanceAnalyticsSubsystem::SubmitTiming(const FString& EventId, c
 		return;
 	}
 
-#if !WITH_EDITOR
-
-	if (UGameAnalytics* GameAnalytics = UGameAnalytics::GetInstance())
+	if (const UGameInstance* GameInstance = GetGameInstance())
 	{
-		GameAnalytics->AddDesignEventWithValue(EventId, Milliseconds);
+		if (UGameplayAnalyticsSubsystem* GameplayAnalytics = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>())
+		{
+			GameplayAnalytics->RecordPerformanceValue(EventId, Milliseconds);
+		}
 	}
-#endif
 }
 
 FString UScenePerformanceAnalyticsSubsystem::GetSceneName(const UWorld* World)
@@ -210,15 +213,10 @@ FString UScenePerformanceAnalyticsSubsystem::SanitizeEventSegment(const FString&
 
 	for (const TCHAR Character : Segment)
 	{
-		const bool bAllowed = FChar::IsAlnum(Character)
+		const bool bAllowed = ((Character >= 'a' && Character <= 'z') || (Character >= 'A' && Character <= 'Z') || (Character >= '0' && Character <= '9'))
 			|| Character == TEXT('_')
 			|| Character == TEXT('-')
-			|| Character == TEXT('.')
-			|| Character == TEXT(' ')
-			|| Character == TEXT('(')
-			|| Character == TEXT(')')
-			|| Character == TEXT('!')
-			|| Character == TEXT('?');
+			|| Character == TEXT('.');
 
 		Sanitized.AppendChar(bAllowed ? Character : TEXT('_'));
 	}
