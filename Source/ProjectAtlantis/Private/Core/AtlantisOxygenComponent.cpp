@@ -153,7 +153,7 @@ bool UAtlantisOxygenComponent::RestoreOxygen(const float RestoreOxygenAmount)
 {
 	// This acts as the mirror opposite of RequestOxygen: where RequestOxygen subtracts, this adds
 	bool status = false;
-	if (!HasOwnerAuthority() || RestoreOxygenAmount < 0.0f) // TODO: do we want to be able to use negative numbers such as fake chargers or a chance of "leaking" oxygen instead when grabbing canisters etc?
+	if (!HasOwnerAuthority() || RestoreOxygenAmount < 0.0f)
 	{
 		status = false;
 
