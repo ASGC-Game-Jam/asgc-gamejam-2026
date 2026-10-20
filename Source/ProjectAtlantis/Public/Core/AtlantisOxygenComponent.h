@@ -85,6 +85,10 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestOxygen(float RequestedOxygen);
 
+	/** Restores the requested oxygen. Clamps to current capacity and allocated oxygen. Returns whether the restore occurred. */
+	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
+	bool RestoreOxygen(const float RestoredOxygen);
+	
 	/** Locks the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestOxygenAllocation(float RequestedOxygen);

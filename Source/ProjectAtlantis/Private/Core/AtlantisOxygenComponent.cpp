@@ -84,6 +84,26 @@ void UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
 	UpdateCriticalOxygen();
 }
 
+bool UAtlantisOxygenComponent::RestoreOxygen(const float RestoredOxygen)
+{
+	// While this function appears similar to the SetCurrentOxygen function a major difference is that this one
+	//		returns a status whether the restore occurred or was rejected, such as the lack of authority to restore or
+	//		the current oxygen effectively already being the same amount as the clamped oxygen.
+	bool status = false;
+	const float NewCurrentOxygen = CurrentOxygen + RestoredOxygen;
+	const float ClampedOxygen = FMath::Clamp(NewCurrentOxygen, AllocatedOxygen, OxygenCapacity);
+	if (!HasOwnerAuthority() || FMath::IsNearlyEqual(CurrentOxygen, ClampedOxygen)) status = false;
+	else
+	{
+		CurrentOxygen = ClampedOxygen;
+		OnRep_CurrentOxygen(ClampedOxygen);
+		UpdateCriticalOxygen();
+		status = true;
+	}
+
+	return status;
+}
+
 void UAtlantisOxygenComponent::SetCriticalOxygen(bool bNewCriticalOxygen)
 {
 	if (!HasOwnerAuthority() || bCriticalOxygen == bNewCriticalOxygen)
