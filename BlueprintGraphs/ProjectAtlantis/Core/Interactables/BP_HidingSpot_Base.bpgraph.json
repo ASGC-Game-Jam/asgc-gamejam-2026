@@ -1,0 +1,1285 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/Interactables/BP_HidingSpot_Base",
+	"asset": "BP_HidingSpot_Base",
+	"assetClass": "Blueprint",
+	"parentClass": "Actor",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "3fb54cfa49d99567481d968fe54083cb",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3fb54cfa49d99567481d968fe54083cb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0fbeab674e3132b247f7709ab5ab786f",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": -48,
+					"y": 864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0fbeab674e3132b247f7709ab5ab786f:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"fa3ce4e048b77adc8296e28cd1c43123:o:PlayerCharacter"
+							]
+						},
+						{
+							"id": "0fbeab674e3132b247f7709ab5ab786f:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"b90583c04b9b10b945ff9e91b3ab1e9b:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "10017f0e4a585d132f0321812b915136",
+					"class": "K2Node_Self",
+					"title": "Self-Reference",
+					"x": 752,
+					"y": 816,
+					"comment": null,
+					"pins": [
+						{
+							"id": "10017f0e4a585d132f0321812b915136:o:self",
+							"name": "self",
+							"direction": "output",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": [
+								"9520180d4dbf2efe40adef9a05eaba9e:i:HidingSpot"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1a4e4281471992be447a83812f10e003",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "1a4e4281471992be447a83812f10e003:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1a4e4281471992be447a83812f10e003:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1a4e4281471992be447a83812f10e003:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "409f42584bb76103841e39b80d1d228f",
+					"class": "K2Node_CallFunction",
+					"title": "Toggle Examine Mode Camera",
+					"x": 1456,
+					"y": 576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "409f42584bb76103841e39b80d1d228f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ab823d714e1b12bc09b853be021bd10a:o:then"
+							]
+						},
+						{
+							"id": "409f42584bb76103841e39b80d1d228f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "409f42584bb76103841e39b80d1d228f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"b90583c04b9b10b945ff9e91b3ab1e9b:o:OutputPin"
+							]
+						},
+						{
+							"id": "409f42584bb76103841e39b80d1d228f:i:TurnOn",
+							"name": "TurnOn",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8138918c49440af2f14ca99cade0201f:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "44d0cacc4ed11459d6e42eb842d81f0c",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "44d0cacc4ed11459d6e42eb842d81f0c:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "44d0cacc4ed11459d6e42eb842d81f0c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6805ea484813a12bcc6934baae426a6c",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 592,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6805ea484813a12bcc6934baae426a6c:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"8dae8d0749f3528edc620b89a5787db8:o:OutputPin"
+							]
+						},
+						{
+							"id": "6805ea484813a12bcc6934baae426a6c:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"8c4b6e6e47070db55d1061a8da0d789f:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8138918c49440af2f14ca99cade0201f",
+					"class": "K2Node_PromotableOperator",
+					"title": "Not Equal (Boolean)",
+					"x": 1216,
+					"y": 640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8138918c49440af2f14ca99cade0201f:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"ab823d714e1b12bc09b853be021bd10a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8138918c49440af2f14ca99cade0201f:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "8138918c49440af2f14ca99cade0201f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"409f42584bb76103841e39b80d1d228f:i:TurnOn"
+							]
+						},
+						{
+							"id": "8138918c49440af2f14ca99cade0201f:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8c4b6e6e47070db55d1061a8da0d789f",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 736,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8c4b6e6e47070db55d1061a8da0d789f:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"6805ea484813a12bcc6934baae426a6c:o:OutputPin"
+							]
+						},
+						{
+							"id": "8c4b6e6e47070db55d1061a8da0d789f:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"9520180d4dbf2efe40adef9a05eaba9e:i:self",
+								"ab823d714e1b12bc09b853be021bd10a:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8dae8d0749f3528edc620b89a5787db8",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 208,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8dae8d0749f3528edc620b89a5787db8:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"920069d14156c3bf8d777180cdf0af2c:o:HidingComponent"
+							]
+						},
+						{
+							"id": "8dae8d0749f3528edc620b89a5787db8:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"6805ea484813a12bcc6934baae426a6c:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "920069d14156c3bf8d777180cdf0af2c",
+					"class": "K2Node_VariableGet",
+					"title": "Get HidingComponent",
+					"x": -32,
+					"y": 816,
+					"comment": null,
+					"pins": [
+						{
+							"id": "920069d14156c3bf8d777180cdf0af2c:o:HidingComponent",
+							"name": "HidingComponent",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"8dae8d0749f3528edc620b89a5787db8:i:InputPin",
+								"f23a03964628e403c1e321a9e9fc3a48:i:self"
+							]
+						},
+						{
+							"id": "920069d14156c3bf8d777180cdf0af2c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerCharacter",
+							"defaultValue": null,
+							"links": [
+								"fa3ce4e048b77adc8296e28cd1c43123:o:PlayerCharacter"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9520180d4dbf2efe40adef9a05eaba9e",
+					"class": "K2Node_CallFunction",
+					"title": "EnterHidingSpot",
+					"x": 896,
+					"y": 720,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9520180d4dbf2efe40adef9a05eaba9e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dbd656624de7b0cf1bc2a39b8199a663:o:else"
+							]
+						},
+						{
+							"id": "9520180d4dbf2efe40adef9a05eaba9e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ce275b894324f2c411dbb8848641fc9d:i:execute"
+							]
+						},
+						{
+							"id": "9520180d4dbf2efe40adef9a05eaba9e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"8c4b6e6e47070db55d1061a8da0d789f:o:OutputPin"
+							]
+						},
+						{
+							"id": "9520180d4dbf2efe40adef9a05eaba9e:i:HidingSpot",
+							"name": "HidingSpot",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"10017f0e4a585d132f0321812b915136:o:self"
+							]
+						},
+						{
+							"id": "9520180d4dbf2efe40adef9a05eaba9e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"ce275b894324f2c411dbb8848641fc9d:i:TurnOn"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ab823d714e1b12bc09b853be021bd10a",
+					"class": "K2Node_CallFunction",
+					"title": "ExitHidingSpot",
+					"x": 896,
+					"y": 576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ab823d714e1b12bc09b853be021bd10a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dbd656624de7b0cf1bc2a39b8199a663:o:then"
+							]
+						},
+						{
+							"id": "ab823d714e1b12bc09b853be021bd10a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"409f42584bb76103841e39b80d1d228f:i:execute"
+							]
+						},
+						{
+							"id": "ab823d714e1b12bc09b853be021bd10a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"8c4b6e6e47070db55d1061a8da0d789f:o:OutputPin"
+							]
+						},
+						{
+							"id": "ab823d714e1b12bc09b853be021bd10a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8138918c49440af2f14ca99cade0201f:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b90583c04b9b10b945ff9e91b3ab1e9b",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1136,
+					"y": 864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b90583c04b9b10b945ff9e91b3ab1e9b:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"0fbeab674e3132b247f7709ab5ab786f:o:OutputPin"
+							]
+						},
+						{
+							"id": "b90583c04b9b10b945ff9e91b3ab1e9b:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"409f42584bb76103841e39b80d1d228f:i:self",
+								"ce275b894324f2c411dbb8848641fc9d:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ce275b894324f2c411dbb8848641fc9d",
+					"class": "K2Node_CallFunction",
+					"title": "Toggle Examine Mode Camera",
+					"x": 1216,
+					"y": 720,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ce275b894324f2c411dbb8848641fc9d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9520180d4dbf2efe40adef9a05eaba9e:o:then"
+							]
+						},
+						{
+							"id": "ce275b894324f2c411dbb8848641fc9d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ce275b894324f2c411dbb8848641fc9d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"b90583c04b9b10b945ff9e91b3ab1e9b:o:OutputPin"
+							]
+						},
+						{
+							"id": "ce275b894324f2c411dbb8848641fc9d:i:TurnOn",
+							"name": "TurnOn",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"9520180d4dbf2efe40adef9a05eaba9e:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dbd656624de7b0cf1bc2a39b8199a663",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 608,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dbd656624de7b0cf1bc2a39b8199a663:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fa3ce4e048b77adc8296e28cd1c43123:o:then"
+							]
+						},
+						{
+							"id": "dbd656624de7b0cf1bc2a39b8199a663:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f23a03964628e403c1e321a9e9fc3a48:o:ReturnValue"
+							]
+						},
+						{
+							"id": "dbd656624de7b0cf1bc2a39b8199a663:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ab823d714e1b12bc09b853be021bd10a:i:execute"
+							]
+						},
+						{
+							"id": "dbd656624de7b0cf1bc2a39b8199a663:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9520180d4dbf2efe40adef9a05eaba9e:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ee40c1074512ef167b9b40bc96eeb524",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "ee40c1074512ef167b9b40bc96eeb524:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ee40c1074512ef167b9b40bc96eeb524:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ee40c1074512ef167b9b40bc96eeb524:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f23a03964628e403c1e321a9e9fc3a48",
+					"class": "K2Node_CallFunction",
+					"title": "IsHiding",
+					"x": 272,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f23a03964628e403c1e321a9e9fc3a48:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"920069d14156c3bf8d777180cdf0af2c:o:HidingComponent"
+							]
+						},
+						{
+							"id": "f23a03964628e403c1e321a9e9fc3a48:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"dbd656624de7b0cf1bc2a39b8199a663:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fa3ce4e048b77adc8296e28cd1c43123",
+					"class": "K2Node_Event",
+					"title": "Event Examine",
+					"x": -256,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fa3ce4e048b77adc8296e28cd1c43123:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fa3ce4e048b77adc8296e28cd1c43123:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dbd656624de7b0cf1bc2a39b8199a663:i:execute"
+							]
+						},
+						{
+							"id": "fa3ce4e048b77adc8296e28cd1c43123:o:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"0fbeab674e3132b247f7709ab5ab786f:i:InputPin",
+								"920069d14156c3bf8d777180cdf0af2c:i:self"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+			"DefaultSceneRoot":
+			{
+				"class": "SceneComponent",
+				"parent": null,
+				"properties":
+				{
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": false,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": true,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			},
+			"HidingSpot":
+			{
+				"class": "SmartObjectComponent",
+				"parent": "DefaultSceneRoot",
+				"properties":
+				{
+					"ComponentGuid": "00000000000000000000000000000000",
+					"DefinitionRef":
+					{
+						"SmartObjectDefinition": "/Game/ProjectAtlantis/Core/Interactables/SOD_HidingSpot.SOD_HidingSpot",
+						"Parameters":
+						{
+							"Value": "None"
+						},
+						"PropertyOverrides": []
+					},
+					"bCanBePartOfCollection": false,
+					"bDeprecationApplied": true,
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": false,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": false,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			},
+			"Sphere":
+			{
+				"class": "SphereComponent",
+				"parent": "DefaultSceneRoot",
+				"properties":
+				{
+					"SphereRadius": 32,
+					"AreaClass": "/Script/NavigationSystem.NavArea_Obstacle",
+					"ShapeColor":
+					{
+						"B": 0,
+						"G": 0,
+						"R": 255,
+						"A": 255
+					},
+					"bDrawOnlyIfSelected": false,
+					"bShouldCollideWhenPlacing": false,
+					"bDynamicObstacle": false,
+					"bUseSystemDefaultObstacleAreaClass": true,
+					"AreaClassOverride": null,
+					"LineThickness": 0,
+					"MinDrawDistance": 0,
+					"LDMaxDrawDistance": 0,
+					"CachedMaxDrawDistance": 0,
+					"DepthPriorityGroup": "SDPG_World",
+					"ViewOwnerDepthPriorityGroup": "SDPG_World",
+					"IndirectLightingCacheQuality": "ILCQ_Point",
+					"LightmapType": "Default",
+					"HLODBatchingPolicy": "None",
+					"ShadowCacheInvalidationBehavior": "Auto",
+					"bEnableAutoLODGeneration": true,
+					"bIsActorTextureStreamingBuiltData": false,
+					"bIsValidTextureStreamingBuiltData": false,
+					"bNeverDistanceCull": false,
+					"bAlwaysCreatePhysicsState": false,
+					"bGenerateOverlapEvents": true,
+					"bMultiBodyOverlap": false,
+					"bTraceComplexOnMove": false,
+					"bReturnMaterialOnMove": false,
+					"bUseViewOwnerDepthPriorityGroup": false,
+					"bAllowCullDistanceVolume": true,
+					"bVisibleInReflectionCaptures": true,
+					"bVisibleInRealTimeSkyCaptures": true,
+					"bVisibleInRayTracing": true,
+					"bRenderInMainPass": true,
+					"bRenderInDepthPass": true,
+					"bReceivesDecals": true,
+					"bHoldout": false,
+					"bOwnerNoSee": false,
+					"bOnlyOwnerSee": false,
+					"bTreatAsBackgroundForOcclusion": false,
+					"bUseAsOccluder": false,
+					"bSelectable": true,
+					"bWantsEditorEffects": false,
+					"bConsiderForActorPlacementWhenHidden": false,
+					"bForceMipStreaming": false,
+					"bHasPerInstanceHitProxies": false,
+					"CastShadow": false,
+					"bEmissiveLightSource": false,
+					"bAffectDynamicIndirectLighting": true,
+					"bAffectIndirectLightingWhileHidden": false,
+					"bAffectDistanceFieldLighting": true,
+					"bCastDynamicShadow": false,
+					"bCastStaticShadow": true,
+					"bCastVolumetricTranslucentShadow": false,
+					"bCastContactShadow": true,
+					"bSelfShadowOnly": false,
+					"bCastFarShadow": false,
+					"bCastInsetShadow": false,
+					"bCastCinematicShadow": false,
+					"bCastHiddenShadow": false,
+					"bCastShadowAsTwoSided": false,
+					"bLightAttachmentsAsGroup": false,
+					"bExcludeFromLightAttachmentGroup": true,
+					"bReceiveMobileCSMShadows": true,
+					"bSingleSampleShadowFromStationaryLights": false,
+					"bIgnoreRadialImpulse": false,
+					"bIgnoreRadialForce": false,
+					"bApplyImpulseOnDamage": true,
+					"bReplicatePhysicsToAutonomousProxy": true,
+					"bFillCollisionUnderneathForNavmesh": false,
+					"bRasterizeAsFilledConvexVolume": false,
+					"AlwaysLoadOnClient": true,
+					"AlwaysLoadOnServer": true,
+					"bUseEditorCompositing": true,
+					"bRenderCustomDepth": false,
+					"bVisibleInSceneCaptureOnly": false,
+					"bHiddenInSceneCapture": false,
+					"bRayTracingFarField": false,
+					"bLumenHeightfield": false,
+					"FirstPersonPrimitiveType": "None",
+					"bHasNoStreamableTextures": false,
+					"bStaticWhenNotMoveable": true,
+					"bHasCustomNavigableGeometry": "Yes",
+					"HitProxyPriority": "HPP_World",
+					"CanCharacterStepUpOn": "ECB_Yes",
+					"LightingChannels":
+					{
+						"bChannel0": true,
+						"bChannel1": false,
+						"bChannel2": false
+					},
+					"RayTracingGroupCullingPriority": "CP_4_DEFAULT",
+					"CustomDepthStencilWriteMask": "ERSM_Default",
+					"ExcludeFromHLODLevels": 0,
+					"RayTracingGroupId": -1,
+					"VisibilityId": -1,
+					"CustomDepthStencilValue": 0,
+					"CustomPrimitiveData":
+					{
+						"Data": []
+					},
+					"TranslucencySortPriority": 0,
+					"TranslucencySortDistanceOffset": 0,
+					"RuntimeVirtualTextures": [],
+					"VirtualTextureLodBias": 0,
+					"VirtualTextureCullMips": 0,
+					"VirtualTextureMinCoverage": 0,
+					"VirtualTextureRenderPassType": "Exclusive",
+					"BoundsScale": 1,
+					"BodyInstance":
+					{
+						"PositionSolverIterationCount": 8,
+						"VelocitySolverIterationCount": 2,
+						"ProjectionSolverIterationCount": 1,
+						"ObjectType": "ECC_WorldDynamic",
+						"CollisionEnabled": "QueryOnly",
+						"SleepFamily": "Normal",
+						"DOFMode": "Default",
+						"bUseCCD": false,
+						"bUseMACD": false,
+						"bAllowPartialIslandSleep": true,
+						"bIgnoreAnalyticCollisions": false,
+						"bNotifyRigidBodyCollision": false,
+						"bSmoothEdgeCollisions": false,
+						"bLockTranslation": true,
+						"bLockRotation": true,
+						"bLockXTranslation": false,
+						"bLockYTranslation": false,
+						"bLockZTranslation": false,
+						"bLockXRotation": false,
+						"bLockYRotation": false,
+						"bLockZRotation": false,
+						"bOverrideMaxAngularVelocity": false,
+						"bOverrideMaxDepenetrationVelocity": false,
+						"bOverrideWalkableSlopeOnInstance": false,
+						"bOverrideIterationCounts": false,
+						"bInterpolateWhenSubStepping": true,
+						"bInertiaConditioning": true,
+						"bOneWayInteraction": false,
+						"bOverrideSolverAsyncDeltaTime": false,
+						"SolverAsyncDeltaTime": 0.016666670000000001,
+						"CollisionProfileName": "Custom",
+						"CollisionResponses":
+						{
+							"ResponseArray": [
+								{
+									"Channel": "WorldStatic",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "WorldDynamic",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Pawn",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Visibility",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Camera",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "PhysicsBody",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Vehicle",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Destructible",
+									"Response": "ECR_Ignore"
+								},
+								{
+									"Channel": "Interact",
+									"Response": "ECR_Block"
+								}
+							]
+						},
+						"MaxDepenetrationVelocity": 0,
+						"MassInKgOverride": 100,
+						"LinearDamping": 0.01,
+						"AngularDamping": 0,
+						"CustomDOFPlaneNormal":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0
+						},
+						"COMNudge":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0
+						},
+						"MassScale": 1,
+						"GravityGroupIndex": 0,
+						"InertiaTensorScale":
+						{
+							"X": 1,
+							"Y": 1,
+							"Z": 1
+						},
+						"WalkableSlopeOverride":
+						{
+							"WalkableSlopeBehavior": "WalkableSlope_Default",
+							"WalkableSlopeAngle": 0
+						},
+						"PhysMaterialOverride": null,
+						"MaxAngularVelocity": 3600,
+						"CustomSleepThresholdMultiplier": 1,
+						"StabilizationThresholdMultiplier": 1,
+						"PhysicsBlendWeight": 0,
+						"bSimulatePhysics": false,
+						"bOverrideMass": false,
+						"bEnableGravity": true,
+						"bUpdateKinematicFromSimulation": false,
+						"bGyroscopicTorqueEnabled": false,
+						"bAutoWeld": true,
+						"bStartAwake": true,
+						"bGenerateWakeEvents": false,
+						"bUpdateMassWhenScaleChanges": true
+					},
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 4,
+						"Y": 4,
+						"Z": 4
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": true,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": false,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": true,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			}
+		},
+		"defaults":
+		{
+			"Sphere": null,
+			"HidingSpot": null,
+			"DefaultSceneRoot": null,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": true,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}
