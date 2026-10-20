@@ -69,38 +69,23 @@ void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen
 	UpdateCriticalOxygen();
 }
 
-void UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
+bool UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
 {
+	bool status = false;
 	// Current oxygen includes the ballast allocation; consumption can only use the unlocked portion and cannot exceed capacity.
 	const float ClampedOxygen = FMath::Clamp(NewCurrentOxygen, AllocatedOxygen, OxygenCapacity);
 	if (!HasOwnerAuthority() || FMath::IsNearlyEqual(CurrentOxygen, ClampedOxygen))
 	{
-		return;
+		status = false;
 	}
-
-	const float OldCurrentOxygen = CurrentOxygen;
-	CurrentOxygen = ClampedOxygen;
-	OnRep_CurrentOxygen(OldCurrentOxygen);
-	UpdateCriticalOxygen();
-}
-
-bool UAtlantisOxygenComponent::RestoreOxygen(const float RestoredOxygen)
-{
-	// While this function appears similar to the SetCurrentOxygen function a major difference is that this one
-	//		returns a status whether the restore occurred or was rejected, such as the lack of authority to restore or
-	//		the current oxygen effectively already being the same amount as the clamped oxygen.
-	bool status = false;
-	const float NewCurrentOxygen = CurrentOxygen + RestoredOxygen;
-	const float ClampedOxygen = FMath::Clamp(NewCurrentOxygen, AllocatedOxygen, OxygenCapacity);
-	if (!HasOwnerAuthority() || FMath::IsNearlyEqual(CurrentOxygen, ClampedOxygen)) status = false;
 	else
 	{
+		const float OldCurrentOxygen = CurrentOxygen;
 		CurrentOxygen = ClampedOxygen;
-		OnRep_CurrentOxygen(ClampedOxygen);
+		OnRep_CurrentOxygen(OldCurrentOxygen);
 		UpdateCriticalOxygen();
 		status = true;
 	}
-
 	return status;
 }
 
@@ -162,6 +147,23 @@ bool UAtlantisOxygenComponent::RequestOxygen(const float RequestedOxygen)
 	}
 
 	return bRequestAccepted;
+}
+
+bool UAtlantisOxygenComponent::RestoreOxygen(const float RestoreOxygenAmount)
+{
+	// This acts as the mirror opposite of RequestOxygen: where RequestOxygen subtracts, this adds
+	bool status = false;
+	if (!HasOwnerAuthority() || RestoreOxygenAmount < 0.0f)
+	{
+		status = false;
+
+	}
+	else
+	{
+		status = SetCurrentOxygen(RestoreOxygenAmount);
+	}
+
+	return status;
 }
 
 bool UAtlantisOxygenComponent::RequestOxygenAllocation(const float RequestedOxygen)
