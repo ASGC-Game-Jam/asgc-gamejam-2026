@@ -7,6 +7,8 @@
 #include "Core/EAtlantisTraversalMode.h"
 #include "AtlantisPlayerCharacter.generated.h"
 
+class UAtlantisHidingComponent;
+
 UCLASS()
 class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
 {
@@ -57,4 +59,8 @@ private:
 	
 	/** Pushes the current traversal mode to the PlayerState. */
 	void UpdateTraversalMode() const;
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Atlantis|Stealth")
+	TObjectPtr<UAtlantisHidingComponent> HidingComponent;
 };
