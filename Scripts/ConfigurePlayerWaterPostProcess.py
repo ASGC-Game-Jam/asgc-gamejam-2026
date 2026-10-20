@@ -20,6 +20,8 @@ source_desc = next(desc for desc in descs if str(desc.name) == SOURCE_NAME)
 unreal.WorldPartitionBlueprintLibrary.load_actors([source_desc.guid])
 actors = actors_api.get_all_level_actors()
 source = next(actor for actor in actors if actor.get_name() == SOURCE_NAME)
+override_flags = [name for name in dir(source.settings) if name.startswith("override_") and getattr(source.settings, name)]
+assert not override_flags, "Review additional authored water settings before using the material-only migration"
 material = unreal.load_asset(MATERIAL)
 gate_class = unreal.load_class(None, "/Script/ProjectAtlantis.AtlantisPlayerWaterPostProcess")
 assert gate_class and material
@@ -64,7 +66,8 @@ generic = [actor for actor in actors if isinstance(actor, unreal.PostProcessVolu
 assert generic and all(actor.enabled for actor in generic), "Unrelated unbound volumes must remain enabled"
 report = {"map": MAP, "source_actor": source.get_path_name(), "source_package": str(source_desc.actor_package),
           "gate": gate.get_path_name(), "material": MATERIAL, "priority": source.priority,
-          "other_unbound_volumes": [actor.get_path_name() for actor in generic], "verify_only": verify_only}
+          "other_unbound_volumes": [actor.get_path_name() for actor in generic], "verify_only": verify_only,
+          "source_enabled_override_flags": override_flags}
 out = Path(unreal.Paths.project_saved_dir()) / "Logs" / "PlayerWaterAsset574.json"
 out.write_text(json.dumps(report, indent=2), encoding="utf-8")
 unreal.log("PLAYER_WATER_GATE_ASSET_VALIDATED " + str(out))
