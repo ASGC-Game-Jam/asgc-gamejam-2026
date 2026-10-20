@@ -4,7 +4,7 @@
 #include "StateTreeTaskDelay.generated.h"
 
 USTRUCT()
-struct PROJECTATLANTIS_API FStateTreeDelayTaskInstanceData
+struct PROJECTATLANTIS_API FStateTreeTaskDelayInstanceData
 {
 	GENERATED_BODY()
 	
@@ -18,7 +18,7 @@ struct PROJECTATLANTIS_API FStateTreeTaskDelay : public FStateTreeTaskCommonBase
 	
 	virtual const UStruct* GetInstanceDataType() const override
 	{
-		return FStateTreeDelayTaskInstanceData::StaticStruct();
+		return FStateTreeTaskDelayInstanceData::StaticStruct();
 	}
 	
 	virtual EStateTreeRunStatus EnterState(FStateTreeExecutionContext& Context, const FStateTreeTransitionResult& Transition) const override;

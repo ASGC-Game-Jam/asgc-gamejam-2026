@@ -10,7 +10,7 @@
 	"properties":
 	{
 		"EditorData": "/Game/ProjectAtlantis/Core/AI/ST_Enemy.ST_Enemy:StateTreeEditorData_0",
-		"LastCompiledEditorDataHash": 727029073,
+		"LastCompiledEditorDataHash": 3329765740,
 		"Schema":
 		{
 			"_class": "StateTreeAIComponentSchema",
@@ -257,7 +257,7 @@
 				"bConsumeEventOnSelect": true
 			}
 		],
-		"Nodes": "(/Script/ProjectAtlantis.STEval_PerceptionSys(SightInstantAggroRadius=1000.000000,InitialPerceptionHysteresisTime=5.000000,PerceptionDecayPerSecond=0.100000,SightDistanceCurve=\"/Script/Engine.CurveFloat'/Game/ProjectAtlantis/Core/AI/SightDistanceCurve.SightDistanceCurve'\",Name=\"Perception Evaluator\",BindingsBatch=(Value=0),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=0),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535))),/Script/ProjectAtlantis.STTask_Delay(DelayTime=5.000000,bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"STTask Delay\",BindingsBatch=(Value=65535),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=3),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=1))))",
+		"Nodes": "(/Script/ProjectAtlantis.StateTreePerceptionEvaluator(SightInstantAggroRadius=1000.000000,InitialPerceptionHysteresisTime=5.000000,PerceptionDecayPerSecond=0.100000,SightDistanceCurve=\"/Script/Engine.CurveFloat'/Game/ProjectAtlantis/Core/AI/SightDistanceCurve.SightDistanceCurve'\",Name=\"Perception Evaluator\",BindingsBatch=(Value=0),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=0),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535))),/Script/ProjectAtlantis.StateTreeTaskDelay(DelayTime=5.000000,bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"State Tree Task Delay\",BindingsBatch=(Value=65535),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=3),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=1))))",
 		"DefaultInstanceData":
 		{
 		},
@@ -372,9 +372,9 @@
 						}
 					},
 					"DataSource": "Evaluator",
-					"Struct": "/Script/ProjectAtlantis.STEval_PerceptionSysInstanceData",
+					"Struct": "/Script/ProjectAtlantis.StateTreePerceptionEvaluatorInstanceData",
 					"Name": "Perception Evaluator",
-					"ID": "8F74AEFD4078D3CFC6BB4FACF0EFE310",
+					"ID": "EF0A039141C546620919A79788E7E914",
 					"Category": ""
 				},
 				{
@@ -420,9 +420,9 @@
 						}
 					},
 					"DataSource": "Task",
-					"Struct": "/Script/ProjectAtlantis.STTask_DelayInstanceData",
-					"Name": "STTask Delay",
-					"ID": "B45F7AC44C16CCD7D2D6BE82BF6AFF9F",
+					"Struct": "/Script/ProjectAtlantis.StateTreeTaskDelayInstanceData",
+					"Name": "State Tree Task Delay",
+					"ID": "B5D9296B458E8886882605A75E55C6C8",
 					"Category": ""
 				}
 			],
@@ -445,7 +445,7 @@
 					},
 					"TargetPropertyPath":
 					{
-						"StructID": "8F74AEFD4078D3CFC6BB4FACF0EFE310",
+						"StructID": "EF0A039141C546620919A79788E7E914",
 						"Segments": [
 							{
 								"Name": "AIController",
@@ -462,7 +462,7 @@
 			"PropertyAccesses": [],
 			"CopyBatches": [
 				{
-					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535)),DataSource=Evaluator,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.STEval_PerceptionSysInstanceData'\",Name=\"Perception Evaluator\",ID=8F74AEFD4078D3CFC6BB4FACF0EFE310,Category=\"\")",
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535)),DataSource=Evaluator,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.StateTreePerceptionEvaluatorInstanceData'\",Name=\"Perception Evaluator\",ID=EF0A039141C546620919A79788E7E914,Category=\"\")",
 					"BindingsBegin":
 					{
 						"Value": 0
@@ -501,14 +501,14 @@
 		],
 		"IDToNodeMappings": [
 			{
-				"Id": "8F74AEFD4078D3CFC6BB4FACF0EFE310",
+				"Id": "EF0A039141C546620919A79788E7E914",
 				"Index":
 				{
 					"Value": 0
 				}
 			},
 			{
-				"Id": "B45F7AC44C16CCD7D2D6BE82BF6AFF9F",
+				"Id": "B5D9296B458E8886882605A75E55C6C8",
 				"Index":
 				{
 					"Value": 1

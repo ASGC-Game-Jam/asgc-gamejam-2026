@@ -5,7 +5,7 @@
 EStateTreeRunStatus FStateTreeTaskDelay::EnterState(FStateTreeExecutionContext& Context,
                                               const FStateTreeTransitionResult& Transition) const
 {
-	FStateTreeDelayTaskInstanceData& InstanceData = Context.GetInstanceData<FStateTreeDelayTaskInstanceData>(*this);
+	FStateTreeTaskDelayInstanceData& InstanceData = Context.GetInstanceData<FStateTreeTaskDelayInstanceData>(*this);
 	InstanceData.TimeLeft = DelayTime;
 	return FStateTreeTaskCommonBase::EnterState(Context, Transition);
 }
@@ -13,7 +13,7 @@ EStateTreeRunStatus FStateTreeTaskDelay::EnterState(FStateTreeExecutionContext& 
 EStateTreeRunStatus FStateTreeTaskDelay::Tick(FStateTreeExecutionContext& Context, const float DeltaTime) const
 {
 	Super::Tick(Context, DeltaTime);
-	FStateTreeDelayTaskInstanceData& InstanceData = Context.GetInstanceData<FStateTreeDelayTaskInstanceData>(*this);
+	FStateTreeTaskDelayInstanceData& InstanceData = Context.GetInstanceData<FStateTreeTaskDelayInstanceData>(*this);
 
 	InstanceData.TimeLeft -= DeltaTime;
 	
