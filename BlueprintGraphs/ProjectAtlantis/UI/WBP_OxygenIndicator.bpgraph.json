@@ -114,7 +114,7 @@
 							"id": "03ebddf9493b6e729fafd1800d564096:i:Delegate",
 							"name": "Delegate",
 							"direction": "input",
-							"type": "Delegate",
+							"type": "delegate",
 							"defaultValue": null,
 							"links": [
 								"eabc2dcc4d83e32f0cdaba90e253f098:o:OutputDelegate"
@@ -371,14 +371,6 @@
 							]
 						},
 						{
-							"id": "13364aa94c3d39e4bb3513b1c8a4234d:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "13364aa94c3d39e4bb3513b1c8a4234d:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
@@ -387,6 +379,14 @@
 							"links": [
 								"a6165dd3495a8076b33e68a2b89551a1:i:self"
 							]
+						},
+						{
+							"id": "13364aa94c3d39e4bb3513b1c8a4234d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -424,8 +424,8 @@
 					"guid": "19fc295246930359a7ad3eaa169022d3",
 					"class": "K2Node_CallFunction",
 					"title": "GetAllocatedOxygen",
-					"x": 640,
-					"y": 1392,
+					"x": 416,
+					"y": 1760,
 					"comment": null,
 					"pins": [
 						{
@@ -435,7 +435,7 @@
 							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
 							"defaultValue": null,
 							"links": [
-								"eb276b1d4d6fd51a9f11cf949ce9ca9f:o:Oxygen Component"
+								"fe181a254bf7f44014bce39a79887801:o:Oxygen Component"
 							]
 						},
 						{
@@ -445,7 +445,7 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"48c53f684dec73993d7f42a5849cb01b:i:B"
+								"2fac142a4900bded1bdd0ba5f1cb7ac5:i:A"
 							]
 						}
 					]
@@ -571,7 +571,7 @@
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"67084d324e97ec2195698890613a044f:o:ReturnValue"
+								"19fc295246930359a7ad3eaa169022d3:o:ReturnValue"
 							]
 						},
 						{
@@ -828,7 +828,7 @@
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"19fc295246930359a7ad3eaa169022d3:o:ReturnValue"
+								"67084d324e97ec2195698890613a044f:o:ReturnValue"
 							]
 						},
 						{
@@ -977,8 +977,8 @@
 					"guid": "67084d324e97ec2195698890613a044f",
 					"class": "K2Node_CallFunction",
 					"title": "GetCurrentOxygen",
-					"x": 464,
-					"y": 1760,
+					"x": 640,
+					"y": 1392,
 					"comment": null,
 					"pins": [
 						{
@@ -988,7 +988,7 @@
 							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
 							"defaultValue": null,
 							"links": [
-								"fe181a254bf7f44014bce39a79887801:o:Oxygen Component"
+								"eb276b1d4d6fd51a9f11cf949ce9ca9f:o:Oxygen Component"
 							]
 						},
 						{
@@ -998,7 +998,7 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"2fac142a4900bded1bdd0ba5f1cb7ac5:i:A"
+								"48c53f684dec73993d7f42a5849cb01b:i:B"
 							]
 						}
 					]
@@ -1325,7 +1325,7 @@
 							"id": "8946ae4d44b2b19f86fdc89a48ae5ada:i:Delegate",
 							"name": "Delegate",
 							"direction": "input",
-							"type": "Delegate",
+							"type": "delegate",
 							"defaultValue": null,
 							"links": [
 								"5c81bd73487eb90f1d15fb9df3f50572:o:OutputDelegate"
@@ -1539,7 +1539,7 @@
 							"id": "a6165dd3495a8076b33e68a2b89551a1:i:Delegate",
 							"name": "Delegate",
 							"direction": "input",
-							"type": "Delegate",
+							"type": "delegate",
 							"defaultValue": null,
 							"links": [
 								"87432c8c40f4ec6760b1f0ae5af2bad8:o:OutputDelegate"
@@ -2108,7 +2108,7 @@
 							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
 							"defaultValue": null,
 							"links": [
-								"19fc295246930359a7ad3eaa169022d3:i:self",
+								"67084d324e97ec2195698890613a044f:i:self",
 								"b1bafb644cf26af97dfcd4ad34f11b3f:i:self"
 							]
 						},
@@ -2493,7 +2493,7 @@
 							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
 							"defaultValue": null,
 							"links": [
-								"67084d324e97ec2195698890613a044f:i:self",
+								"19fc295246930359a7ad3eaa169022d3:i:self",
 								"ab0c01374ffb13f96ecdbb866fc774d1:i:self"
 							]
 						},
@@ -2547,6 +2547,7 @@
 			"PercentageText": null,
 			"OxygenDisplay": null,
 			"Atlantis Player State": null,
+			"Oxygen Component": null,
 			"ColorAndOpacity":
 			{
 				"R": 1,
