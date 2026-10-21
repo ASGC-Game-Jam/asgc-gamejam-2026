@@ -18,6 +18,10 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAllocatedOxygenChanged, float, O
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, OldCurrentOxygen, float, NewCurrentOxygen);
 
 /**
+ * Oxygen is depleted and no more is available for breathing
+ */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDepletedOxygenChanged, bool, bDepletedOxygen);
+/**
  * CriticalOxygen changed. True while oxygen level is critical.
  */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCriticalOxygenChanged, bool, bCriticalOxygen);
@@ -51,6 +55,8 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState|Oxygen")
 	FOnCriticalOxygenChanged OnCriticalOxygenChanged;
 
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|PlayerState|Oxygen")
+	FOnDepletedOxygenChanged OnDepletedOxygenChanged;
 	//~ Accessors.
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
 	float GetOxygenCapacity() const { return OxygenCapacity; }
@@ -68,6 +74,10 @@ public:
 	/** Indicates whether oxygen level is critical. */
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
 	bool IsCriticalOxygen() const { return bCriticalOxygen; }
+
+	/** Indicates whether available Oxygen has run out. Ballast-allocated oxygen does not count in here */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
+	bool IsDepletedOxygen() const { return bDepletedOxygen; }
 
 	/** Oxygen level is critical when AvailableOxygen is below this value. */
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
@@ -88,7 +98,7 @@ public:
 	/** Restores the requested oxygen. Clamps to current capacity and allocated oxygen. Returns whether the restore occurred. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RestoreOxygen(const float RestoreOxygenAmount);
-	
+
 	/** Locks the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestOxygenAllocation(float RequestedOxygen);
@@ -96,12 +106,11 @@ public:
 	/** Releases the requested oxygen if enough is already locked. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool ReleaseOxygen(float RequestedOxygen);
-	
+
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool ReallocateOxygen(float RequestedOxygen);
 
 private:
-	
 	/** Maximum oxygen the player can hold. */
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
@@ -113,7 +122,7 @@ private:
 	float AllocatedOxygen = 0.f;
 
 	/** Total oxygen, including Allocated Oxygen. Consumption cannot reduce it below the reservation. */
-	UPROPERTY(ReplicatedUsing =  OnRep_CurrentOxygen, VisibleInstanceOnly, BlueprintReadOnly,
+	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, VisibleInstanceOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float CurrentOxygen = 100.f;
 
@@ -121,6 +130,11 @@ private:
 	UPROPERTY(ReplicatedUsing = OnRep_CriticalOxygen, BlueprintReadOnly, Category = "Atlantis|PlayerState|Oxygen",
 		meta = (AllowPrivateAccess = "true"))
 	bool bCriticalOxygen = false;
+
+	/** Indicates whether oxygen  has run out*/
+	UPROPERTY(ReplicatedUsing = OnRep_DepletedOxygen, BlueprintReadOnly, Category="Atlantis|PlayerState|Oxygen",
+		meta = (AllowPrivateAccess = true))
+	bool bDepletedOxygen = false;
 
 	/** Oxygen level is critical when AvailableOxygen is below this value. */
 	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
@@ -143,17 +157,24 @@ private:
 	UFUNCTION()
 	void OnRep_CriticalOxygen() const;
 
+	UFUNCTION()
+	void OnRep_DepletedOxygen() const;
+
 	/** Toggles the flag indicating whether oxygen is at critical level or not. */
 	UFUNCTION()
 	void SetCriticalOxygen(bool bNewCriticalOxygen);
-
-	/** Recomputes Critical Oxygen from available Oxygen. */
-	void UpdateCriticalOxygen();
 	
+	/** Toggles the flag indicating whether oxygen is depleted or not.*/
+	UFUNCTION()
+	void SetDepletedOxygen(const bool bNewDepletedOxygen);
+	
+	/** Recomputes Critical Oxygen from available Oxygen. */
+	void UpdateOxygenThresholds();
+
 	void SetAllocatedOxygen(float NewAllocatedOxygen);
 	/** Sets the current level of oxygen by value. Returns true if the value was changed and false otherwise */
 	bool SetCurrentOxygen(float NewCurrentOxygen);
-	
+
 	/** Returns true when the owning actor has network authority */
 	bool HasOwnerAuthority() const;
 };
