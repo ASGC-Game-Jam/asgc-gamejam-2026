@@ -8,6 +8,10 @@ public:
 	virtual void StartupModule() override
 	{
 		ProjectAtlantisAudio::RegisterAllMetaSoundInterfaces();
+		// This optional module is selected by target rules, rather than auto-loaded via .uproject.
+#if WITH_SCREENSHOT_CAPTURE
+		FModuleManager::LoadModuleChecked<IModuleInterface>("ScreenshotCapture");
+#endif
 	}
 };
 
