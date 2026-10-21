@@ -18,7 +18,9 @@ EStateTreeRunStatus FStateTreeTaskDelay::Tick(FStateTreeExecutionContext& Contex
 	InstanceData.TimeLeft -= DeltaTime;
 	
 	if (InstanceData.TimeLeft < 0.f)
+	{
 		return EStateTreeRunStatus::Succeeded;
+	}
 	
 	return EStateTreeRunStatus::Running;
 }

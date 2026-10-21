@@ -20,6 +20,12 @@ public:
 			EGameplayDebuggerCategoryState::EnabledInGameAndSimulate
 			);
 #endif //WITH_GAMEPLAY_DEBUGGER
+		
+		// This optional module is selected by target rules, rather than auto-loaded via .uproject.
+#if WITH_SCREENSHOT_CAPTURE
+		FModuleManager::LoadModuleChecked<IModuleInterface>("ScreenshotCapture");
+#endif
+
 	}
 };
 

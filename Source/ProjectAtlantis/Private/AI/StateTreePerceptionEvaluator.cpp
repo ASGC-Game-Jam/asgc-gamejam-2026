@@ -9,23 +9,25 @@
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISense_Sight.h"
 
-void FStateTreePerceptionEvaluator::SetEnemyStatus(AAtlantisEnemyController* EnemyController, EMonsterStatus NewStatus) const
+void FStateTreePerceptionEvaluator::SetEnemyStatus(AAtlantisEnemyController& EnemyController, EMonsterStatus NewStatus) const
 {
-	EMonsterStatus CurrentStatus = EnemyController->GetCurrentStatus();
+	EMonsterStatus CurrentStatus = EnemyController.GetCurrentStatus();
 	if (CurrentStatus != NewStatus)
-		EnemyController->SetStatus(NewStatus);
+	{
+		EnemyController.SetStatus(NewStatus);
+	}
 }
 
-void FStateTreePerceptionEvaluator::ProcessSensedActor(const float DeltaTime, AAtlantisEnemyController* EnemyController, AActor* SensedActor) const
+void FStateTreePerceptionEvaluator::ProcessSensedActor(const float DeltaTime, AAtlantisEnemyController& EnemyController, AActor* SensedActor) const
 {
-	const AAtlantisAICharacter* EnemyPawn = Cast<AAtlantisAICharacter>(EnemyController->GetCharacter());
+	const AAtlantisAICharacter* EnemyPawn = Cast<AAtlantisAICharacter>(EnemyController.GetCharacter());
 	AAtlantisPlayerCharacter* PlayerCharacter = Cast<AAtlantisPlayerCharacter>(SensedActor);
 	if (PlayerCharacter == nullptr)
 	{
 		return;
 	}
 
-	FPlayerPerceptionData& PlayerPerceptionData = EnemyController->PerceivedActors.FindOrAdd(PlayerCharacter);
+	FPlayerPerceptionData& PlayerPerceptionData = EnemyController.PerceivedActors.FindOrAdd(PlayerCharacter);
 		
 	// Skip processing actors we're already aggro'd on. 
 	if (PlayerPerceptionData.bIsAggroed)
@@ -92,10 +94,15 @@ void FStateTreePerceptionEvaluator::ProcessSensedActor(const float DeltaTime, AA
 	PlayerPerceptionData.PerceptionHysteresisTime.Reset();
 }
 
-void FStateTreePerceptionEvaluator::ProcessUnsensedActor(const float DeltaTime, const AAtlantisAICharacter* EnemyPawn, TPair<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceptionData) const
+void FStateTreePerceptionEvaluator::ProcessUnsensedActor(const float DeltaTime,
+	const AAtlantisAICharacter* EnemyPawn,
+	TPair<TObjectPtr<AAtlantisPlayerCharacter>,
+	FPlayerPerceptionData>& PerceptionData) const
 {
 	if (PerceptionData.Value.bHasBeenProcessedThisTick)
+	{
 		return;
+	}
 		
 	TOptional<float>& PerceptionHysteresisTime = PerceptionData.Value.PerceptionHysteresisTime;
 		
@@ -179,19 +186,19 @@ void FStateTreePerceptionEvaluator::HandleStatus(AAtlantisEnemyController* Enemy
 	// If we have any actors we need to aggro onto, set us up for combat.
 	if (AggroedActors.IsEmpty() == false)
 	{
-		SetEnemyStatus(EnemyController, EMonsterStatus::Combat);
+		SetEnemyStatus(*EnemyController, EMonsterStatus::Combat);
 	}
 	
 	// Otherwise, if we're only aware of a player, we're alert.
 	if (PerceivedActors.IsEmpty() == false)
 	{
-		SetEnemyStatus(EnemyController, EMonsterStatus::Alerted);
+		SetEnemyStatus(*EnemyController, EMonsterStatus::Alerted);
 	}
 	
 	// If we have absolutely 0 perceived actors, return to idle.
 	else
 	{
-		SetEnemyStatus(EnemyController, EMonsterStatus::Idle);
+		SetEnemyStatus(*EnemyController, EMonsterStatus::Idle);
 	}
 }
 
@@ -248,7 +255,7 @@ void FStateTreePerceptionEvaluator::Tick(FStateTreeExecutionContext& Context, co
 	
 	for (auto* SensedActor : OutSensedActors)
 	{
-		ProcessSensedActor(DeltaTime, EnemyController, SensedActor);
+		ProcessSensedActor(DeltaTime, *EnemyController, SensedActor);
 	}
 	
 	// Now, process the other actors we did not perceive this tick.

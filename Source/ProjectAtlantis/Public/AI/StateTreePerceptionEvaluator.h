@@ -66,8 +66,8 @@ struct PROJECTATLANTIS_API FStateTreePerceptionEvaluator : public FStateTreeEval
 		return FStateTreePerceptionEvaluatorInstanceData::StaticStruct();
 	}
 
-	void SetEnemyStatus(AAtlantisEnemyController* EnemyController, EMonsterStatus NewStatus) const;
-	void ProcessSensedActor(float DeltaTime, AAtlantisEnemyController* EnemyController, AActor* SensedActor) const;
+	void SetEnemyStatus(AAtlantisEnemyController& EnemyController, EMonsterStatus NewStatus) const;
+	void ProcessSensedActor(float DeltaTime, AAtlantisEnemyController& EnemyController, AActor* SensedActor) const;
 	void ProcessUnsensedActor(float DeltaTime, const AAtlantisAICharacter* EnemyPawn,
 	                           TPair<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceptionData)
 	const;

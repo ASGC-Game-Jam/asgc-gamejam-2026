@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 using UnrealBuildTool;
+using System.Linq;
 
 public class ProjectAtlantis : ModuleRules
 {
@@ -35,6 +36,11 @@ public class ProjectAtlantis : ModuleRules
             "Harmonix"
         });
 		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics", "CommonUI" });
+
+		if (Target.ProjectDefinitions.Contains("WITH_SCREENSHOT_CAPTURE=1"))
+		{
+			DynamicallyLoadedModuleNames.Add("ScreenshotCapture");
+		}
 
         PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
 
