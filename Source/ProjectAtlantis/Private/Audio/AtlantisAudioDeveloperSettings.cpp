@@ -39,7 +39,10 @@ bool UAtlantisAudioDeveloperSettings::DetermineIfMusicSubsystemEnabled()
 	int32 cVarState = CVarAtlantisAudioMusicSubsystemState.GetValueOnGameThread();
 	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
 
-	if(!Settings) return false;
+	if (!Settings)
+	{
+		return false;
+	}
 
 	bool ProjectSettingsSelection = Settings->bEnableMusicManagementSubsystem;
 
