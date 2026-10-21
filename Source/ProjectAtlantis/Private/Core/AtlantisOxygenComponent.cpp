@@ -20,7 +20,6 @@ void UAtlantisOxygenComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProper
 	DOREPLIFETIME(UAtlantisOxygenComponent, AllocatedOxygen);
 	DOREPLIFETIME(UAtlantisOxygenComponent, CurrentOxygen);
 	DOREPLIFETIME(UAtlantisOxygenComponent, bCriticalOxygen);
-	DOREPLIFETIME(UAtlantisOxygenComponent, bDepletedOxygen);
 }
 
 void UAtlantisOxygenComponent::BeginPlay()
@@ -52,7 +51,6 @@ void UAtlantisOxygenComponent::CopyStateTo(UAtlantisOxygenComponent& Target) con
 	Target.AllocatedOxygen = AllocatedOxygen;
 	Target.CurrentOxygen = CurrentOxygen;
 	Target.bCriticalOxygen = bCriticalOxygen;
-	Target.bDepletedOxygen = bDepletedOxygen;
 }
 
 void UAtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
@@ -111,16 +109,6 @@ void UAtlantisOxygenComponent::SetCriticalOxygen(bool bNewCriticalOxygen)
 
 	bCriticalOxygen = bNewCriticalOxygen;
 	OnRep_CriticalOxygen();
-}
-
-void UAtlantisOxygenComponent::SetDepletedOxygen(const bool bNewDepletedOxygen)
-{
-	if (!HasOwnerAuthority() || bDepletedOxygen == bNewDepletedOxygen)
-	{
-		return;
-	}
-	bDepletedOxygen = bNewDepletedOxygen;
-	OnRep_DepletedOxygen();
 }
 
 void UAtlantisOxygenComponent::SetConsumingOxygen(bool bNewConsumingOxygen)
@@ -184,11 +172,6 @@ void UAtlantisOxygenComponent::OnRep_CriticalOxygen() const
 	OnCriticalOxygenChanged.Broadcast(bCriticalOxygen);
 }
 
-void UAtlantisOxygenComponent::OnRep_DepletedOxygen() const
-{
-	OnDepletedOxygenChanged.Broadcast(bDepletedOxygen);
-}
-
 void UAtlantisOxygenComponent::UpdateOxygenThresholds()
 {
 	const float AvailableOxygen = CurrentOxygen - AllocatedOxygen;
@@ -200,7 +183,6 @@ void UAtlantisOxygenComponent::UpdateOxygenThresholds()
 	{
 		SetCriticalOxygen(false);
 	}
-	SetDepletedOxygen(AvailableOxygen <= UE_KINDA_SMALL_NUMBER);
 }
 
 bool UAtlantisOxygenComponent::RequestOxygen(const float RequestedOxygen)
