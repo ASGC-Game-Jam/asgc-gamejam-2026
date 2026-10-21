@@ -201,7 +201,7 @@ bool UAtlantisOxygenComponent::RequestOxygen(const float RequestedOxygen)
 	return bRequestAccepted;
 }
 
-bool UAtlantisOxygenComponent::RestoreOxygen(const float RestoreOxygenAmount)
+bool UAtlantisOxygenComponent::RestoreOxygen(const float RestoreOxygenAmount, const bool bRestoreFullFlag)
 {
 	// This acts as the mirror opposite of RequestOxygen: where RequestOxygen subtracts, this adds
 	bool status = false;
@@ -211,7 +211,9 @@ bool UAtlantisOxygenComponent::RestoreOxygen(const float RestoreOxygenAmount)
 	}
 	else
 	{
-		status = SetCurrentOxygen(CurrentOxygen + RestoreOxygenAmount);
+		// if flag then restore to full regardless of restore oxygen amount param
+		const float NewO2 = bRestoreFullFlag ? OxygenCapacity : CurrentOxygen + RestoreOxygenAmount;
+		status = SetCurrentOxygen(NewO2);
 	}
 
 	return status;

@@ -41,10 +41,53 @@ without needing to load the full Unreal Editor.
 
 Assuming that your Unreal Engine path, project path and output path are defined as environment variables, a build may look like:
 ```ps
-$env:UE_PATH\Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="$env:PROJECT_PATH" -noP4 -platform=Win64 -clientconfig=Shipping -serverconfig=Shipping -nodebuginfo -nocompileeditor -skipbuildeditor -cook -allmaps -build -stage -pak -archive -archivedirectory="$env:OUTPUT_PATH"
+$env:UE_PATH\Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="$env:PROJECT_PATH" -noP4 -platform=Win64 -clientconfig=Shipping -serverconfig=Shipping -nodebuginfo -cook -build -stage -pak -package -archive -archivedirectory="$env:OUTPUT_PATH" -unattended -utf8output
 ```
 
+Shipping includes screenshot capture by default, activated by the `-debug`
+launch option (including Steam Launch Options). To exclude capture entirely,
+append `-ubtargs="-WithoutScreenshotCapture"` to the command above and use a
+separate output folder. Captures use Unreal's screenshot directory, normally
+`Saved/Screenshots/<Platform>/`; see
+[Screenshot Captures.md](./Screenshot%20Captures.md).
+
 There are a lot of options and awesome things that the UAT can do. Please [read the docs](https://dev.epicgames.com/documentation/unreal-engine/unreal-automation-tool-for-unreal-engine?application_version=5.7).
+
+UAT builds the project editor needed for cooking and the Shipping game. Maps come
+from the project's **Packaging > List of maps to include in a packaged build** settings.
+
+### Build for macOS
+
+On a Mac with Xcode 26.6 and the project's Unreal Engine version installed, run
+[Scripts/build.sh](../Scripts/build.sh). For example:
+
+```sh
+./Scripts/build.sh
+```
+
+The script keeps the package, staging files, and build log together under
+`Builds/ProjectAtlantis-build-<version>/`. The Shipping app is in `Package/Mac` and
+targets both Apple Silicon and Intel through the shared Mac architecture settings
+in `Config/DefaultEngine.ini`. The engine defaults to
+`/Users/Shared/Epic Games/UE_5.7`; pass a different installation as the second argument:
+
+```sh
+./Scripts/build.sh 1.2.0 "/path/to/Unreal Engine"
+```
+
+The version defaults to the latest reachable release tag. Commits after that tag
+add `-wip-<commit>`; local changes add `-dirty`. Pass a version as the first argument
+to override the label. Successful builds record their version for the archive
+script. All output under `Builds/` is ignored by Git.
+
+For distribution without an unidentified-developer warning, use Developer ID
+signing and [Apple notarization](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
+
+**Note:** The current Mac build is not notarized. To run a trusted team build:
+
+1. Download and extract the ZIP, then open `Mac/ProjectAtlantis-Mac-Shipping.app`.
+2. If macOS blocks it because the developer cannot be verified, open **System Settings > Privacy & Security** and click **Open Anyway**.
+3. Confirm **Open**. Subsequent launches can use the app normally.
 
 ## Smoke tests
 
@@ -61,6 +104,17 @@ critical path hasn't been accidentally broken, even if the game binary built suc
 Rather than a folder full of files, it's generally more useful to have a single archive (`.zip` file) that can be
 uploaded and attached as needed. This archive file should follow the naming pattern `<project>-<version>-<platform>`
 e.g. `ProjectAtlantis-1.2.0-Windows.zip`.
+
+On macOS, after completing the smoke tests, run [Scripts/archive.sh](../Scripts/archive.sh):
+
+```sh
+./Scripts/archive.sh
+```
+
+It archives the latest successful Mac build using its saved version, even if the
+checkout has changed since building. To select an older build, pass its version
+(for example, `./Scripts/archive.sh 0.1.0`). The ZIP includes only the Shipping app
+bundle under `Mac/`, excluding adjacent manifests and reports.
 
 ## Make a GitHub Release
 
