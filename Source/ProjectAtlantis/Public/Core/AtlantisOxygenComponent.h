@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Engine/TimerHandle.h"
 #include "AtlantisOxygenComponent.generated.h"
 
 
@@ -21,6 +22,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, Old
  * Oxygen is depleted and no more is available for breathing
  */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDepletedOxygenChanged, bool, bDepletedOxygen);
+
 /**
  * CriticalOxygen changed. True while oxygen level is critical.
  */
@@ -35,6 +37,8 @@ public:
 	UAtlantisOxygenComponent();
 
 	virtual void BeginPlay() override;
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
@@ -91,6 +95,13 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	void SetOxygenCapacity(float NewOxygenCapacity);
 
+	/** Starts or stops passive consumption of oxygen */
+	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
+	void SetConsumingOxygen(bool bNewConsumingOxygen);
+
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
+	bool IsConsumingOxygen() const;
+	
 	/** Consumes the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestOxygen(float RequestedOxygen);
@@ -126,6 +137,16 @@ private:
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float CurrentOxygen = 100.f;
 
+	/** Oxygen consumed per second*/
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
+	float OxygenConsumptionRate = 1.f;
+	
+	/** Seconds betweem drain steps. Lower values it should look smoother on the hud but more events */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
+	float OxygenConsumptionInterval = 0.25f;
+	
+	FTimerHandle OxygenConsumptionTimerHandle;
+	
 	/** Indicates whether oxygen level is critical. */
 	UPROPERTY(ReplicatedUsing = OnRep_CriticalOxygen, BlueprintReadOnly, Category = "Atlantis|PlayerState|Oxygen",
 		meta = (AllowPrivateAccess = "true"))
@@ -133,7 +154,7 @@ private:
 
 	/** Indicates whether oxygen  has run out*/
 	UPROPERTY(ReplicatedUsing = OnRep_DepletedOxygen, BlueprintReadOnly, Category="Atlantis|PlayerState|Oxygen",
-		meta = (AllowPrivateAccess = true))
+		meta = (AllowPrivateAccess = "true"))
 	bool bDepletedOxygen = false;
 
 	/** Oxygen level is critical when AvailableOxygen is below this value. */
@@ -163,11 +184,11 @@ private:
 	/** Toggles the flag indicating whether oxygen is at critical level or not. */
 	UFUNCTION()
 	void SetCriticalOxygen(bool bNewCriticalOxygen);
-	
+
 	/** Toggles the flag indicating whether oxygen is depleted or not.*/
 	UFUNCTION()
 	void SetDepletedOxygen(const bool bNewDepletedOxygen);
-	
+
 	/** Recomputes Critical Oxygen from available Oxygen. */
 	void UpdateOxygenThresholds();
 
@@ -177,4 +198,7 @@ private:
 
 	/** Returns true when the owning actor has network authority */
 	bool HasOwnerAuthority() const;
+	
+	/** Spends one interval's worth of oxygen */
+	void ConsumeOxygen();
 };
