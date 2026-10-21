@@ -7,6 +7,12 @@
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisPlayerState, Log, All);
 
+void AAtlantisPlayerState::BeginPlay()
+{
+	Super::BeginPlay();
+	RefreshOxygenConsumption();
+}
+
 AAtlantisPlayerState::AAtlantisPlayerState()
 {
 	// APlayerState already enables replication and marks itself always-relevant in its own
@@ -20,7 +26,7 @@ AAtlantisPlayerState::AAtlantisPlayerState()
 void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	
+
 	DOREPLIFETIME(AAtlantisPlayerState, BallastState);
 	DOREPLIFETIME(AAtlantisPlayerState, TraversalMode);
 	DOREPLIFETIME(AAtlantisPlayerState, EquippedItems);
@@ -36,7 +42,7 @@ void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
 		AtlantisPlayerState->TraversalMode = TraversalMode;
 		AtlantisPlayerState->EquippedItems = EquippedItems;
 		if (OxygenComponent && AtlantisPlayerState->OxygenComponent)
-		{	
+		{
 			OxygenComponent->CopyStateTo(*AtlantisPlayerState->OxygenComponent);
 		}
 	}
@@ -61,7 +67,7 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 	{
 		return;
 	}
-	
+
 	if (!OxygenComponent->ReallocateOxygen(RequiredAllocation))
 	{
 		return;
@@ -83,6 +89,7 @@ void AAtlantisPlayerState::SetTraversalMode(const EAtlantisTraversalMode NewTrav
 	const EAtlantisTraversalMode OldTraversalMode = TraversalMode;
 	TraversalMode = NewTraversalMode;
 	OnRep_TraversalMode(OldTraversalMode);
+	RefreshOxygenConsumption();
 }
 
 void AAtlantisPlayerState::OnRep_BallastState(const EAtlantisBallastState OldBallastState) const
@@ -104,20 +111,20 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 {
 	switch (RequiredBallastState)
 	{
-		case EAtlantisBallastState::Descend:
+	case EAtlantisBallastState::Descend:
 		{
 			return DescendOxygenAllocation;
 		}
-		case EAtlantisBallastState::Wander:
+	case EAtlantisBallastState::Wander:
 		{
 			return WanderOxygenAllocation;
 		}
-		case EAtlantisBallastState::Ascend:
+	case EAtlantisBallastState::Ascend:
 		{
 			return AscendOxygenAllocation;
 		}
-		case EAtlantisBallastState::None:
-		default:
+	case EAtlantisBallastState::None:
+	default:
 		{
 			UE_LOG(LogAtlantisPlayerState, Fatal, TEXT("Invalid ballast state: %d"),
 			       static_cast<uint8>(RequiredBallastState));
@@ -129,4 +136,19 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 bool AAtlantisPlayerState::IsBallastAllocated() const
 {
 	return OxygenComponent && OxygenComponent->GetAllocatedOxygen() > 0.f;
+}
+
+bool AAtlantisPlayerState::IsUsingOxygen() const
+{
+	return TraversalMode == EAtlantisTraversalMode::Swimming || TraversalMode == EAtlantisTraversalMode::SurfaceWalking;
+}
+
+void AAtlantisPlayerState::RefreshOxygenConsumption() const
+{
+	if (!HasAuthority() || !OxygenComponent)
+	{
+		return;
+	}
+
+	OxygenComponent->SetConsumingOxygen(IsUsingOxygen());
 }

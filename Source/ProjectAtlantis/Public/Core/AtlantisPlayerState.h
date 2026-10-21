@@ -45,6 +45,8 @@ class PROJECTATLANTIS_API AAtlantisPlayerState : public APlayerState
 	GENERATED_BODY()
 
 public:
+	virtual void BeginPlay() override;
+	
 	AAtlantisPlayerState();
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
@@ -141,5 +143,10 @@ private:
 
 	/** Returns the Oxygen allocation required by BallastState. */
 	float GetRequiredBallastAllocation(EAtlantisBallastState BallastState) const;
-
+	
+	/** True while the player breathes underwater */
+	bool IsUsingOxygen() const;
+	
+	/** Starts or stops oxygen consumption to match the IsUsingOxygen function */
+	void RefreshOxygenConsumption() const;
 };
