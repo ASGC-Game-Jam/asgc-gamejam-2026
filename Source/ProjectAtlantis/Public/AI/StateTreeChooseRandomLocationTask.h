@@ -8,7 +8,7 @@ struct PROJECTATLANTIS_API FStateTreeChooseRandomLocationTaskInstanceData
 	GENERATED_BODY()
 	
 	UPROPERTY(VisibleAnywhere, Category = Output)
-	FVector GeneratedLocation;
+	FVector GeneratedLocation = FVector::ZeroVector;
 };
 
 USTRUCT()
