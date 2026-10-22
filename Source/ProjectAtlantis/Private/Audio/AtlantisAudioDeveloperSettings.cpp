@@ -5,6 +5,8 @@
 
 #include "HAL/IConsoleManager.h"
 
+#include "MetasoundSource.h"
+
 
 static TAutoConsoleVariable<int32> CVarAtlantisAudioMusicSubsystemState(
 	TEXT("atlantis.audio.musicSubsystem"),
@@ -56,4 +58,25 @@ bool UAtlantisAudioDeveloperSettings::DetermineIfMusicSubsystemEnabled()
 		case 2:
 			return true;
 	}
+}
+
+TObjectPtr<UMetaSoundSource> UAtlantisAudioDeveloperSettings::GetMusicMetaSoundSource()
+{
+	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
+	if (!Settings)
+	{
+		return nullptr;
+	}
+
+	if (Settings->MusicMetaSoundSource.IsNull())
+	{
+		return nullptr;
+	}
+
+	if (Settings->MusicMetaSoundSource.IsValid())
+	{
+		return Settings->MusicMetaSoundSource.Get();
+	}
+
+	return Settings->MusicMetaSoundSource.LoadSynchronous();
 }

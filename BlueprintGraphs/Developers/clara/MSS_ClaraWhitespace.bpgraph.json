@@ -25,19 +25,13 @@
 				"MemberMetadata":
 				{
 					"07DBB6E2413C6B8A190D23BEFEE81BC1": "/Game/Developers/clara/MSS_ClaraWhitespace.MSS_ClaraWhitespace:MetasoundEditorGraphMemberDefaultLiteral_0",
+					"08BD6FBB458B807EC706C19787BE8301": "/Game/Developers/clara/MSS_ClaraWhitespace.MSS_ClaraWhitespace:MetasoundEditorGraphMemberDefaultFloat_0",
 					"4DF18ED44A86E6A9B0F08C8A60DEC7C3": "/Game/Developers/clara/MSS_ClaraWhitespace.MSS_ClaraWhitespace:MetasoundEditorGraphMemberDefaultBool_0",
-					"6EE6E8CF4F80AA5FE759A7A330DC9110": "/Game/Developers/clara/MSS_ClaraWhitespace.MSS_ClaraWhitespace:MetasoundEditorGraphMemberDefaultBool_1"
+					"9DC6631445FF96075C89D1922037D705": "/Game/Developers/clara/MSS_ClaraWhitespace.MSS_ClaraWhitespace:MetasoundEditorGraphMemberDefaultFloat_2",
+					"AEDB2A454FD58B1AABE16689CC210C7C": "/Game/Developers/clara/MSS_ClaraWhitespace.MSS_ClaraWhitespace:MetasoundEditorGraphMemberDefaultFloat_1"
 				}
 			},
 			"Interfaces": [
-				{
-					"Name": "UE.OutputFormat.Mono",
-					"Number":
-					{
-						"Major": 1,
-						"Minor": 0
-					}
-				},
 				{
 					"Name": "UE.Source",
 					"Number":
@@ -47,7 +41,15 @@
 					}
 				},
 				{
-					"Name": "UE.Source.OneShot",
+					"Name": "Atlantis.Music.Axes",
+					"Number":
+					{
+						"Major": 1,
+						"Minor": 0
+					}
+				},
+				{
+					"Name": "UE.OutputFormat.Mono",
 					"Number":
 					{
 						"Major": 1,
@@ -121,23 +123,23 @@
 								}
 							},
 							{
-								"ID": "6EE6E8CF4F80AA5FE759A7A330DC9110",
-								"ClassID": "1EA915544DEE4D2B6AA70B84CB2F02AE",
-								"Name": "UE.Source.OneShot.OnFinished",
+								"ID": "3C79ECB34CA0B3C352A264AC82D28E14",
+								"ClassID": "02DF16114CF191750B625DBD97EDD3F7",
+								"Name": "Input",
 								"Interface":
 								{
 									"Inputs": [
 										{
-											"Name": "UE.Source.OneShot.OnFinished",
-											"TypeName": "Trigger",
-											"VertexID": "DC13176B76D7263C9A5AC6AF2436C9B4"
+											"Name": "Value",
+											"TypeName": "Float",
+											"VertexID": "B0126C594427C99664327AAA20CBB2DE"
 										}
 									],
 									"Outputs": [
 										{
-											"Name": "UE.Source.OneShot.OnFinished",
-											"TypeName": "Trigger",
-											"VertexID": "CC02F2799674D5DA72ABBEB51D1DC820"
+											"Name": "Value",
+											"TypeName": "Float",
+											"VertexID": "6B321C51446F6F55D99A1A996272696F"
 										}
 									],
 									"Environment": []
@@ -152,10 +154,10 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"E3C606B84B8F38478F20CFAF411F5565":
+											"CA794A5747D0B2EF8E8651BA6348CB61":
 											{
-												"X": 900,
-												"Y": 0
+												"X": 0,
+												"Y": 544
 											}
 										},
 										"Comment": "",
@@ -254,6 +256,216 @@
 									"bIsPrivate": false,
 									"bUnconnectedPinsHidden": false
 								}
+							},
+							{
+								"ID": "9DC6631445FF96075C89D1922037D705",
+								"ClassID": "06383240427D64505212EAA2DBC2FFA3",
+								"Name": "Atlantis.Music.Axes.Environment",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Atlantis.Music.Axes.Environment",
+											"TypeName": "Float",
+											"VertexID": "2E2AB76A85DC7B8E103A4F5E6C5A00A3"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Atlantis.Music.Axes.Environment",
+											"TypeName": "Float",
+											"VertexID": "C502B26ECED384DD42DA6C62718AACCD"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "08BD6FBB458B807EC706C19787BE8301",
+								"ClassID": "06383240427D64505212EAA2DBC2FFA3",
+								"Name": "Atlantis.Music.Axes.PlayerState",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Atlantis.Music.Axes.PlayerState",
+											"TypeName": "Float",
+											"VertexID": "2E2AB76A85DC7B8E103A4F5E6C5A00A3"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Atlantis.Music.Axes.PlayerState",
+											"TypeName": "Float",
+											"VertexID": "C502B26ECED384DD42DA6C62718AACCD"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "AEDB2A454FD58B1AABE16689CC210C7C",
+								"ClassID": "06383240427D64505212EAA2DBC2FFA3",
+								"Name": "Atlantis.Music.Axes.Tension",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Atlantis.Music.Axes.Tension",
+											"TypeName": "Float",
+											"VertexID": "2E2AB76A85DC7B8E103A4F5E6C5A00A3"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Atlantis.Music.Axes.Tension",
+											"TypeName": "Float",
+											"VertexID": "C502B26ECED384DD42DA6C62718AACCD"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "D5CEF546440399C0A1806EA98AD54443",
+								"ClassID": "02DF16114CF191750B625DBD97EDD3F7",
+								"Name": "Input",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Value",
+											"TypeName": "Float",
+											"VertexID": "00DC8F2A4D94A867B80232A847BD2C59"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Value",
+											"TypeName": "Float",
+											"VertexID": "84C2DBBB433A8D606835359FFF623BF8"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"681015D94C2DD22156A83FA650C0FCF8":
+											{
+												"X": -9.2987060546875,
+												"Y": 170.36944580078125
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "27EA6E9247AE057780C5A4BC73585492",
+								"ClassID": "02DF16114CF191750B625DBD97EDD3F7",
+								"Name": "Input",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Value",
+											"TypeName": "Float",
+											"VertexID": "3E6E3BD047CA6331E9626A8BD2B5372B"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Value",
+											"TypeName": "Float",
+											"VertexID": "4DFB4FC44AFE84DB2C4B6692F9147DD1"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"21EE9B3247D301D08E1428935722EB95":
+											{
+												"X": 0,
+												"Y": 352
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
 							}
 						],
 						"Edges": [
@@ -262,6 +474,24 @@
 								"FromVertexID": "CC02F2799674D5DA72ABBEB51D1DC820",
 								"ToNodeID": "8AFFAFB54D92ADB50D9E2E9A80E41F1C",
 								"ToVertexID": "11CD5B8F4B1B9F744FE929B95197E4F7"
+							},
+							{
+								"FromNodeID": "9DC6631445FF96075C89D1922037D705",
+								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
+								"ToNodeID": "D5CEF546440399C0A1806EA98AD54443",
+								"ToVertexID": "00DC8F2A4D94A867B80232A847BD2C59"
+							},
+							{
+								"FromNodeID": "08BD6FBB458B807EC706C19787BE8301",
+								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
+								"ToNodeID": "27EA6E9247AE057780C5A4BC73585492",
+								"ToVertexID": "3E6E3BD047CA6331E9626A8BD2B5372B"
+							},
+							{
+								"FromNodeID": "AEDB2A454FD58B1AABE16689CC210C7C",
+								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
+								"ToNodeID": "3C79ECB34CA0B3C352A264AC82D28E14",
+								"ToVertexID": "B0126C594427C99664327AAA20CBB2DE"
 							}
 						],
 						"Variables": [],
@@ -311,7 +541,10 @@
 					"InputStyle":
 					{
 						"DefaultSortOrder": [
-							0
+							0,
+							0,
+							1,
+							2
 						],
 						"RequiredMembers":
 						{
@@ -320,7 +553,6 @@
 					"OutputStyle":
 					{
 						"DefaultSortOrder": [
-							0,
 							100
 						],
 						"RequiredMembers":
@@ -369,11 +601,34 @@
 							"Name": "UE.Source.OnPlay",
 							"TypeName": "Trigger",
 							"VertexID": "1EA2035447C03923855BE69A966AD0B0"
-						}
-					],
-					"Outputs": [
+						},
 						{
-							"NodeID": "6EE6E8CF4F80AA5FE759A7A330DC9110",
+							"DefaultLiteral":
+							{
+								"Type": "None",
+								"AsNumDefault": 0,
+								"AsBoolean": [],
+								"AsInteger": [],
+								"AsFloat": [],
+								"AsString": [],
+								"AsUObject": []
+							},
+							"Defaults": [
+								{
+									"Literal":
+									{
+										"Type": "None",
+										"AsNumDefault": 1,
+										"AsBoolean": [],
+										"AsInteger": [],
+										"AsFloat": [],
+										"AsString": [],
+										"AsUObject": []
+									},
+									"PageID": "00000000000000000000000000000000"
+								}
+							],
+							"NodeID": "08BD6FBB458B807EC706C19787BE8301",
 							"Metadata":
 							{
 								"DisplayName": "",
@@ -383,10 +638,92 @@
 								"bSerializeText": false
 							},
 							"AccessType": "Reference",
-							"Name": "UE.Source.OneShot.OnFinished",
-							"TypeName": "Trigger",
-							"VertexID": "A92F71BC4C01A781F4BB69ADC2BE16B2"
+							"Name": "Atlantis.Music.Axes.PlayerState",
+							"TypeName": "Float",
+							"VertexID": "507CEFA5498F74951564B689D6A14346"
 						},
+						{
+							"DefaultLiteral":
+							{
+								"Type": "None",
+								"AsNumDefault": 0,
+								"AsBoolean": [],
+								"AsInteger": [],
+								"AsFloat": [],
+								"AsString": [],
+								"AsUObject": []
+							},
+							"Defaults": [
+								{
+									"Literal":
+									{
+										"Type": "None",
+										"AsNumDefault": 1,
+										"AsBoolean": [],
+										"AsInteger": [],
+										"AsFloat": [],
+										"AsString": [],
+										"AsUObject": []
+									},
+									"PageID": "00000000000000000000000000000000"
+								}
+							],
+							"NodeID": "AEDB2A454FD58B1AABE16689CC210C7C",
+							"Metadata":
+							{
+								"DisplayName": "",
+								"Description": "",
+								"SortOrderIndex": 1,
+								"bIsAdvancedDisplay": false,
+								"bSerializeText": false
+							},
+							"AccessType": "Reference",
+							"Name": "Atlantis.Music.Axes.Tension",
+							"TypeName": "Float",
+							"VertexID": "A7BD441F431D0C0C2FA956A0DD069669"
+						},
+						{
+							"DefaultLiteral":
+							{
+								"Type": "None",
+								"AsNumDefault": 0,
+								"AsBoolean": [],
+								"AsInteger": [],
+								"AsFloat": [],
+								"AsString": [],
+								"AsUObject": []
+							},
+							"Defaults": [
+								{
+									"Literal":
+									{
+										"Type": "None",
+										"AsNumDefault": 1,
+										"AsBoolean": [],
+										"AsInteger": [],
+										"AsFloat": [],
+										"AsString": [],
+										"AsUObject": []
+									},
+									"PageID": "00000000000000000000000000000000"
+								}
+							],
+							"NodeID": "9DC6631445FF96075C89D1922037D705",
+							"Metadata":
+							{
+								"DisplayName": "",
+								"Description": "",
+								"SortOrderIndex": 2,
+								"bIsAdvancedDisplay": false,
+								"bSerializeText": false
+							},
+							"AccessType": "Reference",
+							"Name": "Atlantis.Music.Axes.Environment",
+							"TypeName": "Float",
+							"VertexID": "980ABDB64F049C8093880B885E76B6A3"
+						}
+					],
+					"Outputs": [
 						{
 							"NodeID": "07DBB6E2413C6B8A190D23BEFEE81BC1",
 							"Metadata":
@@ -539,13 +876,13 @@
 					}
 				},
 				{
-					"ID": "1EA915544DEE4D2B6AA70B84CB2F02AE",
+					"ID": "06383240427D64505212EAA2DBC2FFA3",
 					"Metadata":
 					{
 						"ClassName":
 						{
-							"Namespace": "Output",
-							"Name": "Trigger",
+							"Namespace": "Input",
+							"Name": "Float",
 							"Variant": "None"
 						},
 						"Version":
@@ -553,7 +890,7 @@
 							"Major": 1,
 							"Minor": 0
 						},
-						"Type": "Output",
+						"Type": "Input",
 						"DisplayName": "",
 						"Description": "",
 						"Author": "Epic Games, Inc.",
@@ -622,8 +959,8 @@
 								},
 								"AccessType": "Reference",
 								"Name": "None",
-								"TypeName": "Trigger",
-								"VertexID": "DC13176B76D7263C9A5AC6AF2436C9B4"
+								"TypeName": "Float",
+								"VertexID": "2E2AB76A85DC7B8E103A4F5E6C5A00A3"
 							}
 						],
 						"Outputs": [
@@ -639,8 +976,8 @@
 								},
 								"AccessType": "Reference",
 								"Name": "None",
-								"TypeName": "Trigger",
-								"VertexID": "CC02F2799674D5DA72ABBEB51D1DC820"
+								"TypeName": "Float",
+								"VertexID": "C502B26ECED384DD42DA6C62718AACCD"
 							}
 						],
 						"Environment": []
@@ -957,7 +1294,7 @@
 		"ChannelSizes": [],
 		"LUFS": 0,
 		"SamplePeakDB": 0,
-		"SampleRate": 0,
+		"SampleRate": 48000,
 		"ImportedSampleRate": 0,
 		"CuePoints": [],
 		"CuePointOrigin": "MarkerTransformation",
