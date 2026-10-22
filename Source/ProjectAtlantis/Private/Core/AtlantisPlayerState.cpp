@@ -89,6 +89,16 @@ void AAtlantisPlayerState::SetTraversalMode(const EAtlantisTraversalMode NewTrav
 	const EAtlantisTraversalMode OldTraversalMode = TraversalMode;
 	TraversalMode = NewTraversalMode;
 	OnRep_TraversalMode(OldTraversalMode);
+}
+
+void AAtlantisPlayerState::SetSubmerged(bool bNewSubmerged)
+{
+	if (!HasAuthority() || bSubmerged == bNewSubmerged)
+	{
+		return;
+	}
+	
+	bSubmerged = bNewSubmerged;
 	RefreshOxygenConsumption();
 }
 
@@ -140,7 +150,7 @@ bool AAtlantisPlayerState::IsBallastAllocated() const
 
 bool AAtlantisPlayerState::IsUsingOxygen() const
 {
-	return TraversalMode == EAtlantisTraversalMode::Swimming || TraversalMode == EAtlantisTraversalMode::SurfaceWalking;
+	return bSubmerged;
 }
 
 void AAtlantisPlayerState::RefreshOxygenConsumption() const

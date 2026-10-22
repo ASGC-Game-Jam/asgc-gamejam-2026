@@ -141,6 +141,7 @@ bool UAtlantisOxygenComponent::IsConsumingOxygen() const
 
 void UAtlantisOxygenComponent::ConsumeOxygen()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Drain step: t=%.2f available %f"), GetWorld()->GetTimeSeconds(), GetAvailableOxygen());
 	const float AvailableOxygen = GetAvailableOxygen();
 
 	if (AvailableOxygen <= UE_KINDA_SMALL_NUMBER)

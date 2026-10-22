@@ -8,39 +8,557 @@
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
-			"name": "EventGraph",
-			"type": "Ubergraph",
+			"name": "Refresh Oxygen Display",
+			"type": "Function",
 			"nodes": [
 				{
-					"guid": "019c3505403657ae57e807a2cb9e1305",
-					"class": "K2Node_Knot",
-					"title": "Reroute Node",
-					"x": 400,
-					"y": 1856,
+					"guid": "0005c64b404c422fad1df9b38d098c42",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 912,
+					"y": 208,
 					"comment": null,
 					"pins": [
 						{
-							"id": "019c3505403657ae57e807a2cb9e1305:i:InputPin",
-							"name": "InputPin",
+							"id": "0005c64b404c422fad1df9b38d098c42:i:Format",
+							"name": "Format",
 							"direction": "input",
-							"type": "real:float",
+							"type": "text",
+							"defaultValue": "{Available} / {Capacity}",
+							"links": []
+						},
+						{
+							"id": "0005c64b404c422fad1df9b38d098c42:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"87432c8c40f4ec6760b1f0ae5af2bad8:o:NewAllocatedOxygen"
+								"acf9bd2148d6cb43d181dfb103e404b1:i:InText"
 							]
 						},
 						{
-							"id": "019c3505403657ae57e807a2cb9e1305:o:OutputPin",
-							"name": "OutputPin",
-							"direction": "output",
-							"type": "real:float",
+							"id": "0005c64b404c422fad1df9b38d098c42:i:Capacity",
+							"name": "Capacity",
+							"direction": "input",
+							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"2fac142a4900bded1bdd0ba5f1cb7ac5:i:B"
+								"32bb4058412b7da093b5fda12d8c75b7:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0005c64b404c422fad1df9b38d098c42:i:Available",
+							"name": "Available",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"6eb4fca546a0ee8e8a55ddb217418e61:o:ReturnValue"
 							]
 						}
 					]
 				},
+				{
+					"guid": "1b808416455e0e2bd20ed3aebb87a227",
+					"class": "K2Node_VariableGet",
+					"title": "Get Oxygen Component",
+					"x": 64,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1b808416455e0e2bd20ed3aebb87a227:o:Oxygen Component",
+							"name": "Oxygen Component",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+							"defaultValue": null,
+							"links": [
+								"b0540057478a3cb4d87c35af29956304:i:self",
+								"c0bdf21746fd17c43e98979d4eea7372:i:self"
+							]
+						},
+						{
+							"id": "1b808416455e0e2bd20ed3aebb87a227:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "22056d494e4c9baf3c3090a85a009cc9",
+					"class": "K2Node_CallFunction",
+					"title": "Set Percent",
+					"x": 800,
+					"y": -64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "22056d494e4c9baf3c3090a85a009cc9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f5e7d9434588fdf04feb5eaa9cdfe900:o:then"
+							]
+						},
+						{
+							"id": "22056d494e4c9baf3c3090a85a009cc9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"acf9bd2148d6cb43d181dfb103e404b1:i:execute"
+							]
+						},
+						{
+							"id": "22056d494e4c9baf3c3090a85a009cc9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.ProgressBar",
+							"defaultValue": null,
+							"links": [
+								"606688eb4e9a4fdf69ed90b359e5819a:o:OxygenDisplay"
+							]
+						},
+						{
+							"id": "22056d494e4c9baf3c3090a85a009cc9:i:InPercent",
+							"name": "InPercent",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"9738e61f472619bb6610fcb28716a804:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "32bb4058412b7da093b5fda12d8c75b7",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (Float)",
+					"x": 672,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c0bdf21746fd17c43e98979d4eea7372:o:ReturnValue"
+							]
+						},
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:i:RoundingMode",
+							"name": "RoundingMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ERoundingMode",
+							"defaultValue": "HalfToEven",
+							"links": []
+						},
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:i:bAlwaysSign",
+							"name": "bAlwaysSign",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:i:bUseGrouping",
+							"name": "bUseGrouping",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:i:MinimumIntegralDigits",
+							"name": "MinimumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:i:MaximumIntegralDigits",
+							"name": "MaximumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "324",
+							"links": []
+						},
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:i:MinimumFractionalDigits",
+							"name": "MinimumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:i:MaximumFractionalDigits",
+							"name": "MaximumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "3",
+							"links": []
+						},
+						{
+							"id": "32bb4058412b7da093b5fda12d8c75b7:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"0005c64b404c422fad1df9b38d098c42:i:Capacity"
+							]
+						}
+					]
+				},
+				{
+					"guid": "385dac864057bbf06650a7ac598ac525",
+					"class": "K2Node_VariableGet",
+					"title": "Get PercentageText",
+					"x": 1024,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "385dac864057bbf06650a7ac598ac525:o:PercentageText",
+							"name": "PercentageText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"acf9bd2148d6cb43d181dfb103e404b1:i:self"
+							]
+						},
+						{
+							"id": "385dac864057bbf06650a7ac598ac525:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "606688eb4e9a4fdf69ed90b359e5819a",
+					"class": "K2Node_VariableGet",
+					"title": "Get OxygenDisplay",
+					"x": 608,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "606688eb4e9a4fdf69ed90b359e5819a:o:OxygenDisplay",
+							"name": "OxygenDisplay",
+							"direction": "output",
+							"type": "object:/Script/UMG.ProgressBar",
+							"defaultValue": null,
+							"links": [
+								"22056d494e4c9baf3c3090a85a009cc9:i:self"
+							]
+						},
+						{
+							"id": "606688eb4e9a4fdf69ed90b359e5819a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6eb4fca546a0ee8e8a55ddb217418e61",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (Float)",
+					"x": 672,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b0540057478a3cb4d87c35af29956304:o:ReturnValue"
+							]
+						},
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:i:RoundingMode",
+							"name": "RoundingMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ERoundingMode",
+							"defaultValue": "HalfToEven",
+							"links": []
+						},
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:i:bAlwaysSign",
+							"name": "bAlwaysSign",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:i:bUseGrouping",
+							"name": "bUseGrouping",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:i:MinimumIntegralDigits",
+							"name": "MinimumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:i:MaximumIntegralDigits",
+							"name": "MaximumIntegralDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "324",
+							"links": []
+						},
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:i:MinimumFractionalDigits",
+							"name": "MinimumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:i:MaximumFractionalDigits",
+							"name": "MaximumFractionalDigits",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "3",
+							"links": []
+						},
+						{
+							"id": "6eb4fca546a0ee8e8a55ddb217418e61:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"0005c64b404c422fad1df9b38d098c42:i:Available"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9738e61f472619bb6610fcb28716a804",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 608,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9738e61f472619bb6610fcb28716a804:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b0540057478a3cb4d87c35af29956304:o:ReturnValue"
+							]
+						},
+						{
+							"id": "9738e61f472619bb6610fcb28716a804:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c0bdf21746fd17c43e98979d4eea7372:o:ReturnValue"
+							]
+						},
+						{
+							"id": "9738e61f472619bb6610fcb28716a804:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"22056d494e4c9baf3c3090a85a009cc9:i:InPercent"
+							]
+						}
+					]
+				},
+				{
+					"guid": "acf9bd2148d6cb43d181dfb103e404b1",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 1200,
+					"y": -64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "acf9bd2148d6cb43d181dfb103e404b1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"22056d494e4c9baf3c3090a85a009cc9:o:then"
+							]
+						},
+						{
+							"id": "acf9bd2148d6cb43d181dfb103e404b1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "acf9bd2148d6cb43d181dfb103e404b1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"385dac864057bbf06650a7ac598ac525:o:PercentageText"
+							]
+						},
+						{
+							"id": "acf9bd2148d6cb43d181dfb103e404b1:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"0005c64b404c422fad1df9b38d098c42:o:Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b0540057478a3cb4d87c35af29956304",
+					"class": "K2Node_CallFunction",
+					"title": "GetAvailableOxygen",
+					"x": 272,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b0540057478a3cb4d87c35af29956304:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+							"defaultValue": null,
+							"links": [
+								"1b808416455e0e2bd20ed3aebb87a227:o:Oxygen Component"
+							]
+						},
+						{
+							"id": "b0540057478a3cb4d87c35af29956304:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"6eb4fca546a0ee8e8a55ddb217418e61:i:Value",
+								"9738e61f472619bb6610fcb28716a804:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c0bdf21746fd17c43e98979d4eea7372",
+					"class": "K2Node_CallFunction",
+					"title": "GetOxygenCapacity",
+					"x": 272,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0bdf21746fd17c43e98979d4eea7372:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+							"defaultValue": null,
+							"links": [
+								"1b808416455e0e2bd20ed3aebb87a227:o:Oxygen Component"
+							]
+						},
+						{
+							"id": "c0bdf21746fd17c43e98979d4eea7372:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"32bb4058412b7da093b5fda12d8c75b7:i:Value",
+								"9738e61f472619bb6610fcb28716a804:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f5e7d9434588fdf04feb5eaa9cdfe900",
+					"class": "K2Node_FunctionEntry",
+					"title": "Refresh Oxygen Display",
+					"x": 368,
+					"y": -48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f5e7d9434588fdf04feb5eaa9cdfe900:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"22056d494e4c9baf3c3090a85a009cc9:i:execute"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
 				{
 					"guid": "01e007c4483510764c9981961e7995f6",
 					"class": "K2Node_VariableGet",
@@ -118,188 +636,6 @@
 							"defaultValue": null,
 							"links": [
 								"eabc2dcc4d83e32f0cdaba90e253f098:o:OutputDelegate"
-							]
-						}
-					]
-				},
-				{
-					"guid": "05b340934da5e160fe29df908c423044",
-					"class": "K2Node_CallFunction",
-					"title": "To Text (Float)",
-					"x": 1184,
-					"y": 1984,
-					"comment": null,
-					"pins": [
-						{
-							"id": "05b340934da5e160fe29df908c423044:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetTextLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
-							"links": []
-						},
-						{
-							"id": "05b340934da5e160fe29df908c423044:i:Value",
-							"name": "Value",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"ab0c01374ffb13f96ecdbb866fc774d1:o:ReturnValue"
-							]
-						},
-						{
-							"id": "05b340934da5e160fe29df908c423044:i:RoundingMode",
-							"name": "RoundingMode",
-							"direction": "input",
-							"type": "byte:/Script/Engine.ERoundingMode",
-							"defaultValue": "HalfToEven",
-							"links": []
-						},
-						{
-							"id": "05b340934da5e160fe29df908c423044:i:bAlwaysSign",
-							"name": "bAlwaysSign",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						},
-						{
-							"id": "05b340934da5e160fe29df908c423044:i:bUseGrouping",
-							"name": "bUseGrouping",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "05b340934da5e160fe29df908c423044:i:MinimumIntegralDigits",
-							"name": "MinimumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "05b340934da5e160fe29df908c423044:i:MaximumIntegralDigits",
-							"name": "MaximumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "324",
-							"links": []
-						},
-						{
-							"id": "05b340934da5e160fe29df908c423044:i:MinimumFractionalDigits",
-							"name": "MinimumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "05b340934da5e160fe29df908c423044:i:MaximumFractionalDigits",
-							"name": "MaximumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "05b340934da5e160fe29df908c423044:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"05d1952f4f99173accd099bb4136b29f:i:OxygenCapacity"
-							]
-						}
-					]
-				},
-				{
-					"guid": "05d1952f4f99173accd099bb4136b29f",
-					"class": "K2Node_FormatText",
-					"title": "Format Text",
-					"x": 1504,
-					"y": 1904,
-					"comment": null,
-					"pins": [
-						{
-							"id": "05d1952f4f99173accd099bb4136b29f:i:Format",
-							"name": "Format",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": "{CurrentOxygen} / {OxygenCapacity}",
-							"links": []
-						},
-						{
-							"id": "05d1952f4f99173accd099bb4136b29f:o:Result",
-							"name": "Result",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"c6b5b3644c6275e0234b158fc352604e:i:Text"
-							]
-						},
-						{
-							"id": "05d1952f4f99173accd099bb4136b29f:i:CurrentOxygen",
-							"name": "CurrentOxygen",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"740293734562b5cf0dc309b37d410e3e:o:ReturnValue"
-							]
-						},
-						{
-							"id": "05d1952f4f99173accd099bb4136b29f:i:OxygenCapacity",
-							"name": "OxygenCapacity",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"05b340934da5e160fe29df908c423044:o:ReturnValue"
-							]
-						}
-					]
-				},
-				{
-					"guid": "0dd0a29d41c1a4ce2e96ef92f6becaf0",
-					"class": "K2Node_PromotableOperator",
-					"title": "float / float",
-					"x": 1376,
-					"y": 1296,
-					"comment": null,
-					"pins": [
-						{
-							"id": "0dd0a29d41c1a4ce2e96ef92f6becaf0:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"48c53f684dec73993d7f42a5849cb01b:o:ReturnValue"
-							]
-						},
-						{
-							"id": "0dd0a29d41c1a4ce2e96ef92f6becaf0:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"b1bafb644cf26af97dfcd4ad34f11b3f:o:ReturnValue"
-							]
-						},
-						{
-							"id": "0dd0a29d41c1a4ce2e96ef92f6becaf0:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"6db2375f4460dde7ded128992e957daf:i:InPercent"
 							]
 						}
 					]
@@ -421,36 +757,6 @@
 					]
 				},
 				{
-					"guid": "19fc295246930359a7ad3eaa169022d3",
-					"class": "K2Node_CallFunction",
-					"title": "GetAllocatedOxygen",
-					"x": 416,
-					"y": 1760,
-					"comment": null,
-					"pins": [
-						{
-							"id": "19fc295246930359a7ad3eaa169022d3:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
-							"defaultValue": null,
-							"links": [
-								"fe181a254bf7f44014bce39a79887801:o:Oxygen Component"
-							]
-						},
-						{
-							"id": "19fc295246930359a7ad3eaa169022d3:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "real:float",
-							"defaultValue": null,
-							"links": [
-								"2fac142a4900bded1bdd0ba5f1cb7ac5:i:A"
-							]
-						}
-					]
-				},
-				{
 					"guid": "1b7aa3af4d80be125b17fe82ad08a2b7",
 					"class": "K2Node_CallFunction",
 					"title": "GetCurrentOxygen",
@@ -481,119 +787,38 @@
 					]
 				},
 				{
-					"guid": "2421e3784853326959219f822e9483e7",
-					"class": "K2Node_FormatText",
-					"title": "Format Text",
-					"x": 1696,
-					"y": 1424,
+					"guid": "303c0edf4ab4a74c4105edad52198826",
+					"class": "K2Node_CallFunction",
+					"title": "Refresh Oxygen Display",
+					"x": 512,
+					"y": 1648,
 					"comment": null,
 					"pins": [
 						{
-							"id": "2421e3784853326959219f822e9483e7:i:Format",
-							"name": "Format",
+							"id": "303c0edf4ab4a74c4105edad52198826:i:execute",
+							"name": "execute",
 							"direction": "input",
-							"type": "text",
-							"defaultValue": "{CurrentOxygen} / {OxygenCapacity}",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"87432c8c40f4ec6760b1f0ae5af2bad8:o:then"
+							]
+						},
+						{
+							"id": "303c0edf4ab4a74c4105edad52198826:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
 							"links": []
 						},
 						{
-							"id": "2421e3784853326959219f822e9483e7:o:Result",
-							"name": "Result",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"3e68e793482499e6a5389d80216b4b74:i:Text"
-							]
-						},
-						{
-							"id": "2421e3784853326959219f822e9483e7:i:CurrentOxygen",
-							"name": "CurrentOxygen",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"c48c55454b170e1d0e87e68b06b031eb:o:ReturnValue"
-							]
-						},
-						{
-							"id": "2421e3784853326959219f822e9483e7:i:OxygenCapacity",
-							"name": "OxygenCapacity",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"cd1c5d0c45cf32dfdef8ac8eac6e962e:o:ReturnValue"
-							]
-						}
-					]
-				},
-				{
-					"guid": "2e405a4a420a690f0111398cc7a66b3c",
-					"class": "K2Node_VariableGet",
-					"title": "Get PercentageText",
-					"x": 1776,
-					"y": 1776,
-					"comment": null,
-					"pins": [
-						{
-							"id": "2e405a4a420a690f0111398cc7a66b3c:o:PercentageText",
-							"name": "PercentageText",
-							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"c6b5b3644c6275e0234b158fc352604e:i:self"
-							]
-						},
-						{
-							"id": "2e405a4a420a690f0111398cc7a66b3c:i:self",
+							"id": "303c0edf4ab4a74c4105edad52198826:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"type": "object:self",
 							"defaultValue": null,
 							"links": []
-						}
-					]
-				},
-				{
-					"guid": "2fac142a4900bded1bdd0ba5f1cb7ac5",
-					"class": "K2Node_PromotableOperator",
-					"title": "float - float",
-					"x": 800,
-					"y": 1808,
-					"comment": null,
-					"pins": [
-						{
-							"id": "2fac142a4900bded1bdd0ba5f1cb7ac5:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"19fc295246930359a7ad3eaa169022d3:o:ReturnValue"
-							]
-						},
-						{
-							"id": "2fac142a4900bded1bdd0ba5f1cb7ac5:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"019c3505403657ae57e807a2cb9e1305:o:OutputPin"
-							]
-						},
-						{
-							"id": "2fac142a4900bded1bdd0ba5f1cb7ac5:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"333569904759742418ded8ac136583f6:i:A",
-								"740293734562b5cf0dc309b37d410e3e:i:Value"
-							]
 						}
 					]
 				},
@@ -621,130 +846,6 @@
 							"defaultValue": null,
 							"links": [
 								"9ff4fecc45d28ac0ddce64a268446e06:i:execute"
-							]
-						}
-					]
-				},
-				{
-					"guid": "333569904759742418ded8ac136583f6",
-					"class": "K2Node_PromotableOperator",
-					"title": "float / float",
-					"x": 1184,
-					"y": 1776,
-					"comment": null,
-					"pins": [
-						{
-							"id": "333569904759742418ded8ac136583f6:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"2fac142a4900bded1bdd0ba5f1cb7ac5:o:ReturnValue"
-							]
-						},
-						{
-							"id": "333569904759742418ded8ac136583f6:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"ab0c01374ffb13f96ecdbb866fc774d1:o:ReturnValue"
-							]
-						},
-						{
-							"id": "333569904759742418ded8ac136583f6:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"621804e2478e034740b47b8c31420d0a:i:InPercent"
-							]
-						}
-					]
-				},
-				{
-					"guid": "3b5cd5a64282c2f304ff3b98fc1e8fbc",
-					"class": "K2Node_VariableGet",
-					"title": "Get OxygenDisplay",
-					"x": 1360,
-					"y": 1744,
-					"comment": null,
-					"pins": [
-						{
-							"id": "3b5cd5a64282c2f304ff3b98fc1e8fbc:o:OxygenDisplay",
-							"name": "OxygenDisplay",
-							"direction": "output",
-							"type": "object:/Script/UMG.ProgressBar",
-							"defaultValue": null,
-							"links": [
-								"621804e2478e034740b47b8c31420d0a:i:self"
-							]
-						},
-						{
-							"id": "3b5cd5a64282c2f304ff3b98fc1e8fbc:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "3e68e793482499e6a5389d80216b4b74",
-					"class": "K2Node_VariableSet",
-					"title": "Set Text",
-					"x": 2160,
-					"y": 1216,
-					"comment": null,
-					"pins": [
-						{
-							"id": "3e68e793482499e6a5389d80216b4b74:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"6db2375f4460dde7ded128992e957daf:o:then"
-							]
-						},
-						{
-							"id": "3e68e793482499e6a5389d80216b4b74:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "3e68e793482499e6a5389d80216b4b74:i:Text",
-							"name": "Text",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"2421e3784853326959219f822e9483e7:o:Result"
-							]
-						},
-						{
-							"id": "3e68e793482499e6a5389d80216b4b74:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "3e68e793482499e6a5389d80216b4b74:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"eeac91ec403153ba4424b7a7a14716f2:o:PercentageText"
 							]
 						}
 					]
@@ -804,47 +905,6 @@
 					]
 				},
 				{
-					"guid": "48c53f684dec73993d7f42a5849cb01b",
-					"class": "K2Node_PromotableOperator",
-					"title": "float - float",
-					"x": 992,
-					"y": 1328,
-					"comment": null,
-					"pins": [
-						{
-							"id": "48c53f684dec73993d7f42a5849cb01b:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"5c81bd73487eb90f1d15fb9df3f50572:o:NewCurrentOxygen"
-							]
-						},
-						{
-							"id": "48c53f684dec73993d7f42a5849cb01b:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"67084d324e97ec2195698890613a044f:o:ReturnValue"
-							]
-						},
-						{
-							"id": "48c53f684dec73993d7f42a5849cb01b:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"0dd0a29d41c1a4ce2e96ef92f6becaf0:i:A",
-								"c48c55454b170e1d0e87e68b06b031eb:i:Value"
-							]
-						}
-					]
-				},
-				{
 					"guid": "5c81bd73487eb90f1d15fb9df3f50572",
 					"class": "K2Node_CustomEvent",
 					"title": "OnCurrentOxygenChanged_Event",
@@ -869,7 +929,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"6db2375f4460dde7ded128992e957daf:i:execute"
+								"973d59e640302e4dc919e5b551636f92:i:execute"
 							]
 						},
 						{
@@ -886,59 +946,7 @@
 							"direction": "output",
 							"type": "real:float",
 							"defaultValue": null,
-							"links": [
-								"48c53f684dec73993d7f42a5849cb01b:i:A"
-							]
-						}
-					]
-				},
-				{
-					"guid": "621804e2478e034740b47b8c31420d0a",
-					"class": "K2Node_CallFunction",
-					"title": "Set Percent",
-					"x": 1568,
-					"y": 1664,
-					"comment": null,
-					"pins": [
-						{
-							"id": "621804e2478e034740b47b8c31420d0a:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"87432c8c40f4ec6760b1f0ae5af2bad8:o:then"
-							]
-						},
-						{
-							"id": "621804e2478e034740b47b8c31420d0a:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"c6b5b3644c6275e0234b158fc352604e:i:execute"
-							]
-						},
-						{
-							"id": "621804e2478e034740b47b8c31420d0a:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.ProgressBar",
-							"defaultValue": null,
-							"links": [
-								"3b5cd5a64282c2f304ff3b98fc1e8fbc:o:OxygenDisplay"
-							]
-						},
-						{
-							"id": "621804e2478e034740b47b8c31420d0a:i:InPercent",
-							"name": "InPercent",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": null,
-							"links": [
-								"333569904759742418ded8ac136583f6:o:ReturnValue"
-							]
+							"links": []
 						}
 					]
 				},
@@ -974,64 +982,6 @@
 					]
 				},
 				{
-					"guid": "67084d324e97ec2195698890613a044f",
-					"class": "K2Node_CallFunction",
-					"title": "GetCurrentOxygen",
-					"x": 640,
-					"y": 1392,
-					"comment": null,
-					"pins": [
-						{
-							"id": "67084d324e97ec2195698890613a044f:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
-							"defaultValue": null,
-							"links": [
-								"eb276b1d4d6fd51a9f11cf949ce9ca9f:o:Oxygen Component"
-							]
-						},
-						{
-							"id": "67084d324e97ec2195698890613a044f:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "real:float",
-							"defaultValue": null,
-							"links": [
-								"48c53f684dec73993d7f42a5849cb01b:i:B"
-							]
-						}
-					]
-				},
-				{
-					"guid": "69f87bbe480cdf89094d51bfac4d170e",
-					"class": "K2Node_VariableGet",
-					"title": "Get OxygenDisplay",
-					"x": 1552,
-					"y": 1264,
-					"comment": null,
-					"pins": [
-						{
-							"id": "69f87bbe480cdf89094d51bfac4d170e:o:OxygenDisplay",
-							"name": "OxygenDisplay",
-							"direction": "output",
-							"type": "object:/Script/UMG.ProgressBar",
-							"defaultValue": null,
-							"links": [
-								"6db2375f4460dde7ded128992e957daf:i:self"
-							]
-						},
-						{
-							"id": "69f87bbe480cdf89094d51bfac4d170e:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "6a5538354f1dc9ab8d3ef39f3ffa7070",
 					"class": "K2Node_CallFunction",
 					"title": "GetAllocatedOxygen",
@@ -1057,150 +1007,6 @@
 							"defaultValue": null,
 							"links": [
 								"956254644fcab07eff61c5afb96266b2:i:B"
-							]
-						}
-					]
-				},
-				{
-					"guid": "6db2375f4460dde7ded128992e957daf",
-					"class": "K2Node_CallFunction",
-					"title": "Set Percent",
-					"x": 1760,
-					"y": 1184,
-					"comment": null,
-					"pins": [
-						{
-							"id": "6db2375f4460dde7ded128992e957daf:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"5c81bd73487eb90f1d15fb9df3f50572:o:then"
-							]
-						},
-						{
-							"id": "6db2375f4460dde7ded128992e957daf:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"3e68e793482499e6a5389d80216b4b74:i:execute"
-							]
-						},
-						{
-							"id": "6db2375f4460dde7ded128992e957daf:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.ProgressBar",
-							"defaultValue": null,
-							"links": [
-								"69f87bbe480cdf89094d51bfac4d170e:o:OxygenDisplay"
-							]
-						},
-						{
-							"id": "6db2375f4460dde7ded128992e957daf:i:InPercent",
-							"name": "InPercent",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": null,
-							"links": [
-								"0dd0a29d41c1a4ce2e96ef92f6becaf0:o:ReturnValue"
-							]
-						}
-					]
-				},
-				{
-					"guid": "740293734562b5cf0dc309b37d410e3e",
-					"class": "K2Node_CallFunction",
-					"title": "To Text (Float)",
-					"x": 1184,
-					"y": 1888,
-					"comment": null,
-					"pins": [
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetTextLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
-							"links": []
-						},
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:i:Value",
-							"name": "Value",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"2fac142a4900bded1bdd0ba5f1cb7ac5:o:ReturnValue"
-							]
-						},
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:i:RoundingMode",
-							"name": "RoundingMode",
-							"direction": "input",
-							"type": "byte:/Script/Engine.ERoundingMode",
-							"defaultValue": "HalfToEven",
-							"links": []
-						},
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:i:bAlwaysSign",
-							"name": "bAlwaysSign",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						},
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:i:bUseGrouping",
-							"name": "bUseGrouping",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:i:MinimumIntegralDigits",
-							"name": "MinimumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:i:MaximumIntegralDigits",
-							"name": "MaximumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "324",
-							"links": []
-						},
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:i:MinimumFractionalDigits",
-							"name": "MinimumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:i:MaximumFractionalDigits",
-							"name": "MaximumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "740293734562b5cf0dc309b37d410e3e:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"05d1952f4f99173accd099bb4136b29f:i:CurrentOxygen"
 							]
 						}
 					]
@@ -1239,8 +1045,8 @@
 					"guid": "87432c8c40f4ec6760b1f0ae5af2bad8",
 					"class": "K2Node_CustomEvent",
 					"title": "On Allocated Oxygen Changed",
-					"x": -64,
-					"y": 1664,
+					"x": 16,
+					"y": 1632,
 					"comment": null,
 					"pins": [
 						{
@@ -1260,7 +1066,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"621804e2478e034740b47b8c31420d0a:i:execute"
+								"303c0edf4ab4a74c4105edad52198826:i:execute"
 							]
 						},
 						{
@@ -1277,9 +1083,7 @@
 							"direction": "output",
 							"type": "real:float",
 							"defaultValue": null,
-							"links": [
-								"019c3505403657ae57e807a2cb9e1305:i:InputPin"
-							]
+							"links": []
 						}
 					]
 				},
@@ -1371,6 +1175,42 @@
 								"7b35543d4208ce6c695a18a6c97535e1:i:InputPin",
 								"ed4e6d64421265831ee9b0a9b7c49d8d:i:A"
 							]
+						}
+					]
+				},
+				{
+					"guid": "973d59e640302e4dc919e5b551636f92",
+					"class": "K2Node_CallFunction",
+					"title": "Refresh Oxygen Display",
+					"x": 1008,
+					"y": 1232,
+					"comment": null,
+					"pins": [
+						{
+							"id": "973d59e640302e4dc919e5b551636f92:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5c81bd73487eb90f1d15fb9df3f50572:o:then"
+							]
+						},
+						{
+							"id": "973d59e640302e4dc919e5b551636f92:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "973d59e640302e4dc919e5b551636f92:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -1632,68 +1472,6 @@
 					]
 				},
 				{
-					"guid": "ab0c01374ffb13f96ecdbb866fc774d1",
-					"class": "K2Node_CallFunction",
-					"title": "GetOxygenCapacity",
-					"x": 592,
-					"y": 1952,
-					"comment": null,
-					"pins": [
-						{
-							"id": "ab0c01374ffb13f96ecdbb866fc774d1:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
-							"defaultValue": null,
-							"links": [
-								"fe181a254bf7f44014bce39a79887801:o:Oxygen Component"
-							]
-						},
-						{
-							"id": "ab0c01374ffb13f96ecdbb866fc774d1:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "real:float",
-							"defaultValue": null,
-							"links": [
-								"05b340934da5e160fe29df908c423044:i:Value",
-								"333569904759742418ded8ac136583f6:i:B"
-							]
-						}
-					]
-				},
-				{
-					"guid": "b1bafb644cf26af97dfcd4ad34f11b3f",
-					"class": "K2Node_CallFunction",
-					"title": "GetOxygenCapacity",
-					"x": 912,
-					"y": 1472,
-					"comment": null,
-					"pins": [
-						{
-							"id": "b1bafb644cf26af97dfcd4ad34f11b3f:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
-							"defaultValue": null,
-							"links": [
-								"eb276b1d4d6fd51a9f11cf949ce9ca9f:o:Oxygen Component"
-							]
-						},
-						{
-							"id": "b1bafb644cf26af97dfcd4ad34f11b3f:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "real:float",
-							"defaultValue": null,
-							"links": [
-								"0dd0a29d41c1a4ce2e96ef92f6becaf0:i:B",
-								"cd1c5d0c45cf32dfdef8ac8eac6e962e:i:Value"
-							]
-						}
-					]
-				},
-				{
 					"guid": "b7ea13f24aea147b3f9bb5a9c87b5aac",
 					"class": "K2Node_VariableSet",
 					"title": "Set Atlantis Player State",
@@ -1752,156 +1530,6 @@
 					]
 				},
 				{
-					"guid": "c48c55454b170e1d0e87e68b06b031eb",
-					"class": "K2Node_CallFunction",
-					"title": "To Text (Float)",
-					"x": 1376,
-					"y": 1408,
-					"comment": null,
-					"pins": [
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetTextLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
-							"links": []
-						},
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:i:Value",
-							"name": "Value",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"48c53f684dec73993d7f42a5849cb01b:o:ReturnValue"
-							]
-						},
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:i:RoundingMode",
-							"name": "RoundingMode",
-							"direction": "input",
-							"type": "byte:/Script/Engine.ERoundingMode",
-							"defaultValue": "HalfToEven",
-							"links": []
-						},
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:i:bAlwaysSign",
-							"name": "bAlwaysSign",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						},
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:i:bUseGrouping",
-							"name": "bUseGrouping",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:i:MinimumIntegralDigits",
-							"name": "MinimumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:i:MaximumIntegralDigits",
-							"name": "MaximumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "324",
-							"links": []
-						},
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:i:MinimumFractionalDigits",
-							"name": "MinimumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:i:MaximumFractionalDigits",
-							"name": "MaximumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "c48c55454b170e1d0e87e68b06b031eb:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"2421e3784853326959219f822e9483e7:i:CurrentOxygen"
-							]
-						}
-					]
-				},
-				{
-					"guid": "c6b5b3644c6275e0234b158fc352604e",
-					"class": "K2Node_VariableSet",
-					"title": "Set Text",
-					"x": 1968,
-					"y": 1696,
-					"comment": null,
-					"pins": [
-						{
-							"id": "c6b5b3644c6275e0234b158fc352604e:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"621804e2478e034740b47b8c31420d0a:o:then"
-							]
-						},
-						{
-							"id": "c6b5b3644c6275e0234b158fc352604e:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "c6b5b3644c6275e0234b158fc352604e:i:Text",
-							"name": "Text",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"05d1952f4f99173accd099bb4136b29f:o:Result"
-							]
-						},
-						{
-							"id": "c6b5b3644c6275e0234b158fc352604e:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "c6b5b3644c6275e0234b158fc352604e:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"2e405a4a420a690f0111398cc7a66b3c:o:PercentageText"
-							]
-						}
-					]
-				},
-				{
 					"guid": "cc68e4224fb05502f1ec21afdd9393a4",
 					"class": "K2Node_CallFunction",
 					"title": "Get Owning Player",
@@ -1925,100 +1553,6 @@
 							"defaultValue": null,
 							"links": [
 								"15ed22794622427d6a92e695786f50c8:i:self"
-							]
-						}
-					]
-				},
-				{
-					"guid": "cd1c5d0c45cf32dfdef8ac8eac6e962e",
-					"class": "K2Node_CallFunction",
-					"title": "To Text (Float)",
-					"x": 1376,
-					"y": 1504,
-					"comment": null,
-					"pins": [
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetTextLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
-							"links": []
-						},
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:i:Value",
-							"name": "Value",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"b1bafb644cf26af97dfcd4ad34f11b3f:o:ReturnValue"
-							]
-						},
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:i:RoundingMode",
-							"name": "RoundingMode",
-							"direction": "input",
-							"type": "byte:/Script/Engine.ERoundingMode",
-							"defaultValue": "HalfToEven",
-							"links": []
-						},
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:i:bAlwaysSign",
-							"name": "bAlwaysSign",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						},
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:i:bUseGrouping",
-							"name": "bUseGrouping",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:i:MinimumIntegralDigits",
-							"name": "MinimumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:i:MaximumIntegralDigits",
-							"name": "MaximumIntegralDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "324",
-							"links": []
-						},
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:i:MinimumFractionalDigits",
-							"name": "MinimumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:i:MaximumFractionalDigits",
-							"name": "MaximumFractionalDigits",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "1",
-							"links": []
-						},
-						{
-							"id": "cd1c5d0c45cf32dfdef8ac8eac6e962e:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"2421e3784853326959219f822e9483e7:i:OxygenCapacity"
 							]
 						}
 					]
@@ -2094,35 +1628,6 @@
 					]
 				},
 				{
-					"guid": "eb276b1d4d6fd51a9f11cf949ce9ca9f",
-					"class": "K2Node_VariableGet",
-					"title": "Get Oxygen Component",
-					"x": 464,
-					"y": 1504,
-					"comment": null,
-					"pins": [
-						{
-							"id": "eb276b1d4d6fd51a9f11cf949ce9ca9f:o:Oxygen Component",
-							"name": "Oxygen Component",
-							"direction": "output",
-							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
-							"defaultValue": null,
-							"links": [
-								"67084d324e97ec2195698890613a044f:i:self",
-								"b1bafb644cf26af97dfcd4ad34f11b3f:i:self"
-							]
-						},
-						{
-							"id": "eb276b1d4d6fd51a9f11cf949ce9ca9f:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "ed4e6d64421265831ee9b0a9b7c49d8d",
 					"class": "K2Node_PromotableOperator",
 					"title": "float / float",
@@ -2159,34 +1664,6 @@
 							"links": [
 								"f9e90e374ee7efc94a337ebf2cd32a55:i:Percent"
 							]
-						}
-					]
-				},
-				{
-					"guid": "eeac91ec403153ba4424b7a7a14716f2",
-					"class": "K2Node_VariableGet",
-					"title": "Get PercentageText",
-					"x": 1968,
-					"y": 1296,
-					"comment": null,
-					"pins": [
-						{
-							"id": "eeac91ec403153ba4424b7a7a14716f2:o:PercentageText",
-							"name": "PercentageText",
-							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"3e68e793482499e6a5389d80216b4b74:i:self"
-							]
-						},
-						{
-							"id": "eeac91ec403153ba4424b7a7a14716f2:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
-							"defaultValue": null,
-							"links": []
 						}
 					]
 				},
@@ -2475,35 +1952,6 @@
 							"links": [
 								"9800f1e84a56822b287f28a1134dec58:o:PercentageText"
 							]
-						}
-					]
-				},
-				{
-					"guid": "fe181a254bf7f44014bce39a79887801",
-					"class": "K2Node_VariableGet",
-					"title": "Get Oxygen Component",
-					"x": 160,
-					"y": 1904,
-					"comment": null,
-					"pins": [
-						{
-							"id": "fe181a254bf7f44014bce39a79887801:o:Oxygen Component",
-							"name": "Oxygen Component",
-							"direction": "output",
-							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
-							"defaultValue": null,
-							"links": [
-								"19fc295246930359a7ad3eaa169022d3:i:self",
-								"ab0c01374ffb13f96ecdbb866fc774d1:i:self"
-							]
-						},
-						{
-							"id": "fe181a254bf7f44014bce39a79887801:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
-							"defaultValue": null,
-							"links": []
 						}
 					]
 				}

@@ -133,9 +133,16 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 		return;
 	}
 	
+	const bool bInWater = NewVolume && NewVolume->bWaterVolume;
+	
 	if (AAtlantisPlayerController* Controller = Cast<AAtlantisPlayerController>(CharacterOwner->GetController()))
 	{
-		Controller->UpdateMovementControls(NewVolume && NewVolume->bWaterVolume);
+		Controller->UpdateMovementControls(bInWater);
+	}
+	
+	if (AAtlantisPlayerState * PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>())
+	{
+		PlayerState->SetSubmerged(bInWater);
 	}
 }
 

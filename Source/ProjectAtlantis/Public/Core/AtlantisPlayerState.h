@@ -94,6 +94,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetTraversalMode(EAtlantisTraversalMode NewTraversalMode);
+	
+	/** Tells the player state whether the pawn is underwater */
+	UFUNCTION(BlueprintCallable,BlueprintAuthorityOnly , Category = "Atlantis|PlayerState")
+	void SetSubmerged(bool bNewSubmerged);
 
 protected:
 
@@ -149,4 +153,6 @@ private:
 	
 	/** Starts or stops oxygen consumption to match the IsUsingOxygen function */
 	void RefreshOxygenConsumption() const;
+	
+	bool bSubmerged = false;
 };
