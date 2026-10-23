@@ -11,6 +11,7 @@
  * Stores any audio dev settings
  */
 
+ class UMetaSoundSource;
 
 UCLASS(config=Game, DefaultConfig)
 class PROJECTATLANTIS_API UAtlantisAudioDeveloperSettings : public UDeveloperSettings
@@ -26,9 +27,13 @@ public:
 #endif
 
 	static bool DetermineIfMusicSubsystemEnabled();
+	static TObjectPtr<UMetaSoundSource> GetMusicMetaSoundSource(); 
 
 protected:
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
 	bool bEnableMusicManagementSubsystem = true;
+
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
+	TSoftObjectPtr<UMetaSoundSource> MusicMetaSoundSource;
 
 };
