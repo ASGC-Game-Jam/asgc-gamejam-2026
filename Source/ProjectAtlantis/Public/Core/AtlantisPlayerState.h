@@ -95,9 +95,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetTraversalMode(EAtlantisTraversalMode NewTraversalMode);
 	
-	/** Tells the player state whether the pawn is underwater */
-	UFUNCTION(BlueprintCallable,BlueprintAuthorityOnly , Category = "Atlantis|PlayerState")
-	void SetSubmerged(bool bNewSubmerged);
+	/** Starts or stops oxygen consumption to match the IsUsingOxygen function */
+	void RefreshOxygenConsumption() const;
 
 protected:
 
@@ -130,6 +129,9 @@ private:
 
 	UFUNCTION()
 	void OnRep_EquippedItems(const TArray<FString>& OldEquippedItems) const;
+	
+	UFUNCTION()
+	void HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn);
 
 	// Ballast reservations, not consumption rates; tune in Blueprint class defaults.
  
@@ -150,9 +152,4 @@ private:
 	
 	/** True while the player breathes underwater */
 	bool IsUsingOxygen() const;
-	
-	/** Starts or stops oxygen consumption to match the IsUsingOxygen function */
-	void RefreshOxygenConsumption() const;
-	
-	bool bSubmerged = false;
 };

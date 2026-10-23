@@ -3,6 +3,8 @@
 
 #include "Core/AtlantisPlayerState.h"
 #include "Core/AtlantisOxygenComponent.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Net/UnrealNetwork.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisPlayerState, Log, All);
@@ -10,6 +12,7 @@ DEFINE_LOG_CATEGORY_STATIC(LogAtlantisPlayerState, Log, All);
 void AAtlantisPlayerState::BeginPlay()
 {
 	Super::BeginPlay();
+	OnPawnSet.AddDynamic(this, &AAtlantisPlayerState::HandlePawnSet);
 	RefreshOxygenConsumption();
 }
 
@@ -21,6 +24,11 @@ AAtlantisPlayerState::AAtlantisPlayerState()
 	SetNetUpdateFrequency(10.f);
 	OxygenComponent = CreateDefaultSubobject<UAtlantisOxygenComponent>(TEXT("OxygenComponent"));
 	EquippedItems = TArray<FString>();
+}
+
+void AAtlantisPlayerState::HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn)
+{
+	RefreshOxygenConsumption();
 }
 
 void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -91,17 +99,6 @@ void AAtlantisPlayerState::SetTraversalMode(const EAtlantisTraversalMode NewTrav
 	OnRep_TraversalMode(OldTraversalMode);
 }
 
-void AAtlantisPlayerState::SetSubmerged(bool bNewSubmerged)
-{
-	if (!HasAuthority() || bSubmerged == bNewSubmerged)
-	{
-		return;
-	}
-	
-	bSubmerged = bNewSubmerged;
-	RefreshOxygenConsumption();
-}
-
 void AAtlantisPlayerState::OnRep_BallastState(const EAtlantisBallastState OldBallastState) const
 {
 	OnBallastChanged.Broadcast(IsBallastAllocated(), BallastState);
@@ -150,7 +147,8 @@ bool AAtlantisPlayerState::IsBallastAllocated() const
 
 bool AAtlantisPlayerState::IsUsingOxygen() const
 {
-	return bSubmerged;
+	const ACharacter* Character = GetPawn<ACharacter>();
+	return Character && Character->GetCharacterMovement()->IsInWater();
 }
 
 void AAtlantisPlayerState::RefreshOxygenConsumption() const

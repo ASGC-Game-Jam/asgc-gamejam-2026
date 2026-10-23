@@ -142,7 +142,7 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 	
 	if (AAtlantisPlayerState * PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>())
 	{
-		PlayerState->SetSubmerged(bInWater);
+		GetWorld()->GetTimerManager().SetTimerForNextTick(PlayerState, &AAtlantisPlayerState::RefreshOxygenConsumption);
 	}
 }
 
