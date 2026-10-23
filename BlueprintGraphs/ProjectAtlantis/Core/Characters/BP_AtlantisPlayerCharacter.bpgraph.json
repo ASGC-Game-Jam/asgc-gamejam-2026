@@ -1367,6 +1367,14 @@
 							"links": []
 						},
 						{
+							"id": "fac92fd64d2c10c88f171495c8a916b8:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
 							"id": "fac92fd64d2c10c88f171495c8a916b8:i:self",
 							"name": "self",
 							"direction": "input",
@@ -1375,14 +1383,6 @@
 							"links": [
 								"d5855219479164f510d90c8899433f18:o:CameraBoom"
 							]
-						},
-						{
-							"id": "fac92fd64d2c10c88f171495c8a916b8:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
 						}
 					]
 				}
@@ -3271,6 +3271,50 @@
 					]
 				},
 				{
+					"guid": "3410409e486b3f9a3a0008b417b44b02",
+					"class": "K2Node_CallFunction",
+					"title": "Crouch",
+					"x": 1328,
+					"y": 800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3410409e486b3f9a3a0008b417b44b02:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6a23fb7843db31e6fb15208b938830fe:o:Triggered"
+							]
+						},
+						{
+							"id": "3410409e486b3f9a3a0008b417b44b02:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3410409e486b3f9a3a0008b417b44b02:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3410409e486b3f9a3a0008b417b44b02:i:bClientSimulation",
+							"name": "bClientSimulation",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "367299204d4178eb37b8f0a5f952e97c",
 					"class": "K2Node_VariableGet",
 					"title": "Get Examine Mode",
@@ -3765,6 +3809,90 @@
 							"links": [
 								"491f81384854ac88f04c01bec4ff53d3:i:execute"
 							]
+						}
+					]
+				},
+				{
+					"guid": "6a23fb7843db31e6fb15208b938830fe",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_Crouch",
+					"x": 864,
+					"y": 784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6a23fb7843db31e6fb15208b938830fe:o:Triggered",
+							"name": "Triggered",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3410409e486b3f9a3a0008b417b44b02:i:execute"
+							]
+						},
+						{
+							"id": "6a23fb7843db31e6fb15208b938830fe:o:Started",
+							"name": "Started",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6a23fb7843db31e6fb15208b938830fe:o:Ongoing",
+							"name": "Ongoing",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6a23fb7843db31e6fb15208b938830fe:o:Canceled",
+							"name": "Canceled",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6a23fb7843db31e6fb15208b938830fe:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6a23fb7843db31e6fb15208b938830fe:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "6a23fb7843db31e6fb15208b938830fe:o:ElapsedSeconds",
+							"name": "ElapsedSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6a23fb7843db31e6fb15208b938830fe:o:TriggeredSeconds",
+							"name": "TriggeredSeconds",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6a23fb7843db31e6fb15208b938830fe:o:InputAction",
+							"name": "InputAction",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Crouch.IA_Crouch",
+							"links": []
 						}
 					]
 				},
