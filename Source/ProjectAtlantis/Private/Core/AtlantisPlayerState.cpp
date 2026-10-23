@@ -3,9 +3,18 @@
 
 #include "Core/AtlantisPlayerState.h"
 #include "Core/AtlantisOxygenComponent.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Net/UnrealNetwork.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisPlayerState, Log, All);
+
+void AAtlantisPlayerState::BeginPlay()
+{
+	Super::BeginPlay();
+	OnPawnSet.AddDynamic(this, &AAtlantisPlayerState::HandlePawnSet);
+	RefreshOxygenConsumption();
+}
 
 AAtlantisPlayerState::AAtlantisPlayerState()
 {
@@ -17,10 +26,15 @@ AAtlantisPlayerState::AAtlantisPlayerState()
 	EquippedItems = TArray<FString>();
 }
 
+void AAtlantisPlayerState::HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn)
+{
+	RefreshOxygenConsumption();
+}
+
 void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	
+
 	DOREPLIFETIME(AAtlantisPlayerState, BallastState);
 	DOREPLIFETIME(AAtlantisPlayerState, TraversalMode);
 	DOREPLIFETIME(AAtlantisPlayerState, EquippedItems);
@@ -36,7 +50,7 @@ void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
 		AtlantisPlayerState->TraversalMode = TraversalMode;
 		AtlantisPlayerState->EquippedItems = EquippedItems;
 		if (OxygenComponent && AtlantisPlayerState->OxygenComponent)
-		{	
+		{
 			OxygenComponent->CopyStateTo(*AtlantisPlayerState->OxygenComponent);
 		}
 	}
@@ -61,7 +75,7 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 	{
 		return;
 	}
-	
+
 	if (!OxygenComponent->ReallocateOxygen(RequiredAllocation))
 	{
 		return;
@@ -104,20 +118,20 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 {
 	switch (RequiredBallastState)
 	{
-		case EAtlantisBallastState::Descend:
+	case EAtlantisBallastState::Descend:
 		{
 			return DescendOxygenAllocation;
 		}
-		case EAtlantisBallastState::Wander:
+	case EAtlantisBallastState::Wander:
 		{
 			return WanderOxygenAllocation;
 		}
-		case EAtlantisBallastState::Ascend:
+	case EAtlantisBallastState::Ascend:
 		{
 			return AscendOxygenAllocation;
 		}
-		case EAtlantisBallastState::None:
-		default:
+	case EAtlantisBallastState::None:
+	default:
 		{
 			UE_LOG(LogAtlantisPlayerState, Fatal, TEXT("Invalid ballast state: %d"),
 			       static_cast<uint8>(RequiredBallastState));
@@ -129,4 +143,20 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 bool AAtlantisPlayerState::IsBallastAllocated() const
 {
 	return OxygenComponent && OxygenComponent->GetAllocatedOxygen() > 0.f;
+}
+
+bool AAtlantisPlayerState::IsUsingOxygen() const
+{
+	const ACharacter* Character = GetPawn<ACharacter>();
+	return Character && Character->GetCharacterMovement()->IsInWater();
+}
+
+void AAtlantisPlayerState::RefreshOxygenConsumption() const
+{
+	if (!HasAuthority() || !OxygenComponent)
+	{
+		return;
+	}
+
+	OxygenComponent->SetConsumingOxygen(IsUsingOxygen());
 }

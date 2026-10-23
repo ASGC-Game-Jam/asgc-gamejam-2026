@@ -79,6 +79,69 @@
 			"comments": []
 		},
 		{
+			"name": "Interact",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "9ccf39e64124f328fcc6e9b547e267f6",
+					"class": "K2Node_FunctionEntry",
+					"title": "Interact",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9ccf39e64124f328fcc6e9b547e267f6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a84eb1cd4b86a0d314a40691001fec12:i:execute"
+							]
+						},
+						{
+							"id": "9ccf39e64124f328fcc6e9b547e267f6:o:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a84eb1cd4b86a0d314a40691001fec12",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a84eb1cd4b86a0d314a40691001fec12:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9ccf39e64124f328fcc6e9b547e267f6:o:then"
+							]
+						},
+						{
+							"id": "a84eb1cd4b86a0d314a40691001fec12:i:InteractionOccurred",
+							"name": "InteractionOccurred",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
 			"name": "Talk",
 			"type": "Function",
 			"nodes": [

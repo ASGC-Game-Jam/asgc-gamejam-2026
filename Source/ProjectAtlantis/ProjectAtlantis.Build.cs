@@ -9,31 +9,36 @@ public class ProjectAtlantis : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { 
-			"Core", 
-			"CoreUObject", 
-			"Engine", 
-			"InputCore", 
-			"EnhancedInput", 
-			"UMG", 
-			"CommonInput", 
-			"EngineSettings", 
-			"AIModule", 
-			"GameplayStateTreeModule",
-			"GameplayTags",
-			"StructUtils"
+		PublicDependencyModuleNames.AddRange(new string[]
+			{
+				"Core",
+				"CoreUObject",
+				"Engine",
+				"InputCore",
+				"EnhancedInput",
+				"UMG",
+				"CommonInput",
+				"EngineSettings",
+				"AIModule",
+				"StateTreeModule",
+				"GameplayStateTreeModule", 
+				"GameplayDebugger",
+        "GameplayTags",
+			  "StructUtils"
 			});
 
-        PrivateDependencyModuleNames.AddRange(new string[] {
-            "GameAnalytics",
-            "MetasoundFrontend",
-            "MetasoundGraphCore",
-            "MetasoundEngine",
-            "MetasoundStandardNodes",
-            "AudioExtensions",
-            "HarmonixMetasound",
-            "Harmonix"
-        });
+      PrivateDependencyModuleNames.AddRange(new string[] {
+          "GameAnalytics",
+          "MetasoundFrontend",
+          "MetasoundGraphCore",
+          "MetasoundEngine",
+          "MetasoundStandardNodes",
+          "AudioExtensions",
+          "HarmonixMetasound",
+          "Harmonix",
+          "SmartObjectsModule",
+          "GameplayTags"
+      });
 		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics", "CommonUI" });
 
 		if (Target.ProjectDefinitions.Contains("WITH_SCREENSHOT_CAPTURE=1"))
