@@ -1,14 +1,15 @@
 ﻿// Copyright (c) 2026 ASGC
 
 #include "Core/AtlantisOxygenComponent.h"
-
+#include "Engine/World.h"
+#include "TimerManager.h"
 #include "Net/UnrealNetwork.h"
 
 
 UAtlantisOxygenComponent::UAtlantisOxygenComponent()
 {
 	PrimaryComponentTick.bCanEverTick = false; //Does it tick?!
-	
+
 	SetIsReplicatedByDefault(true);
 }
 
@@ -24,14 +25,24 @@ void UAtlantisOxygenComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProper
 void UAtlantisOxygenComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	if (HasOwnerAuthority())
 	{
 		CurrentOxygen = OxygenCapacity;
 		AllocatedOxygen = 0.f;
-		
-		UpdateCriticalOxygen();
+
+		UpdateOxygenThresholds();
 	}
+}
+
+void UAtlantisOxygenComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	if (UWorld* World = GetWorld())
+	{
+		World->GetTimerManager().ClearTimer(OxygenConsumptionTimerHandle);
+	}
+
+	Super::EndPlay(EndPlayReason);
 }
 
 void UAtlantisOxygenComponent::CopyStateTo(UAtlantisOxygenComponent& Target) const
@@ -44,7 +55,7 @@ void UAtlantisOxygenComponent::CopyStateTo(UAtlantisOxygenComponent& Target) con
 
 void UAtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
 {
-	if (!HasOwnerAuthority() ||FMath::IsNearlyEqual(OxygenCapacity, NewOxygenCapacity))
+	if (!HasOwnerAuthority() || FMath::IsNearlyEqual(OxygenCapacity, NewOxygenCapacity))
 	{
 		return;
 	}
@@ -66,7 +77,7 @@ void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen
 	AllocatedOxygen = NewAllocatedOxygen;
 
 	OnRep_AllocatedOxygen(OldAllocatedOxygen);
-	UpdateCriticalOxygen();
+	UpdateOxygenThresholds();
 }
 
 bool UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
@@ -83,7 +94,7 @@ bool UAtlantisOxygenComponent::SetCurrentOxygen(const float NewCurrentOxygen)
 		const float OldCurrentOxygen = CurrentOxygen;
 		CurrentOxygen = ClampedOxygen;
 		OnRep_CurrentOxygen(OldCurrentOxygen);
-		UpdateCriticalOxygen();
+		UpdateOxygenThresholds();
 		status = true;
 	}
 	return status;
@@ -98,6 +109,47 @@ void UAtlantisOxygenComponent::SetCriticalOxygen(bool bNewCriticalOxygen)
 
 	bCriticalOxygen = bNewCriticalOxygen;
 	OnRep_CriticalOxygen();
+}
+
+void UAtlantisOxygenComponent::SetConsumingOxygen(bool bNewConsumingOxygen)
+{
+	UWorld* World = GetWorld();
+
+	if (!HasOwnerAuthority() || !World || IsConsumingOxygen() == bNewConsumingOxygen)
+	{
+		return;
+	}
+
+	FTimerManager& TimerManager = World->GetTimerManager();
+
+	if (bNewConsumingOxygen)
+	{
+		TimerManager.SetTimer(OxygenConsumptionTimerHandle, this, &UAtlantisOxygenComponent::ConsumeOxygen,
+		                      OxygenConsumptionInterval, true);
+	}
+	else
+	{
+		TimerManager.ClearTimer(OxygenConsumptionTimerHandle);
+	}
+}
+
+bool UAtlantisOxygenComponent::IsConsumingOxygen() const
+{
+	const UWorld* World = GetWorld();
+	return World && World->GetTimerManager().IsTimerActive(OxygenConsumptionTimerHandle);
+}
+
+void UAtlantisOxygenComponent::ConsumeOxygen()
+{
+	const float AvailableOxygen = GetAvailableOxygen();
+
+	if (AvailableOxygen <= UE_KINDA_SMALL_NUMBER)
+	{
+		return;
+	}
+
+	const float ConsumedOxygen = OxygenConsumptionRate * OxygenConsumptionInterval;
+	RequestOxygen(FMath::Min(AvailableOxygen, ConsumedOxygen));
 }
 
 void UAtlantisOxygenComponent::OnRep_OxygenCapacity(const float OldOxygenCapacity) const
@@ -120,7 +172,7 @@ void UAtlantisOxygenComponent::OnRep_CriticalOxygen() const
 	OnCriticalOxygenChanged.Broadcast(bCriticalOxygen);
 }
 
-void UAtlantisOxygenComponent::UpdateCriticalOxygen()
+void UAtlantisOxygenComponent::UpdateOxygenThresholds()
 {
 	const float AvailableOxygen = CurrentOxygen - AllocatedOxygen;
 	if (!bCriticalOxygen && AvailableOxygen <= CriticalOxygenThreshold)
@@ -156,7 +208,6 @@ bool UAtlantisOxygenComponent::RestoreOxygen(const float RestoreOxygenAmount, co
 	if (!HasOwnerAuthority() || RestoreOxygenAmount < 0.0f)
 	{
 		status = false;
-
 	}
 	else
 	{
@@ -206,7 +257,7 @@ bool UAtlantisOxygenComponent::ReallocateOxygen(float NewRequestedOxygen)
 	{
 		return false;
 	}
-	
+
 	SetAllocatedOxygen(NewRequestedOxygen);
 	return true;
 }
