@@ -10,7 +10,7 @@
 #include "MetasoundGeneratorHandle.h"
 
 
-DEFINE_LOG_CATEGORY_STATIC(LogAtlantisAudioSubsystem, Log, All);
+DEFINE_LOG_CATEGORY(LogAtlantisAudioSubsystem);
 
 static TAutoConsoleVariable<int32> CVarTrackAtlantisAudioAxisSweep(
 	TEXT("Atlantis.Audio.AxesSweepTest"),
