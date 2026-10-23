@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Engine/TimerHandle.h"
 #include "AtlantisOxygenComponent.generated.h"
 
 
@@ -31,6 +32,8 @@ public:
 	UAtlantisOxygenComponent();
 
 	virtual void BeginPlay() override;
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
@@ -69,6 +72,10 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
 	bool IsCriticalOxygen() const { return bCriticalOxygen; }
 
+	/** Indicates whether available Oxygen has run out. Ballast-allocated oxygen does not count in here */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
+	bool IsDepletedOxygen() const { return GetAvailableOxygen() <= UE_KINDA_SMALL_NUMBER; }
+
 	/** Oxygen level is critical when AvailableOxygen is below this value. */
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
 	float GetCriticalOxygenThreshold() const { return CriticalOxygenThreshold; }
@@ -81,6 +88,13 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	void SetOxygenCapacity(float NewOxygenCapacity);
 
+	/** Starts or stops passive consumption of oxygen */
+	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
+	void SetConsumingOxygen(bool bNewConsumingOxygen);
+
+	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
+	bool IsConsumingOxygen() const;
+	
 	/** Consumes the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestOxygen(float RequestedOxygen);
@@ -96,12 +110,11 @@ public:
 	/** Releases the requested oxygen if enough is already locked. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool ReleaseOxygen(float RequestedOxygen);
-	
+
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool ReallocateOxygen(float RequestedOxygen);
 
 private:
-	
 	/** Maximum oxygen the player can hold. */
 	UPROPERTY(ReplicatedUsing = OnRep_OxygenCapacity, EditDefaultsOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
@@ -113,10 +126,20 @@ private:
 	float AllocatedOxygen = 0.f;
 
 	/** Total oxygen, including Allocated Oxygen. Consumption cannot reduce it below the reservation. */
-	UPROPERTY(ReplicatedUsing =  OnRep_CurrentOxygen, VisibleInstanceOnly, BlueprintReadOnly,
+	UPROPERTY(ReplicatedUsing = OnRep_CurrentOxygen, VisibleInstanceOnly, BlueprintReadOnly,
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float CurrentOxygen = 100.f;
 
+	/** Oxygen consumed per second*/
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
+	float OxygenConsumptionRate = 1.f;
+	
+	/** Seconds betweem drain steps. Lower values it should look smoother on the hud but more events */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
+	float OxygenConsumptionInterval = 0.25f;
+	
+	FTimerHandle OxygenConsumptionTimerHandle;
+	
 	/** Indicates whether oxygen level is critical. */
 	UPROPERTY(ReplicatedUsing = OnRep_CriticalOxygen, BlueprintReadOnly, Category = "Atlantis|PlayerState|Oxygen",
 		meta = (AllowPrivateAccess = "true"))
@@ -148,12 +171,16 @@ private:
 	void SetCriticalOxygen(bool bNewCriticalOxygen);
 
 	/** Recomputes Critical Oxygen from available Oxygen. */
-	void UpdateCriticalOxygen();
-	
+	void UpdateOxygenThresholds();
+
 	void SetAllocatedOxygen(float NewAllocatedOxygen);
+	
 	/** Sets the current level of oxygen by value. Returns true if the value was changed and false otherwise */
 	bool SetCurrentOxygen(float NewCurrentOxygen);
-	
+
 	/** Returns true when the owning actor has network authority */
 	bool HasOwnerAuthority() const;
+	
+	/** Spends one interval's worth of oxygen */
+	void ConsumeOxygen();
 };

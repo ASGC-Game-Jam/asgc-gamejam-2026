@@ -974,6 +974,60 @@
 					]
 				},
 				{
+					"guid": "4f34217a4f9332324aa176869f4492e7",
+					"class": "K2Node_VariableSet",
+					"title": "Set bDoCollisionTest",
+					"x": 1184,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4f34217a4f9332324aa176869f4492e7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7512fbcf4e727a4c26b9bf8f86716554:o:then"
+							]
+						},
+						{
+							"id": "4f34217a4f9332324aa176869f4492e7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4f34217a4f9332324aa176869f4492e7:i:bDoCollisionTest",
+							"name": "bDoCollisionTest",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4f34217a4f9332324aa176869f4492e7:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "4f34217a4f9332324aa176869f4492e7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SpringArmComponent",
+							"defaultValue": null,
+							"links": [
+								"d5855219479164f510d90c8899433f18:o:CameraBoom"
+							]
+						}
+					]
+				},
+				{
 					"guid": "549d254d499fee01588b25b24e683514",
 					"class": "K2Node_VariableGet",
 					"title": "Get FirstPersonCamera",
@@ -1025,7 +1079,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"4f34217a4f9332324aa176869f4492e7:i:execute"
+							]
 						},
 						{
 							"id": "7512fbcf4e727a4c26b9bf8f86716554:i:self",
@@ -1107,7 +1163,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"fac92fd64d2c10c88f171495c8a916b8:i:execute"
+							]
 						},
 						{
 							"id": "877ef7c34c655a9445bd8497ad16121e:i:self",
@@ -1188,6 +1246,35 @@
 					]
 				},
 				{
+					"guid": "d5855219479164f510d90c8899433f18",
+					"class": "K2Node_VariableGet",
+					"title": "Get CameraBoom",
+					"x": 1008,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d5855219479164f510d90c8899433f18:o:CameraBoom",
+							"name": "CameraBoom",
+							"direction": "output",
+							"type": "object:/Script/Engine.SpringArmComponent",
+							"defaultValue": null,
+							"links": [
+								"4f34217a4f9332324aa176869f4492e7:i:self",
+								"fac92fd64d2c10c88f171495c8a916b8:i:self"
+							]
+						},
+						{
+							"id": "d5855219479164f510d90c8899433f18:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "e54db27b4d142984268b77a8478e7d7f",
 					"class": "K2Node_FunctionEntry",
 					"title": "Toggle Examine Mode Camera",
@@ -1241,6 +1328,60 @@
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
 							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "fac92fd64d2c10c88f171495c8a916b8",
+					"class": "K2Node_VariableSet",
+					"title": "Set bDoCollisionTest",
+					"x": 1184,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fac92fd64d2c10c88f171495c8a916b8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"877ef7c34c655a9445bd8497ad16121e:o:then"
+							]
+						},
+						{
+							"id": "fac92fd64d2c10c88f171495c8a916b8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fac92fd64d2c10c88f171495c8a916b8:i:bDoCollisionTest",
+							"name": "bDoCollisionTest",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "fac92fd64d2c10c88f171495c8a916b8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SpringArmComponent",
+							"defaultValue": null,
+							"links": [
+								"d5855219479164f510d90c8899433f18:o:CameraBoom"
+							]
+						},
+						{
+							"id": "fac92fd64d2c10c88f171495c8a916b8:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
 							"links": []
 						}
 					]
@@ -2282,7 +2423,7 @@
 					"guid": "05c2bb8342b5205e4b11bbabaea53b26",
 					"class": "K2Node_CallFunction",
 					"title": "Get Actor Location",
-					"x": 656,
+					"x": 848,
 					"y": 1472,
 					"comment": null,
 					"pins": [
@@ -2364,7 +2505,7 @@
 					"guid": "0a38e79d4757e5622acb7c89da1461f6",
 					"class": "K2Node_EnhancedInputAction",
 					"title": "EnhancedInputAction IA_Interact",
-					"x": -64,
+					"x": 480,
 					"y": 1392,
 					"comment": null,
 					"pins": [
@@ -2383,7 +2524,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"d512a7bd40e4c23cc6d9efba2d58bdd8:i:execute"
+								"2c48a7f54564a8734cbde8974cb3596f:i:execute"
 							]
 						},
 						{
@@ -2590,8 +2731,8 @@
 					"guid": "129c28134e0a1a215f3d82b42a140427",
 					"class": "K2Node_CallFunction",
 					"title": "Print String",
-					"x": 4274,
-					"y": 1488,
+					"x": 4864,
+					"y": 1520,
 					"comment": null,
 					"pins": [
 						{
@@ -2601,7 +2742,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"696fba644aa9868ff8758ba29d6dc7ec:o:else"
+								"51dfa6974ea5fa0f6ff4318558b203cb:o:else"
 							]
 						},
 						{
@@ -2928,6 +3069,164 @@
 					]
 				},
 				{
+					"guid": "2c48a7f54564a8734cbde8974cb3596f",
+					"class": "K2Node_CallFunction",
+					"title": "Sphere Trace By Channel",
+					"x": 1584,
+					"y": 1424,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0a38e79d4757e5622acb7c89da1461f6:o:Started"
+							]
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"434678404c0a3a65d25191960ba288c6:i:execute"
+							]
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:Start",
+							"name": "Start",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"a14738a9459fdaecd711a8b66bc4d1ce:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:End",
+							"name": "End",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector",
+							"defaultValue": null,
+							"links": [
+								"68344e6f4ea63eab8041f294c26e727c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:Radius",
+							"name": "Radius",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "5.000000",
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:TraceChannel",
+							"name": "TraceChannel",
+							"direction": "input",
+							"type": "byte:/Script/Engine.ETraceTypeQuery",
+							"defaultValue": "TraceTypeQuery3",
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:bTraceComplex",
+							"name": "bTraceComplex",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:ActorsToIgnore",
+							"name": "ActorsToIgnore",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor[]",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:DrawDebugType",
+							"name": "DrawDebugType",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EDrawDebugTrace",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:o:OutHit",
+							"name": "OutHit",
+							"direction": "output",
+							"type": "struct:/Script/Engine.HitResult",
+							"defaultValue": null,
+							"links": [
+								"94c3af0d4709521d42946cb4131ccff8:i:Hit"
+							]
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:bIgnoreSelf",
+							"name": "bIgnoreSelf",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:TraceColor",
+							"name": "TraceColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=1.000000,G=0.000000,B=0.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:TraceHitColor",
+							"name": "TraceHitColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=1.000000,B=0.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:i:DrawTime",
+							"name": "DrawTime",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "5.000000",
+							"links": []
+						},
+						{
+							"id": "2c48a7f54564a8734cbde8974cb3596f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"434678404c0a3a65d25191960ba288c6:i:Condition"
+							]
+						}
+					]
+				},
+				{
 					"guid": "32822c2d496108e2b04aebaa2be39e06",
 					"class": "K2Node_CallFunction",
 					"title": "Toggle Examine Mode Camera",
@@ -3062,7 +3361,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"d512a7bd40e4c23cc6d9efba2d58bdd8:o:then"
+								"2c48a7f54564a8734cbde8974cb3596f:o:then"
 							]
 						},
 						{
@@ -3072,7 +3371,7 @@
 							"type": "bool",
 							"defaultValue": null,
 							"links": [
-								"d512a7bd40e4c23cc6d9efba2d58bdd8:o:ReturnValue"
+								"2c48a7f54564a8734cbde8974cb3596f:o:ReturnValue"
 							]
 						},
 						{
@@ -3137,6 +3436,134 @@
 							"defaultValue": null,
 							"links": [
 								"1649ea4244c062b5ab163bbbe9538129:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "491f81384854ac88f04c01bec4ff53d3",
+					"class": "K2Node_Message",
+					"title": "Interact",
+					"x": 4256,
+					"y": 1472,
+					"comment": null,
+					"pins": [
+						{
+							"id": "491f81384854ac88f04c01bec4ff53d3:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"696fba644aa9868ff8758ba29d6dc7ec:o:else"
+							]
+						},
+						{
+							"id": "491f81384854ac88f04c01bec4ff53d3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"51dfa6974ea5fa0f6ff4318558b203cb:i:execute"
+							]
+						},
+						{
+							"id": "491f81384854ac88f04c01bec4ff53d3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"d3e3b0db4519af91ef627e8e6814b859:o:OutputPin"
+							]
+						},
+						{
+							"id": "491f81384854ac88f04c01bec4ff53d3:i:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"5656058d46864c880954098a0f6a3927:o:self"
+							]
+						},
+						{
+							"id": "491f81384854ac88f04c01bec4ff53d3:o:InteractionOccurred",
+							"name": "InteractionOccurred",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"51dfa6974ea5fa0f6ff4318558b203cb:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "51dfa6974ea5fa0f6ff4318558b203cb",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 4608,
+					"y": 1488,
+					"comment": null,
+					"pins": [
+						{
+							"id": "51dfa6974ea5fa0f6ff4318558b203cb:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"491f81384854ac88f04c01bec4ff53d3:o:then"
+							]
+						},
+						{
+							"id": "51dfa6974ea5fa0f6ff4318558b203cb:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"491f81384854ac88f04c01bec4ff53d3:o:InteractionOccurred"
+							]
+						},
+						{
+							"id": "51dfa6974ea5fa0f6ff4318558b203cb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "51dfa6974ea5fa0f6ff4318558b203cb:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"129c28134e0a1a215f3d82b42a140427:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5656058d46864c880954098a0f6a3927",
+					"class": "K2Node_Self",
+					"title": "Self-Reference",
+					"x": 4112,
+					"y": 1584,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5656058d46864c880954098a0f6a3927:o:self",
+							"name": "self",
+							"direction": "output",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": [
+								"491f81384854ac88f04c01bec4ff53d3:i:PlayerCharacter"
 							]
 						}
 					]
@@ -3249,7 +3676,7 @@
 					"guid": "68344e6f4ea63eab8041f294c26e727c",
 					"class": "K2Node_MathExpression",
 					"title": "OriginLocation + (ActorForwardVector * TraceDistance)",
-					"x": 944,
+					"x": 1136,
 					"y": 1472,
 					"comment": null,
 					"pins": [
@@ -3260,7 +3687,7 @@
 							"type": "struct:/Script/CoreUObject.Vector",
 							"defaultValue": null,
 							"links": [
-								"d512a7bd40e4c23cc6d9efba2d58bdd8:i:End"
+								"2c48a7f54564a8734cbde8974cb3596f:i:End"
 							]
 						},
 						{
@@ -3288,7 +3715,7 @@
 							"name": "TraceDistance",
 							"direction": "input",
 							"type": "real:double",
-							"defaultValue": "500.000000",
+							"defaultValue": "300.000000",
 							"links": []
 						}
 					]
@@ -3336,7 +3763,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"129c28134e0a1a215f3d82b42a140427:i:execute"
+								"491f81384854ac88f04c01bec4ff53d3:i:execute"
 							]
 						}
 					]
@@ -3477,7 +3904,7 @@
 					"guid": "9204034648ed83dc7e67e9bf40c0de22",
 					"class": "K2Node_CallFunction",
 					"title": "Get Actor Forward Vector",
-					"x": 656,
+					"x": 848,
 					"y": 1568,
 					"comment": null,
 					"pins": [
@@ -3505,7 +3932,7 @@
 					"guid": "94c3af0d4709521d42946cb4131ccff8",
 					"class": "K2Node_CallFunction",
 					"title": "Break Hit Result",
-					"x": 1792,
+					"x": 1984,
 					"y": 1536,
 					"comment": null,
 					"pins": [
@@ -3524,7 +3951,7 @@
 							"type": "struct:/Script/Engine.HitResult",
 							"defaultValue": null,
 							"links": [
-								"d512a7bd40e4c23cc6d9efba2d58bdd8:o:OutHit"
+								"2c48a7f54564a8734cbde8974cb3596f:o:OutHit"
 							]
 						},
 						{
@@ -3796,7 +4223,7 @@
 					"guid": "a14738a9459fdaecd711a8b66bc4d1ce",
 					"class": "K2Node_CallFunction",
 					"title": "Get Actor Location",
-					"x": 1120,
+					"x": 1312,
 					"y": 1344,
 					"comment": null,
 					"pins": [
@@ -3815,7 +4242,7 @@
 							"type": "struct:/Script/CoreUObject.Vector",
 							"defaultValue": null,
 							"links": [
-								"d512a7bd40e4c23cc6d9efba2d58bdd8:i:Start"
+								"2c48a7f54564a8734cbde8974cb3596f:i:Start"
 							]
 						}
 					]
@@ -4115,157 +4542,8 @@
 							"type": "object:/Script/Engine.Actor",
 							"defaultValue": null,
 							"links": [
+								"491f81384854ac88f04c01bec4ff53d3:i:self",
 								"95e2456d4a40dcddd35112b1662730e7:i:self"
-							]
-						}
-					]
-				},
-				{
-					"guid": "d512a7bd40e4c23cc6d9efba2d58bdd8",
-					"class": "K2Node_CallFunction",
-					"title": "Line Trace By Profile",
-					"x": 1392,
-					"y": 1424,
-					"comment": null,
-					"pins": [
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"0a38e79d4757e5622acb7c89da1461f6:o:Started"
-							]
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"434678404c0a3a65d25191960ba288c6:i:execute"
-							]
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetSystemLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:WorldContextObject",
-							"name": "WorldContextObject",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:Start",
-							"name": "Start",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.Vector",
-							"defaultValue": null,
-							"links": [
-								"a14738a9459fdaecd711a8b66bc4d1ce:o:ReturnValue"
-							]
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:End",
-							"name": "End",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.Vector",
-							"defaultValue": null,
-							"links": [
-								"68344e6f4ea63eab8041f294c26e727c:o:ReturnValue"
-							]
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:ProfileName",
-							"name": "ProfileName",
-							"direction": "input",
-							"type": "name",
-							"defaultValue": "Pawn",
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:bTraceComplex",
-							"name": "bTraceComplex",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:ActorsToIgnore",
-							"name": "ActorsToIgnore",
-							"direction": "input",
-							"type": "object:/Script/Engine.Actor[]",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:DrawDebugType",
-							"name": "DrawDebugType",
-							"direction": "input",
-							"type": "byte:/Script/Engine.EDrawDebugTrace",
-							"defaultValue": "None",
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:o:OutHit",
-							"name": "OutHit",
-							"direction": "output",
-							"type": "struct:/Script/Engine.HitResult",
-							"defaultValue": null,
-							"links": [
-								"94c3af0d4709521d42946cb4131ccff8:i:Hit"
-							]
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:bIgnoreSelf",
-							"name": "bIgnoreSelf",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:TraceColor",
-							"name": "TraceColor",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.LinearColor",
-							"defaultValue": "(R=1.000000,G=0.000000,B=0.000000,A=1.000000)",
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:TraceHitColor",
-							"name": "TraceHitColor",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.LinearColor",
-							"defaultValue": "(R=0.000000,G=1.000000,B=0.000000,A=1.000000)",
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:i:DrawTime",
-							"name": "DrawTime",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": "5.000000",
-							"links": []
-						},
-						{
-							"id": "d512a7bd40e4c23cc6d9efba2d58bdd8:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": null,
-							"links": [
-								"434678404c0a3a65d25191960ba288c6:i:Condition"
 							]
 						}
 					]
@@ -6382,6 +6660,36 @@
 					"Y": 1,
 					"Z": 1
 				}
+			},
+			"HidingComponent":
+			{
+				"_class": "AtlantisHidingComponent",
+				"_name": "HidingComponent",
+				"RestrictedMappingContexts": [],
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
 			},
 			"Mesh":
 			{

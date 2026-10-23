@@ -2,6 +2,7 @@
 
 
 #include "Core/AtlantisPlayerCharacter.h"
+#include "Core/AtlantisHidingComponent.h"
 #include "Core/AtlantisMovementComponent.h"
 #include "Core/AtlantisPlayerState.h"
 
@@ -10,6 +11,7 @@ AAtlantisPlayerCharacter::AAtlantisPlayerCharacter(const FObjectInitializer& Obj
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	HidingComponent = CreateDefaultSubobject<UAtlantisHidingComponent>(TEXT("HidingComponent"));
 }
 
 void AAtlantisPlayerCharacter::BeginPlay()
