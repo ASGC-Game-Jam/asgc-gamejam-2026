@@ -108,7 +108,7 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
     
     // Your music spawning logic goes here (use TrackedWorld.Get() if you need a world reference)
 	USoundBase* MusicAsset = Cast<USoundBase>(UAtlantisAudioDeveloperSettings::GetMusicMetaSoundSource());
-	if(MusicAsset)
+	if (MusicAsset)
 	{
 		MusicAudioComponent = UGameplayStatics::SpawnSound2D(TrackedWorld.Get(), MusicAsset, 1.f, 1.f, 0.f, nullptr, false, true);
 	
