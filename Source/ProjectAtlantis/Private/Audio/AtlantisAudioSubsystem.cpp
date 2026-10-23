@@ -148,7 +148,7 @@ void UAtlantisAudioSubsystem::HandleWorldCleanup(UWorld* World, bool bSessionEnd
 
 void UAtlantisAudioSubsystem::UpdateAxisTestSweep()
 {
-	if(!MusicAudioComponent)
+	if (!MusicAudioComponent)
 	{
 		return;
 	}
