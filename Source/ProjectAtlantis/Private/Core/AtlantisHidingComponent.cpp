@@ -34,7 +34,8 @@ bool UAtlantisHidingComponent::EnterHidingSpot(AActor* HidingSpot)
 
 	AActor* Player = GetOwner();
 	USmartObjectSubsystem* Subsystem = USmartObjectSubsystem::GetCurrent(GetWorld());
-	if (!Player || !Subsystem) {
+	if (!Player || !Subsystem)
+	{
 		return false;
 	}
 
