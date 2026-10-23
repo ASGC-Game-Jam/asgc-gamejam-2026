@@ -153,7 +153,7 @@ void UAtlantisAudioSubsystem::UpdateAxisTestSweep()
 		return;
 	}
 
-	if(CVarTrackAtlantisAudioAxisSweep.GetValueOnGameThread() != 1)
+	if (CVarTrackAtlantisAudioAxisSweep.GetValueOnGameThread() != 1)
 	{
 		return;
 	}
