@@ -33,7 +33,9 @@ public class ProjectAtlantis : ModuleRules
             "MetasoundStandardNodes",
             "AudioExtensions",
             "HarmonixMetasound",
-            "Harmonix"
+            "Harmonix",
+            "SmartObjectsModule",
+            "GameplayTags"
         });
 		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics", "CommonUI" });
 
