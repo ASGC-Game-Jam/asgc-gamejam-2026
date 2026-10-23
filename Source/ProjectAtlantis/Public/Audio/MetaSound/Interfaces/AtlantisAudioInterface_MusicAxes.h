@@ -20,7 +20,7 @@
 namespace ProjectAtlantisAudio
 {
 	//TODO: !!CHANGE THIS!! Rename this namespace to your interface to help keep things organized
-	namespace PlayerCharacterInterface
+	namespace MusicAxesInterface
 	{
 		// Returns the version info (name + number) that identifies this interface to the engine.
 		const FMetasoundFrontendVersion& GetVersion();
@@ -35,24 +35,20 @@ namespace ProjectAtlantisAudio
 		// TODO: !!CHANGE THIS!! to reflect the input pins you need
 		namespace Inputs
 		{
-			extern const FLazyName CurrentHp;
-			extern const FLazyName CurrentO2;
-			extern const FLazyName LastNonHostileInteractionTime;
-			extern const FLazyName NumEnemiesInRange;
-			extern const FLazyName IsHiding;
-			extern const FLazyName IsDetected;
-			extern const FLazyName IsCrouching;
+			extern const FLazyName PlayerStateAxis;
+			extern const FLazyName TensionAxis;
+			extern const FLazyName EnvironmentAxis;
 		}
 
 		// --- Outputs ---
 		// TODO: !!CHANGE THIS!! to reflect the output pins you need (or comment out if unused)
-		namespace Outputs
-		{
-			extern const FLazyName MyOutput;
-		}
+		// namespace Outputs
+		// {
+		// 	extern const FLazyName MyOutput;
+		// }
 	}
 
-	// Call this once from AtlantisInterfaceRegistration.cpp
+	// Call this once from AtlantisAudioInterfaceRegistration.cpp
 	// TODO: !!CHANGE THIS!!
-	void RegisterPlayerCharacterInterface();
+	void RegisterMusicAxesInterface();
 }

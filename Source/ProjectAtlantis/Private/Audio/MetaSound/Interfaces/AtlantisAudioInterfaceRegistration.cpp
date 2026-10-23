@@ -2,7 +2,7 @@
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterfaceRegistration.h"
 
 // TODO: include each new interface header here as you add them
-#include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_PlayerCharacter.h"
+#include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_MusicAxes.h"
 
 
 namespace ProjectAtlantisAudio
@@ -10,7 +10,7 @@ namespace ProjectAtlantisAudio
 	void RegisterAllMetaSoundInterfaces()
 	{
 		// TODO: call each new interface's Register function here
-		RegisterPlayerCharacterInterface();
+		RegisterMusicAxesInterface();
 
 	}
 }
