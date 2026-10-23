@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/PhysicsVolume.h"
 #include "Components/CapsuleComponent.h"
+#include "TimerManager.h"
 #include "Engine/World.h"
 #include "Engine/ScopedMovementUpdate.h"
 
@@ -133,11 +134,10 @@ void UAtlantisMovementComponent::PhysicsVolumeChanged(APhysicsVolume* NewVolume)
 		return;
 	}
 	
-	const bool bInWater = NewVolume && NewVolume->bWaterVolume;
 	
 	if (AAtlantisPlayerController* Controller = Cast<AAtlantisPlayerController>(CharacterOwner->GetController()))
 	{
-		Controller->UpdateMovementControls(bInWater);
+		Controller->UpdateMovementControls( NewVolume && NewVolume->bWaterVolume);
 	}
 	
 	if (AAtlantisPlayerState * PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>())
