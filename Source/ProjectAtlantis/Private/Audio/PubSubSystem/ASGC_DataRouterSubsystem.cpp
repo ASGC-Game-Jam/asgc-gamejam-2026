@@ -109,7 +109,9 @@ void UASGC_DataRouterSubsystem::BroadcastFact(FGameplayTag Tag, const FInstanced
 
     for (const FGameplayFactSubscriberRecord& Record : SubscribersSnapshot)
     {
-        bool bIsSubscriberValid = Record.SubscriberObject != nullptr && IsValid(Record.SubscriberObject);
+        UObject* TargetObject = Record.SubscriberObject.Get();
+
+        bool bIsSubscriberValid = IsValid(TargetObject);
 
         if (!bIsSubscriberValid)
         {
@@ -123,6 +125,6 @@ void UASGC_DataRouterSubsystem::BroadcastFact(FGameplayTag Tag, const FInstanced
         }
 
         // Execute the interface function (works seamlessly for both C++ classes and Blueprints)
-        IASGC_FactListenerInterface::Execute_OnGameplayFactReceived(Record.SubscriberObject, Tag, Payload);
+        IASGC_FactListenerInterface::Execute_OnGameplayFactReceived(TargetObject, Tag, Payload);
     }
 }

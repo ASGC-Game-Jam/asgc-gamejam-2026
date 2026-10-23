@@ -16,7 +16,7 @@ DECLARE_LOG_CATEGORY_EXTERN(AtlantisPubSubLogCategory, Log, All);
 // Internal record holding subscriber details for strict lifecycle tracking.
 struct FGameplayFactSubscriberRecord
 {
-    UObject* SubscriberObject = nullptr;
+    TWeakObjectPtr<UObject> SubscriberObject = nullptr;
     int32 HandleID = INDEX_NONE;
 };
 
