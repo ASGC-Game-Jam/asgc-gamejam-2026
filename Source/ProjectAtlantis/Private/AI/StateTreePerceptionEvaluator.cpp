@@ -175,7 +175,7 @@ void FStateTreePerceptionEvaluator::ProcessUnsensedActor(const float DeltaTime,
 	}
 }
 
-void FStateTreePerceptionEvaluator::HandleStatus(AAtlantisEnemyController* EnemyController, TMap<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceivedActors) const
+void FStateTreePerceptionEvaluator::HandleStatus(AAtlantisEnemyController& EnemyController, TMap<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceivedActors) const
 {
 	// Change our status depending on a few factors...
 	TMap<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData> AggroedActors = PerceivedActors.FilterByPredicate([](auto& PerceivedActor)
@@ -186,19 +186,19 @@ void FStateTreePerceptionEvaluator::HandleStatus(AAtlantisEnemyController* Enemy
 	// If we have any actors we need to aggro onto, set us up for combat.
 	if (AggroedActors.IsEmpty() == false)
 	{
-		SetEnemyStatus(*EnemyController, EMonsterStatus::Combat);
+		SetEnemyStatus(EnemyController, EMonsterStatus::Combat);
 	}
 	
 	// Otherwise, if we're only aware of a player, we're alert.
 	if (PerceivedActors.IsEmpty() == false)
 	{
-		SetEnemyStatus(*EnemyController, EMonsterStatus::Alerted);
+		SetEnemyStatus(EnemyController, EMonsterStatus::Alerted);
 	}
 	
 	// If we have absolutely 0 perceived actors, return to idle.
 	else
 	{
-		SetEnemyStatus(*EnemyController, EMonsterStatus::Idle);
+		SetEnemyStatus(EnemyController, EMonsterStatus::Idle);
 	}
 }
 
@@ -286,5 +286,5 @@ void FStateTreePerceptionEvaluator::Tick(FStateTreeExecutionContext& Context, co
 		return PerceivedActor.Value.PerceptionValue > 0;
 	});
 	
-	HandleStatus(EnemyController, PerceivedActors);
+	HandleStatus(*EnemyController, PerceivedActors);
 }
