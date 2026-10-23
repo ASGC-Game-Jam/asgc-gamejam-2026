@@ -112,7 +112,7 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 	{
 		MusicAudioComponent = UGameplayStatics::SpawnSound2D(TrackedWorld.Get(), MusicAsset, 1.f, 1.f, 0.f, nullptr, false, true);
 	
-		if(MusicAudioComponent)
+		if (MusicAudioComponent)
 		{
 			GeneratorHandle = UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle(MusicAudioComponent);
 
