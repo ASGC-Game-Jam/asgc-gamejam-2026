@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "SmartObjectTypes.h"
 #include "SmartObjectRuntime.h"
 #include "AtlantisHidingComponent.generated.h"
 
