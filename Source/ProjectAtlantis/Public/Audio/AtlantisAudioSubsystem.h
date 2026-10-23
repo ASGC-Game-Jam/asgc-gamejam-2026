@@ -33,6 +33,7 @@ private:
     void HandlePostWorldInitialization(UWorld* World, const UWorld::InitializationValues IValues);
     void HandleWorldBeginPlay();
     void HandleWorldCleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources);
+    void StopTrackingWorld();
 
     void UpdateAxisTestSweep();
 
@@ -55,6 +56,7 @@ private:
 
 	bool bIsActive = true;
     float RunningSweepTime = 0.f;
+    float SweepTimerInterval = 0.033f;
 
 
 
