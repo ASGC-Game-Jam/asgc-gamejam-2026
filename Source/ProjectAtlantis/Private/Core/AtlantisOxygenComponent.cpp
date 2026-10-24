@@ -66,6 +66,47 @@ void UAtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
 	OnRep_OxygenCapacity(OldOxygenCapacity);
 }
 
+bool UAtlantisOxygenComponent::RequestIncreaseOxygenCapacity(const float O2CapacityAmount)
+{
+	bool bStatus;
+	
+	if (!HasOwnerAuthority() || O2CapacityAmount < 0.0f)
+	{
+		bStatus = false;
+	}
+	else
+	{
+		const float NewOxygenCapacity = OxygenCapacity + O2CapacityAmount;
+		SetOxygenCapacity(NewOxygenCapacity);
+		bStatus = true; // TODO: if given approval to change SetOxygenCapacity to return a bool, then will return status from the call in teh line above this one.
+	}
+	
+	return bStatus;
+}
+
+bool UAtlantisOxygenComponent::RequestDecreaseOxygenCapacity(const float O2CapacityAmount)
+{
+	bool bStatus;
+	
+	if (!HasOwnerAuthority() || O2CapacityAmount < 0.0f)
+	{
+		bStatus = false;
+	}
+	else
+	{
+		const float NewOxygenCapacity = OxygenCapacity - O2CapacityAmount;
+		SetOxygenCapacity(NewOxygenCapacity);
+		if (NewOxygenCapacity < CurrentOxygen)
+		{
+			const float O2Delta = CurrentOxygen - NewOxygenCapacity;
+			RequestOxygen(O2Delta); // utilize this function to perform the decrease and notify the listeners
+		}
+		bStatus = true; // TODO: if given approval to change SetOxygenCapacity to return a bool, then will return status from the call in teh line above this one.
+	}
+	
+	return bStatus;
+}
+
 void UAtlantisOxygenComponent::SetAllocatedOxygen(const float NewAllocatedOxygen)
 {
 	if (!HasOwnerAuthority() || FMath::IsNearlyEqual(AllocatedOxygen, NewAllocatedOxygen))

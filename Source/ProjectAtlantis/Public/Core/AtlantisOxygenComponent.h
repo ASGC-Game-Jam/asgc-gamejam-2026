@@ -88,6 +88,13 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	void SetOxygenCapacity(float NewOxygenCapacity);
 
+	/** Sends a request to increase oxygen capacity; no negative floats allowed. Returns true if the capacity is increased, or false otherwise. */
+	UFUNCTION(BlueprintPure, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
+	bool RequestIncreaseOxygenCapacity(const float O2CapacityAmount);
+	
+	UFUNCTION(BlueprintPure, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
+	bool RequestDecreaseOxygenCapacity(const float O2CapacityAmount);
+	
 	/** Starts or stops passive consumption of oxygen */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	void SetConsumingOxygen(bool bNewConsumingOxygen);
