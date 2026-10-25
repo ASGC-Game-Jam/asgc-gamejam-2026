@@ -3717,6 +3717,50 @@
 					]
 				},
 				{
+					"guid": "6598cea0430cfdc795da939fdda7f3ed",
+					"class": "K2Node_CallFunction",
+					"title": "Crouch",
+					"x": 1424,
+					"y": 880,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6598cea0430cfdc795da939fdda7f3ed:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6fa903a84737a1ec09918eb75e6988bc:o:Triggered"
+							]
+						},
+						{
+							"id": "6598cea0430cfdc795da939fdda7f3ed:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6598cea0430cfdc795da939fdda7f3ed:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6598cea0430cfdc795da939fdda7f3ed:i:bClientSimulation",
+							"name": "bClientSimulation",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "68344e6f4ea63eab8041f294c26e727c",
 					"class": "K2Node_MathExpression",
 					"title": "OriginLocation + (ActorForwardVector * TraceDistance)",
@@ -3813,6 +3857,7 @@
 					]
 				},
 				{
+<<<<<<< Updated upstream
 					"guid": "6a23fb7843db31e6fb15208b938830fe",
 					"class": "K2Node_EnhancedInputAction",
 					"title": "EnhancedInputAction IA_Crouch",
@@ -3822,16 +3867,35 @@
 					"pins": [
 						{
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:Triggered",
+=======
+					"guid": "6fa903a84737a1ec09918eb75e6988bc",
+					"class": "K2Node_EnhancedInputAction",
+					"title": "EnhancedInputAction IA_Crouch",
+					"x": 944,
+					"y": 816,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6fa903a84737a1ec09918eb75e6988bc:o:Triggered",
+>>>>>>> Stashed changes
 							"name": "Triggered",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
+<<<<<<< Updated upstream
 								"3410409e486b3f9a3a0008b417b44b02:i:execute"
 							]
 						},
 						{
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:Started",
+=======
+								"6598cea0430cfdc795da939fdda7f3ed:i:execute"
+							]
+						},
+						{
+							"id": "6fa903a84737a1ec09918eb75e6988bc:o:Started",
+>>>>>>> Stashed changes
 							"name": "Started",
 							"direction": "output",
 							"type": "exec",
@@ -3839,7 +3903,11 @@
 							"links": []
 						},
 						{
+<<<<<<< Updated upstream
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:Ongoing",
+=======
+							"id": "6fa903a84737a1ec09918eb75e6988bc:o:Ongoing",
+>>>>>>> Stashed changes
 							"name": "Ongoing",
 							"direction": "output",
 							"type": "exec",
@@ -3847,7 +3915,11 @@
 							"links": []
 						},
 						{
+<<<<<<< Updated upstream
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:Canceled",
+=======
+							"id": "6fa903a84737a1ec09918eb75e6988bc:o:Canceled",
+>>>>>>> Stashed changes
 							"name": "Canceled",
 							"direction": "output",
 							"type": "exec",
@@ -3855,7 +3927,11 @@
 							"links": []
 						},
 						{
+<<<<<<< Updated upstream
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:Completed",
+=======
+							"id": "6fa903a84737a1ec09918eb75e6988bc:o:Completed",
+>>>>>>> Stashed changes
 							"name": "Completed",
 							"direction": "output",
 							"type": "exec",
@@ -3863,7 +3939,11 @@
 							"links": []
 						},
 						{
+<<<<<<< Updated upstream
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:ActionValue",
+=======
+							"id": "6fa903a84737a1ec09918eb75e6988bc:o:ActionValue",
+>>>>>>> Stashed changes
 							"name": "ActionValue",
 							"direction": "output",
 							"type": "bool",
@@ -3871,7 +3951,11 @@
 							"links": []
 						},
 						{
+<<<<<<< Updated upstream
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:ElapsedSeconds",
+=======
+							"id": "6fa903a84737a1ec09918eb75e6988bc:o:ElapsedSeconds",
+>>>>>>> Stashed changes
 							"name": "ElapsedSeconds",
 							"direction": "output",
 							"type": "real:double",
@@ -3879,7 +3963,11 @@
 							"links": []
 						},
 						{
+<<<<<<< Updated upstream
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:TriggeredSeconds",
+=======
+							"id": "6fa903a84737a1ec09918eb75e6988bc:o:TriggeredSeconds",
+>>>>>>> Stashed changes
 							"name": "TriggeredSeconds",
 							"direction": "output",
 							"type": "real:double",
@@ -3887,7 +3975,11 @@
 							"links": []
 						},
 						{
+<<<<<<< Updated upstream
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:InputAction",
+=======
+							"id": "6fa903a84737a1ec09918eb75e6988bc:o:InputAction",
+>>>>>>> Stashed changes
 							"name": "InputAction",
 							"direction": "output",
 							"type": "object:/Script/EnhancedInput.InputAction",
