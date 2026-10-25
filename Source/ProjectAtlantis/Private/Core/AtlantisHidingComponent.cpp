@@ -7,6 +7,7 @@
 #include "SmartObjectSubsystem.h"      
 #include "SmartObjectRequestTypes.h"   
 #include "GameFramework/Character.h"   
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Core/AtlantisHidingSpotBehaviourDef.h"    
 
 namespace
@@ -114,19 +115,29 @@ bool UAtlantisHidingComponent::ApplyHiding(const FTransform& SlotTransform)
 	{
 		return false;
 	}
-	
-	PreviousTransform = PlayerCharacter->GetActorTransform();
-	FTransform TargetTransform = SlotTransform;
-	TargetTransform.SetScale3D(FVector::OneVector);
-	PlayerCharacter->MoveToTransform(TargetTransform);
-	PlayerCharacter->SetActorHiddenInGame(true);
-	
+
+	UCharacterMovementComponent* Movement = PlayerCharacter->GetCharacterMovement();
+	if (!Movement)
+	{
+		return false;
+	}
+
 	AAtlantisPlayerController* PlayerController = PlayerCharacter->GetController<AAtlantisPlayerController>();
-	
+
 	if (!PlayerController)
 	{
 		return false;
 	}
+
+	PreviousTransform = PlayerCharacter->GetActorTransform();
+	FTransform TargetTransform = SlotTransform;
+	TargetTransform.SetScale3D(FVector::OneVector);
+
+	PlayerCharacter->MoveToTransform(TargetTransform);
+	PlayerCharacter->SetActorHiddenInGame(true);
+
+	Movement->StopMovementImmediately();
+	Movement->Deactivate();
 
 	for (UInputMappingContext* MappingContext: RestrictedMappingContexts)
 	{
@@ -153,6 +164,15 @@ bool UAtlantisHidingComponent::RestoreFromHiding()
 	{
 		return false;
 	}
+
+	UCharacterMovementComponent* Movement = PlayerCharacter->GetCharacterMovement();
+
+	if (!Movement)
+	{
+		return false;
+	}
+
+	Movement->Activate();
 
 	for (UInputMappingContext* MappingContext : RestrictedMappingContexts)
 	{
