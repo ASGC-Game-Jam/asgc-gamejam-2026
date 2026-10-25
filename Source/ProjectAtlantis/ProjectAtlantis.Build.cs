@@ -22,21 +22,23 @@ public class ProjectAtlantis : ModuleRules
 				"AIModule",
 				"StateTreeModule",
 				"GameplayStateTreeModule", 
-				"GameplayDebugger"
+				"GameplayDebugger",
+        "GameplayTags",
+			  "StructUtils"
 			});
 
-        PrivateDependencyModuleNames.AddRange(new string[] {
-            "GameAnalytics",
-            "MetasoundFrontend",
-            "MetasoundGraphCore",
-            "MetasoundEngine",
-            "MetasoundStandardNodes",
-            "AudioExtensions",
-            "HarmonixMetasound",
-            "Harmonix",
-            "SmartObjectsModule",
-            "GameplayTags"
-        });
+      PrivateDependencyModuleNames.AddRange(new string[] {
+          "GameAnalytics",
+          "MetasoundFrontend",
+          "MetasoundGraphCore",
+          "MetasoundEngine",
+          "MetasoundStandardNodes",
+          "AudioExtensions",
+          "HarmonixMetasound",
+          "Harmonix",
+          "SmartObjectsModule",
+          "GameplayTags"
+      });
 		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics", "CommonUI" });
 
 		if (Target.ProjectDefinitions.Contains("WITH_SCREENSHOT_CAPTURE=1"))

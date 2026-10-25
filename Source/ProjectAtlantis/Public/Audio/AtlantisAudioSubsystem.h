@@ -9,7 +9,7 @@
 
 
 
-DECLARE_LOG_CATEGORY_EXTERN(AtlantisAudioSubsystemLogCategry, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogAtlantisAudioSubsystem, Log, All);
 
 
 
