@@ -1367,6 +1367,14 @@
 							"links": []
 						},
 						{
+							"id": "fac92fd64d2c10c88f171495c8a916b8:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
 							"id": "fac92fd64d2c10c88f171495c8a916b8:i:self",
 							"name": "self",
 							"direction": "input",
@@ -1375,14 +1383,6 @@
 							"links": [
 								"d5855219479164f510d90c8899433f18:o:CameraBoom"
 							]
-						},
-						{
-							"id": "fac92fd64d2c10c88f171495c8a916b8:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
 						}
 					]
 				}
@@ -6665,7 +6665,10 @@
 			{
 				"_class": "AtlantisHidingComponent",
 				"_name": "HidingComponent",
-				"RestrictedMappingContexts": [],
+				"RestrictedMappingContexts": [
+					"/Game/ProjectAtlantis/Core/Engine/Input/IMC_Default.IMC_Default",
+					"/Game/ProjectAtlantis/Core/Engine/Input/IMC_Swim.IMC_Swim"
+				],
 				"PrimaryComponentTick":
 				{
 					"TickGroup": "TG_DuringPhysics",
@@ -8238,6 +8241,10 @@
 							},
 							{
 								"Channel": "Camera",
+								"Response": "ECR_Ignore"
+							},
+							{
+								"Channel": "Interact",
 								"Response": "ECR_Ignore"
 							}
 						]
