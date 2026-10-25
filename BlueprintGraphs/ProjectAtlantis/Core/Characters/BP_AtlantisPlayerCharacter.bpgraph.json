@@ -6793,7 +6793,10 @@
 			{
 				"_class": "AtlantisHidingComponent",
 				"_name": "HidingComponent",
-				"RestrictedMappingContexts": [],
+				"RestrictedMappingContexts": [
+					"/Game/ProjectAtlantis/Core/Engine/Input/IMC_Default.IMC_Default",
+					"/Game/ProjectAtlantis/Core/Engine/Input/IMC_Swim.IMC_Swim"
+				],
 				"PrimaryComponentTick":
 				{
 					"TickGroup": "TG_DuringPhysics",
@@ -8366,6 +8369,10 @@
 							},
 							{
 								"Channel": "Camera",
+								"Response": "ECR_Ignore"
+							},
+							{
+								"Channel": "Interact",
 								"Response": "ECR_Ignore"
 							}
 						]
