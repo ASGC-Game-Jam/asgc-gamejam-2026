@@ -53,7 +53,7 @@ private:
 	FTransform PreviousTransform;
 
 	/** Inputs restricted while hiding */
-	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|Stealth")
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|Hiding")
 	TArray<TObjectPtr<UInputMappingContext>> RestrictedMappingContexts;
 
 };
