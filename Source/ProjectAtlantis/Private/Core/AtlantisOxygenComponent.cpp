@@ -53,57 +53,45 @@ void UAtlantisOxygenComponent::CopyStateTo(UAtlantisOxygenComponent& Target) con
 	Target.bCriticalOxygen = bCriticalOxygen;
 }
 
-void UAtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
+bool UAtlantisOxygenComponent::SetOxygenCapacity(const float NewOxygenCapacity)
 {
 	if (!HasOwnerAuthority() || FMath::IsNearlyEqual(OxygenCapacity, NewOxygenCapacity))
 	{
-		return;
+		return false;
 	}
 
 	const float OldOxygenCapacity = OxygenCapacity;
 	OxygenCapacity = NewOxygenCapacity;
 
 	OnRep_OxygenCapacity(OldOxygenCapacity);
+	
+	return true;
 }
 
 bool UAtlantisOxygenComponent::RequestIncreaseOxygenCapacity(const float O2CapacityAmount)
 {
-	bool bStatus;
-	
 	if (!HasOwnerAuthority() || O2CapacityAmount < 0.0f)
 	{
-		bStatus = false;
+		return false;
 	}
-	else
-	{
-		const float NewOxygenCapacity = OxygenCapacity + O2CapacityAmount;
-		SetOxygenCapacity(NewOxygenCapacity);
-		bStatus = true; // TODO: if given approval to change SetOxygenCapacity to return a bool, then will return status from the call in teh line above this one.
-	}
-	
-	return bStatus;
+	const float NewOxygenCapacity = OxygenCapacity + O2CapacityAmount;
+	return SetOxygenCapacity(NewOxygenCapacity);
 }
 
 bool UAtlantisOxygenComponent::RequestDecreaseOxygenCapacity(const float O2CapacityAmount)
 {
-	bool bStatus;
-	
 	if (!HasOwnerAuthority() || O2CapacityAmount < 0.0f)
 	{
-		bStatus = false;
+		return false;
 	}
-	else
+	const float NewOxygenCapacity = OxygenCapacity - O2CapacityAmount;
+	bool bStatus = SetOxygenCapacity(NewOxygenCapacity); // capturing status here so that we can then check to reduce the current O2 before exiting.
+	if (NewOxygenCapacity < CurrentOxygen)
 	{
-		const float NewOxygenCapacity = OxygenCapacity - O2CapacityAmount;
-		SetOxygenCapacity(NewOxygenCapacity);
-		if (NewOxygenCapacity < CurrentOxygen)
-		{
-			const float O2Delta = CurrentOxygen - NewOxygenCapacity;
-			RequestOxygen(O2Delta); // utilize this function to perform the decrease and notify the listeners
-		}
-		bStatus = true; // TODO: if given approval to change SetOxygenCapacity to return a bool, then will return status from the call in teh line above this one.
+		const float O2Delta = CurrentOxygen - NewOxygenCapacity;
+		RequestOxygen(O2Delta); // utilize this function to perform the decrease and notify the listeners
 	}
-	
+
 	return bStatus;
 }
 
