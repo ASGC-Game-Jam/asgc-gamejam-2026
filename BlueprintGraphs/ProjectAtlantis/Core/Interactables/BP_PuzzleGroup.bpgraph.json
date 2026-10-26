@@ -8,61 +8,52 @@
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
+			"name": "OnGroupCompleted",
+			"type": "Delegate",
+			"nodes": [
+				{
+					"guid": "69d3c7734532949ac1b7c8aed4af50e6",
+					"class": "K2Node_FunctionEntry",
+					"title": "OnGroupCompleted",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "69d3c7734532949ac1b7c8aed4af50e6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "69d3c7734532949ac1b7c8aed4af50e6:o:GroupReference",
+							"name": "GroupReference",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
 			"name": "EvaluateInteraction",
 			"type": "Function",
 			"nodes": [
 				{
-					"guid": "1e3ee4ab4dcbec4fe92b5587880e27c3",
-					"class": "K2Node_CallFunction",
-					"title": "Contains",
-					"x": 400,
-					"y": 320,
-					"comment": null,
-					"pins": [
-						{
-							"id": "1e3ee4ab4dcbec4fe92b5587880e27c3:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/TypedElementFramework.TypedElementListLibrary",
-							"defaultValue": "/Script/TypedElementFramework.Default__TypedElementListLibrary",
-							"links": []
-						},
-						{
-							"id": "1e3ee4ab4dcbec4fe92b5587880e27c3:i:ElementList",
-							"name": "ElementList",
-							"direction": "input",
-							"type": "struct:/Script/TypedElementFramework.ScriptTypedElementListProxy",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "1e3ee4ab4dcbec4fe92b5587880e27c3:i:ElementHandle",
-							"name": "ElementHandle",
-							"direction": "input",
-							"type": "struct:/Script/TypedElementFramework.ScriptTypedElementHandle",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "1e3ee4ab4dcbec4fe92b5587880e27c3:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "51500b7d44225197d129f98b18a586a9",
+					"guid": "0a83f28947bfc3626cf4d2b50dc2457d",
 					"class": "K2Node_CallArrayFunction",
 					"title": "Contains Item",
-					"x": 416,
-					"y": 432,
+					"x": 624,
+					"y": 384,
 					"comment": null,
 					"pins": [
 						{
-							"id": "51500b7d44225197d129f98b18a586a9:i:self",
+							"id": "0a83f28947bfc3626cf4d2b50dc2457d:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Script/Engine.KismetArrayLibrary",
@@ -70,81 +61,298 @@
 							"links": []
 						},
 						{
-							"id": "51500b7d44225197d129f98b18a586a9:i:TargetArray",
+							"id": "0a83f28947bfc3626cf4d2b50dc2457d:i:TargetArray",
 							"name": "TargetArray",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
 							"defaultValue": null,
 							"links": [
-								"5a22fe2144dce81ac4fd0998b445f07e:o:CompletedActors"
+								"f4ba8c924fe18541bd0a13b6fa9c1270:o:CompletedActors"
 							]
 						},
 						{
-							"id": "51500b7d44225197d129f98b18a586a9:i:ItemToFind",
+							"id": "0a83f28947bfc3626cf4d2b50dc2457d:i:ItemToFind",
 							"name": "ItemToFind",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"25c9b3f1439422d1bf7efebe06b9018b:o:OutputPin"
+							]
 						},
 						{
-							"id": "51500b7d44225197d129f98b18a586a9:o:ReturnValue",
+							"id": "0a83f28947bfc3626cf4d2b50dc2457d:o:ReturnValue",
 							"name": "ReturnValue",
 							"direction": "output",
 							"type": "bool",
-							"defaultValue": "false",
+							"defaultValue": null,
+							"links": [
+								"c6d73af046131046524211afa47055ce:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "21c47bea44586dd3c9d2b7a151f72095",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Add",
+					"x": 1600,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "21c47bea44586dd3c9d2b7a151f72095:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bbeeb62341d60002651264af2d691502:o:then",
+								"e06fefca4703f7907a493db4eea8ce1b:o:then"
+							]
+						},
+						{
+							"id": "21c47bea44586dd3c9d2b7a151f72095:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"46480d5749f511536e6b8398465979be:i:execute"
+							]
+						},
+						{
+							"id": "21c47bea44586dd3c9d2b7a151f72095:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "21c47bea44586dd3c9d2b7a151f72095:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
+							"defaultValue": null,
+							"links": [
+								"a42ecf3e478789bad27585a806e3abd8:o:CompletedActors"
+							]
+						},
+						{
+							"id": "21c47bea44586dd3c9d2b7a151f72095:i:NewItem",
+							"name": "NewItem",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C",
+							"defaultValue": null,
+							"links": [
+								"de5fd2aa4eb06966e20afb9e4f550336:o:AsBP Atlantis Interactable"
+							]
+						},
+						{
+							"id": "21c47bea44586dd3c9d2b7a151f72095:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": "0",
 							"links": []
 						}
 					]
 				},
 				{
-					"guid": "5a22fe2144dce81ac4fd0998b445f07e",
-					"class": "K2Node_VariableGet",
-					"title": "Get CompletedActors",
-					"x": 160,
-					"y": 336,
+					"guid": "25c9b3f1439422d1bf7efebe06b9018b",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 496,
+					"y": 240,
 					"comment": null,
 					"pins": [
 						{
-							"id": "5a22fe2144dce81ac4fd0998b445f07e:o:CompletedActors",
-							"name": "CompletedActors",
-							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
+							"id": "25c9b3f1439422d1bf7efebe06b9018b:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C",
 							"defaultValue": null,
 							"links": [
-								"51500b7d44225197d129f98b18a586a9:i:TargetArray"
+								"de5fd2aa4eb06966e20afb9e4f550336:o:AsBP Atlantis Interactable"
 							]
 						},
 						{
-							"id": "5a22fe2144dce81ac4fd0998b445f07e:i:self",
+							"id": "25c9b3f1439422d1bf7efebe06b9018b:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C",
+							"defaultValue": null,
+							"links": [
+								"0a83f28947bfc3626cf4d2b50dc2457d:i:ItemToFind",
+								"80321561468520a044d236a2c11983c9:i:ItemToFind"
+							]
+						}
+					]
+				},
+				{
+					"guid": "40cc29a54a93de26ecd8bbb5eabb0a0f",
+					"class": "K2Node_PromotableOperator",
+					"title": "Equal (Integer)",
+					"x": 1584,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "40cc29a54a93de26ecd8bbb5eabb0a0f:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"7fac21cb48eb4f477fac13a588447878:o:ReturnValue"
+							]
+						},
+						{
+							"id": "40cc29a54a93de26ecd8bbb5eabb0a0f:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"a8a0be2644952c9fd43140a08b6f20c3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "40cc29a54a93de26ecd8bbb5eabb0a0f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"46480d5749f511536e6b8398465979be:i:Condition"
+							]
+						},
+						{
+							"id": "40cc29a54a93de26ecd8bbb5eabb0a0f:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "46480d5749f511536e6b8398465979be",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1792,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "46480d5749f511536e6b8398465979be:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"21c47bea44586dd3c9d2b7a151f72095:o:then"
+							]
+						},
+						{
+							"id": "46480d5749f511536e6b8398465979be:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"40cc29a54a93de26ecd8bbb5eabb0a0f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "46480d5749f511536e6b8398465979be:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7b145c75465359c1ae447db2bbd349f4:i:execute"
+							]
+						},
+						{
+							"id": "46480d5749f511536e6b8398465979be:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6d7d23a0420663bd5bf3b5afa87f4edd",
+					"class": "K2Node_CallDelegate",
+					"title": "Call On Group Completed",
+					"x": 2272,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6d7d23a0420663bd5bf3b5afa87f4edd:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7b145c75465359c1ae447db2bbd349f4:o:then"
+							]
+						},
+						{
+							"id": "6d7d23a0420663bd5bf3b5afa87f4edd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6d7d23a0420663bd5bf3b5afa87f4edd:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
 							"defaultValue": null,
 							"links": []
+						},
+						{
+							"id": "6d7d23a0420663bd5bf3b5afa87f4edd:i:GroupReference",
+							"name": "GroupReference",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": [
+								"9dbb383d4a65a22634ee60a1edc2dbd7:o:self"
+							]
 						}
 					]
 				},
 				{
-					"guid": "5a70ceff47ef3d0c840276ae85df853d",
+					"guid": "749c843f4d03354a2d295cb5b31c39c7",
 					"class": "K2Node_VariableGet",
 					"title": "Get Members",
-					"x": -16,
-					"y": 96,
+					"x": 512,
+					"y": 176,
 					"comment": null,
 					"pins": [
 						{
-							"id": "5a70ceff47ef3d0c840276ae85df853d:o:Members",
+							"id": "749c843f4d03354a2d295cb5b31c39c7:o:Members",
 							"name": "Members",
 							"direction": "output",
 							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
 							"defaultValue": null,
 							"links": [
-								"7307a4b1464acc88fdfeeb930b4221f8:i:TargetArray"
+								"7fac21cb48eb4f477fac13a588447878:i:TargetArray",
+								"80321561468520a044d236a2c11983c9:i:TargetArray"
 							]
 						},
 						{
-							"id": "5a70ceff47ef3d0c840276ae85df853d:i:self",
+							"id": "749c843f4d03354a2d295cb5b31c39c7:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
@@ -154,15 +362,69 @@
 					]
 				},
 				{
-					"guid": "7307a4b1464acc88fdfeeb930b4221f8",
-					"class": "K2Node_CallArrayFunction",
-					"title": "Find Item",
-					"x": 208,
-					"y": 96,
+					"guid": "7b145c75465359c1ae447db2bbd349f4",
+					"class": "K2Node_VariableSet",
+					"title": "Set bIsComplete",
+					"x": 2032,
+					"y": -16,
 					"comment": null,
 					"pins": [
 						{
-							"id": "7307a4b1464acc88fdfeeb930b4221f8:i:self",
+							"id": "7b145c75465359c1ae447db2bbd349f4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"46480d5749f511536e6b8398465979be:o:then"
+							]
+						},
+						{
+							"id": "7b145c75465359c1ae447db2bbd349f4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6d7d23a0420663bd5bf3b5afa87f4edd:i:execute"
+							]
+						},
+						{
+							"id": "7b145c75465359c1ae447db2bbd349f4:i:bIsComplete",
+							"name": "bIsComplete",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "7b145c75465359c1ae447db2bbd349f4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7b145c75465359c1ae447db2bbd349f4:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7fac21cb48eb4f477fac13a588447878",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Length",
+					"x": 864,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7fac21cb48eb4f477fac13a588447878:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Script/Engine.KismetArrayLibrary",
@@ -170,33 +432,206 @@
 							"links": []
 						},
 						{
-							"id": "7307a4b1464acc88fdfeeb930b4221f8:i:TargetArray",
+							"id": "7fac21cb48eb4f477fac13a588447878:i:TargetArray",
 							"name": "TargetArray",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
 							"defaultValue": null,
 							"links": [
-								"5a70ceff47ef3d0c840276ae85df853d:o:Members"
+								"749c843f4d03354a2d295cb5b31c39c7:o:Members"
 							]
 						},
 						{
-							"id": "7307a4b1464acc88fdfeeb930b4221f8:i:ItemToFind",
-							"name": "ItemToFind",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C",
-							"defaultValue": null,
-							"links": [
-								"b787880e4010e3a2cfd80f93ef03c80c:o:InteractedActor"
-							]
-						},
-						{
-							"id": "7307a4b1464acc88fdfeeb930b4221f8:o:ReturnValue",
+							"id": "7fac21cb48eb4f477fac13a588447878:o:ReturnValue",
 							"name": "ReturnValue",
 							"direction": "output",
 							"type": "int",
 							"defaultValue": null,
 							"links": [
-								"d17671414e975277a68bee8f9cba98ea:i:A"
+								"40cc29a54a93de26ecd8bbb5eabb0a0f:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "80321561468520a044d236a2c11983c9",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Find Item",
+					"x": 672,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "80321561468520a044d236a2c11983c9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "80321561468520a044d236a2c11983c9:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
+							"defaultValue": null,
+							"links": [
+								"749c843f4d03354a2d295cb5b31c39c7:o:Members"
+							]
+						},
+						{
+							"id": "80321561468520a044d236a2c11983c9:i:ItemToFind",
+							"name": "ItemToFind",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C",
+							"defaultValue": null,
+							"links": [
+								"25c9b3f1439422d1bf7efebe06b9018b:o:OutputPin"
+							]
+						},
+						{
+							"id": "80321561468520a044d236a2c11983c9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"8a2bab334a3179cac0f2c28e49e74b42:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8a2bab334a3179cac0f2c28e49e74b42",
+					"class": "K2Node_PromotableOperator",
+					"title": "Equal (Integer)",
+					"x": 880,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8a2bab334a3179cac0f2c28e49e74b42:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"80321561468520a044d236a2c11983c9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8a2bab334a3179cac0f2c28e49e74b42:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"a8a0be2644952c9fd43140a08b6f20c3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8a2bab334a3179cac0f2c28e49e74b42:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e06fefca4703f7907a493db4eea8ce1b:i:Condition"
+							]
+						},
+						{
+							"id": "8a2bab334a3179cac0f2c28e49e74b42:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9dbb383d4a65a22634ee60a1edc2dbd7",
+					"class": "K2Node_Self",
+					"title": "Self-Reference",
+					"x": 2096,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9dbb383d4a65a22634ee60a1edc2dbd7:o:self",
+							"name": "self",
+							"direction": "output",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": [
+								"6d7d23a0420663bd5bf3b5afa87f4edd:i:GroupReference"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a42ecf3e478789bad27585a806e3abd8",
+					"class": "K2Node_VariableGet",
+					"title": "Get CompletedActors",
+					"x": 1328,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a42ecf3e478789bad27585a806e3abd8:o:CompletedActors",
+							"name": "CompletedActors",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
+							"defaultValue": null,
+							"links": [
+								"21c47bea44586dd3c9d2b7a151f72095:i:TargetArray"
+							]
+						},
+						{
+							"id": "a42ecf3e478789bad27585a806e3abd8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a8a0be2644952c9fd43140a08b6f20c3",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Length",
+					"x": 640,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a8a0be2644952c9fd43140a08b6f20c3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "a8a0be2644952c9fd43140a08b6f20c3:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
+							"defaultValue": null,
+							"links": [
+								"f4ba8c924fe18541bd0a13b6fa9c1270:o:CompletedActors"
+							]
+						},
+						{
+							"id": "a8a0be2644952c9fd43140a08b6f20c3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"40cc29a54a93de26ecd8bbb5eabb0a0f:i:B",
+								"8a2bab334a3179cac0f2c28e49e74b42:i:B"
 							]
 						}
 					]
@@ -205,8 +640,8 @@
 					"guid": "b787880e4010e3a2cfd80f93ef03c80c",
 					"class": "K2Node_FunctionEntry",
 					"title": "EvaluateInteraction",
-					"x": -128,
-					"y": -64,
+					"x": 16,
+					"y": -32,
 					"comment": null,
 					"pins": [
 						{
@@ -216,7 +651,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"c93472754d5c169c3824cc8903372645:i:execute"
+								"de5fd2aa4eb06966e20afb9e4f550336:i:execute"
 							]
 						},
 						{
@@ -226,7 +661,7 @@
 							"type": "object:/Script/Engine.Actor",
 							"defaultValue": null,
 							"links": [
-								"7307a4b1464acc88fdfeeb930b4221f8:i:ItemToFind"
+								"de5fd2aa4eb06966e20afb9e4f550336:i:Object"
 							]
 						}
 					]
@@ -235,8 +670,8 @@
 					"guid": "bbeeb62341d60002651264af2d691502",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 720,
-					"y": 64,
+					"x": 1312,
+					"y": 224,
 					"comment": null,
 					"pins": [
 						{
@@ -254,8 +689,10 @@
 							"name": "Condition",
 							"direction": "input",
 							"type": "bool",
-							"defaultValue": "true",
-							"links": []
+							"defaultValue": null,
+							"links": [
+								"c6d73af046131046524211afa47055ce:o:ReturnValue"
+							]
 						},
 						{
 							"id": "bbeeb62341d60002651264af2d691502:o:then",
@@ -263,7 +700,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"21c47bea44586dd3c9d2b7a151f72095:i:execute"
+							]
 						},
 						{
 							"id": "bbeeb62341d60002651264af2d691502:o:else",
@@ -276,11 +715,49 @@
 					]
 				},
 				{
+					"guid": "c6d73af046131046524211afa47055ce",
+					"class": "K2Node_CallFunction",
+					"title": "NOT Boolean",
+					"x": 864,
+					"y": 400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c6d73af046131046524211afa47055ce:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "c6d73af046131046524211afa47055ce:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"0a83f28947bfc3626cf4d2b50dc2457d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c6d73af046131046524211afa47055ce:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"bbeeb62341d60002651264af2d691502:i:Condition"
+							]
+						}
+					]
+				},
+				{
 					"guid": "c93472754d5c169c3824cc8903372645",
 					"class": "K2Node_SwitchEnum",
 					"title": "Switch on E_PuzzleLogic",
-					"x": 176,
-					"y": -48,
+					"x": 720,
+					"y": -32,
 					"comment": null,
 					"pins": [
 						{
@@ -290,7 +767,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"b787880e4010e3a2cfd80f93ef03c80c:o:then"
+								"de5fd2aa4eb06966e20afb9e4f550336:o:then"
 							]
 						},
 						{
@@ -332,86 +809,67 @@
 					]
 				},
 				{
-					"guid": "cb3b0836408b62bcb0bf6e9bbc4a1144",
-					"class": "K2Node_CallArrayFunction",
-					"title": "Length",
-					"x": 176,
-					"y": 176,
+					"guid": "de5fd2aa4eb06966e20afb9e4f550336",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisInteractable",
+					"x": 224,
+					"y": -32,
 					"comment": null,
 					"pins": [
 						{
-							"id": "cb3b0836408b62bcb0bf6e9bbc4a1144:i:self",
-							"name": "self",
+							"id": "de5fd2aa4eb06966e20afb9e4f550336:i:execute",
+							"name": "execute",
 							"direction": "input",
-							"type": "object:/Script/Engine.KismetArrayLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b787880e4010e3a2cfd80f93ef03c80c:o:then"
+							]
+						},
+						{
+							"id": "de5fd2aa4eb06966e20afb9e4f550336:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c93472754d5c169c3824cc8903372645:i:execute"
+							]
+						},
+						{
+							"id": "de5fd2aa4eb06966e20afb9e4f550336:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
 							"links": []
 						},
 						{
-							"id": "cb3b0836408b62bcb0bf6e9bbc4a1144:i:TargetArray",
-							"name": "TargetArray",
+							"id": "de5fd2aa4eb06966e20afb9e4f550336:i:Object",
+							"name": "Object",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
+							"type": "object:/Script/CoreUObject.Object",
 							"defaultValue": null,
 							"links": [
-								"f4ba8c924fe18541bd0a13b6fa9c1270:o:CompletedActors"
+								"b787880e4010e3a2cfd80f93ef03c80c:o:InteractedActor"
 							]
 						},
 						{
-							"id": "cb3b0836408b62bcb0bf6e9bbc4a1144:o:ReturnValue",
-							"name": "ReturnValue",
+							"id": "de5fd2aa4eb06966e20afb9e4f550336:o:AsBP Atlantis Interactable",
+							"name": "AsBP Atlantis Interactable",
 							"direction": "output",
-							"type": "int",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C",
 							"defaultValue": null,
 							"links": [
-								"d17671414e975277a68bee8f9cba98ea:i:B"
-							]
-						}
-					]
-				},
-				{
-					"guid": "d17671414e975277a68bee8f9cba98ea",
-					"class": "K2Node_PromotableOperator",
-					"title": "Equal (Integer)",
-					"x": 432,
-					"y": 144,
-					"comment": null,
-					"pins": [
-						{
-							"id": "d17671414e975277a68bee8f9cba98ea:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": null,
-							"links": [
-								"7307a4b1464acc88fdfeeb930b4221f8:o:ReturnValue"
+								"21c47bea44586dd3c9d2b7a151f72095:i:NewItem",
+								"25c9b3f1439422d1bf7efebe06b9018b:i:InputPin"
 							]
 						},
 						{
-							"id": "d17671414e975277a68bee8f9cba98ea:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": null,
-							"links": [
-								"cb3b0836408b62bcb0bf6e9bbc4a1144:o:ReturnValue"
-							]
-						},
-						{
-							"id": "d17671414e975277a68bee8f9cba98ea:o:ReturnValue",
-							"name": "ReturnValue",
+							"id": "de5fd2aa4eb06966e20afb9e4f550336:o:bSuccess",
+							"name": "bSuccess",
 							"direction": "output",
 							"type": "bool",
-							"defaultValue": null,
-							"links": [
-								"e06fefca4703f7907a493db4eea8ce1b:i:Condition"
-							]
-						},
-						{
-							"id": "d17671414e975277a68bee8f9cba98ea:i:ErrorTolerance",
-							"name": "ErrorTolerance",
-							"direction": "input",
-							"type": "None",
 							"defaultValue": null,
 							"links": []
 						}
@@ -421,8 +879,8 @@
 					"guid": "e06fefca4703f7907a493db4eea8ce1b",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 720,
-					"y": -48,
+					"x": 1312,
+					"y": -32,
 					"comment": null,
 					"pins": [
 						{
@@ -442,7 +900,7 @@
 							"type": "bool",
 							"defaultValue": null,
 							"links": [
-								"d17671414e975277a68bee8f9cba98ea:o:ReturnValue"
+								"8a2bab334a3179cac0f2c28e49e74b42:o:ReturnValue"
 							]
 						},
 						{
@@ -451,7 +909,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"21c47bea44586dd3c9d2b7a151f72095:i:execute"
+							]
 						},
 						{
 							"id": "e06fefca4703f7907a493db4eea8ce1b:o:else",
@@ -467,8 +927,8 @@
 					"guid": "f4ba8c924fe18541bd0a13b6fa9c1270",
 					"class": "K2Node_VariableGet",
 					"title": "Get CompletedActors",
-					"x": -32,
-					"y": 208,
+					"x": 448,
+					"y": 288,
 					"comment": null,
 					"pins": [
 						{
@@ -478,7 +938,8 @@
 							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C[]",
 							"defaultValue": null,
 							"links": [
-								"cb3b0836408b62bcb0bf6e9bbc4a1144:i:TargetArray"
+								"0a83f28947bfc3626cf4d2b50dc2457d:i:TargetArray",
+								"a8a0be2644952c9fd43140a08b6f20c3:i:TargetArray"
 							]
 						},
 						{
@@ -494,12 +955,20 @@
 			],
 			"comments": [
 				{
+					"guid": "0be9ef6b47413d0749c04e906fe887f4",
+					"text": "Puzzle Completion",
+					"x": 1248,
+					"y": -96,
+					"width": 1376,
+					"height": 480
+				},
+				{
 					"guid": "e416a3524563eb655f25eaababde5fd8",
-					"text": "Brain",
-					"x": -192,
-					"y": -128,
-					"width": 1392,
-					"height": 752
+					"text": "Puzzle Logistics",
+					"x": 0,
+					"y": -80,
+					"width": 1152,
+					"height": 576
 				}
 			]
 		},
@@ -563,6 +1032,13 @@
 			"bIsComplete":
 			{
 				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"OnGroupCompleted":
+			{
+				"type": "mcdelegate",
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": false
