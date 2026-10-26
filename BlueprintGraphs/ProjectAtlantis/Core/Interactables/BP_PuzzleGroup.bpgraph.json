@@ -45,6 +45,100 @@
 			"type": "Function",
 			"nodes": [
 				{
+					"guid": "09d963fd4193dc262a065399d20c068d",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 1792,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"21c47bea44586dd3c9d2b7a151f72095:o:then"
+							]
+						},
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"46480d5749f511536e6b8398465979be:i:execute"
+							]
+						},
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Step Complete [Index] ? [Total]",
+							"links": []
+						},
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.093339,G=1.000000,B=0.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "09d963fd4193dc262a065399d20c068d:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "0a83f28947bfc3626cf4d2b50dc2457d",
 					"class": "K2Node_CallArrayFunction",
 					"title": "Contains Item",
@@ -118,7 +212,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"46480d5749f511536e6b8398465979be:i:execute"
+								"09d963fd4193dc262a065399d20c068d:i:execute"
 							]
 						},
 						{
@@ -242,7 +336,7 @@
 					"guid": "46480d5749f511536e6b8398465979be",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 1792,
+					"x": 2096,
 					"y": -32,
 					"comment": null,
 					"pins": [
@@ -253,7 +347,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"21c47bea44586dd3c9d2b7a151f72095:o:then"
+								"09d963fd4193dc262a065399d20c068d:o:then"
 							]
 						},
 						{
@@ -290,7 +384,7 @@
 					"guid": "6d7d23a0420663bd5bf3b5afa87f4edd",
 					"class": "K2Node_CallDelegate",
 					"title": "Call On Group Completed",
-					"x": 2272,
+					"x": 2576,
 					"y": -32,
 					"comment": null,
 					"pins": [
@@ -365,7 +459,7 @@
 					"guid": "7b145c75465359c1ae447db2bbd349f4",
 					"class": "K2Node_VariableSet",
 					"title": "Set bIsComplete",
-					"x": 2032,
+					"x": 2336,
 					"y": -16,
 					"comment": null,
 					"pins": [
@@ -398,19 +492,19 @@
 							"links": []
 						},
 						{
-							"id": "7b145c75465359c1ae447db2bbd349f4:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "7b145c75465359c1ae447db2bbd349f4:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
 							"type": "bool",
 							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "7b145c75465359c1ae447db2bbd349f4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -553,7 +647,7 @@
 					"guid": "9dbb383d4a65a22634ee60a1edc2dbd7",
 					"class": "K2Node_Self",
 					"title": "Self-Reference",
-					"x": 2096,
+					"x": 2400,
 					"y": 80,
 					"comment": null,
 					"pins": [
@@ -775,8 +869,10 @@
 							"name": "Selection",
 							"direction": "input",
 							"type": "byte:/Game/ProjectAtlantis/Core/Interactables/E_PuzzleLogic.E_PuzzleLogic",
-							"defaultValue": "NewEnumerator0",
-							"links": []
+							"defaultValue": null,
+							"links": [
+								"cd0479fa4d92d387bc33e399c9a8c8eb:o:LogicMode"
+							]
 						},
 						{
 							"id": "c93472754d5c169c3824cc8903372645:i:NotEqual_ByteByte",
@@ -805,6 +901,34 @@
 							"links": [
 								"bbeeb62341d60002651264af2d691502:i:execute"
 							]
+						}
+					]
+				},
+				{
+					"guid": "cd0479fa4d92d387bc33e399c9a8c8eb",
+					"class": "K2Node_VariableGet",
+					"title": "Get LogicMode",
+					"x": 352,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cd0479fa4d92d387bc33e399c9a8c8eb:o:LogicMode",
+							"name": "LogicMode",
+							"direction": "output",
+							"type": "byte:/Game/ProjectAtlantis/Core/Interactables/E_PuzzleLogic.E_PuzzleLogic",
+							"defaultValue": null,
+							"links": [
+								"c93472754d5c169c3824cc8903372645:i:Selection"
+							]
+						},
+						{
+							"id": "cd0479fa4d92d387bc33e399c9a8c8eb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -959,8 +1083,8 @@
 					"text": "Puzzle Completion",
 					"x": 1248,
 					"y": -96,
-					"width": 1376,
-					"height": 480
+					"width": 1584,
+					"height": 544
 				},
 				{
 					"guid": "e416a3524563eb655f25eaababde5fd8",

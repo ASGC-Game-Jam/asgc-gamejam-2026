@@ -184,6 +184,98 @@
 					]
 				},
 				{
+					"guid": "4ccbeec14a923ecfed22e78d9ecc7d55",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 944,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"813d359a4510bed2ab753ab93f97f3a2:o:then"
+							]
+						},
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Interact Triggered",
+							"links": []
+						},
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "4ccbeec14a923ecfed22e78d9ecc7d55:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "4ddcb90a4ffa6358b218cda3a53d582e",
 					"class": "K2Node_CustomEvent",
 					"title": "OnInteract",
@@ -421,7 +513,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"4ccbeec14a923ecfed22e78d9ecc7d55:i:execute"
+							]
 						},
 						{
 							"id": "813d359a4510bed2ab753ab93f97f3a2:i:self",
