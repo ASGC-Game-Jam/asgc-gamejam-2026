@@ -86,9 +86,9 @@ If Unreal prompts you to build the project files, select **Yes**
 The first launch may take several minutes while Unreal generates project files,
 compiles shaders, and prepares the project
 
-## Connect Unreal revision control (Git plugin trial)
+## Connect Unreal revision control
 
-On the plugin trial branch, build `ProjectAtlantisEditor` in Development Editor /
+Build `ProjectAtlantisEditor` in Development Editor /
 Win64 and confirm **Git LFS 2** is enabled in Plugins. Connect **Revision Control >
 Git** to the existing repository, enable **Uses Git LFS 2 File Locking workflow**,
 and set the owner name to your Gitea identity. Do not initialize a new repository.
@@ -98,7 +98,7 @@ Before editing, refresh asset status and **Check Out** the selected assets in th
 Content Browser, then verify ownership. Auto-checkout is not enabled and new
 files must be explicitly added with `git add`. Commit/push using Git to retain
 locks through PR merge: plugin Submit releases them immediately after pushing.
-See [the full workflow and CLI fallback](GitPluginTrial.md).
+See [the full workflow and CLI fallback](GitWorkflow.md).
 
 ## Verify Your Setup
 

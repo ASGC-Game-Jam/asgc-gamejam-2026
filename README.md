@@ -18,7 +18,7 @@ This project exists to give people a chance to build something real together. Wh
 - [Spawning the Player](./Docs/Spawning%20the%20Player.md) — how the player character actually gets into the level, and why it sometimes doesn't
 - [Game Framework Classes](./Docs/Game%20Framework%20Classes.md) — how GameMode, PlayerController, PlayerState, and Character are split between C++ and Blueprint
 - [Replicated State Pattern](./Docs/Replicated%20State%20Pattern.md) — how server-authoritative state broadcasts changes to the rest of the game
-- [Git plugin trial and asset locking workflow](./Docs/GitPluginTrial.md) — Unreal checkout, PR locks, and CLI fallback
+- [Git plugin and asset locking workflow](./Docs/GitWorkflow.md) — Unreal checkout, PR locks, and CLI fallback
 - [Git Hygiene](./Docs/Git%20Hygiene.md) — branching and commit practice
 - [Releases](./Docs/RELEASES.md) — build and versioning process
 
