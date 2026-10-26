@@ -185,10 +185,10 @@ Unlike normal source files, two versions of these assets generally can't be mean
 
 That makes locking important
 
-On the Git plugin trial branch, use Unreal's Content Browser **Revision Control >
+Use Unreal's Content Browser **Revision Control >
 Check Out** before editing. Refresh status and confirm ownership in the asset
 tooltip; multi-select supports batch checkout. Connection and full workflow:
-[Project Borealis Git plugin](GitPluginTrial.md).
+[Project Borealis Git plugin](GitWorkflow.md).
 
 For branches without the plugin, external source art, or CLI troubleshooting:
 
@@ -213,7 +213,7 @@ there is no pending work to preserve. Coordinate with the owner if an asset is
 already locked; do not edit a competing copy or force-unlock their work.
 
 Locks apply across branches. Automatic checkout and status-branch integration
-are not enabled in this trial; do not assume the plugin prevents stale edits.
+are not enabled in this integration; do not assume the plugin prevents stale edits.
 Git LFS handles storage and transfer, but **locking before editing remains an
 explicit contributor responsibility**. Keystone's File Locks view and PR lock
 validation remain part of the team workflow.

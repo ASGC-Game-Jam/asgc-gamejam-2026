@@ -1,4 +1,4 @@
-# Project Borealis Git plugin trial
+# Project Borealis Git workflow
 
 The project vendors Git LFS 2 version 3.16 from
 https://github.com/ProjectBorealis/UEGitPlugin at commit
@@ -34,9 +34,9 @@ branch integration are not enabled by this installation.
 
 ## Daily asset workflow
 
-This branch trials the Project Borealis provider. These instructions apply when
-**Git LFS 2** is enabled and connected; contributors on main without this plugin
-use the CLI fallback below. GitHub still hosts Git and PRs; Gitea still hosts
+The project uses the Project Borealis provider for revision control in Unreal.
+These instructions apply when **Git LFS 2** is enabled and connected; use the CLI
+fallback below when the plugin is unavailable. GitHub still hosts Git and PRs; Gitea still hosts
 LFS objects and locks, and Keystone still provides File Locks and PR validation.
 
 1. Save your work and close Unreal before switching branches. Update from main
@@ -92,7 +92,7 @@ Unchanged assets may be released early after confirming there is no pending
 work. If authentication fails, follow [SETUP.md](SETUP.md) and
 [Gitea 2FA.md](Gitea%202FA.md); do not change `.lfsconfig` to bypass Gitea.
 
-### Limits of the trial
+### Integration limitations
 
 - Automatic checkout and status-branch integration are not enabled. Manually
   check out before editing; do not assume cross-branch stale-asset protection.
@@ -111,8 +111,7 @@ For an update, replace the vendored files from a reviewed upstream revision,
 including its matching LFS helpers, and update this commit reference.
 The helpers are intentional upstream dependencies, not local build outputs.
 
-To stop testing, close Unreal and switch back to main. To remove the integration
-from a merged branch, remove `Plugins/GitSourceControl`, its project enablement,
+To remove the integration, remove `Plugins/GitSourceControl`, its project enablement,
 the required auto-add default, and its `.gitignore` exception.
 
 ## Previous installation validation (before rebase)

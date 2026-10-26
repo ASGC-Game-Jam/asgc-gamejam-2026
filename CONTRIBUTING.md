@@ -42,10 +42,10 @@ If Git LFS is installed correctly, asset management should happen automatically.
 
 Unreal assets are binary files. If two people edit the same `.uasset` at the same time, Git cannot merge the result — one person's work has to be thrown away and redone. Locking prevents that.
 
-On the Git plugin trial branch, connect **Git LFS 2** in Unreal, refresh asset
+Connect **Git LFS 2** in Unreal, refresh asset
 status, and use the Content Browser's **Revision Control > Check Out** before
 editing. Confirm the lock owner in the asset tooltip. Multi-select supports
-checking out several assets together. See the [plugin workflow](./Docs/GitPluginTrial.md)
+checking out several assets together. See the [plugin workflow](./Docs/GitWorkflow.md)
 for connection steps, cleanup, and limitations. On branches without the plugin,
 or for external source art, use `git lfs locks` and `git lfs lock "path/to/asset"`.
 
