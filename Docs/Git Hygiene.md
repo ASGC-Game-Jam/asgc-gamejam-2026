@@ -185,29 +185,38 @@ Unlike normal source files, two versions of these assets generally can't be mean
 
 That makes locking important
 
-Before editing a shared binary asset, check existing locks
+On the Git plugin trial branch, use Unreal's Content Browser **Revision Control >
+Check Out** before editing. Refresh status and confirm ownership in the asset
+tooltip; multi-select supports batch checkout. Connection and full workflow:
+[Project Borealis Git plugin](GitPluginTrial.md).
+
+For branches without the plugin, external source art, or CLI troubleshooting:
 
 ```bash
 git lfs locks
+git lfs lock "Content/Path/Asset.uasset"
 ```
 
-Lock the asset
+Keep locks while editing and throughout PR review. Commit and push using Git
+or your Git client. The plugin's **Submit** commits, pushes, and releases locks
+after a successful push; it does not preserve them until merge. Avoid Submit
+for shared binary PR work unless a Lead coordinates an exception.
+
+After the PR is merged and the asset change is in main:
 
 ```bash
-git lfs lock Content/Path/Asset.uasset
+git lfs unlock "Content/Path/Asset.uasset"
 ```
 
-When you are finished with the asset
+Refresh editor status afterward. Release unchanged or abandoned assets once
+there is no pending work to preserve. Coordinate with the owner if an asset is
+already locked; do not edit a competing copy or force-unlock their work.
 
-```bash
-git lfs unlock Content/Path/Asset.uasset
-```
-
-Do not leave assets locked when you are no longer actively working on them
-
-If an asset you need is already locked, contact the person holding the lock rather than editing a competing copy
-
-Git LFS handles storage and transfer of these assets, but **locking is an explicit contributor responsibility**
+Locks apply across branches. Automatic checkout and status-branch integration
+are not enabled in this trial; do not assume the plugin prevents stale edits.
+Git LFS handles storage and transfer, but **locking before editing remains an
+explicit contributor responsibility**. Keystone's File Locks view and PR lock
+validation remain part of the team workflow.
 
 Do not modify
 
@@ -408,6 +417,6 @@ If you remember nothing else
 * Lock before editing shared Unreal assets
 * Check before committing
 * Review before requesting review
-* Unlock when finished
+* Keep changed assets locked through merge; release unused locks promptly
 
 And if Git is doing something you do not understand, **ask before using a destructive command**

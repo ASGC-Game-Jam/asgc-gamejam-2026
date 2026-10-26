@@ -8,6 +8,8 @@ and Linux LFS helpers are included under `Plugins/GitSourceControl`.
 This is a project plugin, so teammates receive it with the repository.
 No engine installation changes or submodule setup are needed.
 
+Tracking issue: [#373](https://github.com/ASGC-Game-Jam/asgc-gamejam-2026/issues/373).
+
 ## Build and test
 
 1. Close Unreal before switching to this branch. Pull LFS assets as usual.
@@ -30,6 +32,79 @@ New files must be added explicitly (`git add`); the plugin's required
 `bSCCAutoAddNewFiles=False` default is included. Automatic checkout and status
 branch integration are not enabled by this installation.
 
+## Daily asset workflow
+
+This branch trials the Project Borealis provider. These instructions apply when
+**Git LFS 2** is enabled and connected; contributors on main without this plugin
+use the CLI fallback below. GitHub still hosts Git and PRs; Gitea still hosts
+LFS objects and locks, and Keystone still provides File Locks and PR validation.
+
+1. Save your work and close Unreal before switching branches. Update from main
+   and create your task branch using Git or your Git client, then reopen Unreal.
+2. Connect **Revision Control > Git** with **Uses Git LFS 2 File Locking workflow**
+   enabled. Set the lock-owner name to your Gitea identity, which may differ
+   from Git's commit author. If your checkout appears owned by someone else,
+   compare the displayed owner with this setting before editing.
+3. Refresh asset status. In the Content Browser, select the assets you intend
+   to edit and use **Revision Control > Check Out**. Multiple selection is
+   supported; avoid checking out whole folders unless you need every asset.
+4. Confirm checkout succeeded and inspect the asset tooltip for the owner.
+   Your locks appear with a red check mark; other users' locks use blue.
+   Stop and coordinate if another person holds the lock or the operation fails.
+   Do not treat a writable local file or a stale icon as proof of ownership.
+5. Edit, save, compile changed Blueprints, and test. Add new files explicitly
+   with `git add`; editor auto-add is disabled. Review the complete Git diff,
+   including assets indirectly modified by your edit, and lock those too.
+6. Commit and push using Git or your Git client, then open a PR in GitHub.
+   **Keep locks until merge** so Keystone can validate ownership and teammates
+   do not begin competing edits while the PR is under review.
+7. After merge, confirm your changes reached main and release your locks with
+   the CLI below. Refresh editor status afterward. For unchanged assets, the
+   plugin also exposes an unlock action. Revert abandoned changes only after
+   confirming you no longer need them; revert discards local work.
+
+### Submit releases locks before PR merge
+
+Upstream **Submit to revision control** creates a commit, pushes to
+`origin HEAD`, and releases locks after a successful push. It can also push
+previous local commits, so reviewing only the selected assets is insufficient.
+It does not wait for GitHub review or merge. For shared binary work, use the
+external commit/push workflow above unless a Lead coordinates an exception.
+If Submit was used accidentally, refresh the server's locks, coordinate any
+competing owner, reacquire available locks immediately, and disclose the gap
+on the PR. Do not force-unlock someone else's work.
+
+### CLI fallback and source art
+
+Use these commands from the repository root when the plugin is unavailable,
+for source art edited outside Unreal, or for post-merge cleanup:
+
+```bash
+git lfs locks
+git lfs lock "Content/ProjectAtlantis/Maps/L_Example.umap"
+# Edit, test, commit, push, and merge the PR while retaining the lock.
+git lfs unlock "Content/ProjectAtlantis/Maps/L_Example.umap"
+```
+
+Keystone's **File Locks** view also shows ownership. Lock all relevant formats
+marked `lockable` in `.gitattributes`, not just maps and Unreal assets.
+Unchanged assets may be released early after confirming there is no pending
+work. If authentication fails, follow [SETUP.md](SETUP.md) and
+[Gitea 2FA.md](Gitea%202FA.md); do not change `.lfsconfig` to bypass Gitea.
+
+### Limits of the trial
+
+- Automatic checkout and status-branch integration are not enabled. Manually
+  check out before editing; do not assume cross-branch stale-asset protection.
+- Locks are repository-wide, not branch-specific. Track which branch holds
+  your actual changes and coordinate handoffs until those changes reach main.
+- Locking cannot merge competing binary edits or prevent every offline edit.
+  Refresh status and verify server ownership when uncertain.
+- Editor Pull operates on the current branch, not automatically on main.
+  Save first; use Git for branch changes, rebases, and conflict resolution.
+- Credentials remain local and both GitHub and Gitea access must work.
+  Cached lock status is not a substitute for a successful server operation.
+
 ## Updating or removing
 
 For an update, replace the vendored files from a reviewed upstream revision,
@@ -40,7 +115,7 @@ To stop testing, close Unreal and switch back to main. To remove the integration
 from a merged branch, remove `Plugins/GitSourceControl`, its project enablement,
 the required auto-add default, and its `.gitignore` exception.
 
-## Installation validation
+## Previous installation validation (before rebase)
 
 - Unreal 5.7.4 Development Editor / Win64 build succeeded, including
   UnrealEditor-GitSourceControl.dll.
@@ -49,3 +124,6 @@ the required auto-add default, and its `.gitignore` exception.
   from upstream, including its existing whitespace.
 - Interactive editor connection, Gitea lock/unlock, and PIE remain manual tests.
 
+
+The branch was rebased onto origin/main on 2026-10-26. The previous build
+result has not been rerun after that rebase; interactive tests above remain pending.
