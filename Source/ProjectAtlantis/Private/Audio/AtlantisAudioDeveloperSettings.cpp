@@ -4,7 +4,7 @@
 #include "Audio/AtlantisAudioDeveloperSettings.h"
 
 #include "HAL/IConsoleManager.h"
-
+#include "StructUtils/InstancedStruct.h"
 #include "MetasoundSource.h"
 
 
