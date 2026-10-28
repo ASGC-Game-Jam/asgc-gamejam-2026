@@ -43,6 +43,6 @@ protected:
 
 	/** Maps each audio fact tag to the struct type its payload must use. */
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Validation")
-	TMap<FGameplayTag, TObjectPtr<const UScriptStruct>> PayloadRegistry;
+	TMap<FGameplayTag, TSoftObjectPtr<const UScriptStruct>> PayloadRegistry;
 
 };
