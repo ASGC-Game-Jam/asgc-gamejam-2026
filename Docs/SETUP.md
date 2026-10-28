@@ -93,6 +93,9 @@ Win64 and confirm **Git LFS 2** is enabled in Plugins. Connect **Revision Contro
 Git** to the existing repository, enable **Uses Git LFS 2 File Locking workflow**,
 and set the owner name to your Gitea identity. Do not initialize a new repository.
 GitHub and Gitea credentials remain local; the plugin uses the existing LFS endpoint.
+The plugin uses your installed Git LFS, with no bundled executable. Verify
+`git lfs version` with the Git executable configured in Unreal and restart the
+editor after installing or updating Git LFS.
 
 Before editing, refresh asset status and **Check Out** the selected assets in the
 Content Browser, then verify ownership. Auto-checkout is not enabled and new

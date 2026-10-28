@@ -3,8 +3,9 @@
 The project vendors Git LFS 2 version 3.16 from
 https://github.com/ProjectBorealis/UEGitPlugin at commit
 `30402ac4cdd9f8d9369c948ea4f3b9f5be9bc313` (upstream `dev`).
-Source, icon, MIT license, upstream README, and the upstream Windows, Mac,
-and Linux LFS helpers are included under `Plugins/GitSourceControl`.
+Source, icon, MIT license, and upstream README are included under
+`Plugins/GitSourceControl`. The project uses installed Git LFS rather than
+upstream's bundled executables.
 This is a project plugin, so teammates receive it with the repository.
 No engine installation changes or submodule setup are needed.
 
@@ -107,22 +108,53 @@ work. If authentication fails, follow [SETUP.md](SETUP.md) and
 
 ## Updating or removing
 
-For an update, replace the vendored files from a reviewed upstream revision,
-including its matching LFS helpers, and update this commit reference.
-The helpers are intentional upstream dependencies, not local build outputs.
+For an update, replace the vendored source from a reviewed upstream revision
+and update the commit reference. Preserve these project adaptations:
+
+- `PrivateDefinitions.Add("GIT_USE_CUSTOM_LFS=0")` in the module build rules.
+- No runtime dependencies on bundled LFS executables.
+- Standard LFS lock/unlock calls run once per selected path, aggregating failures
+  and continuing through the selection. Upstream's custom executable supports
+  batching; standard Git LFS takes one path per command.
+- The `Atlantis.Git.SystemLfs` automation specs for the system-LFS path.
+
+Do not reintroduce the upstream helper binaries when updating.
 
 To remove the integration, remove `Plugins/GitSourceControl`, its project enablement,
-the required auto-add default, and its `.gitignore` exception.
+and the required auto-add default.
 
-## Previous installation validation (before rebase)
+## Installed Git LFS
 
-- Unreal 5.7.4 Development Editor / Win64 build succeeded, including
-  UnrealEditor-GitSourceControl.dll.
-- Bundled Windows LFS helper reports version 3.3.0.
-- Integration files pass whitespace checks. Vendored source is unchanged
-  from upstream, including its existing whitespace.
-- Interactive editor connection, Gitea lock/unlock, and PIE remain manual tests.
+Install Git LFS on every workstation and verify `git lfs version` using the same
+Git executable configured in Unreal. The plugin executes that Git with `lfs`
+commands; it does not download or ship another copy. Restart Unreal after
+installing Git/LFS or changing PATH. On macOS/Linux, ensure the GUI-launched
+editor can find LFS as well as your interactive shell.
 
+Upstream explicitly supports this mode in its [3.10 release notes](https://github.com/ProjectBorealis/UEGitPlugin/releases/tag/3.10).
+Its custom LFS adds lock/unlock performance optimizations; selecting many assets
+may be slower with installed LFS. Editor checkout, ownership, caching, and the
+existing Gitea endpoint still apply. Missing LFS or failed authentication must
+be fixed before editing shared assets.
 
-The branch was rebased onto origin/main on 2026-10-26. The previous build
-result has not been rerun after that rebase; interactive tests above remain pending.
+## System-LFS validation (2026-10-28)
+
+- UE 5.7.4 Development Editor / Win64 build succeeded with all four bundled
+  executables removed; the generated module definitions select
+  `GIT_USE_CUSTOM_LFS=0` and the build receipt has no helper dependencies.
+- Installed Git LFS 3.7.1 was exercised through the plugin's `RunLFSCommand`.
+- All three `Atlantis.Git.SystemLfs` automation specs passed: version execution,
+  command failure/error propagation, and live Gitea lock/unlock integration.
+- Live coverage includes single and multi-file operations, paths containing
+  spaces, duplicate-lock partial failure with continued processing, remote
+  ownership listing, and cached/local lock queries. Disposable locks and files
+  were removed after testing.
+- These tests run headlessly on Windows. macOS/Linux, second-user contention,
+  visual checkout icons, and PIE have not been retested for this change.
+
+Run `Automation RunTests Atlantis.Git.SystemLfs` in the editor or via
+`UnrealEditor-Cmd.exe`. To include the live server test, launch with
+`-GitLfsServerTests`; it uses existing credentials and creates temporary unique
+locks under `Saved/GitLfsIntegration/`. Without that flag, only the local version
+and error-propagation checks run. Never interrupt a live lock test without
+checking for leftover locks under that test prefix.
