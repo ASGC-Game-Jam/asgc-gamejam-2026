@@ -3,6 +3,8 @@
 
 #include "Core/AtlantisPlayerState.h"
 #include "Core/AtlantisOxygenComponent.h"
+#include "Analytics/GameplayAnalyticsSubsystem.h"
+#include "Engine/GameInstance.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Net/UnrealNetwork.h"
@@ -85,6 +87,31 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 	BallastState = NewBallastState;
 
 	OnRep_BallastState(OldBallastState);
+
+	// Count only accepted, authoritative state changes. Initial and replicated
+	// notifications are deliberately excluded from analytics.
+	if (UWorld* World = GetWorld())
+	{
+		if (UGameInstance* GameInstance = World->GetGameInstance())
+		{
+			if (UGameplayAnalyticsSubsystem* Analytics = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>())
+			{
+				const TCHAR* MetricId = nullptr;
+				switch (NewBallastState)
+				{
+				case EAtlantisBallastState::Descend: MetricId = TEXT("Ballast:Entered:Descend"); break;
+				case EAtlantisBallastState::Wander: MetricId = TEXT("Ballast:Entered:Wander"); break;
+				case EAtlantisBallastState::Ascend: MetricId = TEXT("Ballast:Entered:Ascend"); break;
+				default: break;
+				}
+				if (MetricId)
+				{
+					Analytics->RegisterMetric(MetricId, EGameplayAnalyticsAggregation::Count);
+					Analytics->RecordEvent(MetricId);
+				}
+			}
+		}
+	}
 }
 
 void AAtlantisPlayerState::SetTraversalMode(const EAtlantisTraversalMode NewTraversalMode)
