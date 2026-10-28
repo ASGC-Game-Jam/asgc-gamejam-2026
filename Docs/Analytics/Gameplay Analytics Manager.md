@@ -79,3 +79,18 @@ The final asynchronous implementation was validated on 2026-10-17: all 23 tests 
 A minimal Windows Development package was built/cooked/staged successfully with `/Engine/Maps/Entry`. The initial cook reported six existing text-localization warnings in credits assets and no errors; assets were not resaved. Rebuild/restage used the cooked content after the final source changes. Packaged tests used `-nullrhi`, a separate `-UserDir`, and an injected SDK sink. This verifies runtime initialization, reflected API access, manager behavior and disk serialization in a cooked executable, but not actual dashboard delivery or interactive gameplay through authored maps.
 
 For manual completion, use a normal packaged gameplay session lasting over five active minutes, pause/resume, travel between gameplay maps, return to the main menu, and restart. Check the GameAnalytics dashboard for scene-performance events and `Session:GameplayDuration`; pause/menu time should not contribute to active duration. Dashboard receipt, graphics-enabled play and actual cross-process recovery of a deliberately interrupted session remain manual checks.
+
+## Ballast Analytics (#311)
+
+The Ballast feature owns three buoyancy states: Descend, Wander, and Ascend. The authoritative `AAtlantisPlayerState::SetBallastState` path records an entry only after Oxygen allocation succeeds and the state actually changes. Initial state, unchanged requests, rejected allocation requests, and replicated `OnBallastChanged` callbacks do not increment these counters. The GameInstance's `UGameplayAnalyticsSubsystem` owns aggregation and scheduled submission.
+
+| Identifier | Aggregation | Value / recording trigger |
+| --- | --- | --- |
+| `Ballast:Entered:Descend` | Count | One successful entry into Descend |
+| `Ballast:Entered:Wander` | Count | One successful entry into Wander |
+| `Ballast:Entered:Ascend` | Count | One successful entry into Ascend |
+| `Ballast:Duration:Descend` | Sum | Active gameplay seconds in Descend |
+| `Ballast:Duration:Wander` | Sum | Active gameplay seconds in Wander |
+| `Ballast:Duration:Ascend` | Sum | Active gameplay seconds in Ascend |
+
+**Implementation status on branch `311-ballast-analytics`:** Entry counters are wired. Duration metrics are specified but **not yet implemented**. They need a lifecycle-aware observer that accounts for transitions, pause/menu time, PlayerState replacement and session termination without duplicate intervals. Do not interpret the duration IDs above as currently emitted measurements.
