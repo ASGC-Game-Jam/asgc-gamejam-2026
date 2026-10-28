@@ -5,6 +5,7 @@
 #include "Core/AtlantisOxygenComponent.h"
 #include "Analytics/GameplayAnalyticsSubsystem.h"
 #include "Engine/GameInstance.h"
+#include "Engine/World.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Net/UnrealNetwork.h"
