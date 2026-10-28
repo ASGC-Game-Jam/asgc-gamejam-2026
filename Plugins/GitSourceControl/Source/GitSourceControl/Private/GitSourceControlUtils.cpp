@@ -866,10 +866,26 @@ bool RunLFSCommand(const FString& InCommand, const FString& InRepositoryRoot, co
 	ensureMsgf(false, TEXT("Unhandled platform for LFS binary!"));
 	const FString& LFSLockBinary = GitBinaryFallback;
 	Command = TEXT("lfs ") + Command;
+
 #endif
 #else
 	const FString& LFSLockBinary = GitBinaryFallback;
 	Command = TEXT("lfs ") + Command;
+	// Standard Git LFS accepts one path per lock/unlock command. Continue through
+	// failures so callers can refresh and report partial success for a selection.
+	if ((InCommand == TEXT("lock") || InCommand == TEXT("unlock")) && InFiles.Num() > 1)
+	{
+		bool bSuccess = true;
+		for (const FString& File : InFiles)
+		{
+			TArray<FString> Results;
+			TArray<FString> Errors;
+			bSuccess &= GitSourceControlUtils::RunCommand(Command, LFSLockBinary, InRepositoryRoot, InParameters, {File}, Results, Errors);
+			OutResults.Append(Results);
+			OutErrorMessages.Append(Errors);
+		}
+		return bSuccess;
+	}
 #endif
 
 	return GitSourceControlUtils::RunCommand(Command, LFSLockBinary, InRepositoryRoot, InParameters, InFiles, OutResults, OutErrorMessages);

@@ -30,18 +30,7 @@ public class GitSourceControl : ModuleRules
 			PrivateDependencyModuleNames.Add("ToolMenus");
 		}
 
-		if (Target.Platform == UnrealTargetPlatform.Win64)
-		{
-			RuntimeDependencies.Add("$(PluginDir)/git-lfs.exe");
-		}
-		else if (Target.Platform == UnrealTargetPlatform.Mac)
-		{
-			RuntimeDependencies.Add("$(PluginDir)/git-lfs-mac-amd64");
-			RuntimeDependencies.Add("$(PluginDir)/git-lfs-mac-arm64");			
-		}
-		else if (Target.Platform == UnrealTargetPlatform.Linux)
-		{
-			RuntimeDependencies.Add("$(PluginDir)/git-lfs");
-		}
+		// Use the project prerequisite installed with Git, rather than vendored helpers.
+		PrivateDefinitions.Add("GIT_USE_CUSTOM_LFS=0");
 	}
 }
