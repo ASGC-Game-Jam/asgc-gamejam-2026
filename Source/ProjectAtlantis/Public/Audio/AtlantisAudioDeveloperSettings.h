@@ -35,6 +35,9 @@ public:
 	static bool ValidatePayload(FGameplayTag Tag, const FInstancedStruct& Payload);
 
 protected:
+
+	friend struct FAtlantisAudioValidationTestAccess;
+	
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
 	bool bEnableMusicManagementSubsystem = true;
 
