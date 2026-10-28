@@ -91,7 +91,7 @@ bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FI
 	}
 
 	// Check 1: Is there an address on the envelope at all?
-	if (!ensureMsgf(Tag.IsValid(), TEXT("Audio payload sent with an empty/invalid GameplayTag. Every audio fact needs a registered tag.")))
+	if (!Tag.IsValid())
 	{
 		UE_LOG(LogAtlantisAudioValidation, Error, TEXT("Audio payload sent with an empty/invalid GameplayTag. Every audio fact needs a registered tag."));
 		return false;
@@ -99,7 +99,7 @@ bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FI
 
 	// Check 2: Is this address on the list? (No row for this tag means Find returns nullptr.)
 	const TSoftObjectPtr<const UScriptStruct>* RegisteredStruct = Settings->PayloadRegistry.Find(Tag);
-	if (!ensureMsgf(RegisteredStruct, TEXT("Audio tag [%s] is not registered. Add it in Project Settings > Atlantis Audio Validation."), *Tag.ToString()))
+	if (!RegisteredStruct)
 	{
 		UE_LOG(LogAtlantisAudioValidation, Error, TEXT("Audio tag [%s] is not registered. Add it in Project Settings > Atlantis Audio Validation."), *Tag.ToString());
 		return false;
@@ -107,7 +107,7 @@ bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FI
 
 	// Check 3: The row exists, but does its struct actually resolve? (Blank dropdown, or the struct was renamed/deleted.)
 	const UScriptStruct* ExpectedStruct = RegisteredStruct->LoadSynchronous();
-	if (!ensureMsgf(ExpectedStruct, TEXT("Audio tag [%s] is registered but its struct is empty or missing. Pick one in Project Settings > Atlantis Audio Validation."), *Tag.ToString()))
+	if (!ExpectedStruct)
 	{
 		UE_LOG(LogAtlantisAudioValidation, Error, TEXT("Audio tag [%s] is registered but its struct is empty or missing. Pick one in Project Settings > Atlantis Audio Validation."), *Tag.ToString());
 		return false;
@@ -115,7 +115,7 @@ bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FI
 
 	// Check 4: Is the package the right shape for this address?
 	const UScriptStruct* PayloadStruct = Payload.GetScriptStruct();
-	if (!ensureMsgf(PayloadStruct == ExpectedStruct, TEXT("Audio payload for tag [%s] holds struct [%s] but the registry expects [%s]."), *Tag.ToString(), *GetNameSafe(PayloadStruct), *GetNameSafe(ExpectedStruct)))
+	if (PayloadStruct != ExpectedStruct)
 	{
 		UE_LOG(LogAtlantisAudioValidation, Error, TEXT("Audio payload for tag [%s] holds struct [%s] but the registry expects [%s]."), *Tag.ToString(), *GetNameSafe(PayloadStruct), *GetNameSafe(ExpectedStruct));
 		return false;

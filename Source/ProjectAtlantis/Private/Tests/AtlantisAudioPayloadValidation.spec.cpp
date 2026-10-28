@@ -30,10 +30,9 @@ BEGIN_DEFINE_SPEC(FAtlantisAudioPayloadValidationSpec, "Atlantis.Audio.PayloadVa
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 	FPayloadRegistry SavedRegistry;
 
-	// ensure only fires once per editor session, so its log line is ignored rather than counted.
+	// Each breach logs exactly one error containing MessageFragment; mark it as expected so the test doesn't fail on it.
 	void ExpectBreach(const TCHAR* MessageFragment)
 	{
-		AddExpectedErrorPlain(TEXT("Ensure condition failed"), EAutomationExpectedErrorFlags::Contains, -1);
 		AddExpectedErrorPlain(MessageFragment, EAutomationExpectedErrorFlags::Contains, 0);
 	}
 END_DEFINE_SPEC(FAtlantisAudioPayloadValidationSpec)
