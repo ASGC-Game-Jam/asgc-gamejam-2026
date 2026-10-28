@@ -139,19 +139,6 @@ be fixed before editing shared assets.
 
 ## System-LFS validation (2026-10-28)
 
-- UE 5.7.4 Development Editor / Win64 build succeeded with all four bundled
-  executables removed; the generated module definitions select
-  `GIT_USE_CUSTOM_LFS=0` and the build receipt has no helper dependencies.
-- Installed Git LFS 3.7.1 was exercised through the plugin's `RunLFSCommand`.
-- All three `Atlantis.Git.SystemLfs` automation specs passed: version execution,
-  command failure/error propagation, and live Gitea lock/unlock integration.
-- Live coverage includes single and multi-file operations, paths containing
-  spaces, duplicate-lock partial failure with continued processing, remote
-  ownership listing, and cached/local lock queries. Disposable locks and files
-  were removed after testing.
-- These tests run headlessly on Windows. macOS/Linux, second-user contention,
-  visual checkout icons, and PIE have not been retested for this change.
-
 Run `Automation RunTests Atlantis.Git.SystemLfs` in the editor or via
 `UnrealEditor-Cmd.exe`. To include the live server test, launch with
 `-GitLfsServerTests`; it uses existing credentials and creates temporary unique
