@@ -187,8 +187,7 @@ That makes locking important
 
 Use Unreal's Content Browser **Revision Control >
 Check Out** before editing. Refresh status and confirm ownership in the asset
-tooltip; multi-select supports batch checkout. Connection and full workflow:
-[Project Borealis Git plugin](GitWorkflow.md).
+tooltip; multi-select supports batch checkout.
 
 For branches without the plugin, **external source art**, or CLI troubleshooting:
 
