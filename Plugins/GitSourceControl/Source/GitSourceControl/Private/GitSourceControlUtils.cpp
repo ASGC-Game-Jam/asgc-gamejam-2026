@@ -891,6 +891,64 @@ bool RunLFSCommand(const FString& InCommand, const FString& InRepositoryRoot, co
 	return GitSourceControlUtils::RunCommand(Command, LFSLockBinary, InRepositoryRoot, InParameters, InFiles, OutResults, OutErrorMessages);
 }
 
+bool AppendBlueprintGraphFiles(const FString& InPathToGitBinary, const FString& InRepositoryRoot,
+	const FString& InProjectDirectory, TArray<FString>& InOutFiles, TArray<FString>& OutErrorMessages)
+{
+	const FString ContentDirectory = FPaths::ConvertRelativePathToFull(InProjectDirectory / TEXT("Content"));
+	TArray<FString> MissingExports;
+	TArray<FString> Exports;
+	for (const FString& File : InOutFiles)
+	{
+		const FString AbsoluteFile = FPaths::ConvertRelativePathToFull(File);
+		const FString Extension = FPaths::GetExtension(AbsoluteFile);
+		if ((Extension != TEXT("uasset") && Extension != TEXT("umap")) || !FPaths::IsUnderDirectory(AbsoluteFile, ContentDirectory))
+		{
+			continue;
+		}
+
+		FString RelativeFile = AbsoluteFile;
+		FPaths::MakePathRelativeTo(RelativeFile, *(ContentDirectory / TEXT("")));
+		// Match Keystone's /Game/Path/Asset -> BlueprintGraphs/Path/Asset.bpgraph.json.
+		const FString ExportFile = FPaths::ConvertRelativePathToFull(InProjectDirectory / TEXT("BlueprintGraphs") /
+			(FPaths::ChangeExtension(RelativeFile, TEXT("")) + TEXT(".bpgraph.json")));
+		if (!FPaths::IsUnderDirectory(ExportFile, InRepositoryRoot))
+		{
+			continue; // Do not stage project exports into an asset submodule.
+		}
+		if (FPaths::FileExists(ExportFile))
+		{
+			Exports.AddUnique(ExportFile);
+		}
+		else
+		{
+			MissingExports.AddUnique(ExportFile);
+		}
+	}
+
+	if (!MissingExports.IsEmpty())
+	{
+		for (const FString& Candidate : MissingExports)
+		{
+			// Only test presence, so Git's quoting of unusual filenames needs no parsing.
+			TArray<FString> Results;
+			if (!RunCommand(TEXT("status"), InPathToGitBinary, InRepositoryRoot,
+				{TEXT("--porcelain"), TEXT("--untracked-files=no"), TEXT("--")}, {Candidate}, Results, OutErrorMessages))
+			{
+				return false;
+			}
+			if (!Results.IsEmpty())
+			{
+				Exports.AddUnique(Candidate);
+			}
+		}
+	}
+	for (const FString& Export : Exports)
+	{
+		InOutFiles.AddUnique(Export);
+	}
+	return true;
+}
+
 // Run a Git "commit" command by batches
 bool RunCommit(const FString& InPathToGitBinary, const FString& InRepositoryRoot, const TArray<FString>& InParameters, const TArray<FString>& InFiles,
 			   TArray<FString>& OutResults, TArray<FString>& OutErrorMessages)

@@ -174,6 +174,12 @@ bool FGitCheckInWorker::Execute(FGitSourceControlCommand& InCommand)
 	check(InCommand.Operation->GetName() == GetName());
 
 	TSharedRef<FCheckIn, ESPMode::ThreadSafe> Operation = StaticCastSharedRef<FCheckIn>(InCommand.Operation);
+	if (!GitSourceControlUtils::AppendBlueprintGraphFiles(InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot,
+		FPaths::ProjectDir(), InCommand.Files, InCommand.ResultInfo.ErrorMessages))
+	{
+		InCommand.bCommandSuccessful = false;
+		return false;
+	}
 
 	// make a temp file to place our commit message in
 	bool bDoCommit = InCommand.Files.Num() > 0;
