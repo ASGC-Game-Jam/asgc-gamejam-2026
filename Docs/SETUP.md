@@ -86,6 +86,23 @@ If Unreal prompts you to build the project files, select **Yes**
 The first launch may take several minutes while Unreal generates project files,
 compiles shaders, and prepares the project
 
+## Connect Unreal revision control
+
+Build `ProjectAtlantisEditor` in Development Editor /
+Win64 and confirm **Git LFS 2** is enabled in Plugins. Connect **Revision Control >
+Git** to the existing repository, enable **Uses Git LFS 2 File Locking workflow**,
+and set the owner name to your Gitea identity. Do not initialize a new repository.
+GitHub and Gitea credentials remain local; the plugin uses the existing LFS endpoint.
+The plugin uses your installed Git LFS, with no bundled executable. Verify
+`git lfs version` with the Git executable configured in Unreal and restart the
+editor after installing or updating Git LFS.
+
+Before editing, refresh asset status and **Check Out** the selected assets in the
+Content Browser, then verify ownership. Auto-checkout is not enabled and new
+files must be explicitly added with `git add`. Commit/push using Git to retain
+locks through PR merge. Editor Check In and push actions still release locks after
+pushing and should not be used for shared binary PR work.
+
 ## Verify Your Setup
 
 Before making changes, verify that
@@ -111,7 +128,7 @@ Once your environment is working
 - Read [CONTRIBUTING.md](../CONTRIBUTING.md)
 - Pull the latest changes from `main`
 - Create a feature branch
-- Lock shared binary assets before editing them
+- Check Out shared binary assets in Unreal before editing (or use CLI locking without the plugin)
 - Start building
 
 ## In Case You Enabled 2FA on Gitea

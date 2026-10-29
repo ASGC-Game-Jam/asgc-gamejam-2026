@@ -42,25 +42,29 @@ If Git LFS is installed correctly, asset management should happen automatically.
 
 Unreal assets are binary files. If two people edit the same `.uasset` at the same time, Git cannot merge the result — one person's work has to be thrown away and redone. Locking prevents that.
 
-**Lock the file before you open it in the editor:**
+Connect **Git LFS 2** in Unreal via the **Revision Control** button in the
+bottom-right corner, refresh asset
+status, and use the Content Browser's **Revision Control > Check Out** before
+editing. Confirm the lock owner in the asset tooltip. Multi-select supports
+checking out several assets together. See the [plugin workflow](./Docs/GitWorkflow.md)
+for connection steps, cleanup, and limitations. On branches without the plugin,
+or for external source art, use `git lfs locks` and `git lfs lock "path/to/asset"`.
 
-```bash
-git lfs lock "Content/Characters/Hero/SK_Hero.uasset"
-```
+**Keep locks through PR merge.** Commit and push with Git or your Git client.
+Editor Check In and push actions are available but release locks after pushing;
+avoid them for shared binary PR work.
+After merge, release your locks with `git lfs unlock "path/to/asset"` and refresh
+Unreal status. Unchanged or abandoned assets may be released once no pending
+work needs preserving. Never force-unlock another contributor's work.
 
-**Unlock it once your work is merged:**
-
-```bash
-git lfs unlock "Content/Characters/Hero/SK_Hero.uasset"
-```
-
-To see what you currently hold, run `git lfs locks --mine`. To see everything locked across the project, open **File Locks** in Keystone — it also shows who holds each lock and how long they've held it.
+Keystone's **File Locks** view shows who holds each lock and how long they
+have held it. Use `git lfs locks` to inspect server locks from the CLI.
 
 The file types that must be locked are the ones marked `lockable` in [.gitattributes](./.gitattributes): `.uasset`, `.umap`, `.fbx`, `.3ds`, `.psd` and the other binary formats listed there. Text files (code, config, docs) are never locked — merge those normally.
 
 ### LFS Lock Validation
 
-When you open a Pull Request, Keystone checks it: for every lockable file the Pull Request changes, did you hold the lock?
+When you open a Pull Request, Keystone checks it: for every lockable file the Pull Request changes, do you hold the required lock?
 
 - **Pass** — you held the locks. Nothing to do.
 - **Not locked** — you edited a lockable file without locking it. Lock it now; Keystone shows the exact command. Locking after the fact still helps, because it tells everyone else the file is in play while your Pull Request is open.
