@@ -1,4 +1,4 @@
-# Project Borealis Git workflow
+# Project Atlantis Git workflow
 
 The project vendors Git LFS 2 version 3.16 from
 https://github.com/ProjectBorealis/UEGitPlugin at commit
@@ -35,7 +35,6 @@ branch integration are not enabled by this installation.
 
 ## Daily asset workflow
 
-The project uses the Project Borealis provider for revision control in Unreal.
 These instructions apply when **Git LFS 2** is enabled and connected; use the CLI
 fallback below when the plugin is unavailable. GitHub still hosts Git and PRs; Gitea still hosts
 LFS objects and locks, and Keystone still provides File Locks and PR validation.
@@ -117,6 +116,7 @@ and update the commit reference. Preserve these project adaptations:
   and continuing through the selection. Upstream's custom executable supports
   batching; standard Git LFS takes one path per command.
 - The `Atlantis.Git.SystemLfs` automation specs for the system-LFS path.
+- Removal of the plugin-added **Submit Content** menu entry for the PR workflow.
 
 Do not reintroduce the upstream helper binaries when updating.
 

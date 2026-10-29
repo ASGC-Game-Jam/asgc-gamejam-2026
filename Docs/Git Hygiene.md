@@ -190,7 +190,7 @@ Check Out** before editing. Refresh status and confirm ownership in the asset
 tooltip; multi-select supports batch checkout. Connection and full workflow:
 [Project Borealis Git plugin](GitWorkflow.md).
 
-For branches without the plugin, external source art, or CLI troubleshooting:
+For branches without the plugin, **external source art**, or CLI troubleshooting:
 
 ```bash
 git lfs locks
@@ -198,9 +198,8 @@ git lfs lock "Content/Path/Asset.uasset"
 ```
 
 Keep locks while editing and throughout PR review. Commit and push using Git
-or your Git client. The plugin's **Submit** commits, pushes, and releases locks
-after a successful push; it does not preserve them until merge. Avoid Submit
-for shared binary PR work unless a Lead coordinates an exception.
+or your Git client. Unreal Editor asset check in and push actions are available
+but note that locks are released after pushing; avoid them for shared binary PR work.
 
 After the PR is merged and the asset change is in main:
 
