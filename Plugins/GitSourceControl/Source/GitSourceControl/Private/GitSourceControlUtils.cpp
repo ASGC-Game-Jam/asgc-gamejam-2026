@@ -1161,11 +1161,13 @@ public:
 			return;
 		}
 
-		if (IndexState == ' ')
+		// A nonempty worktree column takes precedence even if the index is also
+		// changed (MM, AM, MD, ...). Those files still have unstaged work.
+		if (WCopyState != ' ')
 		{
 			TreeState = ETreeState::Working;
 		}
-		else if (WCopyState == ' ')
+		else
 		{
 			TreeState = ETreeState::Staged;
 		}
@@ -1211,8 +1213,8 @@ public:
 		}
 	}
 
-	EFileState::Type FileState;
-	ETreeState::Type TreeState;
+	EFileState::Type FileState = EFileState::Unknown;
+	ETreeState::Type TreeState = ETreeState::Working;
 };
 
 /**
