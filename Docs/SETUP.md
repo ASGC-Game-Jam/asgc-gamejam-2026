@@ -102,7 +102,6 @@ Content Browser, then verify ownership. Auto-checkout is not enabled and new
 files must be explicitly added with `git add`. Commit/push using Git to retain
 locks through PR merge. Editor Check In and push actions still release locks after
 pushing and should not be used for shared binary PR work.
-See [the full workflow and CLI fallback](GitWorkflow.md).
 
 ## Verify Your Setup
 
