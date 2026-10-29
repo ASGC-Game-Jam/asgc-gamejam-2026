@@ -51,8 +51,8 @@ for connection steps, cleanup, and limitations. On branches without the plugin,
 or for external source art, use `git lfs locks` and `git lfs lock "path/to/asset"`.
 
 **Keep locks through PR merge.** Commit and push with Git or your Git client.
-Editor Check In and push actions are available but release locks after pushing;
-avoid them for shared binary PR work.
+The patched editor's asset-specific Check In and push actions also retain locks,
+regardless of **Keep Files Checked Out**. Review all pending commits before pushing.
 After merge, release your locks with `git lfs unlock "path/to/asset"` and refresh
 Unreal status. Unchanged or abandoned assets may be released once no pending
 work needs preserving. Never force-unlock another contributor's work.
