@@ -21,24 +21,39 @@ If you have a strong software engineering background, your first instinct when l
 To build a new gameplay audio interface contract (e.g., a `WeaponInterface` or `VehicleInterface`), use this template:
 
 ### 1. Duplicate the Template Files
-Copy `AtlantisAudioInterface_PlayerCharacter.h` and `.cpp`, paste them into this folder, and rename them to your new system (e.g., `AtlantisAudioInterface_Weapon.h/.cpp`).
+`AtlantisAudioInterface_MusicAxes.h/.cpp` is the template: it keeps the `!!CHANGE THIS!!` markers. Copy the header into `Public/Audio/MetaSound/Interfaces/` and the `.cpp` into `Private/Audio/MetaSound/Interfaces/`, then rename them to your new system (e.g., `AtlantisAudioInterface_Weapon.h/.cpp`).
+
+`AtlantisAudioInterface_Environment.h/.cpp` is an example of a finished copy, with integer pins and the markers removed.
 
 ### 2. Update the `!!CHANGE THIS!!` Tags
 Open your new files and locate the markers. You must rename:
-* **The Namespace:** Change `PlayerCharacterInterface` to your system name (e.g., `WeaponInterface`).
-* **The Unique Root Path:** Change `AUDIO_PARAMETER_INTERFACE_NAMESPACE` (e.g., from `"Atlantis.Character"` to `"Atlantis.Weapon"`). This string is how Unreal identifies the pin paths under the hood.
-* **The Variables & Arrays:** Add your explicit `FLazyName` pins to the `Inputs` or `Outputs` namespaces, then populate an matching `.Add(...)` entry list inside the `FInterface()` constructor block.
+* **The Namespace:** Change `MusicAxesInterface` to your system name (e.g., `WeaponInterface`).
+* **The Unique Root Path:** Change `AUDIO_PARAMETER_INTERFACE_NAMESPACE` (e.g., from `"Atlantis.Music.Axes"` to `"Atlantis.Weapon"`). This string is how Unreal identifies the pin paths under the hood.
+* **The Register Function:** Change `RegisterMusicAxesInterface` to match (e.g., `RegisterWeaponInterface`).
+* **The Variables & Arrays:** Add your explicit `FLazyName` pins to the `Inputs` namespace in **both** files with the **same names** (the header's `extern` is a promise the `.cpp` must keep, or you get a linker error when gameplay code uses the pin), then populate a matching `.Add(...)` entry inside the `FInterface()` constructor block with the right data type (see the table at the bottom).
+
+Then clean up:
+* **Delete what you don't use.** If your interface has no outputs, remove every `Outputs` block entirely; don't leave them commented out.
+* **Delete the `!!CHANGE THIS!!` markers and the template banner** once you're done, so finished code doesn't look unfinished. Only the MusicAxes template keeps them.
+
+> [!WARNING]
+> **No dots in pin names.** In audio parameter names `.` is the namespace separator, and Unreal splits at the **last** dot. `AUDIO_PARAMETER_INTERFACE_MEMBER_DEFINE("Room.Type")` becomes `Atlantis.Environment.Room.Type`, which shows up as a pin called `Type` in a namespace called `Atlantis.Environment.Room`. Use `RoomType` instead.
 
 ### 3. Register It on Game Boot
-Open your global module class layout (usually `AtlantisInterfaceRegistration.cpp`) and call your initialization routine during module boot:
+Open `Private/Audio/MetaSound/Interfaces/AtlantisAudioInterfaceRegistration.cpp`, include your header, and call your register function inside `RegisterAllMetaSoundInterfaces()` (the game module calls this once at startup):
 
 ```cpp
-void FAtlantisAudioModule::StartupModule()
+#include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_Weapon.h"
+
+void RegisterAllMetaSoundInterfaces()
 {
-    // Existing registrations...
-    ProjectAtlantisAudio::RegisterWeaponInterface();
+    RegisterMusicAxesInterface();
+    RegisterEnvironmentInterface();
+    RegisterWeaponInterface();
 }
 ```
+
+If your interface doesn't appear in a MetaSound's **Interfaces** panel after building, this step was missed.
 
 ---
 
@@ -47,25 +62,27 @@ void FAtlantisAudioModule::StartupModule()
 Once compiled, you can add your new interface via the **Interfaces** panel inside any MetaSound graph asset in the Unreal Editor. To feed gameplay variables into your sound safely without fragile string names, track them directly via your static compiled variables:
 
 ```cpp
-#include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_PlayerCharacter.h"
+#include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_MusicAxes.h"
 #include "Components/AudioComponent.h"
 
-void AAtlantisCharacter::UpdateAudioTracking()
+void UpdateMusicAxes(UAudioComponent* AudioComp, float PlayerState, float Tension)
 {
-    if (UAudioComponent* AudioComp = GetAudioComponent())
+    if (AudioComp)
     {
         // Safe, optimized, and string-less data updates!
-        AudioComp->SetFloatParameter(ProjectAtlantisAudio::PlayerCharacterInterface::Inputs::CurrentHp, CurrentHealth);
-        AudioComp->SetBoolParameter(ProjectAtlantisAudio::PlayerCharacterInterface::Inputs::IsHiding, bIsCharacterHiding);
+        AudioComp->SetFloatParameter(ProjectAtlantisAudio::MusicAxesInterface::Inputs::PlayerStateAxis, PlayerState);
+        AudioComp->SetFloatParameter(ProjectAtlantisAudio::MusicAxesInterface::Inputs::TensionAxis, Tension);
     }
 }
 ```
+
+Most gameplay code shouldn't set pins directly, though. Gameplay sends facts through `SetAudioDataPayload` (the audio front door), and the audio subsystem decides how they reach these pins. Intermittent facts like `Atlantis.Environment`'s `RoomType` are delivered in batches by parameter pack (#105).
 
 ---
 
 ## Supported Data Types Mapping
 When adding inputs to your array, ensure the C++ parameter type correctly maps to what MetaSound expects:
-* `float` MetaSound Float
-* `int32` MetaSound Integer *(Note: Do not use standard C++ `int`; always specify `int32`)*
-* `bool` MetaSound Boolean
-* `FName` / `FString` MetaSound String
+* `float` → MetaSound Float
+* `int32` → MetaSound Int32 *(Note: Do not use standard C++ `int`; always specify `int32`)*
+* `bool` → MetaSound Bool
+* `FString` → MetaSound String
