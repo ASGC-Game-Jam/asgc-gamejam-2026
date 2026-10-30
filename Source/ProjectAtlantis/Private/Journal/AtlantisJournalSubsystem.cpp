@@ -159,7 +159,16 @@ bool UAtlantisJournalSubsystem::SetInvestigationEntry(const FJournalInvestigatio
 		return false;
 	}
 
-	const FString Key = Entry.EntryId.ToString();
+	FString Key = Entry.EntryId.ToString();
+	// FName identity is case-insensitive; keep the original key for legacy string callers.
+	for (const auto& Existing : Investigations)
+	{
+		if (!Existing.Value.EntryId.IsNone() && Existing.Value.EntryId == Entry.EntryId)
+		{
+			Key = Existing.Key;
+			break;
+		}
+	}
 	const EJournalInvestigationStatus OldStatus = GetInvestigationStatus(Key);
 	Investigations.Add(Key, Entry);
 	OnInvestigationUpdated.Broadcast(OldStatus, Entry.Status, Key);
