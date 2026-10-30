@@ -1,0 +1,276 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_JournalClueGroup",
+	"asset": "WBP_JournalClueGroup",
+	"assetClass": "WidgetBlueprint",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "42c7abe146a9fd7a9099e7922102d8aa",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 300,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "42c7abe146a9fd7a9099e7922102d8aa:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a4c68aeb4cd26d7188257095e6268d5b:o:then"
+							]
+						},
+						{
+							"id": "42c7abe146a9fd7a9099e7922102d8aa:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "42c7abe146a9fd7a9099e7922102d8aa:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"517e2f8142bf5c4fe14afc91fb1e5328:o:GroupHeading"
+							]
+						},
+						{
+							"id": "42c7abe146a9fd7a9099e7922102d8aa:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"f5491caf449cc6458f0854833a9766d7:o:Heading"
+							]
+						}
+					]
+				},
+				{
+					"guid": "517e2f8142bf5c4fe14afc91fb1e5328",
+					"class": "K2Node_VariableGet",
+					"title": "Get GroupHeading",
+					"x": 0,
+					"y": 300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "517e2f8142bf5c4fe14afc91fb1e5328:o:GroupHeading",
+							"name": "GroupHeading",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"42c7abe146a9fd7a9099e7922102d8aa:i:self"
+							]
+						},
+						{
+							"id": "517e2f8142bf5c4fe14afc91fb1e5328:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a4c68aeb4cd26d7188257095e6268d5b",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a4c68aeb4cd26d7188257095e6268d5b:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a4c68aeb4cd26d7188257095e6268d5b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"42c7abe146a9fd7a9099e7922102d8aa:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f5491caf449cc6458f0854833a9766d7",
+					"class": "K2Node_VariableGet",
+					"title": "Get Heading",
+					"x": 0,
+					"y": 200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f5491caf449cc6458f0854833a9766d7:o:Heading",
+							"name": "Heading",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"42c7abe146a9fd7a9099e7922102d8aa:i:InText"
+							]
+						},
+						{
+							"id": "f5491caf449cc6458f0854833a9766d7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"GroupId":
+			{
+				"type": "name",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Heading":
+			{
+				"type": "text",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"GroupHeading": null,
+			"GroupContents": null,
+			"GroupId": "None",
+			"Heading": "",
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
+}
