@@ -37,6 +37,64 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "0e578b5b4f77eb990a8d8c81dcfd1d75",
+					"class": "K2Node_CallFunction",
+					"title": "Examine",
+					"x": 560,
+					"y": -80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0e578b5b4f77eb990a8d8c81dcfd1d75:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e578b5b4f77eb990a8d8c81dcfd1d75:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e578b5b4f77eb990a8d8c81dcfd1d75:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e578b5b4f77eb990a8d8c81dcfd1d75:i:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e578b5b4f77eb990a8d8c81dcfd1d75:i:Current Examine Mode State",
+							"name": "Current Examine Mode State",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "0e578b5b4f77eb990a8d8c81dcfd1d75:o:Interaction Occured",
+							"name": "Interaction Occured",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "1caf418846029ff7d7f5289223d2ac6d",
 					"class": "K2Node_Event",
 					"title": "Event ActorBeginOverlap",
@@ -66,6 +124,58 @@
 							"direction": "output",
 							"type": "object:/Script/Engine.Actor",
 							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2738ba794da7f596062e47a6efa9c6d2",
+					"class": "K2Node_CallFunction",
+					"title": "Interact",
+					"x": 560,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2738ba794da7f596062e47a6efa9c6d2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2738ba794da7f596062e47a6efa9c6d2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d5d57652419ecee0ce76aba1eb0c624c:i:execute"
+							]
+						},
+						{
+							"id": "2738ba794da7f596062e47a6efa9c6d2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2738ba794da7f596062e47a6efa9c6d2:i:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2738ba794da7f596062e47a6efa9c6d2:o:InteractionOccurred",
+							"name": "InteractionOccurred",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
 							"links": []
 						}
 					]
@@ -105,6 +215,96 @@
 					]
 				},
 				{
+					"guid": "8e920fff488e949eea28a3b2de446fd5",
+					"class": "K2Node_VariableGet",
+					"title": "Get OxygenResource",
+					"x": 592,
+					"y": 640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8e920fff488e949eea28a3b2de446fd5:o:OxygenResource",
+							"name": "OxygenResource",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+							"defaultValue": null,
+							"links": [
+								"d5d57652419ecee0ce76aba1eb0c624c:i:self"
+							]
+						},
+						{
+							"id": "8e920fff488e949eea28a3b2de446fd5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/RefillStation/BP_AtlantisRefillStation.BP_AtlantisRefillStation_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d5d57652419ecee0ce76aba1eb0c624c",
+					"class": "K2Node_CallFunction",
+					"title": "RestoreOxygen",
+					"x": 1088,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d5d57652419ecee0ce76aba1eb0c624c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2738ba794da7f596062e47a6efa9c6d2:o:then"
+							]
+						},
+						{
+							"id": "d5d57652419ecee0ce76aba1eb0c624c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d5d57652419ecee0ce76aba1eb0c624c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+							"defaultValue": null,
+							"links": [
+								"8e920fff488e949eea28a3b2de446fd5:o:OxygenResource"
+							]
+						},
+						{
+							"id": "d5d57652419ecee0ce76aba1eb0c624c:i:RestoreOxygenAmount",
+							"name": "RestoreOxygenAmount",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "d5d57652419ecee0ce76aba1eb0c624c:i:bRestoreFullFlag",
+							"name": "bRestoreFullFlag",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "d5d57652419ecee0ce76aba1eb0c624c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "df80a5e54869ba5ca3d7ad90ab83014a",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
@@ -138,337 +338,20 @@
 	{
 		"variables":
 		{
+			"OxygenResource":
+			{
+				"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			}
 		},
 		"components":
 		{
-			"RefillStationDummy":
-			{
-				"class": "StaticMeshComponent",
-				"parent": "DefaultSceneRoot",
-				"properties":
-				{
-					"ForcedLodModel": 0,
-					"MinLOD": 0,
-					"SubDivisionStepSize": 32,
-					"WireframeColorOverride":
-					{
-						"B": 255,
-						"G": 255,
-						"R": 255,
-						"A": 255
-					},
-					"StaticMesh": "/Engine/BasicShapes/Cylinder.Cylinder",
-					"WorldPositionOffsetDisableDistance": 0,
-					"bForceNaniteForMasked": false,
-					"bDisallowNanite": false,
-					"bForceDisableNanite": false,
-					"bEvaluateWorldPositionOffset": true,
-					"bWorldPositionOffsetWritesVelocity": true,
-					"bEvaluateWorldPositionOffsetInRayTracing": false,
-					"StaticMeshImportVersion": 1,
-					"bOverrideWireframeColor": false,
-					"bOverrideMinLOD": false,
-					"bIgnoreInstanceForTextureStreaming": false,
-					"bOverrideLightMapRes": false,
-					"bCastDistanceFieldIndirectShadow": false,
-					"bOverrideDistanceFieldSelfShadowBias": false,
-					"bUseSubDivisions": true,
-					"bUseDefaultCollision": false,
-					"bCustomOverrideVertexColorPerLOD": false,
-					"bDisplayNaniteFallbackMesh": false,
-					"bSortTriangles": false,
-					"bReverseCulling": false,
-					"bEnableVertexColorMeshPainting": true,
-					"bEnableTextureColorMeshPainting": true,
-					"bOverrideMeshPaintTextureCoordinateIndex": false,
-					"bOverrideMeshPaintTextureResolution": false,
-					"OverriddenMeshPaintTextureCoordinateIndex": 0,
-					"OverriddenMeshPaintTextureResolution": 0,
-					"OverriddenLightMapRes": 64,
-					"MeshPaintTexture": null,
-					"MeshPaintTextureCooked": null,
-					"MaterialCacheTileCount":
-					{
-						"X": 8,
-						"Y": 8
-					},
-					"DistanceFieldIndirectShadowMinVisibility": 0.10000000000000001,
-					"DistanceFieldSelfShadowBias": 0,
-					"StreamingDistanceMultiplier": 1,
-					"NanitePixelProgrammableDistance": 0,
-					"StreamingTextureData": [],
-					"StaticMeshDerivedDataKey": "",
-					"MaterialStreamingRelativeBoxes": [],
-					"LightmassSettings":
-					{
-						"bUseTwoSidedLighting": false,
-						"bShadowIndirectOnly": false,
-						"bUseEmissiveForStaticLighting": false,
-						"bUseVertexNormalForHemisphereGather": false,
-						"EmissiveLightFalloffExponent": 8,
-						"EmissiveLightExplicitInfluenceRadius": 0,
-						"EmissiveBoost": 1,
-						"DiffuseBoost": 1,
-						"FullyOccludedSamplesFraction": 1
-					},
-					"OverrideMaterials": [
-						"/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial"
-					],
-					"OverlayMaterial": null,
-					"OverlayMaterialMaxDrawDistance": 0,
-					"MaterialSlotsOverlayMaterial": [],
-					"bEnableMaterialParameterCaching": false,
-					"MinDrawDistance": 0,
-					"LDMaxDrawDistance": 0,
-					"CachedMaxDrawDistance": 0,
-					"DepthPriorityGroup": "SDPG_World",
-					"ViewOwnerDepthPriorityGroup": "SDPG_World",
-					"IndirectLightingCacheQuality": "ILCQ_Point",
-					"LightmapType": "Default",
-					"HLODBatchingPolicy": "None",
-					"ShadowCacheInvalidationBehavior": "Auto",
-					"bEnableAutoLODGeneration": true,
-					"bIsActorTextureStreamingBuiltData": false,
-					"bIsValidTextureStreamingBuiltData": false,
-					"bNeverDistanceCull": false,
-					"bAlwaysCreatePhysicsState": false,
-					"bGenerateOverlapEvents": true,
-					"bMultiBodyOverlap": false,
-					"bTraceComplexOnMove": false,
-					"bReturnMaterialOnMove": false,
-					"bUseViewOwnerDepthPriorityGroup": false,
-					"bAllowCullDistanceVolume": true,
-					"bVisibleInReflectionCaptures": true,
-					"bVisibleInRealTimeSkyCaptures": true,
-					"bVisibleInRayTracing": true,
-					"bRenderInMainPass": true,
-					"bRenderInDepthPass": true,
-					"bReceivesDecals": true,
-					"bHoldout": false,
-					"bOwnerNoSee": false,
-					"bOnlyOwnerSee": false,
-					"bTreatAsBackgroundForOcclusion": false,
-					"bUseAsOccluder": true,
-					"bSelectable": true,
-					"bWantsEditorEffects": false,
-					"bConsiderForActorPlacementWhenHidden": false,
-					"bForceMipStreaming": false,
-					"bHasPerInstanceHitProxies": false,
-					"CastShadow": true,
-					"bEmissiveLightSource": false,
-					"bAffectDynamicIndirectLighting": true,
-					"bAffectIndirectLightingWhileHidden": false,
-					"bAffectDistanceFieldLighting": true,
-					"bCastDynamicShadow": true,
-					"bCastStaticShadow": true,
-					"bCastVolumetricTranslucentShadow": false,
-					"bCastContactShadow": true,
-					"bSelfShadowOnly": false,
-					"bCastFarShadow": false,
-					"bCastInsetShadow": false,
-					"bCastCinematicShadow": false,
-					"bCastHiddenShadow": false,
-					"bCastShadowAsTwoSided": false,
-					"bLightAttachmentsAsGroup": false,
-					"bExcludeFromLightAttachmentGroup": false,
-					"bReceiveMobileCSMShadows": true,
-					"bSingleSampleShadowFromStationaryLights": false,
-					"bIgnoreRadialImpulse": false,
-					"bIgnoreRadialForce": false,
-					"bApplyImpulseOnDamage": true,
-					"bReplicatePhysicsToAutonomousProxy": true,
-					"bFillCollisionUnderneathForNavmesh": false,
-					"bRasterizeAsFilledConvexVolume": false,
-					"AlwaysLoadOnClient": true,
-					"AlwaysLoadOnServer": true,
-					"bUseEditorCompositing": false,
-					"bRenderCustomDepth": false,
-					"bVisibleInSceneCaptureOnly": false,
-					"bHiddenInSceneCapture": false,
-					"bRayTracingFarField": false,
-					"bLumenHeightfield": false,
-					"FirstPersonPrimitiveType": "None",
-					"bHasNoStreamableTextures": false,
-					"bStaticWhenNotMoveable": true,
-					"bHasCustomNavigableGeometry": "Yes",
-					"HitProxyPriority": "HPP_World",
-					"CanCharacterStepUpOn": "ECB_Yes",
-					"LightingChannels":
-					{
-						"bChannel0": true,
-						"bChannel1": false,
-						"bChannel2": false
-					},
-					"RayTracingGroupCullingPriority": "CP_4_DEFAULT",
-					"CustomDepthStencilWriteMask": "ERSM_Default",
-					"ExcludeFromHLODLevels": 0,
-					"RayTracingGroupId": -1,
-					"VisibilityId": -1,
-					"CustomDepthStencilValue": 0,
-					"CustomPrimitiveData":
-					{
-						"Data": []
-					},
-					"TranslucencySortPriority": 0,
-					"TranslucencySortDistanceOffset": 0,
-					"RuntimeVirtualTextures": [],
-					"VirtualTextureLodBias": 0,
-					"VirtualTextureCullMips": 0,
-					"VirtualTextureMinCoverage": 0,
-					"VirtualTextureRenderPassType": "Exclusive",
-					"BoundsScale": 1,
-					"BodyInstance":
-					{
-						"PositionSolverIterationCount": 8,
-						"VelocitySolverIterationCount": 2,
-						"ProjectionSolverIterationCount": 1,
-						"ObjectType": "ECC_WorldDynamic",
-						"CollisionEnabled": "QueryAndPhysics",
-						"SleepFamily": "Normal",
-						"DOFMode": "Default",
-						"bUseCCD": false,
-						"bUseMACD": false,
-						"bAllowPartialIslandSleep": true,
-						"bIgnoreAnalyticCollisions": false,
-						"bNotifyRigidBodyCollision": false,
-						"bSmoothEdgeCollisions": false,
-						"bLockTranslation": true,
-						"bLockRotation": true,
-						"bLockXTranslation": false,
-						"bLockYTranslation": false,
-						"bLockZTranslation": false,
-						"bLockXRotation": false,
-						"bLockYRotation": false,
-						"bLockZRotation": false,
-						"bOverrideMaxAngularVelocity": false,
-						"bOverrideMaxDepenetrationVelocity": false,
-						"bOverrideWalkableSlopeOnInstance": false,
-						"bOverrideIterationCounts": false,
-						"bInterpolateWhenSubStepping": true,
-						"bInertiaConditioning": true,
-						"bOneWayInteraction": false,
-						"bOverrideSolverAsyncDeltaTime": false,
-						"SolverAsyncDeltaTime": 0.016666670000000001,
-						"CollisionProfileName": "BlockAllDynamic",
-						"CollisionResponses":
-						{
-							"ResponseArray": []
-						},
-						"MaxDepenetrationVelocity": 0,
-						"MassInKgOverride": 100,
-						"LinearDamping": 0.01,
-						"AngularDamping": 0,
-						"CustomDOFPlaneNormal":
-						{
-							"X": 0,
-							"Y": 0,
-							"Z": 0
-						},
-						"COMNudge":
-						{
-							"X": 0,
-							"Y": 0,
-							"Z": 0
-						},
-						"MassScale": 1,
-						"GravityGroupIndex": 0,
-						"InertiaTensorScale":
-						{
-							"X": 1,
-							"Y": 1,
-							"Z": 1
-						},
-						"WalkableSlopeOverride":
-						{
-							"WalkableSlopeBehavior": "WalkableSlope_Default",
-							"WalkableSlopeAngle": 0
-						},
-						"PhysMaterialOverride": null,
-						"MaxAngularVelocity": 3600,
-						"CustomSleepThresholdMultiplier": 1,
-						"StabilizationThresholdMultiplier": 1,
-						"PhysicsBlendWeight": 0,
-						"bSimulatePhysics": false,
-						"bOverrideMass": false,
-						"bEnableGravity": true,
-						"bUpdateKinematicFromSimulation": false,
-						"bGyroscopicTorqueEnabled": false,
-						"bAutoWeld": true,
-						"bStartAwake": true,
-						"bGenerateWakeEvents": false,
-						"bUpdateMassWhenScaleChanges": true
-					},
-					"AttachParent": null,
-					"AttachSocketName": "None",
-					"RelativeLocation":
-					{
-						"X": 0,
-						"Y": 0,
-						"Z": 0
-					},
-					"RelativeRotation":
-					{
-						"Pitch": 0,
-						"Yaw": 0,
-						"Roll": 0
-					},
-					"RelativeScale3D":
-					{
-						"X": 1,
-						"Y": 1,
-						"Z": 1
-					},
-					"ComponentVelocity":
-					{
-						"X": 0,
-						"Y": 0,
-						"Z": 0
-					},
-					"bAbsoluteLocation": false,
-					"bAbsoluteRotation": false,
-					"bAbsoluteScale": false,
-					"bVisible": true,
-					"bShouldUpdatePhysicsVolume": false,
-					"bHiddenInGame": false,
-					"bBoundsChangeTriggersStreamingDataRebuild": true,
-					"bUseAttachParentBound": false,
-					"bComputeFastLocalBounds": false,
-					"bComputeBoundsOnceForGame": false,
-					"bComputedBoundsOnceForGame": false,
-					"bIsNotRenderAttachmentRoot": false,
-					"bVisualizeComponent": false,
-					"Mobility": "Movable",
-					"DetailMode": "DM_Low",
-					"PrimaryComponentTick":
-					{
-						"TickGroup": "TG_DuringPhysics",
-						"EndTickGroup": "TG_PrePhysics",
-						"bTickEvenWhenPaused": false,
-						"bCanEverTick": false,
-						"bStartWithTickEnabled": true,
-						"bAllowTickOnDedicatedServer": true,
-						"TickInterval": 0
-					},
-					"ComponentTags": [],
-					"AssetUserData": [],
-					"AssetUserDataEditorOnly": [],
-					"UCSSerializationIndex": -1,
-					"bNetAddressable": false,
-					"bReplicateUsingRegisteredSubObjectList": false,
-					"bReplicates": false,
-					"bAutoActivate": false,
-					"bEditableWhenInherited": true,
-					"bCanEverAffectNavigation": true,
-					"bIsEditorOnly": false,
-					"bIsVisualizationComponent": false,
-					"bNeedsUCSSerializationIndexEvaluted": false,
-					"CreationMethod": "Native"
-				}
-			}
 		},
 		"defaults":
 		{
-			"RefillStationDummy": null,
+			"OxygenResource": null,
 			"StaticMesh": null,
 			"DefaultSceneRoot": null,
 			"Outline Material": "/Game/ProjectAtlantis/MaterialLibrary/Interactable/MI_Interactable_Outline.MI_Interactable_Outline",
