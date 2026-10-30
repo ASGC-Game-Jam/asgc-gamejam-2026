@@ -35,7 +35,7 @@
 					"guid": "7c8c5b9f48ba038dadf35c9d79640989",
 					"class": "K2Node_CallFunction",
 					"title": "Add Child",
-					"x": 600,
+					"x": 606,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -93,7 +93,7 @@
 					"guid": "9e2eceac499e1a09ea92e5b6396964c0",
 					"class": "K2Node_CreateWidget",
 					"title": "Create Widget",
-					"x": 300,
+					"x": 215,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -207,7 +207,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "AddClueRow",
 					"x": 1200,
-					"y": 650,
+					"y": 633,
 					"comment": null,
 					"pins": [
 						{
@@ -255,7 +255,7 @@
 							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
 							"defaultValue": null,
 							"links": [
-								"721d455a4595dad26b0d648ce3e0b86f:o:Entry"
+								"4dadb6b749b1f772b40fcd9bb0594fc8:o:Entry"
 							]
 						}
 					]
@@ -264,7 +264,7 @@
 					"guid": "2b18779e4bcc8f4125e99284400e65b0",
 					"class": "K2Node_CallFunction",
 					"title": "FindOrAddClueGroup",
-					"x": 1800,
+					"x": 2216,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -342,8 +342,8 @@
 					"guid": "2fd8af224826790455b88795a3ae203a",
 					"class": "K2Node_FunctionResult",
 					"title": "Return Node",
-					"x": 2700,
-					"y": 0,
+					"x": 3232,
+					"y": 16,
 					"comment": null,
 					"pins": [
 						{
@@ -382,8 +382,8 @@
 					"guid": "4af251f543f337eda0c4e49268218c79",
 					"class": "K2Node_VariableGet",
 					"title": "Get ClueList",
-					"x": 950,
-					"y": 450,
+					"x": 925,
+					"y": 544,
 					"comment": null,
 					"pins": [
 						{
@@ -408,11 +408,31 @@
 					]
 				},
 				{
+					"guid": "4dadb6b749b1f772b40fcd9bb0594fc8",
+					"class": "K2Node_VariableGet",
+					"title": "Get Entry",
+					"x": 925,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4dadb6b749b1f772b40fcd9bb0594fc8:o:Entry",
+							"name": "Entry",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"24ca888a4373749db73f22b6d567cbeb:i:Entry"
+							]
+						}
+					]
+				},
+				{
 					"guid": "4df495f14276778f19fff4ba75872f74",
 					"class": "K2Node_VariableGet",
 					"title": "Get GroupContents",
-					"x": 2100,
-					"y": 250,
+					"x": 2544,
+					"y": 96,
 					"comment": null,
 					"pins": [
 						{
@@ -441,8 +461,8 @@
 					"guid": "4e17ef1e4eb997c03309e2a49d3a05b8",
 					"class": "K2Node_CallFunction",
 					"title": "Not Equal (Name)",
-					"x": 300,
-					"y": 250,
+					"x": 448,
+					"y": 222,
 					"comment": null,
 					"pins": [
 						{
@@ -487,8 +507,8 @@
 					"guid": "53931bd944c800f9363b219008cbb909",
 					"class": "K2Node_CallFunction",
 					"title": "AND Boolean",
-					"x": 600,
-					"y": 300,
+					"x": 704,
+					"y": 224,
 					"comment": null,
 					"pins": [
 						{
@@ -535,7 +555,7 @@
 					"guid": "721d455a4595dad26b0d648ce3e0b86f",
 					"class": "K2Node_FunctionEntry",
 					"title": "AddGroupedClue",
-					"x": 0,
+					"x": -240,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -556,9 +576,7 @@
 							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
 							"defaultValue": null,
 							"links": [
-								"24ca888a4373749db73f22b6d567cbeb:i:Entry",
-								"755ec0264871c3048925979cd943a03f:i:JournalInvestigationEntry",
-								"b0cea30446c476468b96e7a483c32c25:i:Entry"
+								"755ec0264871c3048925979cd943a03f:i:JournalInvestigationEntry"
 							]
 						}
 					]
@@ -658,6 +676,26 @@
 					]
 				},
 				{
+					"guid": "908766dc4a1ccf6e3b86499c8b580884",
+					"class": "K2Node_VariableGet",
+					"title": "Get Entry",
+					"x": 2591,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "908766dc4a1ccf6e3b86499c8b580884:o:Entry",
+							"name": "Entry",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"b0cea30446c476468b96e7a483c32c25:i:Entry"
+							]
+						}
+					]
+				},
+				{
 					"guid": "98e4679443fdb5cd5ba0a5aa8e9fcec9",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
@@ -711,7 +749,7 @@
 					"guid": "ad92bcd74a3a4de0cd4d8ab3481bb6f2",
 					"class": "K2Node_CallFunction",
 					"title": "FindOrAddClueGroup",
-					"x": 1200,
+					"x": 1616,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -789,7 +827,7 @@
 					"guid": "b0cea30446c476468b96e7a483c32c25",
 					"class": "K2Node_CallFunction",
 					"title": "AddClueRow",
-					"x": 2400,
+					"x": 2848,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -838,7 +876,7 @@
 							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
 							"defaultValue": null,
 							"links": [
-								"721d455a4595dad26b0d648ce3e0b86f:o:Entry"
+								"908766dc4a1ccf6e3b86499c8b580884:o:Entry"
 							]
 						}
 					]
@@ -847,8 +885,8 @@
 					"guid": "c3d00297463f5ee6eb5440a9f4beafaa",
 					"class": "K2Node_VariableGet",
 					"title": "Get GroupContents",
-					"x": 1550,
-					"y": 250,
+					"x": 1952,
+					"y": 80,
 					"comment": null,
 					"pins": [
 						{
@@ -877,8 +915,8 @@
 					"guid": "d7a61ebb4046e11b7ed2ae9e6769fd94",
 					"class": "K2Node_CallFunction",
 					"title": "Not Equal (Name)",
-					"x": 300,
-					"y": 450,
+					"x": 448,
+					"y": 544,
 					"comment": null,
 					"pins": [
 						{
@@ -927,10 +965,40 @@
 			"type": "Function",
 			"nodes": [
 				{
+					"guid": "03cc599c4b5c67a0ab50f3a79fc93e17",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1712,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "03cc599c4b5c67a0ab50f3a79fc93e17:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"f251e2f041dc66cf2b5e13be7325c657:o:AsWBP Journal Clue Group"
+							]
+						},
+						{
+							"id": "03cc599c4b5c67a0ab50f3a79fc93e17:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"c97476ed49a03fc345b296ac67ec475d:i:Group"
+							]
+						}
+					]
+				},
+				{
 					"guid": "13a8b31f41b11f0b78244fa3b99b1870",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 1250,
+					"x": 1472,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -1046,7 +1114,7 @@
 					"guid": "5a7cbae54215557eca667299f3d3e50f",
 					"class": "K2Node_FunctionEntry",
 					"title": "FindOrAddClueGroup",
-					"x": 0,
+					"x": -576,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -1067,8 +1135,7 @@
 							"type": "object:/Script/UMG.PanelWidget",
 							"defaultValue": null,
 							"links": [
-								"b3b34fe6445307fbe6d25ca84d44c7d4:i:self",
-								"ce368f2b4560cab9d281249fda4316f6:i:self"
+								"b3b34fe6445307fbe6d25ca84d44c7d4:i:self"
 							]
 						},
 						{
@@ -1078,7 +1145,6 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"f2dd50734159d00accef9c8d1f93adde:i:B",
 								"fb46fd0642a5f7b3b5f71cb016a65e02:i:GroupId"
 							]
 						},
@@ -1098,8 +1164,8 @@
 					"guid": "5aa99be748fde77216fa7db2fc9d6e5e",
 					"class": "K2Node_VariableGet",
 					"title": "Get GroupId",
-					"x": 650,
-					"y": 240,
+					"x": 932,
+					"y": 176,
 					"comment": null,
 					"pins": [
 						{
@@ -1125,11 +1191,51 @@
 					]
 				},
 				{
+					"guid": "65fc87454bdc29320d5fc4aa39bafe71",
+					"class": "K2Node_VariableGet",
+					"title": "Get GroupId",
+					"x": 992,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "65fc87454bdc29320d5fc4aa39bafe71:o:GroupId",
+							"name": "GroupId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"f2dd50734159d00accef9c8d1f93adde:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a35776cb435481034da9e6ba051785ad",
+					"class": "K2Node_VariableGet",
+					"title": "Get Parent",
+					"x": 1136,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a35776cb435481034da9e6ba051785ad:o:Parent",
+							"name": "Parent",
+							"direction": "output",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"ce368f2b4560cab9d281249fda4316f6:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "b3b34fe6445307fbe6d25ca84d44c7d4",
 					"class": "K2Node_CallFunction",
 					"title": "Get All Children",
-					"x": 0,
-					"y": 240,
+					"x": 48,
+					"y": 64,
 					"comment": null,
 					"pins": [
 						{
@@ -1158,7 +1264,7 @@
 					"guid": "c97476ed49a03fc345b296ac67ec475d",
 					"class": "K2Node_FunctionResult",
 					"title": "Return Node",
-					"x": 1800,
+					"x": 1872,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -1179,7 +1285,7 @@
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
 							"defaultValue": null,
 							"links": [
-								"f251e2f041dc66cf2b5e13be7325c657:o:AsWBP Journal Clue Group"
+								"03cc599c4b5c67a0ab50f3a79fc93e17:o:OutputPin"
 							]
 						}
 					]
@@ -1188,8 +1294,8 @@
 					"guid": "ce368f2b4560cab9d281249fda4316f6",
 					"class": "K2Node_CallFunction",
 					"title": "Add Child",
-					"x": 1000,
-					"y": 600,
+					"x": 1440,
+					"y": 1024,
 					"comment": null,
 					"pins": [
 						{
@@ -1219,7 +1325,7 @@
 							"type": "object:/Script/UMG.PanelWidget",
 							"defaultValue": null,
 							"links": [
-								"5a7cbae54215557eca667299f3d3e50f:o:Parent"
+								"a35776cb435481034da9e6ba051785ad:o:Parent"
 							]
 						},
 						{
@@ -1246,8 +1352,8 @@
 					"guid": "d4b3144c48845b82702a07abe47460c2",
 					"class": "K2Node_FunctionResult",
 					"title": "Return Node",
-					"x": 1400,
-					"y": 600,
+					"x": 1872,
+					"y": 1039,
 					"comment": null,
 					"pins": [
 						{
@@ -1267,7 +1373,7 @@
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
 							"defaultValue": null,
 							"links": [
-								"fb46fd0642a5f7b3b5f71cb016a65e02:o:ReturnValue"
+								"fe95beb4425b65faf7ca2c93599a990c:o:OutputPin"
 							]
 						}
 					]
@@ -1325,8 +1431,8 @@
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
 							"defaultValue": null,
 							"links": [
-								"5aa99be748fde77216fa7db2fc9d6e5e:i:self",
-								"c97476ed49a03fc345b296ac67ec475d:i:Group"
+								"03cc599c4b5c67a0ab50f3a79fc93e17:i:InputPin",
+								"5aa99be748fde77216fa7db2fc9d6e5e:i:self"
 							]
 						},
 						{
@@ -1343,8 +1449,8 @@
 					"guid": "f2dd50734159d00accef9c8d1f93adde",
 					"class": "K2Node_CallFunction",
 					"title": "Equal (Name)",
-					"x": 950,
-					"y": 240,
+					"x": 1232,
+					"y": 176,
 					"comment": null,
 					"pins": [
 						{
@@ -1372,7 +1478,7 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"5a7cbae54215557eca667299f3d3e50f:o:GroupId"
+								"65fc87454bdc29320d5fc4aa39bafe71:o:GroupId"
 							]
 						},
 						{
@@ -1391,8 +1497,8 @@
 					"guid": "fb46fd0642a5f7b3b5f71cb016a65e02",
 					"class": "K2Node_CreateWidget",
 					"title": "Create Widget",
-					"x": 600,
-					"y": 600,
+					"x": 960,
+					"y": 1038,
 					"comment": null,
 					"pins": [
 						{
@@ -1431,7 +1537,7 @@
 							"defaultValue": null,
 							"links": [
 								"ce368f2b4560cab9d281249fda4316f6:i:Content",
-								"d4b3144c48845b82702a07abe47460c2:i:Group"
+								"fe95beb4425b65faf7ca2c93599a990c:i:InputPin"
 							]
 						},
 						{
@@ -1460,6 +1566,36 @@
 							"defaultValue": null,
 							"links": [
 								"5a7cbae54215557eca667299f3d3e50f:o:Heading"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fe95beb4425b65faf7ca2c93599a990c",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1520,
+					"y": 1264,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fe95beb4425b65faf7ca2c93599a990c:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"fb46fd0642a5f7b3b5f71cb016a65e02:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fe95beb4425b65faf7ca2c93599a990c:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"d4b3144c48845b82702a07abe47460c2:i:Group"
 							]
 						}
 					]
@@ -1590,8 +1726,7 @@
 							"type": "object:/Script/UMG.VerticalBox",
 							"defaultValue": null,
 							"links": [
-								"53085e0c46e6806f95a0a6bc2720b9b3:i:self",
-								"715d68704e8f15260f7ef4b95a4b6f27:i:InputPin"
+								"53085e0c46e6806f95a0a6bc2720b9b3:i:self"
 							]
 						}
 					]
@@ -1600,8 +1735,8 @@
 					"guid": "2b70b3744d9881581506878c778f710f",
 					"class": "K2Node_VariableGet",
 					"title": "Get ClueList",
-					"x": -160,
-					"y": 294,
+					"x": -11,
+					"y": 304,
 					"comment": null,
 					"pins": [
 						{
@@ -1868,38 +2003,10 @@
 					]
 				},
 				{
-					"guid": "715d68704e8f15260f7ef4b95a4b6f27",
-					"class": "K2Node_Knot",
-					"title": "Reroute Node",
-					"x": 2512,
-					"y": 320,
-					"comment": null,
-					"pins": [
-						{
-							"id": "715d68704e8f15260f7ef4b95a4b6f27:i:InputPin",
-							"name": "InputPin",
-							"direction": "input",
-							"type": "object:/Script/UMG.VerticalBox",
-							"defaultValue": null,
-							"links": [
-								"1d693a7e4a265c5457ec079dc8c38417:o:OutputPin"
-							]
-						},
-						{
-							"id": "715d68704e8f15260f7ef4b95a4b6f27:o:OutputPin",
-							"name": "OutputPin",
-							"direction": "output",
-							"type": "object:/Script/UMG.VerticalBox",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "7214de96433757d478870bbd09a76066",
 					"class": "K2Node_FunctionEntry",
 					"title": "RefreshClues",
-					"x": 0,
+					"x": -20,
 					"y": 0,
 					"comment": null,
 					"pins": [
