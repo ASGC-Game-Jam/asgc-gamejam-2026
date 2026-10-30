@@ -39,7 +39,7 @@ void UAtlantisJournalSubsystem::UpdateInvestigationStatus(const FString& Title, 
     if (!Entry)
     {
         // entry not found, add a new one
-        FJournalInvestigationEntry NewEntry = { .Title = Title, .Status = Status };
+        FJournalInvestigationEntry NewEntry = { .Title = FText::FromString(Title), .Status = Status };
         Investigations.Add(Title, NewEntry);
     }
     else
@@ -61,14 +61,14 @@ void UAtlantisJournalSubsystem::UpdateInvestigationDescription(const FString& Ti
     if (!Entry)
     {
         // entry not found, add a new one
-        FJournalInvestigationEntry NewEntry = { .Title = Title };
-        NewEntry.Descriptions.Add(Description);
+        FJournalInvestigationEntry NewEntry = { .Title = FText::FromString(Title) };
+        NewEntry.Descriptions.Add(FText::FromString(Description));
         Investigations.Add(Title, NewEntry);
     }
     else
     {
         // update description and status
-        Entry->Descriptions.Add(Description);
+        Entry->Descriptions.Add(FText::FromString(Description));
         OldStatus = Entry->Status;
     }
 
@@ -83,10 +83,10 @@ void UAtlantisJournalSubsystem::UpdateInvestigationDescriptions(const FString& T
     if (!Entry)
     {
         // entry not found, add a new one
-        FJournalInvestigationEntry NewEntry = { .Title = Title };
+        FJournalInvestigationEntry NewEntry = { .Title = FText::FromString(Title) };
         for (int32 Index = 0; Index < Descriptions.Num(); ++Index)
         {
-            NewEntry.Descriptions.Add(Descriptions[Index]);
+            NewEntry.Descriptions.Add(FText::FromString(Descriptions[Index]));
         }
         Investigations.Add(Title, NewEntry);
     }
@@ -95,7 +95,7 @@ void UAtlantisJournalSubsystem::UpdateInvestigationDescriptions(const FString& T
         // update description and status
         for (int32 Index = 0; Index < Descriptions.Num(); ++Index)
         {
-            Entry->Descriptions.Add(Descriptions[Index]);
+            Entry->Descriptions.Add(FText::FromString(Descriptions[Index]));
         }
         OldStatus = Entry->Status;
     }
@@ -129,7 +129,12 @@ TArray<FString> UAtlantisJournalSubsystem::GetInvestigationDescriptions(const FS
     FJournalInvestigationEntry* Entry = Investigations.Find(Title);
     if (Entry)
     {
-        return Entry->Descriptions;
+        TArray<FString> Descriptions;
+        for (const FText& Description : Entry->Descriptions)
+        {
+            Descriptions.Add(Description.ToString());
+        }
+        return Descriptions;
     }
     return { };
 }
@@ -144,4 +149,48 @@ void UAtlantisJournalSubsystem::ClearAll()
 {
     ClearInvestigations();
     OnJournalCleared.Broadcast();
+}
+
+bool UAtlantisJournalSubsystem::SetInvestigationEntry(const FJournalInvestigationEntry& Entry)
+{
+	if (Entry.EntryId.IsNone() || Entry.Title.IsEmptyOrWhitespace()
+		|| Entry.Status > EJournalInvestigationStatus::Complete)
+	{
+		return false;
+	}
+
+	FString Key = Entry.EntryId.ToString();
+	// FName identity is case-insensitive; keep the original key for legacy string callers.
+	for (const auto& Existing : Investigations)
+	{
+		if (!Existing.Value.EntryId.IsNone() && Existing.Value.EntryId == Entry.EntryId)
+		{
+			Key = Existing.Key;
+			break;
+		}
+	}
+	const EJournalInvestigationStatus OldStatus = GetInvestigationStatus(Key);
+	Investigations.Add(Key, Entry);
+	OnInvestigationUpdated.Broadcast(OldStatus, Entry.Status, Key);
+	return true;
+}
+
+TArray<FJournalInvestigationEntry> UAtlantisJournalSubsystem::GetInvestigationEntries() const
+{
+	TArray<FString> Keys;
+	Investigations.GetKeys(Keys);
+	Keys.Sort();
+
+	TArray<FJournalInvestigationEntry> Entries;
+	Entries.Reserve(Keys.Num());
+	for (const FString& Key : Keys)
+	{
+		FJournalInvestigationEntry Entry = Investigations[Key];
+		if (Entry.EntryId.IsNone())
+		{
+			Entry.EntryId = FName(*Key);
+		}
+		Entries.Add(MoveTemp(Entry));
+	}
+	return Entries;
 }
