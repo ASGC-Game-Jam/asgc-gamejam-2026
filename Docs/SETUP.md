@@ -100,8 +100,9 @@ editor after installing or updating Git LFS.
 Before editing, refresh asset status and **Check Out** the selected assets in the
 Content Browser, then verify ownership. Auto-checkout is not enabled and new
 files must be explicitly added with `git add`. Commit/push using Git to retain
-locks through PR merge. Editor Check In and push actions still release locks after
-pushing and should not be used for shared binary PR work.
+locks through PR merge, or use asset-specific Check In with the patched plugin:
+editor Check In and push now retain locks regardless of **Keep Files Checked Out**.
+Release locks explicitly after merge; the plugin does not monitor PR status.
 
 ## Verify Your Setup
 

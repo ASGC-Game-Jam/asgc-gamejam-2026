@@ -327,42 +327,13 @@ bool FGitCheckInWorker::Execute(FGitSourceControlCommand& InCommand)
 			InCommand.bCommandSuccessful = true;
 		}
 
-		// git-lfs: unlock files
-		if (InCommand.bUsingGitLfsLocking)
+		// ASGC: Submit and push must retain locks until the PR is merged into main.
+		// This applies regardless of Unreal's Keep Files Checked Out checkbox, and
+		// also to earlier local commits pushed by an empty-file CheckIn operation.
+		// Release locks explicitly after merge; a push is not proof of a merge.
+		if (InCommand.bUsingGitLfsLocking && InCommand.bCommandSuccessful)
 		{
-			// If we successfully pushed (or didn't need to push), unlock the files marked for check in
-			if (InCommand.bCommandSuccessful)
-			{
-				// unlock files: execute the LFS command on relative filenames
-				// (unlock only locked files, that is, not Added files)
-				TArray<FString> LockedFiles;
-				GitSourceControlUtils::GetLockedFiles(FilesToCheckIn.Array(), LockedFiles);
-				if (LockedFiles.Num() > 0)
-				{
-					const TArray<FString>& FilesToUnlock = GitSourceControlUtils::RelativeFilenames(LockedFiles, InCommand.PathToGitRoot);
-
-					if (FilesToUnlock.Num() > 0)
-					{
-						// Not strictly necessary to succeed, so don't update command success
-						const bool bUnlockSuccess = GitSourceControlUtils::RunLFSCommand(TEXT("unlock"), InCommand.PathToGitRoot, InCommand.PathToGitBinary,
-																						 FGitSourceControlModule::GetEmptyStringArray(), FilesToUnlock,
-																						 InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
-						if (bUnlockSuccess)
-						{
-							for (const auto& File : LockedFiles)
-							{
-								FGitLockedFilesCache::RemoveLockedFile(File);
-							}
-						}
-					}
-				}
-#if 0
-				for (const FString& File : FilesToCheckIn.Array())
-				{
-					FPlatformFileManager::Get().GetPlatformFile().SetReadOnly(*File, true);
-				}
-#endif
-			}
+			InCommand.ResultInfo.InfoMessages.Add(TEXT("Asset locks retained. Release them explicitly after the PR is merged into main."));
 		}
 
 		// Collect all the files we touched through the pull update
