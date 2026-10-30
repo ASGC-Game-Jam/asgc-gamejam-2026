@@ -526,7 +526,7 @@ bool FGitRevertWorker::Execute(FGitSourceControlCommand& InCommand)
 	else
 	{
 		InCommand.bCommandSuccessful = GitSourceControlUtils::RevertFiles(InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot,
-			InCommand.Files, InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
+			FPaths::ProjectDir(), InCommand.Files, InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
 	}
 
 	if (InCommand.bUsingGitLfsLocking && InCommand.bCommandSuccessful)

@@ -20,11 +20,13 @@ BEGIN_DEFINE_SPEC(FGitRevertFilesSpec, "Atlantis.Git.RevertFiles",
 	}
 	void Write(const FString& File, const FString& Text)
 	{
+		IFileManager::Get().MakeDirectory(*FPaths::GetPath(Root / File), true);
 		TestTrue(TEXT("Write fixture"), FFileHelper::SaveStringToFile(Text, *(Root / File)));
 	}
 	bool Revert(const TArray<FString>& Files)
 	{
-		return GitSourceControlUtils::RevertFiles(Git, Root, Files, Results, Errors);
+		TArray<FString> ExpandedFiles = Files;
+		return GitSourceControlUtils::RevertFiles(Git, Root, Root, ExpandedFiles, Results, Errors);
 	}
 END_DEFINE_SPEC(FGitRevertFilesSpec)
 
@@ -89,6 +91,61 @@ void FGitRevertFilesSpec::Define()
 		TestEqual(TEXT("New asset preserved locally"), Contents, FString(TEXT("new work")));
 		TestTrue(TEXT("Inspect new file"), Run(TEXT("status"), {TEXT("--porcelain")}, {Root / TEXT("New.uasset")}));
 		TestTrue(TEXT("New file is untracked"), FString::Join(Results, TEXT("\n")).StartsWith(TEXT("??")));
+	});
+
+	It("should revert matching asset exports in both trees without reverting unrelated exports", [this]()
+	{
+		const FString Asset = Root / TEXT("Content/UI/QA.uasset");
+		const FString Graph = Root / TEXT("BlueprintGraphs/UI/QA.bpgraph.json");
+		const FString OtherGraph = Root / TEXT("BlueprintGraphs/UI/Other.bpgraph.json");
+		Write(TEXT("Content/UI/QA.uasset"), TEXT("original asset"));
+		Write(TEXT("BlueprintGraphs/UI/QA.bpgraph.json"), TEXT("original graph"));
+		Write(TEXT("BlueprintGraphs/UI/Other.bpgraph.json"), TEXT("original other"));
+		TestTrue(TEXT("Add pair"), Run(TEXT("add"), {}, {Asset, Graph, OtherGraph}));
+		TestTrue(TEXT("Commit pair"), Run(TEXT("commit"), {TEXT("-m"), TEXT("pair")}));
+		Write(TEXT("Content/UI/QA.uasset"), TEXT("edited asset"));
+		Write(TEXT("BlueprintGraphs/UI/QA.bpgraph.json"), TEXT("staged graph"));
+		Write(TEXT("BlueprintGraphs/UI/Other.bpgraph.json"), TEXT("unrelated graph"));
+		TestTrue(TEXT("Stage exports"), Run(TEXT("add"), {}, {Graph, OtherGraph}));
+		Write(TEXT("BlueprintGraphs/UI/QA.bpgraph.json"), TEXT("worktree graph"));
+		TArray<FString> Files {Asset};
+		TestTrue(TEXT("Revert only selected asset"), GitSourceControlUtils::RevertFiles(Git, Root, Root, Files, Results, Errors));
+		TestEqual(TEXT("Status refresh includes graph"), Files.Num(), 2);
+		TestTrue(TEXT("Matching graph selected"), Files.Contains(Graph));
+		FString Contents;
+		FFileHelper::LoadFileToString(Contents, *Graph);
+		TestEqual(TEXT("Graph restored"), Contents, FString(TEXT("original graph")));
+		TestTrue(TEXT("Inspect matching paths"), Run(TEXT("status"), {TEXT("--porcelain")}, {Asset, Graph}));
+		TestTrue(TEXT("Asset and graph clean in both trees"), Results.IsEmpty());
+		TestTrue(TEXT("Inspect unrelated export"), Run(TEXT("status"), {TEXT("--porcelain")}, {OtherGraph}));
+		TestFalse(TEXT("Unrelated staged export remains"), Results.IsEmpty());
+		FFileHelper::LoadFileToString(Contents, *OtherGraph);
+		TestEqual(TEXT("Unrelated content preserved"), Contents, FString(TEXT("unrelated graph")));
+	});
+
+	It("should restore deleted maps and matching deleted exports whether staged or unstaged", [this]()
+	{
+		const FString Asset = Root / TEXT("Content/Maps/QA.umap");
+		const FString Graph = Root / TEXT("BlueprintGraphs/Maps/QA.bpgraph.json");
+		Write(TEXT("Content/Maps/QA.umap"), TEXT("original map"));
+		Write(TEXT("BlueprintGraphs/Maps/QA.bpgraph.json"), TEXT("original graph"));
+		TestTrue(TEXT("Add pair"), Run(TEXT("add"), {}, {Asset, Graph}));
+		TestTrue(TEXT("Commit pair"), Run(TEXT("commit"), {TEXT("-m"), TEXT("pair")}));
+		for (const bool bStaged : {false, true})
+		{
+			TestTrue(TEXT("Delete map"), IFileManager::Get().Delete(*Asset));
+			TestTrue(TEXT("Delete graph"), IFileManager::Get().Delete(*Graph));
+			if (bStaged)
+			{
+				TestTrue(TEXT("Stage deletions"), Run(TEXT("add"), {TEXT("-A")}, {Asset, Graph}));
+			}
+			TestTrue(TEXT("Revert map only"), Revert({Asset}));
+			FString Contents;
+			TestTrue(TEXT("Graph exists again"), FFileHelper::LoadFileToString(Contents, *Graph));
+			TestEqual(TEXT("Original graph content"), Contents, FString(TEXT("original graph")));
+			TestTrue(TEXT("Inspect pair"), Run(TEXT("status"), {TEXT("--porcelain")}, {Asset, Graph}));
+			TestTrue(TEXT("Both deletions reverted"), Results.IsEmpty());
+		}
 	});
 }
 #endif

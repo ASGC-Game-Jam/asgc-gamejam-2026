@@ -216,9 +216,9 @@ bool RunCommit(const FString& InPathToGitBinary, const FString& InRepositoryRoot
 bool AppendBlueprintGraphFiles(const FString& InPathToGitBinary, const FString& InRepositoryRoot,
 	const FString& InProjectDirectory, TArray<FString>& InOutFiles, TArray<FString>& OutErrorMessages);
 
-/** Restore selected HEAD-tracked files in both trees; leave newly added files untracked. */
+/** Restore selected assets and matching Keystone exports; leave newly added files untracked. */
 bool RevertFiles(const FString& InPathToGitBinary, const FString& InRepositoryRoot,
-	const TArray<FString>& InFiles, TArray<FString>& OutResults, TArray<FString>& OutErrorMessages);
+	const FString& InProjectDirectory, TArray<FString>& InOutFiles, TArray<FString>& OutResults, TArray<FString>& OutErrorMessages);
 
 /**
  * @brief Detects how to parse the result of a "status" command to get workspace file states
