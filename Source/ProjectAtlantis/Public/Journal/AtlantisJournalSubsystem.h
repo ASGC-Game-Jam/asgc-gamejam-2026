@@ -14,14 +14,23 @@ enum class EJournalInvestigationStatus : uint8
 	Complete
 };
 
-USTRUCT()
+/** Owner-supplied journal content, stored once in the existing journal. */
+USTRUCT(BlueprintType)
 struct FJournalInvestigationEntry
 {
 	GENERATED_BODY()
 
-	FString Title;
-	TArray<FString> Descriptions;
-	EJournalInvestigationStatus Status;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FText Title;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	TArray<FText> Descriptions;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	EJournalInvestigationStatus Status = EJournalInvestigationStatus::Undiscovered;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FName EntryId;
 };
 
 // @note(Tan): params here are subject to change depending on how investigation data looks like
@@ -40,6 +49,14 @@ class PROJECTATLANTIS_API UAtlantisJournalSubsystem : public UGameInstanceSubsys
 	GENERATED_BODY()
 	
 public:
+	/** Add or replace owner-supplied content by stable identity. Does not decide discovery. */
+	UFUNCTION(BlueprintCallable, Category = "Journal")
+	bool SetInvestigationEntry(const FJournalInvestigationEntry& Entry);
+
+	/** Read all entries; the view decides which owner-supplied statuses to display. */
+	UFUNCTION(BlueprintPure, Category = "Journal")
+	TArray<FJournalInvestigationEntry> GetInvestigationEntries() const;
+
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 	
