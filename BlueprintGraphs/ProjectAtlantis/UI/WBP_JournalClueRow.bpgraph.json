@@ -12,11 +12,71 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "193ce48e4fd18b2afd7abcbaded7afa4",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1856,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "193ce48e4fd18b2afd7abcbaded7afa4:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"59a51cb74c55e26d7f12529db47851a6:o:OutputPin"
+							]
+						},
+						{
+							"id": "193ce48e4fd18b2afd7abcbaded7afa4:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"c41f5bf34a3a2897f285b2b3ffe0865f:i:InText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1afcdfaa4cc19a9814cd61b1f535a251",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2400,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1afcdfaa4cc19a9814cd61b1f535a251:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"a9d3203f448446f13fee7a9115f092df:o:ClueDescriptions"
+							]
+						},
+						{
+							"id": "1afcdfaa4cc19a9814cd61b1f535a251:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"edf830ce4a0a01ce04baa3a80a8d1cdf:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "1b82a317466840dfbc625ab93e6caece",
 					"class": "K2Node_BreakStruct",
 					"title": "Break Journal Investigation Entry",
 					"x": 240,
-					"y": 180,
+					"y": 144,
 					"comment": null,
 					"pins": [
 						{
@@ -46,7 +106,7 @@
 							"type": "text[]",
 							"defaultValue": null,
 							"links": [
-								"cb1948c7449c2c6e4ec93c92732bf927:i:Array"
+								"bfee880a4e9398b4250bea9244903733:i:InputPin"
 							]
 						},
 						{
@@ -71,8 +131,8 @@
 					"guid": "26b0ef4a4584865cb7ed248b5b1af965",
 					"class": "K2Node_VariableGet",
 					"title": "Get Description",
-					"x": 1740,
-					"y": 220,
+					"x": 1952,
+					"y": 64,
 					"comment": null,
 					"pins": [
 						{
@@ -98,10 +158,70 @@
 					]
 				},
 				{
+					"guid": "4a50fbcc41c66350730bdc9eb087b06d",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2160,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4a50fbcc41c66350730bdc9eb087b06d:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"d8936dea47c951cc4b1f19a0aa8afeea:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4a50fbcc41c66350730bdc9eb087b06d:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"edf830ce4a0a01ce04baa3a80a8d1cdf:i:Content"
+							]
+						}
+					]
+				},
+				{
+					"guid": "59a51cb74c55e26d7f12529db47851a6",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1424,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "59a51cb74c55e26d7f12529db47851a6:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cb1948c7449c2c6e4ec93c92732bf927:o:Array Element"
+							]
+						},
+						{
+							"id": "59a51cb74c55e26d7f12529db47851a6:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"193ce48e4fd18b2afd7abcbaded7afa4:i:InputPin"
+							]
+						}
+					]
+				},
+				{
 					"guid": "a97a851f42874792a093cc9e0550c54e",
 					"class": "K2Node_Event",
 					"title": "Event Construct",
-					"x": 0,
+					"x": 384,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -140,8 +260,8 @@
 							"type": "object:/Script/UMG.VerticalBox",
 							"defaultValue": null,
 							"links": [
-								"c7e249d1496364a0dbb1e088df8efd1b:i:self",
-								"edf830ce4a0a01ce04baa3a80a8d1cdf:i:self"
+								"1afcdfaa4cc19a9814cd61b1f535a251:i:InputPin",
+								"c7e249d1496364a0dbb1e088df8efd1b:i:self"
 							]
 						},
 						{
@@ -155,11 +275,41 @@
 					]
 				},
 				{
+					"guid": "bfee880a4e9398b4250bea9244903733",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1056,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bfee880a4e9398b4250bea9244903733:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "text[]",
+							"defaultValue": null,
+							"links": [
+								"1b82a317466840dfbc625ab93e6caece:o:Descriptions"
+							]
+						},
+						{
+							"id": "bfee880a4e9398b4250bea9244903733:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "text[]",
+							"defaultValue": null,
+							"links": [
+								"cb1948c7449c2c6e4ec93c92732bf927:i:Array"
+							]
+						}
+					]
+				},
+				{
 					"guid": "c2e430f640aebc28fbfcc09c953d69f6",
 					"class": "K2Node_VariableGet",
 					"title": "Get ClueTitle",
-					"x": 420,
-					"y": -100,
+					"x": 400,
+					"y": 80,
 					"comment": null,
 					"pins": [
 						{
@@ -186,8 +336,8 @@
 					"guid": "c41f5bf34a3a2897f285b2b3ffe0865f",
 					"class": "K2Node_CallFunction",
 					"title": "SetText (Text)",
-					"x": 2000,
-					"y": 0,
+					"x": 2256,
+					"y": -16,
 					"comment": null,
 					"pins": [
 						{
@@ -227,7 +377,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"cb1948c7449c2c6e4ec93c92732bf927:o:Array Element"
+								"193ce48e4fd18b2afd7abcbaded7afa4:o:OutputPin"
 							]
 						}
 					]
@@ -237,7 +387,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "SetText (Text)",
 					"x": 650,
-					"y": 0,
+					"y": -16,
 					"comment": null,
 					"pins": [
 						{
@@ -287,7 +437,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "Clear Children",
 					"x": 930,
-					"y": 0,
+					"y": -16,
 					"comment": null,
 					"pins": [
 						{
@@ -347,7 +497,7 @@
 							"type": "text[]",
 							"defaultValue": null,
 							"links": [
-								"1b82a317466840dfbc625ab93e6caece:o:Descriptions"
+								"bfee880a4e9398b4250bea9244903733:o:OutputPin"
 							]
 						},
 						{
@@ -367,7 +517,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"c41f5bf34a3a2897f285b2b3ffe0865f:i:InText"
+								"59a51cb74c55e26d7f12529db47851a6:i:InputPin"
 							]
 						},
 						{
@@ -432,7 +582,7 @@
 							"defaultValue": null,
 							"links": [
 								"26b0ef4a4584865cb7ed248b5b1af965:i:self",
-								"edf830ce4a0a01ce04baa3a80a8d1cdf:i:Content"
+								"4a50fbcc41c66350730bdc9eb087b06d:i:InputPin"
 							]
 						},
 						{
@@ -450,7 +600,7 @@
 					"class": "K2Node_VariableGet",
 					"title": "Get Entry",
 					"x": 0,
-					"y": 180,
+					"y": 167,
 					"comment": null,
 					"pins": [
 						{
@@ -477,8 +627,8 @@
 					"guid": "edf830ce4a0a01ce04baa3a80a8d1cdf",
 					"class": "K2Node_CallFunction",
 					"title": "Add Child",
-					"x": 2300,
-					"y": 0,
+					"x": 2556,
+					"y": -16,
 					"comment": null,
 					"pins": [
 						{
@@ -506,7 +656,7 @@
 							"type": "object:/Script/UMG.PanelWidget",
 							"defaultValue": null,
 							"links": [
-								"a9d3203f448446f13fee7a9115f092df:o:ClueDescriptions"
+								"1afcdfaa4cc19a9814cd61b1f535a251:o:OutputPin"
 							]
 						},
 						{
@@ -516,7 +666,7 @@
 							"type": "object:/Script/UMG.Widget",
 							"defaultValue": null,
 							"links": [
-								"d8936dea47c951cc4b1f19a0aa8afeea:o:ReturnValue"
+								"4a50fbcc41c66350730bdc9eb087b06d:o:OutputPin"
 							]
 						},
 						{
