@@ -209,4 +209,17 @@ public:
 	/** Temporary states for results */
 	TMap<const FString, FGitState> States;
 };
+
+/** Save the editor-only description of Git's Working/Staged pseudo-changelists. */
+class FGitEditChangelistWorker : public IGitSourceControlWorker
+{
+public:
+	virtual ~FGitEditChangelistWorker() {}
+	virtual FName GetName() const override;
+	virtual bool Execute(FGitSourceControlCommand& InCommand) override;
+	virtual bool UpdateStates() const override;
+private:
+	FGitSourceControlChangelist Changelist;
+	FString Description;
+};
 #endif

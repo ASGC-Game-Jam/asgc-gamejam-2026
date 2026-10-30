@@ -12,6 +12,7 @@
 #include "GitSourceControlModule.h"
 #include "GitSourceControlCommand.h"
 #include "GitSourceControlUtils.h"
+#include "GitSourceControlChangelistState.h"
 #include "SourceControlHelpers.h"
 #include "Logging/MessageLog.h"
 #include "Misc/MessageDialog.h"
@@ -200,6 +201,11 @@ bool FGitCheckInWorker::Execute(FGitSourceControlCommand& InCommand)
 			// If no files were committed, this is false, so we treat it as if we never wanted to commit in the first place.
 			bDoCommit = GitSourceControlUtils::RunCommit(InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot, CommitParameters,
 														FilesToCommit, InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
+			if (!bDoCommit)
+			{
+				InCommand.bCommandSuccessful = false;
+				return false; // Never turn a failed submission into a successful push-only operation.
+			}
 		}
 
 		// If we commit, we can push up the deleted state to gone
@@ -837,6 +843,29 @@ bool FGitResolveWorker::UpdateStates() const
 FName FGitMoveToChangelistWorker::GetName() const
 {
 	return "MoveToChangelist";
+}
+
+FName FGitEditChangelistWorker::GetName() const
+{
+	return "EditChangelist";
+}
+
+bool FGitEditChangelistWorker::Execute(FGitSourceControlCommand& InCommand)
+{
+	Changelist = InCommand.Changelist;
+	if (Changelist != FGitSourceControlChangelist::WorkingChangelist && Changelist != FGitSourceControlChangelist::StagedChangelist)
+	{
+		InCommand.ResultInfo.ErrorMessages.Add(TEXT("Only Working and Staged changelists are supported."));
+		return false;
+	}
+	Description = StaticCastSharedRef<FEditChangelist>(InCommand.Operation)->GetDescription().ToString();
+	return true;
+}
+
+bool FGitEditChangelistWorker::UpdateStates() const
+{
+	FGitSourceControlModule::Get().GetProvider().GetStateInternal(Changelist)->Description = Description;
+	return true;
 }
 
 bool FGitMoveToChangelistWorker::UpdateStates() const

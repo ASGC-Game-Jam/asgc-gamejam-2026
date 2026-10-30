@@ -180,6 +180,10 @@ public:
 	}
 
 	/** Helper function used to update state cache */
+#if ENGINE_MAJOR_VERSION == 5
+	/** Resolve changelist-only Check In; an absent changelist keeps push-only semantics. */
+	bool ResolveCheckInFiles(FSourceControlChangelistPtr InChangelist, TArray<FString>& InOutFiles, FText& OutError);
+#endif
 	TSharedRef<FGitSourceControlState, ESPMode::ThreadSafe> GetStateInternal(const FString& Filename);
 
 #if ENGINE_MAJOR_VERSION == 5	
