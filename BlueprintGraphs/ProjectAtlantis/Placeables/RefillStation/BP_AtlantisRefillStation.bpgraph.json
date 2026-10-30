@@ -4,7 +4,7 @@
 	"package": "/Game/ProjectAtlantis/Placeables/RefillStation/BP_AtlantisRefillStation",
 	"asset": "BP_AtlantisRefillStation",
 	"assetClass": "Blueprint",
-	"parentClass": "Actor",
+	"parentClass": "BP_AtlantisInteractable_C",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
@@ -141,79 +141,6 @@
 		},
 		"components":
 		{
-			"DefaultSceneRoot":
-			{
-				"class": "SceneComponent",
-				"parent": null,
-				"properties":
-				{
-					"AttachParent": null,
-					"AttachSocketName": "None",
-					"RelativeLocation":
-					{
-						"X": 0,
-						"Y": 0,
-						"Z": 0
-					},
-					"RelativeRotation":
-					{
-						"Pitch": 0,
-						"Yaw": 0,
-						"Roll": 0
-					},
-					"RelativeScale3D":
-					{
-						"X": 1,
-						"Y": 1,
-						"Z": 1
-					},
-					"ComponentVelocity":
-					{
-						"X": 0,
-						"Y": 0,
-						"Z": 0
-					},
-					"bAbsoluteLocation": false,
-					"bAbsoluteRotation": false,
-					"bAbsoluteScale": false,
-					"bVisible": true,
-					"bShouldUpdatePhysicsVolume": false,
-					"bHiddenInGame": false,
-					"bBoundsChangeTriggersStreamingDataRebuild": false,
-					"bUseAttachParentBound": false,
-					"bComputeFastLocalBounds": false,
-					"bComputeBoundsOnceForGame": false,
-					"bComputedBoundsOnceForGame": false,
-					"bIsNotRenderAttachmentRoot": false,
-					"bVisualizeComponent": true,
-					"Mobility": "Movable",
-					"DetailMode": "DM_Low",
-					"PrimaryComponentTick":
-					{
-						"TickGroup": "TG_DuringPhysics",
-						"EndTickGroup": "TG_PrePhysics",
-						"bTickEvenWhenPaused": false,
-						"bCanEverTick": false,
-						"bStartWithTickEnabled": true,
-						"bAllowTickOnDedicatedServer": true,
-						"TickInterval": 0
-					},
-					"ComponentTags": [],
-					"AssetUserData": [],
-					"AssetUserDataEditorOnly": [],
-					"UCSSerializationIndex": -1,
-					"bNetAddressable": false,
-					"bReplicateUsingRegisteredSubObjectList": false,
-					"bReplicates": false,
-					"bAutoActivate": false,
-					"bEditableWhenInherited": true,
-					"bCanEverAffectNavigation": false,
-					"bIsEditorOnly": false,
-					"bIsVisualizationComponent": false,
-					"bNeedsUCSSerializationIndexEvaluted": false,
-					"CreationMethod": "Native"
-				}
-			},
 			"RefillStationDummy":
 			{
 				"class": "StaticMeshComponent",
@@ -483,7 +410,7 @@
 					{
 						"Pitch": 0,
 						"Yaw": 0,
-						"Roll": -0
+						"Roll": 0
 					},
 					"RelativeScale3D":
 					{
@@ -542,7 +469,10 @@
 		"defaults":
 		{
 			"RefillStationDummy": null,
+			"StaticMesh": null,
 			"DefaultSceneRoot": null,
+			"Outline Material": "/Game/ProjectAtlantis/MaterialLibrary/Interactable/MI_Interactable_Outline.MI_Interactable_Outline",
+			"ParnetPuzzleGroup": null,
 			"PrimaryActorTick":
 			{
 				"TickGroup": "TG_PrePhysics",
