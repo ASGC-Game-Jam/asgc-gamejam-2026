@@ -23,8 +23,7 @@ public class ProjectAtlantis : ModuleRules
 				"StateTreeModule",
 				"GameplayStateTreeModule", 
 				"GameplayDebugger",
-        "GameplayTags",
-			  "StructUtils"
+        "GameplayTags"
 			});
 
       PrivateDependencyModuleNames.AddRange(new string[] {
