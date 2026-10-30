@@ -2,7 +2,7 @@
 
 Load once:
 exec(open(unreal.Paths.project_dir() + 'Tools/Journal/seed_discovered_clue.py').read())
-Then use seed_clues() or clear_clues(), including in later PIE sessions.
+Then use seed_clues(), seed_grouped_clues(), or clear_clues(), including in later PIE sessions.
 """
 import unreal
 
@@ -30,6 +30,30 @@ def seed_clues():
         if not journal.set_investigation_entry(entry):
             raise RuntimeError('Placeholder entry was rejected: ' + identity)
     unreal.log('Placeholder clues ready. Use seed_clues() to reseed or clear_clues() to clear the journal.')
+
+
+def seed_grouped_clues():
+    """Seed #436 placeholders in two districts and three mystery groups."""
+    journal = _current_journal()
+    for identity, district, mystery, title, status in [
+        ('Story436_A1', 'A', 'One', '[Placeholder] First clue', unreal.JournalInvestigationStatus.INPROGRESS),
+        ('Story436_A2', 'A', 'One', '[Placeholder] Related clue', unreal.JournalInvestigationStatus.INPROGRESS),
+        ('Story436_A3', 'A', 'Two', '[Placeholder] Separate mystery clue', unreal.JournalInvestigationStatus.INPROGRESS),
+        ('Story436_B1', 'B', 'One', '[Placeholder] Other district clue', unreal.JournalInvestigationStatus.INPROGRESS),
+        ('Story436_Hidden', 'Hidden', 'Hidden', 'Hidden placeholder', unreal.JournalInvestigationStatus.UNDISCOVERED),
+    ]:
+        entry = unreal.JournalInvestigationEntry()
+        entry.entry_id = identity
+        entry.title = title
+        entry.descriptions = ['Placeholder content for district and mystery grouping verification.']
+        entry.status = status
+        entry.district_id = 'Story436_District_' + district
+        entry.district_title = '[Placeholder] District ' + district
+        entry.mystery_id = 'Story436_Mystery_' + mystery
+        entry.mystery_title = '[Placeholder] Mystery ' + mystery
+        if not journal.set_investigation_entry(entry):
+            raise RuntimeError('Grouped placeholder was rejected: ' + identity)
+    unreal.log('Grouped placeholders ready. The undiscovered district and mystery must remain hidden.')
 
 
 def clear_clues():
