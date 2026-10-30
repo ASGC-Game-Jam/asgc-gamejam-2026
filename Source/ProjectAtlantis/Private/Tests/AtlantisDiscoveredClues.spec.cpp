@@ -14,6 +14,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Misc/AutomationTest.h"
 #include "UObject/StrongObjectPtr.h"
+#include "UObject/UnrealType.h"
 
 namespace
 {
@@ -25,6 +26,28 @@ namespace
 		Entry.Descriptions = { FText::FromString(TEXT("Placeholder clue content for journal verification.")) };
 		Entry.Status = EJournalInvestigationStatus::Inprogress;
 		return Entry;
+	}
+
+	FJournalInvestigationEntry GroupedPlaceholder(FName Id, FName District, FName Mystery)
+	{
+		FJournalInvestigationEntry Entry = Placeholder(Id);
+		Entry.DistrictId = District;
+		Entry.DistrictTitle = FText::FromString(TEXT("[Placeholder] Equal district heading"));
+		Entry.MysteryId = Mystery;
+		Entry.MysteryTitle = FText::FromString(TEXT("[Placeholder] Equal mystery heading"));
+		return Entry;
+	}
+
+	UPanelWidget* GroupContents(UWidget* Widget)
+	{
+		UUserWidget* Group = Cast<UUserWidget>(Widget);
+		return Group ? Cast<UPanelWidget>(Group->GetWidgetFromName(TEXT("GroupContents"))) : nullptr;
+	}
+
+	FName ViewGroupId(UWidget* Widget)
+	{
+		const FNameProperty* Property = Widget ? FindFProperty<FNameProperty>(Widget->GetClass(), TEXT("GroupId")) : nullptr;
+		return Property ? Property->GetPropertyValue_InContainer(Widget) : NAME_None;
 	}
 
 	struct FDiscoveredClueFixture
@@ -189,5 +212,75 @@ void FAtlantisDiscoveredCluesSpec::Define()
 			TestEqual(TEXT("Current content loaded on reconstruction"), Fixture->List()->GetChildrenCount(), 1);
 		});
 	});
+
+	Describe(TEXT("District and mystery grouping"), [this]()
+	{
+		It(TEXT("should group by district and mystery identities even when headings match"), [this]()
+		{
+			UPanelWidget* List = Fixture->List();
+			if (!List) { return; }
+			for (const FJournalInvestigationEntry& Entry : {
+				GroupedPlaceholder(TEXT("D"), TEXT("DistrictB"), TEXT("MysteryOne")),
+				GroupedPlaceholder(TEXT("C"), TEXT("DistrictA"), TEXT("MysteryTwo")),
+				GroupedPlaceholder(TEXT("B"), TEXT("DistrictA"), TEXT("MysteryOne")),
+				GroupedPlaceholder(TEXT("A"), TEXT("DistrictA"), TEXT("MysteryOne")) })
+			{
+				Fixture->Journal->SetInvestigationEntry(Entry);
+			}
+			if (!TestEqual(TEXT("Equal district titles retain two districts"), List->GetChildrenCount(), 2)) { return; }
+			TestEqual(TEXT("First district identity"), ViewGroupId(List->GetChildAt(0)), FName(TEXT("DistrictA")));
+			TestEqual(TEXT("Second district identity"), ViewGroupId(List->GetChildAt(1)), FName(TEXT("DistrictB")));
+			UPanelWidget* FirstDistrict = GroupContents(List->GetChildAt(0));
+			UPanelWidget* SecondDistrict = GroupContents(List->GetChildAt(1));
+			if (!TestNotNull(TEXT("First district content"), FirstDistrict) || !TestNotNull(TEXT("Second district content"), SecondDistrict)) { return; }
+			if (!TestEqual(TEXT("Equal mystery titles retain two mysteries"), FirstDistrict->GetChildrenCount(), 2)) { return; }
+			TestEqual(TEXT("Other district has its own mystery"), SecondDistrict->GetChildrenCount(), 1);
+			TestEqual(TEXT("First mystery identity"), ViewGroupId(FirstDistrict->GetChildAt(0)), FName(TEXT("MysteryOne")));
+			TestEqual(TEXT("Second mystery identity"), ViewGroupId(FirstDistrict->GetChildAt(1)), FName(TEXT("MysteryTwo")));
+			UPanelWidget* FirstMystery = GroupContents(FirstDistrict->GetChildAt(0));
+			UPanelWidget* SecondMystery = GroupContents(FirstDistrict->GetChildAt(1));
+			UPanelWidget* OtherMystery = GroupContents(SecondDistrict->GetChildAt(0));
+			if (!TestNotNull(TEXT("First mystery content"), FirstMystery) || !TestNotNull(TEXT("Second mystery content"), SecondMystery) || !TestNotNull(TEXT("Other district mystery content"), OtherMystery)) { return; }
+			TestEqual(TEXT("Related clues share one mystery"), FirstMystery->GetChildrenCount(), 2);
+			TestEqual(TEXT("Separate mystery has its own clue"), SecondMystery->GetChildrenCount(), 1);
+			TestEqual(TEXT("Same mystery ID in another district stays separate"), OtherMystery->GetChildrenCount(), 1);
+		});
+
+		It(TEXT("should expose no headings for undiscovered groups and clear visible groups"), [this]()
+		{
+			if (!Fixture->List() || !Fixture->Empty()) { return; }
+			FJournalInvestigationEntry Hidden = GroupedPlaceholder(TEXT("Hidden"), TEXT("HiddenDistrict"), TEXT("HiddenMystery"));
+			Hidden.Status = EJournalInvestigationStatus::Undiscovered;
+			Fixture->Journal->SetInvestigationEntry(Hidden);
+			TestEqual(TEXT("Hidden groups create no headings"), Fixture->List()->GetChildrenCount(), 0);
+			TestTrue(TEXT("Empty state remains visible"), Fixture->Empty()->IsVisible());
+			Fixture->Journal->SetInvestigationEntry(GroupedPlaceholder(TEXT("Visible"), TEXT("VisibleDistrict"), TEXT("VisibleMystery")));
+			TestEqual(TEXT("Only disclosed district appears"), Fixture->List()->GetChildrenCount(), 1);
+			TestEqual(TEXT("Disclosed district identity"), ViewGroupId(Fixture->List()->GetChildAt(0)), FName(TEXT("VisibleDistrict")));
+			Fixture->Journal->ClearInvestigations();
+			TestEqual(TEXT("All group headings cleared"), Fixture->List()->GetChildrenCount(), 0);
+			TestTrue(TEXT("Empty state restored"), Fixture->Empty()->IsVisible());
+		});
+
+		It(TEXT("should keep group ordering deterministic across delivery orders and refreshes"), [this]()
+		{
+			if (!Fixture->List()) { return; }
+			const FJournalInvestigationEntry First = GroupedPlaceholder(TEXT("A"), TEXT("DistrictZ"), TEXT("MysteryZ"));
+			const FJournalInvestigationEntry Second = GroupedPlaceholder(TEXT("B"), TEXT("DistrictA"), TEXT("MysteryA"));
+			Fixture->Journal->SetInvestigationEntry(Second);
+			Fixture->Journal->SetInvestigationEntry(First);
+			if (!TestEqual(TEXT("Two ordered districts"), Fixture->List()->GetChildrenCount(), 2)) { return; }
+			const FName BeforeFirst = ViewGroupId(Fixture->List()->GetChildAt(0));
+			const FName BeforeSecond = ViewGroupId(Fixture->List()->GetChildAt(1));
+			Fixture->Journal->ClearInvestigations();
+			Fixture->Journal->SetInvestigationEntry(First);
+			Fixture->Journal->SetInvestigationEntry(Second);
+			Fixture->Journal->SetInvestigationEntry(First);
+			if (!TestEqual(TEXT("Refresh retains two districts"), Fixture->List()->GetChildrenCount(), 2)) { return; }
+			TestEqual(TEXT("First group independent of delivery order"), ViewGroupId(Fixture->List()->GetChildAt(0)), BeforeFirst);
+			TestEqual(TEXT("Second group independent of delivery order"), ViewGroupId(Fixture->List()->GetChildAt(1)), BeforeSecond);
+		});
+	});
+
 }
 #endif
