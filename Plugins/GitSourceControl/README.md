@@ -3,6 +3,10 @@
 > Project Atlantis adaptation: Check In and push retain LFS locks regardless of
 > **Keep Files Checked Out**. Release locks explicitly after PR merge. The
 > upstream usage text below describes upstream behavior.
+>
+> Reverting selected project Content assets also reverts their matching tracked
+> Keystone `.bpgraph.json` exports, including staged and unstaged deletions.
+> New asset/export files are unstaged and preserved locally, like other new files.
 
 This is a refactor of the [Git LFS 2 plugin by SRombauts](https://github.com/SRombauts/UE4GitPlugin), with lessons learned from production
 that include performance optimizations, new features and workflow improvements.
