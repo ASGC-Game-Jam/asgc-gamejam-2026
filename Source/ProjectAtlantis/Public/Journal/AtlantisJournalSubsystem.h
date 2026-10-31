@@ -53,6 +53,12 @@ struct FJournalInvestigationEntry
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
 	FText MysteryTitle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FName PuzzleId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FText PuzzleTitle;
 };
 
 // @note(Tan): params here are subject to change depending on how investigation data looks like

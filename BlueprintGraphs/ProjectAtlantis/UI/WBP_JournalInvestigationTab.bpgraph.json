@@ -203,6 +203,53 @@
 			"type": "Function",
 			"nodes": [
 				{
+					"guid": "107b44b54c14ed443f163191bd9e3881",
+					"class": "K2Node_CallFunction",
+					"title": "Equal (Byte)",
+					"x": 400,
+					"y": 1050,
+					"comment": null,
+					"pins": [
+						{
+							"id": "107b44b54c14ed443f163191bd9e3881:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "107b44b54c14ed443f163191bd9e3881:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:Kind"
+							]
+						},
+						{
+							"id": "107b44b54c14ed443f163191bd9e3881:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "107b44b54c14ed443f163191bd9e3881:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"79914e7441d8ba8c072c1c91255ea072:i:bPickA",
+								"8aef547346137683058bc3aafffe88da:i:bPickA"
+							]
+						}
+					]
+				},
+				{
 					"guid": "24ca888a4373749db73f22b6d567cbeb",
 					"class": "K2Node_CallFunction",
 					"title": "AddClueRow",
@@ -313,7 +360,7 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"755ec0264871c3048925979cd943a03f:o:MysteryId"
+								"79914e7441d8ba8c072c1c91255ea072:o:ReturnValue"
 							]
 						},
 						{
@@ -323,7 +370,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"755ec0264871c3048925979cd943a03f:o:MysteryTitle"
+								"8aef547346137683058bc3aafffe88da:o:ReturnValue"
 							]
 						},
 						{
@@ -637,7 +684,9 @@
 							"direction": "output",
 							"type": "byte:/Script/ProjectAtlantis.EJournalEntryKind",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"107b44b54c14ed443f163191bd9e3881:i:A"
+							]
 						},
 						{
 							"id": "755ec0264871c3048925979cd943a03f:o:DistrictId",
@@ -667,13 +716,149 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"2b18779e4bcc8f4125e99284400e65b0:i:GroupId",
-								"d7a61ebb4046e11b7ed2ae9e6769fd94:i:A"
+								"79914e7441d8ba8c072c1c91255ea072:i:B"
 							]
 						},
 						{
 							"id": "755ec0264871c3048925979cd943a03f:o:MysteryTitle",
 							"name": "MysteryTitle",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"8aef547346137683058bc3aafffe88da:i:B"
+							]
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:PuzzleId",
+							"name": "PuzzleId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"79914e7441d8ba8c072c1c91255ea072:i:A"
+							]
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:PuzzleTitle",
+							"name": "PuzzleTitle",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"8aef547346137683058bc3aafffe88da:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "79914e7441d8ba8c072c1c91255ea072",
+					"class": "K2Node_CallFunction",
+					"title": "Select Name",
+					"x": 700,
+					"y": 1000,
+					"comment": "Use the identity and public heading owned by this entry's section",
+					"pins": [
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:PuzzleId"
+							]
+						},
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:MysteryId"
+							]
+						},
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"107b44b54c14ed443f163191bd9e3881:o:ReturnValue"
+							]
+						},
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:i:GroupId",
+								"d7a61ebb4046e11b7ed2ae9e6769fd94:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8aef547346137683058bc3aafffe88da",
+					"class": "K2Node_CallFunction",
+					"title": "Select Text",
+					"x": 700,
+					"y": 1230,
+					"comment": "Use the identity and public heading owned by this entry's section",
+					"pins": [
+						{
+							"id": "8aef547346137683058bc3aafffe88da:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "8aef547346137683058bc3aafffe88da:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:PuzzleTitle"
+							]
+						},
+						{
+							"id": "8aef547346137683058bc3aafffe88da:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:MysteryTitle"
+							]
+						},
+						{
+							"id": "8aef547346137683058bc3aafffe88da:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"107b44b54c14ed443f163191bd9e3881:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8aef547346137683058bc3aafffe88da:o:ReturnValue",
+							"name": "ReturnValue",
 							"direction": "output",
 							"type": "text",
 							"defaultValue": null,
@@ -942,7 +1127,7 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"755ec0264871c3048925979cd943a03f:o:MysteryId"
+								"79914e7441d8ba8c072c1c91255ea072:o:ReturnValue"
 							]
 						},
 						{
@@ -2672,6 +2857,22 @@
 						{
 							"id": "e18853b94095afac2d3105864328deb3:o:MysteryTitle",
 							"name": "MysteryTitle",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e18853b94095afac2d3105864328deb3:o:PuzzleId",
+							"name": "PuzzleId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e18853b94095afac2d3105864328deb3:o:PuzzleTitle",
+							"name": "PuzzleTitle",
 							"direction": "output",
 							"type": "text",
 							"defaultValue": null,
