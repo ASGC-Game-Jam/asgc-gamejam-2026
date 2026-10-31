@@ -56,7 +56,7 @@ namespace
 			if (Shell)
 			{
 				Slate = Shell->TakeWidget();
-				Tab = Cast<UUserWidget>(Shell->GetWidgetFromName(TEXT("WBP_JournalInvestigationTab")));
+				Tab = Cast<UUserWidget>(Shell->GetWidgetFromName(TEXT("InvestigationTab")));
 			}
 		}
 
