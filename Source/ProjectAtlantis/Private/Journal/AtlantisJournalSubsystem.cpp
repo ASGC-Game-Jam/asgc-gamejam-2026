@@ -155,7 +155,7 @@ void UAtlantisJournalSubsystem::ClearAll()
 bool UAtlantisJournalSubsystem::SetInvestigationEntry(const FJournalInvestigationEntry& Entry)
 {
 	if (Entry.EntryId.IsNone() || Entry.Title.IsEmptyOrWhitespace()
-		|| Entry.Status > EJournalInvestigationStatus::Complete)
+		|| Entry.Status > EJournalInvestigationStatus::Complete || Entry.Kind > EJournalEntryKind::PuzzleObservation)
 	{
 		return false;
 	}

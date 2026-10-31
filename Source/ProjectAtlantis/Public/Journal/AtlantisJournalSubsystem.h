@@ -14,6 +14,13 @@ enum class EJournalInvestigationStatus : uint8
 	Complete
 };
 
+UENUM(BlueprintType)
+enum class EJournalEntryKind : uint8
+{
+	Clue,
+	PuzzleObservation
+};
+
 /** Owner-supplied journal content, stored once in the existing journal. */
 USTRUCT(BlueprintType)
 struct FJournalInvestigationEntry
@@ -31,6 +38,9 @@ struct FJournalInvestigationEntry
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
 	FName EntryId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	EJournalEntryKind Kind = EJournalEntryKind::Clue;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
 	FName DistrictId;

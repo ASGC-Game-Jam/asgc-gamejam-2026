@@ -632,6 +632,14 @@
 							"links": []
 						},
 						{
+							"id": "755ec0264871c3048925979cd943a03f:o:Kind",
+							"name": "Kind",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalEntryKind",
+							"defaultValue": null,
+							"links": []
+						},
+						{
 							"id": "755ec0264871c3048925979cd943a03f:o:DistrictId",
 							"name": "DistrictId",
 							"direction": "output",
@@ -1732,6 +1740,52 @@
 					]
 				},
 				{
+					"guid": "2a700d53453d866bbf4f9796d1e010e3",
+					"class": "K2Node_CallFunction",
+					"title": "Equal (Byte)",
+					"x": -1100,
+					"y": -650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2a700d53453d866bbf4f9796d1e010e3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "2a700d53453d866bbf4f9796d1e010e3:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": null,
+							"links": [
+								"5db72bf54da023c637363f9cb03ed2de:o:Section"
+							]
+						},
+						{
+							"id": "2a700d53453d866bbf4f9796d1e010e3:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "2a700d53453d866bbf4f9796d1e010e3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"fc33cf6548405dabaa1b99959b3d4fde:i:Condition"
+							]
+						}
+					]
+				},
+				{
 					"guid": "2b70b3744d9881581506878c778f710f",
 					"class": "K2Node_VariableGet",
 					"title": "Get ClueList",
@@ -1775,7 +1829,8 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"7214de96433757d478870bbd09a76066:o:then"
+								"ab62037647270a342d89f7a65a46707c:o:then",
+								"fc33cf6548405dabaa1b99959b3d4fde:o:else"
 							]
 						},
 						{
@@ -1955,6 +2010,34 @@
 					]
 				},
 				{
+					"guid": "5db72bf54da023c637363f9cb03ed2de",
+					"class": "K2Node_VariableGet",
+					"title": "Get Section",
+					"x": -1350,
+					"y": -650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5db72bf54da023c637363f9cb03ed2de:o:Section",
+							"name": "Section",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalEntryKind",
+							"defaultValue": null,
+							"links": [
+								"2a700d53453d866bbf4f9796d1e010e3:i:A"
+							]
+						},
+						{
+							"id": "5db72bf54da023c637363f9cb03ed2de:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "6606976644a70d3ba73a4987066312ef",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
@@ -1969,7 +2052,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"f94fdade45e25688b04f508930479c29:o:LoopBody"
+								"d49581c94837fab2d0f63da5017f1897:o:then"
 							]
 						},
 						{
@@ -2003,6 +2086,54 @@
 					]
 				},
 				{
+					"guid": "69770c5e4ff54348e6062e9baf370474",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": -550,
+					"y": -850,
+					"comment": null,
+					"pins": [
+						{
+							"id": "69770c5e4ff54348e6062e9baf370474:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fc33cf6548405dabaa1b99959b3d4fde:o:then"
+							]
+						},
+						{
+							"id": "69770c5e4ff54348e6062e9baf370474:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ab62037647270a342d89f7a65a46707c:i:execute"
+							]
+						},
+						{
+							"id": "69770c5e4ff54348e6062e9baf370474:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"c34937824efd303a19fecc9fb6ba7ead:o:CluesHeading"
+							]
+						},
+						{
+							"id": "69770c5e4ff54348e6062e9baf370474:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Learned puzzle observations",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "7214de96433757d478870bbd09a76066",
 					"class": "K2Node_FunctionEntry",
 					"title": "RefreshClues",
@@ -2017,7 +2148,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"3a2c909e4caef582b4e321a2f042860a:i:execute"
+								"fc33cf6548405dabaa1b99959b3d4fde:i:execute"
 							]
 						}
 					]
@@ -2182,6 +2313,54 @@
 					]
 				},
 				{
+					"guid": "ab62037647270a342d89f7a65a46707c",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": -250,
+					"y": -850,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ab62037647270a342d89f7a65a46707c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"69770c5e4ff54348e6062e9baf370474:o:then"
+							]
+						},
+						{
+							"id": "ab62037647270a342d89f7a65a46707c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3a2c909e4caef582b4e321a2f042860a:i:execute"
+							]
+						},
+						{
+							"id": "ab62037647270a342d89f7a65a46707c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"edf8ea7d483d366647e2078716a028e1:o:EmptyState"
+							]
+						},
+						{
+							"id": "ab62037647270a342d89f7a65a46707c:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "No puzzle observations discovered yet.",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "afce408b491738bc186270be7b13a007",
 					"class": "K2Node_FunctionResult",
 					"title": "Return Node",
@@ -2248,6 +2427,130 @@
 							"links": [
 								"58de43d04443742bcb76dc96600274f9:i:execute"
 							]
+						}
+					]
+				},
+				{
+					"guid": "c34937824efd303a19fecc9fb6ba7ead",
+					"class": "K2Node_VariableGet",
+					"title": "Get CluesHeading",
+					"x": -650,
+					"y": -550,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c34937824efd303a19fecc9fb6ba7ead:o:CluesHeading",
+							"name": "CluesHeading",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"69770c5e4ff54348e6062e9baf370474:i:self"
+							]
+						},
+						{
+							"id": "c34937824efd303a19fecc9fb6ba7ead:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c731c95a48ec22a4240839a836be3da6",
+					"class": "K2Node_CallFunction",
+					"title": "Equal (Byte)",
+					"x": 1314,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c731c95a48ec22a4240839a836be3da6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "c731c95a48ec22a4240839a836be3da6:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": null,
+							"links": [
+								"e18853b94095afac2d3105864328deb3:o:Kind"
+							]
+						},
+						{
+							"id": "c731c95a48ec22a4240839a836be3da6:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": null,
+							"links": [
+								"fb1d041d4649efcabeafc4b0a18307b8:o:Section"
+							]
+						},
+						{
+							"id": "c731c95a48ec22a4240839a836be3da6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d49581c94837fab2d0f63da5017f1897:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d49581c94837fab2d0f63da5017f1897",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1634,
+					"y": 0,
+					"comment": "Only the owner-disclosed content for this journal section",
+					"pins": [
+						{
+							"id": "d49581c94837fab2d0f63da5017f1897:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f94fdade45e25688b04f508930479c29:o:LoopBody"
+							]
+						},
+						{
+							"id": "d49581c94837fab2d0f63da5017f1897:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c731c95a48ec22a4240839a836be3da6:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d49581c94837fab2d0f63da5017f1897:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6606976644a70d3ba73a4987066312ef:i:execute"
+							]
+						},
+						{
+							"id": "d49581c94837fab2d0f63da5017f1897:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -2333,6 +2636,16 @@
 							"links": []
 						},
 						{
+							"id": "e18853b94095afac2d3105864328deb3:o:Kind",
+							"name": "Kind",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalEntryKind",
+							"defaultValue": null,
+							"links": [
+								"c731c95a48ec22a4240839a836be3da6:i:A"
+							]
+						},
+						{
 							"id": "e18853b94095afac2d3105864328deb3:o:DistrictId",
 							"name": "DistrictId",
 							"direction": "output",
@@ -2387,6 +2700,34 @@
 					]
 				},
 				{
+					"guid": "edf8ea7d483d366647e2078716a028e1",
+					"class": "K2Node_VariableGet",
+					"title": "Get EmptyState",
+					"x": -350,
+					"y": -550,
+					"comment": null,
+					"pins": [
+						{
+							"id": "edf8ea7d483d366647e2078716a028e1:o:EmptyState",
+							"name": "EmptyState",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"ab62037647270a342d89f7a65a46707c:i:self"
+							]
+						},
+						{
+							"id": "edf8ea7d483d366647e2078716a028e1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "f94fdade45e25688b04f508930479c29",
 					"class": "K2Node_MacroInstance",
 					"title": "For Each Loop",
@@ -2421,7 +2762,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"6606976644a70d3ba73a4987066312ef:i:execute"
+								"d49581c94837fab2d0f63da5017f1897:i:execute"
 							]
 						},
 						{
@@ -2450,6 +2791,84 @@
 							"defaultValue": null,
 							"links": [
 								"b94b8d2a4f6dde08fabd4885dff8a887:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fb1d041d4649efcabeafc4b0a18307b8",
+					"class": "K2Node_VariableGet",
+					"title": "Get Section",
+					"x": 1104,
+					"y": 350,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fb1d041d4649efcabeafc4b0a18307b8:o:Section",
+							"name": "Section",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalEntryKind",
+							"defaultValue": null,
+							"links": [
+								"c731c95a48ec22a4240839a836be3da6:i:B"
+							]
+						},
+						{
+							"id": "fb1d041d4649efcabeafc4b0a18307b8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "fc33cf6548405dabaa1b99959b3d4fde",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": -800,
+					"y": -850,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fc33cf6548405dabaa1b99959b3d4fde:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7214de96433757d478870bbd09a76066:o:then"
+							]
+						},
+						{
+							"id": "fc33cf6548405dabaa1b99959b3d4fde:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2a700d53453d866bbf4f9796d1e010e3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fc33cf6548405dabaa1b99959b3d4fde:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"69770c5e4ff54348e6062e9baf370474:i:execute"
+							]
+						},
+						{
+							"id": "fc33cf6548405dabaa1b99959b3d4fde:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3a2c909e4caef582b4e321a2f042860a:i:execute"
 							]
 						}
 					]
@@ -3305,6 +3724,13 @@
 	{
 		"variables":
 		{
+			"Section":
+			{
+				"type": "byte:/Script/ProjectAtlantis.EJournalEntryKind",
+				"category": "Journal",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
 		},
 		"components":
 		{
@@ -3312,7 +3738,9 @@
 		"defaults":
 		{
 			"EmptyState": null,
+			"CluesHeading": null,
 			"ClueList": null,
+			"Section": "Clue",
 			"ColorAndOpacity":
 			{
 				"R": 1,
