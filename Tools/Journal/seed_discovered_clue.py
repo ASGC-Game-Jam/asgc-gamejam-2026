@@ -2,7 +2,7 @@
 
 Load once:
 exec(open(unreal.Paths.project_dir() + 'Tools/Journal/seed_discovered_clue.py').read())
-Then use seed_clues(), seed_grouped_clues(), or clear_clues(), including in later PIE sessions.
+Then use seed_clues(), seed_grouped_clues(), revise_clue(), or clear_clues().
 """
 import unreal
 
@@ -54,6 +54,20 @@ def seed_grouped_clues():
         if not journal.set_investigation_entry(entry):
             raise RuntimeError('Grouped placeholder was rejected: ' + identity)
     unreal.log('Grouped placeholders ready. The undiscovered district and mystery must remain hidden.')
+
+
+def revise_clue(entry_id='Story435_Placeholder'):
+    """Replace a seeded clue's current meaning without changing its identity or group."""
+    journal = _current_journal()
+    entry = next((item for item in journal.get_investigation_entries()
+                  if item.entry_id == unreal.Name(entry_id)), None)
+    if entry is None:
+        raise RuntimeError('Seed the placeholder clue before revising it: ' + entry_id)
+    entry.title = '[Placeholder] Revised clue'
+    entry.descriptions = ['Revised placeholder interpretation; the previous text is replaced.']
+    if not journal.set_investigation_entry(entry):
+        raise RuntimeError('Revised clue was rejected: ' + entry_id)
+    unreal.log('Clue revised in place. Reopen the journal or inspect it live to review the replacement.')
 
 
 def clear_clues():
