@@ -95,3 +95,28 @@ def seed_puzzles():
         if not journal.set_investigation_entry(entry):
             raise RuntimeError('Puzzle placeholder was rejected: ' + identity)
     unreal.log('Puzzle placeholders ready in the existing Puzzle journal section.')
+
+
+def seed_grouped_puzzles():
+    """Seed #439 observations in two districts and three distinct puzzle groups."""
+    journal = _current_journal()
+    for identity, district, puzzle, status in [
+        ('Story439_A1', 'A', 'One', unreal.JournalInvestigationStatus.INPROGRESS),
+        ('Story439_A2', 'A', 'One', unreal.JournalInvestigationStatus.INPROGRESS),
+        ('Story439_A3', 'A', 'Two', unreal.JournalInvestigationStatus.INPROGRESS),
+        ('Story439_B1', 'B', 'One', unreal.JournalInvestigationStatus.INPROGRESS),
+        ('Story439_Hidden', 'Hidden', 'Hidden', unreal.JournalInvestigationStatus.UNDISCOVERED),
+    ]:
+        entry = unreal.JournalInvestigationEntry()
+        entry.entry_id = identity
+        entry.kind = unreal.JournalEntryKind.PUZZLE_OBSERVATION
+        entry.title = '[Placeholder] Puzzle observation ' + identity[-2:]
+        entry.descriptions = ['A learned observation; no answer or solving logic.']
+        entry.status = status
+        entry.district_id = 'Story436_District_' + district
+        entry.district_title = '[Placeholder] District ' + district
+        entry.puzzle_id = 'Story439_Puzzle_' + puzzle
+        entry.puzzle_title = '[Placeholder] Puzzle ' + puzzle
+        if not journal.set_investigation_entry(entry):
+            raise RuntimeError('Grouped puzzle placeholder was rejected: ' + identity)
+    unreal.log('Grouped puzzle observations ready; hidden groups must remain absent.')
