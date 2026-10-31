@@ -2,7 +2,7 @@
 
 Load once:
 exec(open(unreal.Paths.project_dir() + 'Tools/Journal/seed_discovered_clue.py').read())
-Then use seed_clues(), seed_grouped_clues(), revise_clue(), or clear_clues().
+Then use seed_clues(), seed_grouped_clues(), revise_clue(), seed_puzzles(), or clear_clues().
 """
 import unreal
 
@@ -77,3 +77,21 @@ def clear_clues():
 
 
 seed_clues()
+
+
+def seed_puzzles():
+    """Seed #438 learned and undiscovered observations, without puzzle rules or answers."""
+    journal = _current_journal()
+    for identity, title, status in [
+        ('Story438_Learned', '[Placeholder] Learned puzzle observation', unreal.JournalInvestigationStatus.INPROGRESS),
+        ('Story438_Hidden', '[Placeholder] Hidden puzzle observation', unreal.JournalInvestigationStatus.UNDISCOVERED),
+    ]:
+        entry = unreal.JournalInvestigationEntry()
+        entry.entry_id = identity
+        entry.kind = unreal.JournalEntryKind.PUZZLE_OBSERVATION
+        entry.title = title
+        entry.descriptions = ['Placeholder observation only; no solution is supplied.']
+        entry.status = status
+        if not journal.set_investigation_entry(entry):
+            raise RuntimeError('Puzzle placeholder was rejected: ' + identity)
+    unreal.log('Puzzle placeholders ready in the existing Puzzle journal section.')
