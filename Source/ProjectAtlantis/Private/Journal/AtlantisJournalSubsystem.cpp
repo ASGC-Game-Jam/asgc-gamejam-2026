@@ -92,7 +92,8 @@ void UAtlantisJournalSubsystem::UpdateInvestigationDescriptions(const FString& T
     }
     else
     {
-        // update description and status
+        // Replace the owner's current snapshot instead of retaining outdated descriptions.
+        Entry->Descriptions.Reset();
         for (int32 Index = 0; Index < Descriptions.Num(); ++Index)
         {
             Entry->Descriptions.Add(FText::FromString(Descriptions[Index]));
