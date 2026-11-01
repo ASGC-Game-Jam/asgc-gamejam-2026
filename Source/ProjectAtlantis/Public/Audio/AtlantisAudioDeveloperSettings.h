@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DeveloperSettings.h"
+#include "GameplayTagContainer.h"
 
 #include "AtlantisAudioDeveloperSettings.generated.h"
 
@@ -12,6 +13,7 @@
  */
 
  class UMetaSoundSource;
+ struct FInstancedStruct;
 
 UCLASS(config=Game, DefaultConfig)
 class PROJECTATLANTIS_API UAtlantisAudioDeveloperSettings : public UDeveloperSettings
@@ -28,12 +30,22 @@ public:
 
 	static bool DetermineIfMusicSubsystemEnabled();
 	static TObjectPtr<UMetaSoundSource> GetMusicMetaSoundSource(); 
+	
+	/** Checks Tag is registered and Payload holds the registered struct type. Fails loudly on a breach. Returns true if valid. */
+	static bool ValidatePayload(FGameplayTag Tag, const FInstancedStruct& Payload);
 
 protected:
+
+	friend struct FAtlantisAudioValidationTestAccess;
+	
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
 	bool bEnableMusicManagementSubsystem = true;
 
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
 	TSoftObjectPtr<UMetaSoundSource> MusicMetaSoundSource;
+
+	/** Maps each audio fact tag to the struct type its payload must use. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Validation")
+	TMap<FGameplayTag, TSoftObjectPtr<const UScriptStruct>> PayloadRegistry;
 
 };
