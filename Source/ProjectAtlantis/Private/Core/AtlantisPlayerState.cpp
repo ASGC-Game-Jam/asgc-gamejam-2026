@@ -17,6 +17,38 @@ void AAtlantisPlayerState::BeginPlay()
 	Super::BeginPlay();
 	OnPawnSet.AddDynamic(this, &AAtlantisPlayerState::HandlePawnSet);
 	RefreshOxygenConsumption();
+
+	if (!HasAuthority())
+	{
+		return;
+	}
+
+	if (UGameInstance* GameInstance = GetGameInstance())
+	{
+		GameplayAnalyticsSubsystem = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>();
+		if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
+		{
+			Analytics->RegisterMetric(TEXT("Ballast:Duration:Descend"), EGameplayAnalyticsAggregation::Sum);
+			Analytics->RegisterMetric(TEXT("Ballast:Duration:Wander"), EGameplayAnalyticsAggregation::Sum);
+			Analytics->RegisterMetric(TEXT("Ballast:Duration:Ascend"), EGameplayAnalyticsAggregation::Sum);
+			ActiveGameplayTickHandle = Analytics->GetOnActiveGameplayTick().AddUObject(
+				this, &AAtlantisPlayerState::HandleActiveGameplayTick);
+		}
+	}
+}
+
+void AAtlantisPlayerState::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
+	{
+		if (ActiveGameplayTickHandle.IsValid())
+		{
+			Analytics->GetOnActiveGameplayTick().Remove(ActiveGameplayTickHandle);
+			ActiveGameplayTickHandle.Reset();
+		}
+	}
+	GameplayAnalyticsSubsystem.Reset();
+	Super::EndPlay(EndPlayReason);
 }
 
 AAtlantisPlayerState::AAtlantisPlayerState()
@@ -32,6 +64,35 @@ AAtlantisPlayerState::AAtlantisPlayerState()
 void AAtlantisPlayerState::HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn)
 {
 	RefreshOxygenConsumption();
+}
+
+void AAtlantisPlayerState::HandleActiveGameplayTick(UWorld* World, const double ActiveDeltaSeconds)
+{
+	if (!HasAuthority() || World != GetWorld() || ActiveDeltaSeconds <= 0.0 || !FMath::IsFinite(ActiveDeltaSeconds))
+	{
+		return;
+	}
+
+	const TCHAR* MetricId = nullptr;
+	switch (BallastState)
+	{
+	case EAtlantisBallastState::Descend:
+		MetricId = TEXT("Ballast:Duration:Descend");
+		break;
+	case EAtlantisBallastState::Wander:
+		MetricId = TEXT("Ballast:Duration:Wander");
+		break;
+	case EAtlantisBallastState::Ascend:
+		MetricId = TEXT("Ballast:Duration:Ascend");
+		break;
+	default:
+		return;
+	}
+
+	if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
+	{
+		Analytics->RecordValue(MetricId, static_cast<float>(ActiveDeltaSeconds));
+	}
 }
 
 void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -100,9 +161,21 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 				const TCHAR* MetricId = nullptr;
 				switch (NewBallastState)
 				{
-				case EAtlantisBallastState::Descend: MetricId = TEXT("Ballast:Entered:Descend"); break;
-				case EAtlantisBallastState::Wander: MetricId = TEXT("Ballast:Entered:Wander"); break;
-				case EAtlantisBallastState::Ascend: MetricId = TEXT("Ballast:Entered:Ascend"); break;
+				case EAtlantisBallastState::Descend:
+				{
+					MetricId = TEXT("Ballast:Entered:Descend");
+					break;
+				}
+				case EAtlantisBallastState::Wander:
+				{
+					MetricId = TEXT("Ballast:Entered:Wander");
+					break;
+				}
+				case EAtlantisBallastState::Ascend:
+				{
+					MetricId = TEXT("Ballast:Entered:Ascend");
+					break;
+				}
 				default: break;
 				}
 				if (MetricId)

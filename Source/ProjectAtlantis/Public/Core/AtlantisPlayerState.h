@@ -8,6 +8,8 @@
 
 #include "AtlantisPlayerState.generated.h"
 
+class UGameplayAnalyticsSubsystem;
+
 UENUM(BlueprintType)
 enum class EAtlantisBallastState : uint8
 {
@@ -46,6 +48,7 @@ class PROJECTATLANTIS_API AAtlantisPlayerState : public APlayerState
 
 public:
 	virtual void BeginPlay() override;
+	virtual void EndPlay(EEndPlayReason::Type EndPlayReason) override;
 	
 	AAtlantisPlayerState();
 
@@ -132,6 +135,7 @@ private:
 	
 	UFUNCTION()
 	void HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn);
+	void HandleActiveGameplayTick(UWorld* World, double ActiveDeltaSeconds);
 
 	// Ballast reservations, not consumption rates; tune in Blueprint class defaults.
  
@@ -152,4 +156,7 @@ private:
 	
 	/** True while the player breathes underwater */
 	bool IsUsingOxygen() const;
+
+	TWeakObjectPtr<UGameplayAnalyticsSubsystem> GameplayAnalyticsSubsystem;
+	FDelegateHandle ActiveGameplayTickHandle;
 };
