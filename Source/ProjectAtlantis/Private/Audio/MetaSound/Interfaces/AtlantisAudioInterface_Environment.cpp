@@ -48,7 +48,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisMaterialType", "MaterialType"),
-							LOCTEXT("AtlantisMaterialType_Description", "Surface under the player, from the physical material line trace. Matches Project Settings > Physics > Physical Surface (0 = Default). Changes when the surface changes, not every frame."),
+							LOCTEXT("AtlantisMaterialType_Description", "Surface under the player, from the physical material line trace. Matches Project Settings > Engine > Physics > Physical Surface (0 = Default). Changes when the surface changes, not every frame."),
 							GetMetasoundDataTypeName<int32>(),
 							MaterialType.Resolve(),
 							FText(),
