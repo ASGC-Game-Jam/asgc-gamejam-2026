@@ -949,6 +949,43 @@ bool AppendBlueprintGraphFiles(const FString& InPathToGitBinary, const FString& 
 	return true;
 }
 
+bool RevertFiles(const FString& InPathToGitBinary, const FString& InRepositoryRoot,
+	const FString& InProjectDirectory, TArray<FString>& InOutFiles, TArray<FString>& OutResults, TArray<FString>& OutErrorMessages)
+{
+	if (InOutFiles.IsEmpty())
+	{
+		OutErrorMessages.Add(TEXT("RevertFiles requires an explicit selection."));
+		return false;
+	}
+	// Use the same asset/export mapping as Check In, including deleted exports.
+	// Return the expanded selection so the caller refreshes both file states.
+	if (!AppendBlueprintGraphFiles(InPathToGitBinary, InRepositoryRoot, InProjectDirectory, InOutFiles, OutErrorMessages))
+	{
+		return false;
+	}
+	TArray<FString> TrackedFiles;
+	TArray<FString> AddedFiles;
+	for (const FString& File : RelativeFilenames(InOutFiles, InRepositoryRoot))
+	{
+		TArray<FString> Results;
+		// HEAD, rather than the index or provider cache, accounts for staged deletions.
+		if (!RunCommand(TEXT("ls-tree"), InPathToGitBinary, InRepositoryRoot,
+			{TEXT("--name-only"), TEXT("HEAD"), TEXT("--")}, {File}, Results, OutErrorMessages))
+		{
+			return false;
+		}
+		(Results.IsEmpty() ? AddedFiles : TrackedFiles).AddUnique(File);
+	}
+	if (!TrackedFiles.IsEmpty() && !RunCommand(TEXT("restore"), InPathToGitBinary, InRepositoryRoot,
+		{TEXT("--source=HEAD"), TEXT("--staged"), TEXT("--worktree"), TEXT("--")}, TrackedFiles, OutResults, OutErrorMessages))
+	{
+		return false;
+	}
+	// Newly added files have no HEAD content to restore. Unstage them without deleting local work.
+	return AddedFiles.IsEmpty() || RunCommand(TEXT("reset"), InPathToGitBinary, InRepositoryRoot,
+		{TEXT("HEAD"), TEXT("--")}, AddedFiles, OutResults, OutErrorMessages);
+}
+
 // Run a Git "commit" command by batches
 bool RunCommit(const FString& InPathToGitBinary, const FString& InRepositoryRoot, const TArray<FString>& InParameters, const TArray<FString>& InFiles,
 			   TArray<FString>& OutResults, TArray<FString>& OutErrorMessages)
