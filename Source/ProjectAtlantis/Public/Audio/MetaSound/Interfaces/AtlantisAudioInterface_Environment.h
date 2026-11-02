@@ -19,7 +19,6 @@ namespace ProjectAtlantisAudio
 		// The actual version data.
 		extern const FMetasoundFrontendVersion FrontendVersion;
 
-		// --- Inputs ---
 		namespace Inputs
 		{
 			extern const FLazyName RoomType;
