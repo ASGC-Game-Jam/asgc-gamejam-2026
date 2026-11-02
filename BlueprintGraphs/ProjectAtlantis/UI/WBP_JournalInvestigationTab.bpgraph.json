@@ -203,11 +203,88 @@
 			"type": "Function",
 			"nodes": [
 				{
+					"guid": "107b44b54c14ed443f163191bd9e3881",
+					"class": "K2Node_CallFunction",
+					"title": "Equal (Byte)",
+					"x": 560,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "107b44b54c14ed443f163191bd9e3881:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "107b44b54c14ed443f163191bd9e3881:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:Kind"
+							]
+						},
+						{
+							"id": "107b44b54c14ed443f163191bd9e3881:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "byte",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "107b44b54c14ed443f163191bd9e3881:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"79914e7441d8ba8c072c1c91255ea072:i:bPickA",
+								"8aef547346137683058bc3aafffe88da:i:bPickA"
+							]
+						}
+					]
+				},
+				{
+					"guid": "175891544c53c2bd39028ba73cc3aa39",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3024,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "175891544c53c2bd39028ba73cc3aa39:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"8aef547346137683058bc3aafffe88da:o:ReturnValue"
+							]
+						},
+						{
+							"id": "175891544c53c2bd39028ba73cc3aa39:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:i:Heading"
+							]
+						}
+					]
+				},
+				{
 					"guid": "24ca888a4373749db73f22b6d567cbeb",
 					"class": "K2Node_CallFunction",
 					"title": "AddClueRow",
-					"x": 1536,
-					"y": 272,
+					"x": 2576,
+					"y": 366,
 					"comment": null,
 					"pins": [
 						{
@@ -264,7 +341,7 @@
 					"guid": "2b18779e4bcc8f4125e99284400e65b0",
 					"class": "K2Node_CallFunction",
 					"title": "FindOrAddClueGroup",
-					"x": 3600,
+					"x": 3712,
 					"y": 80,
 					"comment": null,
 					"pins": [
@@ -313,7 +390,7 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"755ec0264871c3048925979cd943a03f:o:MysteryId"
+								"f208a08b4dfcfd6362235b9ffd9543d9:o:OutputPin"
 							]
 						},
 						{
@@ -323,7 +400,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"755ec0264871c3048925979cd943a03f:o:MysteryTitle"
+								"175891544c53c2bd39028ba73cc3aa39:o:OutputPin"
 							]
 						},
 						{
@@ -342,7 +419,7 @@
 					"guid": "2fd8af224826790455b88795a3ae203a",
 					"class": "K2Node_FunctionResult",
 					"title": "Return Node",
-					"x": 4752,
+					"x": 4864,
 					"y": 98,
 					"comment": null,
 					"pins": [
@@ -362,8 +439,8 @@
 					"guid": "35bc9e7d481f562060e1ef8c35947732",
 					"class": "K2Node_FunctionResult",
 					"title": "Return Node",
-					"x": 1886,
-					"y": 289,
+					"x": 2927,
+					"y": 383,
 					"comment": null,
 					"pins": [
 						{
@@ -382,8 +459,8 @@
 					"guid": "4af251f543f337eda0c4e49268218c79",
 					"class": "K2Node_VariableGet",
 					"title": "Get ClueList",
-					"x": 1344,
-					"y": 176,
+					"x": 2368,
+					"y": 174,
 					"comment": null,
 					"pins": [
 						{
@@ -411,8 +488,8 @@
 					"guid": "4dadb6b749b1f772b40fcd9bb0594fc8",
 					"class": "K2Node_VariableGet",
 					"title": "Get Entry",
-					"x": 1360,
-					"y": 416,
+					"x": 2368,
+					"y": 510,
 					"comment": null,
 					"pins": [
 						{
@@ -431,7 +508,7 @@
 					"guid": "4df495f14276778f19fff4ba75872f74",
 					"class": "K2Node_VariableGet",
 					"title": "Get GroupContents",
-					"x": 4064,
+					"x": 4176,
 					"y": 176,
 					"comment": null,
 					"pins": [
@@ -461,8 +538,8 @@
 					"guid": "4e17ef1e4eb997c03309e2a49d3a05b8",
 					"class": "K2Node_CallFunction",
 					"title": "Not Equal (Name)",
-					"x": 464,
-					"y": 720,
+					"x": 1328,
+					"y": 176,
 					"comment": null,
 					"pins": [
 						{
@@ -480,7 +557,7 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"755ec0264871c3048925979cd943a03f:o:DistrictId"
+								"d5d1d21740e6f5cb669b5f8b8c0391e1:o:OutputPin"
 							]
 						},
 						{
@@ -507,8 +584,8 @@
 					"guid": "53931bd944c800f9363b219008cbb909",
 					"class": "K2Node_CallFunction",
 					"title": "AND Boolean",
-					"x": 768,
-					"y": 736,
+					"x": 1728,
+					"y": 192,
 					"comment": null,
 					"pins": [
 						{
@@ -585,8 +662,8 @@
 					"guid": "755ec0264871c3048925979cd943a03f",
 					"class": "K2Node_BreakStruct",
 					"title": "Break Journal Investigation Entry",
-					"x": 64,
-					"y": 992,
+					"x": 128,
+					"y": 144,
 					"comment": null,
 					"pins": [
 						{
@@ -637,7 +714,9 @@
 							"direction": "output",
 							"type": "byte:/Script/ProjectAtlantis.EJournalEntryKind",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"107b44b54c14ed443f163191bd9e3881:i:A"
+							]
 						},
 						{
 							"id": "755ec0264871c3048925979cd943a03f:o:DistrictId",
@@ -646,8 +725,7 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"4e17ef1e4eb997c03309e2a49d3a05b8:i:A",
-								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:GroupId"
+								"d5d1d21740e6f5cb669b5f8b8c0391e1:i:InputPin"
 							]
 						},
 						{
@@ -667,8 +745,7 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"2b18779e4bcc8f4125e99284400e65b0:i:GroupId",
-								"d7a61ebb4046e11b7ed2ae9e6769fd94:i:A"
+								"79914e7441d8ba8c072c1c91255ea072:i:B"
 							]
 						},
 						{
@@ -678,7 +755,144 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"2b18779e4bcc8f4125e99284400e65b0:i:Heading"
+								"8aef547346137683058bc3aafffe88da:i:B"
+							]
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:PuzzleId",
+							"name": "PuzzleId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"79914e7441d8ba8c072c1c91255ea072:i:A"
+							]
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:PuzzleTitle",
+							"name": "PuzzleTitle",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"8aef547346137683058bc3aafffe88da:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "79914e7441d8ba8c072c1c91255ea072",
+					"class": "K2Node_CallFunction",
+					"title": "Select Name",
+					"x": 1024,
+					"y": 544,
+					"comment": "Use the identity and public heading owned by this entry's section",
+					"pins": [
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:PuzzleId"
+							]
+						},
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:MysteryId"
+							]
+						},
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"107b44b54c14ed443f163191bd9e3881:o:ReturnValue"
+							]
+						},
+						{
+							"id": "79914e7441d8ba8c072c1c91255ea072:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"d7a61ebb4046e11b7ed2ae9e6769fd94:i:A",
+								"f208a08b4dfcfd6362235b9ffd9543d9:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8aef547346137683058bc3aafffe88da",
+					"class": "K2Node_CallFunction",
+					"title": "Select Text",
+					"x": 1024,
+					"y": 774,
+					"comment": "Use the identity and public heading owned by this entry's section",
+					"pins": [
+						{
+							"id": "8aef547346137683058bc3aafffe88da:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "8aef547346137683058bc3aafffe88da:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:PuzzleTitle"
+							]
+						},
+						{
+							"id": "8aef547346137683058bc3aafffe88da:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:MysteryTitle"
+							]
+						},
+						{
+							"id": "8aef547346137683058bc3aafffe88da:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"107b44b54c14ed443f163191bd9e3881:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8aef547346137683058bc3aafffe88da:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"175891544c53c2bd39028ba73cc3aa39:i:InputPin"
 							]
 						}
 					]
@@ -687,7 +901,7 @@
 					"guid": "908766dc4a1ccf6e3b86499c8b580884",
 					"class": "K2Node_VariableGet",
 					"title": "Get Entry",
-					"x": 4111,
+					"x": 4223,
 					"y": 240,
 					"comment": null,
 					"pins": [
@@ -707,8 +921,8 @@
 					"guid": "98e4679443fdb5cd5ba0a5aa8e9fcec9",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 1008,
-					"y": 98,
+					"x": 2032,
+					"y": 96,
 					"comment": null,
 					"pins": [
 						{
@@ -757,7 +971,7 @@
 					"guid": "ad92bcd74a3a4de0cd4d8ab3481bb6f2",
 					"class": "K2Node_CallFunction",
 					"title": "FindOrAddClueGroup",
-					"x": 2672,
+					"x": 2784,
 					"y": 80,
 					"comment": null,
 					"pins": [
@@ -806,7 +1020,7 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"755ec0264871c3048925979cd943a03f:o:DistrictId"
+								"d5d1d21740e6f5cb669b5f8b8c0391e1:o:OutputPin"
 							]
 						},
 						{
@@ -835,7 +1049,7 @@
 					"guid": "b0cea30446c476468b96e7a483c32c25",
 					"class": "K2Node_CallFunction",
 					"title": "AddClueRow",
-					"x": 4368,
+					"x": 4480,
 					"y": 80,
 					"comment": null,
 					"pins": [
@@ -893,8 +1107,8 @@
 					"guid": "c3d00297463f5ee6eb5440a9f4beafaa",
 					"class": "K2Node_VariableGet",
 					"title": "Get GroupContents",
-					"x": 3112,
-					"y": 160,
+					"x": 3216,
+					"y": 192,
 					"comment": null,
 					"pins": [
 						{
@@ -920,11 +1134,42 @@
 					]
 				},
 				{
+					"guid": "d5d1d21740e6f5cb669b5f8b8c0391e1",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1152,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d5d1d21740e6f5cb669b5f8b8c0391e1:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:DistrictId"
+							]
+						},
+						{
+							"id": "d5d1d21740e6f5cb669b5f8b8c0391e1:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"4e17ef1e4eb997c03309e2a49d3a05b8:i:A",
+								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:GroupId"
+							]
+						}
+					]
+				},
+				{
 					"guid": "d7a61ebb4046e11b7ed2ae9e6769fd94",
 					"class": "K2Node_CallFunction",
 					"title": "Not Equal (Name)",
-					"x": 528,
-					"y": 864,
+					"x": 1316,
+					"y": 408,
 					"comment": null,
 					"pins": [
 						{
@@ -942,7 +1187,7 @@
 							"type": "name",
 							"defaultValue": null,
 							"links": [
-								"755ec0264871c3048925979cd943a03f:o:MysteryId"
+								"79914e7441d8ba8c072c1c91255ea072:o:ReturnValue"
 							]
 						},
 						{
@@ -961,6 +1206,36 @@
 							"defaultValue": null,
 							"links": [
 								"53931bd944c800f9363b219008cbb909:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f208a08b4dfcfd6362235b9ffd9543d9",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 3024,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f208a08b4dfcfd6362235b9ffd9543d9:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"79914e7441d8ba8c072c1c91255ea072:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f208a08b4dfcfd6362235b9ffd9543d9:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:i:GroupId"
 							]
 						}
 					]
@@ -2672,6 +2947,22 @@
 						{
 							"id": "e18853b94095afac2d3105864328deb3:o:MysteryTitle",
 							"name": "MysteryTitle",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e18853b94095afac2d3105864328deb3:o:PuzzleId",
+							"name": "PuzzleId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e18853b94095afac2d3105864328deb3:o:PuzzleTitle",
+							"name": "PuzzleTitle",
 							"direction": "output",
 							"type": "text",
 							"defaultValue": null,
