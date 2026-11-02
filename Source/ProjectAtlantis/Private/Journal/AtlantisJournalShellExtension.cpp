@@ -67,7 +67,7 @@ void UAtlantisJournalShellExtension::Construct()
 	UButton* Investigation = Cast<UButton>(Journal->GetWidgetFromName(TEXT("InvestigationTabButton")));
 	UButton* Puzzle = Cast<UButton>(Journal->GetWidgetFromName(TEXT("PuzzleTabButton")));
 	UButton* Dialogue = Cast<UButton>(Journal->GetWidgetFromName(TEXT("DialogueTabButton")));
-	UWidget* Content = Journal->GetWidgetFromName(TEXT("WBP_JournalInvestigationTab"));
+	UWidget* Content = Journal->GetWidgetFromName(TEXT("InvestigationTab"));
 	UHorizontalBox* TabRow = Investigation ? Cast<UHorizontalBox>(Investigation->GetParent()) : nullptr;
 	UGridPanel* TabGrid = Investigation ? Cast<UGridPanel>(Investigation->GetParent()) : nullptr;
 	if ((!TabRow && !TabGrid) || !Puzzle || !Dialogue || !Content || GetCurrentTab() == INDEX_NONE)

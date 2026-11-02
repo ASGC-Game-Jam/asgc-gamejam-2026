@@ -47,7 +47,7 @@ bool FAtlantisJournalLayoutTest::RunTest(const FString& Parameters)
 		{
 			TestNotNull(Name, Cast<UButton>(Journal->GetWidgetFromName(Name)));
 		}
-		TestNotNull(TEXT("Existing investigation content"), Journal->GetWidgetFromName(TEXT("WBP_JournalInvestigationTab")));
+		TestNotNull(TEXT("Existing investigation content"), Journal->GetWidgetFromName(TEXT("InvestigationTab")));
 		for (TFieldIterator<FProperty> It(JournalClass); It; ++It)
 		{
 			if (It->GetName().Contains(TEXT("Tab")))
@@ -99,7 +99,7 @@ bool FAtlantisJournalShellExtensionTest::RunTest(const FString& Parameters)
 	if (TestNotNull(TEXT("Existing Journal created with its real player controller"), Journal))
 	{
 		TSharedRef<SWidget> SlateWidget = Journal->TakeWidget();
-		UWidget* LegacyContent = Journal->GetWidgetFromName(TEXT("WBP_JournalInvestigationTab"));
+		UWidget* LegacyContent = Journal->GetWidgetFromName(TEXT("InvestigationTab"));
 		const ESlateVisibility OriginalVisibility = LegacyContent->GetVisibility();
 		UPanelWidget* OriginalParent = LegacyContent->GetParent();
 		UButton* Investigation = Cast<UButton>(Journal->GetWidgetFromName(TEXT("InvestigationTabButton")));
