@@ -105,10 +105,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Journal")
 	void UpdateInvestigationDescription(const FString& Title, const FString& Description);
 
-	// TODO Figure out how the data is formatted from investigation
-	//		Stub function for investigation to update status of a specific of a journal entry with a list of descriptions
-	//      can be used for scenarios such as after game loads and investigation system wants to update entire state of a
-	//      entry
+	/** Replace the entry's description snapshot, preserving its identity and status. */
 	UFUNCTION(BlueprintCallable, Category = "Journal")
 	void UpdateInvestigationDescriptions(const FString& Title, TArray<FString> Descriptions);
 
