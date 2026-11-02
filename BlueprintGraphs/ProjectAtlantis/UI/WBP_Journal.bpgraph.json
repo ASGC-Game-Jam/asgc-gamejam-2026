@@ -428,8 +428,8 @@
 					"guid": "1f5b4ac44a76d554d7065d90cbf8a95b",
 					"class": "K2Node_CallFunction",
 					"title": "Get Player Controller",
-					"x": -896,
-					"y": 48,
+					"x": -1024,
+					"y": 96,
 					"comment": null,
 					"pins": [
 						{
@@ -464,7 +464,6 @@
 							"defaultValue": null,
 							"links": [
 								"8363692b449bb86ebf0068bee51ee484:i:InputPin",
-								"bc753769445ab5c79e82e98d6b8d1246:i:PlayerController",
 								"d2181b634a573cf23cbf9baf9cf01d7f:i:Object"
 							]
 						}
@@ -535,7 +534,7 @@
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
 					"x": 256,
-					"y": 112,
+					"y": 128,
 					"comment": null,
 					"pins": [
 						{
@@ -564,7 +563,7 @@
 					"guid": "8363692b449bb86ebf0068bee51ee484",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
-					"x": -480,
+					"x": -112,
 					"y": 128,
 					"comment": null,
 					"pins": [
@@ -585,7 +584,8 @@
 							"type": "object:/Script/Engine.PlayerController",
 							"defaultValue": null,
 							"links": [
-								"3d7722334f84868e09b4a6af41f42cb4:i:InputPin"
+								"3d7722334f84868e09b4a6af41f42cb4:i:InputPin",
+								"bc753769445ab5c79e82e98d6b8d1246:i:PlayerController"
 							]
 						}
 					]
@@ -594,7 +594,7 @@
 					"guid": "926f6d884f40355f5d49369a0aabbd89",
 					"class": "K2Node_FunctionEntry",
 					"title": "HideJournal",
-					"x": -960,
+					"x": -1008,
 					"y": -176,
 					"comment": null,
 					"pins": [
@@ -653,7 +653,7 @@
 							"type": "object:/Script/Engine.PlayerController",
 							"defaultValue": null,
 							"links": [
-								"1f5b4ac44a76d554d7065d90cbf8a95b:o:ReturnValue"
+								"8363692b449bb86ebf0068bee51ee484:o:OutputPin"
 							]
 						},
 						{
@@ -670,8 +670,8 @@
 					"guid": "d2181b634a573cf23cbf9baf9cf01d7f",
 					"class": "K2Node_DynamicCast",
 					"title": "Cast To BP_AtlantisPlayerController",
-					"x": -864,
-					"y": -96,
+					"x": -912,
+					"y": -63,
 					"comment": null,
 					"pins": [
 						{
@@ -737,7 +737,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "Remove from Parent",
 					"x": -256,
-					"y": -64,
+					"y": -80,
 					"comment": null,
 					"pins": [
 						{
@@ -778,25 +778,25 @@
 					"guid": "1e827df7446e0160b523f7aa1de262cd",
 					"text": "make sure control is given back to the player correctly",
 					"x": 16,
-					"y": -176,
+					"y": -240,
 					"width": 864,
-					"height": 336
+					"height": 400
 				},
 				{
 					"guid": "9db923fd486ec849bd6f319c233dd318",
 					"text": "cast to the correct player controller type",
-					"x": -1040,
+					"x": -1088,
 					"y": -240,
-					"width": 491,
-					"height": 390
+					"width": 512,
+					"height": 496
 				},
 				{
 					"guid": "ebc2daf640922e29cd5e319ad58195b7",
 					"text": "we can then remove that widget to hide it, while still having it as a variable to use later",
-					"x": -480,
-					"y": -176,
-					"width": 446,
-					"height": 282
+					"x": -482,
+					"y": -246,
+					"width": 448,
+					"height": 352
 				}
 			]
 		},
@@ -809,7 +809,7 @@
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
 					"x": 0,
-					"y": -80,
+					"y": -78,
 					"comment": null,
 					"pins": [
 						{
@@ -959,8 +959,8 @@
 					"guid": "64f66cf6476794a3f7d638a8989608ed",
 					"class": "K2Node_FunctionEntry",
 					"title": "ShowJournal",
-					"x": -1120,
-					"y": -176,
+					"x": -1312,
+					"y": -112,
 					"comment": null,
 					"pins": [
 						{
@@ -980,7 +980,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "Set Input Mode Game And UI",
 					"x": 272,
-					"y": -112,
+					"y": -111,
 					"comment": null,
 					"pins": [
 						{
@@ -1091,8 +1091,8 @@
 					"guid": "74f6be1e4f7f3305ffd544b3d150d559",
 					"class": "K2Node_DynamicCast",
 					"title": "Cast To BP_AtlantisPlayerController",
-					"x": -896,
-					"y": -160,
+					"x": -1088,
+					"y": -112,
 					"comment": null,
 					"pins": [
 						{
@@ -1236,7 +1236,7 @@
 					"class": "K2Node_VariableSet",
 					"title": "Set bShowMouseCursor",
 					"x": 624,
-					"y": -96,
+					"y": -95,
 					"comment": null,
 					"pins": [
 						{
@@ -1291,8 +1291,8 @@
 					"guid": "cda1cc3a4267f08d95d2b0bed65b8882",
 					"class": "K2Node_CallFunction",
 					"title": "Get Player Controller",
-					"x": -1056,
-					"y": 32,
+					"x": -1424,
+					"y": 64,
 					"comment": null,
 					"pins": [
 						{
@@ -1337,7 +1337,7 @@
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
 					"x": 192,
-					"y": 64,
+					"y": 112,
 					"comment": null,
 					"pins": [
 						{
@@ -1368,7 +1368,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "Set Game Paused",
 					"x": 912,
-					"y": -112,
+					"y": -111,
 					"comment": null,
 					"pins": [
 						{
@@ -1428,7 +1428,7 @@
 				{
 					"guid": "55b5a2f04a6947f95f0e28ac12365b67",
 					"text": "add the widget back the viewport",
-					"x": -608,
+					"x": -624,
 					"y": -208,
 					"width": 544,
 					"height": 288
@@ -1436,9 +1436,9 @@
 				{
 					"guid": "ecbd805b4bec60b5b26e4099833afd30",
 					"text": "cast to the correct player controller type",
-					"x": -1120,
-					"y": -256,
-					"width": 672,
+					"x": -1456,
+					"y": -208,
+					"width": 800,
 					"height": 384
 				},
 				{
