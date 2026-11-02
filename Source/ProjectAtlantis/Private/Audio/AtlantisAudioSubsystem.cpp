@@ -8,6 +8,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "MetasoundSource.h"
 #include "MetasoundGeneratorHandle.h"
+#include "Audio/AtlantisAudioFactTags.h"
+#include "Audio/PubSubSystem/ASGC_DataRouterSubsystem.h"
 
 
 DEFINE_LOG_CATEGORY(LogAtlantisAudioSubsystem);
@@ -99,6 +101,8 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 
 	UE_LOG(LogAtlantisAudioSubsystem, Log, TEXT("World [%s] Begin Play active. Instantiating speakers and reading audio settings..."), *TrackedWorld->GetName());
 
+	SubscribeToFacts();
+
 	USoundBase* MusicAsset = Cast<USoundBase>(UAtlantisAudioDeveloperSettings::GetMusicMetaSoundSource());
 	if (!MusicAsset)
 	{
@@ -157,6 +161,8 @@ void UAtlantisAudioSubsystem::UpdateAxisTestSweep()
 
 void UAtlantisAudioSubsystem::StopTrackingWorld()
 {
+	UnsubscribeFromFacts();
+
 	if (TrackedWorld.Get())
 	{
 		UE_LOG(LogAtlantisAudioSubsystem, Log, TEXT("Cleaning up tracked world [%s]. Flushing components..."), *TrackedWorld->GetName());
@@ -183,4 +189,64 @@ void UAtlantisAudioSubsystem::StopTrackingWorld()
 	TrackedWorld.Reset();
 	GeneratorHandle = nullptr;
 	RunningSweepTime = 0.f;
+}
+
+void UAtlantisAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload)
+{
+	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Fact received: [%s]"), *Tag.ToString());
+}
+
+void UAtlantisAudioSubsystem::SubscribeToFacts()
+{
+	if(!TrackedWorld.Get())
+	{
+		UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("TrackedWorld unavailable when subscribing to facts!"));
+        return;
+	}
+
+	UASGC_DataRouterSubsystem* Router = TrackedWorld->GetSubsystem<UASGC_DataRouterSubsystem>();
+    if (!Router)
+    {
+        UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No Data Router in world [%s]. Music won't react to gameplay facts."), *TrackedWorld->GetName());
+        return;
+    }
+
+	const FGameplayTag FactTags[] = {
+		TAG_AudioFact_Oxygen_Level,
+		TAG_AudioFact_Oxygen_Critical,
+		TAG_AudioFact_Stealth_Hiding,
+		TAG_AudioFact_Investigation_Status,
+		TAG_AudioFact_Enemy_Status};
+
+	for(const FGameplayTag& Tag : FactTags)
+	{
+		int32 Handle = Router->Subscribe(Tag, this);
+		FactSubscriptions.Add(Tag, Handle);
+	}
+
+}
+
+void UAtlantisAudioSubsystem::UnsubscribeFromFacts()
+{
+	if (!TrackedWorld.Get())
+	{
+		FactSubscriptions.Reset();
+		return;
+	}
+
+
+	UASGC_DataRouterSubsystem* Router = TrackedWorld->GetSubsystem<UASGC_DataRouterSubsystem>();
+    if (!Router)
+    {
+		FactSubscriptions.Reset();
+		return;
+    }
+
+	for(const TPair<FGameplayTag, int32>& Subscription : FactSubscriptions)
+	{
+		Router->Unsubscribe(Subscription.Key, Subscription.Value);
+	}
+
+	FactSubscriptions.Reset();
+
 }

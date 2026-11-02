@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "Audio/PubSubSystem/ASGC_FactListenerInterface.h"
+
 
 #include "AtlantisAudioSubsystem.generated.h"
 
@@ -20,14 +22,16 @@ class UMetasoundGeneratorHandle;
  *  Manages the Music Subsystem for Project Atlantis
  */
 UCLASS()
-class PROJECTATLANTIS_API UAtlantisAudioSubsystem : public UGameInstanceSubsystem
+class PROJECTATLANTIS_API UAtlantisAudioSubsystem : public UGameInstanceSubsystem, public IASGC_FactListenerInterface
 {
 	GENERATED_BODY()
 
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-
 	virtual void Deinitialize() override;
+
+    virtual void OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload) override;
+
 
 private:
     void HandlePostWorldInitialization(UWorld* World, const UWorld::InitializationValues IValues);
@@ -37,6 +41,8 @@ private:
 
     void UpdateAxisTestSweep();
 
+    void SubscribeToFacts();
+    void UnsubscribeFromFacts();
 
     // Stored Delegate Handles
     FDelegateHandle PostWorldInitHandle;
@@ -58,7 +64,5 @@ private:
     float RunningSweepTime = 0.f;
     float SweepTimerInterval = 0.033f;
 
-
-
-	
+    TMap<FGameplayTag, int32> FactSubscriptions;
 };
