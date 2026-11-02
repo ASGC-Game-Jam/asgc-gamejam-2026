@@ -1,8 +1,10 @@
-"""Minimal #435 placeholder helpers for the Unreal Python console.
+"""Minimal journal placeholder helpers for the Unreal Python console.
 
 Load once:
 exec(open(unreal.Paths.project_dir() + 'Tools/Journal/seed_discovered_clue.py').read())
-Then use seed_clues(), seed_grouped_clues(), revise_clue(), seed_puzzles(), or clear_clues().
+Use seed_journal() for the combined demo; clear_clues() clears it.
+Individual helpers: seed_clues(), seed_grouped_clues(), seed_puzzles(),
+seed_grouped_puzzles(), revise_clue(), set_group_incomplete().
 """
 import unreal
 
@@ -71,12 +73,9 @@ def revise_clue(entry_id='Story435_Placeholder'):
 
 
 def clear_clues():
-    """Clear all investigation entries in the current PIE session."""
+    """Clear all journal entries in the current PIE session."""
     _current_journal().clear_investigations()
-    unreal.log('Investigation entries cleared.')
-
-
-seed_clues()
+    unreal.log('Journal entries cleared.')
 
 
 def seed_puzzles():
@@ -120,3 +119,27 @@ def seed_grouped_puzzles():
         if not journal.set_investigation_entry(entry):
             raise RuntimeError('Grouped puzzle placeholder was rejected: ' + identity)
     unreal.log('Grouped puzzle observations ready; hidden groups must remain absent.')
+
+
+def set_group_incomplete(entry_id='Story436_A1', incomplete=True):
+    """Supply the owning system's incompleteness flag on a visible placeholder entry."""
+    journal = _current_journal()
+    entry = next((item for item in journal.get_investigation_entries()
+                  if item.entry_id == unreal.Name(entry_id)), None)
+    if entry is None:
+        raise RuntimeError('Seed the placeholder first: ' + entry_id)
+    entry.knowledge_incomplete = incomplete
+    if not journal.set_investigation_entry(entry):
+        raise RuntimeError('Placeholder update rejected: ' + entry_id)
+    unreal.log('Owner-supplied incompleteness updated for ' + entry_id)
+
+
+def seed_journal():
+    """Reset the PIE journal to the combined clue/puzzle review demonstration."""
+    clear_clues()
+    seed_grouped_clues()
+    seed_grouped_puzzles()
+    set_group_incomplete('Story436_A1')
+    set_group_incomplete('Story439_A1')
+
+seed_clues()

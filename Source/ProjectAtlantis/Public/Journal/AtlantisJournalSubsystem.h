@@ -59,6 +59,10 @@ struct FJournalInvestigationEntry
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
 	FText PuzzleTitle;
+
+	/** Owner says this visible entry's group has more to learn; never inferred from hidden entries. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	bool bKnowledgeIncomplete = false;
 };
 
 // @note(Tan): params here are subject to change depending on how investigation data looks like

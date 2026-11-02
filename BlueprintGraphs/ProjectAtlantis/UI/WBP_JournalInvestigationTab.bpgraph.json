@@ -203,10 +203,90 @@
 			"type": "Function",
 			"nodes": [
 				{
+					"guid": "00c56acf468b1ddcdac2e3a3b856d932",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2816,
+					"y": 1234,
+					"comment": null,
+					"pins": [
+						{
+							"id": "00c56acf468b1ddcdac2e3a3b856d932:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f0ee5de4474382bbc729f5b3c08f1107:o:else"
+							]
+						},
+						{
+							"id": "00c56acf468b1ddcdac2e3a3b856d932:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"24ca888a4373749db73f22b6d567cbeb:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0c6ac2a147b35ba37941baaf0527fa98",
+					"class": "K2Node_VariableGet",
+					"title": "Get IncompleteState",
+					"x": 4368,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0c6ac2a147b35ba37941baaf0527fa98:o:IncompleteState",
+							"name": "IncompleteState",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"2262e075467cefe97e4d4f91b7cb8542:i:self"
+							]
+						},
+						{
+							"id": "0c6ac2a147b35ba37941baaf0527fa98:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"db1a985648425d1df39b3091b4eb1a20:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0cb05f9649388abe8c5daea6e457f034",
+					"class": "K2Node_VariableGet",
+					"title": "Get KnowledgeIncomplete",
+					"x": 2176,
+					"y": 976,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0cb05f9649388abe8c5daea6e457f034:o:KnowledgeIncomplete",
+							"name": "KnowledgeIncomplete",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f0ee5de4474382bbc729f5b3c08f1107:i:Condition"
+							]
+						}
+					]
+				},
+				{
 					"guid": "107b44b54c14ed443f163191bd9e3881",
 					"class": "K2Node_CallFunction",
 					"title": "Equal (Byte)",
-					"x": 560,
+					"x": 624,
 					"y": 704,
 					"comment": null,
 					"pins": [
@@ -250,11 +330,31 @@
 					]
 				},
 				{
+					"guid": "149e9ad24d57b77812f5bab4e0295a5d",
+					"class": "K2Node_VariableGet",
+					"title": "Get KnowledgeIncomplete",
+					"x": 4112,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "149e9ad24d57b77812f5bab4e0295a5d:o:KnowledgeIncomplete",
+							"name": "KnowledgeIncomplete",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2413426f42ef66ddc6c0f2a50e951abc:i:Condition"
+							]
+						}
+					]
+				},
+				{
 					"guid": "175891544c53c2bd39028ba73cc3aa39",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
 					"x": 3024,
-					"y": 848,
+					"y": 816,
 					"comment": null,
 					"pins": [
 						{
@@ -280,11 +380,109 @@
 					]
 				},
 				{
+					"guid": "2262e075467cefe97e4d4f91b7cb8542",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 4832,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2262e075467cefe97e4d4f91b7cb8542:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2413426f42ef66ddc6c0f2a50e951abc:o:then"
+							]
+						},
+						{
+							"id": "2262e075467cefe97e4d4f91b7cb8542:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b0cea30446c476468b96e7a483c32c25:i:execute"
+							]
+						},
+						{
+							"id": "2262e075467cefe97e4d4f91b7cb8542:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"0c6ac2a147b35ba37941baaf0527fa98:o:IncompleteState"
+							]
+						},
+						{
+							"id": "2262e075467cefe97e4d4f91b7cb8542:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Visible",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2413426f42ef66ddc6c0f2a50e951abc",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 4384,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2413426f42ef66ddc6c0f2a50e951abc:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:o:then"
+							]
+						},
+						{
+							"id": "2413426f42ef66ddc6c0f2a50e951abc:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"149e9ad24d57b77812f5bab4e0295a5d:o:KnowledgeIncomplete"
+							]
+						},
+						{
+							"id": "2413426f42ef66ddc6c0f2a50e951abc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2262e075467cefe97e4d4f91b7cb8542:i:execute"
+							]
+						},
+						{
+							"id": "2413426f42ef66ddc6c0f2a50e951abc:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b0cea30446c476468b96e7a483c32c25:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "24ca888a4373749db73f22b6d567cbeb",
 					"class": "K2Node_CallFunction",
 					"title": "AddClueRow",
-					"x": 2576,
-					"y": 366,
+					"x": 3312,
+					"y": 1185,
 					"comment": null,
 					"pins": [
 						{
@@ -294,7 +492,8 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"98e4679443fdb5cd5ba0a5aa8e9fcec9:o:else"
+								"00c56acf468b1ddcdac2e3a3b856d932:o:OutputPin",
+								"9a855eee4ac27ab6dbf79e867af670ad:o:then"
 							]
 						},
 						{
@@ -362,7 +561,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"b0cea30446c476468b96e7a483c32c25:i:execute"
+								"2413426f42ef66ddc6c0f2a50e951abc:i:execute"
 							]
 						},
 						{
@@ -410,7 +609,7 @@
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
 							"defaultValue": null,
 							"links": [
-								"4df495f14276778f19fff4ba75872f74:i:self"
+								"db1a985648425d1df39b3091b4eb1a20:i:InputPin"
 							]
 						}
 					]
@@ -419,8 +618,8 @@
 					"guid": "2fd8af224826790455b88795a3ae203a",
 					"class": "K2Node_FunctionResult",
 					"title": "Return Node",
-					"x": 4864,
-					"y": 98,
+					"x": 5680,
+					"y": 418,
 					"comment": null,
 					"pins": [
 						{
@@ -439,8 +638,8 @@
 					"guid": "35bc9e7d481f562060e1ef8c35947732",
 					"class": "K2Node_FunctionResult",
 					"title": "Return Node",
-					"x": 2927,
-					"y": 383,
+					"x": 3663,
+					"y": 1201,
 					"comment": null,
 					"pins": [
 						{
@@ -456,11 +655,39 @@
 					]
 				},
 				{
+					"guid": "43da36914e727d86f668a5b929b525be",
+					"class": "K2Node_VariableGet",
+					"title": "Get ClueList",
+					"x": 2848,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "43da36914e727d86f668a5b929b525be:o:ClueList",
+							"name": "ClueList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:Parent"
+							]
+						},
+						{
+							"id": "43da36914e727d86f668a5b929b525be:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "4af251f543f337eda0c4e49268218c79",
 					"class": "K2Node_VariableGet",
 					"title": "Get ClueList",
-					"x": 2368,
-					"y": 174,
+					"x": 2912,
+					"y": 1280,
 					"comment": null,
 					"pins": [
 						{
@@ -470,8 +697,7 @@
 							"type": "object:/Script/UMG.VerticalBox",
 							"defaultValue": null,
 							"links": [
-								"24ca888a4373749db73f22b6d567cbeb:i:Parent",
-								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:Parent"
+								"24ca888a4373749db73f22b6d567cbeb:i:Parent"
 							]
 						},
 						{
@@ -488,8 +714,8 @@
 					"guid": "4dadb6b749b1f772b40fcd9bb0594fc8",
 					"class": "K2Node_VariableGet",
 					"title": "Get Entry",
-					"x": 2368,
-					"y": 510,
+					"x": 2912,
+					"y": 1328,
 					"comment": null,
 					"pins": [
 						{
@@ -508,8 +734,8 @@
 					"guid": "4df495f14276778f19fff4ba75872f74",
 					"class": "K2Node_VariableGet",
 					"title": "Get GroupContents",
-					"x": 4176,
-					"y": 176,
+					"x": 4866,
+					"y": 496,
 					"comment": null,
 					"pins": [
 						{
@@ -529,7 +755,7 @@
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
 							"defaultValue": null,
 							"links": [
-								"2b18779e4bcc8f4125e99284400e65b0:o:Group"
+								"db1a985648425d1df39b3091b4eb1a20:o:OutputPin"
 							]
 						}
 					]
@@ -629,6 +855,34 @@
 					]
 				},
 				{
+					"guid": "5d4e0463427d3e8fdef4fcb8f78f33aa",
+					"class": "K2Node_VariableGet",
+					"title": "Get IncompleteState",
+					"x": 2704,
+					"y": 992,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5d4e0463427d3e8fdef4fcb8f78f33aa:o:IncompleteState",
+							"name": "IncompleteState",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"9a855eee4ac27ab6dbf79e867af670ad:i:self"
+							]
+						},
+						{
+							"id": "5d4e0463427d3e8fdef4fcb8f78f33aa:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "721d455a4595dad26b0d648ce3e0b86f",
 					"class": "K2Node_FunctionEntry",
 					"title": "AddGroupedClue",
@@ -643,7 +897,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"98e4679443fdb5cd5ba0a5aa8e9fcec9:i:execute"
+								"f881a1bf490a19f4c910a7921ae648b2:i:execute"
 							]
 						},
 						{
@@ -777,6 +1031,16 @@
 							"links": [
 								"8aef547346137683058bc3aafffe88da:i:A"
 							]
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:bKnowledgeIncomplete",
+							"name": "bKnowledgeIncomplete",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f881a1bf490a19f4c910a7921ae648b2:i:KnowledgeIncomplete"
+							]
 						}
 					]
 				},
@@ -901,8 +1165,8 @@
 					"guid": "908766dc4a1ccf6e3b86499c8b580884",
 					"class": "K2Node_VariableGet",
 					"title": "Get Entry",
-					"x": 4223,
-					"y": 240,
+					"x": 4911,
+					"y": 560,
 					"comment": null,
 					"pins": [
 						{
@@ -932,7 +1196,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"721d455a4595dad26b0d648ce3e0b86f:o:then"
+								"f881a1bf490a19f4c910a7921ae648b2:o:then"
 							]
 						},
 						{
@@ -962,8 +1226,56 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
+								"f0ee5de4474382bbc729f5b3c08f1107:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9a855eee4ac27ab6dbf79e867af670ad",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 2912,
+					"y": 896,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a855eee4ac27ab6dbf79e867af670ad:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f0ee5de4474382bbc729f5b3c08f1107:o:then"
+							]
+						},
+						{
+							"id": "9a855eee4ac27ab6dbf79e867af670ad:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
 								"24ca888a4373749db73f22b6d567cbeb:i:execute"
 							]
+						},
+						{
+							"id": "9a855eee4ac27ab6dbf79e867af670ad:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"5d4e0463427d3e8fdef4fcb8f78f33aa:o:IncompleteState"
+							]
+						},
+						{
+							"id": "9a855eee4ac27ab6dbf79e867af670ad:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Visible",
+							"links": []
 						}
 					]
 				},
@@ -971,7 +1283,7 @@
 					"guid": "ad92bcd74a3a4de0cd4d8ab3481bb6f2",
 					"class": "K2Node_CallFunction",
 					"title": "FindOrAddClueGroup",
-					"x": 2784,
+					"x": 3056,
 					"y": 80,
 					"comment": null,
 					"pins": [
@@ -1010,7 +1322,7 @@
 							"type": "object:/Script/UMG.PanelWidget",
 							"defaultValue": null,
 							"links": [
-								"4af251f543f337eda0c4e49268218c79:o:ClueList"
+								"43da36914e727d86f668a5b929b525be:o:ClueList"
 							]
 						},
 						{
@@ -1049,8 +1361,8 @@
 					"guid": "b0cea30446c476468b96e7a483c32c25",
 					"class": "K2Node_CallFunction",
 					"title": "AddClueRow",
-					"x": 4480,
-					"y": 80,
+					"x": 5296,
+					"y": 400,
 					"comment": null,
 					"pins": [
 						{
@@ -1060,7 +1372,8 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"2b18779e4bcc8f4125e99284400e65b0:o:then"
+								"2262e075467cefe97e4d4f91b7cb8542:o:then",
+								"2413426f42ef66ddc6c0f2a50e951abc:o:else"
 							]
 						},
 						{
@@ -1107,7 +1420,7 @@
 					"guid": "c3d00297463f5ee6eb5440a9f4beafaa",
 					"class": "K2Node_VariableGet",
 					"title": "Get GroupContents",
-					"x": 3216,
+					"x": 3392,
 					"y": 192,
 					"comment": null,
 					"pins": [
@@ -1211,6 +1524,87 @@
 					]
 				},
 				{
+					"guid": "db1a985648425d1df39b3091b4eb1a20",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 4080,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "db1a985648425d1df39b3091b4eb1a20:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:o:Group"
+							]
+						},
+						{
+							"id": "db1a985648425d1df39b3091b4eb1a20:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"0c6ac2a147b35ba37941baaf0527fa98:i:self",
+								"4df495f14276778f19fff4ba75872f74:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f0ee5de4474382bbc729f5b3c08f1107",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 2438,
+					"y": 912,
+					"comment": "Owner-supplied incompleteness; one label per visible group",
+					"pins": [
+						{
+							"id": "f0ee5de4474382bbc729f5b3c08f1107:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"98e4679443fdb5cd5ba0a5aa8e9fcec9:o:else"
+							]
+						},
+						{
+							"id": "f0ee5de4474382bbc729f5b3c08f1107:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"0cb05f9649388abe8c5daea6e457f034:o:KnowledgeIncomplete"
+							]
+						},
+						{
+							"id": "f0ee5de4474382bbc729f5b3c08f1107:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9a855eee4ac27ab6dbf79e867af670ad:i:execute"
+							]
+						},
+						{
+							"id": "f0ee5de4474382bbc729f5b3c08f1107:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"00c56acf468b1ddcdac2e3a3b856d932:i:InputPin"
+							]
+						}
+					]
+				},
+				{
 					"guid": "f208a08b4dfcfd6362235b9ffd9543d9",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
@@ -1237,6 +1631,54 @@
 							"links": [
 								"2b18779e4bcc8f4125e99284400e65b0:i:GroupId"
 							]
+						}
+					]
+				},
+				{
+					"guid": "f881a1bf490a19f4c910a7921ae648b2",
+					"class": "K2Node_VariableSet",
+					"title": "Set KnowledgeIncomplete",
+					"x": 624,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f881a1bf490a19f4c910a7921ae648b2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"721d455a4595dad26b0d648ce3e0b86f:o:then"
+							]
+						},
+						{
+							"id": "f881a1bf490a19f4c910a7921ae648b2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"98e4679443fdb5cd5ba0a5aa8e9fcec9:i:execute"
+							]
+						},
+						{
+							"id": "f881a1bf490a19f4c910a7921ae648b2:i:KnowledgeIncomplete",
+							"name": "KnowledgeIncomplete",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:bKnowledgeIncomplete"
+							]
+						},
+						{
+							"id": "f881a1bf490a19f4c910a7921ae648b2:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
 						}
 					]
 				}
@@ -1937,6 +2379,34 @@
 					]
 				},
 				{
+					"guid": "19b84ade4d0d73d53ce029998fca7511",
+					"class": "K2Node_VariableGet",
+					"title": "Get IncompleteState",
+					"x": -1707,
+					"y": -888,
+					"comment": null,
+					"pins": [
+						{
+							"id": "19b84ade4d0d73d53ce029998fca7511:o:IncompleteState",
+							"name": "IncompleteState",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"bd6b5d0b4d5b00899d7638b34cffae16:i:self"
+							]
+						},
+						{
+							"id": "19b84ade4d0d73d53ce029998fca7511:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "1b75f50146895a012ab9d8858dd02505",
 					"class": "K2Node_CallFunction",
 					"title": "Set Visibility",
@@ -2288,7 +2758,7 @@
 					"guid": "5db72bf54da023c637363f9cb03ed2de",
 					"class": "K2Node_VariableGet",
 					"title": "Get Section",
-					"x": -1638,
+					"x": -1695,
 					"y": -648,
 					"comment": null,
 					"pins": [
@@ -2412,8 +2882,8 @@
 					"guid": "7214de96433757d478870bbd09a76066",
 					"class": "K2Node_FunctionEntry",
 					"title": "RefreshClues",
-					"x": -1424,
-					"y": -832,
+					"x": -1712,
+					"y": -976,
 					"comment": null,
 					"pins": [
 						{
@@ -2423,7 +2893,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"fc33cf6548405dabaa1b99959b3d4fde:i:execute"
+								"bd6b5d0b4d5b00899d7638b34cffae16:i:execute"
 							]
 						}
 					]
@@ -2706,6 +3176,54 @@
 					]
 				},
 				{
+					"guid": "bd6b5d0b4d5b00899d7638b34cffae16",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": -1450,
+					"y": -1000,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bd6b5d0b4d5b00899d7638b34cffae16:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7214de96433757d478870bbd09a76066:o:then"
+							]
+						},
+						{
+							"id": "bd6b5d0b4d5b00899d7638b34cffae16:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fc33cf6548405dabaa1b99959b3d4fde:i:execute"
+							]
+						},
+						{
+							"id": "bd6b5d0b4d5b00899d7638b34cffae16:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"19b84ade4d0d73d53ce029998fca7511:o:IncompleteState"
+							]
+						},
+						{
+							"id": "bd6b5d0b4d5b00899d7638b34cffae16:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Collapsed",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "c34937824efd303a19fecc9fb6ba7ead",
 					"class": "K2Node_VariableGet",
 					"title": "Get CluesHeading",
@@ -2967,6 +3485,14 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": []
+						},
+						{
+							"id": "e18853b94095afac2d3105864328deb3:o:bKnowledgeIncomplete",
+							"name": "bKnowledgeIncomplete",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -3129,7 +3655,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"7214de96433757d478870bbd09a76066:o:then"
+								"bd6b5d0b4d5b00899d7638b34cffae16:o:then"
 							]
 						},
 						{
@@ -4028,6 +4554,7 @@
 		},
 		"defaults":
 		{
+			"IncompleteState": null,
 			"EmptyState": null,
 			"CluesHeading": null,
 			"ClueList": null,
