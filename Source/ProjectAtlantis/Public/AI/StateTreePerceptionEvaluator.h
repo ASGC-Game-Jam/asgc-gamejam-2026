@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2026 ASGC
+// Copyright (c) 2026 ASGC
 
 #pragma once
 
@@ -17,7 +17,7 @@ class AAtlantisEnemyController;
 // Instance Data are required when attempting to emit parameters, but also when consuming data from other
 // State Tree Elements or declaring external systems that are required to be accessed by this State Tree Element.
 
-// Why can't we just declare them in the FSTEval_PerceptionSys struct itself? Because ironically, State Tree Elements 
+// Why can't we just declare them in the FStateTreePerceptionEvaluator struct itself? Because ironically, State Tree Elements
 // are themselves Stateless. **DO NOT ATTEMPT TO STORE ANY STATEFUL INFORMATION OUTSIDE OF AN INSTANCE DATA!**
 // (Unless you're storing it in some persistent object outside of the state tree system, like a controller)
 // This is because the state tree execution context is scrapped and recreated every tick.

@@ -1,0 +1,810 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_JournalClueRow",
+	"asset": "WBP_JournalClueRow",
+	"assetClass": "WidgetBlueprint",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "193ce48e4fd18b2afd7abcbaded7afa4",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1856,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "193ce48e4fd18b2afd7abcbaded7afa4:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"59a51cb74c55e26d7f12529db47851a6:o:OutputPin"
+							]
+						},
+						{
+							"id": "193ce48e4fd18b2afd7abcbaded7afa4:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"c41f5bf34a3a2897f285b2b3ffe0865f:i:InText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1afcdfaa4cc19a9814cd61b1f535a251",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2400,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1afcdfaa4cc19a9814cd61b1f535a251:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"a9d3203f448446f13fee7a9115f092df:o:ClueDescriptions"
+							]
+						},
+						{
+							"id": "1afcdfaa4cc19a9814cd61b1f535a251:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"edf830ce4a0a01ce04baa3a80a8d1cdf:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1b82a317466840dfbc625ab93e6caece",
+					"class": "K2Node_BreakStruct",
+					"title": "Break Journal Investigation Entry",
+					"x": 240,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1b82a317466840dfbc625ab93e6caece:i:JournalInvestigationEntry",
+							"name": "JournalInvestigationEntry",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"e4e268974a4d9ad6ebd4d480eab61484:o:Entry"
+							]
+						},
+						{
+							"id": "1b82a317466840dfbc625ab93e6caece:o:Title",
+							"name": "Title",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"c758667f4496f3c51196fbb036b48f8d:i:InText"
+							]
+						},
+						{
+							"id": "1b82a317466840dfbc625ab93e6caece:o:Descriptions",
+							"name": "Descriptions",
+							"direction": "output",
+							"type": "text[]",
+							"defaultValue": null,
+							"links": [
+								"bfee880a4e9398b4250bea9244903733:i:InputPin"
+							]
+						},
+						{
+							"id": "1b82a317466840dfbc625ab93e6caece:o:Status",
+							"name": "Status",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1b82a317466840dfbc625ab93e6caece:o:EntryId",
+							"name": "EntryId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "26b0ef4a4584865cb7ed248b5b1af965",
+					"class": "K2Node_VariableGet",
+					"title": "Get Description",
+					"x": 1952,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "26b0ef4a4584865cb7ed248b5b1af965:o:Description",
+							"name": "Description",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"c41f5bf34a3a2897f285b2b3ffe0865f:i:self"
+							]
+						},
+						{
+							"id": "26b0ef4a4584865cb7ed248b5b1af965:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"d8936dea47c951cc4b1f19a0aa8afeea:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4a50fbcc41c66350730bdc9eb087b06d",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2160,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4a50fbcc41c66350730bdc9eb087b06d:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"d8936dea47c951cc4b1f19a0aa8afeea:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4a50fbcc41c66350730bdc9eb087b06d:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"edf830ce4a0a01ce04baa3a80a8d1cdf:i:Content"
+							]
+						}
+					]
+				},
+				{
+					"guid": "59a51cb74c55e26d7f12529db47851a6",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1424,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "59a51cb74c55e26d7f12529db47851a6:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cb1948c7449c2c6e4ec93c92732bf927:o:Array Element"
+							]
+						},
+						{
+							"id": "59a51cb74c55e26d7f12529db47851a6:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"193ce48e4fd18b2afd7abcbaded7afa4:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a97a851f42874792a093cc9e0550c54e",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 384,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a97a851f42874792a093cc9e0550c54e:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a97a851f42874792a093cc9e0550c54e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c758667f4496f3c51196fbb036b48f8d:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a9d3203f448446f13fee7a9115f092df",
+					"class": "K2Node_VariableGet",
+					"title": "Get ClueDescriptions",
+					"x": 640,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a9d3203f448446f13fee7a9115f092df:o:ClueDescriptions",
+							"name": "ClueDescriptions",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"1afcdfaa4cc19a9814cd61b1f535a251:i:InputPin",
+								"c7e249d1496364a0dbb1e088df8efd1b:i:self"
+							]
+						},
+						{
+							"id": "a9d3203f448446f13fee7a9115f092df:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueRow.WBP_JournalClueRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bfee880a4e9398b4250bea9244903733",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1056,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bfee880a4e9398b4250bea9244903733:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "text[]",
+							"defaultValue": null,
+							"links": [
+								"1b82a317466840dfbc625ab93e6caece:o:Descriptions"
+							]
+						},
+						{
+							"id": "bfee880a4e9398b4250bea9244903733:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "text[]",
+							"defaultValue": null,
+							"links": [
+								"cb1948c7449c2c6e4ec93c92732bf927:i:Array"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c2e430f640aebc28fbfcc09c953d69f6",
+					"class": "K2Node_VariableGet",
+					"title": "Get ClueTitle",
+					"x": 400,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c2e430f640aebc28fbfcc09c953d69f6:o:ClueTitle",
+							"name": "ClueTitle",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"c758667f4496f3c51196fbb036b48f8d:i:self"
+							]
+						},
+						{
+							"id": "c2e430f640aebc28fbfcc09c953d69f6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueRow.WBP_JournalClueRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c41f5bf34a3a2897f285b2b3ffe0865f",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 2256,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c41f5bf34a3a2897f285b2b3ffe0865f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d8936dea47c951cc4b1f19a0aa8afeea:o:then"
+							]
+						},
+						{
+							"id": "c41f5bf34a3a2897f285b2b3ffe0865f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"edf830ce4a0a01ce04baa3a80a8d1cdf:i:execute"
+							]
+						},
+						{
+							"id": "c41f5bf34a3a2897f285b2b3ffe0865f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"26b0ef4a4584865cb7ed248b5b1af965:o:Description"
+							]
+						},
+						{
+							"id": "c41f5bf34a3a2897f285b2b3ffe0865f:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"193ce48e4fd18b2afd7abcbaded7afa4:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c758667f4496f3c51196fbb036b48f8d",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 650,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c758667f4496f3c51196fbb036b48f8d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a97a851f42874792a093cc9e0550c54e:o:then"
+							]
+						},
+						{
+							"id": "c758667f4496f3c51196fbb036b48f8d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c7e249d1496364a0dbb1e088df8efd1b:i:execute"
+							]
+						},
+						{
+							"id": "c758667f4496f3c51196fbb036b48f8d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"c2e430f640aebc28fbfcc09c953d69f6:o:ClueTitle"
+							]
+						},
+						{
+							"id": "c758667f4496f3c51196fbb036b48f8d:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"1b82a317466840dfbc625ab93e6caece:o:Title"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c7e249d1496364a0dbb1e088df8efd1b",
+					"class": "K2Node_CallFunction",
+					"title": "Clear Children",
+					"x": 930,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c7e249d1496364a0dbb1e088df8efd1b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c758667f4496f3c51196fbb036b48f8d:o:then"
+							]
+						},
+						{
+							"id": "c7e249d1496364a0dbb1e088df8efd1b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cb1948c7449c2c6e4ec93c92732bf927:i:Exec"
+							]
+						},
+						{
+							"id": "c7e249d1496364a0dbb1e088df8efd1b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"a9d3203f448446f13fee7a9115f092df:o:ClueDescriptions"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cb1948c7449c2c6e4ec93c92732bf927",
+					"class": "K2Node_MacroInstance",
+					"title": "For Each Loop",
+					"x": 1200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cb1948c7449c2c6e4ec93c92732bf927:i:Exec",
+							"name": "Exec",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c7e249d1496364a0dbb1e088df8efd1b:o:then"
+							]
+						},
+						{
+							"id": "cb1948c7449c2c6e4ec93c92732bf927:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "text[]",
+							"defaultValue": null,
+							"links": [
+								"bfee880a4e9398b4250bea9244903733:o:OutputPin"
+							]
+						},
+						{
+							"id": "cb1948c7449c2c6e4ec93c92732bf927:o:LoopBody",
+							"name": "LoopBody",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d8936dea47c951cc4b1f19a0aa8afeea:i:execute"
+							]
+						},
+						{
+							"id": "cb1948c7449c2c6e4ec93c92732bf927:o:Array Element",
+							"name": "Array Element",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"59a51cb74c55e26d7f12529db47851a6:i:InputPin"
+							]
+						},
+						{
+							"id": "cb1948c7449c2c6e4ec93c92732bf927:o:Array Index",
+							"name": "Array Index",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cb1948c7449c2c6e4ec93c92732bf927:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d8936dea47c951cc4b1f19a0aa8afeea",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 1500,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d8936dea47c951cc4b1f19a0aa8afeea:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cb1948c7449c2c6e4ec93c92732bf927:o:LoopBody"
+							]
+						},
+						{
+							"id": "d8936dea47c951cc4b1f19a0aa8afeea:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c41f5bf34a3a2897f285b2b3ffe0865f:i:execute"
+							]
+						},
+						{
+							"id": "d8936dea47c951cc4b1f19a0aa8afeea:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"links": []
+						},
+						{
+							"id": "d8936dea47c951cc4b1f19a0aa8afeea:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationDescription.WBP_JournalInvestigationDescription_C",
+							"defaultValue": null,
+							"links": [
+								"26b0ef4a4584865cb7ed248b5b1af965:i:self",
+								"4a50fbcc41c66350730bdc9eb087b06d:i:InputPin"
+							]
+						},
+						{
+							"id": "d8936dea47c951cc4b1f19a0aa8afeea:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e4e268974a4d9ad6ebd4d480eab61484",
+					"class": "K2Node_VariableGet",
+					"title": "Get Entry",
+					"x": 0,
+					"y": 167,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e4e268974a4d9ad6ebd4d480eab61484:o:Entry",
+							"name": "Entry",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"1b82a317466840dfbc625ab93e6caece:i:JournalInvestigationEntry"
+							]
+						},
+						{
+							"id": "e4e268974a4d9ad6ebd4d480eab61484:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueRow.WBP_JournalClueRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "edf830ce4a0a01ce04baa3a80a8d1cdf",
+					"class": "K2Node_CallFunction",
+					"title": "Add Child",
+					"x": 2556,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "edf830ce4a0a01ce04baa3a80a8d1cdf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c41f5bf34a3a2897f285b2b3ffe0865f:o:then"
+							]
+						},
+						{
+							"id": "edf830ce4a0a01ce04baa3a80a8d1cdf:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "edf830ce4a0a01ce04baa3a80a8d1cdf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"1afcdfaa4cc19a9814cd61b1f535a251:o:OutputPin"
+							]
+						},
+						{
+							"id": "edf830ce4a0a01ce04baa3a80a8d1cdf:i:Content",
+							"name": "Content",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"4a50fbcc41c66350730bdc9eb087b06d:o:OutputPin"
+							]
+						},
+						{
+							"id": "edf830ce4a0a01ce04baa3a80a8d1cdf:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/UMG.PanelSlot",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"Entry":
+			{
+				"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"ClueTitle": null,
+			"ClueDescriptions": null,
+			"Entry":
+			{
+				"Title": "",
+				"Descriptions": [],
+				"Status": "Undiscovered",
+				"EntryId": "None"
+			},
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
+}

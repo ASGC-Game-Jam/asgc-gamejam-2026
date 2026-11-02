@@ -14,14 +14,55 @@ enum class EJournalInvestigationStatus : uint8
 	Complete
 };
 
-USTRUCT()
+UENUM(BlueprintType)
+enum class EJournalEntryKind : uint8
+{
+	Clue,
+	PuzzleObservation
+};
+
+/** Owner-supplied journal content, stored once in the existing journal. */
+USTRUCT(BlueprintType)
 struct FJournalInvestigationEntry
 {
 	GENERATED_BODY()
 
-	FString Title;
-	TArray<FString> Descriptions;
-	EJournalInvestigationStatus Status;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FText Title;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	TArray<FText> Descriptions;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	EJournalInvestigationStatus Status = EJournalInvestigationStatus::Undiscovered;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FName EntryId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	EJournalEntryKind Kind = EJournalEntryKind::Clue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FName DistrictId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FText DistrictTitle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FName MysteryId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FText MysteryTitle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FName PuzzleId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	FText PuzzleTitle;
+
+	/** Owner says this visible entry's group has more to learn; never inferred from hidden entries. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal")
+	bool bKnowledgeIncomplete = false;
 };
 
 // @note(Tan): params here are subject to change depending on how investigation data looks like
@@ -40,6 +81,14 @@ class PROJECTATLANTIS_API UAtlantisJournalSubsystem : public UGameInstanceSubsys
 	GENERATED_BODY()
 	
 public:
+	/** Add or replace owner-supplied content by stable identity. Does not decide discovery. */
+	UFUNCTION(BlueprintCallable, Category = "Journal")
+	bool SetInvestigationEntry(const FJournalInvestigationEntry& Entry);
+
+	/** Read all entries; the view decides which owner-supplied statuses to display. */
+	UFUNCTION(BlueprintPure, Category = "Journal")
+	TArray<FJournalInvestigationEntry> GetInvestigationEntries() const;
+
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 	
@@ -76,10 +125,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Journal")
 	void UpdateInvestigationDescription(const FString& Title, const FString& Description);
 
-	// TODO Figure out how the data is formatted from investigation
-	//		Stub function for investigation to update status of a specific of a journal entry with a list of descriptions
-	//      can be used for scenarios such as after game loads and investigation system wants to update entire state of a
-	//      entry
+	/** Replace the entry's description snapshot, preserving its identity and status. */
 	UFUNCTION(BlueprintCallable, Category = "Journal")
 	void UpdateInvestigationDescriptions(const FString& Title, TArray<FString> Descriptions);
 
