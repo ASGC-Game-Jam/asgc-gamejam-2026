@@ -114,6 +114,26 @@ void FAtlantisJournalShellSpec::Define()
 		});
 		AfterEach([this]() { Fixture.Reset(); });
 
+		It(TEXT("should suppress stale empty copy for upstream puzzle observations"), [this]()
+		{
+			if (!Fixture->Journal) { return; }
+			Fixture->Toggle();
+			UAtlantisJournalEmptyStateExtension* Extension = Fixture->Journal->GetExtension<UAtlantisJournalEmptyStateExtension>();
+			if (!TestNotNull(TEXT("Authored shell empty-state extension"), Extension)
+				|| !TestNotNull(TEXT("Current layout accepts empty-state extension"), Extension->EmptyState.Get())) { return; }
+			FJournalInvestigationEntry Entry;
+			Entry.EntryId = TEXT("NativePuzzleObservation");
+			Entry.Title = FText::FromString(TEXT("Visible owner puzzle"));
+			Entry.Kind = EJournalEntryKind::PuzzleObservation;
+			Entry.Status = EJournalInvestigationStatus::Inprogress;
+			Fixture->Instance->GetSubsystem<UAtlantisJournalSubsystem>()->SetInvestigationEntry(Entry);
+			UButton* Puzzle = Cast<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("PuzzleTabButton")));
+			if (!TestNotNull(TEXT("Authored puzzle navigation"), Puzzle)) { return; }
+			Puzzle->OnClicked.Broadcast();
+			TestTrue(TEXT("Known upstream puzzle does not show no-puzzles copy"), Extension->EmptyState->GetVisibility() == ESlateVisibility::Collapsed);
+		});
+
+
 		It(TEXT("should open pause and close through the existing Blueprint while restoring gameplay controls"), [this]()
 		{
 			if (!Fixture->Journal) { return; }

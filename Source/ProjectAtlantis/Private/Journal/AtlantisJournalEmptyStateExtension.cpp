@@ -14,7 +14,7 @@ void UAtlantisJournalEmptyStateExtension::Construct()
 {
 	UUserWidget* Shell = GetUserWidget();
 	if (EmptyState || !Shell) { return; }
-	UWidget* Content = Shell->GetWidgetFromName(TEXT("WBP_JournalInvestigationTab"));
+	UWidget* Content = Shell->GetWidgetFromName(TEXT("InvestigationTab"));
 	UVerticalBox* Column = Content ? Cast<UVerticalBox>(Content->GetParent()) : nullptr;
 	const TCHAR* Names[] = { TEXT("InvestigationTabButton"), TEXT("PuzzleTabButton"), TEXT("DialogueTabButton") };
 	for (const TCHAR* Name : Names)
@@ -76,16 +76,24 @@ void UAtlantisJournalEmptyStateExtension::RefreshEmptyState()
 	{
 		if (JournalData.IsValid())
 		{
-			const TArray<FString> Titles = JournalData->GetInvestigations();
-			bEmpty = !Titles.ContainsByPredicate([this](const FString& Title)
+			const TArray<FJournalInvestigationEntry> Entries = JournalData->GetInvestigationEntries();
+			bEmpty = !Entries.ContainsByPredicate([](const FJournalInvestigationEntry& Entry)
 			{
-				return JournalData->GetInvestigationStatus(Title) != EJournalInvestigationStatus::Undiscovered;
+				return Entry.Status != EJournalInvestigationStatus::Undiscovered && Entry.Kind == EJournalEntryKind::Clue;
 			});
 		}
 		EmptyState->SetText(NSLOCTEXT("AtlantisJournal", "NoInvestigations", "No investigations discovered yet."));
 	}
 	else if (Selection == 1)
 	{
+		if (JournalData.IsValid())
+		{
+			const TArray<FJournalInvestigationEntry> Entries = JournalData->GetInvestigationEntries();
+			bEmpty = !Entries.ContainsByPredicate([](const FJournalInvestigationEntry& Entry)
+			{
+				return Entry.Status != EJournalInvestigationStatus::Undiscovered && Entry.Kind == EJournalEntryKind::PuzzleObservation;
+			});
+		}
 		EmptyState->SetText(NSLOCTEXT("AtlantisJournal", "NoPuzzles", "No puzzle entries yet."));
 	}
 	else if (Selection == 2)

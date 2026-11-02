@@ -48,6 +48,8 @@ public class ProjectAtlantis : ModuleRules
 
         PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
 
+		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+
 		// Uncomment if you are using Slate UI
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 		
