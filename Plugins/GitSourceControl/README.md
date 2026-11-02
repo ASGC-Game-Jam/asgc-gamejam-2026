@@ -1,5 +1,9 @@
 # Unreal Engine Git Plugin
 
+> Project Atlantis adaptation: Check In and push retain LFS locks regardless of
+> **Keep Files Checked Out**. Release locks explicitly after PR merge. The
+> upstream usage text below describes upstream behavior.
+
 This is a refactor of the [Git LFS 2 plugin by SRombauts](https://github.com/SRombauts/UE4GitPlugin), with lessons learned from production
 that include performance optimizations, new features and workflow improvements.
 
