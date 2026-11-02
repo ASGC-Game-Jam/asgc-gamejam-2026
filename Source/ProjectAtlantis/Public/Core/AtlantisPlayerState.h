@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AtlantisOxygenComponent.h"
 #include "GameFramework/PlayerState.h"
 #include "Core/EAtlantisTraversalMode.h"
 

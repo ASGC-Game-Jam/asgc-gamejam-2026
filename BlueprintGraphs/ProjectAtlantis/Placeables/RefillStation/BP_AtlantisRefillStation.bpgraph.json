@@ -132,8 +132,8 @@
 					"guid": "2738ba794da7f596062e47a6efa9c6d2",
 					"class": "K2Node_CallFunction",
 					"title": "Interact",
-					"x": 560,
-					"y": 320,
+					"x": 624,
+					"y": 384,
 					"comment": null,
 					"pins": [
 						{
@@ -151,7 +151,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"d5d57652419ecee0ce76aba1eb0c624c:i:execute"
+								"80236c29400812d072ec8f8506c9d4a8:i:execute"
 							]
 						},
 						{
@@ -175,8 +175,68 @@
 							"name": "InteractionOccurred",
 							"direction": "output",
 							"type": "bool",
-							"defaultValue": "false",
+							"defaultValue": null,
+							"links": [
+								"80236c29400812d072ec8f8506c9d4a8:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3e87d99b4cef30e6125a6a8ccea66c97",
+					"class": "K2Node_VariableGet",
+					"title": "Get PlayerState",
+					"x": 560,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3e87d99b4cef30e6125a6a8ccea66c97:o:PlayerState",
+							"name": "PlayerState",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"7080b79a4eb6eee41e9bd88bf14c1c85:i:self"
+							]
+						},
+						{
+							"id": "3e87d99b4cef30e6125a6a8ccea66c97:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/RefillStation/BP_AtlantisRefillStation.BP_AtlantisRefillStation_C",
+							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7080b79a4eb6eee41e9bd88bf14c1c85",
+					"class": "K2Node_VariableGet",
+					"title": "Get OxygenComponent",
+					"x": 832,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7080b79a4eb6eee41e9bd88bf14c1c85:o:OxygenComponent",
+							"name": "OxygenComponent",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+							"defaultValue": null,
+							"links": [
+								"d5d57652419ecee0ce76aba1eb0c624c:i:self"
+							]
+						},
+						{
+							"id": "7080b79a4eb6eee41e9bd88bf14c1c85:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+							"defaultValue": null,
+							"links": [
+								"3e87d99b4cef30e6125a6a8ccea66c97:o:PlayerState"
+							]
 						}
 					]
 				},
@@ -215,29 +275,143 @@
 					]
 				},
 				{
-					"guid": "8e920fff488e949eea28a3b2de446fd5",
-					"class": "K2Node_VariableGet",
-					"title": "Get OxygenResource",
-					"x": 592,
-					"y": 640,
+					"guid": "80236c29400812d072ec8f8506c9d4a8",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1008,
+					"y": 368,
 					"comment": null,
 					"pins": [
 						{
-							"id": "8e920fff488e949eea28a3b2de446fd5:o:OxygenResource",
-							"name": "OxygenResource",
-							"direction": "output",
-							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+							"id": "80236c29400812d072ec8f8506c9d4a8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"d5d57652419ecee0ce76aba1eb0c624c:i:self"
+								"2738ba794da7f596062e47a6efa9c6d2:o:then"
 							]
 						},
 						{
-							"id": "8e920fff488e949eea28a3b2de446fd5:i:self",
+							"id": "80236c29400812d072ec8f8506c9d4a8:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2738ba794da7f596062e47a6efa9c6d2:o:InteractionOccurred"
+							]
+						},
+						{
+							"id": "80236c29400812d072ec8f8506c9d4a8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d5d57652419ecee0ce76aba1eb0c624c:i:execute"
+							]
+						},
+						{
+							"id": "80236c29400812d072ec8f8506c9d4a8:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b262ddb54ba052436dc78fabd6095c11:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b262ddb54ba052436dc78fabd6095c11",
+					"class": "K2Node_CallFunction",
+					"title": "Print Text",
+					"x": 1408,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"80236c29400812d072ec8f8506c9d4a8:o:else"
+							]
+						},
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Placeables/RefillStation/BP_AtlantisRefillStation.BP_AtlantisRefillStation_C",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
 							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Couldn't interact with refill station",
+							"links": []
+						},
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "b262ddb54ba052436dc78fabd6095c11:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
 							"links": []
 						}
 					]
@@ -246,7 +420,7 @@
 					"guid": "d5d57652419ecee0ce76aba1eb0c624c",
 					"class": "K2Node_CallFunction",
 					"title": "RestoreOxygen",
-					"x": 1088,
+					"x": 1200,
 					"y": 560,
 					"comment": null,
 					"pins": [
@@ -257,7 +431,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"2738ba794da7f596062e47a6efa9c6d2:o:then"
+								"80236c29400812d072ec8f8506c9d4a8:o:then"
 							]
 						},
 						{
@@ -275,7 +449,7 @@
 							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
 							"defaultValue": null,
 							"links": [
-								"8e920fff488e949eea28a3b2de446fd5:o:OxygenResource"
+								"7080b79a4eb6eee41e9bd88bf14c1c85:o:OxygenComponent"
 							]
 						},
 						{
@@ -344,6 +518,13 @@
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": true
+			},
+			"PlayerState":
+			{
+				"type": "object:/Script/ProjectAtlantis.AtlantisPlayerState",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
 			}
 		},
 		"components":
@@ -352,6 +533,7 @@
 		"defaults":
 		{
 			"OxygenResource": null,
+			"PlayerState": null,
 			"StaticMesh": null,
 			"DefaultSceneRoot": null,
 			"Outline Material": "/Game/ProjectAtlantis/MaterialLibrary/Interactable/MI_Interactable_Outline.MI_Interactable_Outline",
