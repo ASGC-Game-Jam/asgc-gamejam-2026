@@ -1,4 +1,4 @@
-// Atlantis.Environment: discrete room and surface IDs for MetaSounds, delivered by parameter pack (#105).
+// Atlantis.Environment: discrete room and surface IDs for MetaSounds.
 
 #pragma once
 
