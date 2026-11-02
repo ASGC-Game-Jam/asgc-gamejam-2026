@@ -16,7 +16,7 @@ namespace ProjectAtlantisAudio
 		// Builds (or returns the cached) interface object that gets registered with MetaSounds.
 		Audio::FParameterInterfacePtr CreateInterface();
 
-		// The actual version data, declared here, defined in the .cpp.
+		// The actual version data.
 		extern const FMetasoundFrontendVersion FrontendVersion;
 
 		// --- Inputs ---
