@@ -8,6 +8,1602 @@
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
+			"name": "AddClueRow",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "644238ca485ad88760ec94b59f927708",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 900,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "644238ca485ad88760ec94b59f927708:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7c8c5b9f48ba038dadf35c9d79640989:o:then"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7c8c5b9f48ba038dadf35c9d79640989",
+					"class": "K2Node_CallFunction",
+					"title": "Add Child",
+					"x": 606,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7c8c5b9f48ba038dadf35c9d79640989:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9e2eceac499e1a09ea92e5b6396964c0:o:then"
+							]
+						},
+						{
+							"id": "7c8c5b9f48ba038dadf35c9d79640989:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"644238ca485ad88760ec94b59f927708:i:execute"
+							]
+						},
+						{
+							"id": "7c8c5b9f48ba038dadf35c9d79640989:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"f847a75c4ac7d9721de1d9872d54c4cc:o:Parent"
+							]
+						},
+						{
+							"id": "7c8c5b9f48ba038dadf35c9d79640989:i:Content",
+							"name": "Content",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"9e2eceac499e1a09ea92e5b6396964c0:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7c8c5b9f48ba038dadf35c9d79640989:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/UMG.PanelSlot",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9e2eceac499e1a09ea92e5b6396964c0",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 215,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9e2eceac499e1a09ea92e5b6396964c0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f847a75c4ac7d9721de1d9872d54c4cc:o:then"
+							]
+						},
+						{
+							"id": "9e2eceac499e1a09ea92e5b6396964c0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7c8c5b9f48ba038dadf35c9d79640989:i:execute"
+							]
+						},
+						{
+							"id": "9e2eceac499e1a09ea92e5b6396964c0:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_JournalClueRow.WBP_JournalClueRow_C",
+							"links": []
+						},
+						{
+							"id": "9e2eceac499e1a09ea92e5b6396964c0:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueRow.WBP_JournalClueRow_C",
+							"defaultValue": null,
+							"links": [
+								"7c8c5b9f48ba038dadf35c9d79640989:i:Content"
+							]
+						},
+						{
+							"id": "9e2eceac499e1a09ea92e5b6396964c0:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9e2eceac499e1a09ea92e5b6396964c0:i:Entry",
+							"name": "Entry",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"f847a75c4ac7d9721de1d9872d54c4cc:o:Entry"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f847a75c4ac7d9721de1d9872d54c4cc",
+					"class": "K2Node_FunctionEntry",
+					"title": "AddClueRow",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f847a75c4ac7d9721de1d9872d54c4cc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9e2eceac499e1a09ea92e5b6396964c0:i:execute"
+							]
+						},
+						{
+							"id": "f847a75c4ac7d9721de1d9872d54c4cc:o:Parent",
+							"name": "Parent",
+							"direction": "output",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"7c8c5b9f48ba038dadf35c9d79640989:i:self"
+							]
+						},
+						{
+							"id": "f847a75c4ac7d9721de1d9872d54c4cc:o:Entry",
+							"name": "Entry",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"9e2eceac499e1a09ea92e5b6396964c0:i:Entry"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "AddGroupedClue",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "24ca888a4373749db73f22b6d567cbeb",
+					"class": "K2Node_CallFunction",
+					"title": "AddClueRow",
+					"x": 1200,
+					"y": 633,
+					"comment": null,
+					"pins": [
+						{
+							"id": "24ca888a4373749db73f22b6d567cbeb:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"98e4679443fdb5cd5ba0a5aa8e9fcec9:o:else"
+							]
+						},
+						{
+							"id": "24ca888a4373749db73f22b6d567cbeb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35bc9e7d481f562060e1ef8c35947732:i:execute"
+							]
+						},
+						{
+							"id": "24ca888a4373749db73f22b6d567cbeb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "24ca888a4373749db73f22b6d567cbeb:i:Parent",
+							"name": "Parent",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"4af251f543f337eda0c4e49268218c79:o:ClueList"
+							]
+						},
+						{
+							"id": "24ca888a4373749db73f22b6d567cbeb:i:Entry",
+							"name": "Entry",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"4dadb6b749b1f772b40fcd9bb0594fc8:o:Entry"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2b18779e4bcc8f4125e99284400e65b0",
+					"class": "K2Node_CallFunction",
+					"title": "FindOrAddClueGroup",
+					"x": 2216,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2b18779e4bcc8f4125e99284400e65b0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:o:then"
+							]
+						},
+						{
+							"id": "2b18779e4bcc8f4125e99284400e65b0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b0cea30446c476468b96e7a483c32c25:i:execute"
+							]
+						},
+						{
+							"id": "2b18779e4bcc8f4125e99284400e65b0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2b18779e4bcc8f4125e99284400e65b0:i:Parent",
+							"name": "Parent",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"c3d00297463f5ee6eb5440a9f4beafaa:o:GroupContents"
+							]
+						},
+						{
+							"id": "2b18779e4bcc8f4125e99284400e65b0:i:GroupId",
+							"name": "GroupId",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:MysteryId"
+							]
+						},
+						{
+							"id": "2b18779e4bcc8f4125e99284400e65b0:i:Heading",
+							"name": "Heading",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:MysteryTitle"
+							]
+						},
+						{
+							"id": "2b18779e4bcc8f4125e99284400e65b0:o:Group",
+							"name": "Group",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"4df495f14276778f19fff4ba75872f74:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2fd8af224826790455b88795a3ae203a",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 3232,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2fd8af224826790455b88795a3ae203a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b0cea30446c476468b96e7a483c32c25:o:then"
+							]
+						}
+					]
+				},
+				{
+					"guid": "35bc9e7d481f562060e1ef8c35947732",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 1550,
+					"y": 650,
+					"comment": null,
+					"pins": [
+						{
+							"id": "35bc9e7d481f562060e1ef8c35947732:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"24ca888a4373749db73f22b6d567cbeb:o:then"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4af251f543f337eda0c4e49268218c79",
+					"class": "K2Node_VariableGet",
+					"title": "Get ClueList",
+					"x": 925,
+					"y": 544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4af251f543f337eda0c4e49268218c79:o:ClueList",
+							"name": "ClueList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"24ca888a4373749db73f22b6d567cbeb:i:Parent",
+								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:Parent"
+							]
+						},
+						{
+							"id": "4af251f543f337eda0c4e49268218c79:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalInvestigationTab.WBP_JournalInvestigationTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4dadb6b749b1f772b40fcd9bb0594fc8",
+					"class": "K2Node_VariableGet",
+					"title": "Get Entry",
+					"x": 925,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4dadb6b749b1f772b40fcd9bb0594fc8:o:Entry",
+							"name": "Entry",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"24ca888a4373749db73f22b6d567cbeb:i:Entry"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4df495f14276778f19fff4ba75872f74",
+					"class": "K2Node_VariableGet",
+					"title": "Get GroupContents",
+					"x": 2544,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4df495f14276778f19fff4ba75872f74:o:GroupContents",
+							"name": "GroupContents",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"b0cea30446c476468b96e7a483c32c25:i:Parent"
+							]
+						},
+						{
+							"id": "4df495f14276778f19fff4ba75872f74:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:o:Group"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4e17ef1e4eb997c03309e2a49d3a05b8",
+					"class": "K2Node_CallFunction",
+					"title": "Not Equal (Name)",
+					"x": 448,
+					"y": 222,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4e17ef1e4eb997c03309e2a49d3a05b8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "4e17ef1e4eb997c03309e2a49d3a05b8:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:DistrictId"
+							]
+						},
+						{
+							"id": "4e17ef1e4eb997c03309e2a49d3a05b8:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "4e17ef1e4eb997c03309e2a49d3a05b8:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"53931bd944c800f9363b219008cbb909:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "53931bd944c800f9363b219008cbb909",
+					"class": "K2Node_CallFunction",
+					"title": "AND Boolean",
+					"x": 704,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "53931bd944c800f9363b219008cbb909:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "53931bd944c800f9363b219008cbb909:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"4e17ef1e4eb997c03309e2a49d3a05b8:o:ReturnValue"
+							]
+						},
+						{
+							"id": "53931bd944c800f9363b219008cbb909:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d7a61ebb4046e11b7ed2ae9e6769fd94:o:ReturnValue"
+							]
+						},
+						{
+							"id": "53931bd944c800f9363b219008cbb909:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"98e4679443fdb5cd5ba0a5aa8e9fcec9:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "721d455a4595dad26b0d648ce3e0b86f",
+					"class": "K2Node_FunctionEntry",
+					"title": "AddGroupedClue",
+					"x": -240,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "721d455a4595dad26b0d648ce3e0b86f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"98e4679443fdb5cd5ba0a5aa8e9fcec9:i:execute"
+							]
+						},
+						{
+							"id": "721d455a4595dad26b0d648ce3e0b86f:o:Entry",
+							"name": "Entry",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:i:JournalInvestigationEntry"
+							]
+						}
+					]
+				},
+				{
+					"guid": "755ec0264871c3048925979cd943a03f",
+					"class": "K2Node_BreakStruct",
+					"title": "Break Journal Investigation Entry",
+					"x": 0,
+					"y": 300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "755ec0264871c3048925979cd943a03f:i:JournalInvestigationEntry",
+							"name": "JournalInvestigationEntry",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"721d455a4595dad26b0d648ce3e0b86f:o:Entry"
+							]
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:Title",
+							"name": "Title",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:Descriptions",
+							"name": "Descriptions",
+							"direction": "output",
+							"type": "text[]",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:Status",
+							"name": "Status",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalInvestigationStatus",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:EntryId",
+							"name": "EntryId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:DistrictId",
+							"name": "DistrictId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"4e17ef1e4eb997c03309e2a49d3a05b8:i:A",
+								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:GroupId"
+							]
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:DistrictTitle",
+							"name": "DistrictTitle",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:Heading"
+							]
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:MysteryId",
+							"name": "MysteryId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:i:GroupId",
+								"d7a61ebb4046e11b7ed2ae9e6769fd94:i:A"
+							]
+						},
+						{
+							"id": "755ec0264871c3048925979cd943a03f:o:MysteryTitle",
+							"name": "MysteryTitle",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:i:Heading"
+							]
+						}
+					]
+				},
+				{
+					"guid": "908766dc4a1ccf6e3b86499c8b580884",
+					"class": "K2Node_VariableGet",
+					"title": "Get Entry",
+					"x": 2591,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "908766dc4a1ccf6e3b86499c8b580884:o:Entry",
+							"name": "Entry",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"b0cea30446c476468b96e7a483c32c25:i:Entry"
+							]
+						}
+					]
+				},
+				{
+					"guid": "98e4679443fdb5cd5ba0a5aa8e9fcec9",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 900,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "98e4679443fdb5cd5ba0a5aa8e9fcec9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"721d455a4595dad26b0d648ce3e0b86f:o:then"
+							]
+						},
+						{
+							"id": "98e4679443fdb5cd5ba0a5aa8e9fcec9:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"53931bd944c800f9363b219008cbb909:o:ReturnValue"
+							]
+						},
+						{
+							"id": "98e4679443fdb5cd5ba0a5aa8e9fcec9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:execute"
+							]
+						},
+						{
+							"id": "98e4679443fdb5cd5ba0a5aa8e9fcec9:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"24ca888a4373749db73f22b6d567cbeb:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ad92bcd74a3a4de0cd4d8ab3481bb6f2",
+					"class": "K2Node_CallFunction",
+					"title": "FindOrAddClueGroup",
+					"x": 1616,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"98e4679443fdb5cd5ba0a5aa8e9fcec9:o:then"
+							]
+						},
+						{
+							"id": "ad92bcd74a3a4de0cd4d8ab3481bb6f2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:i:execute"
+							]
+						},
+						{
+							"id": "ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:Parent",
+							"name": "Parent",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"4af251f543f337eda0c4e49268218c79:o:ClueList"
+							]
+						},
+						{
+							"id": "ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:GroupId",
+							"name": "GroupId",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:DistrictId"
+							]
+						},
+						{
+							"id": "ad92bcd74a3a4de0cd4d8ab3481bb6f2:i:Heading",
+							"name": "Heading",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:DistrictTitle"
+							]
+						},
+						{
+							"id": "ad92bcd74a3a4de0cd4d8ab3481bb6f2:o:Group",
+							"name": "Group",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"c3d00297463f5ee6eb5440a9f4beafaa:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b0cea30446c476468b96e7a483c32c25",
+					"class": "K2Node_CallFunction",
+					"title": "AddClueRow",
+					"x": 2848,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b0cea30446c476468b96e7a483c32c25:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:o:then"
+							]
+						},
+						{
+							"id": "b0cea30446c476468b96e7a483c32c25:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2fd8af224826790455b88795a3ae203a:i:execute"
+							]
+						},
+						{
+							"id": "b0cea30446c476468b96e7a483c32c25:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b0cea30446c476468b96e7a483c32c25:i:Parent",
+							"name": "Parent",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"4df495f14276778f19fff4ba75872f74:o:GroupContents"
+							]
+						},
+						{
+							"id": "b0cea30446c476468b96e7a483c32c25:i:Entry",
+							"name": "Entry",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"908766dc4a1ccf6e3b86499c8b580884:o:Entry"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c3d00297463f5ee6eb5440a9f4beafaa",
+					"class": "K2Node_VariableGet",
+					"title": "Get GroupContents",
+					"x": 1952,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3d00297463f5ee6eb5440a9f4beafaa:o:GroupContents",
+							"name": "GroupContents",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"2b18779e4bcc8f4125e99284400e65b0:i:Parent"
+							]
+						},
+						{
+							"id": "c3d00297463f5ee6eb5440a9f4beafaa:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"ad92bcd74a3a4de0cd4d8ab3481bb6f2:o:Group"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d7a61ebb4046e11b7ed2ae9e6769fd94",
+					"class": "K2Node_CallFunction",
+					"title": "Not Equal (Name)",
+					"x": 448,
+					"y": 544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d7a61ebb4046e11b7ed2ae9e6769fd94:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "d7a61ebb4046e11b7ed2ae9e6769fd94:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"755ec0264871c3048925979cd943a03f:o:MysteryId"
+							]
+						},
+						{
+							"id": "d7a61ebb4046e11b7ed2ae9e6769fd94:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "d7a61ebb4046e11b7ed2ae9e6769fd94:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"53931bd944c800f9363b219008cbb909:i:B"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "FindOrAddClueGroup",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "03cc599c4b5c67a0ab50f3a79fc93e17",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1712,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "03cc599c4b5c67a0ab50f3a79fc93e17:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"f251e2f041dc66cf2b5e13be7325c657:o:AsWBP Journal Clue Group"
+							]
+						},
+						{
+							"id": "03cc599c4b5c67a0ab50f3a79fc93e17:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"c97476ed49a03fc345b296ac67ec475d:i:Group"
+							]
+						}
+					]
+				},
+				{
+					"guid": "13a8b31f41b11f0b78244fa3b99b1870",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1472,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "13a8b31f41b11f0b78244fa3b99b1870:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f251e2f041dc66cf2b5e13be7325c657:o:then"
+							]
+						},
+						{
+							"id": "13a8b31f41b11f0b78244fa3b99b1870:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f2dd50734159d00accef9c8d1f93adde:o:ReturnValue"
+							]
+						},
+						{
+							"id": "13a8b31f41b11f0b78244fa3b99b1870:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c97476ed49a03fc345b296ac67ec475d:i:execute"
+							]
+						},
+						{
+							"id": "13a8b31f41b11f0b78244fa3b99b1870:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "337cc6e048389e462bf9fdb620fba968",
+					"class": "K2Node_MacroInstance",
+					"title": "For Each Loop",
+					"x": 300,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "337cc6e048389e462bf9fdb620fba968:i:Exec",
+							"name": "Exec",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5a7cbae54215557eca667299f3d3e50f:o:then"
+							]
+						},
+						{
+							"id": "337cc6e048389e462bf9fdb620fba968:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget[]",
+							"defaultValue": null,
+							"links": [
+								"b3b34fe6445307fbe6d25ca84d44c7d4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "337cc6e048389e462bf9fdb620fba968:o:LoopBody",
+							"name": "LoopBody",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f251e2f041dc66cf2b5e13be7325c657:i:execute"
+							]
+						},
+						{
+							"id": "337cc6e048389e462bf9fdb620fba968:o:Array Element",
+							"name": "Array Element",
+							"direction": "output",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"f251e2f041dc66cf2b5e13be7325c657:i:Object"
+							]
+						},
+						{
+							"id": "337cc6e048389e462bf9fdb620fba968:o:Array Index",
+							"name": "Array Index",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "337cc6e048389e462bf9fdb620fba968:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fb46fd0642a5f7b3b5f71cb016a65e02:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5a7cbae54215557eca667299f3d3e50f",
+					"class": "K2Node_FunctionEntry",
+					"title": "FindOrAddClueGroup",
+					"x": -576,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5a7cbae54215557eca667299f3d3e50f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"337cc6e048389e462bf9fdb620fba968:i:Exec"
+							]
+						},
+						{
+							"id": "5a7cbae54215557eca667299f3d3e50f:o:Parent",
+							"name": "Parent",
+							"direction": "output",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"b3b34fe6445307fbe6d25ca84d44c7d4:i:self"
+							]
+						},
+						{
+							"id": "5a7cbae54215557eca667299f3d3e50f:o:GroupId",
+							"name": "GroupId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"fb46fd0642a5f7b3b5f71cb016a65e02:i:GroupId"
+							]
+						},
+						{
+							"id": "5a7cbae54215557eca667299f3d3e50f:o:Heading",
+							"name": "Heading",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"fb46fd0642a5f7b3b5f71cb016a65e02:i:Heading"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5aa99be748fde77216fa7db2fc9d6e5e",
+					"class": "K2Node_VariableGet",
+					"title": "Get GroupId",
+					"x": 932,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5aa99be748fde77216fa7db2fc9d6e5e:o:GroupId",
+							"name": "GroupId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"f2dd50734159d00accef9c8d1f93adde:i:A"
+							]
+						},
+						{
+							"id": "5aa99be748fde77216fa7db2fc9d6e5e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"f251e2f041dc66cf2b5e13be7325c657:o:AsWBP Journal Clue Group"
+							]
+						}
+					]
+				},
+				{
+					"guid": "65fc87454bdc29320d5fc4aa39bafe71",
+					"class": "K2Node_VariableGet",
+					"title": "Get GroupId",
+					"x": 992,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "65fc87454bdc29320d5fc4aa39bafe71:o:GroupId",
+							"name": "GroupId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"f2dd50734159d00accef9c8d1f93adde:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a35776cb435481034da9e6ba051785ad",
+					"class": "K2Node_VariableGet",
+					"title": "Get Parent",
+					"x": 1136,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a35776cb435481034da9e6ba051785ad:o:Parent",
+							"name": "Parent",
+							"direction": "output",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"ce368f2b4560cab9d281249fda4316f6:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b3b34fe6445307fbe6d25ca84d44c7d4",
+					"class": "K2Node_CallFunction",
+					"title": "Get All Children",
+					"x": 48,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b3b34fe6445307fbe6d25ca84d44c7d4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"5a7cbae54215557eca667299f3d3e50f:o:Parent"
+							]
+						},
+						{
+							"id": "b3b34fe6445307fbe6d25ca84d44c7d4:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/UMG.Widget[]",
+							"defaultValue": null,
+							"links": [
+								"337cc6e048389e462bf9fdb620fba968:i:Array"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c97476ed49a03fc345b296ac67ec475d",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 1872,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c97476ed49a03fc345b296ac67ec475d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"13a8b31f41b11f0b78244fa3b99b1870:o:then"
+							]
+						},
+						{
+							"id": "c97476ed49a03fc345b296ac67ec475d:i:Group",
+							"name": "Group",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"03cc599c4b5c67a0ab50f3a79fc93e17:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ce368f2b4560cab9d281249fda4316f6",
+					"class": "K2Node_CallFunction",
+					"title": "Add Child",
+					"x": 1440,
+					"y": 1024,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ce368f2b4560cab9d281249fda4316f6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fb46fd0642a5f7b3b5f71cb016a65e02:o:then"
+							]
+						},
+						{
+							"id": "ce368f2b4560cab9d281249fda4316f6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d4b3144c48845b82702a07abe47460c2:i:execute"
+							]
+						},
+						{
+							"id": "ce368f2b4560cab9d281249fda4316f6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"a35776cb435481034da9e6ba051785ad:o:Parent"
+							]
+						},
+						{
+							"id": "ce368f2b4560cab9d281249fda4316f6:i:Content",
+							"name": "Content",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"fb46fd0642a5f7b3b5f71cb016a65e02:o:ReturnValue"
+							]
+						},
+						{
+							"id": "ce368f2b4560cab9d281249fda4316f6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/UMG.PanelSlot",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d4b3144c48845b82702a07abe47460c2",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 1872,
+					"y": 1039,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d4b3144c48845b82702a07abe47460c2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ce368f2b4560cab9d281249fda4316f6:o:then"
+							]
+						},
+						{
+							"id": "d4b3144c48845b82702a07abe47460c2:i:Group",
+							"name": "Group",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"fe95beb4425b65faf7ca2c93599a990c:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f251e2f041dc66cf2b5e13be7325c657",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To WBP_JournalClueGroup",
+					"x": 600,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f251e2f041dc66cf2b5e13be7325c657:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"337cc6e048389e462bf9fdb620fba968:o:LoopBody"
+							]
+						},
+						{
+							"id": "f251e2f041dc66cf2b5e13be7325c657:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"13a8b31f41b11f0b78244fa3b99b1870:i:execute"
+							]
+						},
+						{
+							"id": "f251e2f041dc66cf2b5e13be7325c657:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f251e2f041dc66cf2b5e13be7325c657:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"337cc6e048389e462bf9fdb620fba968:o:Array Element"
+							]
+						},
+						{
+							"id": "f251e2f041dc66cf2b5e13be7325c657:o:AsWBP Journal Clue Group",
+							"name": "AsWBP Journal Clue Group",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"03cc599c4b5c67a0ab50f3a79fc93e17:i:InputPin",
+								"5aa99be748fde77216fa7db2fc9d6e5e:i:self"
+							]
+						},
+						{
+							"id": "f251e2f041dc66cf2b5e13be7325c657:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f2dd50734159d00accef9c8d1f93adde",
+					"class": "K2Node_CallFunction",
+					"title": "Equal (Name)",
+					"x": 1232,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f2dd50734159d00accef9c8d1f93adde:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "f2dd50734159d00accef9c8d1f93adde:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"5aa99be748fde77216fa7db2fc9d6e5e:o:GroupId"
+							]
+						},
+						{
+							"id": "f2dd50734159d00accef9c8d1f93adde:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"65fc87454bdc29320d5fc4aa39bafe71:o:GroupId"
+							]
+						},
+						{
+							"id": "f2dd50734159d00accef9c8d1f93adde:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"13a8b31f41b11f0b78244fa3b99b1870:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fb46fd0642a5f7b3b5f71cb016a65e02",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 960,
+					"y": 1038,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fb46fd0642a5f7b3b5f71cb016a65e02:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"337cc6e048389e462bf9fdb620fba968:o:Completed"
+							]
+						},
+						{
+							"id": "fb46fd0642a5f7b3b5f71cb016a65e02:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ce368f2b4560cab9d281249fda4316f6:i:execute"
+							]
+						},
+						{
+							"id": "fb46fd0642a5f7b3b5f71cb016a65e02:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"links": []
+						},
+						{
+							"id": "fb46fd0642a5f7b3b5f71cb016a65e02:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"ce368f2b4560cab9d281249fda4316f6:i:Content",
+								"fe95beb4425b65faf7ca2c93599a990c:i:InputPin"
+							]
+						},
+						{
+							"id": "fb46fd0642a5f7b3b5f71cb016a65e02:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fb46fd0642a5f7b3b5f71cb016a65e02:i:GroupId",
+							"name": "GroupId",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"5a7cbae54215557eca667299f3d3e50f:o:GroupId"
+							]
+						},
+						{
+							"id": "fb46fd0642a5f7b3b5f71cb016a65e02:i:Heading",
+							"name": "Heading",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"5a7cbae54215557eca667299f3d3e50f:o:Heading"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fe95beb4425b65faf7ca2c93599a990c",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1520,
+					"y": 1264,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fe95beb4425b65faf7ca2c93599a990c:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"fb46fd0642a5f7b3b5f71cb016a65e02:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fe95beb4425b65faf7ca2c93599a990c:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueGroup.WBP_JournalClueGroup_C",
+							"defaultValue": null,
+							"links": [
+								"d4b3144c48845b82702a07abe47460c2:i:Group"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
 			"name": "RefreshClues",
 			"type": "Function",
 			"nodes": [
@@ -130,8 +1726,7 @@
 							"type": "object:/Script/UMG.VerticalBox",
 							"defaultValue": null,
 							"links": [
-								"53085e0c46e6806f95a0a6bc2720b9b3:i:self",
-								"715d68704e8f15260f7ef4b95a4b6f27:i:InputPin"
+								"53085e0c46e6806f95a0a6bc2720b9b3:i:self"
 							]
 						}
 					]
@@ -140,8 +1735,8 @@
 					"guid": "2b70b3744d9881581506878c778f710f",
 					"class": "K2Node_VariableGet",
 					"title": "Get ClueList",
-					"x": -160,
-					"y": 294,
+					"x": -11,
+					"y": 304,
 					"comment": null,
 					"pins": [
 						{
@@ -360,72 +1955,6 @@
 					]
 				},
 				{
-					"guid": "5de3c82c46a90ec6778848a78faa6ab0",
-					"class": "K2Node_CreateWidget",
-					"title": "Create Widget",
-					"x": 2288,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "5de3c82c46a90ec6778848a78faa6ab0:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"6606976644a70d3ba73a4987066312ef:o:then"
-							]
-						},
-						{
-							"id": "5de3c82c46a90ec6778848a78faa6ab0:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"c1e287b14a2056d3eb40a5826e79ca84:i:execute"
-							]
-						},
-						{
-							"id": "5de3c82c46a90ec6778848a78faa6ab0:i:Class",
-							"name": "Class",
-							"direction": "input",
-							"type": "class:/Script/UMG.UserWidget",
-							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_JournalClueRow.WBP_JournalClueRow_C",
-							"links": []
-						},
-						{
-							"id": "5de3c82c46a90ec6778848a78faa6ab0:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalClueRow.WBP_JournalClueRow_C",
-							"defaultValue": null,
-							"links": [
-								"c1e287b14a2056d3eb40a5826e79ca84:i:Content"
-							]
-						},
-						{
-							"id": "5de3c82c46a90ec6778848a78faa6ab0:i:OwningPlayer",
-							"name": "OwningPlayer",
-							"direction": "input",
-							"type": "object:/Script/Engine.PlayerController",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "5de3c82c46a90ec6778848a78faa6ab0:i:Entry",
-							"name": "Entry",
-							"direction": "input",
-							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
-							"defaultValue": null,
-							"links": [
-								"86cf3ff0465e21ddf58549b585365174:o:OutputPin"
-							]
-						}
-					]
-				},
-				{
 					"guid": "6606976644a70d3ba73a4987066312ef",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
@@ -460,7 +1989,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"5de3c82c46a90ec6778848a78faa6ab0:i:execute"
+								"a94e2f8f402d3d31a61052a6596f6a48:i:execute"
 							]
 						},
 						{
@@ -474,40 +2003,10 @@
 					]
 				},
 				{
-					"guid": "715d68704e8f15260f7ef4b95a4b6f27",
-					"class": "K2Node_Knot",
-					"title": "Reroute Node",
-					"x": 2512,
-					"y": 320,
-					"comment": null,
-					"pins": [
-						{
-							"id": "715d68704e8f15260f7ef4b95a4b6f27:i:InputPin",
-							"name": "InputPin",
-							"direction": "input",
-							"type": "object:/Script/UMG.VerticalBox",
-							"defaultValue": null,
-							"links": [
-								"1d693a7e4a265c5457ec079dc8c38417:o:OutputPin"
-							]
-						},
-						{
-							"id": "715d68704e8f15260f7ef4b95a4b6f27:o:OutputPin",
-							"name": "OutputPin",
-							"direction": "output",
-							"type": "object:/Script/UMG.VerticalBox",
-							"defaultValue": null,
-							"links": [
-								"c1e287b14a2056d3eb40a5826e79ca84:i:self"
-							]
-						}
-					]
-				},
-				{
 					"guid": "7214de96433757d478870bbd09a76066",
 					"class": "K2Node_FunctionEntry",
 					"title": "RefreshClues",
-					"x": 0,
+					"x": -20,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -630,8 +2129,54 @@
 							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
 							"defaultValue": null,
 							"links": [
-								"5de3c82c46a90ec6778848a78faa6ab0:i:Entry",
+								"a94e2f8f402d3d31a61052a6596f6a48:i:Entry",
 								"e18853b94095afac2d3105864328deb3:i:JournalInvestigationEntry"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a94e2f8f402d3d31a61052a6596f6a48",
+					"class": "K2Node_CallFunction",
+					"title": "AddGroupedClue",
+					"x": 2288,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a94e2f8f402d3d31a61052a6596f6a48:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6606976644a70d3ba73a4987066312ef:o:then"
+							]
+						},
+						{
+							"id": "a94e2f8f402d3d31a61052a6596f6a48:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a94e2f8f402d3d31a61052a6596f6a48:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a94e2f8f402d3d31a61052a6596f6a48:i:Entry",
+							"name": "Entry",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalInvestigationEntry",
+							"defaultValue": null,
+							"links": [
+								"86cf3ff0465e21ddf58549b585365174:o:OutputPin"
 							]
 						}
 					]
@@ -703,62 +2248,6 @@
 							"links": [
 								"58de43d04443742bcb76dc96600274f9:i:execute"
 							]
-						}
-					]
-				},
-				{
-					"guid": "c1e287b14a2056d3eb40a5826e79ca84",
-					"class": "K2Node_CallFunction",
-					"title": "Add Child",
-					"x": 2756,
-					"y": -31,
-					"comment": null,
-					"pins": [
-						{
-							"id": "c1e287b14a2056d3eb40a5826e79ca84:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"5de3c82c46a90ec6778848a78faa6ab0:o:then"
-							]
-						},
-						{
-							"id": "c1e287b14a2056d3eb40a5826e79ca84:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "c1e287b14a2056d3eb40a5826e79ca84:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.PanelWidget",
-							"defaultValue": null,
-							"links": [
-								"715d68704e8f15260f7ef4b95a4b6f27:o:OutputPin"
-							]
-						},
-						{
-							"id": "c1e287b14a2056d3eb40a5826e79ca84:i:Content",
-							"name": "Content",
-							"direction": "input",
-							"type": "object:/Script/UMG.Widget",
-							"defaultValue": null,
-							"links": [
-								"5de3c82c46a90ec6778848a78faa6ab0:o:ReturnValue"
-							]
-						},
-						{
-							"id": "c1e287b14a2056d3eb40a5826e79ca84:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "object:/Script/UMG.PanelSlot",
-							"defaultValue": null,
-							"links": []
 						}
 					]
 				},
@@ -840,6 +2329,38 @@
 							"name": "EntryId",
 							"direction": "output",
 							"type": "name",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e18853b94095afac2d3105864328deb3:o:DistrictId",
+							"name": "DistrictId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e18853b94095afac2d3105864328deb3:o:DistrictTitle",
+							"name": "DistrictTitle",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e18853b94095afac2d3105864328deb3:o:MysteryId",
+							"name": "MysteryId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e18853b94095afac2d3105864328deb3:o:MysteryTitle",
+							"name": "MysteryTitle",
+							"direction": "output",
+							"type": "text",
 							"defaultValue": null,
 							"links": []
 						}
