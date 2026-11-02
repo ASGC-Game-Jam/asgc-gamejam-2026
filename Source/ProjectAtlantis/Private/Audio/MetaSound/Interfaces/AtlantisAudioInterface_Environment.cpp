@@ -39,7 +39,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisRoomType", "RoomType"),
-							LOCTEXT("AtlantisRoomType_Description", "Kind of space the player is in, such as small room, open plain or narrow corridor. Set by audio gameplay volumes. The ID for each room comes from the Room tag table in Project Settings > Atlantis Audio (#424). Changes on volume boundaries, not every frame."),
+							LOCTEXT("AtlantisRoomType_Description", "Kind of space the player is in, such as small room, open plain or narrow corridor. Set by audio gameplay volumes. The ID for each room comes from the Room tag table in Project Settings > Game > Atlantis Audio Settings. Changes on volume boundaries, not every frame."),
 							GetMetasoundDataTypeName<int32>(),
 							RoomType.Resolve(),
 							FText(),
