@@ -64,10 +64,6 @@ bool UAtlantisAudioDeveloperSettings::DetermineIfMusicSubsystemEnabled()
 TObjectPtr<UMetaSoundSource> UAtlantisAudioDeveloperSettings::GetMusicMetaSoundSource()
 {
 	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
-	if (!Settings)
-	{
-		return nullptr;
-	}
 
 	if (Settings->MusicMetaSoundSource.IsNull())
 	{
@@ -124,4 +120,26 @@ bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FI
 	// All four checks passed, so it's safe to route.
 	return true;
 
+}
+
+const TArray<FAtlantisMusicAxisRule>& UAtlantisAudioDeveloperSettings::GetMusicAxisRules()
+{
+	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
+
+	return Settings->MusicAxisRules;
+}
+
+float UAtlantisAudioDeveloperSettings::GetAxisBaseline(EAtlantisMusicAxis Axis)
+{
+	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
+
+	switch (Axis)
+	{
+		case EAtlantisMusicAxis::PlayerState:
+			return Settings->PlayerStateBaseline;
+		case EAtlantisMusicAxis::Tension:
+			return Settings->TensionBaseline;
+	}
+
+	return 0.f;
 }
