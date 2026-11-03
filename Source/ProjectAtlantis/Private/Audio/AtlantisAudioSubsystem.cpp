@@ -336,6 +336,8 @@ void UAtlantisAudioSubsystem::UpdateMusicAxes()
 
 	PlayerState = FMath::Clamp(PlayerState, 0.f, 1.f);
 	Tension = FMath::Clamp(Tension, 0.f, 1.f);
+	CurrentPlayerState = PlayerState;
+	CurrentTension = Tension;
 
 	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Music axes: PlayerState %.2f, Tension %.2f"), PlayerState, Tension);
 

@@ -82,5 +82,9 @@ private:
     TMap<FGameplayTag, bool> BoolFacts;
     TMap<FGameplayTag, TMap<FName, FGameplayTag>> KeyedStateFacts;
 
+    friend struct FAtlantisAudioSubsystemTestAccess;
+
+    float CurrentPlayerState = 0.f;
+    float CurrentTension = 0.f;
 
 };
