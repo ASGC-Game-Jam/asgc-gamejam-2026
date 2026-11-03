@@ -38,7 +38,7 @@ struct PROJECTATLANTIS_API FAtlantisAudioKeyedStatePayload
 {
 	GENERATED_BODY()
 
-	/** Which instance this is about, e.g. an enemy's name or an investigation's title. Must stay the same for that instance across sends. */
+	/** Which instance this is about. Leave empty to use the actor calling the node. Set it yourself when reporting on something else, like an investigation's title or another actor. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis Audio|Payloads")
 	FName Key;
 
