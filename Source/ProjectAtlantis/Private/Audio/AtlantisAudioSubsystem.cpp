@@ -97,6 +97,11 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 		return;
 	}
 
+	if (!UAtlantisAudioDeveloperSettings::IsMusicPlaybackWorld(TrackedWorld.Get()) || MusicAudioComponent)
+	{
+		return;
+	}
+
 	UE_LOG(LogAtlantisAudioSubsystem, Log, TEXT("World [%s] Begin Play active. Instantiating speakers and reading audio settings..."), *TrackedWorld->GetName());
 
 	USoundBase* MusicAsset = Cast<USoundBase>(UAtlantisAudioDeveloperSettings::GetMusicMetaSoundSource());
