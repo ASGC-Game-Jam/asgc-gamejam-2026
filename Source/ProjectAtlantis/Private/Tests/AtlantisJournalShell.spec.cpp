@@ -2,6 +2,8 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "Journal/AtlantisJournalEmptyStateExtension.h"
+#include "Journal/AtlantisJournalShellExtension.h"
+#include "Journal/AtlantisJournalObjectivesSubsystem.h"
 #include "Blueprint/UserWidget.h"
 #include "Blueprint/WidgetTree.h"
 #include "CommonGameViewportClient.h"
@@ -191,6 +193,41 @@ void FAtlantisJournalShellSpec::Define()
 			Fixture->Toggle();
 			Fixture->Toggle();
 			TestNotNull(TEXT("Reopening rebuilds empty-state extension without duplicate bindings"), Extension->EmptyState.Get());
+		});
+	});
+
+	Describe(TEXT("Objectives and authored empty-state coexistence"), [this]()
+	{
+		BeforeEach([this]() { Fixture = MakeUnique<FJournalShellFixture>(); });
+		AfterEach([this]() { Fixture.Reset(); });
+		It(TEXT("should suppress legacy copy during native objectives and restore it after removal in either construction order"), [this]()
+		{
+			if (!TestNotNull(TEXT("Actual Journal shell"), Fixture->Journal)) { return; }
+			Fixture->Toggle();
+			auto* Empty = Fixture->Journal->GetExtension<UAtlantisJournalEmptyStateExtension>();
+			if (!TestNotNull(TEXT("Authored empty-state extension"), Empty)) { return; }
+			CastChecked<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("DialogueTabButton")))->OnClicked.Broadcast();
+			TestTrue(TEXT("Dialogue fallback initially visible"), Empty->EmptyState->IsVisible());
+			auto* Sections = Fixture->Journal->AddExtension<UAtlantisJournalShellExtension>();
+			CastChecked<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("ObjectivesTabButton")))->OnClicked.Broadcast();
+			TestTrue(TEXT("Native objectives selected"), Sections->IsShowingNativeContent());
+			TestTrue(TEXT("Legacy Dialogue copy hidden immediately"), Empty->EmptyState->GetVisibility() == ESlateVisibility::Collapsed);
+			FJournalObjectivePresentation Objective;
+			Objective.ObjectiveId = TEXT("ReadRecord");
+			Objective.Text = FText::FromString(TEXT("Read the crew record"));
+			auto* Objectives = Fixture->Instance->GetSubsystem<UAtlantisJournalObjectivesSubsystem>();
+			Objectives->SubmitObjectiveSnapshot({Objective});
+			TestTrue(TEXT("Populated objectives retain sole empty-state ownership"), Empty->EmptyState->GetVisibility() == ESlateVisibility::Collapsed);
+			Fixture->Instance->GetSubsystem<UAtlantisJournalSubsystem>()->ClearAll();
+			TestTrue(TEXT("Reset does not expose false Dialogue copy"), Empty->EmptyState->GetVisibility() == ESlateVisibility::Collapsed);
+			Empty->Destruct();
+			Empty->Construct();
+			TestTrue(TEXT("Late empty-state construction respects native objectives"), Empty->EmptyState->GetVisibility() == ESlateVisibility::Collapsed);
+			CastChecked<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("DialogueTabButton")))->OnClicked.Broadcast();
+			TestTrue(TEXT("Returning to unchanged authored tab restores fallback"), Empty->EmptyState->IsVisible());
+			CastChecked<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("ObjectivesTabButton")))->OnClicked.Broadcast();
+			Fixture->Journal->RemoveExtension(Sections);
+			TestTrue(TEXT("Removing native sections restores Dialogue fallback"), Empty->EmptyState->IsVisible() && Empty->EmptyState->GetText().ToString().Contains(TEXT("No dialogue")));
 		});
 	});
 

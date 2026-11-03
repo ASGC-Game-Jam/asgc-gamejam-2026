@@ -1,5 +1,6 @@
 // Copyright (c) 2026 ASGC
 #include "Journal/AtlantisJournalEmptyStateExtension.h"
+#include "Journal/AtlantisJournalShellExtension.h"
 
 #include "Blueprint/UserWidget.h"
 #include "Blueprint/WidgetTree.h"
@@ -68,6 +69,13 @@ void UAtlantisJournalEmptyStateExtension::OnInvestigationUpdated(EJournalInvesti
 void UAtlantisJournalEmptyStateExtension::RefreshEmptyState()
 {
 	if (!EmptyState) { return; }
+	if (const UAtlantisJournalShellExtension* NativeSections = GetUserWidget()->GetExtension<UAtlantisJournalShellExtension>();
+		NativeSections && NativeSections->IsShowingNativeContent())
+	{
+		// Knowledge and Objectives already render their own filtered empty-state content.
+		EmptyState->SetVisibility(ESlateVisibility::Collapsed);
+		return;
+	}
 	const FByteProperty* Tab = FindFProperty<FByteProperty>(GetUserWidget()->GetClass(), TEXT("CurrentTabType"));
 	const uint8 Selection = Tab->GetPropertyValue_InContainer(GetUserWidget());
 	// These are the existing authored EJournalTabType values, not a second navigation model.

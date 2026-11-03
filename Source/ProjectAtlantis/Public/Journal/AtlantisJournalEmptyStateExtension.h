@@ -17,11 +17,12 @@ class PROJECTATLANTIS_API UAtlantisJournalEmptyStateExtension : public UUserWidg
 public:
 	virtual void Construct() override;
 	virtual void Destruct() override;
+	/** Called when a native section takes or releases responsibility for its own empty state. */
+	UFUNCTION()
+	void RefreshEmptyState();
 
 private:
 	friend class FAtlantisJournalShellSpec;
-	UFUNCTION()
-	void RefreshEmptyState();
 	UFUNCTION()
 	void OnInvestigationUpdated(EJournalInvestigationStatus OldStatus, EJournalInvestigationStatus Status, const FString& Title);
 

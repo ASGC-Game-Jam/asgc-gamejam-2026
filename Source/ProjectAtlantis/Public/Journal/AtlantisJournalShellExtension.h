@@ -22,6 +22,7 @@ public:
 	virtual void Destruct() override;
 	virtual bool RequiresTick() const override { return true; }
 	virtual void Tick(const FGeometry& MyGeometry, float InDeltaTime) override;
+	bool IsShowingNativeContent() const;
 
 private:
 	UFUNCTION()
@@ -31,6 +32,7 @@ private:
 	void ShowLegacyContent();
 	int64 GetCurrentTab() const;
 	void RefreshKnowledgeView();
+	void RefreshLegacyEmptyState();
 	void OverrideLegacyContent();
 	void RestoreLegacyContent();
 	void OnLegacyVisibilityChanged(ESlateVisibility Visibility);
@@ -51,6 +53,7 @@ private:
 	ESlateVisibility AuthoredContentVisibility = ESlateVisibility::Visible;
 	bool bOverridingContent = false;
 	bool bChangingContentVisibility = false;
+	bool bLastNativeContentShown = false;
 	FDelegateHandle VisibilityChangedHandle;
 };
 

@@ -1,6 +1,7 @@
 // Copyright (c) 2026 ASGC
 
 #include "Journal/AtlantisJournalShellExtension.h"
+#include "Journal/AtlantisJournalEmptyStateExtension.h"
 #include "Journal/AtlantisJournalObjectivesWidget.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Blueprint/WidgetTree.h"
@@ -169,6 +170,23 @@ void UAtlantisJournalShellExtension::Destruct()
 	}
 	LegacyContent = nullptr;
 	LastKnowledgeTab = INDEX_NONE;
+	RefreshLegacyEmptyState();
+}
+
+bool UAtlantisJournalShellExtension::IsShowingNativeContent() const
+{
+	return (KnowledgeView && KnowledgeView->IsVisible()) || (ObjectivesView && ObjectivesView->IsVisible());
+}
+
+void UAtlantisJournalShellExtension::RefreshLegacyEmptyState()
+{
+	const bool bNativeShown = IsShowingNativeContent();
+	if (bLastNativeContentShown == bNativeShown) { return; }
+	bLastNativeContentShown = bNativeShown;
+	if (UAtlantisJournalEmptyStateExtension* Empty = GetUserWidget()->GetExtension<UAtlantisJournalEmptyStateExtension>())
+	{
+		Empty->RefreshEmptyState();
+	}
 }
 
 int64 UAtlantisJournalShellExtension::GetCurrentTab() const
@@ -264,6 +282,7 @@ void UAtlantisJournalShellExtension::RefreshKnowledgeView()
 {
 	if (!KnowledgeView)
 	{
+		RefreshLegacyEmptyState();
 		return;
 	}
 	const int64 Tab = GetCurrentTab();
@@ -286,6 +305,7 @@ void UAtlantisJournalShellExtension::RefreshKnowledgeView()
 	{
 		RestoreLegacyContent();
 	}
+	RefreshLegacyEmptyState();
 }
 
 void UAtlantisJournalShellExtension::Tick(const FGeometry& MyGeometry, float InDeltaTime)
