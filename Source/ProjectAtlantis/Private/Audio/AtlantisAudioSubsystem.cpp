@@ -10,6 +10,9 @@
 #include "MetasoundGeneratorHandle.h"
 #include "Audio/AtlantisAudioFactTags.h"
 #include "Audio/PubSubSystem/ASGC_DataRouterSubsystem.h"
+#include "Audio/AtlantisAudioPayloadTypes.h"
+#include "StructUtils/InstancedStruct.h"
+
 
 
 DEFINE_LOG_CATEGORY(LogAtlantisAudioSubsystem);
@@ -189,11 +192,30 @@ void UAtlantisAudioSubsystem::StopTrackingWorld()
 	TrackedWorld.Reset();
 	GeneratorHandle = nullptr;
 	RunningSweepTime = 0.f;
+	FloatFacts.Reset();
+	BoolFacts.Reset();
+	KeyedStateFacts.Reset();
+
 }
 
 void UAtlantisAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload)
 {
 	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Fact received: [%s]"), *Tag.ToString());
+
+	if(const FAtlantisAudioFloatPayload* FloatData = Payload.GetPtr<FAtlantisAudioFloatPayload>())
+	{
+		FloatFacts.Add(Tag,FloatData->Value);
+	} else if (const FAtlantisAudioBoolPayload* BoolData = Payload.GetPtr<FAtlantisAudioBoolPayload>())
+	{
+		BoolFacts.Add(Tag, BoolData->bValue);
+	} else if (const FAtlantisAudioKeyedStatePayload* KeyedData = Payload.GetPtr<FAtlantisAudioKeyedStatePayload>())
+	{
+		KeyedStateFacts.FindOrAdd(Tag).Add(KeyedData->Key, KeyedData->State);
+	} else
+	{
+		UE_LOG(LogAtlantisAudioSubsystem, Warning, TEXT("Fact [%s] holds a payload shape the music subsystem doesn't handle."), *Tag.ToString());
+	}
+
 }
 
 void UAtlantisAudioSubsystem::SubscribeToFacts()

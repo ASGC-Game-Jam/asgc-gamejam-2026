@@ -65,4 +65,11 @@ private:
     float SweepTimerInterval = 0.033f;
 
     TMap<FGameplayTag, int32> FactSubscriptions;
+
+    // Latest value of each fact, stored by payload shape and looked up by fact tag.
+    TMap<FGameplayTag, float> FloatFacts;
+    TMap<FGameplayTag, bool> BoolFacts;
+    TMap<FGameplayTag, TMap<FName, FGameplayTag>> KeyedStateFacts;
+
+
 };
