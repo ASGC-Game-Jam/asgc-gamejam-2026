@@ -1,6 +1,8 @@
 // Copyright (c) 2026 ASGC
 #if WITH_DEV_AUTOMATION_TESTS
 #include "Analytics/GameplayAnalyticsSubsystem.h"
+#include "Core/AtlantisOxygenComponent.h"
+#include "Core/AtlantisPlayerState.h"
 #include "Engine/Engine.h"
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
@@ -41,6 +43,10 @@ public:
 		if (TestCase == TEXT("WorldLifecycle"))
 		{
 			return Fixture.TestWorldLifecycle(Test);
+		}
+		if (TestCase == TEXT("BallastMetrics"))
+		{
+			return Fixture.TestBallastMetrics(Test);
 		}
 		if (TestCase == TEXT("BoundsAndBlueprint"))
 		{
@@ -383,6 +389,159 @@ private:
 		return true;
 	}
 
+	bool TestBallastMetrics(FAutomationTestBase& Test)
+	{
+		GameInstance->InitializeStandalone(FName(TEXT("/Game/Maps/L_AnalyticsBallastTest")));
+		AnalyticsSubsystem = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>();
+		if (!Test.TestNotNull(TEXT("Analytics subsystem initialized"), AnalyticsSubsystem))
+		{
+			return false;
+		}
+
+		AnalyticsSubsystem->SlotName = TEXT("AnalyticsBallast_") + FGuid::NewGuid().ToString(EGuidFormats::Digits);
+		AnalyticsSubsystem->State = NewObject<UGameplayAnalyticsSaveGame>(AnalyticsSubsystem);
+		AnalyticsSubsystem->TestFrame = 0;
+		AnalyticsSubsystem->TestUtcDay = TEXT("2026-10-17");
+		AnalyticsSubsystem->TestPersist = []
+		{
+			return true;
+		};
+		AnalyticsSubsystem->TestSink = [this](const FString& EventId, double Value)
+		{
+			SubmittedValues.Add(EventId, Value);
+			++SubmissionCount;
+			return true;
+		};
+
+		UWorld* const World = GameInstance->GetWorld();
+		if (!Test.TestNotNull(TEXT("Analytics test world created"), World))
+		{
+			return false;
+		}
+		Test.TestTrue(TEXT("Ballast test world is active gameplay"), AnalyticsSubsystem->IsActiveGameplayWorld(World));
+		FActorSpawnParameters SpawnParameters;
+		SpawnParameters.ObjectFlags |= RF_Transient;
+		AAtlantisPlayerState* const PlayerState = World->SpawnActor<AAtlantisPlayerState>(SpawnParameters);
+		if (!Test.TestNotNull(TEXT("Ballast PlayerState spawned"), PlayerState))
+		{
+			return false;
+		}
+		if (!World->AreActorsInitialized())
+		{
+			World->InitializeActorsForPlay(FURL());
+		}
+		if (!World->HasBegunPlay())
+		{
+			World->BeginPlay();
+		}
+		if (!PlayerState->HasActorBegunPlay())
+		{
+			PlayerState->DispatchBeginPlay();
+		}
+		Test.TestTrue(TEXT("Ballast PlayerState receives BeginPlay"), PlayerState->HasActorBegunPlay());
+
+		const TCHAR* const DurationIds[] =
+		{
+			TEXT("Ballast:Duration:Descend"),
+			TEXT("Ballast:Duration:Wander"),
+			TEXT("Ballast:Duration:Ascend")
+		};
+		for (const TCHAR* DurationId : DurationIds)
+		{
+			const FGameplayAnalyticsMetric* const Metric = AnalyticsSubsystem->State->Metrics.Find(DurationId);
+			Test.TestNotNull(FString::Printf(TEXT("%s registered"), DurationId), Metric);
+			if (Metric)
+			{
+				Test.TestTrue(FString::Printf(TEXT("%s uses Sum"), DurationId), Metric->Aggregation == EGameplayAnalyticsAggregation::Sum);
+			}
+		}
+		Test.TestFalse(TEXT("Initial Descend does not record a state entry"),
+			AnalyticsSubsystem->State->Metrics.Contains(TEXT("Ballast:Entered:Descend")));
+
+		AnalyticsSubsystem->GetOnActiveGameplayTick().Broadcast(World, 1.5);
+		PlayerState->SetBallastState(EAtlantisBallastState::Wander);
+		Test.TestEqual(TEXT("Successful Wander transition counts once"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Entered:Wander")).Count, int64(1));
+		AnalyticsSubsystem->GetOnActiveGameplayTick().Broadcast(World, 2.25);
+		PlayerState->SetBallastState(EAtlantisBallastState::Wander);
+		Test.TestEqual(TEXT("Unchanged Wander request adds no entry"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Entered:Wander")).Count, int64(1));
+		AnalyticsSubsystem->GetOnActiveGameplayTick().Broadcast(World, 0.75);
+
+		PlayerState->SetBallastState(EAtlantisBallastState::Ascend);
+		Test.TestEqual(TEXT("Successful Ascend transition counts once"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Entered:Ascend")).Count, int64(1));
+		AnalyticsSubsystem->GetOnActiveGameplayTick().Broadcast(World, 4.0);
+		PlayerState->SetBallastState(EAtlantisBallastState::Descend);
+		Test.TestEqual(TEXT("Successful Descend re-entry counts once"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Entered:Descend")).Count, int64(1));
+		AnalyticsSubsystem->GetOnActiveGameplayTick().Broadcast(World, 1.0);
+
+		UAtlantisOxygenComponent* const Oxygen = PlayerState->GetOxygenComponent();
+		Test.TestTrue(TEXT("Oxygen can be drained to reject Wander"), Oxygen->RequestOxygen(Oxygen->GetCurrentOxygen() - 0.5f));
+		PlayerState->SetBallastState(EAtlantisBallastState::Wander);
+		Test.TestTrue(TEXT("Rejected allocation preserves Descend"), PlayerState->GetBallastState() == EAtlantisBallastState::Descend);
+		Test.TestEqual(TEXT("Rejected allocation adds no entry"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Entered:Wander")).Count, int64(1));
+		AnalyticsSubsystem->GetOnActiveGameplayTick().Broadcast(World, 3.0);
+
+		Test.TestEqual(TEXT("Descend duration is partitioned across transitions"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Duration:Descend")).Sum, 5.5);
+		Test.TestEqual(TEXT("Wander duration is partitioned across transitions"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Duration:Wander")).Sum, 3.0);
+		Test.TestEqual(TEXT("Ascend duration is recorded once"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Duration:Ascend")).Sum, 4.0);
+		const TCHAR* const EntryIds[] =
+		{
+			TEXT("Ballast:Entered:Descend"),
+			TEXT("Ballast:Entered:Wander"),
+			TEXT("Ballast:Entered:Ascend")
+		};
+		for (const TCHAR* EntryId : EntryIds)
+		{
+			const FGameplayAnalyticsMetric* const Metric = AnalyticsSubsystem->State->Metrics.Find(EntryId);
+			Test.TestNotNull(FString::Printf(TEXT("%s registered"), EntryId), Metric);
+			if (Metric)
+			{
+				Test.TestTrue(FString::Printf(TEXT("%s uses Count"), EntryId), Metric->Aggregation == EGameplayAnalyticsAggregation::Count);
+			}
+		}
+		Test.TestEqual(TEXT("Observations stay local until centralized flush"), SubmissionCount, 0);
+
+		World->GetWorldSettings()->SetPauserPlayerState(World->SpawnActor<APlayerState>(SpawnParameters));
+		const double DescendBeforePause = AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Duration:Descend")).Sum;
+		AnalyticsSubsystem->OnWorldPostActorTick(World, LEVELTICK_All, 0.1f);
+		Test.TestEqual(TEXT("Paused world records no Ballast duration"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Duration:Descend")).Sum, DescendBeforePause);
+		World->GetWorldSettings()->SetPauserPlayerState(nullptr);
+
+		PlayerState->Destroy();
+		const double DescendAfterEndPlay = AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Duration:Descend")).Sum;
+		AnalyticsSubsystem->GetOnActiveGameplayTick().Broadcast(World, 10.0);
+		Test.TestEqual(TEXT("Ended PlayerState is removed from active tick notifications"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Duration:Descend")).Sum, DescendAfterEndPlay);
+
+		AAtlantisPlayerState* const Replacement = World->SpawnActor<AAtlantisPlayerState>(SpawnParameters);
+		if (!Test.TestNotNull(TEXT("Replacement PlayerState spawned"), Replacement))
+		{
+			return false;
+		}
+		if (!Replacement->HasActorBegunPlay())
+		{
+			Replacement->DispatchBeginPlay();
+		}
+		AnalyticsSubsystem->GetOnActiveGameplayTick().Broadcast(World, 0.5);
+		Test.TestEqual(TEXT("Replacement PlayerState resumes duration in its current state"),
+			AnalyticsSubsystem->State->Metrics.FindChecked(TEXT("Ballast:Duration:Descend")).Sum, DescendAfterEndPlay + 0.5);
+		Replacement->Destroy();
+
+		GameInstance->Shutdown();
+		GEngine->DestroyWorldContext(World);
+		World->DestroyWorld(false);
+		UGameplayStatics::DeleteGameInSlot(AnalyticsSubsystem->SlotName, 0);
+		return true;
+	}
+
 	bool TestBoundsAndBlueprint(FAutomationTestBase& Test)
 	{
 		for (int32 Index = 0; Index < 1100; ++Index)
@@ -651,6 +810,7 @@ void FGameplayAnalyticsManagerTest::GetTests(TArray<FString>& OutNames, TArray<F
 		TEXT("Persistence"),
 		TEXT("BoundsAndBlueprint"),
 		TEXT("WorldLifecycle"),
+		TEXT("BallastMetrics"),
 		TEXT("AsyncOrderingAndSnapshots"),
 		TEXT("AsyncDayRollover"),
 		TEXT("AsyncEightHourCutoff"),

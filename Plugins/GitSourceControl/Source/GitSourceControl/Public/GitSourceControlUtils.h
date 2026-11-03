@@ -212,6 +212,14 @@ bool ListFilesInDirectoryRecurse(const FString& InPathToGitBinary, const FString
  */
 bool RunCommit(const FString& InPathToGitBinary, const FString& InRepositoryRoot, const TArray<FString>& InParameters, const TArray<FString>& InFiles, TArray<FString>& OutResults, TArray<FString>& OutErrorMessages);
 
+/** Include Keystone exports for selected project Content assets, including tracked deletions. */
+bool AppendBlueprintGraphFiles(const FString& InPathToGitBinary, const FString& InRepositoryRoot,
+	const FString& InProjectDirectory, TArray<FString>& InOutFiles, TArray<FString>& OutErrorMessages);
+
+/** Restore selected assets and matching Keystone exports; leave newly added files untracked. */
+bool RevertFiles(const FString& InPathToGitBinary, const FString& InRepositoryRoot,
+	const FString& InProjectDirectory, TArray<FString>& InOutFiles, TArray<FString>& OutResults, TArray<FString>& OutErrorMessages);
+
 /**
  * @brief Detects how to parse the result of a "status" command to get workspace file states
  *

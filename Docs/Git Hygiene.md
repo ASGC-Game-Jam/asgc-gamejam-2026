@@ -197,8 +197,9 @@ git lfs lock "Content/Path/Asset.uasset"
 ```
 
 Keep locks while editing and throughout PR review. Commit and push using Git
-or your Git client. Unreal Editor asset check in and push actions are available
-but note that locks are released after pushing; avoid them for shared binary PR work.
+or your Git client. Editor Check In and push retain locks regardless o
+**Keep Files Checked Out**. Release locks explicitly after PR merge; the plugin
+does not monitor PR status.
 
 After the PR is merged and the asset change is in main:
 

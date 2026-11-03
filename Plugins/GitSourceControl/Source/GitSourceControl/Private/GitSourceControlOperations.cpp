@@ -12,6 +12,7 @@
 #include "GitSourceControlModule.h"
 #include "GitSourceControlCommand.h"
 #include "GitSourceControlUtils.h"
+#include "GitSourceControlChangelistState.h"
 #include "SourceControlHelpers.h"
 #include "Logging/MessageLog.h"
 #include "Misc/MessageDialog.h"
@@ -174,6 +175,12 @@ bool FGitCheckInWorker::Execute(FGitSourceControlCommand& InCommand)
 	check(InCommand.Operation->GetName() == GetName());
 
 	TSharedRef<FCheckIn, ESPMode::ThreadSafe> Operation = StaticCastSharedRef<FCheckIn>(InCommand.Operation);
+	if (!GitSourceControlUtils::AppendBlueprintGraphFiles(InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot,
+		FPaths::ProjectDir(), InCommand.Files, InCommand.ResultInfo.ErrorMessages))
+	{
+		InCommand.bCommandSuccessful = false;
+		return false;
+	}
 
 	// make a temp file to place our commit message in
 	bool bDoCommit = InCommand.Files.Num() > 0;
@@ -194,6 +201,11 @@ bool FGitCheckInWorker::Execute(FGitSourceControlCommand& InCommand)
 			// If no files were committed, this is false, so we treat it as if we never wanted to commit in the first place.
 			bDoCommit = GitSourceControlUtils::RunCommit(InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot, CommitParameters,
 														FilesToCommit, InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
+			if (!bDoCommit)
+			{
+				InCommand.bCommandSuccessful = false;
+				return false; // Never turn a failed submission into a successful push-only operation.
+			}
 		}
 
 		// If we commit, we can push up the deleted state to gone
@@ -321,42 +333,13 @@ bool FGitCheckInWorker::Execute(FGitSourceControlCommand& InCommand)
 			InCommand.bCommandSuccessful = true;
 		}
 
-		// git-lfs: unlock files
-		if (InCommand.bUsingGitLfsLocking)
+		// ASGC: Submit and push must retain locks until the PR is merged into main.
+		// This applies regardless of Unreal's Keep Files Checked Out checkbox, and
+		// also to earlier local commits pushed by an empty-file CheckIn operation.
+		// Release locks explicitly after merge; a push is not proof of a merge.
+		if (InCommand.bUsingGitLfsLocking && InCommand.bCommandSuccessful)
 		{
-			// If we successfully pushed (or didn't need to push), unlock the files marked for check in
-			if (InCommand.bCommandSuccessful)
-			{
-				// unlock files: execute the LFS command on relative filenames
-				// (unlock only locked files, that is, not Added files)
-				TArray<FString> LockedFiles;
-				GitSourceControlUtils::GetLockedFiles(FilesToCheckIn.Array(), LockedFiles);
-				if (LockedFiles.Num() > 0)
-				{
-					const TArray<FString>& FilesToUnlock = GitSourceControlUtils::RelativeFilenames(LockedFiles, InCommand.PathToGitRoot);
-
-					if (FilesToUnlock.Num() > 0)
-					{
-						// Not strictly necessary to succeed, so don't update command success
-						const bool bUnlockSuccess = GitSourceControlUtils::RunLFSCommand(TEXT("unlock"), InCommand.PathToGitRoot, InCommand.PathToGitBinary,
-																						 FGitSourceControlModule::GetEmptyStringArray(), FilesToUnlock,
-																						 InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
-						if (bUnlockSuccess)
-						{
-							for (const auto& File : LockedFiles)
-							{
-								FGitLockedFilesCache::RemoveLockedFile(File);
-							}
-						}
-					}
-				}
-#if 0
-				for (const FString& File : FilesToCheckIn.Array())
-				{
-					FPlatformFileManager::Get().GetPlatformFile().SetReadOnly(*File, true);
-				}
-#endif
-			}
+			InCommand.ResultInfo.InfoMessages.Add(TEXT("Asset locks retained. Release them explicitly after the PR is merged into main."));
 		}
 
 		// Collect all the files we touched through the pull update
@@ -500,10 +483,14 @@ void GetMissingVsExistingFiles(const TArray<FString>& InFiles, TArray<FString>& 
 		}
 		else
 		{
-			// If already queued for deletion, don't try to delete again
-			if (State->IsSourceControlled() && !State->IsDeleted())
+			// Both staged and unstaged tracked deletions need restoration.
+			if (State->IsSourceControlled())
 			{
 				OutMissingFiles.Add(State->GetFilename());
+				if (!State->IsAdded())
+				{
+					OutOtherThanAddedExistingFiles.Add(State->GetFilename());
+				}
 			}
 		}
 	}
@@ -538,39 +525,11 @@ bool FGitRevertWorker::Execute(FGitSourceControlCommand& InCommand)
 	}
 	else
 	{
-		if (MissingFiles.Num() > 0)
-		{
-			// "Added" files that have been deleted needs to be removed from revision control
-			InCommand.bCommandSuccessful &= GitSourceControlUtils::RunCommand(TEXT("rm"), InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot, FGitSourceControlModule::GetEmptyStringArray(), MissingFiles, InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
-		}
-		if (AllExistingFiles.Num() > 0)
-		{
-			// reset and revert any changes already added to the index
-			InCommand.bCommandSuccessful &= GitSourceControlUtils::RunCommand(TEXT("reset"), InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot, FGitSourceControlModule::GetEmptyStringArray(), AllExistingFiles, InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
-			InCommand.bCommandSuccessful &= GitSourceControlUtils::RunCommand(TEXT("checkout"), InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot, FGitSourceControlModule::GetEmptyStringArray(), AllExistingFiles, InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
-		}
-		if (OtherThanAddedExistingFiles.Num() > 0)
-		{
-			// revert any changes in working copy (this would fails if the asset was in "Added" state, since after "reset" it is now "untracked")
-			// may need to try a few times due to file locks from prior operations
-			bool CheckoutSuccess = false;
-			int32 Attempts = 10;
-			while( Attempts-- > 0 )
-			{
-				CheckoutSuccess = GitSourceControlUtils::RunCommand(TEXT("checkout"), InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot, FGitSourceControlModule::GetEmptyStringArray(), OtherThanAddedExistingFiles, InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
-				if (CheckoutSuccess)
-				{
-					break;
-				}
-
-				FPlatformProcess::Sleep(0.1f);
-			}
-			
-			InCommand.bCommandSuccessful &= CheckoutSuccess;
-		}
+		InCommand.bCommandSuccessful = GitSourceControlUtils::RevertFiles(InCommand.PathToGitBinary, InCommand.PathToRepositoryRoot,
+			FPaths::ProjectDir(), InCommand.Files, InCommand.ResultInfo.InfoMessages, InCommand.ResultInfo.ErrorMessages);
 	}
 
-	if (InCommand.bUsingGitLfsLocking)
+	if (InCommand.bUsingGitLfsLocking && InCommand.bCommandSuccessful)
 	{
 		// unlock files: execute the LFS command on relative filenames
 		// (unlock only locked files, that is, not Added files)
@@ -860,6 +819,29 @@ bool FGitResolveWorker::UpdateStates() const
 FName FGitMoveToChangelistWorker::GetName() const
 {
 	return "MoveToChangelist";
+}
+
+FName FGitEditChangelistWorker::GetName() const
+{
+	return "EditChangelist";
+}
+
+bool FGitEditChangelistWorker::Execute(FGitSourceControlCommand& InCommand)
+{
+	Changelist = InCommand.Changelist;
+	if (Changelist != FGitSourceControlChangelist::WorkingChangelist && Changelist != FGitSourceControlChangelist::StagedChangelist)
+	{
+		InCommand.ResultInfo.ErrorMessages.Add(TEXT("Only Working and Staged changelists are supported."));
+		return false;
+	}
+	Description = StaticCastSharedRef<FEditChangelist>(InCommand.Operation)->GetDescription().ToString();
+	return true;
+}
+
+bool FGitEditChangelistWorker::UpdateStates() const
+{
+	FGitSourceControlModule::Get().GetProvider().GetStateInternal(Changelist)->Description = Description;
+	return true;
 }
 
 bool FGitMoveToChangelistWorker::UpdateStates() const

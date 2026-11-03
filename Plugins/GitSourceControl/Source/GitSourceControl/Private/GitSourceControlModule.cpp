@@ -61,6 +61,7 @@ void FGitSourceControlModule::StartupModule()
 	GitSourceControlProvider.RegisterWorker( "Resolve", FGetGitSourceControlWorker::CreateStatic( &CreateWorker<FGitResolveWorker> ) );
 #if ENGINE_MAJOR_VERSION == 5
 	GitSourceControlProvider.RegisterWorker( "MoveToChangelist", FGetGitSourceControlWorker::CreateStatic( &CreateWorker<FGitMoveToChangelistWorker> ) );
+	GitSourceControlProvider.RegisterWorker( "EditChangelist", FGetGitSourceControlWorker::CreateStatic( &CreateWorker<FGitEditChangelistWorker> ) );
 	GitSourceControlProvider.RegisterWorker( "UpdateChangelistsStatus", FGetGitSourceControlWorker::CreateStatic( &CreateWorker<FGitUpdateStagingWorker> ) );
 #endif
 

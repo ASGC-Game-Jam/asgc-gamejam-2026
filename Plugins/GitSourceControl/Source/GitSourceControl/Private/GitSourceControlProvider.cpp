@@ -450,6 +450,28 @@ void FGitSourceControlProvider::UnregisterSourceControlStateChanged_Handle( FDel
 	OnSourceControlStateChanged.Remove( Handle );
 }
 
+#if ENGINE_MAJOR_VERSION == 5
+bool FGitSourceControlProvider::ResolveCheckInFiles(FSourceControlChangelistPtr InChangelist, TArray<FString>& InOutFiles, FText& OutError)
+{
+	if (!InChangelist.IsValid() || !InOutFiles.IsEmpty())
+	{
+		return true;
+	}
+	const FGitSourceControlChangelist& Changelist = StaticCastSharedPtr<FGitSourceControlChangelist>(InChangelist).ToSharedRef().Get();
+	const auto State = GetStateInternal(Changelist);
+	for (const FSourceControlStateRef& File : State->Files)
+	{
+		InOutFiles.AddUnique(File->GetFilename());
+	}
+	if (InOutFiles.IsEmpty())
+	{
+		OutError = LOCTEXT("EmptyChangelistCheckIn", "The selected changelist has no files. Refresh View Changes before submitting. No commits were pushed.");
+		return false;
+	}
+	return true;
+}
+#endif
+
 #if ENGINE_MAJOR_VERSION < 5
 ECommandResult::Type FGitSourceControlProvider::Execute( const FSourceControlOperationRef& InOperation, const TArray<FString>& InFiles, EConcurrency::Type InConcurrency, const FSourceControlOperationComplete& InOperationCompleteDelegate )
 #else
@@ -463,6 +485,19 @@ ECommandResult::Type FGitSourceControlProvider::Execute( const FSourceControlOpe
 	}
 
 	TArray<FString> AbsoluteFiles = SourceControlHelpers::AbsoluteFilenames(InFiles);
+#if ENGINE_MAJOR_VERSION == 5
+	if (InOperation->GetName() == "CheckIn")
+	{
+		FText Error;
+		if (!ResolveCheckInFiles(InChangelist, AbsoluteFiles, Error))
+		{
+			FTSMessageLog("SourceControl").Error(Error);
+			InOperation->AddErrorMessge(Error);
+			InOperationCompleteDelegate.ExecuteIfBound(InOperation, ECommandResult::Failed);
+			return ECommandResult::Failed;
+		}
+	}
+#endif
 
 	// Query to see if we allow this operation
 	TSharedPtr<IGitSourceControlWorker, ESPMode::ThreadSafe> Worker = CreateWorker(InOperation->GetName());
