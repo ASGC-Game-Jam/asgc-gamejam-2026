@@ -6,6 +6,7 @@
 #include "HAL/IConsoleManager.h"
 #include "StructUtils/InstancedStruct.h"
 #include "MetasoundSource.h"
+#include "Audio/AtlantisMusicAxisMapping.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisAudioValidation, Log, All);
 
@@ -122,24 +123,7 @@ bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FI
 
 }
 
-const TArray<FAtlantisMusicAxisRule>& UAtlantisAudioDeveloperSettings::GetMusicAxisRules()
+UAtlantisMusicAxisMapping* UAtlantisAudioDeveloperSettings::GetMusicAxisMapping()
 {
-	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
-
-	return Settings->MusicAxisRules;
-}
-
-float UAtlantisAudioDeveloperSettings::GetAxisBaseline(EAtlantisMusicAxis Axis)
-{
-	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
-
-	switch (Axis)
-	{
-		case EAtlantisMusicAxis::PlayerState:
-			return Settings->PlayerStateBaseline;
-		case EAtlantisMusicAxis::Tension:
-			return Settings->TensionBaseline;
-	}
-
-	return 0.f;
+	return GetDefault<UAtlantisAudioDeveloperSettings>()->MusicAxisMapping.LoadSynchronous();
 }

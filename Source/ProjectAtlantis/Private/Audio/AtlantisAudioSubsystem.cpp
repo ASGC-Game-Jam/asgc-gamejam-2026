@@ -12,6 +12,7 @@
 #include "Audio/PubSubSystem/ASGC_DataRouterSubsystem.h"
 #include "Audio/AtlantisAudioPayloadTypes.h"
 #include "StructUtils/InstancedStruct.h"
+#include "Audio/AtlantisMusicAxisMapping.h"
 
 
 
@@ -104,6 +105,12 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 
 	UE_LOG(LogAtlantisAudioSubsystem, Log, TEXT("World [%s] Begin Play active. Instantiating speakers and reading audio settings..."), *TrackedWorld->GetName());
 
+	AxisMapping = UAtlantisAudioDeveloperSettings::GetMusicAxisMapping();
+	if (!AxisMapping)
+	{
+		UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No Music Axis Mapping is set. Assign one in Project Settings > Atlantis Audio Settings. Music won't react to gameplay."));
+	}
+
 	SubscribeToFacts();
 
 	USoundBase* MusicAsset = Cast<USoundBase>(UAtlantisAudioDeveloperSettings::GetMusicMetaSoundSource());
@@ -122,6 +129,8 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 
 	// Created here for the parameter pack pipeline (#105) to use later. The sweep below goes through the component.
 	GeneratorHandle = UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle(MusicAudioComponent);
+
+	UpdateMusicAxes();
 
 	TrackedWorld->GetTimerManager().SetTimer(SweepTimerHandle, this, &UAtlantisAudioSubsystem::UpdateAxisTestSweep, SweepTimerInterval, true);
 }
@@ -195,7 +204,7 @@ void UAtlantisAudioSubsystem::StopTrackingWorld()
 	FloatFacts.Reset();
 	BoolFacts.Reset();
 	KeyedStateFacts.Reset();
-
+	AxisMapping = nullptr;
 }
 
 void UAtlantisAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload)
@@ -205,17 +214,20 @@ void UAtlantisAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag
 	if(const FAtlantisAudioFloatPayload* FloatData = Payload.GetPtr<FAtlantisAudioFloatPayload>())
 	{
 		FloatFacts.Add(Tag,FloatData->Value);
-	} else if (const FAtlantisAudioBoolPayload* BoolData = Payload.GetPtr<FAtlantisAudioBoolPayload>())
+	} 
+	else if (const FAtlantisAudioBoolPayload* BoolData = Payload.GetPtr<FAtlantisAudioBoolPayload>())
 	{
 		BoolFacts.Add(Tag, BoolData->bValue);
-	} else if (const FAtlantisAudioKeyedStatePayload* KeyedData = Payload.GetPtr<FAtlantisAudioKeyedStatePayload>())
+	} 
+	else if (const FAtlantisAudioKeyedStatePayload* KeyedData = Payload.GetPtr<FAtlantisAudioKeyedStatePayload>())
 	{
 		KeyedStateFacts.FindOrAdd(Tag).Add(KeyedData->Key, KeyedData->State);
-	} else
+	} 
+	else
 	{
 		UE_LOG(LogAtlantisAudioSubsystem, Warning, TEXT("Fact [%s] holds a payload shape the music subsystem doesn't handle."), *Tag.ToString());
 	}
-
+	UpdateMusicAxes();
 }
 
 void UAtlantisAudioSubsystem::SubscribeToFacts()
@@ -272,3 +284,68 @@ void UAtlantisAudioSubsystem::UnsubscribeFromFacts()
 	FactSubscriptions.Reset();
 
 }
+
+
+float UAtlantisAudioSubsystem::GetRuleContribution(const FAtlantisMusicAxisRule& Rule) const
+{
+	if (const float* Value = FloatFacts.Find(Rule.Tag))
+	{
+		return Rule.Amount * (Rule.bInvertValue ? 1.f - *Value : *Value);
+	}
+
+	if(const bool* bValue = BoolFacts.Find(Rule.Tag))
+	{
+		return *bValue ? Rule.Amount : 0.f;
+	}
+
+	// A keyed rule's tag is a state, so check whether anything is in that state right now.
+	for (const TPair<FGameplayTag, TMap<FName, FGameplayTag>>& Fact : KeyedStateFacts)
+	{
+		if (Fact.Value.FindKey(Rule.Tag))
+		{
+			return Rule.Amount;
+		}
+	}
+
+	return 0.f;
+}
+
+void UAtlantisAudioSubsystem::UpdateMusicAxes()
+{
+	if (!AxisMapping)
+	{
+		return;
+	}
+
+	float PlayerState = AxisMapping->PlayerStateBaseline;
+	float Tension = AxisMapping->TensionBaseline;
+
+	for (const FAtlantisMusicAxisRule& Rule : AxisMapping->Rules)
+	{
+		const float Contribution = GetRuleContribution(Rule);
+
+		if (Rule.Axis == EAtlantisMusicAxis::PlayerState)
+		{
+			PlayerState = FMath::Max(PlayerState, Contribution);
+		}
+		else
+		{
+			Tension += Contribution;
+		}
+	}
+
+	PlayerState = FMath::Clamp(PlayerState, 0.f, 1.f);
+	Tension = FMath::Clamp(Tension, 0.f, 1.f);
+
+	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Music axes: PlayerState %.2f, Tension %.2f"), PlayerState, Tension);
+
+	if (!MusicAudioComponent)
+	{
+		return;
+	}
+
+	using namespace ProjectAtlantisAudio::MusicAxesInterface;
+	MusicAudioComponent->SetFloatParameter(Inputs::PlayerStateAxis.Resolve(), PlayerState);
+	MusicAudioComponent->SetFloatParameter(Inputs::TensionAxis.Resolve(), Tension);
+}
+

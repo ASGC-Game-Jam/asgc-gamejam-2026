@@ -17,6 +17,9 @@ DECLARE_LOG_CATEGORY_EXTERN(LogAtlantisAudioSubsystem, Log, All);
 
 class UAudioComponent;
 class UMetasoundGeneratorHandle;
+class UAtlantisMusicAxisMapping;
+struct FAtlantisMusicAxisRule;
+
 
 /**
  *  Manages the Music Subsystem for Project Atlantis
@@ -44,6 +47,10 @@ private:
     void SubscribeToFacts();
     void UnsubscribeFromFacts();
 
+    void UpdateMusicAxes();
+    float GetRuleContribution(const FAtlantisMusicAxisRule& Rule) const;
+
+
     // Stored Delegate Handles
     FDelegateHandle PostWorldInitHandle;
     FDelegateHandle WorldBeginPlayHandle;
@@ -59,6 +66,10 @@ private:
 
     UPROPERTY()
     TObjectPtr<UMetasoundGeneratorHandle> GeneratorHandle;   
+
+    UPROPERTY(Transient)
+    TObjectPtr<UAtlantisMusicAxisMapping> AxisMapping;
+
 
 	bool bIsActive = true;
     float RunningSweepTime = 0.f;
