@@ -3167,21 +3167,26 @@
 								}
 							},
 							{
-								"ID": "0FBDC8C44BC2DED15C7C13908802129C",
-								"ClassID": "F8CE20A3477FC0A3AE5DFD8408A5A977",
-								"Name": "Max",
+								"ID": "C877430149016F56C9FC9889B779631A",
+								"ClassID": "9A6FE5D04DF736C9BE18C9A0B7BE0C17",
+								"Name": "Clamp",
 								"Interface":
 								{
 									"Inputs": [
 										{
-											"Name": "A",
+											"Name": "In",
 											"TypeName": "Int32",
-											"VertexID": "22CFAE194568C0769DE410BD11A57410"
+											"VertexID": "CAD3A4BD145BE6C8306A41CE5FAF69BE"
 										},
 										{
-											"Name": "B",
+											"Name": "Min",
 											"TypeName": "Int32",
-											"VertexID": "90F06F5D52013BDFADD1DAC8BE284531"
+											"VertexID": "24FF0BF00BB6323A64CA0D9FB5F26A01"
+										},
+										{
+											"Name": "Max",
+											"TypeName": "Int32",
+											"VertexID": "D7FD77B0B4094EB15687D3E124FCC728"
 										}
 									],
 									"Outputs": [
@@ -3203,10 +3208,171 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"1191C3364374A18ECF0F7DB7B65EFC0B":
+											"5EAF6BF640F653DCC34122BEB54EEAE2":
 											{
-												"X": -3248,
+												"X": -3216,
 												"Y": 480
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "FB2FB18F4189A7C15BA6699822464A75",
+								"ClassID": "82ACF2F94E377F370B72119CEB24CF43",
+								"Name": "Float:Array",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Variable",
+											"TypeName": "Float:Array:Variable",
+											"VertexID": "787D005B945B0736C3B8561BE5625A08"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Value",
+											"TypeName": "Float:Array",
+											"VertexID": "66B4D893D689152C368DD02E5510B0CD"
+										},
+										{
+											"Name": "Variable",
+											"TypeName": "Float:Array:Variable",
+											"VertexID": "C11858B20C855BC9B30A474C81476EF4"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"1C277C984034D79AFDFB7A97FA4DF6CC":
+											{
+												"X": -3844,
+												"Y": 712
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "0BC563334DC0177E3449779C3BDB4DB7",
+								"ClassID": "3D45DCDB4EEA8DD38BBF1A8B803B1BA3",
+								"Name": "Num",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Array",
+											"TypeName": "Float:Array",
+											"VertexID": "42519D042D72D8F0E37DD54318D6B882"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Num",
+											"TypeName": "Int32",
+											"VertexID": "760F0063AF85DF6141D8B454F7977C07"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"39D6A525460C14BFA61FD1A8C51341FF":
+											{
+												"X": -3664,
+												"Y": 688
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "1A82091540B7EB3CE6D999B9DD9E8A23",
+								"ClassID": "295EE64C4A944801E86344BBC333CA69",
+								"Name": "Subtract",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "PrimaryOperand",
+											"TypeName": "Int32",
+											"VertexID": "A5FB875B9F6953F3D9F655A6DED6FFCA"
+										},
+										{
+											"Name": "AdditionalOperands",
+											"TypeName": "Int32",
+											"VertexID": "6A47F87EA266AFDA7484CFE6F2D1368B"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Out",
+											"TypeName": "Int32",
+											"VertexID": "4758F0E34D3F4EB8DC21041C3609462C"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [
+									{
+										"VertexID": "6A47F87EA266AFDA7484CFE6F2D1368B",
+										"Value":
+										{
+											"Type": "Integer",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [
+												1
+											],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										}
+									}
+								],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"C04F881D4D950215A222699F5C5082B6":
+											{
+												"X": -3460,
+												"Y": 713
 											}
 										},
 										"Comment": "",
@@ -3651,40 +3817,64 @@
 								"ToVertexID": "45BD227162E29B29B9952B9E966DC8BB"
 							},
 							{
-								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
-								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
-								"ToNodeID": "CFCD3E7E4D7A6F6BF564DC8C9FEC48D5",
-								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+								"FromNodeID": "7A147B264EB390D6A270B8A445B1A402",
+								"FromVertexID": "6CEAB8FD44845B8108144085425474AB",
+								"ToNodeID": "C877430149016F56C9FC9889B779631A",
+								"ToVertexID": "CAD3A4BD145BE6C8306A41CE5FAF69BE"
 							},
 							{
-								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
-								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
-								"ToNodeID": "78522BC4409D7EE341F99AA4B55721A0",
-								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
-							},
-							{
-								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
-								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
-								"ToNodeID": "C7D9A9BA411F556882380CBF9A43ACCA",
-								"ToVertexID": "1A48B10C09E8E898BD72BCDF4D46A251"
-							},
-							{
-								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
-								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
-								"ToNodeID": "CD66CDAE4C6C926B9BCC30A65F8876B0",
-								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
-							},
-							{
-								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
+								"FromNodeID": "C877430149016F56C9FC9889B779631A",
 								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
 								"ToNodeID": "92F37C384C13FB7A11643CA83DF1ABFF",
 								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
 							},
 							{
-								"FromNodeID": "7A147B264EB390D6A270B8A445B1A402",
-								"FromVertexID": "6CEAB8FD44845B8108144085425474AB",
-								"ToNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
-								"ToVertexID": "22CFAE194568C0769DE410BD11A57410"
+								"FromNodeID": "C877430149016F56C9FC9889B779631A",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "CFCD3E7E4D7A6F6BF564DC8C9FEC48D5",
+								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+							},
+							{
+								"FromNodeID": "C877430149016F56C9FC9889B779631A",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "78522BC4409D7EE341F99AA4B55721A0",
+								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+							},
+							{
+								"FromNodeID": "C877430149016F56C9FC9889B779631A",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "C7D9A9BA411F556882380CBF9A43ACCA",
+								"ToVertexID": "1A48B10C09E8E898BD72BCDF4D46A251"
+							},
+							{
+								"FromNodeID": "C877430149016F56C9FC9889B779631A",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "CD66CDAE4C6C926B9BCC30A65F8876B0",
+								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+							},
+							{
+								"FromNodeID": "A49DCB134B1999EEBA88D487F453EC4D",
+								"FromVertexID": "C11858B20C855BC9B30A474C81476EF4",
+								"ToNodeID": "FB2FB18F4189A7C15BA6699822464A75",
+								"ToVertexID": "787D005B945B0736C3B8561BE5625A08"
+							},
+							{
+								"FromNodeID": "FB2FB18F4189A7C15BA6699822464A75",
+								"FromVertexID": "66B4D893D689152C368DD02E5510B0CD",
+								"ToNodeID": "0BC563334DC0177E3449779C3BDB4DB7",
+								"ToVertexID": "42519D042D72D8F0E37DD54318D6B882"
+							},
+							{
+								"FromNodeID": "0BC563334DC0177E3449779C3BDB4DB7",
+								"FromVertexID": "760F0063AF85DF6141D8B454F7977C07",
+								"ToNodeID": "1A82091540B7EB3CE6D999B9DD9E8A23",
+								"ToVertexID": "A5FB875B9F6953F3D9F655A6DED6FFCA"
+							},
+							{
+								"FromNodeID": "1A82091540B7EB3CE6D999B9DD9E8A23",
+								"FromVertexID": "4758F0E34D3F4EB8DC21041C3609462C",
+								"ToNodeID": "C877430149016F56C9FC9889B779631A",
+								"ToVertexID": "D7FD77B0B4094EB15687D3E124FCC728"
 							}
 						],
 						"Variables": [
@@ -3712,7 +3902,8 @@
 								"VariableNodeID": "9CC078EE4C5748E1D983B7ADECA9B311",
 								"MutatorNodeID": "00000000000000000000000000000000",
 								"AccessorNodeIDs": [
-									"A49DCB134B1999EEBA88D487F453EC4D"
+									"A49DCB134B1999EEBA88D487F453EC4D",
+									"FB2FB18F4189A7C15BA6699822464A75"
 								],
 								"DeferredAccessorNodeIDs": []
 							},
@@ -8271,13 +8462,13 @@
 					}
 				},
 				{
-					"ID": "F8CE20A3477FC0A3AE5DFD8408A5A977",
+					"ID": "9A6FE5D04DF736C9BE18C9A0B7BE0C17",
 					"Metadata":
 					{
 						"ClassName":
 						{
-							"Namespace": "Max",
-							"Name": "Max",
+							"Namespace": "Clamp",
+							"Name": "Clamp",
 							"Variant": "Int32"
 						},
 						"Version":
@@ -8302,7 +8493,8 @@
 						{
 							"DefaultSortOrder": [
 								0,
-								1
+								1,
+								2
 							],
 							"RequiredMembers":
 							{
@@ -8354,9 +8546,9 @@
 									"bSerializeText": false
 								},
 								"AccessType": "Reference",
-								"Name": "A",
+								"Name": "In",
 								"TypeName": "Int32",
-								"VertexID": "22CFAE194568C0769DE410BD11A57410"
+								"VertexID": "CAD3A4BD145BE6C8306A41CE5FAF69BE"
 							},
 							{
 								"DefaultLiteral":
@@ -8394,9 +8586,49 @@
 									"bSerializeText": false
 								},
 								"AccessType": "Reference",
-								"Name": "B",
+								"Name": "Min",
 								"TypeName": "Int32",
-								"VertexID": "90F06F5D52013BDFADD1DAC8BE284531"
+								"VertexID": "24FF0BF00BB6323A64CA0D9FB5F26A01"
+							},
+							{
+								"DefaultLiteral":
+								{
+									"Type": "None",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "None",
+											"AsNumDefault": 1,
+											"AsBoolean": [],
+											"AsInteger": [],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 2,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Max",
+								"TypeName": "Int32",
+								"VertexID": "D7FD77B0B4094EB15687D3E124FCC728"
 							}
 						],
 						"Outputs": [
@@ -8426,6 +8658,289 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
+							"bShowLiterals": true
+						}
+					}
+				},
+				{
+					"ID": "3D45DCDB4EEA8DD38BBF1A8B803B1BA3",
+					"Metadata":
+					{
+						"ClassName":
+						{
+							"Namespace": "Array",
+							"Name": "Num",
+							"Variant": "Float:Array"
+						},
+						"Version":
+						{
+							"Major": 1,
+							"Minor": 0
+						},
+						"Type": "External",
+						"DisplayName": "",
+						"Description": "",
+						"Author": "Epic Games, Inc.",
+						"Keywords": [],
+						"CategoryHierarchy": [],
+						"bIsDeprecated": false,
+						"AccessFlags": 2,
+						"bAutoUpdateManagesInterface": false,
+						"bSerializeText": false
+					},
+					"Interface":
+					{
+						"InputStyle":
+						{
+							"DefaultSortOrder": [
+								0
+							],
+							"RequiredMembers":
+							{
+							}
+						},
+						"OutputStyle":
+						{
+							"DefaultSortOrder": [
+								0
+							],
+							"RequiredMembers":
+							{
+							}
+						},
+						"Inputs": [
+							{
+								"DefaultLiteral":
+								{
+									"Type": "None",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "None",
+											"AsNumDefault": 1,
+											"AsBoolean": [],
+											"AsInteger": [],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 0,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Array",
+								"TypeName": "Float:Array",
+								"VertexID": "42519D042D72D8F0E37DD54318D6B882"
+							}
+						],
+						"Outputs": [
+							{
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 0,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Num",
+								"TypeName": "Int32",
+								"VertexID": "760F0063AF85DF6141D8B454F7977C07"
+							}
+						],
+						"Environment": []
+					},
+					"Style":
+					{
+						"Display":
+						{
+							"ImageName": "None",
+							"bShowName": true,
+							"bShowInputNames": true,
+							"bShowOutputNames": true,
+							"bShowLiterals": true
+						}
+					}
+				},
+				{
+					"ID": "295EE64C4A944801E86344BBC333CA69",
+					"Metadata":
+					{
+						"ClassName":
+						{
+							"Namespace": "UE",
+							"Name": "Subtract",
+							"Variant": "Int32"
+						},
+						"Version":
+						{
+							"Major": 1,
+							"Minor": 1
+						},
+						"Type": "External",
+						"DisplayName": "",
+						"Description": "",
+						"Author": "Epic Games, Inc.",
+						"Keywords": [],
+						"CategoryHierarchy": [],
+						"bIsDeprecated": false,
+						"AccessFlags": 2,
+						"bAutoUpdateManagesInterface": false,
+						"bSerializeText": false
+					},
+					"Interface":
+					{
+						"InputStyle":
+						{
+							"DefaultSortOrder": [
+								0,
+								1
+							],
+							"RequiredMembers":
+							{
+							}
+						},
+						"OutputStyle":
+						{
+							"DefaultSortOrder": [
+								0
+							],
+							"RequiredMembers":
+							{
+							}
+						},
+						"Inputs": [
+							{
+								"DefaultLiteral":
+								{
+									"Type": "None",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "Integer",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [
+												0
+											],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 0,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "PrimaryOperand",
+								"TypeName": "Int32",
+								"VertexID": "A5FB875B9F6953F3D9F655A6DED6FFCA"
+							},
+							{
+								"DefaultLiteral":
+								{
+									"Type": "None",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "Integer",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [
+												0
+											],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 1,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "AdditionalOperands",
+								"TypeName": "Int32",
+								"VertexID": "6A47F87EA266AFDA7484CFE6F2D1368B"
+							}
+						],
+						"Outputs": [
+							{
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 0,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Out",
+								"TypeName": "Int32",
+								"VertexID": "4758F0E34D3F4EB8DC21041C3609462C"
+							}
+						],
+						"Environment": []
+					},
+					"Style":
+					{
+						"Display":
+						{
+							"ImageName": "MetasoundEditor.Graph.Node.Math.Subtract",
+							"bShowName": false,
+							"bShowInputNames": false,
+							"bShowOutputNames": false,
 							"bShowLiterals": true
 						}
 					}
