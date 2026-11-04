@@ -1,0 +1,354 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/RTG_UniversalSwimming_Quinn",
+	"asset": "RTG_UniversalSwimming_Quinn",
+	"assetClass": "IKRetargeter",
+	"parentClass": null,
+	"blueprintType": null,
+	"graphs": [],
+	"properties":
+	{
+		"SourceIKRigAsset": "/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/IK_UniversalSwimming.IK_UniversalSwimming",
+		"SourcePreviewMesh": "/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/Source/UAL_Swimming.UAL_Swimming",
+		"TargetIKRigAsset": "/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/IK_QuinnSwimming.IK_QuinnSwimming",
+		"TargetPreviewMesh": "/Game/ProjectAtlantis/Characters/Common/Mannequins/SKM_Quinn_Simple.SKM_Quinn_Simple",
+		"TargetMeshOffset":
+		{
+			"X": 0,
+			"Y": 0,
+			"Z": 0
+		},
+		"TargetMeshScale": 1,
+		"SourceMeshOffset":
+		{
+			"X": 0,
+			"Y": 0,
+			"Z": 0
+		},
+		"bShowSourceMesh": true,
+		"bShowTargetMesh": true,
+		"bShowSourceSkeleton": true,
+		"bShowTargetSkeleton": true,
+		"bOverrideSourceSkeletonColor": false,
+		"SourceOverideColor":
+		{
+			"R": 0,
+			"G": 0,
+			"B": 1,
+			"A": 1
+		},
+		"bOverrideTargetSkeletonColor": false,
+		"TargetOverideColor":
+		{
+			"R": 1,
+			"G": 0,
+			"B": 0,
+			"A": 1
+		},
+		"bIgnoreRootLockInPreview": true,
+		"bDebugDraw": true,
+		"bProfileOps": false,
+		"BoneDrawSize": 1,
+		"RetargetOps": [
+			"/Script/IKRig.IKRetargetPelvisMotionOp(Settings=(SourcePelvisBone=(BoneName=\"pelvis\"),TargetPelvisBone=(BoneName=\"pelvis\"),FloorConstraintWeight=0.000000,SourceCrotchOffset=0.000000,TargetCrotchOffset=0.000000,RotationAlpha=1.000000,RotationOffsetLocal=(Pitch=0.000000,Yaw=0.000000,Roll=0.000000),RotationOffsetGlobal=(Pitch=0.000000,Yaw=0.000000,Roll=0.000000),TranslationAlpha=1.000000,TranslationOffsetLocal=(X=0.000000,Y=0.000000,Z=0.000000),TranslationOffsetGlobal=(X=0.000000,Y=0.000000,Z=95.896782),BlendToSourceTranslation=0.000000,BlendToSourceTranslationWeights=(X=1.000000,Y=1.000000,Z=1.000000),ScaleHorizontal=1.000000,ScaleVertical=1.000000,AffectIKHorizontal=1.000000,AffectIKVertical=0.000000,DebugDrawSize=5.000000,DebugDrawThickness=5.000000,LODThreshold=-1,bDebugDraw=True),bIsEnabled=True,Name=\"Pelvis Motion\",ParentOpName=\"\")",
+			"/Script/IKRig.IKRetargetFKChainsOp(Settings=(IKRigAsset=\"/Script/IKRig.IKRigDefinition'/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/IK_QuinnSwimming.IK_QuinnSwimming'\",ChainsToRetarget=((TargetChainName=\"Root\"),(TargetChainName=\"Spine\"),(TargetChainName=\"Neck\"),(TargetChainName=\"Head\"),(TargetChainName=\"LeftLeg\"),(TargetChainName=\"LeftClavicle\"),(TargetChainName=\"LeftArm\"),(TargetChainName=\"LeftThumb\"),(TargetChainName=\"LeftIndex\"),(TargetChainName=\"LeftMiddle\"),(TargetChainName=\"LeftRing\"),(TargetChainName=\"LeftPinky\"),(TargetChainName=\"LeftIndexMetacarpal\"),(TargetChainName=\"LeftMiddleMetacarpal\"),(TargetChainName=\"LeftRingMetacarpal\"),(TargetChainName=\"LeftPinkyMetacarpal\"),(TargetChainName=\"RightLeg\"),(TargetChainName=\"RightClavicle\"),(TargetChainName=\"RightArm\"),(TargetChainName=\"RightThumb\"),(TargetChainName=\"RightIndex\"),(TargetChainName=\"RightMiddle\"),(TargetChainName=\"RightRing\"),(TargetChainName=\"RightPinky\"),(TargetChainName=\"RightIndexMetacarpal\"),(TargetChainName=\"RightMiddleMetacarpal\"),(TargetChainName=\"RightRingMetacarpal\"),(TargetChainName=\"RightPinkyMetacarpal\")),bDrawChainLines=True,bDrawSingleBoneChains=True,ChainDrawThickness=1.000000,ChainDrawSize=1.000000,ChainMapping=(ChainMap=((TargetChainName=\"Root\",SourceChainName=\"Root\"),(TargetChainName=\"Spine\",SourceChainName=\"Spine\"),(TargetChainName=\"Neck\",SourceChainName=\"Neck\"),(TargetChainName=\"Head\",SourceChainName=\"Head\"),(TargetChainName=\"LeftClavicle\",SourceChainName=\"LeftClavicle\"),(TargetChainName=\"LeftArm\",SourceChainName=\"LeftArm\"),(TargetChainName=\"LeftMiddleMetacarpal\",SourceChainName=\"LeftMiddle\"),(TargetChainName=\"LeftMiddle\",SourceChainName=\"LeftMiddle\"),(TargetChainName=\"LeftPinkyMetacarpal\",SourceChainName=\"LeftPinky\"),(TargetChainName=\"LeftPinky\",SourceChainName=\"LeftPinky\"),(TargetChainName=\"LeftRingMetacarpal\",SourceChainName=\"LeftRing\"),(TargetChainName=\"LeftRing\",SourceChainName=\"LeftRing\"),(TargetChainName=\"LeftThumb\",SourceChainName=\"LeftThumb\"),(TargetChainName=\"LeftIndexMetacarpal\",SourceChainName=\"LeftIndex\"),(TargetChainName=\"LeftIndex\",SourceChainName=\"LeftIndex\"),(TargetChainName=\"RightClavicle\",SourceChainName=\"RightClavicle\"),(TargetChainName=\"RightArm\",SourceChainName=\"RightArm\"),(TargetChainName=\"RightMiddleMetacarpal\",SourceChainName=\"RightMiddle\"),(TargetChainName=\"RightMiddle\",SourceChainName=\"RightMiddle\"),(TargetChainName=\"RightPinkyMetacarpal\",SourceChainName=\"RightPinky\"),(TargetChainName=\"RightPinky\",SourceChainName=\"RightPinky\"),(TargetChainName=\"RightRingMetacarpal\",SourceChainName=\"RightRing\"),(TargetChainName=\"RightRing\",SourceChainName=\"RightRing\"),(TargetChainName=\"RightThumb\",SourceChainName=\"RightThumb\"),(TargetChainName=\"RightIndexMetacarpal\",SourceChainName=\"RightIndex\"),(TargetChainName=\"RightIndex\",SourceChainName=\"RightIndex\"),(TargetChainName=\"RightLeg\",SourceChainName=\"RightLeg\"),(TargetChainName=\"LeftLeg\",SourceChainName=\"LeftLeg\")),SourceIKRig=\"/Script/IKRig.IKRigDefinition'/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/IK_UniversalSwimming.IK_UniversalSwimming'\",TargetIKRig=\"/Script/IKRig.IKRigDefinition'/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/IK_QuinnSwimming.IK_QuinnSwimming'\"),LODThreshold=-1,bDebugDraw=True),bIsEnabled=True,Name=\"FK Chains\",ParentOpName=\"\")",
+			"/Script/IKRig.IKRetargetIKChainsOp(Settings=(ChainsToRetarget=((TargetChainName=\"LeftLeg\"),(TargetChainName=\"LeftArm\"),(TargetChainName=\"RightLeg\"),(TargetChainName=\"RightArm\")),bDrawFinalGoals=True,bDrawSourceLocations=True,GoalDrawSize=5.000000,GoalDrawThickness=1.000000,LODThreshold=-1,bDebugDraw=True),bIsEnabled=True,Name=\"Retarget IK Goals\",ParentOpName=\"Run IK Rig\")",
+			"/Script/IKRig.IKRetargetRunIKRigOp(Settings=(IKRigAsset=\"/Script/IKRig.IKRigDefinition'/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/IK_QuinnSwimming.IK_QuinnSwimming'\",ExcludedGoals=,bDrawGoals=True,bDrawGoalBoneLocations=True,GoalDrawSize=5.000000,GoalDrawThickness=1.000000,LODThreshold=-1,bDebugDraw=True),ChainMapping=(ChainMap=((TargetChainName=\"Root\",SourceChainName=\"Root\"),(TargetChainName=\"Spine\",SourceChainName=\"Spine\"),(TargetChainName=\"Neck\",SourceChainName=\"Neck\"),(TargetChainName=\"Head\",SourceChainName=\"Head\"),(TargetChainName=\"LeftClavicle\",SourceChainName=\"LeftClavicle\"),(TargetChainName=\"LeftArm\",SourceChainName=\"LeftArm\"),(TargetChainName=\"LeftMiddleMetacarpal\",SourceChainName=\"LeftMiddle\"),(TargetChainName=\"LeftMiddle\",SourceChainName=\"LeftMiddle\"),(TargetChainName=\"LeftPinkyMetacarpal\",SourceChainName=\"LeftPinky\"),(TargetChainName=\"LeftPinky\",SourceChainName=\"LeftPinky\"),(TargetChainName=\"LeftRingMetacarpal\",SourceChainName=\"LeftRing\"),(TargetChainName=\"LeftRing\",SourceChainName=\"LeftRing\"),(TargetChainName=\"LeftThumb\",SourceChainName=\"LeftThumb\"),(TargetChainName=\"LeftIndexMetacarpal\",SourceChainName=\"LeftIndex\"),(TargetChainName=\"LeftIndex\",SourceChainName=\"LeftIndex\"),(TargetChainName=\"RightClavicle\",SourceChainName=\"RightClavicle\"),(TargetChainName=\"RightArm\",SourceChainName=\"RightArm\"),(TargetChainName=\"RightMiddleMetacarpal\",SourceChainName=\"RightMiddle\"),(TargetChainName=\"RightMiddle\",SourceChainName=\"RightMiddle\"),(TargetChainName=\"RightPinkyMetacarpal\",SourceChainName=\"RightPinky\"),(TargetChainName=\"RightPinky\",SourceChainName=\"RightPinky\"),(TargetChainName=\"RightRingMetacarpal\",SourceChainName=\"RightRing\"),(TargetChainName=\"RightRing\",SourceChainName=\"RightRing\"),(TargetChainName=\"RightThumb\",SourceChainName=\"RightThumb\"),(TargetChainName=\"RightIndexMetacarpal\",SourceChainName=\"RightIndex\"),(TargetChainName=\"RightIndex\",SourceChainName=\"RightIndex\"),(TargetChainName=\"RightLeg\",SourceChainName=\"RightLeg\"),(TargetChainName=\"LeftLeg\",SourceChainName=\"LeftLeg\")),SourceIKRig=\"/Script/IKRig.IKRigDefinition'/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/IK_UniversalSwimming.IK_UniversalSwimming'\",TargetIKRig=\"/Script/IKRig.IKRigDefinition'/Game/ProjectAtlantis/Characters/Common/Animations/Swimming/IK_QuinnSwimming.IK_QuinnSwimming'\"),bIsEnabled=True,Name=\"Run IK Rig\",ParentOpName=\"\")",
+			"/Script/IKRig.IKRetargetRootMotionOp(Settings=(SourceRoot=(BoneName=\"root\"),TargetRoot=(BoneName=\"root\"),RootMotionSource=CopyFromSourceRoot,TargetPelvis=(BoneName=\"pelvis\"),bRotateWithPelvis=False,RootHeightSource=CopyHeightFromSource,GlobalOffset=(Rotation=(X=0.000000,Y=0.000000,Z=0.000000,W=1.000000),Translation=(X=0.000000,Y=0.000000,Z=0.000000),Scale3D=(X=1.000000,Y=1.000000,Z=1.000000)),bMaintainOffsetFromPelvis=True,bPropagateToNonRetargetedChildren=True,LODThreshold=-1,bDebugDraw=True),bIsEnabled=True,Name=\"Root Motion\",ParentOpName=\"\")",
+			"/Script/IKRig.IKRetargetCurveRemapOp(Settings=(bCopyAllSourceCurves=True,bRemapCurves=True,CurvesToRemap=,LODThreshold=-1,bDebugDraw=True),bIsEnabled=True,Name=\"Remap Curves\",ParentOpName=\"\")"
+		],
+		"Profiles":
+		{
+		},
+		"CurrentProfile": "None",
+		"SourceRetargetPoses":
+		{
+			"Default Pose":
+			{
+				"RootTranslationOffset":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"BoneRotationOffsets":
+				{
+				}
+			}
+		},
+		"TargetRetargetPoses":
+		{
+			"Default Pose":
+			{
+				"RootTranslationOffset":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"BoneRotationOffsets":
+				{
+					"calf_l":
+					{
+						"X": 3.0181216018782159e-18,
+						"Y": -0.0053084356686771399,
+						"Z": 0.026661490822745045,
+						"W": 0.99963042441587413
+					},
+					"calf_r":
+					{
+						"X": 6.0362412595508381e-18,
+						"Y": -0.00530842461676935,
+						"Z": 0.026661484095441799,
+						"W": 0.99963042465399021
+					},
+					"foot_l":
+					{
+						"X": 0.048646266870654202,
+						"Y": 0.023300010221351423,
+						"Z": 0.0097491526670080587,
+						"W": 0.99849667213542059
+					},
+					"foot_r":
+					{
+						"X": 0.048646063680730829,
+						"Y": 0.023299911019123789,
+						"Z": 0.0097491276988729697,
+						"W": 0.99849668459338536
+					},
+					"index_01_l":
+					{
+						"X": -3.7800384410783903e-15,
+						"Y": 0.0050593219268861853,
+						"Z": 0.20818048549507412,
+						"W": 0.97807734291347104
+					},
+					"index_01_r":
+					{
+						"X": 1.1292732218035669e-06,
+						"Y": 0.0050561766588761306,
+						"Z": 0.20816930385416932,
+						"W": 0.97807973908531087
+					},
+					"index_02_l":
+					{
+						"X": -3.4562663208839276e-16,
+						"Y": -0.0022419863610085291,
+						"Z": 0.10204514277351434,
+						"W": 0.99477724256915434
+					},
+					"index_02_r":
+					{
+						"X": 2.0211702381869357e-07,
+						"Y": -0.0022411067764182778,
+						"Z": 0.10205941544116151,
+						"W": 0.99477578034458802
+					},
+					"lowerarm_l":
+					{
+						"X": -9.7376016286380262e-17,
+						"Y": -0.0020594087002764471,
+						"Z": -0.29857508713042913,
+						"W": 0.95438392493841928
+					},
+					"lowerarm_r":
+					{
+						"X": -9.5304189337975923e-16,
+						"Y": -0.0020598366944045224,
+						"Z": -0.29857509415779077,
+						"W": 0.95438392181629872
+					},
+					"middle_01_l":
+					{
+						"X": 9.7246368209405233e-16,
+						"Y": 0.040933804362217246,
+						"Z": 0.22684088350141066,
+						"W": 0.97307123954658925
+					},
+					"middle_01_r":
+					{
+						"X": -1.2326485943134633e-06,
+						"Y": 0.040936857438196431,
+						"Z": 0.22684377496575792,
+						"W": 0.97307043705008867
+					},
+					"middle_02_l":
+					{
+						"X": 1.0795113398499411e-15,
+						"Y": -0.0028161024646928081,
+						"Z": 0.16690111481189043,
+						"W": 0.98596961790993165
+					},
+					"middle_02_r":
+					{
+						"X": 1.5359335678737624e-06,
+						"Y": -0.0028248414146505615,
+						"Z": 0.16689701499061496,
+						"W": 0.9859702869031326
+					},
+					"neck_01":
+					{
+						"X": -7.3527847083566695e-16,
+						"Y": 6.8299104871728579e-14,
+						"Z": -2.9802322387617025e-08,
+						"W": 0.99999999999999944
+					},
+					"pelvis":
+					{
+						"X": 1.7589809961714455e-15,
+						"Y": -1.7037495195326787e-14,
+						"Z": 0.047435605741973072,
+						"W": 0.99887429805150785
+					},
+					"pinky_01_l":
+					{
+						"X": 1.0603072368827932e-14,
+						"Y": 0.19363824912084873,
+						"Z": 0.17811213620771202,
+						"W": 0.96476955560016409
+					},
+					"pinky_01_r":
+					{
+						"X": 1.3631457979212143e-06,
+						"Y": 0.19362843027393159,
+						"Z": 0.17810401369422271,
+						"W": 0.96477302579093893
+					},
+					"pinky_02_l":
+					{
+						"X": -8.1671471439878312e-16,
+						"Y": 0.0010089260691828431,
+						"Z": 0.17619620520940477,
+						"W": 0.98435454961004387
+					},
+					"pinky_02_r":
+					{
+						"X": -3.3996098881146577e-06,
+						"Y": 0.0010284508848465795,
+						"Z": 0.17619875443235458,
+						"W": 0.98435407309245548
+					},
+					"ring_01_l":
+					{
+						"X": -1.2869956529204573e-15,
+						"Y": 0.10574931827766335,
+						"Z": 0.19383401427398553,
+						"W": 0.97531813096765618
+					},
+					"ring_01_r":
+					{
+						"X": 1.1098072666925403e-06,
+						"Y": 0.10575123625992999,
+						"Z": 0.19384446625382626,
+						"W": 0.97531584572949215
+					},
+					"ring_02_l":
+					{
+						"X": 1.2287140676234732e-15,
+						"Y": -0.0037284333215730245,
+						"Z": 0.22816072259737499,
+						"W": 0.9736163430473066
+					},
+					"ring_02_r":
+					{
+						"X": 2.4077935720849748e-06,
+						"Y": -0.0037354302090916187,
+						"Z": 0.22814201712380422,
+						"W": 0.97362069954271102
+					},
+					"spine_01":
+					{
+						"X": 0,
+						"Y": 1.8091095422063058e-07,
+						"Z": -0.10489960357276366,
+						"W": 0.99448281693061158
+					},
+					"spine_02":
+					{
+						"X": -2.6434089449115296e-17,
+						"Y": 5.4163600505926009e-08,
+						"Z": 0.059524277696432371,
+						"W": 0.99822685816637646
+					},
+					"spine_03":
+					{
+						"X": -2.9958627676305135e-17,
+						"Y": -2.2690118761579321e-07,
+						"Z": 0.089947776292739992,
+						"W": 0.99594648327103386
+					},
+					"spine_04":
+					{
+						"X": 2.2431406262982848e-18,
+						"Y": 2.0342110009720705e-08,
+						"Z": -0.0033674024295174175,
+						"W": 0.99999433028436568
+					},
+					"thigh_l":
+					{
+						"X": 0,
+						"Y": 0.028550568090688726,
+						"Z": -0.050714040707571753,
+						"W": 0.99830503912221635
+					},
+					"thigh_r":
+					{
+						"X": -1.2922629195603695e-17,
+						"Y": 0.028550557318381884,
+						"Z": -0.050714035436228683,
+						"W": 0.99830503969807882
+					},
+					"thumb_01_l":
+					{
+						"X": -1.5972529823383888e-15,
+						"Y": -0.098903201917737771,
+						"Z": 0.021976153753354814,
+						"W": 0.99485436387273674
+					},
+					"thumb_01_r":
+					{
+						"X": 5.8551881606112953e-07,
+						"Y": -0.098907137311720669,
+						"Z": 0.021974586035965762,
+						"W": 0.99485400725785156
+					},
+					"thumb_02_l":
+					{
+						"X": 4.5235949724209649e-15,
+						"Y": 0.055609448695583208,
+						"Z": 0.17501686079777978,
+						"W": 0.98299373734132411
+					},
+					"thumb_02_r":
+					{
+						"X": 1.5413116222900891e-06,
+						"Y": 0.055612447500816189,
+						"Z": 0.17502751731200369,
+						"W": 0.98299167029237333
+					},
+					"upperarm_l":
+					{
+						"X": -2.9294082769117603e-16,
+						"Y": -0.44433993491653057,
+						"Z": 0.0067902850782983202,
+						"W": 0.89583252579203043
+					},
+					"upperarm_r":
+					{
+						"X": -3.1144222161095498e-16,
+						"Y": -0.44433974757362577,
+						"Z": 0.0067902141271657746,
+						"W": 0.89583261925334801
+					}
+				}
+			}
+		},
+		"CurrentSourceRetargetPose": "Default Pose",
+		"CurrentTargetRetargetPose": "Default Pose",
+		"RetargetPoses":
+		{
+		},
+		"CurrentRetargetPose": "None"
+	}
+}

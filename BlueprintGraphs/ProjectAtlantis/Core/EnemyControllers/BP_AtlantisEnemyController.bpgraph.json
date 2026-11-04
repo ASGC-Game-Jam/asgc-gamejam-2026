@@ -1,8 +1,9 @@
 {
-	"version": 1,
+	"version": 2,
 	"generatedBy": "keystone-blueprint-export",
 	"package": "/Game/ProjectAtlantis/Core/EnemyControllers/BP_AtlantisEnemyController",
 	"asset": "BP_AtlantisEnemyController",
+	"assetClass": "Blueprint",
 	"parentClass": "AtlantisEnemyController",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
@@ -98,5 +99,428 @@
 			],
 			"comments": []
 		}
-	]
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"AIPerception":
+			{
+				"_class": "AIPerceptionComponent",
+				"_name": "AI Perception",
+				"SensesConfig": [
+					{
+						"_class": "AISenseConfig_Sight",
+						"_name": "AISenseConfig_Sight_0",
+						"Implementation": "/Script/AIModule.AISense_Sight",
+						"SightRadius": 3000,
+						"LoseSightRadius": 3500,
+						"PeripheralVisionAngleDegrees": 90,
+						"DetectionByAffiliation":
+						{
+							"bDetectEnemies": true,
+							"bDetectNeutrals": true,
+							"bDetectFriendlies": true
+						},
+						"AutoSuccessRangeFromLastSeenLocation": -1,
+						"PointOfViewBackwardOffset": 0,
+						"NearClippingRadius": 0,
+						"DebugColor":
+						{
+							"B": 0,
+							"G": 255,
+							"R": 0,
+							"A": 255
+						},
+						"MaxAge": 0,
+						"bStartsEnabled": true
+					},
+					{
+						"_class": "AISenseConfig_Hearing",
+						"_name": "AISenseConfig_Hearing_0",
+						"Implementation": "/Script/AIModule.AISense_Hearing",
+						"HearingRange": 3000,
+						"LoSHearingRange": 0,
+						"bUseLoSHearing": false,
+						"DetectionByAffiliation":
+						{
+							"bDetectEnemies": true,
+							"bDetectNeutrals": false,
+							"bDetectFriendlies": false
+						},
+						"DebugColor":
+						{
+							"B": 0,
+							"G": 255,
+							"R": 255,
+							"A": 255
+						},
+						"MaxAge": 0,
+						"bStartsEnabled": true
+					}
+				],
+				"DominantSense": "/Script/AIModule.AISense_Sight",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"StateTreeComponent":
+			{
+				"_class": "StateTreeAIComponent",
+				"_name": "State Tree",
+				"StateTreeRef":
+				{
+					"StateTree": "/Game/ProjectAtlantis/Core/AI/ST_Enemy.ST_Enemy",
+					"Parameters":
+					{
+						"Value": "None"
+					},
+					"PropertyOverrides": []
+				},
+				"LinkedStateTreeOverrides":
+				{
+					"OverrideItems": []
+				},
+				"bStartLogicAutomatically": true,
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": true,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"bStartAILogicOnPossess": false,
+			"bStopAILogicOnUnposses": true,
+			"bLOSflag": false,
+			"bSkipExtraLOSChecks": true,
+			"bAllowStrafe": false,
+			"bWantsPlayerState": false,
+			"bSetControlRotationFromPawnOrientation": true,
+			"PathFollowingComponent":
+			{
+				"_class": "PathFollowingComponent",
+				"_name": "PathFollowingComponent",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": true,
+					"bStartWithTickEnabled": false,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"BrainComponent": null,
+			"PerceptionComponent": null,
+			"Blackboard": null,
+			"CachedGameplayTasksComponent": null,
+			"DefaultNavigationFilterClass": null,
+			"PlayerState": null,
+			"StateName": "None",
+			"Pawn": null,
+			"Character": null,
+			"TransformComponent":
+			{
+				"_class": "SceneComponent",
+				"_name": "TransformComponent0",
+				"AttachParent": null,
+				"AttachSocketName": "None",
+				"RelativeLocation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"RelativeRotation":
+				{
+					"Pitch": 0,
+					"Yaw": 0,
+					"Roll": 0
+				},
+				"RelativeScale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				},
+				"ComponentVelocity":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"bAbsoluteLocation": false,
+				"bAbsoluteRotation": true,
+				"bAbsoluteScale": false,
+				"bVisible": true,
+				"bShouldUpdatePhysicsVolume": false,
+				"bHiddenInGame": false,
+				"bBoundsChangeTriggersStreamingDataRebuild": false,
+				"bUseAttachParentBound": false,
+				"bComputeFastLocalBounds": false,
+				"bComputeBoundsOnceForGame": false,
+				"bComputedBoundsOnceForGame": false,
+				"bIsNotRenderAttachmentRoot": false,
+				"bVisualizeComponent": false,
+				"Mobility": "Movable",
+				"DetailMode": "DM_Low",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"ControlRotation":
+			{
+				"Pitch": 0,
+				"Yaw": 0,
+				"Roll": 0
+			},
+			"bAttachToPawn": false,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": true,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": true,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": true,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": false,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent":
+			{
+				"_class": "SceneComponent",
+				"_name": "TransformComponent0",
+				"AttachParent": null,
+				"AttachSocketName": "None",
+				"RelativeLocation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"RelativeRotation":
+				{
+					"Pitch": 0,
+					"Yaw": 0,
+					"Roll": 0
+				},
+				"RelativeScale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				},
+				"ComponentVelocity":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"bAbsoluteLocation": false,
+				"bAbsoluteRotation": true,
+				"bAbsoluteScale": false,
+				"bVisible": true,
+				"bShouldUpdatePhysicsVolume": false,
+				"bHiddenInGame": false,
+				"bBoundsChangeTriggersStreamingDataRebuild": false,
+				"bUseAttachParentBound": false,
+				"bComputeFastLocalBounds": false,
+				"bComputeBoundsOnceForGame": false,
+				"bComputedBoundsOnceForGame": false,
+				"bIsNotRenderAttachmentRoot": false,
+				"bVisualizeComponent": false,
+				"Mobility": "Movable",
+				"DetailMode": "DM_Low",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "BP_AtlantisEnemyController",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": true,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
 }

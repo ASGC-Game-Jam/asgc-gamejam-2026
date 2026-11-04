@@ -10,6 +10,8 @@ public class ProjectAtlantisEditorTarget : TargetRules
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V6;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_7;
+		bool bWithScreenshotCapture = !(Target.Arguments?.HasOption("-WithoutScreenshotCapture") ?? false);
+		ProjectDefinitions.Add("WITH_SCREENSHOT_CAPTURE=" + (bWithScreenshotCapture ? "1" : "0"));
 
 		ExtraModuleNames.AddRange( new string[] { "ProjectAtlantis" } );
 	}

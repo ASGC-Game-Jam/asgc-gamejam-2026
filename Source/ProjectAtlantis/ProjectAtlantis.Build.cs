@@ -1,26 +1,50 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 using UnrealBuildTool;
+using System.Linq;
 
 public class ProjectAtlantis : ModuleRules
 {
 	public ProjectAtlantis(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "EngineSettings", "AIModule", "GameplayStateTreeModule" });
 
-        PrivateDependencyModuleNames.AddRange(new string[] {
-            "GameAnalytics",
-            "MetasoundFrontend",
-            "MetasoundGraphCore",
-            "MetasoundEngine",
-            "MetasoundStandardNodes",
-            "AudioExtensions",
-            "HarmonixMetasound",
-            "Harmonix"
-        });
-		PrivateDependencyModuleNames.AddRange(new string[] { "Analytics", "GameAnalytics" });
+		PublicDependencyModuleNames.AddRange(new string[]
+			{
+				"Core",
+				"CoreUObject",
+				"Engine",
+				"InputCore",
+				"EnhancedInput",
+				"UMG",
+				"CommonInput",
+				"EngineSettings",
+				"AIModule",
+				"StateTreeModule",
+				"GameplayStateTreeModule", 
+				"GameplayDebugger", 
+				"GameplayTags"
+			});
+
+		PrivateDependencyModuleNames.AddRange(new string[]
+			{
+				"GameAnalytics",
+				"MetasoundFrontend",
+				"MetasoundGraphCore",
+				"MetasoundEngine",
+				"MetasoundStandardNodes",
+				"AudioExtensions",
+				"HarmonixMetasound",
+				"Harmonix",
+				"SmartObjectsModule",
+				"Analytics",
+				"CommonUI"
+			});
+
+		if (Target.ProjectDefinitions.Contains("WITH_SCREENSHOT_CAPTURE=1"))
+		{
+			DynamicallyLoadedModuleNames.Add("ScreenshotCapture");
+		}
 
         PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
 

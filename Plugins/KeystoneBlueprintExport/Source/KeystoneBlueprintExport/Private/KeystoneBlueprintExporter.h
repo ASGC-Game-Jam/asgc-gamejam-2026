@@ -1,17 +1,30 @@
 // Keystone Blueprint Exporter — the core, shared by every trigger (menu button, on-save
-// hook, and the headless commandlet). Turns an asset's live node graphs into the deterministic
-// `.bpgraph.json` that Keystone reads to render a visual MR diff. No UI, no git here — just
-// "asset in, JSON file(s) out" so it's trivial to call from anywhere and reason about.
+// hook, and the headless commandlet). Turns an asset into the deterministic `.bpgraph.json`
+// that Keystone reads to render a visual MR diff. No UI, no git here — just "asset in, JSON
+// file(s) out" so it's trivial to call from anywhere and reason about.
 //
-// Graph-bearing asset kinds exported:
-//   • Blueprints (incl. Anim/Widget BPs)       — UbergraphPages/Functions/Macros/Delegates
-//   • Materials + Material Functions (+Layers) — the material editor's node graph, rebuilt transiently
-//   • Niagara Systems, Emitters and Scripts    — every saved UEdGraph inside the package
+// Every asset under /Game gets an export (format version 2). What goes in it depends on kind:
+//   • Graph-bearing assets also carry their node graphs:
+//       – Blueprints (incl. Anim/Widget BPs, Level Blueprints) — UbergraphPages/Functions/Macros/Delegates
+//       – Materials + Material Functions (+Layers)             — the material editor's node graph, rebuilt transiently
+//       – Niagara Systems, Emitters and Scripts                — every saved UEdGraph inside the package
+//   • Everything carries `properties`: a reflection dump of the asset's editable data —
+//     enumerators for an Enum, fields + defaults for a Struct, rows for a Data Table,
+//     variables/components/class defaults for a Blueprint, and the plain property values of
+//     anything else (an Input Action's triggers, a Texture's compression settings, …).
+//   The bulk payload (pixels, vertices, samples) is never exported — only what the Details
+//   panel shows — so a changed Texture still diffs as "settings changed", not as its image.
+//
+// Not exported: One-File-Per-Actor packages (`__ExternalActors__` / `__ExternalObjects__`) —
+// one tiny file per placed actor; Keystone names the owning level instead.
 #pragma once
 
 #include "CoreMinimal.h"
 
 class UObject;
+
+/** On-disk format version written into every export and the manifest. 2 = graphs + properties. */
+#define KEYSTONE_EXPORT_VERSION 2
 
 /** Counts returned from a sweep, so callers (menu/commandlet) can report what happened. */
 struct FKeystoneExportResult
@@ -30,12 +43,17 @@ public:
     /** Project-relative folder the exports are written under (sibling of Content/). */
     static const TCHAR* ExportSubdir() { return TEXT("BlueprintGraphs"); }
 
-    /** True if `Asset` is a kind this exporter knows how to turn into a graph export. */
+    /** True if `Asset` is something this exporter writes a file for: any real asset object
+     *  (not a package, redirector or transient object) outside the One-File-Per-Actor folders. */
     static bool CanExport(const UObject* Asset);
 
-    /** Serialize one asset's every graph to the `.bpgraph.json` shape. Pure — returns the
-     *  JSON string; does not touch disk. Deterministic ordering (graphs/nodes/pins sorted by a
-     *  stable key) so re-exports produce byte-identical output and git diffs stay minimal. */
+    /** True for a package this exporter deliberately skips (external actors/objects). */
+    static bool IsExcludedPackage(const FString& PackageName);
+
+    /** Serialize one asset to the `.bpgraph.json` shape: its graphs (if it has any) and its
+     *  properties. Pure — returns the JSON string; does not touch disk. Deterministic ordering
+     *  (graphs/nodes/pins sorted by a stable key, properties in reflection order) so re-exports
+     *  produce byte-identical output and git diffs stay minimal. */
     static FString BuildJson(UObject* Asset);
 
     /** Absolute path the export for `Asset` is written to, e.g.
@@ -67,7 +85,7 @@ public:
      *  `InOutResult`. Used by the on-save hook for one asset. */
     static bool ExportOne(UObject* Asset, FKeystoneExportResult& InOutResult);
 
-    /** Sweep every exportable asset under `RootPath` (default /Game), export each, and (re)write
-     *  the manifest that lists them. Used by the menu backfill and the commandlet. */
+    /** Sweep every asset under `RootPath` (default /Game), export each, and (re)write the
+     *  manifest that lists them. Used by the menu backfill and the commandlet. */
     static FKeystoneExportResult ExportAll(const FString& RootPath = TEXT("/Game"));
 };

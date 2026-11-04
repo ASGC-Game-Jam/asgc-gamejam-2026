@@ -28,7 +28,7 @@ Reference implementation:
 [`AtlantisPlayerState.h`](../Source/ProjectAtlantis/Public/Core/AtlantisPlayerState.h) ·
 [`AtlantisPlayerState.cpp`](../Source/ProjectAtlantis/Private/Core/AtlantisPlayerState.cpp)
 
-Five replicated properties, four change delegates, authority-guarded setters, and persistence
+Six replicated properties, five change delegates, authority-guarded setters, and persistence
 across seamless travel.
 
 ---
@@ -70,11 +70,7 @@ and Epic's own Blueprint-facing page phrases it in a way that reinforces the con
 warning at the end of this document.
 
 **Delegates are grouped by what listens, not one per property.**
-Five properties are served by four delegates: `bBallastAllocation` and `BallastState` share
-`OnBallastChanged`, because nothing consumes one without the other. This is not only tidiness:
-[there is no deterministic order between the RepNotify callbacks of different replicated
-variables](https://dev.epicgames.com/documentation/unreal-engine/replicated-object-execution-order-in-unreal-engine),
-so two values that must be consumed together have to arrive through one event.
+Six replicated properties are served by six delegates.
 
 Resist the temptation to collapse further into a single `OnStateChanged`. It sounds cheaper and
 is not: every listener then wakes on every change and branches to work out whether it cares, so
@@ -99,7 +95,7 @@ unbind with — the same way
 [`ScenePerformanceAnalyticsSubsystem`](../Source/ProjectAtlantis/Private/Analytics/ScenePerformanceAnalyticsSubsystem.cpp)
 handles engine delegates.
 
-**Properties are private and `BlueprintReadOnly`, never `BlueprintReadWrite`.**
+**Properties are protected and `BlueprintReadOnly`, never `BlueprintReadWrite`.**
 A client writing a replicated property is overwritten on the next update anyway, and does it
 while bypassing the authority check. Read-only properties plus guarded setters make the
 authority rule structural instead of something everyone has to remember.
@@ -138,6 +134,7 @@ constructor, so neither is set again.
 ```cpp
 const float Oxygen = PlayerState->GetOxygenCapacity();
 const bool bAllocated = PlayerState->IsBallastAllocated();
+const EAtlantisBallastState BallastState = PlayerState->GetBallastState();
 ```
 
 **React to a change, from C++.** Bind on setup, unbind on teardown.
@@ -172,8 +169,9 @@ lose the notify on the server and the change-detection guard with it.
 
 The recipe, in order. Every step matters.
 
-1. **Declare the property** — private, `ReplicatedUsing`, `BlueprintReadOnly`,
-   `meta = (AllowPrivateAccess = "true")`, and an explicit initializer.
+1. **Declare the property** — `ReplicatedUsing`, `BlueprintReadOnly`, and an explicit
+   initializer. Prefer private storage with `meta = (AllowPrivateAccess = "true")`; the
+   current `AAtlantisPlayerState` fields are protected.
 2. **Register it** with `DOREPLIFETIME` in `GetLifetimeReplicatedProps`. Miss this and it
    never replicates, with no warning.
 3. **Declare the RepNotify** as `UFUNCTION() void OnRep_X(T OldX);`. The `UFUNCTION()` is
@@ -233,10 +231,8 @@ the delegate the moment a second, unrelated system needs to know.
 
 That last one is worth stating plainly: **never write logic that depends on one property's
 RepNotify running before another's.** The call order on the client bears no relation to
-declaration order, memory layout, or the order the server marked them dirty. If two values must
-be consumed together, put them behind one delegate — which is the real reason
-`bBallastAllocation` and `BallastState` share `OnBallastChanged` rather than merely a tidiness
-preference.
+declaration order, memory layout, or the order the server marked them dirty. If values must
+always arrive together, replicate them as a single struct.
 
 Not sure whether something belongs in replicated state or an RPC? Reach out to a lead before
 building it — the two are hard to swap later.

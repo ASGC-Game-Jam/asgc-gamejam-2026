@@ -2,8 +2,54 @@
 
 
 #include "Core/AtlantisPlayerState.h"
-
+#include "Core/AtlantisOxygenComponent.h"
+#include "Analytics/GameplayAnalyticsSubsystem.h"
+#include "Engine/GameInstance.h"
+#include "Engine/World.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Net/UnrealNetwork.h"
+
+DEFINE_LOG_CATEGORY_STATIC(LogAtlantisPlayerState, Log, All);
+
+void AAtlantisPlayerState::BeginPlay()
+{
+	Super::BeginPlay();
+	OnPawnSet.AddDynamic(this, &AAtlantisPlayerState::HandlePawnSet);
+	RefreshOxygenConsumption();
+
+	if (!HasAuthority())
+	{
+		return;
+	}
+
+	if (UGameInstance* GameInstance = GetGameInstance())
+	{
+		GameplayAnalyticsSubsystem = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>();
+		if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
+		{
+			Analytics->RegisterMetric(TEXT("Ballast:Duration:Descend"), EGameplayAnalyticsAggregation::Sum);
+			Analytics->RegisterMetric(TEXT("Ballast:Duration:Wander"), EGameplayAnalyticsAggregation::Sum);
+			Analytics->RegisterMetric(TEXT("Ballast:Duration:Ascend"), EGameplayAnalyticsAggregation::Sum);
+			ActiveGameplayTickHandle = Analytics->GetOnActiveGameplayTick().AddUObject(
+				this, &AAtlantisPlayerState::HandleActiveGameplayTick);
+		}
+	}
+}
+
+void AAtlantisPlayerState::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
+	{
+		if (ActiveGameplayTickHandle.IsValid())
+		{
+			Analytics->GetOnActiveGameplayTick().Remove(ActiveGameplayTickHandle);
+			ActiveGameplayTickHandle.Reset();
+		}
+	}
+	GameplayAnalyticsSubsystem.Reset();
+	Super::EndPlay(EndPlayReason);
+}
 
 AAtlantisPlayerState::AAtlantisPlayerState()
 {
@@ -11,16 +57,48 @@ AAtlantisPlayerState::AAtlantisPlayerState()
 	// constructor, so there is no bReplicates to set here. It does however default to 1 Hz,
 	// which is far too slow for a value like oxygen that the HUD reads continuously.
 	SetNetUpdateFrequency(10.f);
+	OxygenComponent = CreateDefaultSubobject<UAtlantisOxygenComponent>(TEXT("OxygenComponent"));
 	EquippedItems = TArray<FString>();
+}
+
+void AAtlantisPlayerState::HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn)
+{
+	RefreshOxygenConsumption();
+}
+
+void AAtlantisPlayerState::HandleActiveGameplayTick(UWorld* World, const double ActiveDeltaSeconds)
+{
+	if (!HasAuthority() || World != GetWorld() || ActiveDeltaSeconds <= 0.0 || !FMath::IsFinite(ActiveDeltaSeconds))
+	{
+		return;
+	}
+
+	const TCHAR* MetricId = nullptr;
+	switch (BallastState)
+	{
+	case EAtlantisBallastState::Descend:
+		MetricId = TEXT("Ballast:Duration:Descend");
+		break;
+	case EAtlantisBallastState::Wander:
+		MetricId = TEXT("Ballast:Duration:Wander");
+		break;
+	case EAtlantisBallastState::Ascend:
+		MetricId = TEXT("Ballast:Duration:Ascend");
+		break;
+	default:
+		return;
+	}
+
+	if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
+	{
+		Analytics->RecordValue(MetricId, static_cast<float>(ActiveDeltaSeconds));
+	}
 }
 
 void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(AAtlantisPlayerState, OxygenCapacity);
-	DOREPLIFETIME(AAtlantisPlayerState, CurrentOxygen);
-	DOREPLIFETIME(AAtlantisPlayerState, bBallastAllocation);
 	DOREPLIFETIME(AAtlantisPlayerState, BallastState);
 	DOREPLIFETIME(AAtlantisPlayerState, TraversalMode);
 	DOREPLIFETIME(AAtlantisPlayerState, EquippedItems);
@@ -32,102 +110,102 @@ void AAtlantisPlayerState::CopyProperties(APlayerState* PlayerState)
 
 	if (AAtlantisPlayerState* AtlantisPlayerState = Cast<AAtlantisPlayerState>(PlayerState))
 	{
-		AtlantisPlayerState->OxygenCapacity = OxygenCapacity;
-		AtlantisPlayerState->CurrentOxygen = CurrentOxygen;
-		AtlantisPlayerState->bBallastAllocation = bBallastAllocation;
 		AtlantisPlayerState->BallastState = BallastState;
 		AtlantisPlayerState->TraversalMode = TraversalMode;
 		AtlantisPlayerState->EquippedItems = EquippedItems;
+		if (OxygenComponent && AtlantisPlayerState->OxygenComponent)
+		{
+			OxygenComponent->CopyStateTo(*AtlantisPlayerState->OxygenComponent);
+		}
 	}
 }
 
-void AAtlantisPlayerState::SetOxygenCapacity(const float NewOxygenCapacity)
+
+void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallastState)
 {
-	if (!HasAuthority() || FMath::IsNearlyEqual(OxygenCapacity, NewOxygenCapacity))
+	if (!HasAuthority() || BallastState == NewBallastState || !OxygenComponent)
 	{
 		return;
 	}
 
-	const float OldOxygenCapacity = OxygenCapacity;
-	OxygenCapacity = NewOxygenCapacity;
-
-	// Replication never calls our RepNotify on the authority, so drive it by hand to keep
-	// the listen-server host in step with every remote client.
-	OnRep_OxygenCapacity(OldOxygenCapacity);
-}
-
-void AAtlantisPlayerState::SetCurrentOxygen(const float NewCurrentOxygen)
-{
-	if (!HasAuthority() || FMath::IsNearlyEqual(CurrentOxygen, NewCurrentOxygen))
+	const float RequiredAllocation = GetRequiredBallastAllocation(NewBallastState);
+	if (RequiredAllocation < 0.f)
+	{
+		UE_LOG(LogAtlantisPlayerState, Fatal, TEXT("Ballast state %d has an invalid oxygen allocation: %f"),
+		       static_cast<uint8>(NewBallastState), RequiredAllocation);
+		return;
+	}
+	else if (OxygenComponent->GetCurrentOxygen() <= RequiredAllocation)
 	{
 		return;
 	}
 
-	const float OldCurrentOxygen = CurrentOxygen;
-	CurrentOxygen = NewCurrentOxygen;
-	OnRep_CurrentOxygen(OldCurrentOxygen);
-}
-
-void AAtlantisPlayerState::SetBallastAllocated(const bool bNewBallastAllocation)
-{
-	if (!HasAuthority() || bBallastAllocation == bNewBallastAllocation)
+	if (!OxygenComponent->ReallocateOxygen(RequiredAllocation))
 	{
 		return;
 	}
 
-	const bool bOldBallastAllocation = bBallastAllocation;
-	bBallastAllocation = bNewBallastAllocation;
-
-	OnRep_BallastAllocation(bOldBallastAllocation);
-}
-
-void AAtlantisPlayerState::SetBallastState(const int32 NewBallastState)
-{
-	if (!HasAuthority() || BallastState == NewBallastState)
-	{
-		return;
-	}
-
-	const int32 OldBallastState = BallastState;
+	const EAtlantisBallastState OldBallastState = BallastState;
 	BallastState = NewBallastState;
 
 	OnRep_BallastState(OldBallastState);
+
+	// Count only accepted, authoritative state changes. Initial and replicated
+	// notifications are deliberately excluded from analytics.
+	if (UWorld* World = GetWorld())
+	{
+		if (UGameInstance* GameInstance = World->GetGameInstance())
+		{
+			if (UGameplayAnalyticsSubsystem* Analytics = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>())
+			{
+				const TCHAR* MetricId = nullptr;
+				switch (NewBallastState)
+				{
+				case EAtlantisBallastState::Descend:
+				{
+					MetricId = TEXT("Ballast:Entered:Descend");
+					break;
+				}
+				case EAtlantisBallastState::Wander:
+				{
+					MetricId = TEXT("Ballast:Entered:Wander");
+					break;
+				}
+				case EAtlantisBallastState::Ascend:
+				{
+					MetricId = TEXT("Ballast:Entered:Ascend");
+					break;
+				}
+				default: break;
+				}
+				if (MetricId)
+				{
+					Analytics->RegisterMetric(MetricId, EGameplayAnalyticsAggregation::Count);
+					Analytics->RecordEvent(MetricId);
+				}
+			}
+		}
+	}
 }
 
-void AAtlantisPlayerState::SetTraversalMode(const int32 NewTraversalMode)
+void AAtlantisPlayerState::SetTraversalMode(const EAtlantisTraversalMode NewTraversalMode)
 {
 	if (!HasAuthority() || TraversalMode == NewTraversalMode)
 	{
 		return;
 	}
 
-	const int32 OldTraversalMode = TraversalMode;
+	const EAtlantisTraversalMode OldTraversalMode = TraversalMode;
 	TraversalMode = NewTraversalMode;
-
 	OnRep_TraversalMode(OldTraversalMode);
 }
 
-void AAtlantisPlayerState::OnRep_OxygenCapacity(const float OldOxygenCapacity) const
+void AAtlantisPlayerState::OnRep_BallastState(const EAtlantisBallastState OldBallastState) const
 {
-	OnOxygenCapacityChanged.Broadcast(OldOxygenCapacity, OxygenCapacity);
+	OnBallastChanged.Broadcast(IsBallastAllocated(), BallastState);
 }
 
-void AAtlantisPlayerState::OnRep_CurrentOxygen(const float OldCurrentOxygen) const
-{
-	OnCurrentOxygenChanged.Broadcast(OldCurrentOxygen, CurrentOxygen);
-}
-
-void AAtlantisPlayerState::OnRep_BallastAllocation(const bool bOldBallastAllocation)
-{
-	BroadcastBallastChanged();
-}
-
-void AAtlantisPlayerState::OnRep_BallastState(const int32 OldBallastState)
-{
-	BroadcastBallastChanged();
-}
-
-void AAtlantisPlayerState::OnRep_TraversalMode(const int32 OldTraversalMode) const
+void AAtlantisPlayerState::OnRep_TraversalMode(const EAtlantisTraversalMode OldTraversalMode) const
 {
 	OnTraversalModeChanged.Broadcast(OldTraversalMode, TraversalMode);
 }
@@ -137,7 +215,49 @@ void AAtlantisPlayerState::OnRep_EquippedItems(const TArray<FString>& OldEquippe
 	OnEquippedItemsChanged.Broadcast(EquippedItems);
 }
 
-void AAtlantisPlayerState::BroadcastBallastChanged() const
+float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastState RequiredBallastState) const
 {
-	OnBallastChanged.Broadcast(bBallastAllocation, BallastState);
+	switch (RequiredBallastState)
+	{
+	case EAtlantisBallastState::Descend:
+		{
+			return DescendOxygenAllocation;
+		}
+	case EAtlantisBallastState::Wander:
+		{
+			return WanderOxygenAllocation;
+		}
+	case EAtlantisBallastState::Ascend:
+		{
+			return AscendOxygenAllocation;
+		}
+	case EAtlantisBallastState::None:
+	default:
+		{
+			UE_LOG(LogAtlantisPlayerState, Fatal, TEXT("Invalid ballast state: %d"),
+			       static_cast<uint8>(RequiredBallastState));
+			return -1.f;
+		}
+	}
+}
+
+bool AAtlantisPlayerState::IsBallastAllocated() const
+{
+	return OxygenComponent && OxygenComponent->GetAllocatedOxygen() > 0.f;
+}
+
+bool AAtlantisPlayerState::IsUsingOxygen() const
+{
+	const ACharacter* Character = GetPawn<ACharacter>();
+	return Character && Character->GetCharacterMovement()->IsInWater();
+}
+
+void AAtlantisPlayerState::RefreshOxygenConsumption() const
+{
+	if (!HasAuthority() || !OxygenComponent)
+	{
+		return;
+	}
+
+	OxygenComponent->SetConsumingOxygen(IsUsingOxygen());
 }

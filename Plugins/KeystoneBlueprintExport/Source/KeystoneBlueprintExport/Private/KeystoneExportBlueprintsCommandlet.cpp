@@ -12,7 +12,7 @@ int32 UKeystoneExportBlueprintsCommandlet::Main(const FString& Params)
     ParseCommandLine(*Params, Tokens, Switches, ParamVals);
 
     const FString Root = ParamVals.Contains(TEXT("path")) ? ParamVals[TEXT("path")] : TEXT("/Game");
-    UE_LOG(LogTemp, Display, TEXT("[keystone] commandlet exporting Blueprints under %s"), *Root);
+    UE_LOG(LogTemp, Display, TEXT("[keystone] commandlet exporting assets under %s"), *Root);
 
     // A commandlet cannot rely on the editor's background asset scan having run. Without a full
     // synchronous search the registry is incomplete: the sweep would export only part of the
