@@ -6,6 +6,7 @@
 #include "HAL/IConsoleManager.h"
 #include "StructUtils/InstancedStruct.h"
 #include "MetasoundSource.h"
+#include "Engine/World.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisAudioValidation, Log, All);
 
@@ -80,6 +81,21 @@ TObjectPtr<UMetaSoundSource> UAtlantisAudioDeveloperSettings::GetMusicMetaSoundS
 	}
 
 	return Settings->MusicMetaSoundSource.LoadSynchronous();
+}
+
+bool UAtlantisAudioDeveloperSettings::IsMusicPlaybackWorld(const UWorld* World)
+{
+	if (!World || !World->IsGameWorld() || World->GetNetMode() == NM_DedicatedServer)
+	{
+		return false;
+	}
+
+	const FString MapPackage = UWorld::RemovePIEPrefix(World->GetOutermost()->GetName());
+	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
+	return Settings->MusicPlaybackMaps.ContainsByPredicate([&MapPackage](const TSoftObjectPtr<UWorld>& Map)
+	{
+		return Map.ToSoftObjectPath().GetLongPackageName() == MapPackage;
+	});
 }
 
 bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FInstancedStruct& Payload)
