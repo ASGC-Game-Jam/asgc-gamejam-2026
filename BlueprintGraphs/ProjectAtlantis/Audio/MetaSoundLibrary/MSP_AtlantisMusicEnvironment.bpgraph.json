@@ -33,6 +33,7 @@
 					"570E42CD4E63BF6E17D9D0B5A672A50A": "/Game/ProjectAtlantis/Audio/MetaSoundLibrary/MSP_AtlantisMusicEnvironment.MSP_AtlantisMusicEnvironment:MetasoundEditorGraphMemberDefaultFloat_4",
 					"65A842C243C0D4F5898562AA7FF702AB": "/Game/ProjectAtlantis/Audio/MetaSoundLibrary/MSP_AtlantisMusicEnvironment.MSP_AtlantisMusicEnvironment:MetasoundEditorGraphMemberDefaultInt_5",
 					"7554D07846813A5F2A3FDFBED4F5EDDF": "/Game/ProjectAtlantis/Audio/MetaSoundLibrary/MSP_AtlantisMusicEnvironment.MSP_AtlantisMusicEnvironment:MetasoundEditorGraphMemberDefaultLiteral_3",
+					"76C2DFA14C149469DA72C59DFBEB6843": "/Game/ProjectAtlantis/Audio/MetaSoundLibrary/MSP_AtlantisMusicEnvironment.MSP_AtlantisMusicEnvironment:MetasoundEditorGraphMemberDefaultFloat_0",
 					"7AE154C04CBCB834FFB0E0A1CFC7F544": "/Game/ProjectAtlantis/Audio/MetaSoundLibrary/MSP_AtlantisMusicEnvironment.MSP_AtlantisMusicEnvironment:MetasoundEditorGraphMemberDefaultInt_0",
 					"8AB1F77E4658D4D196F9159234755852": "/Game/ProjectAtlantis/Audio/MetaSoundLibrary/MSP_AtlantisMusicEnvironment.MSP_AtlantisMusicEnvironment:MetasoundEditorGraphMemberDefaultFloat_14",
 					"9AF287BF4458FA914B3C96962421BB18": "/Game/ProjectAtlantis/Audio/MetaSoundLibrary/MSP_AtlantisMusicEnvironment.MSP_AtlantisMusicEnvironment:MetasoundEditorGraphMemberDefaultLiteral_0",
@@ -2248,59 +2249,62 @@
 								}
 							},
 							{
-								"ID": "8CDADD5D48551FF33FC9049248DD8F24",
-								"ClassID": "EB178DFF4529166050B61B80AEB42BB3",
-								"Name": "Max",
+								"ID": "92F37C384C13FB7A11643CA83DF1ABFF",
+								"ClassID": "DB9EA47E41A616D1A81750B0E7CF6BA5",
+								"Name": "Get",
 								"Interface":
 								{
 									"Inputs": [
 										{
-											"Name": "A",
-											"TypeName": "Float",
-											"VertexID": "4A15419F030FBB73488DC08A178583F2"
+											"Name": "Trigger",
+											"TypeName": "Trigger",
+											"VertexID": "6C85B3D99E66AFC7039B250C10371D8A"
 										},
 										{
-											"Name": "B",
-											"TypeName": "Float",
-											"VertexID": "B9E42BBEAFA0835D85A7D178F9BC2643"
+											"Name": "Array",
+											"TypeName": "Float:Array",
+											"VertexID": "42519D042D72D8F0E37DD54318D6B882"
+										},
+										{
+											"Name": "Index",
+											"TypeName": "Int32",
+											"VertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
 										}
 									],
 									"Outputs": [
 										{
-											"Name": "Value",
+											"Name": "Element",
 											"TypeName": "Float",
-											"VertexID": "832B7B57B6D45F702C8DF746B8E71A5F"
+											"VertexID": "F2408DBBDA69717BB393C62342D62855"
 										}
 									],
 									"Environment": []
 								},
 								"InputLiterals": [
 									{
-										"VertexID": "4A15419F030FBB73488DC08A178583F2",
+										"VertexID": "42519D042D72D8F0E37DD54318D6B882",
 										"Value":
 										{
-											"Type": "Float",
+											"Type": "FloatArray",
 											"AsNumDefault": 0,
 											"AsBoolean": [],
 											"AsInteger": [],
-											"AsFloat": [
-												0
-											],
+											"AsFloat": [],
 											"AsString": [],
 											"AsUObject": []
 										}
 									},
 									{
-										"VertexID": "B9E42BBEAFA0835D85A7D178F9BC2643",
+										"VertexID": "8D079D54F8F5B6E8016A2A18F99619D8",
 										"Value":
 										{
-											"Type": "Float",
+											"Type": "Integer",
 											"AsNumDefault": 0,
 											"AsBoolean": [],
-											"AsInteger": [],
-											"AsFloat": [
+											"AsInteger": [
 												0
 											],
+											"AsFloat": [],
 											"AsString": [],
 											"AsUObject": []
 										}
@@ -2315,10 +2319,10 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"3C385B30453328FAA15DF89E87869C11":
+											"F7E7FA1344D5C843C46754BC1B85DBBE":
 											{
-												"X": -1488,
-												"Y": 752
+												"X": -1758,
+												"Y": 1088
 											}
 										},
 										"Comment": "",
@@ -2643,8 +2647,8 @@
 										{
 											"724E6C9B4CEB79A490D4D9B7A631CA70":
 											{
-												"X": -3359,
-												"Y": 423
+												"X": -3513,
+												"Y": 480
 											}
 										},
 										"Comment": "",
@@ -2700,64 +2704,33 @@
 								}
 							},
 							{
-								"ID": "4653B0AE4DB598121C083386DA9347F3",
-								"ClassID": "EB178DFF4529166050B61B80AEB42BB3",
-								"Name": "Max",
+								"ID": "E8B40E8344A843965F16D6907AEB1616",
+								"ClassID": "F07D16A3411CB90808AD25A0863B6187",
+								"Name": "Time",
 								"Interface":
 								{
 									"Inputs": [
 										{
-											"Name": "A",
-											"TypeName": "Float",
-											"VertexID": "4A15419F030FBB73488DC08A178583F2"
-										},
-										{
-											"Name": "B",
-											"TypeName": "Float",
-											"VertexID": "B9E42BBEAFA0835D85A7D178F9BC2643"
+											"Name": "Variable",
+											"TypeName": "Time:Variable",
+											"VertexID": "A1C739BDD23D7C38FAEFF9557AAFD594"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
-											"TypeName": "Float",
-											"VertexID": "832B7B57B6D45F702C8DF746B8E71A5F"
+											"TypeName": "Time",
+											"VertexID": "EC5B0E8FE94707CAA4E160D296DBDA55"
+										},
+										{
+											"Name": "Variable",
+											"TypeName": "Time:Variable",
+											"VertexID": "22DCC728DE02E5851D28BE858348FE5F"
 										}
 									],
 									"Environment": []
 								},
-								"InputLiterals": [
-									{
-										"VertexID": "4A15419F030FBB73488DC08A178583F2",
-										"Value":
-										{
-											"Type": "Float",
-											"AsNumDefault": 0,
-											"AsBoolean": [],
-											"AsInteger": [],
-											"AsFloat": [
-												0
-											],
-											"AsString": [],
-											"AsUObject": []
-										}
-									},
-									{
-										"VertexID": "B9E42BBEAFA0835D85A7D178F9BC2643",
-										"Value":
-										{
-											"Type": "Float",
-											"AsNumDefault": 0,
-											"AsBoolean": [],
-											"AsInteger": [],
-											"AsFloat": [
-												0
-											],
-											"AsString": [],
-											"AsUObject": []
-										}
-									}
-								],
+								"InputLiterals": [],
 								"Configuration": "None",
 								"ClassInterfaceOverride": "None",
 								"Style":
@@ -2767,10 +2740,10 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"AE07E3474DC7D9D2E7F342A700DA6712":
+											"97D4A535451403E42487ACB81EE7F39F":
 											{
-												"X": -1488,
-												"Y": 1408
+												"X": -1344,
+												"Y": 992
 											}
 										},
 										"Comment": "",
@@ -2781,21 +2754,21 @@
 								}
 							},
 							{
-								"ID": "B1A5E91A4D340480822E48BD0AC73B4E",
-								"ClassID": "EB178DFF4529166050B61B80AEB42BB3",
-								"Name": "Max",
+								"ID": "AA6D2C4349666F4DC2E48DB20A54BEF4",
+								"ClassID": "C2754A634F2292ADBF8258ACFED9D526",
+								"Name": "InterpTo",
 								"Interface":
 								{
 									"Inputs": [
 										{
-											"Name": "A",
-											"TypeName": "Float",
-											"VertexID": "4A15419F030FBB73488DC08A178583F2"
+											"Name": "Interp Time",
+											"TypeName": "Time",
+											"VertexID": "585076CCAD52971F03D43B96DA0CEBA7"
 										},
 										{
-											"Name": "B",
+											"Name": "Target",
 											"TypeName": "Float",
-											"VertexID": "B9E42BBEAFA0835D85A7D178F9BC2643"
+											"VertexID": "45BD227162E29B29B9952B9E966DC8BB"
 										}
 									],
 									"Outputs": [
@@ -2807,38 +2780,7 @@
 									],
 									"Environment": []
 								},
-								"InputLiterals": [
-									{
-										"VertexID": "4A15419F030FBB73488DC08A178583F2",
-										"Value":
-										{
-											"Type": "Float",
-											"AsNumDefault": 0,
-											"AsBoolean": [],
-											"AsInteger": [],
-											"AsFloat": [
-												0
-											],
-											"AsString": [],
-											"AsUObject": []
-										}
-									},
-									{
-										"VertexID": "B9E42BBEAFA0835D85A7D178F9BC2643",
-										"Value":
-										{
-											"Type": "Float",
-											"AsNumDefault": 0,
-											"AsBoolean": [],
-											"AsInteger": [],
-											"AsFloat": [
-												0
-											],
-											"AsString": [],
-											"AsUObject": []
-										}
-									}
-								],
+								"InputLiterals": [],
 								"Configuration": "None",
 								"ClassInterfaceOverride": "None",
 								"Style":
@@ -2848,10 +2790,10 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"1D6FF03E48CBCA886C357C8F376FBE9B":
+											"CA63F2FB4A87A83A6E90009762F6610C":
 											{
-												"X": -1488,
-												"Y": 1087
+												"X": -1120,
+												"Y": 1056
 											}
 										},
 										"Comment": "",
@@ -3225,212 +3167,28 @@
 								}
 							},
 							{
-								"ID": "E8B40E8344A843965F16D6907AEB1616",
-								"ClassID": "F07D16A3411CB90808AD25A0863B6187",
-								"Name": "Time",
-								"Interface":
-								{
-									"Inputs": [
-										{
-											"Name": "Variable",
-											"TypeName": "Time:Variable",
-											"VertexID": "A1C739BDD23D7C38FAEFF9557AAFD594"
-										}
-									],
-									"Outputs": [
-										{
-											"Name": "Value",
-											"TypeName": "Time",
-											"VertexID": "EC5B0E8FE94707CAA4E160D296DBDA55"
-										},
-										{
-											"Name": "Variable",
-											"TypeName": "Time:Variable",
-											"VertexID": "22DCC728DE02E5851D28BE858348FE5F"
-										}
-									],
-									"Environment": []
-								},
-								"InputLiterals": [],
-								"Configuration": "None",
-								"ClassInterfaceOverride": "None",
-								"Style":
-								{
-									"Display":
-									{
-										"Visibility": "Visible",
-										"Locations":
-										{
-											"97D4A535451403E42487ACB81EE7F39F":
-											{
-												"X": -1344,
-												"Y": 992
-											}
-										},
-										"Comment": "",
-										"bCommentVisible": false
-									},
-									"bIsPrivate": false,
-									"bUnconnectedPinsHidden": false
-								}
-							},
-							{
-								"ID": "AA6D2C4349666F4DC2E48DB20A54BEF4",
-								"ClassID": "C2754A634F2292ADBF8258ACFED9D526",
-								"Name": "InterpTo",
-								"Interface":
-								{
-									"Inputs": [
-										{
-											"Name": "Interp Time",
-											"TypeName": "Time",
-											"VertexID": "585076CCAD52971F03D43B96DA0CEBA7"
-										},
-										{
-											"Name": "Target",
-											"TypeName": "Float",
-											"VertexID": "45BD227162E29B29B9952B9E966DC8BB"
-										}
-									],
-									"Outputs": [
-										{
-											"Name": "Value",
-											"TypeName": "Float",
-											"VertexID": "832B7B57B6D45F702C8DF746B8E71A5F"
-										}
-									],
-									"Environment": []
-								},
-								"InputLiterals": [],
-								"Configuration": "None",
-								"ClassInterfaceOverride": "None",
-								"Style":
-								{
-									"Display":
-									{
-										"Visibility": "Visible",
-										"Locations":
-										{
-											"CA63F2FB4A87A83A6E90009762F6610C":
-											{
-												"X": -1120,
-												"Y": 1056
-											}
-										},
-										"Comment": "",
-										"bCommentVisible": false
-									},
-									"bIsPrivate": false,
-									"bUnconnectedPinsHidden": false
-								}
-							},
-							{
-								"ID": "92F37C384C13FB7A11643CA83DF1ABFF",
-								"ClassID": "DB9EA47E41A616D1A81750B0E7CF6BA5",
-								"Name": "Get",
-								"Interface":
-								{
-									"Inputs": [
-										{
-											"Name": "Trigger",
-											"TypeName": "Trigger",
-											"VertexID": "6C85B3D99E66AFC7039B250C10371D8A"
-										},
-										{
-											"Name": "Array",
-											"TypeName": "Float:Array",
-											"VertexID": "42519D042D72D8F0E37DD54318D6B882"
-										},
-										{
-											"Name": "Index",
-											"TypeName": "Int32",
-											"VertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
-										}
-									],
-									"Outputs": [
-										{
-											"Name": "Element",
-											"TypeName": "Float",
-											"VertexID": "F2408DBBDA69717BB393C62342D62855"
-										}
-									],
-									"Environment": []
-								},
-								"InputLiterals": [
-									{
-										"VertexID": "42519D042D72D8F0E37DD54318D6B882",
-										"Value":
-										{
-											"Type": "FloatArray",
-											"AsNumDefault": 0,
-											"AsBoolean": [],
-											"AsInteger": [],
-											"AsFloat": [],
-											"AsString": [],
-											"AsUObject": []
-										}
-									},
-									{
-										"VertexID": "8D079D54F8F5B6E8016A2A18F99619D8",
-										"Value":
-										{
-											"Type": "Integer",
-											"AsNumDefault": 0,
-											"AsBoolean": [],
-											"AsInteger": [
-												0
-											],
-											"AsFloat": [],
-											"AsString": [],
-											"AsUObject": []
-										}
-									}
-								],
-								"Configuration": "None",
-								"ClassInterfaceOverride": "None",
-								"Style":
-								{
-									"Display":
-									{
-										"Visibility": "Visible",
-										"Locations":
-										{
-											"F7E7FA1344D5C843C46754BC1B85DBBE":
-											{
-												"X": -1758,
-												"Y": 1088
-											}
-										},
-										"Comment": "",
-										"bCommentVisible": false
-									},
-									"bIsPrivate": false,
-									"bUnconnectedPinsHidden": false
-								}
-							},
-							{
-								"ID": "B0234F374A9E8B547ED411B9AD181E05",
-								"ClassID": "EB178DFF4529166050B61B80AEB42BB3",
+								"ID": "0FBDC8C44BC2DED15C7C13908802129C",
+								"ClassID": "F8CE20A3477FC0A3AE5DFD8408A5A977",
 								"Name": "Max",
 								"Interface":
 								{
 									"Inputs": [
 										{
 											"Name": "A",
-											"TypeName": "Float",
-											"VertexID": "4A15419F030FBB73488DC08A178583F2"
+											"TypeName": "Int32",
+											"VertexID": "22CFAE194568C0769DE410BD11A57410"
 										},
 										{
 											"Name": "B",
-											"TypeName": "Float",
-											"VertexID": "B9E42BBEAFA0835D85A7D178F9BC2643"
+											"TypeName": "Int32",
+											"VertexID": "90F06F5D52013BDFADD1DAC8BE284531"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
-											"TypeName": "Float",
-											"VertexID": "832B7B57B6D45F702C8DF746B8E71A5F"
+											"TypeName": "Int32",
+											"VertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E"
 										}
 									],
 									"Environment": []
@@ -3445,10 +3203,10 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"E1CAA3E44300050A57F69E9F29FF5B77":
+											"1191C3364374A18ECF0F7DB7B65EFC0B":
 											{
-												"X": -1456,
-												"Y": 292.00003051757812
+												"X": -3248,
+												"Y": 480
 											}
 										},
 										"Comment": "",
@@ -3587,10 +3345,10 @@
 								"ToVertexID": "F2520C3649880E71227548EB33593E48"
 							},
 							{
-								"FromNodeID": "7A147B264EB390D6A270B8A445B1A402",
-								"FromVertexID": "6CEAB8FD44845B8108144085425474AB",
-								"ToNodeID": "CFCD3E7E4D7A6F6BF564DC8C9FEC48D5",
-								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+								"FromNodeID": "AF7022B249A1680BF6B7BAA87E09B781",
+								"FromVertexID": "C11858B20C855BC9B30A474C81476EF4",
+								"ToNodeID": "1A3AE3E141F40494778367BC2CB2A29A",
+								"ToVertexID": "787D005B945B0736C3B8561BE5625A08"
 							},
 							{
 								"FromNodeID": "3EC2D94A4D4E216A9446F5814A226178",
@@ -3665,10 +3423,10 @@
 								"ToVertexID": "AB135C2C35D97129D911F19BF4BF1FB9"
 							},
 							{
-								"FromNodeID": "B0234F374A9E8B547ED411B9AD181E05",
-								"FromVertexID": "832B7B57B6D45F702C8DF746B8E71A5F",
-								"ToNodeID": "8B7BD3C649C19F1BAEDA198A9B12E5BB",
-								"ToVertexID": "45BD227162E29B29B9952B9E966DC8BB"
+								"FromNodeID": "C7D9A9BA411F556882380CBF9A43ACCA",
+								"FromVertexID": "AA307B7AEDA07C2C3AA9A75084588E15",
+								"ToNodeID": "78522BC4409D7EE341F99AA4B55721A0",
+								"ToVertexID": "6C85B3D99E66AFC7039B250C10371D8A"
 							},
 							{
 								"FromNodeID": "5EB259014ABC549E3401F296A994400F",
@@ -3743,22 +3501,22 @@
 								"ToVertexID": "C3AB422743A3EAEAB4B4C99D8D449983"
 							},
 							{
-								"FromNodeID": "7A147B264EB390D6A270B8A445B1A402",
-								"FromVertexID": "6CEAB8FD44845B8108144085425474AB",
-								"ToNodeID": "78522BC4409D7EE341F99AA4B55721A0",
-								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+								"FromNodeID": "1A3AE3E141F40494778367BC2CB2A29A",
+								"FromVertexID": "66B4D893D689152C368DD02E5510B0CD",
+								"ToNodeID": "CD66CDAE4C6C926B9BCC30A65F8876B0",
+								"ToVertexID": "42519D042D72D8F0E37DD54318D6B882"
 							},
 							{
-								"FromNodeID": "7A147B264EB390D6A270B8A445B1A402",
-								"FromVertexID": "6CEAB8FD44845B8108144085425474AB",
-								"ToNodeID": "C7D9A9BA411F556882380CBF9A43ACCA",
-								"ToVertexID": "1A48B10C09E8E898BD72BCDF4D46A251"
+								"FromNodeID": "C27692F84E4FE20C092996B492762D77",
+								"FromVertexID": "C11858B20C855BC9B30A474C81476EF4",
+								"ToNodeID": "044CFEAA4C7B2B7D28E5319ABF9ED8CF",
+								"ToVertexID": "787D005B945B0736C3B8561BE5625A08"
 							},
 							{
-								"FromNodeID": "8CDADD5D48551FF33FC9049248DD8F24",
-								"FromVertexID": "832B7B57B6D45F702C8DF746B8E71A5F",
-								"ToNodeID": "3DC42C174E2C3788F286BFB318912FF9",
-								"ToVertexID": "45BD227162E29B29B9952B9E966DC8BB"
+								"FromNodeID": "43FF4B8649A7ECCEA82D5F9C597130D3",
+								"FromVertexID": "C11858B20C855BC9B30A474C81476EF4",
+								"ToNodeID": "3EC2D94A4D4E216A9446F5814A226178",
+								"ToVertexID": "787D005B945B0736C3B8561BE5625A08"
 							},
 							{
 								"FromNodeID": "C7D9A9BA411F556882380CBF9A43ACCA",
@@ -3769,8 +3527,8 @@
 							{
 								"FromNodeID": "78522BC4409D7EE341F99AA4B55721A0",
 								"FromVertexID": "F2408DBBDA69717BB393C62342D62855",
-								"ToNodeID": "B0234F374A9E8B547ED411B9AD181E05",
-								"ToVertexID": "4A15419F030FBB73488DC08A178583F2"
+								"ToNodeID": "8B7BD3C649C19F1BAEDA198A9B12E5BB",
+								"ToVertexID": "45BD227162E29B29B9952B9E966DC8BB"
 							},
 							{
 								"FromNodeID": "CF6D33D4442D1DA47133FFA97F29646A",
@@ -3847,8 +3605,8 @@
 							{
 								"FromNodeID": "CD66CDAE4C6C926B9BCC30A65F8876B0",
 								"FromVertexID": "F2408DBBDA69717BB393C62342D62855",
-								"ToNodeID": "8CDADD5D48551FF33FC9049248DD8F24",
-								"ToVertexID": "4A15419F030FBB73488DC08A178583F2"
+								"ToNodeID": "3DC42C174E2C3788F286BFB318912FF9",
+								"ToVertexID": "45BD227162E29B29B9952B9E966DC8BB"
 							},
 							{
 								"FromNodeID": "3E06697C464689B3A507A6B49E1E4B5A",
@@ -3865,62 +3623,8 @@
 							{
 								"FromNodeID": "92F37C384C13FB7A11643CA83DF1ABFF",
 								"FromVertexID": "F2408DBBDA69717BB393C62342D62855",
-								"ToNodeID": "B1A5E91A4D340480822E48BD0AC73B4E",
-								"ToVertexID": "4A15419F030FBB73488DC08A178583F2"
-							},
-							{
-								"FromNodeID": "B1A5E91A4D340480822E48BD0AC73B4E",
-								"FromVertexID": "832B7B57B6D45F702C8DF746B8E71A5F",
 								"ToNodeID": "AA6D2C4349666F4DC2E48DB20A54BEF4",
 								"ToVertexID": "45BD227162E29B29B9952B9E966DC8BB"
-							},
-							{
-								"FromNodeID": "4653B0AE4DB598121C083386DA9347F3",
-								"FromVertexID": "832B7B57B6D45F702C8DF746B8E71A5F",
-								"ToNodeID": "916927584026DED0E6337C81F9210E3A",
-								"ToVertexID": "45BD227162E29B29B9952B9E966DC8BB"
-							},
-							{
-								"FromNodeID": "7A147B264EB390D6A270B8A445B1A402",
-								"FromVertexID": "6CEAB8FD44845B8108144085425474AB",
-								"ToNodeID": "CD66CDAE4C6C926B9BCC30A65F8876B0",
-								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
-							},
-							{
-								"FromNodeID": "7A147B264EB390D6A270B8A445B1A402",
-								"FromVertexID": "6CEAB8FD44845B8108144085425474AB",
-								"ToNodeID": "92F37C384C13FB7A11643CA83DF1ABFF",
-								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
-							},
-							{
-								"FromNodeID": "AF7022B249A1680BF6B7BAA87E09B781",
-								"FromVertexID": "C11858B20C855BC9B30A474C81476EF4",
-								"ToNodeID": "1A3AE3E141F40494778367BC2CB2A29A",
-								"ToVertexID": "787D005B945B0736C3B8561BE5625A08"
-							},
-							{
-								"FromNodeID": "1A3AE3E141F40494778367BC2CB2A29A",
-								"FromVertexID": "66B4D893D689152C368DD02E5510B0CD",
-								"ToNodeID": "CD66CDAE4C6C926B9BCC30A65F8876B0",
-								"ToVertexID": "42519D042D72D8F0E37DD54318D6B882"
-							},
-							{
-								"FromNodeID": "C27692F84E4FE20C092996B492762D77",
-								"FromVertexID": "C11858B20C855BC9B30A474C81476EF4",
-								"ToNodeID": "044CFEAA4C7B2B7D28E5319ABF9ED8CF",
-								"ToVertexID": "787D005B945B0736C3B8561BE5625A08"
-							},
-							{
-								"FromNodeID": "044CFEAA4C7B2B7D28E5319ABF9ED8CF",
-								"FromVertexID": "66B4D893D689152C368DD02E5510B0CD",
-								"ToNodeID": "92F37C384C13FB7A11643CA83DF1ABFF",
-								"ToVertexID": "42519D042D72D8F0E37DD54318D6B882"
-							},
-							{
-								"FromNodeID": "E8B40E8344A843965F16D6907AEB1616",
-								"FromVertexID": "22DCC728DE02E5851D28BE858348FE5F",
-								"ToNodeID": "10D1443842F38D50D6D0BAB6B037BA91",
-								"ToVertexID": "A1C739BDD23D7C38FAEFF9557AAFD594"
 							},
 							{
 								"FromNodeID": "10D1443842F38D50D6D0BAB6B037BA91",
@@ -3929,22 +3633,58 @@
 								"ToVertexID": "585076CCAD52971F03D43B96DA0CEBA7"
 							},
 							{
+								"FromNodeID": "E8B40E8344A843965F16D6907AEB1616",
+								"FromVertexID": "22DCC728DE02E5851D28BE858348FE5F",
+								"ToNodeID": "10D1443842F38D50D6D0BAB6B037BA91",
+								"ToVertexID": "A1C739BDD23D7C38FAEFF9557AAFD594"
+							},
+							{
+								"FromNodeID": "044CFEAA4C7B2B7D28E5319ABF9ED8CF",
+								"FromVertexID": "66B4D893D689152C368DD02E5510B0CD",
+								"ToNodeID": "92F37C384C13FB7A11643CA83DF1ABFF",
+								"ToVertexID": "42519D042D72D8F0E37DD54318D6B882"
+							},
+							{
 								"FromNodeID": "CFCD3E7E4D7A6F6BF564DC8C9FEC48D5",
 								"FromVertexID": "F2408DBBDA69717BB393C62342D62855",
-								"ToNodeID": "4653B0AE4DB598121C083386DA9347F3",
-								"ToVertexID": "4A15419F030FBB73488DC08A178583F2"
+								"ToNodeID": "916927584026DED0E6337C81F9210E3A",
+								"ToVertexID": "45BD227162E29B29B9952B9E966DC8BB"
 							},
 							{
-								"FromNodeID": "43FF4B8649A7ECCEA82D5F9C597130D3",
-								"FromVertexID": "C11858B20C855BC9B30A474C81476EF4",
-								"ToNodeID": "3EC2D94A4D4E216A9446F5814A226178",
-								"ToVertexID": "787D005B945B0736C3B8561BE5625A08"
+								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "CFCD3E7E4D7A6F6BF564DC8C9FEC48D5",
+								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
 							},
 							{
-								"FromNodeID": "C7D9A9BA411F556882380CBF9A43ACCA",
-								"FromVertexID": "AA307B7AEDA07C2C3AA9A75084588E15",
+								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
 								"ToNodeID": "78522BC4409D7EE341F99AA4B55721A0",
-								"ToVertexID": "6C85B3D99E66AFC7039B250C10371D8A"
+								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+							},
+							{
+								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "C7D9A9BA411F556882380CBF9A43ACCA",
+								"ToVertexID": "1A48B10C09E8E898BD72BCDF4D46A251"
+							},
+							{
+								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "CD66CDAE4C6C926B9BCC30A65F8876B0",
+								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+							},
+							{
+								"FromNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "92F37C384C13FB7A11643CA83DF1ABFF",
+								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+							},
+							{
+								"FromNodeID": "7A147B264EB390D6A270B8A445B1A402",
+								"FromVertexID": "6CEAB8FD44845B8108144085425474AB",
+								"ToNodeID": "0FBDC8C44BC2DED15C7C13908802129C",
+								"ToVertexID": "22CFAE194568C0769DE410BD11A57410"
 							}
 						],
 						"Variables": [
@@ -8158,14 +7898,14 @@
 					}
 				},
 				{
-					"ID": "EB178DFF4529166050B61B80AEB42BB3",
+					"ID": "4175B8864834729C80E89195B126FFB5",
 					"Metadata":
 					{
 						"ClassName":
 						{
-							"Namespace": "Max",
-							"Name": "Max",
-							"Variant": "Float"
+							"Namespace": "Modulation",
+							"Name": "GetModulatorValue",
+							"Variant": "None"
 						},
 						"Version":
 						{
@@ -8241,9 +7981,9 @@
 									"bSerializeText": false
 								},
 								"AccessType": "Reference",
-								"Name": "A",
-								"TypeName": "Float",
-								"VertexID": "4A15419F030FBB73488DC08A178583F2"
+								"Name": "Modulator",
+								"TypeName": "Modulator",
+								"VertexID": "898956C987B9FA6FA0C16D04F6483C0C"
 							},
 							{
 								"DefaultLiteral":
@@ -8260,9 +8000,11 @@
 									{
 										"Literal":
 										{
-											"Type": "None",
-											"AsNumDefault": 1,
-											"AsBoolean": [],
+											"Type": "Boolean",
+											"AsNumDefault": 0,
+											"AsBoolean": [
+												true
+											],
 											"AsInteger": [],
 											"AsFloat": [],
 											"AsString": [],
@@ -8281,9 +8023,9 @@
 									"bSerializeText": false
 								},
 								"AccessType": "Reference",
-								"Name": "B",
-								"TypeName": "Float",
-								"VertexID": "B9E42BBEAFA0835D85A7D178F9BC2643"
+								"Name": "Normalized",
+								"TypeName": "Bool",
+								"VertexID": "94A7F1DC4EEF6E7683701F7BCF87E2F0"
 							}
 						],
 						"Outputs": [
@@ -8298,9 +8040,9 @@
 									"bSerializeText": false
 								},
 								"AccessType": "Reference",
-								"Name": "Value",
+								"Name": "Out",
 								"TypeName": "Float",
-								"VertexID": "832B7B57B6D45F702C8DF746B8E71A5F"
+								"VertexID": "DF859E00E6B223C1313F89B8EB6AC9BC"
 							}
 						],
 						"Environment": []
@@ -8529,14 +8271,14 @@
 					}
 				},
 				{
-					"ID": "4175B8864834729C80E89195B126FFB5",
+					"ID": "F8CE20A3477FC0A3AE5DFD8408A5A977",
 					"Metadata":
 					{
 						"ClassName":
 						{
-							"Namespace": "Modulation",
-							"Name": "GetModulatorValue",
-							"Variant": "None"
+							"Namespace": "Max",
+							"Name": "Max",
+							"Variant": "Int32"
 						},
 						"Version":
 						{
@@ -8612,9 +8354,9 @@
 									"bSerializeText": false
 								},
 								"AccessType": "Reference",
-								"Name": "Modulator",
-								"TypeName": "Modulator",
-								"VertexID": "898956C987B9FA6FA0C16D04F6483C0C"
+								"Name": "A",
+								"TypeName": "Int32",
+								"VertexID": "22CFAE194568C0769DE410BD11A57410"
 							},
 							{
 								"DefaultLiteral":
@@ -8631,11 +8373,9 @@
 									{
 										"Literal":
 										{
-											"Type": "Boolean",
-											"AsNumDefault": 0,
-											"AsBoolean": [
-												true
-											],
+											"Type": "None",
+											"AsNumDefault": 1,
+											"AsBoolean": [],
 											"AsInteger": [],
 											"AsFloat": [],
 											"AsString": [],
@@ -8654,9 +8394,9 @@
 									"bSerializeText": false
 								},
 								"AccessType": "Reference",
-								"Name": "Normalized",
-								"TypeName": "Bool",
-								"VertexID": "94A7F1DC4EEF6E7683701F7BCF87E2F0"
+								"Name": "B",
+								"TypeName": "Int32",
+								"VertexID": "90F06F5D52013BDFADD1DAC8BE284531"
 							}
 						],
 						"Outputs": [
@@ -8671,9 +8411,9 @@
 									"bSerializeText": false
 								},
 								"AccessType": "Reference",
-								"Name": "Out",
-								"TypeName": "Float",
-								"VertexID": "DF859E00E6B223C1313F89B8EB6AC9BC"
+								"Name": "Value",
+								"TypeName": "Int32",
+								"VertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E"
 							}
 						],
 						"Environment": []
