@@ -26,30 +26,6 @@ will be a folder with a built binary and data files.
 By default Unreal will create a Development build, which is fine for tests and debugging, but for a release you 
 **must** use a Shipping build.
 
-Use the packaging helper to keep production and Steam QA artifacts separate:
-
-```ps
-.\Scripts\PackageGame.ps1 -Channel Production -EnginePath $env:UE_PATH
-.\Scripts\PackageGame.ps1 -Channel QA -EnginePath $env:UE_PATH
-```
-
-Production requires Shipping, which disables the debug menu and commands.
-QA defaults to Development, which works with Epic Launcher installations.
-`-Configuration Test` requires an engine distribution that can compile Test. The helper
-rejects configurations that would enable cheats in production or disable them
-in QA. Default archives are `Saved/Packages/Production` and `Saved/Packages/QA`;
-use `-OutputPath` to override them.
-
-The helper also accepts `-WithoutScreenshotCapture` and forwards #303's UBT
-opt-out, for example:
-
-```ps
-.\Scripts\PackageGame.ps1 -Channel Production -EnginePath $env:UE_PATH -WithoutScreenshotCapture
-```
-
-The screenshot module's Shipping `-debug` launch option does not enable the
-debug menu or cheats; those remain compiled out of Shipping.
-
 ### Build with Editor
 
 After checking out the appropriate tagged commit in git, open the project in the Unreal Editor.
@@ -162,11 +138,6 @@ This is an optional additional step - most users will be able to access the buil
 may also be convenient to keep the project updated via Steam. Pre-release versions can be uploaded to a `beta`
 branch so as to not clutter the main update branch.
 
-For the `qa` branch, upload the separate Development or Test QA package.
-For `default`, upload only the Shipping production package. Steam branch
-selection cannot enable or disable cheats in an existing binary, so never
-promote a QA artifact to production.
-
 ### Setup
 
 1. Get the App ID and Depot ID from Steamworks, add these as repository variables on GitHub:
@@ -214,7 +185,6 @@ process via GUI rather than command line.
 2. Here is a list of builds ordered by upload date and an indication of which build is released in the 'Current' column
     * The new build that was uploaded in the previous step should be listed above the build marked as released to 'default'
 3. In the drop-down on the right, select 'default' and then click the "Preview Change" button
-    * Select `qa` instead when releasing a QA package; keep QA artifacts off `default`.
     * If the build hasn't changed since the last time, Steamworks will tell you and won't let you progress to releasing it
 4. Review the build changes
     * Check the differences in disk size (including the update download size) to ensure it's the correct build

@@ -41,16 +41,10 @@ implementations behind `!UE_BUILD_SHIPPING`, including any server RPC body.
 
 ## Production and Steam QA packaging
 
-Use `Scripts/PackageGame.ps1 -Channel QA -EnginePath <Unreal installation>` to
-package Development for the Steam `qa` branch. `-Configuration Test` is also
-supported. Use `-Channel Production` for Shipping and the Steam `default` branch.
-The Epic Launcher engine distribution supports Development QA; Test requires
-an engine distribution with that configuration available.
-The script rejects QA Shipping and production Development / Test combinations,
-and archives them into separate `Saved/Packages/QA` and
-`Saved/Packages/Production` folders.
+Package Development for the Steam `qa` branch so the debug menu is available.
+Use Shipping for production, where the menu and cheats are disabled. Follow the
+existing [Release Process](./RELEASES.md) to build and upload each package.
 
 Steam branch selection does not change a compiled executable's capabilities.
 Upload the QA package only to `qa`; build a separate Shipping package for
-production. Never promote the QA artifact to `default`. See
-[Release Process](./RELEASES.md) for commands and upload steps.
+production. Never promote the QA artifact to `default`.
