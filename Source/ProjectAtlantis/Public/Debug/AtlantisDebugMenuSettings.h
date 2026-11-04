@@ -21,7 +21,7 @@ public:
 	FKey ToggleMenuKey = EKeys::F7;
 
 	UPROPERTY(Config, EditAnywhere, Category = "Input")
-	FKey ToggleMenuGamepadKey = EKeys::Gamepad_Special_Left;
+	FKey ToggleMenuGamepadKey = EKeys::Gamepad_Special_Right;
 
 	/** Hold this button while pressing the gamepad toggle. None allows a single button. */
 	UPROPERTY(Config, EditAnywhere, Category = "Input")

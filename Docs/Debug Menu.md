@@ -15,16 +15,16 @@ loading / exclusion rules.
 
 | Action | Keyboard | Gamepad |
 | --- | --- | --- |
-| Open menu | F7 | Hold left stick click + press View / Back |
+| Open menu | F7 | Hold left stick click + press Hamburger / Menu |
 | Reset immediately | F10 | Right stick click while menu is open |
-| Close menu | Escape / F7 | B / Circle / View / Back |
+| Close menu | Escape / F7 | B / Circle / Hamburger / Menu |
 | Navigate / activate | Arrow keys / Enter | D-pad / A / Cross |
 
 Like Screenshot Capture, bindings use `UDeveloperSettings` and Game.ini:
 **Project Settings > Game > Debug Menu** exposes keyboard and gamepad toggle /
 reset keys and a gamepad toggle modifier. Set a key to None to disable that
 shortcut, then restart PIE or the game. The default modifier avoids taking over
-the View button's existing Input Action. Right-stick reset is available only
+the Menu button's existing Input Action. Right-stick reset is available only
 inside the menu. Keep keyboard bindings distinct from Screenshot Capture.
 The menu displays the configured shortcuts.
 
@@ -52,7 +52,7 @@ keys. A Slate input preprocessor scopes debug controls to the owning local playe
 and game viewport, ahead of CommonUI / Enhanced Input. It consumes both the
 press and release of B and other debug shortcuts, including the release after
 the menu has closed, so one button cannot also trigger a gameplay Input Action.
-Unmodified View and right-stick presses pass through normally outside the menu.
+Unmodified Menu and right-stick presses pass through normally outside the menu.
 Open it from gameplay: it refuses to take ownership while
 another menu is displaying the mouse cursor. Close it before opening another UI.
 
@@ -82,8 +82,8 @@ implementations behind `!UE_BUILD_SHIPPING`, including any server RPC body.
 8. With the menu focused, press F9. Verify #303 still saves a screenshot and
    matching location metadata. Change the Debug Menu key, restart PIE, and verify
    the configured key and displayed hint agree.
-9. Verify View and right-stick gameplay actions work with the menu closed.
-   Hold left-stick click and press View to open it; verify View does not also
+9. Verify Menu and right-stick gameplay actions work with the menu closed.
+   Hold left-stick click and press Menu (Hamburger) to open it; verify Menu does not also
    trigger its Input Action. Close with B while swimming and verify no swim action
    occurs on either press or release. Hold B and verify it closes only once.
    Repeat with different focused buttons and after clicking empty menu space.

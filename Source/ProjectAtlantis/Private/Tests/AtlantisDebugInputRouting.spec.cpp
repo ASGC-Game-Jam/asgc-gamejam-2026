@@ -19,7 +19,7 @@ void FAtlantisDebugInputRoutingSpec::Define()
 		State = MakeUnique<FAtlantisDebugInputState>();
 		Settings.Reset(NewObject<UAtlantisDebugMenuSettings>());
 		Settings->ToggleMenuKey = EKeys::F7;
-		Settings->ToggleMenuGamepadKey = EKeys::Gamepad_Special_Left;
+		Settings->ToggleMenuGamepadKey = EKeys::Gamepad_Special_Right;
 		Settings->ToggleMenuGamepadModifier = EKeys::Gamepad_LeftThumbstick;
 		Settings->ResetPlayerKey = EKeys::F10;
 		Settings->ResetPlayerGamepadKey = EKeys::Gamepad_RightThumbstick;
@@ -33,10 +33,10 @@ void FAtlantisDebugInputRoutingSpec::Define()
 
 	Describe(TEXT("Gameplay bindings"), [this]()
 	{
-		It(TEXT("should leave View and right-stick presses available to gameplay without the debug chord"), [this]()
+		It(TEXT("should leave Menu and right-stick presses available to gameplay without the debug chord"), [this]()
 		{
-			TestFalse(TEXT("View alone passes through"), State->KeyDown(EKeys::Gamepad_Special_Left, false, *Settings, false).bHandled);
-			TestFalse(TEXT("View release passes through"), State->KeyUp(EKeys::Gamepad_Special_Left));
+			TestFalse(TEXT("Menu alone passes through"), State->KeyDown(EKeys::Gamepad_Special_Right, false, *Settings, false).bHandled);
+			TestFalse(TEXT("Menu release passes through"), State->KeyUp(EKeys::Gamepad_Special_Right));
 			TestFalse(TEXT("Right stick outside menu passes through"), State->KeyDown(EKeys::Gamepad_RightThumbstick, false, *Settings, false).bHandled);
 			TestFalse(TEXT("Right-stick release passes through"), State->KeyUp(EKeys::Gamepad_RightThumbstick));
 		});
@@ -44,10 +44,10 @@ void FAtlantisDebugInputRoutingSpec::Define()
 		It(TEXT("should consume the toggle press and release only when the modifier is held"), [this]()
 		{
 			TestFalse(TEXT("Modifier still reaches gameplay"), State->KeyDown(EKeys::Gamepad_LeftThumbstick, false, *Settings, false).bHandled);
-			const FAtlantisDebugInputResult Open = State->KeyDown(EKeys::Gamepad_Special_Left, false, *Settings, false);
+			const FAtlantisDebugInputResult Open = State->KeyDown(EKeys::Gamepad_Special_Right, false, *Settings, false);
 			TestTrue(TEXT("Chord opens debug menu"), Open.Action == EAtlantisDebugInputAction::ToggleMenu);
 			TestTrue(TEXT("Chord press consumed"), Open.bHandled);
-			TestTrue(TEXT("Chord release consumed"), State->KeyUp(EKeys::Gamepad_Special_Left));
+			TestTrue(TEXT("Chord release consumed"), State->KeyUp(EKeys::Gamepad_Special_Right));
 			TestFalse(TEXT("Modifier release reaches gameplay"), State->KeyUp(EKeys::Gamepad_LeftThumbstick));
 		});
 
@@ -61,12 +61,12 @@ void FAtlantisDebugInputRoutingSpec::Define()
 
 	Describe(TEXT("Menu controls"), [this]()
 	{
-		It(TEXT("should close with View without requiring the opening modifier again"), [this]()
+		It(TEXT("should close with Menu without requiring the opening modifier again"), [this]()
 		{
-			const FAtlantisDebugInputResult Close = State->KeyDown(EKeys::Gamepad_Special_Left, false, *Settings, true);
-			TestTrue(TEXT("View closes an open menu"), Close.Action == EAtlantisDebugInputAction::ToggleMenu);
-			TestTrue(TEXT("View press consumed"), Close.bHandled);
-			TestTrue(TEXT("View release consumed"), State->KeyUp(EKeys::Gamepad_Special_Left));
+			const FAtlantisDebugInputResult Close = State->KeyDown(EKeys::Gamepad_Special_Right, false, *Settings, true);
+			TestTrue(TEXT("Menu closes an open menu"), Close.Action == EAtlantisDebugInputAction::ToggleMenu);
+			TestTrue(TEXT("Menu press consumed"), Close.bHandled);
+			TestTrue(TEXT("Menu release consumed"), State->KeyUp(EKeys::Gamepad_Special_Right));
 		});
 
 		It(TEXT("should consume B release after B has closed the menu"), [this]()

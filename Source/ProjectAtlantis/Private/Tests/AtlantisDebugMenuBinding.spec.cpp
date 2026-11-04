@@ -83,7 +83,7 @@ void FAtlantisDebugMenuBindingSpec::Define()
 			{
 				return;
 			}
-			TestFalse(TEXT("Gamepad toggle disabled"), Fixture->Settings->IsToggleKey(EKeys::Gamepad_Special_Left));
+			TestFalse(TEXT("Gamepad toggle disabled"), Fixture->Settings->IsToggleKey(EKeys::Gamepad_Special_Right));
 			TestFalse(TEXT("Gamepad reset disabled"), Fixture->Settings->IsResetKey(EKeys::Gamepad_RightThumbstick));
 			TestFalse(TEXT("Invalid key cannot toggle"), Fixture->Settings->IsToggleKey(FKey()));
 			TestFalse(TEXT("Invalid key cannot reset"), Fixture->Settings->IsResetKey(FKey()));
