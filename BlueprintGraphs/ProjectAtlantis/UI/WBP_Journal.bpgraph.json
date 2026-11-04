@@ -2511,6 +2511,34 @@
 					]
 				},
 				{
+					"guid": "2295147644a2bc24e9470bb76e49ba1c",
+					"class": "K2Node_VariableGet",
+					"title": "Get DialogueTab",
+					"x": 1106,
+					"y": 504,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2295147644a2bc24e9470bb76e49ba1c:o:DialogueTab",
+							"name": "DialogueTab",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalDialogueTab.WBP_JournalDialogueTab_C",
+							"defaultValue": null,
+							"links": [
+								"9ba83f754c25d5ce62c4248827fa4199:i:self"
+							]
+						},
+						{
+							"id": "2295147644a2bc24e9470bb76e49ba1c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "27b594e4405a5a9d8054cfb5340ec87f",
 					"class": "K2Node_CallFunction",
 					"title": "Set Visibility",
@@ -2543,7 +2571,7 @@
 							"type": "object:/Script/UMG.Widget",
 							"defaultValue": null,
 							"links": [
-								"5c8441f24e936427fc0d669cd3af4736:o:DialogueTab"
+								"7708ef514a5890dc04367092c8d0658f:o:DialogueTab"
 							]
 						},
 						{
@@ -2936,34 +2964,6 @@
 					]
 				},
 				{
-					"guid": "5c8441f24e936427fc0d669cd3af4736",
-					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTab",
-					"x": 2006,
-					"y": 1734,
-					"comment": null,
-					"pins": [
-						{
-							"id": "5c8441f24e936427fc0d669cd3af4736:o:DialogueTab",
-							"name": "DialogueTab",
-							"direction": "output",
-							"type": "object:/Script/UMG.VerticalBox",
-							"defaultValue": null,
-							"links": [
-								"27b594e4405a5a9d8054cfb5340ec87f:i:self"
-							]
-						},
-						{
-							"id": "5c8441f24e936427fc0d669cd3af4736:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "5ef6ad8d4c95d4fe7ad4e59b9f92c8d3",
 					"class": "K2Node_SwitchEnum",
 					"title": "Switch on EJournalTabType",
@@ -3198,6 +3198,34 @@
 							"links": [
 								"564b6afa4b13963c7758a3919e49eb77:i:execute"
 							]
+						}
+					]
+				},
+				{
+					"guid": "7708ef514a5890dc04367092c8d0658f",
+					"class": "K2Node_VariableGet",
+					"title": "Get DialogueTab",
+					"x": 2006,
+					"y": 1734,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7708ef514a5890dc04367092c8d0658f:o:DialogueTab",
+							"name": "DialogueTab",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalDialogueTab.WBP_JournalDialogueTab_C",
+							"defaultValue": null,
+							"links": [
+								"27b594e4405a5a9d8054cfb5340ec87f:i:self"
+							]
+						},
+						{
+							"id": "7708ef514a5890dc04367092c8d0658f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -3512,7 +3540,7 @@
 							"type": "object:/Script/UMG.Widget",
 							"defaultValue": null,
 							"links": [
-								"e06ed18242f21c163993eb9b85c40a7c:o:DialogueTab"
+								"2295147644a2bc24e9470bb76e49ba1c:o:DialogueTab"
 							]
 						},
 						{
@@ -3898,34 +3926,6 @@
 							"name": "bSuccess",
 							"direction": "output",
 							"type": "bool",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "e06ed18242f21c163993eb9b85c40a7c",
-					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTab",
-					"x": 1106,
-					"y": 504,
-					"comment": null,
-					"pins": [
-						{
-							"id": "e06ed18242f21c163993eb9b85c40a7c:o:DialogueTab",
-							"name": "DialogueTab",
-							"direction": "output",
-							"type": "object:/Script/UMG.VerticalBox",
-							"defaultValue": null,
-							"links": [
-								"9ba83f754c25d5ce62c4248827fa4199:i:self"
-							]
-						},
-						{
-							"id": "e06ed18242f21c163993eb9b85c40a7c:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -5109,7 +5109,6 @@
 			"InvestigationTab": null,
 			"DialogueTabButton": null,
 			"DialogueTab": null,
-			"DialogueEmptyState": null,
 			"CurrentTabType": "NewEnumerator0",
 			"TabSignalColor":
 			{

@@ -153,7 +153,7 @@ void FAtlantisJournalShellSpec::Define()
 			Fixture->Toggle();
 			UAtlantisJournalSubsystem* Data = Fixture->Instance->GetSubsystem<UAtlantisJournalSubsystem>();
 			const TCHAR* Buttons[] = {TEXT("InvestigationTabButton"), TEXT("PuzzleTabButton")};
-			const TCHAR* Views[] = {TEXT("InvestigationTab"), TEXT("PuzzleTab"), TEXT("DialogueTab")};
+			const TCHAR* Views[] = {TEXT("InvestigationTab"), TEXT("PuzzleTab")};
 			for (uint8 Index = 0; Index < 2; ++Index)
 			{
 				UButton* Button = Cast<UButton>(Fixture->Journal->GetWidgetFromName(Buttons[Index]));
@@ -176,7 +176,10 @@ void FAtlantisJournalShellSpec::Define()
 				TestTrue(TEXT("Clear restores authored fallback"), Empty->IsVisible());
 			}
 			CastChecked<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("DialogueTabButton")))->OnClicked.Broadcast();
-			UTextBlock* DialogueEmpty = Cast<UTextBlock>(Fixture->Journal->GetWidgetFromName(TEXT("DialogueEmptyState")));
+			UUserWidget* Dialogue = Cast<UUserWidget>(Fixture->Journal->GetWidgetFromName(TEXT("DialogueTab")));
+			if (!TestNotNull(TEXT("Dialogue is an authored UserWidget tab"), Dialogue)) { return; }
+			TestEqual(TEXT("Dialogue tab asset is a separate Blueprint"), Dialogue->GetClass()->GetPathName(), FString(TEXT("/Game/ProjectAtlantis/UI/WBP_JournalDialogueTab.WBP_JournalDialogueTab_C")));
+			UTextBlock* DialogueEmpty = Cast<UTextBlock>(Dialogue->GetWidgetFromName(TEXT("EmptyState")));
 			TestNotNull(TEXT("Dialogue fallback is authored in its section"), DialogueEmpty);
 			TestTrue(TEXT("Dialogue section is visible"), Fixture->Journal->GetWidgetFromName(TEXT("DialogueTab"))->IsVisible());
 		});

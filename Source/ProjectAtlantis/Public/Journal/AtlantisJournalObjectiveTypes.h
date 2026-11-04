@@ -35,4 +35,3 @@ struct PROJECTATLANTIS_API FJournalObjectivePresentation
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Journal|Objectives")
 	EJournalObjectiveDisplayState State = EJournalObjectiveDisplayState::Active;
 };
-
