@@ -182,7 +182,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Events|Journal")
 	FOnJournalObjectivesChanged OnObjectivesChanged;
 
-
 private:
 	UPROPERTY()
 	TArray<FJournalObjectivePresentation> Objectives;

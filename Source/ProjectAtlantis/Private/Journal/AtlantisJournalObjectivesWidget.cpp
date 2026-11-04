@@ -3,7 +3,6 @@
 #include "Journal/AtlantisJournalObjectivesWidget.h"
 #include "Journal/AtlantisJournalSubsystem.h"
 #include "Blueprint/WidgetTree.h"
-#include "Components/ScrollBox.h"
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
 #include "Components/VerticalBoxSlot.h"
@@ -16,25 +15,25 @@ void UAtlantisJournalObjectivesWidget::NativeConstruct()
 	Super::NativeConstruct();
 	if (UGameInstance* GameInstance = GetGameInstance())
 	{
-		Objectives = GameInstance->GetSubsystem<UAtlantisJournalSubsystem>();
-		Objectives->OnObjectivesChanged.AddUniqueDynamic(this, &ThisClass::OnObjectivesChanged);
+		Journal = GameInstance->GetSubsystem<UAtlantisJournalSubsystem>();
+		Journal->OnObjectivesChanged.AddUniqueDynamic(this, &ThisClass::RefreshObjectives);
 	}
-	OnObjectivesChanged();
+	RefreshObjectives();
 }
 
 void UAtlantisJournalObjectivesWidget::NativeDestruct()
 {
-	if (Objectives)
+	if (Journal)
 	{
-		Objectives->OnObjectivesChanged.RemoveDynamic(this, &ThisClass::OnObjectivesChanged);
-		Objectives = nullptr;
+		Journal->OnObjectivesChanged.RemoveDynamic(this, &ThisClass::RefreshObjectives);
+		Journal = nullptr;
 	}
 	Super::NativeDestruct();
 }
 
-void UAtlantisJournalObjectivesWidget::OnObjectivesChanged()
+void UAtlantisJournalObjectivesWidget::RefreshObjectives()
 {
-	if (!ObjectiveList)
+	if (!ObjectiveList || !EmptyState)
 	{
 		return;
 	}
@@ -45,13 +44,12 @@ void UAtlantisJournalObjectivesWidget::OnObjectivesChanged()
 		Label->SetText(Text);
 		Label->SetAutoWrapText(true);
 		Label->SetColorAndOpacity(FSlateColor(Color));
-		ObjectiveList->AddChildToVerticalBox(Label)->SetPadding(FMargin(12.f, 4.f, 12.f, BottomPadding));
+		UVerticalBoxSlot* Slot = ObjectiveList->AddChildToVerticalBox(Label);
+		Slot->SetPadding(FMargin(12.f, 4.f, 12.f, BottomPadding));
+		return Slot;
 	};
-	const TArray<FJournalObjectivePresentation> Visible = Objectives ? Objectives->GetVisibleObjectives() : TArray<FJournalObjectivePresentation>();
-	if (Visible.IsEmpty())
-	{
-		AddText(LOCTEXT("Empty", "No objectives to display."), FLinearColor::White, 12.f);
-	}
+	const TArray<FJournalObjectivePresentation> Visible = Journal ? Journal->GetVisibleObjectives() : TArray<FJournalObjectivePresentation>();
+	EmptyState->SetVisibility(Visible.IsEmpty() ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
 	for (const FJournalObjectivePresentation& Objective : Visible)
 	{
 		FText State;
@@ -70,16 +68,16 @@ void UAtlantisJournalObjectivesWidget::OnObjectivesChanged()
 			State = LOCTEXT("Active", "Active");
 			break;
 		}
-		AddText(FText::Format(LOCTEXT("Objective", "{0}: {1}"), State, Objective.Text), Color, 4.f);
+		UVerticalBoxSlot* LastText = AddText(FText::Format(LOCTEXT("Objective", "{0}: {1}"), State, Objective.Text), Color, 4.f);
 		if (!Objective.Context.IsEmptyOrWhitespace())
 		{
-			AddText(Objective.Context, FLinearColor::White, 4.f);
+			LastText = AddText(Objective.Context, FLinearColor::White, 4.f);
 		}
 		if (!Objective.Location.IsEmptyOrWhitespace())
 		{
-			AddText(FText::Format(LOCTEXT("Location", "Location: {0}"), Objective.Location), FLinearColor::White, 4.f);
+			LastText = AddText(FText::Format(LOCTEXT("Location", "Location: {0}"), Objective.Location), FLinearColor::White, 4.f);
 		}
-		AddText(FText::GetEmpty(), FLinearColor::White, 12.f);
+		LastText->SetPadding(FMargin(12.f, 4.f, 12.f, 12.f));
 	}
 }
 

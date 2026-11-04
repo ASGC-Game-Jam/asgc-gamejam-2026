@@ -92,7 +92,6 @@ public:
 	void UnrestrictControls(FName ID, UInputMappingContext* MappingContext);
 
 protected:
-	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
 	virtual void OnPossess(APawn* InPawn) override;
 

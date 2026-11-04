@@ -218,12 +218,14 @@ bool UAtlantisJournalSubsystem::SubmitObjectiveSnapshot(const TArray<FJournalObj
 
 void UAtlantisJournalSubsystem::SetHistoryVisibility(bool bShowCompleted, bool bShowFailed)
 {
-	if (bCompletedVisible != bShowCompleted || bFailedVisible != bShowFailed)
+	if (bCompletedVisible == bShowCompleted && bFailedVisible == bShowFailed)
 	{
-		bCompletedVisible = bShowCompleted;
-		bFailedVisible = bShowFailed;
-		OnObjectivesChanged.Broadcast();
+		return;
 	}
+
+	bCompletedVisible = bShowCompleted;
+	bFailedVisible = bShowFailed;
+	OnObjectivesChanged.Broadcast();
 }
 
 TArray<FJournalObjectivePresentation> UAtlantisJournalSubsystem::GetVisibleObjectives() const

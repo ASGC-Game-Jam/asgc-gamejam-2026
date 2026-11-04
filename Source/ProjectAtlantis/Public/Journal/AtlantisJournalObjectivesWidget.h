@@ -8,6 +8,7 @@
 
 class UAtlantisJournalSubsystem;
 class UVerticalBox;
+class UTextBlock;
 
 /** Read-only Objectives tab. The Journal shell owns navigation and widget lifetime. */
 UCLASS()
@@ -21,11 +22,14 @@ protected:
 
 private:
 	UFUNCTION()
-	void OnObjectivesChanged();
+	void RefreshObjectives();
 
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UVerticalBox> ObjectiveList;
 
+	UPROPERTY(meta = (BindWidget))
+	TObjectPtr<UTextBlock> EmptyState;
+
 	UPROPERTY(Transient)
-	TObjectPtr<UAtlantisJournalSubsystem> Objectives;
+	TObjectPtr<UAtlantisJournalSubsystem> Journal;
 };

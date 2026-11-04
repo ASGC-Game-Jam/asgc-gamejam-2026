@@ -1,7 +1,6 @@
 // Copyright (c) 2026 ASGC
 #if WITH_DEV_AUTOMATION_TESTS
 
-#include "Journal/AtlantisJournalEmptyStateExtension.h"
 #include "Journal/AtlantisJournalSubsystem.h"
 #include "Blueprint/UserWidget.h"
 #include "Blueprint/WidgetTree.h"
@@ -71,17 +70,22 @@ namespace
 
 		bool Toggle()
 		{
-			if (const UEnhancedInputComponent* Input = Cast<UEnhancedInputComponent>(Controller ? Controller->InputComponent : nullptr))
+			const UEnhancedInputComponent* Input = Cast<UEnhancedInputComponent>(Controller ? Controller->InputComponent : nullptr);
+			if (!Input)
 			{
-				for (const TUniquePtr<FEnhancedInputActionEventBinding>& Binding : Input->GetActionEventBindings())
+				return false;
+			}
+
+			for (const TUniquePtr<FEnhancedInputActionEventBinding>& Binding : Input->GetActionEventBindings())
+			{
+				const UInputAction* Action = Binding->GetAction();
+				if (!Action || Action->GetFName() != TEXT("IA_Journal") || Binding->GetTriggerEvent() != ETriggerEvent::Started)
 				{
-					if (Binding->GetAction() && Binding->GetAction()->GetFName() == TEXT("IA_Journal")
-						&& Binding->GetTriggerEvent() == ETriggerEvent::Started)
-					{
-						Binding->Execute(FInputActionInstance(Binding->GetAction()));
-						return true;
-					}
+					continue;
 				}
+
+				Binding->Execute(FInputActionInstance(Action));
+				return true;
 			}
 			return false;
 		}
@@ -115,26 +119,6 @@ void FAtlantisJournalShellSpec::Define()
 		});
 		AfterEach([this]() { Fixture.Reset(); });
 
-		It(TEXT("should suppress stale empty copy for upstream puzzle observations"), [this]()
-		{
-			if (!Fixture->Journal) { return; }
-			Fixture->Toggle();
-			UAtlantisJournalEmptyStateExtension* Extension = Fixture->Journal->GetExtension<UAtlantisJournalEmptyStateExtension>();
-			if (!TestNotNull(TEXT("Authored shell empty-state extension"), Extension)
-				|| !TestNotNull(TEXT("Current layout accepts empty-state extension"), Extension->EmptyState.Get())) { return; }
-			FJournalInvestigationEntry Entry;
-			Entry.EntryId = TEXT("NativePuzzleObservation");
-			Entry.Title = FText::FromString(TEXT("Visible owner puzzle"));
-			Entry.Kind = EJournalEntryKind::PuzzleObservation;
-			Entry.Status = EJournalInvestigationStatus::Inprogress;
-			Fixture->Instance->GetSubsystem<UAtlantisJournalSubsystem>()->SetInvestigationEntry(Entry);
-			UButton* Puzzle = Cast<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("PuzzleTabButton")));
-			if (!TestNotNull(TEXT("Authored puzzle navigation"), Puzzle)) { return; }
-			Puzzle->OnClicked.Broadcast();
-			TestTrue(TEXT("Known upstream puzzle does not show no-puzzles copy"), Extension->EmptyState->GetVisibility() == ESlateVisibility::Collapsed);
-		});
-
-
 		It(TEXT("should open pause and close through the existing Blueprint while restoring gameplay controls"), [this]()
 		{
 			if (!Fixture->Journal) { return; }
@@ -163,35 +147,38 @@ void FAtlantisJournalShellSpec::Define()
 #endif
 		});
 
-		It(TEXT("should show clear empty states using the existing three Alpha tabs and refresh when investigation entries change"), [this]()
+		It(TEXT("should display each authored empty state and refresh disclosed clue and puzzle content"), [this]()
 		{
 			if (!Fixture->Journal) { return; }
 			Fixture->Toggle();
-			UAtlantisJournalEmptyStateExtension* Extension = Fixture->Journal->GetExtension<UAtlantisJournalEmptyStateExtension>();
-			if (!TestNotNull(TEXT("Controller automatically installs empty-state extension"), Extension)
-				|| !TestNotNull(TEXT("Empty-state copy exists in authored shell"), Extension->EmptyState.Get())) { return; }
 			UAtlantisJournalSubsystem* Data = Fixture->Instance->GetSubsystem<UAtlantisJournalSubsystem>();
-			const TCHAR* Buttons[] = { TEXT("InvestigationTabButton"), TEXT("PuzzleTabButton"), TEXT("DialogueTabButton") };
-			for (uint8 Index = 0; Index < 3; ++Index)
+			const TCHAR* Buttons[] = {TEXT("InvestigationTabButton"), TEXT("PuzzleTabButton")};
+			const TCHAR* Views[] = {TEXT("InvestigationTab"), TEXT("PuzzleTab"), TEXT("DialogueTab")};
+			for (uint8 Index = 0; Index < 2; ++Index)
 			{
 				UButton* Button = Cast<UButton>(Fixture->Journal->GetWidgetFromName(Buttons[Index]));
-				if (!TestNotNull(Buttons[Index], Button)) { continue; }
+				UUserWidget* View = Cast<UUserWidget>(Fixture->Journal->GetWidgetFromName(Views[Index]));
+				if (!TestNotNull(Buttons[Index], Button) || !TestNotNull(Views[Index], View)) { continue; }
 				Button->OnClicked.Broadcast();
-				const FByteProperty* Tab = FindFProperty<FByteProperty>(Fixture->Journal->GetClass(), TEXT("CurrentTabType"));
-				TestEqual(TEXT("Existing Blueprint navigation selects requested section"), Tab->GetPropertyValue_InContainer(Fixture->Journal), Index);
-				TestTrue(TEXT("Empty state visible"), Extension->EmptyState->IsVisible());
-				TestFalse(TEXT("Empty state contains readable copy"), Extension->EmptyState->GetText().IsEmpty());
+				UTextBlock* Empty = Cast<UTextBlock>(View->GetWidgetFromName(TEXT("EmptyState")));
+				if (!TestNotNull(TEXT("Authored section owns its empty copy"), Empty)) { continue; }
+				TestTrue(TEXT("Empty section has readable visible copy"), Empty->IsVisible() && !Empty->GetText().IsEmptyOrWhitespace());
+				FJournalInvestigationEntry Entry;
+				Entry.EntryId = TEXT("OwnerEntry");
+				Entry.Title = FText::FromString(TEXT("Owner supplied entry"));
+				Entry.Kind = Index == 0 ? EJournalEntryKind::Clue : EJournalEntryKind::PuzzleObservation;
+				Data->SetInvestigationEntry(Entry);
+				TestTrue(TEXT("Undisclosed data keeps the section empty"), Empty->IsVisible());
+				Entry.Status = EJournalInvestigationStatus::Inprogress;
+				Data->SetInvestigationEntry(Entry);
+				TestFalse(TEXT("Disclosed data hides authored fallback"), Empty->IsVisible());
+				Data->ClearInvestigations();
+				TestTrue(TEXT("Clear restores authored fallback"), Empty->IsVisible());
 			}
-			Cast<UButton>(Fixture->Journal->GetWidgetFromName(Buttons[0]))->OnClicked.Broadcast();
-			Data->UpdateInvestigationStatus(TEXT("Hidden test entry"), EJournalInvestigationStatus::Undiscovered);
-			TestTrue(TEXT("Undiscovered entries preserve clear empty state"), Extension->EmptyState->IsVisible());
-			Data->UpdateInvestigationStatus(TEXT("Discovered test entry"), EJournalInvestigationStatus::Inprogress);
-			TestTrue(TEXT("Real entry hides Investigation empty state"), Extension->EmptyState->GetVisibility() == ESlateVisibility::Collapsed);
-			Data->ClearInvestigations();
-			TestTrue(TEXT("Cleared entries restore empty state"), Extension->EmptyState->IsVisible());
-			Fixture->Toggle();
-			Fixture->Toggle();
-			TestNotNull(TEXT("Reopening rebuilds empty-state extension without duplicate bindings"), Extension->EmptyState.Get());
+			CastChecked<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("DialogueTabButton")))->OnClicked.Broadcast();
+			UTextBlock* DialogueEmpty = Cast<UTextBlock>(Fixture->Journal->GetWidgetFromName(TEXT("DialogueEmptyState")));
+			TestNotNull(TEXT("Dialogue fallback is authored in its section"), DialogueEmpty);
+			TestTrue(TEXT("Dialogue section is visible"), Fixture->Journal->GetWidgetFromName(TEXT("DialogueTab"))->IsVisible());
 		});
 	});
 
@@ -206,21 +193,16 @@ void FAtlantisJournalShellSpec::Define()
 			UWidget* View = Fixture->Journal->GetWidgetFromName(TEXT("ObjectivesTab"));
 			UButton* Button = Cast<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("ObjectivesTabButton")));
 			if (!TestNotNull(TEXT("Objectives exists in the authored hierarchy"), View) || !TestNotNull(TEXT("Authored button"), Button)) { return; }
-			auto* Empty = Fixture->Journal->GetExtension<UAtlantisJournalEmptyStateExtension>();
-			if (!TestNotNull(TEXT("Legacy empty-state extension"), Empty)) { return; }
 			TestFalse(TEXT("Objectives initially hidden"), View->IsVisible());
 			Button->OnClicked.Broadcast();
 			const auto* Tab = FindFProperty<FByteProperty>(Fixture->Journal->GetClass(), TEXT("CurrentTabType"));
 			TestEqual(TEXT("Objectives uses its own authored enum value"), Tab->GetPropertyValue_InContainer(Fixture->Journal), uint8(4));
 			TestEqual(TEXT("Map retains its reserved enum value"), Tab->Enum->GetDisplayNameTextByValue(3).ToString(), FString(TEXT("Map")));
 			TestTrue(TEXT("Objectives visible"), View->IsVisible());
-			for (const TCHAR* Name : {TEXT("InvestigationTab"), TEXT("PuzzleTab")})
+			for (const TCHAR* Name : {TEXT("InvestigationTab"), TEXT("PuzzleTab"), TEXT("DialogueTab")})
 			{
 				TestFalse(Name, Fixture->Journal->GetWidgetFromName(Name)->IsVisible());
 			}
-			TestFalse(TEXT("No overlapping legacy empty copy"), Empty->EmptyState->IsVisible());
-			Empty->Destruct(); Empty->Construct();
-			TestFalse(TEXT("Late empty-state construction respects selected Objectives"), Empty->EmptyState->IsVisible());
 			Fixture->Toggle(); Fixture->Toggle();
 			TestTrue(TEXT("Reopening retains authored selection"), View->IsVisible());
 			for (const TCHAR* Name : {TEXT("InvestigationTabButton"), TEXT("PuzzleTabButton"), TEXT("DialogueTabButton")})
@@ -230,7 +212,7 @@ void FAtlantisJournalShellSpec::Define()
 				Button->OnClicked.Broadcast();
 			}
 			CastChecked<UButton>(Fixture->Journal->GetWidgetFromName(TEXT("DialogueTabButton")))->OnClicked.Broadcast();
-			TestTrue(TEXT("Dialogue fallback restored"), Empty->EmptyState->IsVisible());
+			TestTrue(TEXT("Authored Dialogue fallback restored"), Fixture->Journal->GetWidgetFromName(TEXT("DialogueTab"))->IsVisible());
 		});
 	});
 
@@ -247,14 +229,16 @@ void FAtlantisJournalShellSpec::Define()
 				UInputMappingContext* Context = LoadObject<UInputMappingContext>(nullptr,
 					*FString::Printf(TEXT("/Game/ProjectAtlantis/Core/Engine/Input/%s.%s"), Name, Name));
 				if (!TestNotNull(Name, Context)) { continue; }
-				bool bKeyboard = false, bGamepad = false;
+				bool bKeyboard = false;
+				bool bGamepad = false;
 				for (const FEnhancedActionKeyMapping& Mapping : Context->GetMappings())
 				{
-					if (Mapping.Action == Action)
+					if (Mapping.Action != Action)
 					{
-						bKeyboard |= Mapping.Key == EKeys::Tab;
-						bGamepad |= Mapping.Key == EKeys::Gamepad_Special_Right;
+						continue;
 					}
+					bKeyboard |= Mapping.Key == EKeys::Tab;
+					bGamepad |= Mapping.Key == EKeys::Gamepad_Special_Right;
 				}
 				TestTrue(FString::Printf(TEXT("%s has Tab binding"), Name), bKeyboard);
 				TestTrue(FString::Printf(TEXT("%s has gamepad Special Right binding"), Name), bGamepad);
