@@ -41,7 +41,12 @@ void UAtlantisAudioFactBridgeComponent::EndPlay(const EEndPlayReason::Type EndPl
         Pawn->ReceiveControllerChangedDelegate.RemoveDynamic(this, &ThisClass::HandleControllerChanged);
     }
 
-    GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
+    // The world can already be gone if this component is being cleaned up during shutdown.
+    if (UWorld* World = GetWorld())
+    {
+        World->GetTimerManager().ClearAllTimersForObject(this);
+    }
+
     UnbindSources();
 
     Super::EndPlay(EndPlayReason);
