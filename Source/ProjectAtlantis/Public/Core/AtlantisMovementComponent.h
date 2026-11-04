@@ -7,6 +7,8 @@
 #include "Core/AtlantisPlayerState.h"
 #include "AtlantisMovementComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUnderwaterChanged, bool, bUnderwater);
+
 /**
  * Player movement component, so we can set up the stock Character Movement Component with our swim-specific tuning values
  */
@@ -24,7 +26,11 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Surface Walk")
 	FVector GetSupportingSurfaceNormal() const { return SurfaceNormal; }
-
+	
+	/** Broadcasts when the pawn enters or leaves water*/
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Swimming")
+	FOnUnderwaterChanged OnUnderwaterChanged;
+	
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	virtual void PhysCustom(float DeltaTime, int32 Iterations) override;
 	virtual void OnMovementModeChanged(EMovementMode PreviousMovementMode, uint8 PreviousCustomMode) override;

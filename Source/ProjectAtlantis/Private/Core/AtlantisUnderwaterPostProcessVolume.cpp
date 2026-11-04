@@ -2,6 +2,7 @@
 
 #include "Core/AtlantisUnderwaterPostProcessVolume.h"
 
+#include "Core/AtlantisMovementComponent.h"
 #include "Core/AtlantisPlayerState.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
@@ -11,7 +12,7 @@ void AAtlantisUnderwaterPostProcessVolume::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ApplyTraversalMode(EAtlantisTraversalMode::None);
+	bEnabled = false;
 	TryBindToPlayerState();
 }
 
@@ -24,7 +25,8 @@ void AAtlantisUnderwaterPostProcessVolume::EndPlay(const EEndPlayReason::Type En
 
 	if (AAtlantisPlayerState* PlayerState = BoundPlayerState.Get())
 	{
-		PlayerState->OnTraversalModeChanged.RemoveDynamic(this, &ThisClass::HandleTraversalModeChanged);
+		PlayerState->OnPawnSet.RemoveDynamic(this, &ThisClass::HandlePawnSet);
+		UnbindFromPawn(PlayerState->GetPawn());
 	}
 
 	BoundPlayerState.Reset();
@@ -54,34 +56,43 @@ void AAtlantisUnderwaterPostProcessVolume::TryBindToPlayerState()
 		return;
 	}
 
-	PlayerState->OnTraversalModeChanged.AddUniqueDynamic(this, &ThisClass::HandleTraversalModeChanged);
+	PlayerState->OnPawnSet.AddUniqueDynamic(this, &ThisClass::HandlePawnSet);
 	BoundPlayerState = PlayerState;
 
-	ApplyTraversalMode(PlayerState->GetTraversalMode());
+	BindToPawn(PlayerState->GetPawn());
 }
 
-void AAtlantisUnderwaterPostProcessVolume::HandleTraversalModeChanged(EAtlantisTraversalMode /*OldTraversalMode*/,
-                                                                      EAtlantisTraversalMode NewTraversalMode)
+void AAtlantisUnderwaterPostProcessVolume::HandlePawnSet(APlayerState* /*Player*/, APawn* NewPawn, APawn* OldPawn)
 {
-	ApplyTraversalMode(NewTraversalMode);
+	UnbindFromPawn(OldPawn);
+	BindToPawn(NewPawn);
 }
 
-void AAtlantisUnderwaterPostProcessVolume::ApplyTraversalMode(EAtlantisTraversalMode TraversalMode)
+void AAtlantisUnderwaterPostProcessVolume::BindToPawn(APawn* Pawn)
 {
-	switch (TraversalMode)
+	UAtlantisMovementComponent* Movement = Pawn ? Pawn->FindComponentByClass<UAtlantisMovementComponent>() : nullptr;
+
+	if (!Movement)
 	{
-	case EAtlantisTraversalMode::Swimming:
-	case EAtlantisTraversalMode::SurfaceWalking:
-		{
-			bEnabled = true;
-			break;
-		}
-	case EAtlantisTraversalMode::Terrestrial:
-	case EAtlantisTraversalMode::None:
-	default:
-		{
-			bEnabled = false;
-			break;
-		}
+		bEnabled = false;
+		return;
 	}
+
+	Movement->OnUnderwaterChanged.AddUniqueDynamic(this, &ThisClass::HandleUnderwaterChanged);
+
+	bEnabled = Movement->IsInWater();
+}
+
+void AAtlantisUnderwaterPostProcessVolume::UnbindFromPawn(APawn* Pawn)
+{
+	if (UAtlantisMovementComponent* Movement =
+		Pawn ? Pawn->FindComponentByClass<UAtlantisMovementComponent>() : nullptr)
+	{
+		Movement->OnUnderwaterChanged.RemoveDynamic(this, &ThisClass::HandleUnderwaterChanged);
+	}
+}
+
+void AAtlantisUnderwaterPostProcessVolume::HandleUnderwaterChanged(bool bUnderwater)
+{
+	bEnabled = bUnderwater;
 }
