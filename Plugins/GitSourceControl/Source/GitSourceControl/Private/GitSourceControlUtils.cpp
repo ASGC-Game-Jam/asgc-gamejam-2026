@@ -23,6 +23,7 @@
 #include "ISourceControlModule.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
+#include "Misc/PackageName.h"
 #include "ISourceControlModule.h"
 #include "GitSourceControlModule.h"
 #include "GitSourceControlChangelistState.h"
@@ -138,6 +139,14 @@ namespace GitSourceControlUtils
 
 		for (auto& FilePath : AbsoluteFilePaths)
 		{
+			// Unsaved worlds and automation fixtures use /Temp package names, not Git filenames.
+			// Filter these before walking directories; real filesystem paths still get diagnostics.
+			if (FPackageName::IsTempPackage(FilePath))
+			{
+				PackageNotIncludedInGit.Add(FilePath);
+				continue;
+			}
+
 			FString TestPath = FilePath;
 			while (!FPaths::IsSamePath(TestPath, PathToRepositoryRoot))
 			{
