@@ -13,6 +13,7 @@
  */
 
  class UMetaSoundSource;
+ class UAtlantisMusicAxisMapping;
  struct FInstancedStruct;
 
 UCLASS(config=Game, DefaultConfig)
@@ -35,6 +36,8 @@ public:
 	/** Checks Tag is registered and Payload holds the registered struct type. Fails loudly on a breach. Returns true if valid. */
 	static bool ValidatePayload(FGameplayTag Tag, const FInstancedStruct& Payload);
 
+	static UAtlantisMusicAxisMapping* GetMusicAxisMapping();
+
 protected:
 
 	friend struct FAtlantisAudioValidationTestAccess;
@@ -53,4 +56,7 @@ protected:
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Validation")
 	TMap<FGameplayTag, TSoftObjectPtr<const UScriptStruct>> PayloadRegistry;
 
+	/** The routing sheet the music subsystem uses to turn facts into axis values. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Music Axes")
+	TSoftObjectPtr<UAtlantisMusicAxisMapping> MusicAxisMapping;
 };

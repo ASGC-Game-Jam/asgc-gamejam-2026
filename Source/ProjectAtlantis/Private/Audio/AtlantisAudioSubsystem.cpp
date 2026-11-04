@@ -8,6 +8,12 @@
 #include "Kismet/GameplayStatics.h"
 #include "MetasoundSource.h"
 #include "MetasoundGeneratorHandle.h"
+#include "Audio/AtlantisAudioFactTags.h"
+#include "Audio/PubSubSystem/ASGC_DataRouterSubsystem.h"
+#include "Audio/AtlantisAudioPayloadTypes.h"
+#include "StructUtils/InstancedStruct.h"
+#include "Audio/AtlantisMusicAxisMapping.h"
+
 
 
 DEFINE_LOG_CATEGORY(LogAtlantisAudioSubsystem);
@@ -81,6 +87,19 @@ void UAtlantisAudioSubsystem::HandlePostWorldInitialization(UWorld* World, const
 
 	// Hook into the global Cleanup delegate to track when this world winds down
 	WorldCleanupHandle = FWorldDelegates::OnWorldCleanup.AddUObject(this, &UAtlantisAudioSubsystem::HandleWorldCleanup);
+
+	// Subscribe before any actor's BeginPlay runs, because the router drops facts that have no listener.
+	if (bIsActive)
+	{
+		AxisMapping = UAtlantisAudioDeveloperSettings::GetMusicAxisMapping();
+		if (!AxisMapping)
+		{
+			UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No Music Axis Mapping is set. Assign one in Project Settings > Atlantis Audio Settings. Music won't react to gameplay."));
+		}
+
+		SubscribeToFacts();
+	}
+
 }
 
 void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
@@ -120,6 +139,8 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 
 	// Created here for the parameter pack pipeline (#105) to use later. The sweep below goes through the component.
 	GeneratorHandle = UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle(MusicAudioComponent);
+
+	UpdateMusicAxes();
 
 	TrackedWorld->GetTimerManager().SetTimer(SweepTimerHandle, this, &UAtlantisAudioSubsystem::UpdateAxisTestSweep, SweepTimerInterval, true);
 }
@@ -162,6 +183,8 @@ void UAtlantisAudioSubsystem::UpdateAxisTestSweep()
 
 void UAtlantisAudioSubsystem::StopTrackingWorld()
 {
+	UnsubscribeFromFacts();
+
 	if (TrackedWorld.Get())
 	{
 		UE_LOG(LogAtlantisAudioSubsystem, Log, TEXT("Cleaning up tracked world [%s]. Flushing components..."), *TrackedWorld->GetName());
@@ -188,4 +211,154 @@ void UAtlantisAudioSubsystem::StopTrackingWorld()
 	TrackedWorld.Reset();
 	GeneratorHandle = nullptr;
 	RunningSweepTime = 0.f;
+	FloatFacts.Reset();
+	BoolFacts.Reset();
+	KeyedStateFacts.Reset();
+	AxisMapping = nullptr;
 }
+
+void UAtlantisAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload)
+{
+	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Fact received: [%s]"), *Tag.ToString());
+
+	if (const FAtlantisAudioFloatPayload* FloatData = Payload.GetPtr<FAtlantisAudioFloatPayload>())
+	{
+		FloatFacts.Add(Tag, FloatData->Value);
+	} 
+	else if (const FAtlantisAudioBoolPayload* BoolData = Payload.GetPtr<FAtlantisAudioBoolPayload>())
+	{
+		BoolFacts.Add(Tag, BoolData->bValue);
+	} 
+	else if (const FAtlantisAudioKeyedStatePayload* KeyedData = Payload.GetPtr<FAtlantisAudioKeyedStatePayload>())
+	{
+		KeyedStateFacts.FindOrAdd(Tag).Add(KeyedData->Key, KeyedData->State);
+	} 
+	else
+	{
+		UE_LOG(LogAtlantisAudioSubsystem, Warning, TEXT("Fact [%s] holds a payload shape the music subsystem doesn't handle."), *Tag.ToString());
+	}
+	UpdateMusicAxes();
+}
+
+void UAtlantisAudioSubsystem::SubscribeToFacts()
+{
+	if (!TrackedWorld.Get())
+	{
+		UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("TrackedWorld unavailable when subscribing to facts!"));
+        return;
+	}
+
+	UASGC_DataRouterSubsystem* Router = TrackedWorld->GetSubsystem<UASGC_DataRouterSubsystem>();
+    if (!Router)
+    {
+        UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No Data Router in world [%s]. Music won't react to gameplay facts."), *TrackedWorld->GetName());
+        return;
+    }
+
+	const FGameplayTag FactTags[] = {
+		TAG_AudioFact_Oxygen_Level,
+		TAG_AudioFact_Oxygen_Critical,
+		TAG_AudioFact_Stealth_Hiding,
+		TAG_AudioFact_Investigation_Status,
+		TAG_AudioFact_Enemy_Status};
+
+	for (const FGameplayTag& Tag : FactTags)
+	{
+		int32 Handle = Router->Subscribe(Tag, this);
+		FactSubscriptions.Add(Tag, Handle);
+	}
+
+}
+
+void UAtlantisAudioSubsystem::UnsubscribeFromFacts()
+{
+	if (!TrackedWorld.Get())
+	{
+		FactSubscriptions.Reset();
+		return;
+	}
+
+
+	UASGC_DataRouterSubsystem* Router = TrackedWorld->GetSubsystem<UASGC_DataRouterSubsystem>();
+    if (!Router)
+    {
+		FactSubscriptions.Reset();
+		return;
+    }
+
+	for (const TPair<FGameplayTag, int32>& Subscription : FactSubscriptions)
+	{
+		Router->Unsubscribe(Subscription.Key, Subscription.Value);
+	}
+
+	FactSubscriptions.Reset();
+
+}
+
+
+float UAtlantisAudioSubsystem::GetRuleContribution(const FAtlantisMusicAxisRule& Rule) const
+{
+	if (const float* Value = FloatFacts.Find(Rule.Tag))
+	{
+		return Rule.Amount * (Rule.bInvertValue ? 1.f - *Value : *Value);
+	}
+
+	if (const bool* bValue = BoolFacts.Find(Rule.Tag))
+	{
+		return *bValue ? Rule.Amount : 0.f;
+	}
+
+	// A keyed rule's tag is a state, so check whether anything is in that state right now.
+	for (const TPair<FGameplayTag, TMap<FName, FGameplayTag>>& Fact : KeyedStateFacts)
+	{
+		if (Fact.Value.FindKey(Rule.Tag))
+		{
+			return Rule.Amount;
+		}
+	}
+
+	return 0.f;
+}
+
+void UAtlantisAudioSubsystem::UpdateMusicAxes()
+{
+	if (!AxisMapping)
+	{
+		return;
+	}
+
+	float PlayerState = AxisMapping->PlayerStateBaseline;
+	float Tension = AxisMapping->TensionBaseline;
+
+	for (const FAtlantisMusicAxisRule& Rule : AxisMapping->Rules)
+	{
+		const float Contribution = GetRuleContribution(Rule);
+
+		if (Rule.Axis == EAtlantisMusicAxis::PlayerState)
+		{
+			PlayerState = FMath::Max(PlayerState, Contribution);
+		}
+		else
+		{
+			Tension += Contribution;
+		}
+	}
+
+	PlayerState = FMath::Clamp(PlayerState, 0.f, 1.f);
+	Tension = FMath::Clamp(Tension, 0.f, 1.f);
+	CurrentPlayerState = PlayerState;
+	CurrentTension = Tension;
+
+	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Music axes: PlayerState %.2f, Tension %.2f"), PlayerState, Tension);
+
+	if (!MusicAudioComponent)
+	{
+		return;
+	}
+
+	using namespace ProjectAtlantisAudio::MusicAxesInterface;
+	MusicAudioComponent->SetFloatParameter(Inputs::PlayerStateAxis.Resolve(), PlayerState);
+	MusicAudioComponent->SetFloatParameter(Inputs::TensionAxis.Resolve(), Tension);
+}
+
+
