@@ -211,7 +211,7 @@ void UAtlantisAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag
 {
 	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Fact received: [%s]"), *Tag.ToString());
 
-	if(const FAtlantisAudioFloatPayload* FloatData = Payload.GetPtr<FAtlantisAudioFloatPayload>())
+	if (const FAtlantisAudioFloatPayload* FloatData = Payload.GetPtr<FAtlantisAudioFloatPayload>())
 	{
 		FloatFacts.Add(Tag,FloatData->Value);
 	} 
