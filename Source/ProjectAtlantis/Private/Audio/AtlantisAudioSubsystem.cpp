@@ -293,7 +293,7 @@ float UAtlantisAudioSubsystem::GetRuleContribution(const FAtlantisMusicAxisRule&
 		return Rule.Amount * (Rule.bInvertValue ? 1.f - *Value : *Value);
 	}
 
-	if(const bool* bValue = BoolFacts.Find(Rule.Tag))
+	if (const bool* bValue = BoolFacts.Find(Rule.Tag))
 	{
 		return *bValue ? Rule.Amount : 0.f;
 	}
