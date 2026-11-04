@@ -252,7 +252,7 @@ void UAtlantisAudioSubsystem::SubscribeToFacts()
 		TAG_AudioFact_Investigation_Status,
 		TAG_AudioFact_Enemy_Status};
 
-	for(const FGameplayTag& Tag : FactTags)
+	for (const FGameplayTag& Tag : FactTags)
 	{
 		int32 Handle = Router->Subscribe(Tag, this);
 		FactSubscriptions.Add(Tag, Handle);
