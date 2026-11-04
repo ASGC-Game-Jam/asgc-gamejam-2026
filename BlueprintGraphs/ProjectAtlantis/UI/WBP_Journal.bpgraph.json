@@ -1580,6 +1580,44 @@
 					]
 				},
 				{
+					"guid": "2a7ba75f4f2357e7199b9daf6144dc97",
+					"class": "K2Node_CallFunction",
+					"title": "To LinearColor (Color)",
+					"x": 1440,
+					"y": 888,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2a7ba75f4f2357e7199b9daf6144dc97:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "2a7ba75f4f2357e7199b9daf6144dc97:i:InColor",
+							"name": "InColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Color",
+							"defaultValue": null,
+							"links": [
+								"91e1cdc84343b14343001fb3ca750a34:o:TabSignalColor"
+							]
+						},
+						{
+							"id": "2a7ba75f4f2357e7199b9daf6144dc97:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"d7b05a214a26a0bd0816dd8b2fa2a011:i:InBackgroundColor"
+							]
+						}
+					]
+				},
+				{
 					"guid": "2ab918474024e6c01cac6da6f98cb527",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
@@ -1832,6 +1870,62 @@
 						},
 						{
 							"id": "75502c744e3eeb20947cf08d5a5360b2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "88a5f0cd4d317c60a9f2528f8ac8e727",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectivesTabButton",
+					"x": 1280,
+					"y": 840,
+					"comment": null,
+					"pins": [
+						{
+							"id": "88a5f0cd4d317c60a9f2528f8ac8e727:o:ObjectivesTabButton",
+							"name": "ObjectivesTabButton",
+							"direction": "output",
+							"type": "object:/Script/UMG.Button",
+							"defaultValue": null,
+							"links": [
+								"d7b05a214a26a0bd0816dd8b2fa2a011:i:self"
+							]
+						},
+						{
+							"id": "88a5f0cd4d317c60a9f2528f8ac8e727:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "91e1cdc84343b14343001fb3ca750a34",
+					"class": "K2Node_VariableGet",
+					"title": "Get TabSignalColor",
+					"x": 1280,
+					"y": 888,
+					"comment": null,
+					"pins": [
+						{
+							"id": "91e1cdc84343b14343001fb3ca750a34:o:TabSignalColor",
+							"name": "TabSignalColor",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Color",
+							"defaultValue": null,
+							"links": [
+								"2a7ba75f4f2357e7199b9daf6144dc97:i:InColor"
+							]
+						},
+						{
+							"id": "91e1cdc84343b14343001fb3ca750a34:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
@@ -2145,6 +2239,16 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": []
+						},
+						{
+							"id": "d3d780dd499b53367b27919c155121db:o:NewEnumerator4",
+							"name": "NewEnumerator4",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d7b05a214a26a0bd0816dd8b2fa2a011:i:execute"
+							]
 						}
 					]
 				},
@@ -2173,6 +2277,54 @@
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d7b05a214a26a0bd0816dd8b2fa2a011",
+					"class": "K2Node_CallFunction",
+					"title": "Set Background Color",
+					"x": 1616,
+					"y": 760,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d7b05a214a26a0bd0816dd8b2fa2a011:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d3d780dd499b53367b27919c155121db:o:NewEnumerator4"
+							]
+						},
+						{
+							"id": "d7b05a214a26a0bd0816dd8b2fa2a011:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d7b05a214a26a0bd0816dd8b2fa2a011:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Button",
+							"defaultValue": null,
+							"links": [
+								"88a5f0cd4d317c60a9f2528f8ac8e727:o:ObjectivesTabButton"
+							]
+						},
+						{
+							"id": "d7b05a214a26a0bd0816dd8b2fa2a011:i:InBackgroundColor",
+							"name": "InBackgroundColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"2a7ba75f4f2357e7199b9daf6144dc97:o:ReturnValue"
+							]
 						}
 					]
 				},
@@ -2331,6 +2483,34 @@
 					]
 				},
 				{
+					"guid": "160e9be8428cefd45ca13a823e6aa95d",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectivesTab",
+					"x": 1106,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "160e9be8428cefd45ca13a823e6aa95d:o:ObjectivesTab",
+							"name": "ObjectivesTab",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C",
+							"defaultValue": null,
+							"links": [
+								"935de22d401758e5262eb6a8d0206b53:i:self"
+							]
+						},
+						{
+							"id": "160e9be8428cefd45ca13a823e6aa95d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "2d5acf1a4ad767cc02cb79951c679ed8",
 					"class": "K2Node_VariableGet",
 					"title": "Get InvestigationTab",
@@ -2432,6 +2612,52 @@
 							"links": [
 								"fe978d31472eea133b7310b064d68a04:o:OutputPin"
 							]
+						}
+					]
+				},
+				{
+					"guid": "351d3dbb430d750640f416b0123ee156",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 2236,
+					"y": 1384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "351d3dbb430d750640f416b0123ee156:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ef6ad8d4c95d4fe7ad4e59b9f92c8d3:o:NewEnumerator4"
+							]
+						},
+						{
+							"id": "351d3dbb430d750640f416b0123ee156:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "351d3dbb430d750640f416b0123ee156:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"f8377af84e8652e0f52c5893666e9054:o:ObjectivesTab"
+							]
+						},
+						{
+							"id": "351d3dbb430d750640f416b0123ee156:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Visible",
+							"links": []
 						}
 					]
 				},
@@ -2588,6 +2814,34 @@
 					]
 				},
 				{
+					"guid": "5065636d472bf2b722350bbde2cb8253",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectivesTabButton",
+					"x": 1004,
+					"y": 860,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5065636d472bf2b722350bbde2cb8253:o:ObjectivesTabButton",
+							"name": "ObjectivesTabButton",
+							"direction": "output",
+							"type": "object:/Script/UMG.Button",
+							"defaultValue": null,
+							"links": [
+								"cf1bd42c49338840c9a3c88a9ad42dae:i:TabButton"
+							]
+						},
+						{
+							"id": "5065636d472bf2b722350bbde2cb8253:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "564b6afa4b13963c7758a3919e49eb77",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
@@ -2650,7 +2904,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"f6fb73c741965dab7a78029a9d26e4e1:o:then"
+								"935de22d401758e5262eb6a8d0206b53:o:then"
 							]
 						},
 						{
@@ -2706,6 +2960,16 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": []
+						},
+						{
+							"id": "5ef6ad8d4c95d4fe7ad4e59b9f92c8d3:o:NewEnumerator4",
+							"name": "NewEnumerator4",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"351d3dbb430d750640f416b0123ee156:i:execute"
+							]
 						}
 					]
 				},
@@ -2934,6 +3198,16 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": []
+						},
+						{
+							"id": "79b30f334142709ecfe5a7b3c24f0683:o:NewEnumerator4",
+							"name": "NewEnumerator4",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cf1bd42c49338840c9a3c88a9ad42dae:i:execute"
+							]
 						}
 					]
 				},
@@ -3045,6 +3319,54 @@
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
 							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "935de22d401758e5262eb6a8d0206b53",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 1336,
+					"y": 604,
+					"comment": null,
+					"pins": [
+						{
+							"id": "935de22d401758e5262eb6a8d0206b53:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f6fb73c741965dab7a78029a9d26e4e1:o:then"
+							]
+						},
+						{
+							"id": "935de22d401758e5262eb6a8d0206b53:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ef6ad8d4c95d4fe7ad4e59b9f92c8d3:i:execute"
+							]
+						},
+						{
+							"id": "935de22d401758e5262eb6a8d0206b53:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"160e9be8428cefd45ca13a823e6aa95d:o:ObjectivesTab"
+							]
+						},
+						{
+							"id": "935de22d401758e5262eb6a8d0206b53:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Collapsed",
 							"links": []
 						}
 					]
@@ -3318,6 +3640,52 @@
 					]
 				},
 				{
+					"guid": "cf1bd42c49338840c9a3c88a9ad42dae",
+					"class": "K2Node_VariableSet",
+					"title": "Set TabButton",
+					"x": 1234,
+					"y": 760,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cf1bd42c49338840c9a3c88a9ad42dae:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"79b30f334142709ecfe5a7b3c24f0683:o:NewEnumerator4"
+							]
+						},
+						{
+							"id": "cf1bd42c49338840c9a3c88a9ad42dae:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cf1bd42c49338840c9a3c88a9ad42dae:i:TabButton",
+							"name": "TabButton",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"5065636d472bf2b722350bbde2cb8253:o:ObjectivesTabButton"
+							]
+						},
+						{
+							"id": "cf1bd42c49338840c9a3c88a9ad42dae:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "dc497495496c68ef127c7d820eb6dc57",
 					"class": "K2Node_VariableGet",
 					"title": "Get DialogueTabButton",
@@ -3563,7 +3931,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"5ef6ad8d4c95d4fe7ad4e59b9f92c8d3:i:execute"
+								"935de22d401758e5262eb6a8d0206b53:i:execute"
 							]
 						},
 						{
@@ -3582,6 +3950,34 @@
 							"direction": "input",
 							"type": "byte:/Script/UMG.ESlateVisibility",
 							"defaultValue": "Collapsed",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f8377af84e8652e0f52c5893666e9054",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectivesTab",
+					"x": 2006,
+					"y": 1484,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f8377af84e8652e0f52c5893666e9054:o:ObjectivesTab",
+							"name": "ObjectivesTab",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C",
+							"defaultValue": null,
+							"links": [
+								"351d3dbb430d750640f416b0123ee156:i:self"
+							]
+						},
+						{
+							"id": "f8377af84e8652e0f52c5893666e9054:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -3707,6 +4103,50 @@
 							"direction": "output",
 							"type": "bool",
 							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2c846c8b45f620eadade66a65b4eee76",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateNextTab",
+					"x": 960,
+					"y": 1100,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2c846c8b45f620eadade66a65b4eee76:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c9e3be944583c7086d20f7b14d2d40f7:o:then"
+							]
+						},
+						{
+							"id": "2c846c8b45f620eadade66a65b4eee76:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2c846c8b45f620eadade66a65b4eee76:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2c846c8b45f620eadade66a65b4eee76:i:Tab",
+							"name": "Tab",
+							"direction": "input",
+							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
+							"defaultValue": "NewEnumerator4",
 							"links": []
 						}
 					]
@@ -4305,6 +4745,34 @@
 					]
 				},
 				{
+					"guid": "c9e3be944583c7086d20f7b14d2d40f7",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (ObjectivesTabButton)",
+					"x": 650,
+					"y": 1100,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c9e3be944583c7086d20f7b14d2d40f7:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c9e3be944583c7086d20f7b14d2d40f7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2c846c8b45f620eadade66a65b4eee76:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "def79fc0424347e2a78255a56341d035",
 					"class": "K2Node_CallFunction",
 					"title": "TrySignalTabBlink",
@@ -4483,6 +4951,8 @@
 		{
 			"PuzzleTabButton": null,
 			"PuzzleTab": null,
+			"ObjectivesTabButton": null,
+			"ObjectivesTab": null,
 			"InvestigationTabButton": null,
 			"InvestigationTab": null,
 			"DialogueTabButton": null,

@@ -1,7 +1,7 @@
 // Copyright (c) 2026 ASGC
 
 #include "Journal/AtlantisJournalObjectivesWidget.h"
-#include "Journal/AtlantisJournalObjectivesSubsystem.h"
+#include "Journal/AtlantisJournalSubsystem.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/ScrollBox.h"
 #include "Components/TextBlock.h"
@@ -11,24 +11,12 @@
 
 #define LOCTEXT_NAMESPACE "AtlantisJournalObjectives"
 
-TSharedRef<SWidget> UAtlantisJournalObjectivesWidget::RebuildWidget()
-{
-	if (!WidgetTree->RootWidget)
-	{
-		UScrollBox* Scroll = WidgetTree->ConstructWidget<UScrollBox>();
-		ObjectiveList = WidgetTree->ConstructWidget<UVerticalBox>();
-		Scroll->AddChild(ObjectiveList);
-		WidgetTree->RootWidget = Scroll;
-	}
-	return Super::RebuildWidget();
-}
-
 void UAtlantisJournalObjectivesWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	if (UGameInstance* GameInstance = GetGameInstance())
 	{
-		Objectives = GameInstance->GetSubsystem<UAtlantisJournalObjectivesSubsystem>();
+		Objectives = GameInstance->GetSubsystem<UAtlantisJournalSubsystem>();
 		Objectives->OnObjectivesChanged.AddUniqueDynamic(this, &ThisClass::OnObjectivesChanged);
 	}
 	OnObjectivesChanged();

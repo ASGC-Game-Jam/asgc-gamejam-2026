@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "Journal/AtlantisJournalObjectiveTypes.h"
 #include "AtlantisJournalSubsystem.generated.h"
 
 UENUM(BlueprintType)
@@ -70,6 +71,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnJournalInvestigationUpdateEven
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnJournalOpenCloseEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnJournalSignaledEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnJournalClearedEvent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnJournalObjectivesChanged);
 
 /**
  * Journal Subsystem
@@ -161,7 +163,32 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Events|Journal")
 	FOnJournalClearedEvent OnJournalCleared;
 
+	/** Replace the complete disclosed snapshot in owner-specified display order. Invalid input is rejected atomically. */
+	UFUNCTION(BlueprintCallable, Category = "Journal|Objectives")
+	bool SubmitObjectiveSnapshot(const TArray<FJournalObjectivePresentation>& Snapshot);
+
+	/** Presentation policy only; hidden history stays cached so changing policy does not lose owner data. */
+	UFUNCTION(BlueprintCallable, Category = "Journal|Objectives")
+	void SetHistoryVisibility(bool bShowCompleted, bool bShowFailed);
+
+	/** Return a copy of visible presentation data without granting state mutation access. */
+	UFUNCTION(BlueprintPure, Category = "Journal|Objectives")
+	TArray<FJournalObjectivePresentation> GetVisibleObjectives() const;
+
+	/** Clear presentation when the owning game starts a new run or returns to the menu. */
+	UFUNCTION(BlueprintCallable, Category = "Journal|Objectives")
+	void ClearObjectives();
+
+	UPROPERTY(BlueprintAssignable, Category = "Events|Journal")
+	FOnJournalObjectivesChanged OnObjectivesChanged;
+
+
 private:
+	UPROPERTY()
+	TArray<FJournalObjectivePresentation> Objectives;
+
+	bool bCompletedVisible = false;
+	bool bFailedVisible = false;
 	
 	UPROPERTY()
 	TMap<FString, FJournalInvestigationEntry> Investigations;

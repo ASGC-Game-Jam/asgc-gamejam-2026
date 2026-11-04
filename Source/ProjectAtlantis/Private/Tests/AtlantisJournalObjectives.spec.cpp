@@ -2,9 +2,8 @@
 
 #if WITH_DEV_AUTOMATION_TESTS
 
-#include "Journal/AtlantisJournalObjectivesSubsystem.h"
-#include "Journal/AtlantisJournalObjectivesWidget.h"
 #include "Journal/AtlantisJournalSubsystem.h"
+#include "Journal/AtlantisJournalObjectivesWidget.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/TextBlock.h"
 #include "Engine/Engine.h"
@@ -20,7 +19,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisJournalObjectivesTest,
 bool FAtlantisJournalObjectivesTest::RunTest(const FString& Parameters)
 {
 	TStrongObjectPtr<UGameInstance> SnapshotOwner(NewObject<UGameInstance>());
-	TStrongObjectPtr<UAtlantisJournalObjectivesSubsystem> Journal(NewObject<UAtlantisJournalObjectivesSubsystem>(SnapshotOwner.Get()));
+	TStrongObjectPtr<UAtlantisJournalSubsystem> Journal(NewObject<UAtlantisJournalSubsystem>(SnapshotOwner.Get()));
 	TestEqual(TEXT("Starts empty"), Journal->GetVisibleObjectives().Num(), 0);
 	FJournalObjectivePresentation Active;
 	Active.ObjectiveId = TEXT("InspectRoom");
@@ -97,9 +96,10 @@ bool FAtlantisJournalObjectivesViewTest::RunTest(const FString& Parameters)
 	TStrongObjectPtr<UGameInstance> GameInstance(NewObject<UGameInstance>(GEngine));
 	GameInstance->InitializeStandalone();
 	UWorld* World = GameInstance->GetWorld();
-	UAtlantisJournalObjectivesSubsystem* Objectives = GameInstance->GetSubsystem<UAtlantisJournalObjectivesSubsystem>();
-	UAtlantisJournalObjectivesWidget* Widget = CreateWidget<UAtlantisJournalObjectivesWidget>(GameInstance.Get());
-	if (TestNotNull(TEXT("Objectives widget created without a binary asset"), Widget))
+	UAtlantisJournalSubsystem* Objectives = GameInstance->GetSubsystem<UAtlantisJournalSubsystem>();
+	UClass* ViewClass = LoadClass<UAtlantisJournalObjectivesWidget>(nullptr, TEXT("/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C"));
+	UAtlantisJournalObjectivesWidget* Widget = ViewClass ? CreateWidget<UAtlantisJournalObjectivesWidget>(GameInstance.Get(), ViewClass) : nullptr;
+	if (TestNotNull(TEXT("Authored Objectives widget loads"), Widget))
 	{
 		const auto ContainsText = [Widget](const FString& Text)
 		{

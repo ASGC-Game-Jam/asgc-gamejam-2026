@@ -4,9 +4,8 @@
 
 #include "Blueprint/UserWidget.h"
 #include "Core/AtlantisPlayerController.h"
-#include "Journal/AtlantisJournalShellExtension.h"
 #include "Journal/AtlantisJournalObjectivesWidget.h"
-#include "Journal/AtlantisJournalObjectivesSubsystem.h"
+#include "Journal/AtlantisJournalSubsystem.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/Button.h"
 #include "Components/PanelWidget.h"
@@ -43,7 +42,7 @@ bool FAtlantisJournalLayoutTest::RunTest(const FString& Parameters)
 				Widget->GetParent() ? *Widget->GetParent()->GetClass()->GetName() : TEXT("None"),
 				Widget->Slot ? *Widget->Slot->GetClass()->GetName() : TEXT("None")));
 		});
-		for (const TCHAR* Name : {TEXT("InvestigationTabButton"), TEXT("PuzzleTabButton"), TEXT("DialogueTabButton")})
+		for (const TCHAR* Name : {TEXT("InvestigationTabButton"), TEXT("PuzzleTabButton"), TEXT("DialogueTabButton"), TEXT("ObjectivesTabButton")})
 		{
 			TestNotNull(Name, Cast<UButton>(Journal->GetWidgetFromName(Name)));
 		}
@@ -76,121 +75,5 @@ bool FAtlantisJournalLayoutTest::RunTest(const FString& Parameters)
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAtlantisJournalShellExtensionTest,
-	"Atlantis.Journal.ExistingShellExtension",
-	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
-
-bool FAtlantisJournalShellExtensionTest::RunTest(const FString& Parameters)
-{
-	TStrongObjectPtr<UGameInstance> GameInstance(NewObject<UGameInstance>(GEngine));
-	GameInstance->InitializeStandalone();
-	UWorld* World = GameInstance->GetWorld();
-	UCommonGameViewportClient* Viewport = NewObject<UCommonGameViewportClient>(GEngine);
-	GameInstance->GetWorldContext()->GameViewport = Viewport;
-	Viewport->Init(*GameInstance->GetWorldContext(), GameInstance.Get(), false);
-	FString PlayerError;
-	ULocalPlayer* LocalPlayer = GameInstance->CreateLocalPlayer(0, PlayerError, false);
-	AAtlantisPlayerController* Controller = World->SpawnActor<AAtlantisPlayerController>();
-	Controller->SetPlayer(LocalPlayer);
-	World->AddController(Controller);
-	UClass* JournalClass = LoadClass<UUserWidget>(nullptr,
-		TEXT("/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C"));
-	UUserWidget* Journal = JournalClass ? CreateWidget<UUserWidget>(Controller, JournalClass) : nullptr;
-	if (TestNotNull(TEXT("Existing Journal created with its real player controller"), Journal))
-	{
-		TSharedRef<SWidget> SlateWidget = Journal->TakeWidget();
-		UWidget* LegacyContent = Journal->GetWidgetFromName(TEXT("InvestigationTab"));
-		const ESlateVisibility OriginalVisibility = LegacyContent->GetVisibility();
-		UPanelWidget* OriginalParent = LegacyContent->GetParent();
-		UButton* Investigation = Cast<UButton>(Journal->GetWidgetFromName(TEXT("InvestigationTabButton")));
-		UButton* Puzzle = Cast<UButton>(Journal->GetWidgetFromName(TEXT("PuzzleTabButton")));
-		UButton* Dialogue = Cast<UButton>(Journal->GetWidgetFromName(TEXT("DialogueTabButton")));
-		const auto CurrentTab = [Journal]() -> uint8
-		{
-			FByteProperty* Property = FindFProperty<FByteProperty>(Journal->GetClass(), TEXT("CurrentTabType"));
-			return Property ? Property->GetPropertyValue_InContainer(Journal) : 255;
-		};
-		UAtlantisJournalShellExtension* Extension = Journal->AddExtension<UAtlantisJournalShellExtension>();
-		UButton* Objectives = Cast<UButton>(Journal->GetWidgetFromName(TEXT("ObjectivesTabButton")));
-		if (TestNotNull(TEXT("Objectives button added to existing shell"), Objectives))
-		{
-			Extension->Destruct();
-			TestTrue(TEXT("Removing knowledge extension restores authored Investigation visibility"), LegacyContent->GetVisibility() == OriginalVisibility);
-			Extension->Construct();
-			Objectives = Cast<UButton>(Journal->GetWidgetFromName(TEXT("ObjectivesTabButton")));
-			TestEqual(TEXT("Existing content hierarchy preserved"), LegacyContent->GetParent(), OriginalParent);
-			TestEqual(TEXT("Objectives joins existing tab row"), Objectives->GetParent(), Investigation->GetParent());
-			UAtlantisJournalObjectivesWidget* View = nullptr;
-			for (UWidget* Child : OriginalParent->GetAllChildren())
-			{
-				if (UAtlantisJournalObjectivesWidget* ObjectiveView = Cast<UAtlantisJournalObjectivesWidget>(Child))
-				{
-					View = ObjectiveView;
-				}
-			}
-			if (TestNotNull(TEXT("Native view inserted beside legacy content"), View))
-			{
-				TestTrue(TEXT("Objectives starts hidden"), View->GetVisibility() == ESlateVisibility::Collapsed);
-				Objectives->OnClicked.Broadcast();
-				TestEqual(TEXT("Objectives selection preserves authored tab state"), CurrentTab(), static_cast<uint8>(0));
-				TestTrue(TEXT("Objectives click displays view"), View->GetVisibility() == ESlateVisibility::Visible);
-				TestTrue(TEXT("Objectives hides legacy content"), LegacyContent->GetVisibility() == ESlateVisibility::Collapsed);
-				Investigation->OnClicked.Broadcast();
-				TestTrue(TEXT("Clicking the unchanged authored tab exits Objectives"), View->GetVisibility() == ESlateVisibility::Collapsed);
-				Objectives->OnClicked.Broadcast();
-				FJournalObjectivePresentation Objective;
-				Objective.ObjectiveId = TEXT("ShellTest");
-				Objective.Text = FText::FromString(TEXT("Owner update inside the existing shell"));
-				GameInstance->GetSubsystem<UAtlantisJournalObjectivesSubsystem>()->SubmitObjectiveSnapshot({Objective});
-				bool bUpdated = false;
-				View->WidgetTree->ForEachWidget([&bUpdated](UWidget* Child)
-				{
-					if (UTextBlock* Label = Cast<UTextBlock>(Child))
-					{
-						bUpdated |= Label->GetText().ToString().Contains(TEXT("Owner update inside the existing shell"));
-					}
-				});
-				TestTrue(TEXT("Embedded objective text refreshes"), bUpdated);
-				Puzzle->OnClicked.Broadcast();
-				TestEqual(TEXT("Existing Puzzle button retains Blueprint navigation"), CurrentTab(), static_cast<uint8>(1));
-				TestTrue(TEXT("Existing tab exits Objectives"), View->GetVisibility() == ESlateVisibility::Collapsed);
-				Objectives->OnClicked.Broadcast();
-				Dialogue->OnClicked.Broadcast();
-				TestEqual(TEXT("Existing Dialogue button retains navigation"), CurrentTab(), static_cast<uint8>(2));
-				const ESlateVisibility DialogueVisibility = LegacyContent->GetVisibility();
-				Extension->Tick(FGeometry(), 0.f);
-				TestTrue(TEXT("Leaving native content preserves authored Dialogue visibility"), LegacyContent->GetVisibility() == DialogueVisibility);
-				Investigation->OnClicked.Broadcast();
-				TestEqual(TEXT("Existing Investigation button retains navigation"), CurrentTab(), static_cast<uint8>(0));
-				Objectives->OnClicked.Broadcast();
-				FindFProperty<FByteProperty>(Journal->GetClass(), TEXT("CurrentTabType"))->SetPropertyValue_InContainer(Journal, 3);
-				Extension->Tick(FGeometry(), 0.f);
-				TestTrue(TEXT("Blueprint tab state updates also exit Objectives"), View->GetVisibility() == ESlateVisibility::Collapsed);
-				TestEqual(TEXT("Reserved Map selection remains unchanged"), CurrentTab(), static_cast<uint8>(3));
-			}
-			Extension->Destruct();
-			const uint8 TabAfterDestruct = CurrentTab();
-			Objectives->OnClicked.Broadcast();
-			TestEqual(TEXT("Detached button no longer changes shell state"), CurrentTab(), TabAfterDestruct);
-			TestNull(TEXT("Destruct removes inserted button"), Journal->GetWidgetFromName(TEXT("ObjectivesTabButton")));
-			Extension->Construct();
-			TestNotNull(TEXT("Extension reconstructs when shell reopens"), Journal->GetWidgetFromName(TEXT("ObjectivesTabButton")));
-			Extension->Construct();
-			int32 ObjectiveButtons = 0;
-			Journal->WidgetTree->ForEachWidget([&ObjectiveButtons](UWidget* Child)
-			{
-				ObjectiveButtons += Child->GetFName() == TEXT("ObjectivesTabButton") ? 1 : 0;
-			});
-			TestEqual(TEXT("Repeated construction does not duplicate button"), ObjectiveButtons, 1);
-		}
-		Journal->RemoveExtension(Extension);
-		Journal->ReleaseSlateResources(true);
-	}
-	GameInstance->RemoveLocalPlayer(LocalPlayer);
-	GameInstance->Shutdown();
-	GEngine->DestroyWorldContext(World);
-	World->DestroyWorld(false);
-	return true;
-}
 
 #endif

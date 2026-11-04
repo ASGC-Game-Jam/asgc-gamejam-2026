@@ -6,7 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "AtlantisJournalObjectivesWidget.generated.h"
 
-class UAtlantisJournalObjectivesSubsystem;
+class UAtlantisJournalSubsystem;
 class UVerticalBox;
 
 /** Read-only Objectives tab. The Journal shell owns navigation and widget lifetime. */
@@ -16,7 +16,6 @@ class PROJECTATLANTIS_API UAtlantisJournalObjectivesWidget : public UUserWidget
 	GENERATED_BODY()
 
 protected:
-	virtual TSharedRef<SWidget> RebuildWidget() override;
 	virtual void NativeConstruct() override;
 	virtual void NativeDestruct() override;
 
@@ -24,9 +23,9 @@ private:
 	UFUNCTION()
 	void OnObjectivesChanged();
 
-	UPROPERTY(Transient)
+	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UVerticalBox> ObjectiveList;
 
 	UPROPERTY(Transient)
-	TObjectPtr<UAtlantisJournalObjectivesSubsystem> Objectives;
+	TObjectPtr<UAtlantisJournalSubsystem> Objectives;
 };

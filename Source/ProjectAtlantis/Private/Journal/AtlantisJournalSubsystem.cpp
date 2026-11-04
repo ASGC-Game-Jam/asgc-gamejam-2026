@@ -149,6 +149,7 @@ void UAtlantisJournalSubsystem::ClearInvestigations()
 void UAtlantisJournalSubsystem::ClearAll()
 {
     ClearInvestigations();
+    ClearObjectives();
     OnJournalCleared.Broadcast();
 }
 
@@ -194,4 +195,54 @@ TArray<FJournalInvestigationEntry> UAtlantisJournalSubsystem::GetInvestigationEn
 		Entries.Add(MoveTemp(Entry));
 	}
 	return Entries;
+}
+
+bool UAtlantisJournalSubsystem::SubmitObjectiveSnapshot(const TArray<FJournalObjectivePresentation>& Snapshot)
+{
+	TSet<FName> Ids;
+	for (const FJournalObjectivePresentation& Objective : Snapshot)
+	{
+		if (Objective.ObjectiveId.IsNone() || Ids.Contains(Objective.ObjectiveId) || Objective.Text.IsEmptyOrWhitespace()
+			|| (Objective.State != EJournalObjectiveDisplayState::Active
+				&& Objective.State != EJournalObjectiveDisplayState::Completed
+				&& Objective.State != EJournalObjectiveDisplayState::Failed))
+		{
+			return false;
+		}
+		Ids.Add(Objective.ObjectiveId);
+	}
+	Objectives = Snapshot;
+	OnObjectivesChanged.Broadcast();
+	return true;
+}
+
+void UAtlantisJournalSubsystem::SetHistoryVisibility(bool bShowCompleted, bool bShowFailed)
+{
+	if (bCompletedVisible != bShowCompleted || bFailedVisible != bShowFailed)
+	{
+		bCompletedVisible = bShowCompleted;
+		bFailedVisible = bShowFailed;
+		OnObjectivesChanged.Broadcast();
+	}
+}
+
+TArray<FJournalObjectivePresentation> UAtlantisJournalSubsystem::GetVisibleObjectives() const
+{
+	TArray<FJournalObjectivePresentation> Visible;
+	for (const FJournalObjectivePresentation& Objective : Objectives)
+	{
+		if (Objective.State == EJournalObjectiveDisplayState::Active
+			|| (Objective.State == EJournalObjectiveDisplayState::Completed && bCompletedVisible)
+			|| (Objective.State == EJournalObjectiveDisplayState::Failed && bFailedVisible))
+		{
+			Visible.Add(Objective);
+		}
+	}
+	return Visible;
+}
+
+void UAtlantisJournalSubsystem::ClearObjectives()
+{
+	Objectives.Reset();
+	OnObjectivesChanged.Broadcast();
 }
