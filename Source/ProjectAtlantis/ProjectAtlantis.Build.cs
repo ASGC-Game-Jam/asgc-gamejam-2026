@@ -49,6 +49,12 @@ public class ProjectAtlantis : ModuleRules
 
         PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
 
+		// Raw SVG fallbacks are read by Slate at runtime, outside the cooked asset system.
+		if (Target.Configuration != UnrealTargetConfiguration.Shipping)
+		{
+			RuntimeDependencies.Add("$(ProjectDir)/Content/ProjectAtlantis/UI/Debug/Icons/*.svg", StagedFileType.NonUFS);
+		}
+
 		// Uncomment if you are using Slate UI
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 		
