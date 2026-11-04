@@ -232,7 +232,7 @@ void UAtlantisAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag
 
 void UAtlantisAudioSubsystem::SubscribeToFacts()
 {
-	if(!TrackedWorld.Get())
+	if (!TrackedWorld.Get())
 	{
 		UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("TrackedWorld unavailable when subscribing to facts!"));
         return;
