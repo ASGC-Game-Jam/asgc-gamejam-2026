@@ -7,6 +7,8 @@
 #include "StructUtils/InstancedStruct.h"
 #include "MetasoundSource.h"
 #include "Engine/World.h"
+#include "Audio/AtlantisMusicAxisMapping.h"
+
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisAudioValidation, Log, All);
 
@@ -140,4 +142,10 @@ bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FI
 	// All four checks passed, so it's safe to route.
 	return true;
 
+}
+
+
+UAtlantisMusicAxisMapping* UAtlantisAudioDeveloperSettings::GetMusicAxisMapping()
+{
+	return GetDefault<UAtlantisAudioDeveloperSettings>()->MusicAxisMapping.LoadSynchronous();
 }
