@@ -3,6 +3,9 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "Debug/AtlantisDebugMenuSettings.h"
+#include "InputAction.h"
+#include "InputMappingContext.h"
+#include "InputTriggers.h"
 #include "HAL/FileManager.h"
 #include "Misc/AutomationTest.h"
 #include "Misc/ConfigCacheIni.h"
@@ -15,6 +18,9 @@ namespace
 	struct FAtlantisDebugMenuBindingFixture
 	{
 		TStrongObjectPtr<UAtlantisDebugMenuSettings> Settings;
+		TStrongObjectPtr<UInputMappingContext> Gameplay;
+		TStrongObjectPtr<UInputMappingContext> Menu;
+		FAtlantisDebugInputMappings Mappings;
 		FString TestConfig;
 		bool bConfigWritten = false;
 
@@ -40,6 +46,19 @@ namespace
 			GConfig->UnloadFile(TestConfig);
 			IFileManager::Get().Delete(*TestConfig);
 		}
+
+		void BuildMappings()
+		{
+			Mappings = Settings->CreateInputMappings(Settings.Get());
+			Gameplay.Reset(Mappings.Gameplay);
+			Menu.Reset(Mappings.Menu);
+		}
+
+		static bool HasKey(const UInputMappingContext* Context, const FKey& Key)
+		{
+			return Context && Context->GetMappings().ContainsByPredicate(
+				[&Key](const FEnhancedActionKeyMapping& Mapping) { return Mapping.Key == Key; });
+		}
 	};
 }
 
@@ -61,32 +80,66 @@ void FAtlantisDebugMenuBindingSpec::Define()
 		Fixture.Reset();
 	});
 
-	Describe(TEXT("Game config"), [this]()
+	Describe(TEXT("Enhanced Input mappings"), [this]()
 	{
-		It(TEXT("should replace menu and reset shortcuts while leaving F9 for screenshot capture"), [this]()
+		It(TEXT("should apply configured keys and leave F9 for screenshot capture"), [this]()
 		{
-			if (!Fixture->bConfigWritten)
+			Fixture->BuildMappings();
+			for (const UInputMappingContext* Context : {Fixture->Mappings.Gameplay, Fixture->Mappings.Menu})
 			{
-				return;
+				TestTrue(TEXT("Configured toggle key"), Fixture->HasKey(Context, EKeys::F6));
+				TestTrue(TEXT("Configured reset key"), Fixture->HasKey(Context, EKeys::F8));
+				TestFalse(TEXT("Old toggle key released"), Fixture->HasKey(Context, EKeys::F7));
+				TestFalse(TEXT("Old reset key released"), Fixture->HasKey(Context, EKeys::F10));
+				TestFalse(TEXT("F9 remains unmapped"), Fixture->HasKey(Context, EKeys::F9));
 			}
-			TestTrue(TEXT("Configured menu key"), Fixture->Settings->IsToggleKey(EKeys::F6));
-			TestFalse(TEXT("Original menu key released"), Fixture->Settings->IsToggleKey(EKeys::F7));
-			TestTrue(TEXT("Configured reset key"), Fixture->Settings->IsResetKey(EKeys::F8));
-			TestFalse(TEXT("Original reset key released"), Fixture->Settings->IsResetKey(EKeys::F10));
-			TestFalse(TEXT("F9 does not open menu"), Fixture->Settings->IsToggleKey(EKeys::F9));
-			TestFalse(TEXT("F9 does not reset player"), Fixture->Settings->IsResetKey(EKeys::F9));
 		});
 
-		It(TEXT("should disable gamepad shortcuts configured as None"), [this]()
+		It(TEXT("should omit configurable shortcuts set to None"), [this]()
 		{
-			if (!Fixture->bConfigWritten)
+			Fixture->BuildMappings();
+			for (const UInputMappingContext* Context : {Fixture->Mappings.Gameplay, Fixture->Mappings.Menu})
+			{
+				TestFalse(TEXT("Gamepad toggle disabled"), Fixture->HasKey(Context, EKeys::Gamepad_Special_Right));
+				TestFalse(TEXT("Gamepad reset disabled"), Fixture->HasKey(Context, EKeys::Gamepad_RightThumbstick));
+				TestFalse(TEXT("Invalid key never mapped"), Fixture->HasKey(Context, FKey()));
+			}
+		});
+
+		It(TEXT("should use an engine chord to open and reserve Back and stick reset for the menu"), [this]()
+		{
+			Fixture->Settings->ToggleMenuGamepadKey = EKeys::Gamepad_Special_Right;
+			Fixture->Settings->ToggleMenuGamepadModifier = EKeys::Gamepad_LeftThumbstick;
+			Fixture->Settings->ResetPlayerGamepadKey = EKeys::Gamepad_RightThumbstick;
+			Fixture->BuildMappings();
+			const FEnhancedActionKeyMapping* ToggleMapping = Fixture->Gameplay->GetMappings().FindByPredicate(
+				[](const FEnhancedActionKeyMapping& Mapping) { return Mapping.Key == EKeys::Gamepad_Special_Right; });
+			if (!TestNotNull(TEXT("Gamepad toggle mapping"), ToggleMapping))
 			{
 				return;
 			}
-			TestFalse(TEXT("Gamepad toggle disabled"), Fixture->Settings->IsToggleKey(EKeys::Gamepad_Special_Right));
-			TestFalse(TEXT("Gamepad reset disabled"), Fixture->Settings->IsResetKey(EKeys::Gamepad_RightThumbstick));
-			TestFalse(TEXT("Invalid key cannot toggle"), Fixture->Settings->IsToggleKey(FKey()));
-			TestFalse(TEXT("Invalid key cannot reset"), Fixture->Settings->IsResetKey(FKey()));
+			const UInputTriggerChordAction* Chord = ToggleMapping->Triggers.Num() == 1
+				? Cast<UInputTriggerChordAction>(ToggleMapping->Triggers[0]) : nullptr;
+			if (!TestNotNull(TEXT("Native chord trigger"), Chord))
+			{
+				return;
+			}
+			TestTrue(TEXT("Modifier uses the left stick"), Fixture->Gameplay->GetMappings().ContainsByPredicate(
+				[Chord](const FEnhancedActionKeyMapping& Mapping)
+				{
+					return Mapping.Action == Chord->ChordAction && Mapping.Key == EKeys::Gamepad_LeftThumbstick;
+				}));
+			TestFalse(TEXT("Modifier does not consume gameplay input"), Chord->ChordAction->bConsumeInput);
+			TestTrue(TEXT("Menu keeps the same toggle action without a chord"), Fixture->Menu->GetMappings().ContainsByPredicate(
+				[this](const FEnhancedActionKeyMapping& Mapping)
+				{
+					return Mapping.Key == EKeys::Gamepad_Special_Right
+						&& Mapping.Action == Fixture->Mappings.GamepadToggle && Mapping.Triggers.IsEmpty();
+				}));
+			TestFalse(TEXT("Gameplay B is untouched"), Fixture->HasKey(Fixture->Gameplay.Get(), EKeys::Gamepad_FaceButton_Right));
+			TestFalse(TEXT("Gameplay right stick is untouched"), Fixture->HasKey(Fixture->Gameplay.Get(), EKeys::Gamepad_RightThumbstick));
+			TestTrue(TEXT("Menu Back is available"), Fixture->HasKey(Fixture->Menu.Get(), EKeys::Gamepad_FaceButton_Right));
+			TestTrue(TEXT("Menu reset is available"), Fixture->HasKey(Fixture->Menu.Get(), EKeys::Gamepad_RightThumbstick));
 		});
 	});
 }

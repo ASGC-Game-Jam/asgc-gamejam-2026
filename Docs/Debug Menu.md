@@ -20,6 +20,16 @@ the Menu button's existing Input Action. Right-stick reset is available only
 inside the menu. Keep keyboard bindings distinct from Screenshot Capture.
 The menu displays the configured shortcuts.
 
+Shortcuts use Enhanced Input actions and two mapping contexts built from these
+settings. The gameplay context handles F7, F10, and the stick + Menu chord using
+Unreal's chord trigger. While the debug menu is open, the controller withdraws
+its gameplay mappings and applies the menu context for toggle, Back, and reset.
+Closing restores gameplay mappings and ignores keys still held during the
+transition. Navigation and button activation use the widget's normal UI handling.
+The debug menu does not open while another menu is showing the mouse cursor or
+gameplay controls are disabled; close that menu first. There is no custom Slate
+input processor or pressed-key tracking.
+
 Click **Reset Player to Start** for the same action, or enter `ResetPlayer` in the
 Unreal console (use `EnableCheats` first in network sessions if needed).
 

@@ -14,8 +14,7 @@
 #include "Core/AtlantisPlayerCharacter.h"
 #include "Debug/AtlantisCheatManager.h"
 #include "Debug/AtlantisDebugMenu.h"
-#include "Debug/AtlantisDebugInputProcessor.h"
-#include "Framework/Application/SlateApplication.h"
+#include "Debug/AtlantisDebugMenuSettings.h"
 
 AAtlantisPlayerController::AAtlantisPlayerController()
 {
@@ -48,10 +47,12 @@ void AAtlantisPlayerController::ToggleDebugMenu()
 		SetIgnoreLookInput(false);
 		bShowMouseCursor = false;
 		SetInputMode(FInputModeGameOnly());
+		EnableAllControls();
+		RefreshDebugInputContext();
 		return;
 	}
 	// Do not take input ownership from another menu.
-	if (bShowMouseCursor || !GetPawn())
+	if (bShowMouseCursor || !bControlsEnabled || !GetPawn())
 	{
 		return;
 	}
@@ -72,10 +73,12 @@ void AAtlantisPlayerController::ToggleDebugMenu()
 	}
 	SetIgnoreMoveInput(true);
 	SetIgnoreLookInput(true);
+	DisableAllControls();
+	RefreshDebugInputContext();
 	bShowMouseCursor = true;
-	FlushPressedKeys();
-	FInputModeUIOnly Mode;
+	FInputModeGameAndUI Mode;
 	Mode.SetWidgetToFocus(DebugMenu->TakeWidget());
+	Mode.SetHideCursorDuringCapture(false);
 	SetInputMode(Mode);
 	DebugMenu->FocusFirstAction();
 #endif
@@ -84,7 +87,7 @@ void AAtlantisPlayerController::ToggleDebugMenu()
 void AAtlantisPlayerController::RequestDebugReset()
 {
 #if !UE_BUILD_SHIPPING
-	if (IsLocalController())
+	if (IsLocalController() && (DebugMenu || (bControlsEnabled && !bShowMouseCursor)))
 	{
 		if (HasAuthority())
 		{
@@ -111,11 +114,17 @@ void AAtlantisPlayerController::ServerDebugReset_Implementation()
 
 void AAtlantisPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	if (DebugInputProcessor && FSlateApplication::IsInitialized())
+	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = GetEnhancedInputSubsystem())
 	{
-		FSlateApplication::Get().UnregisterInputPreProcessor(DebugInputProcessor);
+		if (DebugGameplayMappingContext)
+		{
+			Subsystem->RemoveMappingContext(DebugGameplayMappingContext);
+		}
+		if (DebugMenuMappingContext)
+		{
+			Subsystem->RemoveMappingContext(DebugMenuMappingContext);
+		}
 	}
-	DebugInputProcessor.Reset();
 	if (DebugMenu)
 	{
 		DebugMenu->RemoveFromParent();
@@ -158,20 +167,18 @@ namespace
 void AAtlantisPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
-#if !UE_BUILD_SHIPPING
-	// Run before CommonUI / Enhanced Input, consuming both edges of debug button presses.
-	if (FSlateApplication::IsInitialized())
-	{
-		if (DebugInputProcessor)
-		{
-			FSlateApplication::Get().UnregisterInputPreProcessor(DebugInputProcessor);
-		}
-		DebugInputProcessor = MakeShared<FAtlantisDebugInputProcessor>(this);
-		FSlateApplication::Get().RegisterInputPreProcessor(DebugInputProcessor, 0);
-	}
-#endif
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
 	{
+#if !UE_BUILD_SHIPPING
+		const FAtlantisDebugInputMappings DebugInput = GetDefault<UAtlantisDebugMenuSettings>()->CreateInputMappings(this);
+		DebugGameplayMappingContext = DebugInput.Gameplay;
+		DebugMenuMappingContext = DebugInput.Menu;
+		EnhancedInput->BindAction(DebugInput.Toggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
+		EnhancedInput->BindAction(DebugInput.GamepadToggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
+		EnhancedInput->BindAction(DebugInput.Reset, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::RequestDebugReset);
+		EnhancedInput->BindAction(DebugInput.Close, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::CloseDebugMenu);
+		RefreshDebugInputContext();
+#endif
 		if (DescendBallastAction)
 		{
 			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this,
@@ -194,6 +201,29 @@ void AAtlantisPlayerController::SetupInputComponent()
 	}
 	
 	RefreshMovementControls();
+}
+
+void AAtlantisPlayerController::RefreshDebugInputContext()
+{
+#if !UE_BUILD_SHIPPING
+	UEnhancedInputLocalPlayerSubsystem* Subsystem = GetEnhancedInputSubsystem();
+	if (!Subsystem || !DebugGameplayMappingContext || !DebugMenuMappingContext)
+	{
+		return;
+	}
+	const FModifyContextOptions Options = MakeControlOptions();
+	Subsystem->RemoveMappingContext(DebugGameplayMappingContext, Options);
+	Subsystem->RemoveMappingContext(DebugMenuMappingContext, Options);
+	Subsystem->AddMappingContext(DebugMenu ? DebugMenuMappingContext : DebugGameplayMappingContext, 1000, Options);
+#endif
+}
+
+void AAtlantisPlayerController::CloseDebugMenu()
+{
+	if (DebugMenu)
+	{
+		ToggleDebugMenu();
+	}
 }
 
 void AAtlantisPlayerController::OnPossess(APawn* InPawn)
