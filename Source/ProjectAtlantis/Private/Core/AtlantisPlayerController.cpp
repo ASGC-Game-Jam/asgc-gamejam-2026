@@ -48,21 +48,25 @@ namespace
 
 void AAtlantisPlayerController::BeginPlay()
 {
-	// Super invokes the authored Blueprint BeginPlay, which already creates the Journal shell.
 	Super::BeginPlay();
-	if (IsLocalController())
+	if (!IsLocalController())
 	{
-		if (const FObjectPropertyBase* Property = FindFProperty<FObjectPropertyBase>(GetClass(), TEXT("JournalWidget")))
-		{
-			if (UUserWidget* Journal = Cast<UUserWidget>(Property->GetObjectPropertyValue_InContainer(this)))
-			{
-				if (!Journal->GetExtension<UAtlantisJournalEmptyStateExtension>())
-				{
-					Journal->AddExtension<UAtlantisJournalEmptyStateExtension>();
-				}
-			}
-		}
+		return;
 	}
+
+	const FObjectPropertyBase* Property = FindFProperty<FObjectPropertyBase>(GetClass(), TEXT("JournalWidget"));
+	if (!Property)
+	{
+		return;
+	}
+
+	UUserWidget* Journal = Cast<UUserWidget>(Property->GetObjectPropertyValue_InContainer(this));
+	if (!Journal || Journal->GetExtension<UAtlantisJournalEmptyStateExtension>())
+	{
+		return;
+	}
+
+	Journal->AddExtension<UAtlantisJournalEmptyStateExtension>();
 }
 
 void AAtlantisPlayerController::SetupInputComponent()
