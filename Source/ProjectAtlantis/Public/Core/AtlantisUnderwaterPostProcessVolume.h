@@ -4,11 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Engine/PostProcessVolume.h"
-#include "Core/EAtlantisTraversalMode.h"
 
 #include "AtlantisUnderwaterPostProcessVolume.generated.h"
 
 class AAtlantisPlayerState;
+class APawn;
+class APlayerState;
 
 UCLASS()
 class PROJECTATLANTIS_API AAtlantisUnderwaterPostProcessVolume : public APostProcessVolume
@@ -25,10 +26,13 @@ private:
 	void TryBindToPlayerState();
 	
 	UFUNCTION()
-	void HandleTraversalModeChanged(EAtlantisTraversalMode OldTraversalMode, EAtlantisTraversalMode NewTraversalMode);
+	void HandlePawnSet(APlayerState* Player, APawn* NewPawn, APawn* OldPawn);
 	
-	/** Enables the volume only for water traversal modes */
-	void ApplyTraversalMode(EAtlantisTraversalMode TraversalMode);
+	UFUNCTION()
+	void HandleUnderwaterChanged(bool bUnderwater);
+	
+	void BindToPawn(APawn* Pawn);
+	void UnbindFromPawn(APawn* Pawn);
 	
 	/** Non-owning; used to unbind on EndPlay if the PlayerState is still alive. */
 	TWeakObjectPtr<AAtlantisPlayerState> BoundPlayerState;
