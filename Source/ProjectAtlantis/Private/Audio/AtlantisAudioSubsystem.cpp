@@ -213,7 +213,7 @@ void UAtlantisAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag
 
 	if (const FAtlantisAudioFloatPayload* FloatData = Payload.GetPtr<FAtlantisAudioFloatPayload>())
 	{
-		FloatFacts.Add(Tag,FloatData->Value);
+		FloatFacts.Add(Tag, FloatData->Value);
 	} 
 	else if (const FAtlantisAudioBoolPayload* BoolData = Payload.GetPtr<FAtlantisAudioBoolPayload>())
 	{
