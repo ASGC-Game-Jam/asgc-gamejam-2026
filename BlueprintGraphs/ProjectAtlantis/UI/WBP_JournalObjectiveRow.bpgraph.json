@@ -1,0 +1,1512 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow",
+	"asset": "WBP_JournalObjectiveRow",
+	"assetClass": "WidgetBlueprint",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "06d983914ebfae383233b38c122ecaff",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 1200,
+					"y": 600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "06d983914ebfae383233b38c122ecaff:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Location: {0}",
+							"links": []
+						},
+						{
+							"id": "06d983914ebfae383233b38c122ecaff:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"b37faf8f4f06487b3c2b79a9f729a149:i:InText"
+							]
+						},
+						{
+							"id": "06d983914ebfae383233b38c122ecaff:i:0",
+							"name": "0",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cae3ec4d4eb93696d491bab04f17bfb0:o:Location"
+							]
+						}
+					]
+				},
+				{
+					"guid": "174e66ad47e6ef7b2ae0769a20741125",
+					"class": "K2Node_CallFunction",
+					"title": "Text Trim Preceding and Trailing",
+					"x": 150,
+					"y": 230,
+					"comment": null,
+					"pins": [
+						{
+							"id": "174e66ad47e6ef7b2ae0769a20741125:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "174e66ad47e6ef7b2ae0769a20741125:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cae3ec4d4eb93696d491bab04f17bfb0:o:Context"
+							]
+						},
+						{
+							"id": "174e66ad47e6ef7b2ae0769a20741125:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"f6bd5be64bcaee10048e949625ad989f:i:InText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1a29639845f066fffa3433bc4440cc1e",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectiveText",
+					"x": 2670,
+					"y": 710,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1a29639845f066fffa3433bc4440cc1e:o:ObjectiveText",
+							"name": "ObjectiveText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"7b38299248e49406319f4a844fe10fb9:i:self"
+							]
+						},
+						{
+							"id": "1a29639845f066fffa3433bc4440cc1e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1dd1ea4a43deddcd6b291cbb7e0c6c6f",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 1000,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1dd1ea4a43deddcd6b291cbb7e0c6c6f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cbf3f76b4ccf426013bf4ebbc907c231:o:then"
+							]
+						},
+						{
+							"id": "1dd1ea4a43deddcd6b291cbb7e0c6c6f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b37faf8f4f06487b3c2b79a9f729a149:i:execute"
+							]
+						},
+						{
+							"id": "1dd1ea4a43deddcd6b291cbb7e0c6c6f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"4a93792a49924c4542aedeb189f212b6:o:ContextText"
+							]
+						},
+						{
+							"id": "1dd1ea4a43deddcd6b291cbb7e0c6c6f:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": null,
+							"links": [
+								"435ffbbd48e32a41f0a47b99c47541bf:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "21c6cd7342e72abcb4fe7fb288521171",
+					"class": "K2Node_CallFunction",
+					"title": "Set Color and Opacity",
+					"x": 3300,
+					"y": 1200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "21c6cd7342e72abcb4fe7fb288521171:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c56fe1bf4668b1a69a82d99bb4eaa20a:o:then"
+							]
+						},
+						{
+							"id": "21c6cd7342e72abcb4fe7fb288521171:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "21c6cd7342e72abcb4fe7fb288521171:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"f982e45c4e83286a79210a9ec5b11070:o:ObjectiveText"
+							]
+						},
+						{
+							"id": "21c6cd7342e72abcb4fe7fb288521171:i:InColorAndOpacity",
+							"name": "InColorAndOpacity",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": "(SpecifiedColor=(R=1.000000,G=0.600000,B=0.550000,A=1.000000),ColorUseRule=UseColor_Specified)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2e7879824192f3f39f95038e95a70a4e",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 1800,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2e7879824192f3f39f95038e95a70a4e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b37faf8f4f06487b3c2b79a9f729a149:o:then"
+							]
+						},
+						{
+							"id": "2e7879824192f3f39f95038e95a70a4e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c0394bbd47107ee494de7c836f8d8e93:i:execute"
+							]
+						},
+						{
+							"id": "2e7879824192f3f39f95038e95a70a4e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"39c299de4082dd9bc9328ea7aaf9d19d:o:LocationText"
+							]
+						},
+						{
+							"id": "2e7879824192f3f39f95038e95a70a4e:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": null,
+							"links": [
+								"8b3d8efc483de5f1cdd062957066fe42:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "39c299de4082dd9bc9328ea7aaf9d19d",
+					"class": "K2Node_VariableGet",
+					"title": "Get LocationText",
+					"x": 1570,
+					"y": 110,
+					"comment": null,
+					"pins": [
+						{
+							"id": "39c299de4082dd9bc9328ea7aaf9d19d:o:LocationText",
+							"name": "LocationText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"2e7879824192f3f39f95038e95a70a4e:i:self"
+							]
+						},
+						{
+							"id": "39c299de4082dd9bc9328ea7aaf9d19d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3a849296441f4d3c8066cdb8a7169cac",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectiveText",
+					"x": 3070,
+					"y": 110,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3a849296441f4d3c8066cdb8a7169cac:o:ObjectiveText",
+							"name": "ObjectiveText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"728f50c34235b3b9c2b4b7a3335b4f63:i:self"
+							]
+						},
+						{
+							"id": "3a849296441f4d3c8066cdb8a7169cac:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "435ffbbd48e32a41f0a47b99c47541bf",
+					"class": "K2Node_Select",
+					"title": "Select",
+					"x": 750,
+					"y": 230,
+					"comment": null,
+					"pins": [
+						{
+							"id": "435ffbbd48e32a41f0a47b99c47541bf:i:Option 0",
+							"name": "Option 0",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "HitTestInvisible",
+							"links": []
+						},
+						{
+							"id": "435ffbbd48e32a41f0a47b99c47541bf:i:Option 1",
+							"name": "Option 1",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Collapsed",
+							"links": []
+						},
+						{
+							"id": "435ffbbd48e32a41f0a47b99c47541bf:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f6bd5be64bcaee10048e949625ad989f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "435ffbbd48e32a41f0a47b99c47541bf:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": null,
+							"links": [
+								"1dd1ea4a43deddcd6b291cbb7e0c6c6f:i:InVisibility"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4a93792a49924c4542aedeb189f212b6",
+					"class": "K2Node_VariableGet",
+					"title": "Get ContextText",
+					"x": 770,
+					"y": 110,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4a93792a49924c4542aedeb189f212b6:o:ContextText",
+							"name": "ContextText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"1dd1ea4a43deddcd6b291cbb7e0c6c6f:i:self"
+							]
+						},
+						{
+							"id": "4a93792a49924c4542aedeb189f212b6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "56bbe1154c9443d623543d85913b5ffb",
+					"class": "K2Node_VariableGet",
+					"title": "Get ContextText",
+					"x": 370,
+					"y": 110,
+					"comment": null,
+					"pins": [
+						{
+							"id": "56bbe1154c9443d623543d85913b5ffb:o:ContextText",
+							"name": "ContextText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"cbf3f76b4ccf426013bf4ebbc907c231:i:self"
+							]
+						},
+						{
+							"id": "56bbe1154c9443d623543d85913b5ffb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5b34e17c4b295c7218747b8fc4173c19",
+					"class": "K2Node_VariableGet",
+					"title": "Get LocationText",
+					"x": 1170,
+					"y": 110,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5b34e17c4b295c7218747b8fc4173c19:o:LocationText",
+							"name": "LocationText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"b37faf8f4f06487b3c2b79a9f729a149:i:self"
+							]
+						},
+						{
+							"id": "5b34e17c4b295c7218747b8fc4173c19:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5b75b2b8435647858270d3858ea1c724",
+					"class": "K2Node_CallFunction",
+					"title": "Set Color and Opacity",
+					"x": 3300,
+					"y": 600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5b75b2b8435647858270d3858ea1c724:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7b38299248e49406319f4a844fe10fb9:o:then"
+							]
+						},
+						{
+							"id": "5b75b2b8435647858270d3858ea1c724:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5b75b2b8435647858270d3858ea1c724:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"7f853cd54d778d9f9d65468c7eb64471:o:ObjectiveText"
+							]
+						},
+						{
+							"id": "5b75b2b8435647858270d3858ea1c724:i:InColorAndOpacity",
+							"name": "InColorAndOpacity",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": "(SpecifiedColor=(R=0.550000,G=0.900000,B=0.650000,A=1.000000),ColorUseRule=UseColor_Specified)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5c7748b947b936f2b3e5948713f537bf",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 2900,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5c7748b947b936f2b3e5948713f537bf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c0394bbd47107ee494de7c836f8d8e93:o:Active"
+							]
+						},
+						{
+							"id": "5c7748b947b936f2b3e5948713f537bf:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"728f50c34235b3b9c2b4b7a3335b4f63:i:execute"
+							]
+						},
+						{
+							"id": "5c7748b947b936f2b3e5948713f537bf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"b68434904594b0b27743f096255fa714:o:ObjectiveText"
+							]
+						},
+						{
+							"id": "5c7748b947b936f2b3e5948713f537bf:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"60a691474d6b4ac154e2b6b535aa8ec8:o:Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "60a691474d6b4ac154e2b6b535aa8ec8",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 2600,
+					"y": 500,
+					"comment": null,
+					"pins": [
+						{
+							"id": "60a691474d6b4ac154e2b6b535aa8ec8:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Active: {0}",
+							"links": []
+						},
+						{
+							"id": "60a691474d6b4ac154e2b6b535aa8ec8:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"5c7748b947b936f2b3e5948713f537bf:i:InText"
+							]
+						},
+						{
+							"id": "60a691474d6b4ac154e2b6b535aa8ec8:i:0",
+							"name": "0",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cae3ec4d4eb93696d491bab04f17bfb0:o:Text"
+							]
+						}
+					]
+				},
+				{
+					"guid": "728f50c34235b3b9c2b4b7a3335b4f63",
+					"class": "K2Node_CallFunction",
+					"title": "Set Color and Opacity",
+					"x": 3300,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "728f50c34235b3b9c2b4b7a3335b4f63:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5c7748b947b936f2b3e5948713f537bf:o:then"
+							]
+						},
+						{
+							"id": "728f50c34235b3b9c2b4b7a3335b4f63:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "728f50c34235b3b9c2b4b7a3335b4f63:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"3a849296441f4d3c8066cdb8a7169cac:o:ObjectiveText"
+							]
+						},
+						{
+							"id": "728f50c34235b3b9c2b4b7a3335b4f63:i:InColorAndOpacity",
+							"name": "InColorAndOpacity",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": "(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7b38299248e49406319f4a844fe10fb9",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 2900,
+					"y": 600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7b38299248e49406319f4a844fe10fb9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c0394bbd47107ee494de7c836f8d8e93:o:Completed"
+							]
+						},
+						{
+							"id": "7b38299248e49406319f4a844fe10fb9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5b75b2b8435647858270d3858ea1c724:i:execute"
+							]
+						},
+						{
+							"id": "7b38299248e49406319f4a844fe10fb9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"1a29639845f066fffa3433bc4440cc1e:o:ObjectiveText"
+							]
+						},
+						{
+							"id": "7b38299248e49406319f4a844fe10fb9:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"c225f1224bfa6fe684b913bcc198b78b:o:Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7f853cd54d778d9f9d65468c7eb64471",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectiveText",
+					"x": 3070,
+					"y": 710,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7f853cd54d778d9f9d65468c7eb64471:o:ObjectiveText",
+							"name": "ObjectiveText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"5b75b2b8435647858270d3858ea1c724:i:self"
+							]
+						},
+						{
+							"id": "7f853cd54d778d9f9d65468c7eb64471:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8abb3a8246140ae01e2b97a36ff09fe6",
+					"class": "K2Node_VariableGet",
+					"title": "Get Objective",
+					"x": 0,
+					"y": 350,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8abb3a8246140ae01e2b97a36ff09fe6:o:Objective",
+							"name": "Objective",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.JournalObjectivePresentation",
+							"defaultValue": null,
+							"links": [
+								"cae3ec4d4eb93696d491bab04f17bfb0:i:JournalObjectivePresentation"
+							]
+						},
+						{
+							"id": "8abb3a8246140ae01e2b97a36ff09fe6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8b3d8efc483de5f1cdd062957066fe42",
+					"class": "K2Node_Select",
+					"title": "Select",
+					"x": 1550,
+					"y": 230,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8b3d8efc483de5f1cdd062957066fe42:i:Option 0",
+							"name": "Option 0",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "HitTestInvisible",
+							"links": []
+						},
+						{
+							"id": "8b3d8efc483de5f1cdd062957066fe42:i:Option 1",
+							"name": "Option 1",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Collapsed",
+							"links": []
+						},
+						{
+							"id": "8b3d8efc483de5f1cdd062957066fe42:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"ec7a741644d63bb0b37174a0c5e50c7c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8b3d8efc483de5f1cdd062957066fe42:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": null,
+							"links": [
+								"2e7879824192f3f39f95038e95a70a4e:i:InVisibility"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a5c09ddd4c68b5c08445c583971ddce6",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 2600,
+					"y": 1700,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a5c09ddd4c68b5c08445c583971ddce6:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Failed: {0}",
+							"links": []
+						},
+						{
+							"id": "a5c09ddd4c68b5c08445c583971ddce6:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"c56fe1bf4668b1a69a82d99bb4eaa20a:i:InText"
+							]
+						},
+						{
+							"id": "a5c09ddd4c68b5c08445c583971ddce6:i:0",
+							"name": "0",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cae3ec4d4eb93696d491bab04f17bfb0:o:Text"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b37faf8f4f06487b3c2b79a9f729a149",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 1400,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b37faf8f4f06487b3c2b79a9f729a149:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1dd1ea4a43deddcd6b291cbb7e0c6c6f:o:then"
+							]
+						},
+						{
+							"id": "b37faf8f4f06487b3c2b79a9f729a149:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2e7879824192f3f39f95038e95a70a4e:i:execute"
+							]
+						},
+						{
+							"id": "b37faf8f4f06487b3c2b79a9f729a149:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"5b34e17c4b295c7218747b8fc4173c19:o:LocationText"
+							]
+						},
+						{
+							"id": "b37faf8f4f06487b3c2b79a9f729a149:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"06d983914ebfae383233b38c122ecaff:o:Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b68434904594b0b27743f096255fa714",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectiveText",
+					"x": 2670,
+					"y": 110,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b68434904594b0b27743f096255fa714:o:ObjectiveText",
+							"name": "ObjectiveText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"5c7748b947b936f2b3e5948713f537bf:i:self"
+							]
+						},
+						{
+							"id": "b68434904594b0b27743f096255fa714:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bd06da9e496f6dc98148eb9b6e30c650",
+					"class": "K2Node_Event",
+					"title": "Event Pre Construct",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bd06da9e496f6dc98148eb9b6e30c650:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bd06da9e496f6dc98148eb9b6e30c650:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cbf3f76b4ccf426013bf4ebbc907c231:i:execute"
+							]
+						},
+						{
+							"id": "bd06da9e496f6dc98148eb9b6e30c650:o:IsDesignTime",
+							"name": "IsDesignTime",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c0394bbd47107ee494de7c836f8d8e93",
+					"class": "K2Node_SwitchEnum",
+					"title": "Switch on EJournalObjectiveDisplayState",
+					"x": 2200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0394bbd47107ee494de7c836f8d8e93:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2e7879824192f3f39f95038e95a70a4e:o:then"
+							]
+						},
+						{
+							"id": "c0394bbd47107ee494de7c836f8d8e93:i:Selection",
+							"name": "Selection",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EJournalObjectiveDisplayState",
+							"defaultValue": null,
+							"links": [
+								"cae3ec4d4eb93696d491bab04f17bfb0:o:State"
+							]
+						},
+						{
+							"id": "c0394bbd47107ee494de7c836f8d8e93:i:NotEqual_ByteByte",
+							"name": "NotEqual_ByteByte",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "c0394bbd47107ee494de7c836f8d8e93:o:Active",
+							"name": "Active",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5c7748b947b936f2b3e5948713f537bf:i:execute"
+							]
+						},
+						{
+							"id": "c0394bbd47107ee494de7c836f8d8e93:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7b38299248e49406319f4a844fe10fb9:i:execute"
+							]
+						},
+						{
+							"id": "c0394bbd47107ee494de7c836f8d8e93:o:Failed",
+							"name": "Failed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c56fe1bf4668b1a69a82d99bb4eaa20a:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c225f1224bfa6fe684b913bcc198b78b",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 2600,
+					"y": 1100,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c225f1224bfa6fe684b913bcc198b78b:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Completed: {0}",
+							"links": []
+						},
+						{
+							"id": "c225f1224bfa6fe684b913bcc198b78b:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"7b38299248e49406319f4a844fe10fb9:i:InText"
+							]
+						},
+						{
+							"id": "c225f1224bfa6fe684b913bcc198b78b:i:0",
+							"name": "0",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cae3ec4d4eb93696d491bab04f17bfb0:o:Text"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c56fe1bf4668b1a69a82d99bb4eaa20a",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 2900,
+					"y": 1200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c56fe1bf4668b1a69a82d99bb4eaa20a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c0394bbd47107ee494de7c836f8d8e93:o:Failed"
+							]
+						},
+						{
+							"id": "c56fe1bf4668b1a69a82d99bb4eaa20a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"21c6cd7342e72abcb4fe7fb288521171:i:execute"
+							]
+						},
+						{
+							"id": "c56fe1bf4668b1a69a82d99bb4eaa20a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"ee414eb54b8f1089f5d31286c9b86dec:o:ObjectiveText"
+							]
+						},
+						{
+							"id": "c56fe1bf4668b1a69a82d99bb4eaa20a:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"a5c09ddd4c68b5c08445c583971ddce6:o:Result"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cae3ec4d4eb93696d491bab04f17bfb0",
+					"class": "K2Node_BreakStruct",
+					"title": "Break Journal Objective Presentation",
+					"x": 250,
+					"y": 350,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cae3ec4d4eb93696d491bab04f17bfb0:i:JournalObjectivePresentation",
+							"name": "JournalObjectivePresentation",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalObjectivePresentation",
+							"defaultValue": null,
+							"links": [
+								"8abb3a8246140ae01e2b97a36ff09fe6:o:Objective"
+							]
+						},
+						{
+							"id": "cae3ec4d4eb93696d491bab04f17bfb0:o:ObjectiveId",
+							"name": "ObjectiveId",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cae3ec4d4eb93696d491bab04f17bfb0:o:Text",
+							"name": "Text",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"60a691474d6b4ac154e2b6b535aa8ec8:i:0",
+								"a5c09ddd4c68b5c08445c583971ddce6:i:0",
+								"c225f1224bfa6fe684b913bcc198b78b:i:0"
+							]
+						},
+						{
+							"id": "cae3ec4d4eb93696d491bab04f17bfb0:o:Context",
+							"name": "Context",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"174e66ad47e6ef7b2ae0769a20741125:i:InText",
+								"cbf3f76b4ccf426013bf4ebbc907c231:i:InText"
+							]
+						},
+						{
+							"id": "cae3ec4d4eb93696d491bab04f17bfb0:o:Location",
+							"name": "Location",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"06d983914ebfae383233b38c122ecaff:i:0",
+								"ff80429841c0fcfc71ff63bc1fc144af:i:InText"
+							]
+						},
+						{
+							"id": "cae3ec4d4eb93696d491bab04f17bfb0:o:State",
+							"name": "State",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EJournalObjectiveDisplayState",
+							"defaultValue": null,
+							"links": [
+								"c0394bbd47107ee494de7c836f8d8e93:i:Selection"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cbf3f76b4ccf426013bf4ebbc907c231",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 600,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cbf3f76b4ccf426013bf4ebbc907c231:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bd06da9e496f6dc98148eb9b6e30c650:o:then"
+							]
+						},
+						{
+							"id": "cbf3f76b4ccf426013bf4ebbc907c231:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1dd1ea4a43deddcd6b291cbb7e0c6c6f:i:execute"
+							]
+						},
+						{
+							"id": "cbf3f76b4ccf426013bf4ebbc907c231:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"56bbe1154c9443d623543d85913b5ffb:o:ContextText"
+							]
+						},
+						{
+							"id": "cbf3f76b4ccf426013bf4ebbc907c231:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cae3ec4d4eb93696d491bab04f17bfb0:o:Context"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ec7a741644d63bb0b37174a0c5e50c7c",
+					"class": "K2Node_CallFunction",
+					"title": "Text Is Empty",
+					"x": 1250,
+					"y": 230,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ec7a741644d63bb0b37174a0c5e50c7c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "ec7a741644d63bb0b37174a0c5e50c7c:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"ff80429841c0fcfc71ff63bc1fc144af:o:ReturnValue"
+							]
+						},
+						{
+							"id": "ec7a741644d63bb0b37174a0c5e50c7c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8b3d8efc483de5f1cdd062957066fe42:i:Index"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ee414eb54b8f1089f5d31286c9b86dec",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectiveText",
+					"x": 2670,
+					"y": 1310,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ee414eb54b8f1089f5d31286c9b86dec:o:ObjectiveText",
+							"name": "ObjectiveText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"c56fe1bf4668b1a69a82d99bb4eaa20a:i:self"
+							]
+						},
+						{
+							"id": "ee414eb54b8f1089f5d31286c9b86dec:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f6bd5be64bcaee10048e949625ad989f",
+					"class": "K2Node_CallFunction",
+					"title": "Text Is Empty",
+					"x": 450,
+					"y": 230,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f6bd5be64bcaee10048e949625ad989f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "f6bd5be64bcaee10048e949625ad989f:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"174e66ad47e6ef7b2ae0769a20741125:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f6bd5be64bcaee10048e949625ad989f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"435ffbbd48e32a41f0a47b99c47541bf:i:Index"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f982e45c4e83286a79210a9ec5b11070",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectiveText",
+					"x": 3070,
+					"y": 1310,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f982e45c4e83286a79210a9ec5b11070:o:ObjectiveText",
+							"name": "ObjectiveText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"21c6cd7342e72abcb4fe7fb288521171:i:self"
+							]
+						},
+						{
+							"id": "f982e45c4e83286a79210a9ec5b11070:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ff80429841c0fcfc71ff63bc1fc144af",
+					"class": "K2Node_CallFunction",
+					"title": "Text Trim Preceding and Trailing",
+					"x": 950,
+					"y": 230,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ff80429841c0fcfc71ff63bc1fc144af:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "ff80429841c0fcfc71ff63bc1fc144af:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cae3ec4d4eb93696d491bab04f17bfb0:o:Location"
+							]
+						},
+						{
+							"id": "ff80429841c0fcfc71ff63bc1fc144af:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"ec7a741644d63bb0b37174a0c5e50c7c:i:InText"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"Objective":
+			{
+				"type": "struct:/Script/ProjectAtlantis.JournalObjectivePresentation",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"ObjectiveText": null,
+			"LocationText": null,
+			"ContextText": null,
+			"Objective":
+			{
+				"ObjectiveId": "None",
+				"Text": "",
+				"Context": "",
+				"Location": "",
+				"State": "Active"
+			},
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
+}

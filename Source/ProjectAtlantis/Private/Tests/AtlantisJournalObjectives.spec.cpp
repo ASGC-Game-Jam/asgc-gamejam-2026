@@ -3,7 +3,8 @@
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "Journal/AtlantisJournalSubsystem.h"
-#include "Journal/AtlantisJournalObjectivesWidget.h"
+#include "Blueprint/UserWidget.h"
+#include "Components/PanelWidget.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/TextBlock.h"
 #include "Engine/Engine.h"
@@ -90,56 +91,127 @@ void FAtlantisJournalObjectivesSpec::Define()
 	});
 }
 
+
+namespace
+{
+	bool ContainsObjectiveText(UUserWidget* Widget, const FString& Text)
+	{
+		bool bFound = false;
+		Widget->WidgetTree->ForEachWidget([&](UWidget* Child)
+		{
+			if (!Child->IsVisible()) { return; }
+			if (const UTextBlock* Label = Cast<UTextBlock>(Child))
+			{
+				bFound |= Label->GetText().ToString().Contains(Text);
+				return;
+			}
+			if (UUserWidget* Row = Cast<UUserWidget>(Child))
+			{
+				bFound |= ContainsObjectiveText(Row, Text);
+			}
+		});
+		return bFound;
+	}
+}
+
 BEGIN_DEFINE_SPEC(FAtlantisJournalObjectivesViewSpec, "Atlantis.Journal.ObjectivesViewUpdates",
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+	TStrongObjectPtr<UGameInstance> GameInstance;
+	UWorld* World = nullptr;
+	UAtlantisJournalSubsystem* Journal = nullptr;
+	UUserWidget* Widget = nullptr;
+	TSharedPtr<SWidget> SlateWidget;
 END_DEFINE_SPEC(FAtlantisJournalObjectivesViewSpec)
 
 void FAtlantisJournalObjectivesViewSpec::Define()
 {
-	It(TEXT("should refresh authored rows and empty state from Journal updates and reset"), [this]()
+	BeforeEach([this]()
 	{
-
-		TStrongObjectPtr<UGameInstance> GameInstance(NewObject<UGameInstance>(GEngine));
+		GameInstance.Reset(NewObject<UGameInstance>(GEngine));
 		GameInstance->InitializeStandalone();
-		UWorld* World = GameInstance->GetWorld();
-		UAtlantisJournalSubsystem* Objectives = GameInstance->GetSubsystem<UAtlantisJournalSubsystem>();
-		UClass* ViewClass = LoadClass<UAtlantisJournalObjectivesWidget>(nullptr, TEXT("/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C"));
-		UAtlantisJournalObjectivesWidget* Widget = ViewClass ? CreateWidget<UAtlantisJournalObjectivesWidget>(GameInstance.Get(), ViewClass) : nullptr;
-		if (TestNotNull(TEXT("Authored Objectives widget loads"), Widget))
-		{
-			const auto ContainsText = [Widget](const FString& Text)
-			{
-				bool bFound = false;
-				Widget->WidgetTree->ForEachWidget([&bFound, &Text](UWidget* Child)
-				{
-					if (const UTextBlock* Label = Cast<UTextBlock>(Child))
-					{
-						bFound |= Label->IsVisible() && Label->GetText().ToString().Contains(Text);
-					}
-				});
-				return bFound;
-			};
-			TSharedRef<SWidget> SlateWidget = Widget->TakeWidget();
-			TestTrue(TEXT("Opening empty view renders empty state"), ContainsText(TEXT("No objectives")));
-			FJournalObjectivePresentation Objective;
-			Objective.ObjectiveId = TEXT("ReadNote");
-			Objective.Text = FText::FromString(TEXT("Read the crew note"));
-			Objectives->SubmitObjectiveSnapshot({Objective});
-			TestTrue(TEXT("Owner update refreshes an already open view"), ContainsText(TEXT("Read the crew note")));
-			Objective.Text = FText::FromString(TEXT("Crew note read"));
-			Objective.State = EJournalObjectiveDisplayState::Completed;
-			Objectives->SubmitObjectiveSnapshot({Objective});
-			TestFalse(TEXT("Completed objective disappears under default policy"), ContainsText(TEXT("Crew note read")));
-			Objectives->SetHistoryVisibility(true, false);
-			TestTrue(TEXT("Policy change refreshes supplied completed text"), ContainsText(TEXT("Completed: Crew note read")));
-			GameInstance->GetSubsystem<UAtlantisJournalSubsystem>()->ClearAll();
-			TestTrue(TEXT("Legacy ClearAll updates open Objectives view"), ContainsText(TEXT("No objectives")));
-			TestEqual(TEXT("Legacy run reset clears snapshot"), Objectives->GetVisibleObjectives().Num(), 0);
-			Widget->ReleaseSlateResources(true);
-		}
+		World = GameInstance->GetWorld();
+		Journal = GameInstance->GetSubsystem<UAtlantisJournalSubsystem>();
+		UClass* ViewClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C"));
+		Widget = ViewClass ? CreateWidget<UUserWidget>(GameInstance.Get(), ViewClass) : nullptr;
+		if (!TestNotNull(TEXT("Authored Objectives tab loads"), Widget)) { return; }
+		TestEqual(TEXT("Tab derives directly from UserWidget"), ViewClass->GetSuperClass(), UUserWidget::StaticClass());
+		SlateWidget = Widget->TakeWidget();
+	});
+	AfterEach([this]()
+	{
+		SlateWidget.Reset();
+		if (Widget) { Widget->ReleaseSlateResources(true); }
 		GameInstance->Shutdown();
 		GEngine->DestroyWorldContext(World);
 		World->DestroyWorld(false);
+		Widget = nullptr;
+		Journal = nullptr;
+		World = nullptr;
+		GameInstance.Reset();
+	});
+
+	Describe(TEXT("Blueprint presentation"), [this]()
+	{
+		It(TEXT("should refresh authored rows and empty state from Journal updates and reset"), [this]()
+		{
+			if (!Widget) { return; }
+			TestTrue(TEXT("Opening empty view renders empty state"), ContainsObjectiveText(Widget, TEXT("No objectives")));
+			FJournalObjectivePresentation Objective;
+			Objective.ObjectiveId = TEXT("ReadNote");
+			Objective.Text = FText::FromString(TEXT("Read the crew note"));
+			Objective.Context = FText::FromString(TEXT("The crew left a record."));
+			Objective.Location = FText::FromString(TEXT("Engine room"));
+			Journal->SubmitObjectiveSnapshot({Objective});
+			TestTrue(TEXT("Owner update refreshes an open view"), ContainsObjectiveText(Widget, TEXT("Active: Read the crew note")));
+			TestTrue(TEXT("Context remains owner supplied"), ContainsObjectiveText(Widget, TEXT("The crew left a record.")));
+			TestTrue(TEXT("Location is formatted by the Blueprint row"), ContainsObjectiveText(Widget, TEXT("Location: Engine room")));
+			TestFalse(TEXT("Populated view hides authored fallback"), ContainsObjectiveText(Widget, TEXT("No objectives")));
+			auto* List = CastChecked<UPanelWidget>(Widget->GetWidgetFromName(TEXT("ObjectiveList")));
+			TestEqual(TEXT("One row for each visible objective"), List->GetChildrenCount(), 1);
+			auto* Row = CastChecked<UUserWidget>(List->GetChildAt(0));
+			TestEqual(TEXT("Row derives directly from UserWidget"), Row->GetClass()->GetSuperClass(), UUserWidget::StaticClass());
+			Objective.Context = FText::FromString(TEXT("  \t"));
+			Objective.Location = FText::GetEmpty();
+			Objective.Text = FText::FromString(TEXT("Crew note read"));
+			Objective.State = EJournalObjectiveDisplayState::Completed;
+			Journal->SubmitObjectiveSnapshot({Objective});
+			TestFalse(TEXT("History policy hides completion by default"), ContainsObjectiveText(Widget, TEXT("Crew note read")));
+			Journal->SetHistoryVisibility(true, false);
+			TestTrue(TEXT("Policy update displays completed text"), ContainsObjectiveText(Widget, TEXT("Completed: Crew note read")));
+			Row = CastChecked<UUserWidget>(List->GetChildAt(0));
+			TestFalse(TEXT("Whitespace context is collapsed"), Row->GetWidgetFromName(TEXT("ContextText"))->IsVisible());
+			TestFalse(TEXT("Empty location is collapsed"), Row->GetWidgetFromName(TEXT("LocationText"))->IsVisible());
+			auto* Title = CastChecked<UTextBlock>(Row->GetWidgetFromName(TEXT("ObjectiveText")));
+			TestTrue(TEXT("Completed row uses authored completion color"), Title->GetColorAndOpacity().GetSpecifiedColor().Equals(FLinearColor(0.55f, 0.9f, 0.65f)));
+			Objective.State = EJournalObjectiveDisplayState::Failed;
+			Journal->SetHistoryVisibility(false, true);
+			Journal->SubmitObjectiveSnapshot({Objective});
+			TestTrue(TEXT("Failed state is formatted by Blueprint"), ContainsObjectiveText(Widget, TEXT("Failed: Crew note read")));
+			Row = CastChecked<UUserWidget>(List->GetChildAt(0));
+			Title = CastChecked<UTextBlock>(Row->GetWidgetFromName(TEXT("ObjectiveText")));
+			TestTrue(TEXT("Failed row uses authored failure color"), Title->GetColorAndOpacity().GetSpecifiedColor().Equals(FLinearColor(1.f, 0.6f, 0.55f)));
+			Journal->ClearAll();
+			TestEqual(TEXT("ClearAll removes old rows"), List->GetChildrenCount(), 0);
+			TestTrue(TEXT("ClearAll restores authored fallback"), ContainsObjectiveText(Widget, TEXT("No objectives")));
+		});
+
+		It(TEXT("should unbind its own update event on destruct and refresh once after reconstruction"), [this]()
+		{
+			if (!Widget) { return; }
+			TestEqual(TEXT("Construct binds exactly one listener"), Journal->OnObjectivesChanged.GetAllObjects().Num(), 1);
+			SlateWidget.Reset();
+			Widget->ReleaseSlateResources(true);
+			TestEqual(TEXT("Destruct removes its listener"), Journal->OnObjectivesChanged.GetAllObjects().Num(), 0);
+			FJournalObjectivePresentation Objective;
+			Objective.ObjectiveId = TEXT("WhileClosed");
+			Objective.Text = FText::FromString(TEXT("Latest owner snapshot"));
+			Journal->SubmitObjectiveSnapshot({Objective});
+			SlateWidget = Widget->TakeWidget();
+			TestEqual(TEXT("Reconstruct binds exactly one listener"), Journal->OnObjectivesChanged.GetAllObjects().Num(), 1);
+			TestTrue(TEXT("Reconstructed view uses current data"), ContainsObjectiveText(Widget, TEXT("Latest owner snapshot")));
+			auto* List = CastChecked<UPanelWidget>(Widget->GetWidgetFromName(TEXT("ObjectiveList")));
+			TestEqual(TEXT("Reconstruction creates no duplicate rows"), List->GetChildrenCount(), 1);
+		});
 	});
 }
 

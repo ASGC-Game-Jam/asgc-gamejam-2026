@@ -4,7 +4,7 @@
 	"package": "/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab",
 	"asset": "WBP_JournalObjectivesTab",
 	"assetClass": "WidgetBlueprint",
-	"parentClass": "AtlantisJournalObjectivesWidget",
+	"parentClass": "UserWidget",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
@@ -12,23 +12,298 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
-					"guid": "408400344195beeb18aea9b0898b8eed",
-					"class": "K2Node_Event",
-					"title": "Event Pre Construct",
-					"x": 0,
-					"y": 0,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"guid": "0d03e1c04a2e2dc72a2c079f285eac4f",
+					"class": "K2Node_CallFunction",
+					"title": "GetVisibleObjectives",
+					"x": 300,
+					"y": 1800,
+					"comment": null,
 					"pins": [
 						{
-							"id": "408400344195beeb18aea9b0898b8eed:o:OutputDelegate",
-							"name": "OutputDelegate",
+							"id": "0d03e1c04a2e2dc72a2c079f285eac4f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"ed632e9d4e0607ec9746478f279914f3:o:Journal"
+							]
+						},
+						{
+							"id": "0d03e1c04a2e2dc72a2c079f285eac4f:o:ReturnValue",
+							"name": "ReturnValue",
 							"direction": "output",
-							"type": "delegate",
+							"type": "struct:/Script/ProjectAtlantis.JournalObjectivePresentation[]",
+							"defaultValue": null,
+							"links": [
+								"8bef0e824d7a1beb97cb388153b46190:i:TargetArray",
+								"d9649e3b443b453e83d29ba2dd7372f9:i:Array"
+							]
+						}
+					]
+				},
+				{
+					"guid": "18dab7cc45d6ccc26da1a2a1b16ea073",
+					"class": "K2Node_Select",
+					"title": "Select",
+					"x": 650,
+					"y": 2200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "18dab7cc45d6ccc26da1a2a1b16ea073:i:Option 0",
+							"name": "Option 0",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Collapsed",
+							"links": []
+						},
+						{
+							"id": "18dab7cc45d6ccc26da1a2a1b16ea073:i:Option 1",
+							"name": "Option 1",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "HitTestInvisible",
+							"links": []
+						},
+						{
+							"id": "18dab7cc45d6ccc26da1a2a1b16ea073:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8bef0e824d7a1beb97cb388153b46190:o:ReturnValue"
+							]
+						},
+						{
+							"id": "18dab7cc45d6ccc26da1a2a1b16ea073:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": null,
+							"links": [
+								"6fb8035448431d51a29442b212092384:i:InVisibility"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3e409628485d9a3839e40c9153033388",
+					"class": "K2Node_CallFunction",
+					"title": "Clear Children",
+					"x": 400,
+					"y": 1400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3e409628485d9a3839e40c9153033388:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d3e701a243dc3f4692cb2c925a1a80f7:o:then"
+							]
+						},
+						{
+							"id": "3e409628485d9a3839e40c9153033388:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6fb8035448431d51a29442b212092384:i:execute"
+							]
+						},
+						{
+							"id": "3e409628485d9a3839e40c9153033388:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.PanelWidget",
+							"defaultValue": null,
+							"links": [
+								"c03f28844dea33b46fb708b5419f7bc0:o:ObjectiveList"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6b5a559143aca35d7d44c391e6b81b4f",
+					"class": "K2Node_CallFunction",
+					"title": "Get Owning Player",
+					"x": 1500,
+					"y": 1800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6b5a559143aca35d7d44c391e6b81b4f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
 							"defaultValue": null,
 							"links": []
 						},
 						{
-							"id": "408400344195beeb18aea9b0898b8eed:o:then",
+							"id": "6b5a559143aca35d7d44c391e6b81b4f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"8247a80e46ac8b0eb6dbdabe747646d6:i:OwningPlayer"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6ea36d27448adff873f1c49a3ef766f6",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectiveList",
+					"x": 2070,
+					"y": 1510,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6ea36d27448adff873f1c49a3ef766f6:o:ObjectiveList",
+							"name": "ObjectiveList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"ffa024c34f30e36b78007b9702eba1b5:i:self"
+							]
+						},
+						{
+							"id": "6ea36d27448adff873f1c49a3ef766f6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6f192a58407cc9aefa61ec932bcd3a76",
+					"class": "K2Node_AddDelegate",
+					"title": "Bind Event to On Objectives Changed",
+					"x": 800,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6f192a58407cc9aefa61ec932bcd3a76:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c4219603470dd4f24b6476b825b7adad:o:then"
+							]
+						},
+						{
+							"id": "6f192a58407cc9aefa61ec932bcd3a76:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"73e958ef45a732645ee1f4961753bfd9:i:execute"
+							]
+						},
+						{
+							"id": "6f192a58407cc9aefa61ec932bcd3a76:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"a1dbfada4c6344898472fda88a4ad3bd:o:Journal"
+							]
+						},
+						{
+							"id": "6f192a58407cc9aefa61ec932bcd3a76:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"d3e701a243dc3f4692cb2c925a1a80f7:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6fb8035448431d51a29442b212092384",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 900,
+					"y": 1400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6fb8035448431d51a29442b212092384:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3e409628485d9a3839e40c9153033388:o:then"
+							]
+						},
+						{
+							"id": "6fb8035448431d51a29442b212092384:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d9649e3b443b453e83d29ba2dd7372f9:i:Exec"
+							]
+						},
+						{
+							"id": "6fb8035448431d51a29442b212092384:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"f47df13f43d7cf188cc3fbb0ef21f8bb:o:EmptyState"
+							]
+						},
+						{
+							"id": "6fb8035448431d51a29442b212092384:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": null,
+							"links": [
+								"18dab7cc45d6ccc26da1a2a1b16ea073:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "73e958ef45a732645ee1f4961753bfd9",
+					"class": "K2Node_CallFunction",
+					"title": "RefreshObjectives",
+					"x": 1200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "73e958ef45a732645ee1f4961753bfd9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6f192a58407cc9aefa61ec932bcd3a76:o:then"
+							]
+						},
+						{
+							"id": "73e958ef45a732645ee1f4961753bfd9:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -36,25 +311,25 @@
 							"links": []
 						},
 						{
-							"id": "408400344195beeb18aea9b0898b8eed:o:IsDesignTime",
-							"name": "IsDesignTime",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
+							"id": "73e958ef45a732645ee1f4961753bfd9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
 							"links": []
 						}
 					]
 				},
 				{
-					"guid": "8767f7a848f59d4cb578a3b92a6f03c9",
+					"guid": "7b052f6e468c51fff5db10bae477cc27",
 					"class": "K2Node_Event",
 					"title": "Event Construct",
 					"x": 0,
-					"y": 208,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"y": 0,
+					"comment": null,
 					"pins": [
 						{
-							"id": "8767f7a848f59d4cb578a3b92a6f03c9:o:OutputDelegate",
+							"id": "7b052f6e468c51fff5db10bae477cc27:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -62,8 +337,394 @@
 							"links": []
 						},
 						{
-							"id": "8767f7a848f59d4cb578a3b92a6f03c9:o:then",
+							"id": "7b052f6e468c51fff5db10bae477cc27:o:then",
 							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c4219603470dd4f24b6476b825b7adad:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8247a80e46ac8b0eb6dbdabe747646d6",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 1800,
+					"y": 1400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8247a80e46ac8b0eb6dbdabe747646d6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d9649e3b443b453e83d29ba2dd7372f9:o:LoopBody"
+							]
+						},
+						{
+							"id": "8247a80e46ac8b0eb6dbdabe747646d6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ffa024c34f30e36b78007b9702eba1b5:i:execute"
+							]
+						},
+						{
+							"id": "8247a80e46ac8b0eb6dbdabe747646d6:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"links": []
+						},
+						{
+							"id": "8247a80e46ac8b0eb6dbdabe747646d6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectiveRow.WBP_JournalObjectiveRow_C",
+							"defaultValue": null,
+							"links": [
+								"ffa024c34f30e36b78007b9702eba1b5:i:Content"
+							]
+						},
+						{
+							"id": "8247a80e46ac8b0eb6dbdabe747646d6:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"6b5a559143aca35d7d44c391e6b81b4f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8247a80e46ac8b0eb6dbdabe747646d6:i:Objective",
+							"name": "Objective",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalObjectivePresentation",
+							"defaultValue": null,
+							"links": [
+								"d9649e3b443b453e83d29ba2dd7372f9:o:Array Element"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8bef0e824d7a1beb97cb388153b46190",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Is Empty",
+					"x": 600,
+					"y": 2000,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8bef0e824d7a1beb97cb388153b46190:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "8bef0e824d7a1beb97cb388153b46190:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalObjectivePresentation[]",
+							"defaultValue": null,
+							"links": [
+								"0d03e1c04a2e2dc72a2c079f285eac4f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8bef0e824d7a1beb97cb388153b46190:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"18dab7cc45d6ccc26da1a2a1b16ea073:i:Index"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9a3e57494bd25875ea49a8991d422f73",
+					"class": "K2Node_RemoveDelegate",
+					"title": "Unbind Event from On Objectives Changed",
+					"x": 800,
+					"y": 700,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a3e57494bd25875ea49a8991d422f73:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ebdb5be84f01ca4212eeb680310149fe:o:then"
+							]
+						},
+						{
+							"id": "9a3e57494bd25875ea49a8991d422f73:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9a3e57494bd25875ea49a8991d422f73:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"a1dbfada4c6344898472fda88a4ad3bd:o:Journal"
+							]
+						},
+						{
+							"id": "9a3e57494bd25875ea49a8991d422f73:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"d3e701a243dc3f4692cb2c925a1a80f7:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a1dbfada4c6344898472fda88a4ad3bd",
+					"class": "K2Node_VariableGet",
+					"title": "Get Journal",
+					"x": 400,
+					"y": 300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a1dbfada4c6344898472fda88a4ad3bd:o:Journal",
+							"name": "Journal",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"6f192a58407cc9aefa61ec932bcd3a76:i:self",
+								"9a3e57494bd25875ea49a8991d422f73:i:self"
+							]
+						},
+						{
+							"id": "a1dbfada4c6344898472fda88a4ad3bd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a8ec03d0447f18b9811ee99ecc53d619",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get AtlantisJournalSubsystem",
+					"x": 0,
+					"y": 300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a8ec03d0447f18b9811ee99ecc53d619:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c4219603470dd4f24b6476b825b7adad:i:Journal"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c03f28844dea33b46fb708b5419f7bc0",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectiveList",
+					"x": 170,
+					"y": 1510,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c03f28844dea33b46fb708b5419f7bc0:o:ObjectiveList",
+							"name": "ObjectiveList",
+							"direction": "output",
+							"type": "object:/Script/UMG.VerticalBox",
+							"defaultValue": null,
+							"links": [
+								"3e409628485d9a3839e40c9153033388:i:self"
+							]
+						},
+						{
+							"id": "c03f28844dea33b46fb708b5419f7bc0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c4219603470dd4f24b6476b825b7adad",
+					"class": "K2Node_VariableSet",
+					"title": "Set Journal",
+					"x": 400,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c4219603470dd4f24b6476b825b7adad:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7b052f6e468c51fff5db10bae477cc27:o:then"
+							]
+						},
+						{
+							"id": "c4219603470dd4f24b6476b825b7adad:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6f192a58407cc9aefa61ec932bcd3a76:i:execute"
+							]
+						},
+						{
+							"id": "c4219603470dd4f24b6476b825b7adad:i:Journal",
+							"name": "Journal",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"a8ec03d0447f18b9811ee99ecc53d619:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c4219603470dd4f24b6476b825b7adad:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c4219603470dd4f24b6476b825b7adad:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d3e701a243dc3f4692cb2c925a1a80f7",
+					"class": "K2Node_CustomEvent",
+					"title": "RefreshObjectives",
+					"x": 0,
+					"y": 1400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d3e701a243dc3f4692cb2c925a1a80f7:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"6f192a58407cc9aefa61ec932bcd3a76:i:Delegate",
+								"9a3e57494bd25875ea49a8991d422f73:i:Delegate"
+							]
+						},
+						{
+							"id": "d3e701a243dc3f4692cb2c925a1a80f7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3e409628485d9a3839e40c9153033388:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d9649e3b443b453e83d29ba2dd7372f9",
+					"class": "K2Node_MacroInstance",
+					"title": "For Each Loop",
+					"x": 1400,
+					"y": 1400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d9649e3b443b453e83d29ba2dd7372f9:i:Exec",
+							"name": "Exec",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6fb8035448431d51a29442b212092384:o:then"
+							]
+						},
+						{
+							"id": "d9649e3b443b453e83d29ba2dd7372f9:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.JournalObjectivePresentation[]",
+							"defaultValue": null,
+							"links": [
+								"0d03e1c04a2e2dc72a2c079f285eac4f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d9649e3b443b453e83d29ba2dd7372f9:o:LoopBody",
+							"name": "LoopBody",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8247a80e46ac8b0eb6dbdabe747646d6:i:execute"
+							]
+						},
+						{
+							"id": "d9649e3b443b453e83d29ba2dd7372f9:o:Array Element",
+							"name": "Array Element",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.JournalObjectivePresentation",
+							"defaultValue": null,
+							"links": [
+								"8247a80e46ac8b0eb6dbdabe747646d6:i:Objective"
+							]
+						},
+						{
+							"id": "d9649e3b443b453e83d29ba2dd7372f9:o:Array Index",
+							"name": "Array Index",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d9649e3b443b453e83d29ba2dd7372f9:o:Completed",
+							"name": "Completed",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
@@ -72,15 +733,15 @@
 					]
 				},
 				{
-					"guid": "dc53d6774d8b0bab53bf0a8e6fafa23d",
+					"guid": "ebdb5be84f01ca4212eeb680310149fe",
 					"class": "K2Node_Event",
-					"title": "Event Tick",
+					"title": "Event Destruct",
 					"x": 0,
-					"y": 416,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"y": 700,
+					"comment": null,
 					"pins": [
 						{
-							"id": "dc53d6774d8b0bab53bf0a8e6fafa23d:o:OutputDelegate",
+							"id": "ebdb5be84f01ca4212eeb680310149fe:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -88,7 +749,93 @@
 							"links": []
 						},
 						{
-							"id": "dc53d6774d8b0bab53bf0a8e6fafa23d:o:then",
+							"id": "ebdb5be84f01ca4212eeb680310149fe:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9a3e57494bd25875ea49a8991d422f73:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ed632e9d4e0607ec9746478f279914f3",
+					"class": "K2Node_VariableGet",
+					"title": "Get Journal",
+					"x": 0,
+					"y": 1800,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ed632e9d4e0607ec9746478f279914f3:o:Journal",
+							"name": "Journal",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+							"defaultValue": null,
+							"links": [
+								"0d03e1c04a2e2dc72a2c079f285eac4f:i:self"
+							]
+						},
+						{
+							"id": "ed632e9d4e0607ec9746478f279914f3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f47df13f43d7cf188cc3fbb0ef21f8bb",
+					"class": "K2Node_VariableGet",
+					"title": "Get EmptyState",
+					"x": 670,
+					"y": 1510,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f47df13f43d7cf188cc3fbb0ef21f8bb:o:EmptyState",
+							"name": "EmptyState",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"6fb8035448431d51a29442b212092384:i:self"
+							]
+						},
+						{
+							"id": "f47df13f43d7cf188cc3fbb0ef21f8bb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_JournalObjectivesTab.WBP_JournalObjectivesTab_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ffa024c34f30e36b78007b9702eba1b5",
+					"class": "K2Node_CallFunction",
+					"title": "Add Child to Vertical Box",
+					"x": 2300,
+					"y": 1400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ffa024c34f30e36b78007b9702eba1b5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8247a80e46ac8b0eb6dbdabe747646d6:o:then"
+							]
+						},
+						{
+							"id": "ffa024c34f30e36b78007b9702eba1b5:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -96,19 +843,31 @@
 							"links": []
 						},
 						{
-							"id": "dc53d6774d8b0bab53bf0a8e6fafa23d:o:MyGeometry",
-							"name": "MyGeometry",
-							"direction": "output",
-							"type": "struct:/Script/SlateCore.Geometry",
+							"id": "ffa024c34f30e36b78007b9702eba1b5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.VerticalBox",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"6ea36d27448adff873f1c49a3ef766f6:o:ObjectiveList"
+							]
 						},
 						{
-							"id": "dc53d6774d8b0bab53bf0a8e6fafa23d:o:InDeltaTime",
-							"name": "InDeltaTime",
+							"id": "ffa024c34f30e36b78007b9702eba1b5:i:Content",
+							"name": "Content",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"8247a80e46ac8b0eb6dbdabe747646d6:o:ReturnValue"
+							]
+						},
+						{
+							"id": "ffa024c34f30e36b78007b9702eba1b5:o:ReturnValue",
+							"name": "ReturnValue",
 							"direction": "output",
-							"type": "real:float",
-							"defaultValue": "0.0",
+							"type": "object:/Script/UMG.VerticalBoxSlot",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -121,6 +880,13 @@
 	{
 		"variables":
 		{
+			"Journal":
+			{
+				"type": "object:/Script/ProjectAtlantis.AtlantisJournalSubsystem",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
 		},
 		"components":
 		{
@@ -129,6 +895,7 @@
 		{
 			"ObjectiveList": null,
 			"EmptyState": null,
+			"Journal": null,
 			"ColorAndOpacity":
 			{
 				"R": 1,
