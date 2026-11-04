@@ -26,4 +26,5 @@ struct FAtlantisAudioSubsystemTestAccess
 	static void StopTracking(UAtlantisAudioSubsystem* Subsystem) { Subsystem->StopTrackingWorld(); }
 	static float PlayerState(const UAtlantisAudioSubsystem* Subsystem) { return Subsystem->CurrentPlayerState; }
 	static float Tension(const UAtlantisAudioSubsystem* Subsystem) { return Subsystem->CurrentTension; }
+	static void StartTracking(UAtlantisAudioSubsystem* Subsystem, UWorld* World) { Subsystem->HandlePostWorldInitialization(World, UWorld::InitializationValues()); }
 };

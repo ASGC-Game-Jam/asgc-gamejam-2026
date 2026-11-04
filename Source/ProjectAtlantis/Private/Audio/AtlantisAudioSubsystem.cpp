@@ -87,6 +87,19 @@ void UAtlantisAudioSubsystem::HandlePostWorldInitialization(UWorld* World, const
 
 	// Hook into the global Cleanup delegate to track when this world winds down
 	WorldCleanupHandle = FWorldDelegates::OnWorldCleanup.AddUObject(this, &UAtlantisAudioSubsystem::HandleWorldCleanup);
+
+	// Subscribe before any actor's BeginPlay runs, because the router drops facts that have no listener.
+	if (bIsActive)
+	{
+		AxisMapping = UAtlantisAudioDeveloperSettings::GetMusicAxisMapping();
+		if (!AxisMapping)
+		{
+			UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No Music Axis Mapping is set. Assign one in Project Settings > Atlantis Audio Settings. Music won't react to gameplay."));
+		}
+
+		SubscribeToFacts();
+	}
+
 }
 
 void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
@@ -109,14 +122,6 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 	}
 
 	UE_LOG(LogAtlantisAudioSubsystem, Log, TEXT("World [%s] Begin Play active. Instantiating speakers and reading audio settings..."), *TrackedWorld->GetName());
-
-	AxisMapping = UAtlantisAudioDeveloperSettings::GetMusicAxisMapping();
-	if (!AxisMapping)
-	{
-		UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No Music Axis Mapping is set. Assign one in Project Settings > Atlantis Audio Settings. Music won't react to gameplay."));
-	}
-
-	SubscribeToFacts();
 
 	USoundBase* MusicAsset = Cast<USoundBase>(UAtlantisAudioDeveloperSettings::GetMusicMetaSoundSource());
 	if (!MusicAsset)

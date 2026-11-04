@@ -12,6 +12,10 @@
 #include "StructUtils/InstancedStruct.h"
 #include "Tests/AtlantisAudioTestAccess.h"
 #include "UObject/StrongObjectPtr.h"
+#include "Audio/AtlantisAudioFactTags.h"
+#include "Audio/PubSubSystem/ASGC_DataRouterSubsystem.h"
+#include "Engine/World.h"
+
 
 namespace
 {
@@ -159,6 +163,29 @@ void FAtlantisAudioMusicAxesSpec::Define()
 
 		ExpectAxes(0.5f, 0.3f);
 	});
+
+	It(TEXT("should hear facts sent before the world begins play"), [this]()
+	{
+		UWorld* World = UWorld::CreateWorld(EWorldType::Game, false);
+		World->SetGameInstance(GameInstance.Get());
+
+		FAtlantisAudioSubsystemTestAccess::StartTracking(Subsystem.Get(), World);
+
+		// StartTracking loads the real data asset, so swap the test sheet back in.
+		FAtlantisAudioSubsystemTestAccess::SetMapping(Subsystem.Get(), Mapping.Get());
+		AddRule(TAG_AudioFact_Stealth_Hiding, EAtlantisMusicAxis::Tension, 0.3f);
+
+		// World BeginPlay never fired, so this is the timing of a fact sent from an actor's BeginPlay.
+		FAtlantisAudioBoolPayload Data;
+		Data.bValue = true;
+		World->GetSubsystem<UASGC_DataRouterSubsystem>()->BroadcastFact(TAG_AudioFact_Stealth_Hiding, FInstancedStruct::Make(Data));
+
+		ExpectAxes(0.5f, 0.6f);
+
+		FAtlantisAudioSubsystemTestAccess::StopTracking(Subsystem.Get());
+		World->DestroyWorld(false);
+	});
+
 }
 
 #endif
