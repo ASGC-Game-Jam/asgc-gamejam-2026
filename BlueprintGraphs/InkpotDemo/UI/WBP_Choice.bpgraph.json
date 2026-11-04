@@ -1,0 +1,922 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/InkpotDemo/UI/WBP_Choice",
+	"asset": "WBP_Choice",
+	"assetClass": "WidgetBlueprint",
+	"parentClass": "InkpotDemoListChoice",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "009e698644ffd2e4c56eafa094733dad",
+					"class": "K2Node_VariableGet",
+					"title": "Get DisplayText",
+					"x": 272,
+					"y": -480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "009e698644ffd2e4c56eafa094733dad:o:DisplayText",
+							"name": "DisplayText",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"300558d34ba3fe03b7064d97a86237d6:i:self"
+							]
+						},
+						{
+							"id": "009e698644ffd2e4c56eafa094733dad:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Choice.WBP_Choice_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "00cb013b4d401765903574a09dba01fb",
+					"class": "K2Node_Event",
+					"title": "Event On Mouse Leave",
+					"x": 0,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "00cb013b4d401765903574a09dba01fb:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "00cb013b4d401765903574a09dba01fb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a03f0b704edfffdfc588af91087c5f58:i:execute"
+							]
+						},
+						{
+							"id": "00cb013b4d401765903574a09dba01fb:o:MouseEvent",
+							"name": "MouseEvent",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.PointerEvent",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1b46b00447ee06a4d6c1dabaf7e32665",
+					"class": "K2Node_Event",
+					"title": "Event On Item Selection Changed",
+					"x": 32,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1b46b00447ee06a4d6c1dabaf7e32665:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1b46b00447ee06a4d6c1dabaf7e32665:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5679ac5141fbbfd7ab74779a53593fc5:i:execute"
+							]
+						},
+						{
+							"id": "1b46b00447ee06a4d6c1dabaf7e32665:o:bIsSelected",
+							"name": "bIsSelected",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"5679ac5141fbbfd7ab74779a53593fc5:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1e8ebb4043ece1915afcb398ad776008",
+					"class": "K2Node_Event",
+					"title": "Event OnTextUpdate",
+					"x": 16,
+					"y": -672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1e8ebb4043ece1915afcb398ad776008:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1e8ebb4043ece1915afcb398ad776008:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"300558d34ba3fe03b7064d97a86237d6:i:execute"
+							]
+						},
+						{
+							"id": "1e8ebb4043ece1915afcb398ad776008:o:InText",
+							"name": "InText",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"300558d34ba3fe03b7064d97a86237d6:i:InText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2a416ad246adeb277bcfd0bca189e1d1",
+					"class": "K2Node_VariableGet",
+					"title": "Get ColourIdle ",
+					"x": 928,
+					"y": 361,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2a416ad246adeb277bcfd0bca189e1d1:o:ColourIdle ",
+							"name": "ColourIdle ",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"a03f0b704edfffdfc588af91087c5f58:i:InBrushColor"
+							]
+						},
+						{
+							"id": "2a416ad246adeb277bcfd0bca189e1d1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Choice.WBP_Choice_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "300558d34ba3fe03b7064d97a86237d6",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Text)",
+					"x": 448,
+					"y": -688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "300558d34ba3fe03b7064d97a86237d6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1e8ebb4043ece1915afcb398ad776008:o:then"
+							]
+						},
+						{
+							"id": "300558d34ba3fe03b7064d97a86237d6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "300558d34ba3fe03b7064d97a86237d6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"009e698644ffd2e4c56eafa094733dad:o:DisplayText"
+							]
+						},
+						{
+							"id": "300558d34ba3fe03b7064d97a86237d6:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"1e8ebb4043ece1915afcb398ad776008:o:InText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3318e3d0445a0407af8d31ab39776012",
+					"class": "K2Node_VariableGet",
+					"title": "Get DisplayBorder",
+					"x": 736,
+					"y": 736,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3318e3d0445a0407af8d31ab39776012:o:DisplayBorder",
+							"name": "DisplayBorder",
+							"direction": "output",
+							"type": "object:/Script/UMG.Border",
+							"defaultValue": null,
+							"links": [
+								"5e7d3cd843ec9882299304b21efca21a:i:self"
+							]
+						},
+						{
+							"id": "3318e3d0445a0407af8d31ab39776012:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Choice.WBP_Choice_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "390ca7704fa20474906a9493c350badd",
+					"class": "K2Node_VariableGet",
+					"title": "Get DisplayBorder",
+					"x": 816,
+					"y": -64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "390ca7704fa20474906a9493c350badd:o:DisplayBorder",
+							"name": "DisplayBorder",
+							"direction": "output",
+							"type": "object:/Script/UMG.Border",
+							"defaultValue": null,
+							"links": [
+								"af3056be4fff5aa15d308f9502d6059f:i:self"
+							]
+						},
+						{
+							"id": "390ca7704fa20474906a9493c350badd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Choice.WBP_Choice_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "46ae5bed43e4d5949b04e1a39740d902",
+					"class": "K2Node_VariableGet",
+					"title": "Get ColourHovered",
+					"x": 768,
+					"y": 816,
+					"comment": null,
+					"pins": [
+						{
+							"id": "46ae5bed43e4d5949b04e1a39740d902:o:ColourHovered",
+							"name": "ColourHovered",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"5e7d3cd843ec9882299304b21efca21a:i:InBrushColor"
+							]
+						},
+						{
+							"id": "46ae5bed43e4d5949b04e1a39740d902:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Choice.WBP_Choice_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5679ac5141fbbfd7ab74779a53593fc5",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 384,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5679ac5141fbbfd7ab74779a53593fc5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1b46b00447ee06a4d6c1dabaf7e32665:o:then"
+							]
+						},
+						{
+							"id": "5679ac5141fbbfd7ab74779a53593fc5:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"1b46b00447ee06a4d6c1dabaf7e32665:o:bIsSelected"
+							]
+						},
+						{
+							"id": "5679ac5141fbbfd7ab74779a53593fc5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"af3056be4fff5aa15d308f9502d6059f:i:execute"
+							]
+						},
+						{
+							"id": "5679ac5141fbbfd7ab74779a53593fc5:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a03f0b704edfffdfc588af91087c5f58:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5e7d3cd843ec9882299304b21efca21a",
+					"class": "K2Node_CallFunction",
+					"title": "Set Brush Color",
+					"x": 912,
+					"y": 624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5e7d3cd843ec9882299304b21efca21a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d1433b12491619ae758b14b7639769e6:o:else"
+							]
+						},
+						{
+							"id": "5e7d3cd843ec9882299304b21efca21a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5e7d3cd843ec9882299304b21efca21a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Border",
+							"defaultValue": null,
+							"links": [
+								"3318e3d0445a0407af8d31ab39776012:o:DisplayBorder"
+							]
+						},
+						{
+							"id": "5e7d3cd843ec9882299304b21efca21a:i:InBrushColor",
+							"name": "InBrushColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"46ae5bed43e4d5949b04e1a39740d902:o:ColourHovered"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6c18e57c48ed7d464cd22b94123fb986",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 0,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6c18e57c48ed7d464cd22b94123fb986:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6c18e57c48ed7d464cd22b94123fb986:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a03f0b704edfffdfc588af91087c5f58:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7c7dccbd4f0f2a090919558109bbf24d",
+					"class": "K2Node_VariableGet",
+					"title": "Get DisplayBorder",
+					"x": 912,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7c7dccbd4f0f2a090919558109bbf24d:o:DisplayBorder",
+							"name": "DisplayBorder",
+							"direction": "output",
+							"type": "object:/Script/UMG.Border",
+							"defaultValue": null,
+							"links": [
+								"a03f0b704edfffdfc588af91087c5f58:i:self"
+							]
+						},
+						{
+							"id": "7c7dccbd4f0f2a090919558109bbf24d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Choice.WBP_Choice_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a03f0b704edfffdfc588af91087c5f58",
+					"class": "K2Node_CallFunction",
+					"title": "Set Brush Color",
+					"x": 1088,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a03f0b704edfffdfc588af91087c5f58:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"00cb013b4d401765903574a09dba01fb:o:then",
+								"5679ac5141fbbfd7ab74779a53593fc5:o:else",
+								"6c18e57c48ed7d464cd22b94123fb986:o:then",
+								"a29680f44497ea0e026f14bdb9c916fa:o:then"
+							]
+						},
+						{
+							"id": "a03f0b704edfffdfc588af91087c5f58:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a03f0b704edfffdfc588af91087c5f58:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Border",
+							"defaultValue": null,
+							"links": [
+								"7c7dccbd4f0f2a090919558109bbf24d:o:DisplayBorder"
+							]
+						},
+						{
+							"id": "a03f0b704edfffdfc588af91087c5f58:i:InBrushColor",
+							"name": "InBrushColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"2a416ad246adeb277bcfd0bca189e1d1:o:ColourIdle "
+							]
+						}
+					]
+				},
+				{
+					"guid": "a29680f44497ea0e026f14bdb9c916fa",
+					"class": "K2Node_Event",
+					"title": "Event On Entry Released",
+					"x": 0,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a29680f44497ea0e026f14bdb9c916fa:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a29680f44497ea0e026f14bdb9c916fa:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a03f0b704edfffdfc588af91087c5f58:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "af3056be4fff5aa15d308f9502d6059f",
+					"class": "K2Node_CallFunction",
+					"title": "Set Brush Color",
+					"x": 1072,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "af3056be4fff5aa15d308f9502d6059f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5679ac5141fbbfd7ab74779a53593fc5:o:then",
+								"d1433b12491619ae758b14b7639769e6:o:then"
+							]
+						},
+						{
+							"id": "af3056be4fff5aa15d308f9502d6059f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "af3056be4fff5aa15d308f9502d6059f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Border",
+							"defaultValue": null,
+							"links": [
+								"390ca7704fa20474906a9493c350badd:o:DisplayBorder"
+							]
+						},
+						{
+							"id": "af3056be4fff5aa15d308f9502d6059f:i:InBrushColor",
+							"name": "InBrushColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"ed2c36b2475f7dd994494d9596205fc3:o:ColourHighlighted"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d1433b12491619ae758b14b7639769e6",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 528,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d1433b12491619ae758b14b7639769e6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d171b8e0490d56cb1b260491166ece42:o:then"
+							]
+						},
+						{
+							"id": "d1433b12491619ae758b14b7639769e6:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f49b844e44ae3d3a0c6d73bbb8066ff2:o:ReturnValue"
+							]
+						},
+						{
+							"id": "d1433b12491619ae758b14b7639769e6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"af3056be4fff5aa15d308f9502d6059f:i:execute"
+							]
+						},
+						{
+							"id": "d1433b12491619ae758b14b7639769e6:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5e7d3cd843ec9882299304b21efca21a:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d171b8e0490d56cb1b260491166ece42",
+					"class": "K2Node_Event",
+					"title": "Event On Mouse Enter",
+					"x": 0,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d171b8e0490d56cb1b260491166ece42:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d171b8e0490d56cb1b260491166ece42:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d1433b12491619ae758b14b7639769e6:i:execute"
+							]
+						},
+						{
+							"id": "d171b8e0490d56cb1b260491166ece42:o:MyGeometry",
+							"name": "MyGeometry",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.Geometry",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d171b8e0490d56cb1b260491166ece42:o:MouseEvent",
+							"name": "MouseEvent",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.PointerEvent",
+							"defaultValue": null,
+							"links": [
+								"f49b844e44ae3d3a0c6d73bbb8066ff2:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ed2c36b2475f7dd994494d9596205fc3",
+					"class": "K2Node_VariableGet",
+					"title": "Get ColourHighlighted",
+					"x": 816,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ed2c36b2475f7dd994494d9596205fc3:o:ColourHighlighted",
+							"name": "ColourHighlighted",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"af3056be4fff5aa15d308f9502d6059f:i:InBrushColor"
+							]
+						},
+						{
+							"id": "ed2c36b2475f7dd994494d9596205fc3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Choice.WBP_Choice_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f49b844e44ae3d3a0c6d73bbb8066ff2",
+					"class": "K2Node_CallFunction",
+					"title": "Is Mouse Button Down",
+					"x": 288,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f49b844e44ae3d3a0c6d73bbb8066ff2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetInputLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetInputLibrary",
+							"links": []
+						},
+						{
+							"id": "f49b844e44ae3d3a0c6d73bbb8066ff2:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.PointerEvent",
+							"defaultValue": null,
+							"links": [
+								"d171b8e0490d56cb1b260491166ece42:o:MouseEvent"
+							]
+						},
+						{
+							"id": "f49b844e44ae3d3a0c6d73bbb8066ff2:i:MouseButton",
+							"name": "MouseButton",
+							"direction": "input",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": "LeftMouseButton",
+							"links": []
+						},
+						{
+							"id": "f49b844e44ae3d3a0c6d73bbb8066ff2:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d1433b12491619ae758b14b7639769e6:i:Condition"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"ColourIdle ":
+			{
+				"type": "struct:/Script/CoreUObject.LinearColor",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"ColourHighlighted":
+			{
+				"type": "struct:/Script/CoreUObject.LinearColor",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"ColourHovered":
+			{
+				"type": "struct:/Script/CoreUObject.LinearColor",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"DisplayText": null,
+			"DisplayBorder": null,
+			"ColourIdle ":
+			{
+				"R": 0.25,
+				"G": 0.45000000000000001,
+				"B": 1,
+				"A": 0.29999999999999999
+			},
+			"ColourHighlighted":
+			{
+				"R": 0.25,
+				"G": 0.45000000000000001,
+				"B": 1,
+				"A": 0.75
+			},
+			"ColourHovered":
+			{
+				"R": 0.25,
+				"G": 0.45000000000000001,
+				"B": 1,
+				"A": 0.5
+			},
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
+}

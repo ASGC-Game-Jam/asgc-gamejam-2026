@@ -1,0 +1,4067 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/InkpotDemo/Maps/Demo/Demo",
+	"asset": "Demo",
+	"assetClass": "World",
+	"parentClass": "LevelScriptActor",
+	"blueprintType": "BPTYPE_LevelScript",
+	"graphs": [
+		{
+			"name": "My External BPFunction",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "64c7b70c43a3378de14f60945119d29c",
+					"class": "K2Node_CallFunction",
+					"title": "InkpotArrayValueAsList",
+					"x": 128,
+					"y": 464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "64c7b70c43a3378de14f60945119d29c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "64c7b70c43a3378de14f60945119d29c:i:Values",
+							"name": "Values",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue[]",
+							"defaultValue": null,
+							"links": [
+								"734cf1db47fc0f78d9bb61ba24d315fc:o:Values"
+							]
+						},
+						{
+							"id": "64c7b70c43a3378de14f60945119d29c:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "4",
+							"links": []
+						},
+						{
+							"id": "64c7b70c43a3378de14f60945119d29c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotList",
+							"defaultValue": null,
+							"links": [
+								"954e1b074977f793c4f4f7aef160f798:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "659ce55240a82aefeb21278e1d84f441",
+					"class": "K2Node_CallFunction",
+					"title": "InkpotArrayValueAsInt",
+					"x": 128,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "659ce55240a82aefeb21278e1d84f441:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "659ce55240a82aefeb21278e1d84f441:i:Values",
+							"name": "Values",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue[]",
+							"defaultValue": null,
+							"links": [
+								"734cf1db47fc0f78d9bb61ba24d315fc:o:Values"
+							]
+						},
+						{
+							"id": "659ce55240a82aefeb21278e1d84f441:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "659ce55240a82aefeb21278e1d84f441:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"6a753fd74079bdd3d0164c8eaae4d60c:i:InInt"
+							]
+						}
+					]
+				},
+				{
+					"guid": "69ada7a247eb0ea1e6d220ba0f076502",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "Append",
+					"x": 688,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"ffa8f87e4cc6e002ee4bcea7f363ab37:o:ReturnValue"
+							]
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "\r\n",
+							"links": []
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"c27eb57044b698b8f04644a8e6f5ecf8:i:InString"
+							]
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:C",
+							"name": "C",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"6a753fd74079bdd3d0164c8eaae4d60c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:D",
+							"name": "D",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "\r\n",
+							"links": []
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:E",
+							"name": "E",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"a112b9e44a5532b4617711a9e3bc0a0a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:F",
+							"name": "F",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "\r\n",
+							"links": []
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:G",
+							"name": "G",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"c3f40aaf44d7aa9a7b876cabe01e3cf3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:H",
+							"name": "H",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "\r\n",
+							"links": []
+						},
+						{
+							"id": "69ada7a247eb0ea1e6d220ba0f076502:i:I",
+							"name": "I",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"954e1b074977f793c4f4f7aef160f798:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6a753fd74079bdd3d0164c8eaae4d60c",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Integer)",
+					"x": 406,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6a753fd74079bdd3d0164c8eaae4d60c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "6a753fd74079bdd3d0164c8eaae4d60c:i:InInt",
+							"name": "InInt",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"659ce55240a82aefeb21278e1d84f441:o:ReturnValue"
+							]
+						},
+						{
+							"id": "6a753fd74079bdd3d0164c8eaae4d60c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"69ada7a247eb0ea1e6d220ba0f076502:i:C"
+							]
+						}
+					]
+				},
+				{
+					"guid": "734cf1db47fc0f78d9bb61ba24d315fc",
+					"class": "K2Node_FunctionEntry",
+					"title": "My External BPFunction",
+					"x": -192,
+					"y": -128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "734cf1db47fc0f78d9bb61ba24d315fc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c27eb57044b698b8f04644a8e6f5ecf8:i:execute"
+							]
+						},
+						{
+							"id": "734cf1db47fc0f78d9bb61ba24d315fc:o:Values",
+							"name": "Values",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotValue[]",
+							"defaultValue": null,
+							"links": [
+								"64c7b70c43a3378de14f60945119d29c:i:Values",
+								"659ce55240a82aefeb21278e1d84f441:i:Values",
+								"c3f40aaf44d7aa9a7b876cabe01e3cf3:i:Values",
+								"e4ec40bd416793d8bb0a80bd7786b7a4:i:Values",
+								"e78d55dc494694f969f79c9502276dfd:i:Values"
+							]
+						}
+					]
+				},
+				{
+					"guid": "954e1b074977f793c4f4f7aef160f798",
+					"class": "K2Node_CallFunction",
+					"title": "ToString",
+					"x": 384,
+					"y": 464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "954e1b074977f793c4f4f7aef160f798:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotListLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotListLibrary",
+							"links": []
+						},
+						{
+							"id": "954e1b074977f793c4f4f7aef160f798:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotList",
+							"defaultValue": null,
+							"links": [
+								"64c7b70c43a3378de14f60945119d29c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "954e1b074977f793c4f4f7aef160f798:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"69ada7a247eb0ea1e6d220ba0f076502:i:I"
+							]
+						},
+						{
+							"id": "954e1b074977f793c4f4f7aef160f798:i:bUseOrigin",
+							"name": "bUseOrigin",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a112b9e44a5532b4617711a9e3bc0a0a",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Float)",
+					"x": 406,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a112b9e44a5532b4617711a9e3bc0a0a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "a112b9e44a5532b4617711a9e3bc0a0a:i:InDouble",
+							"name": "InDouble",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"e78d55dc494694f969f79c9502276dfd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a112b9e44a5532b4617711a9e3bc0a0a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"69ada7a247eb0ea1e6d220ba0f076502:i:E"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ae9e98dc4b94003ec571549facc8532a",
+					"class": "K2Node_CallFunction",
+					"title": "MakeStringInkpotValue",
+					"x": 1264,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ae9e98dc4b94003ec571549facc8532a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "ae9e98dc4b94003ec571549facc8532a:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Returning from blueprints",
+							"links": []
+						},
+						{
+							"id": "ae9e98dc4b94003ec571549facc8532a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"d94f44104d6510ebe65d5a8bb4855f60:i:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c27eb57044b698b8f04644a8e6f5ecf8",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 1008,
+					"y": -128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"734cf1db47fc0f78d9bb61ba24d315fc:o:then"
+							]
+						},
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d94f44104d6510ebe65d5a8bb4855f60:i:execute"
+							]
+						},
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"69ada7a247eb0ea1e6d220ba0f076502:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "10.000000",
+							"links": []
+						},
+						{
+							"id": "c27eb57044b698b8f04644a8e6f5ecf8:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c3f40aaf44d7aa9a7b876cabe01e3cf3",
+					"class": "K2Node_CallFunction",
+					"title": "InkpotArrayValueAsString",
+					"x": 128,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3f40aaf44d7aa9a7b876cabe01e3cf3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "c3f40aaf44d7aa9a7b876cabe01e3cf3:i:Values",
+							"name": "Values",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue[]",
+							"defaultValue": null,
+							"links": [
+								"734cf1db47fc0f78d9bb61ba24d315fc:o:Values"
+							]
+						},
+						{
+							"id": "c3f40aaf44d7aa9a7b876cabe01e3cf3:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "3",
+							"links": []
+						},
+						{
+							"id": "c3f40aaf44d7aa9a7b876cabe01e3cf3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"69ada7a247eb0ea1e6d220ba0f076502:i:G"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d94f44104d6510ebe65d5a8bb4855f60",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 1648,
+					"y": -128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d94f44104d6510ebe65d5a8bb4855f60:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c27eb57044b698b8f04644a8e6f5ecf8:o:then"
+							]
+						},
+						{
+							"id": "d94f44104d6510ebe65d5a8bb4855f60:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"ae9e98dc4b94003ec571549facc8532a:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e4ec40bd416793d8bb0a80bd7786b7a4",
+					"class": "K2Node_CallFunction",
+					"title": "InkpotArrayValueAsBool",
+					"x": 128,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e4ec40bd416793d8bb0a80bd7786b7a4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "e4ec40bd416793d8bb0a80bd7786b7a4:i:Values",
+							"name": "Values",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue[]",
+							"defaultValue": null,
+							"links": [
+								"734cf1db47fc0f78d9bb61ba24d315fc:o:Values"
+							]
+						},
+						{
+							"id": "e4ec40bd416793d8bb0a80bd7786b7a4:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "e4ec40bd416793d8bb0a80bd7786b7a4:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"ffa8f87e4cc6e002ee4bcea7f363ab37:i:InBool"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e78d55dc494694f969f79c9502276dfd",
+					"class": "K2Node_CallFunction",
+					"title": "InkpotArrayValueAsFloat",
+					"x": 128,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e78d55dc494694f969f79c9502276dfd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "e78d55dc494694f969f79c9502276dfd:i:Values",
+							"name": "Values",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue[]",
+							"defaultValue": null,
+							"links": [
+								"734cf1db47fc0f78d9bb61ba24d315fc:o:Values"
+							]
+						},
+						{
+							"id": "e78d55dc494694f969f79c9502276dfd:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "2",
+							"links": []
+						},
+						{
+							"id": "e78d55dc494694f969f79c9502276dfd:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"a112b9e44a5532b4617711a9e3bc0a0a:i:InDouble"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ffa8f87e4cc6e002ee4bcea7f363ab37",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Boolean)",
+					"x": 406,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ffa8f87e4cc6e002ee4bcea7f363ab37:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "ffa8f87e4cc6e002ee4bcea7f363ab37:i:InBool",
+							"name": "InBool",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e4ec40bd416793d8bb0a80bd7786b7a4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "ffa8f87e4cc6e002ee4bcea7f363ab37:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"69ada7a247eb0ea1e6d220ba0f076502:i:A"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "02956140439821a9efa690af4e9d8ce9",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": -3,
+					"comment": null,
+					"pins": [
+						{
+							"id": "02956140439821a9efa690af4e9d8ce9:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "02956140439821a9efa690af4e9d8ce9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bda3959243847d397274789d8141035d:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "036b227142406cc6995cc39ae3369915",
+					"class": "K2Node_CallFunction",
+					"title": "BindExternalFunction",
+					"x": 1664,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "036b227142406cc6995cc39ae3369915:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"774b73ad4be8044c3debe28f4423647a:o:then"
+							]
+						},
+						{
+							"id": "036b227142406cc6995cc39ae3369915:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "036b227142406cc6995cc39ae3369915:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"506865a244b271543fe440ab6bd90958:o:Story"
+							]
+						},
+						{
+							"id": "036b227142406cc6995cc39ae3369915:i:FunctionName",
+							"name": "FunctionName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "MyExternalBPFunction",
+							"links": []
+						},
+						{
+							"id": "036b227142406cc6995cc39ae3369915:i:Function",
+							"name": "Function",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"5242b3304061a598cb520db82570ee88:o:OutputDelegate"
+							]
+						},
+						{
+							"id": "036b227142406cc6995cc39ae3369915:i:bLookAheadSafe",
+							"name": "bLookAheadSafe",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "05e607d24caf4126fe1617b721d39f44",
+					"class": "K2Node_CallFunction",
+					"title": "GetCurrentFlowName",
+					"x": 448,
+					"y": 3264,
+					"comment": null,
+					"pins": [
+						{
+							"id": "05e607d24caf4126fe1617b721d39f44:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"1ef6b67b49744a0ba9fc55a591871df2:o:Story"
+							]
+						},
+						{
+							"id": "05e607d24caf4126fe1617b721d39f44:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"695aae56499dd3c0525d5bb3e53d9af4:i:FlowName"
+							]
+						}
+					]
+				},
+				{
+					"guid": "08ce8b1b47423f2d85bf26beb4bf2626",
+					"class": "K2Node_CallFunction",
+					"title": "SwitchFlow",
+					"x": 384,
+					"y": 1280,
+					"comment": null,
+					"pins": [
+						{
+							"id": "08ce8b1b47423f2d85bf26beb4bf2626:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a09abb13458bf1666538d28a30c46f31:o:then"
+							]
+						},
+						{
+							"id": "08ce8b1b47423f2d85bf26beb4bf2626:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"362dc1484b88bbcc6b157688ae8e9697:i:execute"
+							]
+						},
+						{
+							"id": "08ce8b1b47423f2d85bf26beb4bf2626:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"d55b0e2744e05e05988557a588365055:o:Story"
+							]
+						},
+						{
+							"id": "08ce8b1b47423f2d85bf26beb4bf2626:i:FlowName",
+							"name": "FlowName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "ParmTest",
+							"links": []
+						},
+						{
+							"id": "08ce8b1b47423f2d85bf26beb4bf2626:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0a6102be4d136e22172508bef0e6797e",
+					"class": "K2Node_CallFunction",
+					"title": "SwitchFlowToPathGT",
+					"x": 512,
+					"y": 2624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0a6102be4d136e22172508bef0e6797e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"242c89294a9c37f7b7652c902592ca30:o:then",
+								"4705cfd74fe02752feb30e8616e58b99:o:then",
+								"66de1ff344739c2a01105a949b4dc42c:o:then",
+								"a8e08108410d3444b45ffd8a782012ea:o:then",
+								"c23b4bcc4b4bbc21b3901d88d2194ddc:o:then"
+							]
+						},
+						{
+							"id": "0a6102be4d136e22172508bef0e6797e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0a6102be4d136e22172508bef0e6797e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"d4b2e7354ab0770fe179f98c73d7543d:o:Story"
+							]
+						},
+						{
+							"id": "0a6102be4d136e22172508bef0e6797e:i:FlowName",
+							"name": "FlowName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Default",
+							"links": []
+						},
+						{
+							"id": "0a6102be4d136e22172508bef0e6797e:i:Path",
+							"name": "Path",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Ink.Path.Main\")",
+							"links": []
+						},
+						{
+							"id": "0a6102be4d136e22172508bef0e6797e:i:Restart",
+							"name": "Restart",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "0a6102be4d136e22172508bef0e6797e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1ef6b67b49744a0ba9fc55a591871df2",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 448,
+					"y": 3344,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1ef6b67b49744a0ba9fc55a591871df2:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"05e607d24caf4126fe1617b721d39f44:i:self",
+								"695aae56499dd3c0525d5bb3e53d9af4:i:self"
+							]
+						},
+						{
+							"id": "1ef6b67b49744a0ba9fc55a591871df2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "21b6b7704590ce91ebc780ad02dc4d7b",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Integer)",
+					"x": 192,
+					"y": 4176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "21b6b7704590ce91ebc780ad02dc4d7b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "21b6b7704590ce91ebc780ad02dc4d7b:i:InInt",
+							"name": "InInt",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"c37738d2405fc6ce0ddfe5b95682f96a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "21b6b7704590ce91ebc780ad02dc4d7b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"2392f9f949681a0bbcb73ba54ef0db58:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2392f9f949681a0bbcb73ba54ef0db58",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "Append",
+					"x": 192,
+					"y": 4064,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2392f9f949681a0bbcb73ba54ef0db58:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "2392f9f949681a0bbcb73ba54ef0db58:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Visited main",
+							"links": []
+						},
+						{
+							"id": "2392f9f949681a0bbcb73ba54ef0db58:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"21b6b7704590ce91ebc780ad02dc4d7b:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2392f9f949681a0bbcb73ba54ef0db58:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"89c7bfaf498d744d3aea88a7727717fe:i:InString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "242c89294a9c37f7b7652c902592ca30",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor End Overlap (TriggerBlueRef)",
+					"x": -16,
+					"y": 2640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "242c89294a9c37f7b7652c902592ca30:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "242c89294a9c37f7b7652c902592ca30:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0a6102be4d136e22172508bef0e6797e:i:execute"
+							]
+						},
+						{
+							"id": "242c89294a9c37f7b7652c902592ca30:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "242c89294a9c37f7b7652c902592ca30:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2517dd4049bfb2df7003728a926f9abb",
+					"class": "K2Node_CallFunction",
+					"title": "MakeBoolInkpotValue",
+					"x": 384,
+					"y": 1536,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2517dd4049bfb2df7003728a926f9abb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "2517dd4049bfb2df7003728a926f9abb:i:bValue",
+							"name": "bValue",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "2517dd4049bfb2df7003728a926f9abb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"5c41525d4d2cec749b26468913dc1cf5:i:[0]"
+							]
+						}
+					]
+				},
+				{
+					"guid": "288d686c45543e319efa24b424cca95f",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 992,
+					"y": 1680,
+					"comment": null,
+					"pins": [
+						{
+							"id": "288d686c45543e319efa24b424cca95f:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"362dc1484b88bbcc6b157688ae8e9697:i:self"
+							]
+						},
+						{
+							"id": "288d686c45543e319efa24b424cca95f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2af9f8c2453223cd64504e9d7cf802f3",
+					"class": "K2Node_CallFunction",
+					"title": "InkpotValueAsList",
+					"x": 1216,
+					"y": 592,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2af9f8c2453223cd64504e9d7cf802f3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "2af9f8c2453223cd64504e9d7cf802f3:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"d727561f4a993f72f2651ea51a3dfcaa:o:NewValue"
+							]
+						},
+						{
+							"id": "2af9f8c2453223cd64504e9d7cf802f3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotList",
+							"defaultValue": null,
+							"links": [
+								"981c87bf4ec11b1a66b3cdb0fb96794f:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3053454f4bb13c75dc4c3eae07372934",
+					"class": "K2Node_CallFunction",
+					"title": "MakeInkpotListFromGameplayTags",
+					"x": 384,
+					"y": 1904,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3053454f4bb13c75dc4c3eae07372934:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotListLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotListLibrary",
+							"links": []
+						},
+						{
+							"id": "3053454f4bb13c75dc4c3eae07372934:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3053454f4bb13c75dc4c3eae07372934:i:Tags",
+							"name": "Tags",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTagContainer",
+							"defaultValue": "(GameplayTags=((TagName=\"Ink.Origin.NephewNames.Duey\"),(TagName=\"Ink.Origin.NephewNames.Huey\"),(TagName=\"Ink.Origin.NephewNames.Louie\")))",
+							"links": []
+						},
+						{
+							"id": "3053454f4bb13c75dc4c3eae07372934:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotList",
+							"defaultValue": null,
+							"links": [
+								"5c41525d4d2cec749b26468913dc1cf5:i:[4]"
+							]
+						}
+					]
+				},
+				{
+					"guid": "315f3c774548ae6f4d639792c3074418",
+					"class": "K2Node_CallFunction",
+					"title": "SwitchFlowToPathGT",
+					"x": 384,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "315f3c774548ae6f4d639792c3074418:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"639d07fd410f7763063def9d62ec3e8c:o:then"
+							]
+						},
+						{
+							"id": "315f3c774548ae6f4d639792c3074418:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "315f3c774548ae6f4d639792c3074418:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"ec73762c470ddce0250782b2cf6ef3c8:o:Story"
+							]
+						},
+						{
+							"id": "315f3c774548ae6f4d639792c3074418:i:FlowName",
+							"name": "FlowName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "BlueStory",
+							"links": []
+						},
+						{
+							"id": "315f3c774548ae6f4d639792c3074418:i:Path",
+							"name": "Path",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Ink.Path.FlowsDemo.BabblingBlueBox\")",
+							"links": []
+						},
+						{
+							"id": "315f3c774548ae6f4d639792c3074418:i:Restart",
+							"name": "Restart",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "315f3c774548ae6f4d639792c3074418:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "32b36e7b40fd78dbc85aa8b5b6c54938",
+					"class": "K2Node_CallFunction",
+					"title": "SwitchFlowToPathGT",
+					"x": 384,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "32b36e7b40fd78dbc85aa8b5b6c54938:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ee7978844ca558a936043a8f6ba68589:o:then"
+							]
+						},
+						{
+							"id": "32b36e7b40fd78dbc85aa8b5b6c54938:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "32b36e7b40fd78dbc85aa8b5b6c54938:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"a41e71d54c44d9d63de4d4827be26aa5:o:Story"
+							]
+						},
+						{
+							"id": "32b36e7b40fd78dbc85aa8b5b6c54938:i:FlowName",
+							"name": "FlowName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "CubeStory",
+							"links": []
+						},
+						{
+							"id": "32b36e7b40fd78dbc85aa8b5b6c54938:i:Path",
+							"name": "Path",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Ink.Path.BigCubeEncounter\")",
+							"links": []
+						},
+						{
+							"id": "32b36e7b40fd78dbc85aa8b5b6c54938:i:Restart",
+							"name": "Restart",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "32b36e7b40fd78dbc85aa8b5b6c54938:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "362dc1484b88bbcc6b157688ae8e9697",
+					"class": "K2Node_CallFunction",
+					"title": "ChoosePathStringGT",
+					"x": 992,
+					"y": 1488,
+					"comment": null,
+					"pins": [
+						{
+							"id": "362dc1484b88bbcc6b157688ae8e9697:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"08ce8b1b47423f2d85bf26beb4bf2626:o:then"
+							]
+						},
+						{
+							"id": "362dc1484b88bbcc6b157688ae8e9697:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5a9b832047a5e103ace4ada00637391f:i:execute"
+							]
+						},
+						{
+							"id": "362dc1484b88bbcc6b157688ae8e9697:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"288d686c45543e319efa24b424cca95f:o:Story"
+							]
+						},
+						{
+							"id": "362dc1484b88bbcc6b157688ae8e9697:i:Path",
+							"name": "Path",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Ink.Path.ParameterPassingDemo\")",
+							"links": []
+						},
+						{
+							"id": "362dc1484b88bbcc6b157688ae8e9697:i:Values",
+							"name": "Values",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue[]",
+							"defaultValue": null,
+							"links": [
+								"5c41525d4d2cec749b26468913dc1cf5:o:Array"
+							]
+						}
+					]
+				},
+				{
+					"guid": "36a3e4c042f2aadd771069a8db108e2e",
+					"class": "K2Node_InputKey",
+					"title": "2",
+					"x": 16,
+					"y": 3920,
+					"comment": null,
+					"pins": [
+						{
+							"id": "36a3e4c042f2aadd771069a8db108e2e:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"89c7bfaf498d744d3aea88a7727717fe:i:execute"
+							]
+						},
+						{
+							"id": "36a3e4c042f2aadd771069a8db108e2e:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "36a3e4c042f2aadd771069a8db108e2e:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "374874e84e2efb178b4d6ca8b6e97b57",
+					"class": "K2Node_CallFunction",
+					"title": "SwitchFlowToPathGT",
+					"x": 448,
+					"y": 3504,
+					"comment": null,
+					"pins": [
+						{
+							"id": "374874e84e2efb178b4d6ca8b6e97b57:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b079a5a6401efc6a56c36a956b797888:o:then"
+							]
+						},
+						{
+							"id": "374874e84e2efb178b4d6ca8b6e97b57:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "374874e84e2efb178b4d6ca8b6e97b57:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"7ec049ce420bc8173b97e5a2b4e8191a:o:Story"
+							]
+						},
+						{
+							"id": "374874e84e2efb178b4d6ca8b6e97b57:i:FlowName",
+							"name": "FlowName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "FuncStoryFlow",
+							"links": []
+						},
+						{
+							"id": "374874e84e2efb178b4d6ca8b6e97b57:i:Path",
+							"name": "Path",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Ink.Path.ExternalFunctionDemo\")",
+							"links": []
+						},
+						{
+							"id": "374874e84e2efb178b4d6ca8b6e97b57:i:Restart",
+							"name": "Restart",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "374874e84e2efb178b4d6ca8b6e97b57:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4705cfd74fe02752feb30e8616e58b99",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor End Overlap (TriggerExternalFunctionRef)",
+					"x": -16,
+					"y": 2928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4705cfd74fe02752feb30e8616e58b99:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4705cfd74fe02752feb30e8616e58b99:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0a6102be4d136e22172508bef0e6797e:i:execute"
+							]
+						},
+						{
+							"id": "4705cfd74fe02752feb30e8616e58b99:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4705cfd74fe02752feb30e8616e58b99:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "506865a244b271543fe440ab6bd90958",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 1664,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "506865a244b271543fe440ab6bd90958:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"036b227142406cc6995cc39ae3369915:i:self"
+							]
+						},
+						{
+							"id": "506865a244b271543fe440ab6bd90958:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "516370ff4c68478c07825d9af463e0d8",
+					"class": "K2Node_CallFunction",
+					"title": "BeginStory",
+					"x": 448,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "516370ff4c68478c07825d9af463e0d8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bda3959243847d397274789d8141035d:o:then"
+							]
+						},
+						{
+							"id": "516370ff4c68478c07825d9af463e0d8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"af869cc54827ba4a4b4a88afa58fb1bc:i:execute"
+							]
+						},
+						{
+							"id": "516370ff4c68478c07825d9af463e0d8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"def86b0d448ceae2e05081bf00afa3de:o:ReturnValue"
+							]
+						},
+						{
+							"id": "516370ff4c68478c07825d9af463e0d8:i:InkpotStoryAsset",
+							"name": "InkpotStoryAsset",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStoryAsset",
+							"defaultValue": "/Game/InkpotDemo/Stories/Demo.Demo",
+							"links": []
+						},
+						{
+							"id": "516370ff4c68478c07825d9af463e0d8:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"af869cc54827ba4a4b4a88afa58fb1bc:i:Story"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5242b3304061a598cb520db82570ee88",
+					"class": "K2Node_CreateDelegate",
+					"title": "Create Event",
+					"x": 1664,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5242b3304061a598cb520db82570ee88:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5242b3304061a598cb520db82570ee88:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"036b227142406cc6995cc39ae3369915:i:Function"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5a8378a0471c374be23e219a4fc42adb",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 1360,
+					"y": 1600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5a8378a0471c374be23e219a4fc42adb:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"5a9b832047a5e103ace4ada00637391f:i:self"
+							]
+						},
+						{
+							"id": "5a8378a0471c374be23e219a4fc42adb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5a9b832047a5e103ace4ada00637391f",
+					"class": "K2Node_CallFunction",
+					"title": "Continue",
+					"x": 1360,
+					"y": 1488,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5a9b832047a5e103ace4ada00637391f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"362dc1484b88bbcc6b157688ae8e9697:o:then"
+							]
+						},
+						{
+							"id": "5a9b832047a5e103ace4ada00637391f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5a9b832047a5e103ace4ada00637391f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"5a8378a0471c374be23e219a4fc42adb:o:Story"
+							]
+						},
+						{
+							"id": "5a9b832047a5e103ace4ada00637391f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5c41525d4d2cec749b26468913dc1cf5",
+					"class": "K2Node_MakeArray",
+					"title": "Make Array",
+					"x": 752,
+					"y": 1616,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5c41525d4d2cec749b26468913dc1cf5:o:Array",
+							"name": "Array",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotValue[]",
+							"defaultValue": null,
+							"links": [
+								"362dc1484b88bbcc6b157688ae8e9697:i:Values"
+							]
+						},
+						{
+							"id": "5c41525d4d2cec749b26468913dc1cf5:i:[0]",
+							"name": "[0]",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"2517dd4049bfb2df7003728a926f9abb:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5c41525d4d2cec749b26468913dc1cf5:i:[1]",
+							"name": "[1]",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"6da3d094439a88e417f7039dc97422b7:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5c41525d4d2cec749b26468913dc1cf5:i:[2]",
+							"name": "[2]",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"a1216c0144c9d2abbcc87e808bbec347:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5c41525d4d2cec749b26468913dc1cf5:i:[3]",
+							"name": "[3]",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"ec0d81fd48aadecf5b57159463b69992:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5c41525d4d2cec749b26468913dc1cf5:i:[4]",
+							"name": "[4]",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"3053454f4bb13c75dc4c3eae07372934:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "639d07fd410f7763063def9d62ec3e8c",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor Begin Overlap (TriggerBlueRef)",
+					"x": 0,
+					"y": 944,
+					"comment": null,
+					"pins": [
+						{
+							"id": "639d07fd410f7763063def9d62ec3e8c:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "639d07fd410f7763063def9d62ec3e8c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"315f3c774548ae6f4d639792c3074418:i:execute"
+							]
+						},
+						{
+							"id": "639d07fd410f7763063def9d62ec3e8c:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "639d07fd410f7763063def9d62ec3e8c:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "66de1ff344739c2a01105a949b4dc42c",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor End Overlap (TriggerParmRef)",
+					"x": -16,
+					"y": 2784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "66de1ff344739c2a01105a949b4dc42c:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "66de1ff344739c2a01105a949b4dc42c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0a6102be4d136e22172508bef0e6797e:i:execute"
+							]
+						},
+						{
+							"id": "66de1ff344739c2a01105a949b4dc42c:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "66de1ff344739c2a01105a949b4dc42c:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "695aae56499dd3c0525d5bb3e53d9af4",
+					"class": "K2Node_CallFunction",
+					"title": "RemoveFlow",
+					"x": 448,
+					"y": 3120,
+					"comment": null,
+					"pins": [
+						{
+							"id": "695aae56499dd3c0525d5bb3e53d9af4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a63431b648aa012c3a44cd81cafc0e7b:o:Pressed"
+							]
+						},
+						{
+							"id": "695aae56499dd3c0525d5bb3e53d9af4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "695aae56499dd3c0525d5bb3e53d9af4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"1ef6b67b49744a0ba9fc55a591871df2:o:Story"
+							]
+						},
+						{
+							"id": "695aae56499dd3c0525d5bb3e53d9af4:i:FlowName",
+							"name": "FlowName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"05e607d24caf4126fe1617b721d39f44:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6da3d094439a88e417f7039dc97422b7",
+					"class": "K2Node_CallFunction",
+					"title": "MakeIntInkpotValue",
+					"x": 384,
+					"y": 1616,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6da3d094439a88e417f7039dc97422b7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "6da3d094439a88e417f7039dc97422b7:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "42",
+							"links": []
+						},
+						{
+							"id": "6da3d094439a88e417f7039dc97422b7:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"5c41525d4d2cec749b26468913dc1cf5:i:[1]"
+							]
+						}
+					]
+				},
+				{
+					"guid": "774b73ad4be8044c3debe28f4423647a",
+					"class": "K2Node_CallFunction",
+					"title": "SetOnVariableChangeGT",
+					"x": 1216,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "774b73ad4be8044c3debe28f4423647a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"af869cc54827ba4a4b4a88afa58fb1bc:o:then"
+							]
+						},
+						{
+							"id": "774b73ad4be8044c3debe28f4423647a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"036b227142406cc6995cc39ae3369915:i:execute"
+							]
+						},
+						{
+							"id": "774b73ad4be8044c3debe28f4423647a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"af869cc54827ba4a4b4a88afa58fb1bc:o:Output_Get"
+							]
+						},
+						{
+							"id": "774b73ad4be8044c3debe28f4423647a:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"d727561f4a993f72f2651ea51a3dfcaa:o:OutputDelegate"
+							]
+						},
+						{
+							"id": "774b73ad4be8044c3debe28f4423647a:i:Variable",
+							"name": "Variable",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Ink.Variable.CubeColour\")",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7ec049ce420bc8173b97e5a2b4e8191a",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 448,
+					"y": 3744,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7ec049ce420bc8173b97e5a2b4e8191a:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"374874e84e2efb178b4d6ca8b6e97b57:i:self"
+							]
+						},
+						{
+							"id": "7ec049ce420bc8173b97e5a2b4e8191a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "82c40b414291c64a0311a08ec93dab92",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor Begin Overlap (TriggerRedRef)",
+					"x": 0,
+					"y": 624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "82c40b414291c64a0311a08ec93dab92:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "82c40b414291c64a0311a08ec93dab92:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c0b5d98a4f945e305b4fbbb8f30f5bb7:i:execute"
+							]
+						},
+						{
+							"id": "82c40b414291c64a0311a08ec93dab92:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "82c40b414291c64a0311a08ec93dab92:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "89b977314d6a109cff2b2082ff7ae6da",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 384,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "89b977314d6a109cff2b2082ff7ae6da:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"c0b5d98a4f945e305b4fbbb8f30f5bb7:i:self"
+							]
+						},
+						{
+							"id": "89b977314d6a109cff2b2082ff7ae6da:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "89c7bfaf498d744d3aea88a7727717fe",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 192,
+					"y": 3920,
+					"comment": null,
+					"pins": [
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"36a3e4c042f2aadd771069a8db108e2e:o:Pressed"
+							]
+						},
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"2392f9f949681a0bbcb73ba54ef0db58:o:ReturnValue"
+							]
+						},
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "89c7bfaf498d744d3aea88a7727717fe:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8d2bc8c54d5192c44ccb8f8ea21ef630",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "Append",
+					"x": 1216,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8d2bc8c54d5192c44ccb8f8ea21ef630:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "8d2bc8c54d5192c44ccb8f8ea21ef630:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"d727561f4a993f72f2651ea51a3dfcaa:o:Variable"
+							]
+						},
+						{
+							"id": "8d2bc8c54d5192c44ccb8f8ea21ef630:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": " = ",
+							"links": []
+						},
+						{
+							"id": "8d2bc8c54d5192c44ccb8f8ea21ef630:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"95d93e244f79c2f55836d88890f2552c:i:InString"
+							]
+						},
+						{
+							"id": "8d2bc8c54d5192c44ccb8f8ea21ef630:i:C",
+							"name": "C",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"981c87bf4ec11b1a66b3cdb0fb96794f:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "95d93e244f79c2f55836d88890f2552c",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 1216,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d727561f4a993f72f2651ea51a3dfcaa:o:then"
+							]
+						},
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"8d2bc8c54d5192c44ccb8f8ea21ef630:o:ReturnValue"
+							]
+						},
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "95d93e244f79c2f55836d88890f2552c:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "981c87bf4ec11b1a66b3cdb0fb96794f",
+					"class": "K2Node_CallFunction",
+					"title": "ToString",
+					"x": 1216,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "981c87bf4ec11b1a66b3cdb0fb96794f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotListLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotListLibrary",
+							"links": []
+						},
+						{
+							"id": "981c87bf4ec11b1a66b3cdb0fb96794f:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotList",
+							"defaultValue": null,
+							"links": [
+								"2af9f8c2453223cd64504e9d7cf802f3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "981c87bf4ec11b1a66b3cdb0fb96794f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"8d2bc8c54d5192c44ccb8f8ea21ef630:i:C"
+							]
+						},
+						{
+							"id": "981c87bf4ec11b1a66b3cdb0fb96794f:i:bUseOrigin",
+							"name": "bUseOrigin",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a09abb13458bf1666538d28a30c46f31",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor Begin Overlap (TriggerParmRef)",
+					"x": 0,
+					"y": 1296,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a09abb13458bf1666538d28a30c46f31:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a09abb13458bf1666538d28a30c46f31:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"08ce8b1b47423f2d85bf26beb4bf2626:i:execute"
+							]
+						},
+						{
+							"id": "a09abb13458bf1666538d28a30c46f31:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a09abb13458bf1666538d28a30c46f31:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a1216c0144c9d2abbcc87e808bbec347",
+					"class": "K2Node_CallFunction",
+					"title": "MakeFloatInkpotValue",
+					"x": 384,
+					"y": 1696,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a1216c0144c9d2abbcc87e808bbec347:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "a1216c0144c9d2abbcc87e808bbec347:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "3.142000",
+							"links": []
+						},
+						{
+							"id": "a1216c0144c9d2abbcc87e808bbec347:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"5c41525d4d2cec749b26468913dc1cf5:i:[2]"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a41e71d54c44d9d63de4d4827be26aa5",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 384,
+					"y": 528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a41e71d54c44d9d63de4d4827be26aa5:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"32b36e7b40fd78dbc85aa8b5b6c54938:i:self"
+							]
+						},
+						{
+							"id": "a41e71d54c44d9d63de4d4827be26aa5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a63431b648aa012c3a44cd81cafc0e7b",
+					"class": "K2Node_InputKey",
+					"title": "1",
+					"x": -16,
+					"y": 3136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a63431b648aa012c3a44cd81cafc0e7b:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"695aae56499dd3c0525d5bb3e53d9af4:i:execute"
+							]
+						},
+						{
+							"id": "a63431b648aa012c3a44cd81cafc0e7b:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a63431b648aa012c3a44cd81cafc0e7b:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a8e08108410d3444b45ffd8a782012ea",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor End Overlap (TriggerRedRef)",
+					"x": -16,
+					"y": 2496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a8e08108410d3444b45ffd8a782012ea:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a8e08108410d3444b45ffd8a782012ea:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0a6102be4d136e22172508bef0e6797e:i:execute"
+							]
+						},
+						{
+							"id": "a8e08108410d3444b45ffd8a782012ea:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a8e08108410d3444b45ffd8a782012ea:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "af869cc54827ba4a4b4a88afa58fb1bc",
+					"class": "K2Node_VariableSet",
+					"title": "Set Story",
+					"x": 752,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "af869cc54827ba4a4b4a88afa58fb1bc:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"516370ff4c68478c07825d9af463e0d8:o:then"
+							]
+						},
+						{
+							"id": "af869cc54827ba4a4b4a88afa58fb1bc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"774b73ad4be8044c3debe28f4423647a:i:execute"
+							]
+						},
+						{
+							"id": "af869cc54827ba4a4b4a88afa58fb1bc:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"516370ff4c68478c07825d9af463e0d8:o:ReturnValue"
+							]
+						},
+						{
+							"id": "af869cc54827ba4a4b4a88afa58fb1bc:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"774b73ad4be8044c3debe28f4423647a:i:self"
+							]
+						},
+						{
+							"id": "af869cc54827ba4a4b4a88afa58fb1bc:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b079a5a6401efc6a56c36a956b797888",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor Begin Overlap (TriggerExternalFunctionRef)",
+					"x": -16,
+					"y": 3520,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b079a5a6401efc6a56c36a956b797888:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b079a5a6401efc6a56c36a956b797888:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"374874e84e2efb178b4d6ca8b6e97b57:i:execute"
+							]
+						},
+						{
+							"id": "b079a5a6401efc6a56c36a956b797888:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b079a5a6401efc6a56c36a956b797888:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bda3959243847d397274789d8141035d",
+					"class": "K2Node_CallFunction",
+					"title": "Delay Until Next Tick",
+					"x": 208,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bda3959243847d397274789d8141035d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"02956140439821a9efa690af4e9d8ce9:o:then"
+							]
+						},
+						{
+							"id": "bda3959243847d397274789d8141035d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"516370ff4c68478c07825d9af463e0d8:i:execute"
+							]
+						},
+						{
+							"id": "bda3959243847d397274789d8141035d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "bda3959243847d397274789d8141035d:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bda3959243847d397274789d8141035d:i:LatentInfo",
+							"name": "LatentInfo",
+							"direction": "input",
+							"type": "struct:/Script/Engine.LatentActionInfo",
+							"defaultValue": "(Linkage=-1,UUID=-1,ExecutionFunction=\"\",CallbackTarget=None)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c0b5d98a4f945e305b4fbbb8f30f5bb7",
+					"class": "K2Node_CallFunction",
+					"title": "SwitchFlowToPathGT",
+					"x": 384,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0b5d98a4f945e305b4fbbb8f30f5bb7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"82c40b414291c64a0311a08ec93dab92:o:then"
+							]
+						},
+						{
+							"id": "c0b5d98a4f945e305b4fbbb8f30f5bb7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c0b5d98a4f945e305b4fbbb8f30f5bb7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"89b977314d6a109cff2b2082ff7ae6da:o:Story"
+							]
+						},
+						{
+							"id": "c0b5d98a4f945e305b4fbbb8f30f5bb7:i:FlowName",
+							"name": "FlowName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "RedStory",
+							"links": []
+						},
+						{
+							"id": "c0b5d98a4f945e305b4fbbb8f30f5bb7:i:Path",
+							"name": "Path",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Ink.Path.FlowsDemo.RamblingRedRoundel\")",
+							"links": []
+						},
+						{
+							"id": "c0b5d98a4f945e305b4fbbb8f30f5bb7:i:Restart",
+							"name": "Restart",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "c0b5d98a4f945e305b4fbbb8f30f5bb7:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c23b4bcc4b4bbc21b3901d88d2194ddc",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor End Overlap (TriggerOneRef)",
+					"x": -16,
+					"y": 2352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c23b4bcc4b4bbc21b3901d88d2194ddc:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c23b4bcc4b4bbc21b3901d88d2194ddc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0a6102be4d136e22172508bef0e6797e:i:execute"
+							]
+						},
+						{
+							"id": "c23b4bcc4b4bbc21b3901d88d2194ddc:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c23b4bcc4b4bbc21b3901d88d2194ddc:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c37738d2405fc6ce0ddfe5b95682f96a",
+					"class": "K2Node_CallFunction",
+					"title": "VisitCountAtPathString",
+					"x": 192,
+					"y": 4240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c37738d2405fc6ce0ddfe5b95682f96a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"e3283cd14cf41615c17c7597378869d1:o:Story"
+							]
+						},
+						{
+							"id": "c37738d2405fc6ce0ddfe5b95682f96a:i:Path",
+							"name": "Path",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Main",
+							"links": []
+						},
+						{
+							"id": "c37738d2405fc6ce0ddfe5b95682f96a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"21b6b7704590ce91ebc780ad02dc4d7b:i:InInt"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d4b2e7354ab0770fe179f98c73d7543d",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 512,
+					"y": 2848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d4b2e7354ab0770fe179f98c73d7543d:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"0a6102be4d136e22172508bef0e6797e:i:self"
+							]
+						},
+						{
+							"id": "d4b2e7354ab0770fe179f98c73d7543d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d55b0e2744e05e05988557a588365055",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 384,
+					"y": 1440,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d55b0e2744e05e05988557a588365055:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"08ce8b1b47423f2d85bf26beb4bf2626:i:self"
+							]
+						},
+						{
+							"id": "d55b0e2744e05e05988557a588365055:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d727561f4a993f72f2651ea51a3dfcaa",
+					"class": "K2Node_CustomEvent",
+					"title": "CustomEvent",
+					"x": 992,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d727561f4a993f72f2651ea51a3dfcaa:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"774b73ad4be8044c3debe28f4423647a:i:Delegate"
+							]
+						},
+						{
+							"id": "d727561f4a993f72f2651ea51a3dfcaa:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"95d93e244f79c2f55836d88890f2552c:i:execute"
+							]
+						},
+						{
+							"id": "d727561f4a993f72f2651ea51a3dfcaa:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d727561f4a993f72f2651ea51a3dfcaa:o:Variable",
+							"name": "Variable",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"8d2bc8c54d5192c44ccb8f8ea21ef630:i:A"
+							]
+						},
+						{
+							"id": "d727561f4a993f72f2651ea51a3dfcaa:o:NewValue",
+							"name": "NewValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"2af9f8c2453223cd64504e9d7cf802f3:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "def86b0d448ceae2e05081bf00afa3de",
+					"class": "K2Node_GetEngineSubsystem",
+					"title": "Get Inkpot",
+					"x": 448,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "def86b0d448ceae2e05081bf00afa3de:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"516370ff4c68478c07825d9af463e0d8:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3283cd14cf41615c17c7597378869d1",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 192,
+					"y": 4368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3283cd14cf41615c17c7597378869d1:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"c37738d2405fc6ce0ddfe5b95682f96a:i:self"
+							]
+						},
+						{
+							"id": "e3283cd14cf41615c17c7597378869d1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ec0d81fd48aadecf5b57159463b69992",
+					"class": "K2Node_CallFunction",
+					"title": "MakeStringInkpotValue",
+					"x": 384,
+					"y": 1792,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ec0d81fd48aadecf5b57159463b69992:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "ec0d81fd48aadecf5b57159463b69992:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Hello from blueprint",
+							"links": []
+						},
+						{
+							"id": "ec0d81fd48aadecf5b57159463b69992:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"5c41525d4d2cec749b26468913dc1cf5:i:[3]"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ec73762c470ddce0250782b2cf6ef3c8",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 384,
+					"y": 1168,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ec73762c470ddce0250782b2cf6ef3c8:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"315f3c774548ae6f4d639792c3074418:i:self"
+							]
+						},
+						{
+							"id": "ec73762c470ddce0250782b2cf6ef3c8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Maps/Demo/Demo.Demo_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ee7978844ca558a936043a8f6ba68589",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Actor Begin Overlap (TriggerOneRef)",
+					"x": 0,
+					"y": 304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ee7978844ca558a936043a8f6ba68589:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ee7978844ca558a936043a8f6ba68589:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"32b36e7b40fd78dbc85aa8b5b6c54938:i:execute"
+							]
+						},
+						{
+							"id": "ee7978844ca558a936043a8f6ba68589:o:OverlappedActor",
+							"name": "OverlappedActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ee7978844ca558a936043a8f6ba68589:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "763bfd8e40870d84a286f2b4dc8ca96e",
+					"text": "Bind external blueprint function ",
+					"x": 1616,
+					"y": -80,
+					"width": 432,
+					"height": 496
+				},
+				{
+					"guid": "c8b6085d4627c78a9e82da9a17f83459",
+					"text": "The other way of binding to variable change events",
+					"x": 928,
+					"y": -80,
+					"width": 608,
+					"height": 768
+				}
+			]
+		}
+	],
+	"properties":
+	{
+		"worldSettings":
+		{
+			"VisibilityCellSize": 200,
+			"VisibilityAggressiveness": "VIS_LeastAggressive",
+			"bPrecomputeVisibility": false,
+			"bPlaceCellsOnlyAlongCameraTracks": false,
+			"bEnableWorldBoundsChecks": true,
+			"bEnableNavigationSystem": false,
+			"bEnableAISystem": true,
+			"bEnableWorldComposition": false,
+			"bUseClientSideLevelStreamingVolumes": false,
+			"bEnableWorldOriginRebasing": false,
+			"bGlobalGravitySet": false,
+			"bMinimizeBSPSections": false,
+			"bForceNoPrecomputedLighting": false,
+			"bForceVolumetricLightmapsOnly": false,
+			"bHighPriorityLoading": false,
+			"bHighPriorityLoadingLocal": false,
+			"bOverrideDefaultBroadphaseSettings": false,
+			"bGenerateSingleClusterForLevel": false,
+			"bHideEnableStreamingWarning": false,
+			"bIncludeGridSizeInNameForFoliageActors": false,
+			"bIncludeGridSizeInNameForPartitionedActors": false,
+			"bReuseAddressAndPort": false,
+			"AISystemClass": "/Script/AIModule.AISystem",
+			"LevelInstancePivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"NavigationSystemConfig":
+			{
+				"_class": "NavigationSystemConfig",
+				"_name": "NavigationSystemConfig_0",
+				"NavigationSystemClass": "/Script/NavigationSystem.NavigationSystemV1",
+				"SupportedAgentsMask":
+				{
+					"bSupportsAgent0": true,
+					"bSupportsAgent1": true,
+					"bSupportsAgent2": true,
+					"bSupportsAgent3": true,
+					"bSupportsAgent4": true,
+					"bSupportsAgent5": true,
+					"bSupportsAgent6": true,
+					"bSupportsAgent7": true,
+					"bSupportsAgent8": true,
+					"bSupportsAgent9": true,
+					"bSupportsAgent10": true,
+					"bSupportsAgent11": true,
+					"bSupportsAgent12": true,
+					"bSupportsAgent13": true,
+					"bSupportsAgent14": true,
+					"bSupportsAgent15": true
+				},
+				"DefaultAgentName": "None",
+				"bIsOverriden": false
+			},
+			"WorldPartition": null,
+			"InstancedFoliageGridSize": 25600,
+			"LandscapeSplineMeshesGridSize": 25600,
+			"NavigationDataChunkGridSize": 102400,
+			"NavigationDataBuilderLoadingCellSize": 409600,
+			"DefaultPlacementGridSize": 25600,
+			"BaseNavmeshDataLayers": [],
+			"WorldToMeters": 100,
+			"KillZ": -1048575,
+			"KillZDamageType": "/Engine/EngineDamageTypes/DmgTypeBP_Environmental.DmgTypeBP_Environmental_C",
+			"GlobalGravityZ": 0,
+			"DefaultPhysicsVolumeClass": "/Script/Engine.DefaultPhysicsVolume",
+			"PhysicsCollisionHandlerClass": null,
+			"DefaultGameMode": "/Game/InkpotDemo/Framework/BP_InkpotDemoGameMode.BP_InkpotDemoGameMode_C",
+			"GameNetworkManagerClass": "/Script/Engine.GameNetworkManager",
+			"PackedLightAndShadowMapTextureSize": 1024,
+			"DefaultColorScale":
+			{
+				"X": 1,
+				"Y": 1,
+				"Z": 1
+			},
+			"DefaultMaxDistanceFieldOcclusionDistance": 600,
+			"GlobalDistanceFieldViewDistance": 20000,
+			"DynamicIndirectShadowsSelfShadowingIntensity": 0.80000000000000004,
+			"LightmassSettings":
+			{
+				"StaticLightingLevelScale": 1,
+				"NumIndirectLightingBounces": 3,
+				"NumSkyLightingBounces": 1,
+				"IndirectLightingQuality": 1,
+				"IndirectLightingSmoothness": 1,
+				"EnvironmentColor":
+				{
+					"B": 0,
+					"G": 0,
+					"R": 0,
+					"A": 0
+				},
+				"EnvironmentIntensity": 1,
+				"EmissiveBoost": 1,
+				"DiffuseBoost": 1,
+				"VolumeLightingMethod": "VLM_VolumetricLightmap",
+				"bUseAmbientOcclusion": false,
+				"bGenerateAmbientOcclusionMaterialMask": false,
+				"bVisualizeMaterialDiffuse": false,
+				"bVisualizeAmbientOcclusion": false,
+				"bCompressLightmaps": true,
+				"VolumetricLightmapDetailCellSize": 200,
+				"VolumetricLightmapMaximumBrickMemoryMb": 30,
+				"VolumetricLightmapLoadingCellSize": 3200,
+				"VolumetricLightmapSphericalHarmonicSmoothing": 0.02,
+				"VolumeLightSamplePlacementScale": 1,
+				"DirectIlluminationOcclusionFraction": 0.5,
+				"IndirectIlluminationOcclusionFraction": 1,
+				"OcclusionExponent": 1,
+				"FullyOccludedSamplesFraction": 1,
+				"MaxOcclusionDistance": 200
+			},
+			"VolumetricLightmapLoadingRange": 6400,
+			"NaniteSettings":
+			{
+				"bAllowMaskedMaterials": true
+			},
+			"DefaultReverbSettings":
+			{
+				"bApplyReverb": true,
+				"ReverbEffect": null,
+				"ReverbPluginEffect": null,
+				"Volume": 0.5,
+				"FadeTime": 2
+			},
+			"DefaultAmbientZoneSettings":
+			{
+				"bIsWorldSettings": true,
+				"ExteriorVolume": 1,
+				"ExteriorTime": 0.5,
+				"ExteriorLPF": 20000,
+				"ExteriorLPFTime": 0.5,
+				"InteriorVolume": 1,
+				"InteriorTime": 0.5,
+				"InteriorLPF": 20000,
+				"InteriorLPFTime": 0.5
+			},
+			"DefaultBaseSoundMix": null,
+			"HLODSetupAsset": null,
+			"OverrideBaseMaterial": null,
+			"HierarchicalLODSetup": [
+				{
+					"TransitionScreenSize": 0.3137895,
+					"OverrideDrawDistance": 10000,
+					"bUseOverrideDrawDistance": false,
+					"bAllowSpecificExclusion": false,
+					"bOnlyGenerateClustersForVolumes": false,
+					"bReusePreviousLevelClusters": false,
+					"SimplificationMethod": "Merge",
+					"ProxySetting":
+					{
+						"ScreenSize": 300,
+						"VoxelSize": 3,
+						"MaterialSettings":
+						{
+							"TextureSizingType": "TextureSizingType_UseSingleTextureSize",
+							"TextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"TargetTexelDensityPerMeter": 5,
+							"MeshMaxScreenSizePercent": 0.5,
+							"MeshMinDrawDistance": 10000,
+							"GutterSpace": 4,
+							"MetallicConstant": 0,
+							"RoughnessConstant": 0.5,
+							"AnisotropyConstant": 0,
+							"SpecularConstant": 0.5,
+							"OpacityConstant": 0,
+							"OpacityMaskConstant": 0,
+							"AmbientOcclusionConstant": 1,
+							"MaterialMergeType": "MaterialMergeType_Simplygon",
+							"BlendMode": "BLEND_Opaque",
+							"bAllowTwoSidedMaterial": true,
+							"bNormalMap": true,
+							"bTangentMap": false,
+							"bMetallicMap": false,
+							"bRoughnessMap": false,
+							"bAnisotropyMap": false,
+							"bSpecularMap": false,
+							"bEmissiveMap": false,
+							"bOpacityMap": false,
+							"bOpacityMaskMap": false,
+							"bAmbientOcclusionMap": false,
+							"DiffuseTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"NormalTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"TangentTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"MetallicTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"RoughnessTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"AnisotropyTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"SpecularTextureSize":
+							{
+								"X": 0,
+								"Y": 60913792
+							},
+							"EmissiveTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"OpacityTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"OpacityMaskTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"AmbientOcclusionTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							}
+						},
+						"MergeDistance": 4,
+						"UnresolvedGeometryColor":
+						{
+							"B": 0,
+							"G": 0,
+							"R": 0,
+							"A": 255
+						},
+						"MaxRayCastDist": 20,
+						"HardAngleThreshold": 80,
+						"LightMapResolution": 256,
+						"NormalCalculationMethod": "AngleWeighted",
+						"LandscapeCullingPrecision": "High",
+						"bCalculateCorrectLODModel": false,
+						"bOverrideVoxelSize": false,
+						"bOverrideTransferDistance": false,
+						"bUseHardAngleThreshold": false,
+						"bComputeLightMapResolution": false,
+						"bRecalculateNormals": true,
+						"bUseLandscapeCulling": false,
+						"bSupportRayTracing": true,
+						"bAllowDistanceField": false,
+						"bReuseMeshLightmapUVs": true,
+						"bGroupIdenticalMeshesForBaking": false,
+						"bCreateCollision": false,
+						"bAllowVertexColors": false,
+						"bGenerateLightmapUVs": false,
+						"NaniteSettings":
+						{
+							"bEnabled": false,
+							"bExplicitTangents": false,
+							"bLerpUVs": true,
+							"bSeparable": false,
+							"bVoxelNDF": true,
+							"bVoxelOpacity": false,
+							"ShapePreservation": "None",
+							"PositionPrecision": -2147483648,
+							"NormalPrecision": -1,
+							"TangentPrecision": -1,
+							"BoneWeightPrecision": -1,
+							"TargetMinimumResidencyInKB": 0,
+							"KeepPercentTriangles": 1,
+							"TrimRelativeError": 0,
+							"GenerateFallback": "PlatformDefault",
+							"FallbackTarget": "Auto",
+							"FallbackPercentTriangles": 1,
+							"FallbackRelativeError": 1,
+							"MaxEdgeLengthFactor": 0,
+							"NumRays": 1,
+							"VoxelLevel": 0,
+							"RayBackUp": 0,
+							"DisplacementUVChannel": 0,
+							"DisplacementMaps": [],
+							"NaniteAssemblyData":
+							{
+								"Parts": [],
+								"Nodes": []
+							}
+						}
+					},
+					"MergeSetting":
+					{
+						"TargetLightMapResolution": 256,
+						"OutputUVs": "OutputChannel",
+						"MaterialSettings":
+						{
+							"TextureSizingType": "TextureSizingType_UseSingleTextureSize",
+							"TextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"TargetTexelDensityPerMeter": 5,
+							"MeshMaxScreenSizePercent": 0.5,
+							"MeshMinDrawDistance": 10000,
+							"GutterSpace": 4,
+							"MetallicConstant": 0,
+							"RoughnessConstant": 0.5,
+							"AnisotropyConstant": 0,
+							"SpecularConstant": 0.5,
+							"OpacityConstant": 0,
+							"OpacityMaskConstant": 0,
+							"AmbientOcclusionConstant": 1,
+							"MaterialMergeType": "MaterialMergeType_Default",
+							"BlendMode": "BLEND_Opaque",
+							"bAllowTwoSidedMaterial": true,
+							"bNormalMap": true,
+							"bTangentMap": false,
+							"bMetallicMap": false,
+							"bRoughnessMap": false,
+							"bAnisotropyMap": false,
+							"bSpecularMap": false,
+							"bEmissiveMap": false,
+							"bOpacityMap": false,
+							"bOpacityMaskMap": false,
+							"bAmbientOcclusionMap": false,
+							"DiffuseTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"NormalTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"TangentTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"MetallicTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"RoughnessTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"AnisotropyTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"SpecularTextureSize":
+							{
+								"X": 6346880,
+								"Y": 0
+							},
+							"EmissiveTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"OpacityTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"OpacityMaskTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"AmbientOcclusionTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							}
+						},
+						"GutterSize": 2,
+						"LODSelectionType": "CalculateLOD",
+						"SpecificLOD": 0,
+						"bGenerateLightMapUV": true,
+						"bComputedLightMapResolution": false,
+						"bPivotPointAtZero": false,
+						"bMergePhysicsData": false,
+						"bMergeMeshSockets": false,
+						"bMergeMaterials": true,
+						"bBakeVertexDataToMesh": false,
+						"bUseVertexDataForBakingMaterial": true,
+						"bUseTextureBinning": false,
+						"bReuseMeshLightmapUVs": true,
+						"bMergeEquivalentMaterials": true,
+						"bUseLandscapeCulling": false,
+						"bIncludeImposters": true,
+						"bSupportRayTracing": true,
+						"bAllowDistanceField": false,
+						"NaniteSettings":
+						{
+							"bEnabled": false,
+							"bExplicitTangents": false,
+							"bLerpUVs": true,
+							"bSeparable": false,
+							"bVoxelNDF": true,
+							"bVoxelOpacity": false,
+							"ShapePreservation": "None",
+							"PositionPrecision": -2147483648,
+							"NormalPrecision": -1,
+							"TangentPrecision": -1,
+							"BoneWeightPrecision": -1,
+							"TargetMinimumResidencyInKB": 0,
+							"KeepPercentTriangles": 1,
+							"TrimRelativeError": 0,
+							"GenerateFallback": "PlatformDefault",
+							"FallbackTarget": "Auto",
+							"FallbackPercentTriangles": 1,
+							"FallbackRelativeError": 1,
+							"MaxEdgeLengthFactor": 0,
+							"NumRays": 1,
+							"VoxelLevel": 0,
+							"RayBackUp": 0,
+							"DisplacementUVChannel": 0,
+							"DisplacementMaps": [],
+							"NaniteAssemblyData":
+							{
+								"Parts": [],
+								"Nodes": []
+							}
+						}
+					},
+					"ApproximateSettings":
+					{
+						"OutputType": "MeshAndMaterials",
+						"ApproximationAccuracy": 1,
+						"ClampVoxelDimension": 1024,
+						"bAttemptAutoThickening": true,
+						"TargetMinThicknessMultiplier": 1.5,
+						"bIgnoreTinyParts": true,
+						"TinyPartSizeMultiplier": 0.050000000000000003,
+						"BaseCapping": "NoBaseCapping",
+						"WindingThreshold": 0.5,
+						"bFillGaps": true,
+						"GapDistance": 0.10000000000000001,
+						"OcclusionMethod": "VisibilityBasedFiltering",
+						"bOccludeFromBottom": true,
+						"SimplifyMethod": "GeometricTolerance",
+						"TargetTriCount": 2000,
+						"TrianglesPerM": 2,
+						"GeometricDeviation": 0.10000000000000001,
+						"GroundClipping": "NoGroundClipping",
+						"GroundClippingZHeight": 0,
+						"bEstimateHardNormals": true,
+						"HardNormalAngle": 60,
+						"UVGenerationMethod": "PreferXAtlas",
+						"InitialPatchCount": 250,
+						"CurvatureAlignment": 1,
+						"MergingThreshold": 1.5,
+						"MaxAngleDeviation": 45,
+						"bGenerateNaniteEnabledMesh": false,
+						"NaniteFallbackTarget": "Auto",
+						"NaniteFallbackPercentTriangles": 1,
+						"NaniteFallbackRelativeError": 1,
+						"bSupportRayTracing": true,
+						"bAllowDistanceField": true,
+						"MultiSamplingAA": 0,
+						"RenderCaptureResolution": 2048,
+						"MaterialSettings":
+						{
+							"TextureSizingType": "TextureSizingType_UseSingleTextureSize",
+							"TextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"TargetTexelDensityPerMeter": 5,
+							"MeshMaxScreenSizePercent": 0.5,
+							"MeshMinDrawDistance": 10000,
+							"GutterSpace": 4,
+							"MetallicConstant": 0,
+							"RoughnessConstant": 0.5,
+							"AnisotropyConstant": 0,
+							"SpecularConstant": 0.5,
+							"OpacityConstant": 1,
+							"OpacityMaskConstant": 1,
+							"AmbientOcclusionConstant": 1,
+							"MaterialMergeType": "MaterialMergeType_Default",
+							"BlendMode": "BLEND_Opaque",
+							"bAllowTwoSidedMaterial": true,
+							"bNormalMap": true,
+							"bTangentMap": false,
+							"bMetallicMap": false,
+							"bRoughnessMap": false,
+							"bAnisotropyMap": false,
+							"bSpecularMap": false,
+							"bEmissiveMap": false,
+							"bOpacityMap": false,
+							"bOpacityMaskMap": false,
+							"bAmbientOcclusionMap": false,
+							"DiffuseTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"NormalTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"TangentTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"MetallicTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"RoughnessTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"AnisotropyTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"SpecularTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"EmissiveTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"OpacityTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"OpacityMaskTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							},
+							"AmbientOcclusionTextureSize":
+							{
+								"X": 1024,
+								"Y": 1024
+							}
+						},
+						"CaptureFieldOfView": 30,
+						"NearPlaneDist": 1,
+						"bUseRenderLODMeshes": false,
+						"bEnableSimplifyPrePass": true,
+						"bEnableParallelBaking": true,
+						"bPrintDebugMessages": false,
+						"bEmitFullDebugMesh": false
+					},
+					"DesiredBoundRadius": 2000,
+					"DesiredFillingPercentage": 50,
+					"MinNumberOfActorsToBuild": 2
+				}
+			],
+			"NumHLODLevels": 0,
+			"HLODBakingTransform":
+			{
+				"Rotation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0,
+					"W": 1
+				},
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"Scale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				}
+			},
+			"BookMarks": null,
+			"MinGlobalTimeDilation": 0.0001,
+			"MaxGlobalTimeDilation": 20,
+			"MinCinematicTimeDilation": 0.0001,
+			"MaxCinematicTimeDilation": 20,
+			"MinUndilatedFrameTime": 0.00050000000000000001,
+			"MaxUndilatedFrameTime": 0.40000000000000002,
+			"BroadphaseSettings":
+			{
+				"bUseMBPOnClient": false,
+				"bUseMBPOnServer": false,
+				"bUseMBPOuterBounds": false,
+				"MBPBounds":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"IsValid": false
+				},
+				"MBPOuterBounds":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"IsValid": false
+				},
+				"MBPNumSubdivs": 2
+			},
+			"ReplicationViewers": [],
+			"AssetUserData": [],
+			"AssetUserDataEditorOnly": [],
+			"DefaultWorldPartitionSettings":
+			{
+				"LoadedEditorRegions": [],
+				"LoadedEditorLocationVolumes": [],
+				"NotLoadedDataLayers": [],
+				"LoadedDataLayers": []
+			},
+			"MaxNumberOfBookmarks": 10,
+			"DefaultBookmarkClass": "/Script/Engine.BookMark",
+			"BookmarkArray": [
+				null,
+				"/Game/InkpotDemo/Maps/Demo/Demo.Demo:PersistentLevel.WorldSettings_1.BookMark_0",
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null
+			],
+			"LastBookmarkClass": "/Script/Engine.BookMark",
+			"DefaultBookmark": null,
+			"SpriteComponent": null,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": true,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": true,
+			"bAllowTickBeforeBeginPlay": true,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": false,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": false,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": true,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 10,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "WorldSettings1",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": false,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": false,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}

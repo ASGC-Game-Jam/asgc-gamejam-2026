@@ -1,0 +1,954 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/InkpotDemo/Framework/BP_AdventureDemoGameMode",
+	"asset": "BP_AdventureDemoGameMode",
+	"assetClass": "Blueprint",
+	"parentClass": "InkpotDemoGameModeBase",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "6ba66ac0429342f6bd286cbd53b83a18",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6ba66ac0429342f6bd286cbd53b83a18:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0283447944fe78d76f4996ae0549d659",
+					"class": "K2Node_CustomEvent",
+					"title": "Event OnStoryEnd",
+					"x": -3,
+					"y": 934,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0283447944fe78d76f4996ae0549d659:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"b271b2f14843f231ae6af9ac3f4fe149:i:Delegate"
+							]
+						},
+						{
+							"id": "0283447944fe78d76f4996ae0549d659:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0283447944fe78d76f4996ae0549d659:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3a24501a49389487bc10f6b0bc272dbf",
+					"class": "K2Node_CallFunction",
+					"title": "Set Input Mode Game And UI",
+					"x": 1040,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3a24501a49389487bc10f6b0bc272dbf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9badf087436d092076d90ea20feaa32c:o:then"
+							]
+						},
+						{
+							"id": "3a24501a49389487bc10f6b0bc272dbf:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a719abe24947384475ededadfe925019:i:execute"
+							]
+						},
+						{
+							"id": "3a24501a49389487bc10f6b0bc272dbf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "3a24501a49389487bc10f6b0bc272dbf:i:PlayerController",
+							"name": "PlayerController",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"c19124864f6dfde60a6a06a2636ee7fd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3a24501a49389487bc10f6b0bc272dbf:i:InWidgetToFocus",
+							"name": "InWidgetToFocus",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"436d1dd54573d0317551b5bb3249aab0:o:StoryDisplay"
+							]
+						},
+						{
+							"id": "3a24501a49389487bc10f6b0bc272dbf:i:InMouseLockMode",
+							"name": "InMouseLockMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EMouseLockMode",
+							"defaultValue": "DoNotLock",
+							"links": []
+						},
+						{
+							"id": "3a24501a49389487bc10f6b0bc272dbf:i:bHideCursorDuringCapture",
+							"name": "bHideCursorDuringCapture",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "3a24501a49389487bc10f6b0bc272dbf:i:bFlushInput",
+							"name": "bFlushInput",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "410fb067483cac317a300bbdf757a4ab",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 32,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "410fb067483cac317a300bbdf757a4ab:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9cac123b4348ef58c88543ad6809f0a3:o:then"
+							]
+						},
+						{
+							"id": "410fb067483cac317a300bbdf757a4ab:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6c3b87ae49949f1caa7adf809fea2285:i:execute"
+							]
+						},
+						{
+							"id": "410fb067483cac317a300bbdf757a4ab:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"links": []
+						},
+						{
+							"id": "410fb067483cac317a300bbdf757a4ab:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"6c3b87ae49949f1caa7adf809fea2285:i:StoryDisplay"
+							]
+						},
+						{
+							"id": "410fb067483cac317a300bbdf757a4ab:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "436d1dd54573d0317551b5bb3249aab0",
+					"class": "K2Node_VariableGet",
+					"title": "Get StoryDisplay",
+					"x": 848,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "436d1dd54573d0317551b5bb3249aab0:o:StoryDisplay",
+							"name": "StoryDisplay",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"3a24501a49389487bc10f6b0bc272dbf:i:InWidgetToFocus"
+							]
+						},
+						{
+							"id": "436d1dd54573d0317551b5bb3249aab0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Framework/BP_AdventureDemoGameMode.BP_AdventureDemoGameMode_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4563da0047d2550d5f71e2a565f2194e",
+					"class": "K2Node_CustomEvent",
+					"title": "Event OnStoryBegin",
+					"x": -3,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4563da0047d2550d5f71e2a565f2194e:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"ee0266cb4caa321188f917ba61897ac0:i:Delegate"
+							]
+						},
+						{
+							"id": "4563da0047d2550d5f71e2a565f2194e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dd8cfd5e49bad632864460a9720f2156:i:execute"
+							]
+						},
+						{
+							"id": "4563da0047d2550d5f71e2a565f2194e:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"dd8cfd5e49bad632864460a9720f2156:i:Story"
+							]
+						}
+					]
+				},
+				{
+					"guid": "67fc50d74af6fa65f4fec0add0e3c5cd",
+					"class": "K2Node_GetEngineSubsystem",
+					"title": "Get Inkpot",
+					"x": 1904,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "67fc50d74af6fa65f4fec0add0e3c5cd:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"b271b2f14843f231ae6af9ac3f4fe149:i:self",
+								"ee0266cb4caa321188f917ba61897ac0:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6c3b87ae49949f1caa7adf809fea2285",
+					"class": "K2Node_VariableSet",
+					"title": "Set StoryDisplay",
+					"x": 368,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6c3b87ae49949f1caa7adf809fea2285:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"410fb067483cac317a300bbdf757a4ab:o:then"
+							]
+						},
+						{
+							"id": "6c3b87ae49949f1caa7adf809fea2285:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9badf087436d092076d90ea20feaa32c:i:execute"
+							]
+						},
+						{
+							"id": "6c3b87ae49949f1caa7adf809fea2285:i:StoryDisplay",
+							"name": "StoryDisplay",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"410fb067483cac317a300bbdf757a4ab:o:ReturnValue"
+							]
+						},
+						{
+							"id": "6c3b87ae49949f1caa7adf809fea2285:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"9badf087436d092076d90ea20feaa32c:i:self"
+							]
+						},
+						{
+							"id": "6c3b87ae49949f1caa7adf809fea2285:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Framework/BP_AdventureDemoGameMode.BP_AdventureDemoGameMode_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "76d8a2ec4d1ad95104414da73f498a25",
+					"class": "K2Node_VariableGet",
+					"title": "Get StoryDisplay",
+					"x": 32,
+					"y": 496,
+					"comment": null,
+					"pins": [
+						{
+							"id": "76d8a2ec4d1ad95104414da73f498a25:o:StoryDisplay",
+							"name": "StoryDisplay",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"dd8cfd5e49bad632864460a9720f2156:i:self"
+							]
+						},
+						{
+							"id": "76d8a2ec4d1ad95104414da73f498a25:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/Framework/BP_AdventureDemoGameMode.BP_AdventureDemoGameMode_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9badf087436d092076d90ea20feaa32c",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 640,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9badf087436d092076d90ea20feaa32c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6c3b87ae49949f1caa7adf809fea2285:o:then"
+							]
+						},
+						{
+							"id": "9badf087436d092076d90ea20feaa32c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3a24501a49389487bc10f6b0bc272dbf:i:execute"
+							]
+						},
+						{
+							"id": "9badf087436d092076d90ea20feaa32c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"6c3b87ae49949f1caa7adf809fea2285:o:Output_Get"
+							]
+						},
+						{
+							"id": "9badf087436d092076d90ea20feaa32c:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9cac123b4348ef58c88543ad6809f0a3",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": -208,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9cac123b4348ef58c88543ad6809f0a3:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9cac123b4348ef58c88543ad6809f0a3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"410fb067483cac317a300bbdf757a4ab:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a719abe24947384475ededadfe925019",
+					"class": "K2Node_VariableSet",
+					"title": "Set bShowMouseCursor",
+					"x": 1472,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a719abe24947384475ededadfe925019:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3a24501a49389487bc10f6b0bc272dbf:o:then"
+							]
+						},
+						{
+							"id": "a719abe24947384475ededadfe925019:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ee0266cb4caa321188f917ba61897ac0:i:execute"
+							]
+						},
+						{
+							"id": "a719abe24947384475ededadfe925019:i:bShowMouseCursor",
+							"name": "bShowMouseCursor",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "a719abe24947384475ededadfe925019:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "a719abe24947384475ededadfe925019:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"c19124864f6dfde60a6a06a2636ee7fd:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b271b2f14843f231ae6af9ac3f4fe149",
+					"class": "K2Node_AssignDelegate",
+					"title": "Assign On Story End",
+					"x": 2192,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b271b2f14843f231ae6af9ac3f4fe149:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ee0266cb4caa321188f917ba61897ac0:o:then"
+							]
+						},
+						{
+							"id": "b271b2f14843f231ae6af9ac3f4fe149:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b271b2f14843f231ae6af9ac3f4fe149:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"67fc50d74af6fa65f4fec0add0e3c5cd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b271b2f14843f231ae6af9ac3f4fe149:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"0283447944fe78d76f4996ae0549d659:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c19124864f6dfde60a6a06a2636ee7fd",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 736,
+					"y": -128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c19124864f6dfde60a6a06a2636ee7fd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "c19124864f6dfde60a6a06a2636ee7fd:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c19124864f6dfde60a6a06a2636ee7fd:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "c19124864f6dfde60a6a06a2636ee7fd:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"3a24501a49389487bc10f6b0bc272dbf:i:PlayerController",
+								"a719abe24947384475ededadfe925019:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dd8cfd5e49bad632864460a9720f2156",
+					"class": "K2Node_CallFunction",
+					"title": "ShowStory",
+					"x": 368,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dd8cfd5e49bad632864460a9720f2156:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4563da0047d2550d5f71e2a565f2194e:o:then"
+							]
+						},
+						{
+							"id": "dd8cfd5e49bad632864460a9720f2156:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "dd8cfd5e49bad632864460a9720f2156:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.InkpotDemoWidget",
+							"defaultValue": null,
+							"links": [
+								"76d8a2ec4d1ad95104414da73f498a25:o:StoryDisplay"
+							]
+						},
+						{
+							"id": "dd8cfd5e49bad632864460a9720f2156:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"4563da0047d2550d5f71e2a565f2194e:o:Story"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ee0266cb4caa321188f917ba61897ac0",
+					"class": "K2Node_AssignDelegate",
+					"title": "Assign On Story Begin",
+					"x": 2192,
+					"y": -128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ee0266cb4caa321188f917ba61897ac0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a719abe24947384475ededadfe925019:o:then"
+							]
+						},
+						{
+							"id": "ee0266cb4caa321188f917ba61897ac0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b271b2f14843f231ae6af9ac3f4fe149:i:execute"
+							]
+						},
+						{
+							"id": "ee0266cb4caa321188f917ba61897ac0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"67fc50d74af6fa65f4fec0add0e3c5cd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "ee0266cb4caa321188f917ba61897ac0:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"4563da0047d2550d5f71e2a565f2194e:o:OutputDelegate"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "2f2999eb4f20d85510f02fafa63085ab",
+					"text": "Display story when it begins",
+					"x": -64,
+					"y": 416,
+					"width": 848,
+					"height": 336
+				},
+				{
+					"guid": "366583804518279b34e57f81f197d975",
+					"text": "Setup display and control",
+					"x": -208,
+					"y": -208,
+					"width": 1936,
+					"height": 528
+				},
+				{
+					"guid": "40a4cb914203886b6b75489cd25d6198",
+					"text": "Story End",
+					"x": -67,
+					"y": 870,
+					"width": 640,
+					"height": 208
+				},
+				{
+					"guid": "9bbcdb9d485673ef19f30aa08b88307a",
+					"text": "Bind Inkpot events",
+					"x": 1840,
+					"y": -208,
+					"width": 656,
+					"height": 528
+				}
+			]
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"StoryDisplay":
+			{
+				"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+			"DefaultSceneRoot1":
+			{
+				"class": "SceneComponent",
+				"parent": null,
+				"properties":
+				{
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": false,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": true,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			}
+		},
+		"defaults":
+		{
+			"DefaultSceneRoot1": null,
+			"StoryDisplay": null,
+			"OptionsString": "",
+			"GameSessionClass": "/Script/Engine.GameSession",
+			"GameStateClass": "/Script/Engine.GameStateBase",
+			"PlayerControllerClass": "/Script/Engine.PlayerController",
+			"PlayerStateClass": "/Script/Engine.PlayerState",
+			"HUDClass": "/Script/Engine.HUD",
+			"DefaultPawnClass": "/Script/Engine.DefaultPawn",
+			"SpectatorClass": "/Script/Engine.SpectatorPawn",
+			"ReplaySpectatorPlayerControllerClass": "/Script/Engine.PlayerController",
+			"ServerStatReplicatorClass": "/Script/Engine.ServerStatReplicator",
+			"DefaultPlayerName": "",
+			"bUseSeamlessTravel": false,
+			"bStartPlayersAsSpectators": false,
+			"bPauseable": true,
+			"GameNetDriverReplicationSystem": "Default",
+			"SpriteComponent": null,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": true,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": false,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": true,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": false,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": false,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 10,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": false,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}
