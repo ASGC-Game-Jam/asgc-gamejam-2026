@@ -50,7 +50,7 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Controls")
 	FOnControlsDisabled OnControlsDisabled;
-
+	
 	/** Adds a context to the desired set, applying it now if controls are enabled. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
 	void AddControls(UInputMappingContext* NewControlMappingContext);
@@ -58,7 +58,7 @@ public:
 	/** Drops a context from the desired set, withdrawing it now if controls are enabled. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
 	void RemoveControls(UInputMappingContext* MappingContext);
-
+	
 	/** Withdraws every context and forgets the desired set entirely. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
 	void ClearAllControls();
@@ -101,6 +101,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls")
 	TObjectPtr<UInputMappingContext> DefaultMovementMappingContext;
 
+	/** Ballast input, active on land and in water so the next dive's mode can be chosen anywhere. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls")
+	TObjectPtr<UInputMappingContext> BallastMappingContext;
+	
 	void RefreshMovementControls();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
