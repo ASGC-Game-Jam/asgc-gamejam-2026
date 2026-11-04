@@ -16,6 +16,13 @@
 #include "Widgets/SBoxPanel.h"
 #include "Widgets/Text/STextBlock.h"
 
+UAtlantisDebugMenu::UAtlantisDebugMenu(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+	// UI-only input first focuses our SObjectWidget before selecting the initial button.
+	SetIsFocusable(true);
+}
+
 TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 {
 #if !UE_BUILD_SHIPPING

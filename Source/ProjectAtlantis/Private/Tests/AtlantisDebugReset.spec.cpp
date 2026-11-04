@@ -4,6 +4,8 @@
 
 #include "Core/AtlantisPlayerCharacter.h"
 #include "Core/AtlantisPlayerController.h"
+#include "Core/AtlantisPlayerState.h"
+#include "Core/AtlantisOxygenComponent.h"
 #include "Debug/AtlantisCheatManager.h"
 #include "Debug/AtlantisDebugMenu.h"
 #include "Engine/World.h"
@@ -22,6 +24,7 @@ namespace
 		TStrongObjectPtr<UAtlantisDebugMenu> Menu;
 		AAtlantisPlayerCharacter* Character = nullptr;
 		AAtlantisPlayerController* Controller = nullptr;
+		AAtlantisPlayerState* State = nullptr;
 		UAtlantisCheatManager* Cheats = nullptr;
 		const FVector Start = FVector(100.f, 200.f, 300.f);
 		const FRotator Facing = FRotator(0.f, 45.f, 0.f);
@@ -35,7 +38,8 @@ namespace
 			}
 			Character = World->SpawnActor<AAtlantisPlayerCharacter>(Start, Facing);
 			Controller = World->SpawnActor<AAtlantisPlayerController>();
-			if (!Character || !Controller)
+			State = World->SpawnActor<AAtlantisPlayerState>();
+			if (!Character || !Controller || !State)
 			{
 				return;
 			}
@@ -44,6 +48,7 @@ namespace
 			Controller->Player = NewObject<ULocalPlayer>(GEngine);
 			Controller->GetLocalPlayer()->PlayerController = Controller;
 			Controller->SetAsLocalPlayerController();
+			Controller->SetPlayerState(State);
 			Controller->Possess(Character);
 			// Existing Blueprint defaults must still select our Cheat Manager.
 			Controller->CheatClass = UCheatManager::StaticClass();
@@ -64,7 +69,7 @@ namespace
 			}
 		}
 
-		bool IsReady() const { return Character && Controller && Cheats; }
+		bool IsReady() const { return Character && Controller && State && Cheats; }
 
 		void MoveAway()
 		{
@@ -96,6 +101,33 @@ void FAtlantisDebugResetSpec::Define()
 
 	Describe(TEXT("Reset command"), [this]()
 	{
+		It(TEXT("should restore default ballast and release its oxygen reservation from Wander or Ascend"), [this]()
+		{
+			if (!Fixture->IsReady())
+			{
+				return;
+			}
+			UAtlantisOxygenComponent* Oxygen = Fixture->State->GetOxygenComponent();
+			if (!TestNotNull(TEXT("Oxygen component"), Oxygen))
+			{
+				return;
+			}
+			const AAtlantisPlayerState* Defaults = Fixture->State->GetClass()->GetDefaultObject<AAtlantisPlayerState>();
+			for (const EAtlantisBallastState Mode : {EAtlantisBallastState::Wander, EAtlantisBallastState::Ascend})
+			{
+				Fixture->State->SetBallastState(Mode);
+				TestTrue(TEXT("Non-default ballast selected"), Fixture->State->GetBallastState() == Mode);
+				TestTrue(TEXT("Ballast has reserved oxygen"), Oxygen->GetAllocatedOxygen() > 0.f);
+				const float CurrentOxygen = Oxygen->GetCurrentOxygen();
+				Fixture->MoveAway();
+				Fixture->Cheats->ResetPlayer();
+				TestTrue(TEXT("Class-default ballast restored"), Fixture->State->GetBallastState() == Defaults->GetBallastState());
+				TestEqual(TEXT("Descend releases ballast reservation"), Oxygen->GetAllocatedOxygen(), 0.f);
+				TestEqual(TEXT("Current oxygen is preserved"), Oxygen->GetCurrentOxygen(), CurrentOxygen);
+				TestTrue(TEXT("Position restored with ballast"), Fixture->Character->GetActorLocation().Equals(Fixture->Start, 1.f));
+			}
+		});
+
 		It(TEXT("should return to the initial position and camera facing"), [this]()
 		{
 			if (!Fixture->IsReady())

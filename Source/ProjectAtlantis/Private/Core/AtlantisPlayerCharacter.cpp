@@ -37,17 +37,24 @@ void AAtlantisPlayerCharacter::MoveToStart()
 		return;
 	}
 	// TeleportTo performs collision handling and notifies CharacterMovement.
-	if (TeleportTo(StartTransform.GetLocation(), StartTransform.Rotator()))
+	if (!TeleportTo(StartTransform.GetLocation(), StartTransform.Rotator()))
 	{
-		ConsumeMovementInputVector();
-		GetCharacterMovement()->StopMovementImmediately();
-		GetCharacterMovement()->SetDefaultMovementMode();
-		if (AController* PlayerController = GetController())
-		{
-			PlayerController->SetControlRotation(StartTransform.Rotator());
-		}
-		ForceNetUpdate();
+		return;
 	}
+
+	if (AAtlantisPlayerState* State = GetPlayerState<AAtlantisPlayerState>())
+	{
+		const AAtlantisPlayerState* Defaults = State->GetClass()->GetDefaultObject<AAtlantisPlayerState>();
+		State->SetBallastState(Defaults->GetBallastState());
+	}
+	ConsumeMovementInputVector();
+	GetCharacterMovement()->StopMovementImmediately();
+	GetCharacterMovement()->SetDefaultMovementMode();
+	if (AController* PlayerController = GetController())
+	{
+		PlayerController->SetControlRotation(StartTransform.Rotator());
+	}
+	ForceNetUpdate();
 }
 
 void AAtlantisPlayerCharacter::MoveToTransform(const FTransform& Transform)

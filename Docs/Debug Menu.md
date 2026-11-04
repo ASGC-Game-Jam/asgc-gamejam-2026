@@ -39,8 +39,10 @@ Reset teleports the existing Atlantis character to its BeginPlay position and
 rotation, clears pending movement input and velocity, restores camera facing, and
 selects the default movement mode for the destination volume. Unreal handles
 collision adjustment; if the destination is blocked and no valid position can be
-found, the character stays where it is. Inventory, oxygen, ballast and other
-gameplay state are preserved. Reset is not a respawn or a level reload.
+found, the character stays where it is. After a successful teleport, ballast
+returns to its PlayerState class default (Descend by default), updating its oxygen
+reservation through the normal state setter. Inventory and current oxygen are
+preserved. Reset is not a respawn or a level reload.
 
 The owning controller sends reset to the server in network PIE. The menu belongs
 to each local player. Menu input suppression is balanced with Unreal's move/look

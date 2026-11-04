@@ -13,6 +13,8 @@ class PROJECTATLANTIS_API UAtlantisDebugMenu : public UUserWidget
 	GENERATED_BODY()
 
 public:
+	UAtlantisDebugMenu(const FObjectInitializer& ObjectInitializer);
+
 	void FocusFirstAction();
 	virtual void ReleaseSlateResources(bool bReleaseChildren) override;
 
