@@ -64,6 +64,11 @@ void AAtlantisPlayerController::SetupInputComponent()
 			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
 		}
 	}
+	if (BallastMappingContext && !CurrentMappingContexts.Contains(BallastMappingContext))
+	{
+		AddControls(BallastMappingContext);
+	}
+	
 	RefreshMovementControls();
 }
 
