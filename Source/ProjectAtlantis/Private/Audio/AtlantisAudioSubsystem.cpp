@@ -103,6 +103,11 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 		return;
 	}
 
+	if (!UAtlantisAudioDeveloperSettings::IsMusicPlaybackWorld(TrackedWorld.Get()) || MusicAudioComponent)
+	{
+		return;
+	}
+
 	UE_LOG(LogAtlantisAudioSubsystem, Log, TEXT("World [%s] Begin Play active. Instantiating speakers and reading audio settings..."), *TrackedWorld->GetName());
 
 	AxisMapping = UAtlantisAudioDeveloperSettings::GetMusicAxisMapping();
@@ -350,4 +355,5 @@ void UAtlantisAudioSubsystem::UpdateMusicAxes()
 	MusicAudioComponent->SetFloatParameter(Inputs::PlayerStateAxis.Resolve(), PlayerState);
 	MusicAudioComponent->SetFloatParameter(Inputs::TensionAxis.Resolve(), Tension);
 }
+
 
