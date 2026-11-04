@@ -276,7 +276,7 @@ void UAtlantisAudioSubsystem::UnsubscribeFromFacts()
 		return;
     }
 
-	for(const TPair<FGameplayTag, int32>& Subscription : FactSubscriptions)
+	for (const TPair<FGameplayTag, int32>& Subscription : FactSubscriptions)
 	{
 		Router->Unsubscribe(Subscription.Key, Subscription.Value);
 	}
