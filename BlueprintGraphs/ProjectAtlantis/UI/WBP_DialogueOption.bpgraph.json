@@ -1,7 +1,7 @@
 {
 	"version": 2,
 	"generatedBy": "keystone-blueprint-export",
-	"package": "/Game/ProjectAtlantis/UI/AllLevels/WBP_DialogueOption",
+	"package": "/Game/ProjectAtlantis/UI/WBP_DialogueOption",
 	"asset": "WBP_DialogueOption",
 	"assetClass": "WidgetBlueprint",
 	"parentClass": "CommonBoundActionButton",
@@ -93,6 +93,152 @@
 					]
 				},
 				{
+					"guid": "13c0484344a3dd3b6f7d06a71d255630",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 80,
+					"y": -576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "13c0484344a3dd3b6f7d06a71d255630:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "13c0484344a3dd3b6f7d06a71d255630:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b16c8bc74c13a572e4f28ab5d3264643:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "15b014e8411c53d490518ead14ebe7cc",
+					"class": "K2Node_VariableGet",
+					"title": "Get Option",
+					"x": 176,
+					"y": -624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "15b014e8411c53d490518ead14ebe7cc:o:Option",
+							"name": "Option",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationOptionEntry",
+							"defaultValue": null,
+							"links": [
+								"45e670b34e5589acee2c7a852257fd72:i:ClientConversationOptionEntry"
+							]
+						},
+						{
+							"id": "15b014e8411c53d490518ead14ebe7cc:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueOption.WBP_DialogueOption_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "45e670b34e5589acee2c7a852257fd72",
+					"class": "K2Node_BreakStruct",
+					"title": "Break Client Conversation Option Entry",
+					"x": 320,
+					"y": -560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "45e670b34e5589acee2c7a852257fd72:i:ClientConversationOptionEntry",
+							"name": "ClientConversationOptionEntry",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationOptionEntry",
+							"defaultValue": null,
+							"links": [
+								"15b014e8411c53d490518ead14ebe7cc:o:Option"
+							]
+						},
+						{
+							"id": "45e670b34e5589acee2c7a852257fd72:o:ChoiceText",
+							"name": "ChoiceText",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"b16c8bc74c13a572e4f28ab5d3264643:i:Text"
+							]
+						},
+						{
+							"id": "45e670b34e5589acee2c7a852257fd72:o:ChoiceTags",
+							"name": "ChoiceTags",
+							"direction": "output",
+							"type": "struct:/Script/GameplayTags.GameplayTagContainer",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "45e670b34e5589acee2c7a852257fd72:o:ChoiceType",
+							"name": "ChoiceType",
+							"direction": "output",
+							"type": "byte:/Script/CommonConversationRuntime.EConversationChoiceType",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "45e670b34e5589acee2c7a852257fd72:o:ChoiceReference",
+							"name": "ChoiceReference",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationChoiceReference",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "45e670b34e5589acee2c7a852257fd72:o:ExtraData",
+							"name": "ExtraData",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationNodeParameterPair[]",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5031b8904cccb8397252288f71bcd9de",
+					"class": "K2Node_VariableGet",
+					"title": "Get Text_ActionName",
+					"x": 704,
+					"y": -608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5031b8904cccb8397252288f71bcd9de:o:Text_ActionName",
+							"name": "Text_ActionName",
+							"direction": "output",
+							"type": "object:/Script/CommonUI.CommonTextBlock",
+							"defaultValue": null,
+							"links": [
+								"b16c8bc74c13a572e4f28ab5d3264643:i:self"
+							]
+						},
+						{
+							"id": "5031b8904cccb8397252288f71bcd9de:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonUI.CommonBoundActionButton",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "78a74f1f4d295cf70a6ff983f1965588",
 					"class": "K2Node_VariableGet",
 					"title": "Get Option",
@@ -114,7 +260,7 @@
 							"id": "78a74f1f4d295cf70a6ff983f1965588:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_DialogueOption.WBP_DialogueOption_C",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueOption.WBP_DialogueOption_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -215,6 +361,62 @@
 							"name": "UserParameters",
 							"direction": "input",
 							"type": "struct:/Script/CommonConversationRuntime.ConversationNodeParameterPair[]",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b16c8bc74c13a572e4f28ab5d3264643",
+					"class": "K2Node_VariableSet",
+					"title": "Set Text",
+					"x": 864,
+					"y": -528,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b16c8bc74c13a572e4f28ab5d3264643:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"13c0484344a3dd3b6f7d06a71d255630:o:then"
+							]
+						},
+						{
+							"id": "b16c8bc74c13a572e4f28ab5d3264643:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b16c8bc74c13a572e4f28ab5d3264643:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"45e670b34e5589acee2c7a852257fd72:o:ChoiceText"
+							]
+						},
+						{
+							"id": "b16c8bc74c13a572e4f28ab5d3264643:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"5031b8904cccb8397252288f71bcd9de:o:Text_ActionName"
+							]
+						},
+						{
+							"id": "b16c8bc74c13a572e4f28ab5d3264643:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "text",
 							"defaultValue": null,
 							"links": []
 						}

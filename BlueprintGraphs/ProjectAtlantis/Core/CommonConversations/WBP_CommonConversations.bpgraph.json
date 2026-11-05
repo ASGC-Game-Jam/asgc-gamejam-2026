@@ -265,14 +265,14 @@
 							"name": "Class",
 							"direction": "input",
 							"type": "class:/Script/UMG.UserWidget",
-							"defaultValue": "/Game/ProjectAtlantis/UI/AllLevels/WBP_DialogueOption.WBP_DialogueOption_C",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_DialogueOption.WBP_DialogueOption_C",
 							"links": []
 						},
 						{
 							"id": "7df37a644a8e38d746ee6dac1e609792:o:ReturnValue",
 							"name": "ReturnValue",
 							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_DialogueOption.WBP_DialogueOption_C",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueOption.WBP_DialogueOption_C",
 							"defaultValue": null,
 							"links": [
 								"c60477e54957055af97fd7abc3a25886:i:self",
@@ -518,14 +518,14 @@
 							"name": "Class",
 							"direction": "input",
 							"type": "class:/Script/UMG.UserWidget",
-							"defaultValue": "/Game/ProjectAtlantis/UI/AllLevels/WBP_DialogueOption.WBP_DialogueOption_C",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_DialogueOption.WBP_DialogueOption_C",
 							"links": []
 						},
 						{
 							"id": "977d65a74cf3ff00d28dbf89d9c0f274:o:ReturnValue",
 							"name": "ReturnValue",
 							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_DialogueOption.WBP_DialogueOption_C",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueOption.WBP_DialogueOption_C",
 							"defaultValue": null,
 							"links": [
 								"6d4e928a42331a4ceaac618653d4d4fc:i:Content"
@@ -1481,6 +1481,50 @@
 					]
 				},
 				{
+					"guid": "69f82d934bc4ea3d2c88c2960b03b8c2",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 256,
+					"y": 1152,
+					"comment": null,
+					"pins": [
+						{
+							"id": "69f82d934bc4ea3d2c88c2960b03b8c2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b6121da64f5bb612b4767995dd77edbb:o:then"
+							]
+						},
+						{
+							"id": "69f82d934bc4ea3d2c88c2960b03b8c2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "69f82d934bc4ea3d2c88c2960b03b8c2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "69f82d934bc4ea3d2c88c2960b03b8c2:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Hidden",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "6d76d2da4aa7107f0a28fe87accd093a",
 					"class": "K2Node_VariableGet",
 					"title": "Get TextBlock_409",
@@ -1578,7 +1622,7 @@
 					"guid": "8e32dab64fa336a39bb985983357b06a",
 					"class": "K2Node_CallFunction",
 					"title": "Deactivate Widget",
-					"x": 352,
+					"x": 672,
 					"y": 1072,
 					"comment": null,
 					"pins": [
@@ -1588,9 +1632,7 @@
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
-							"links": [
-								"b6121da64f5bb612b4767995dd77edbb:o:then"
-							]
+							"links": []
 						},
 						{
 							"id": "8e32dab64fa336a39bb985983357b06a:o:then",
@@ -1845,7 +1887,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"8e32dab64fa336a39bb985983357b06a:i:execute"
+								"69f82d934bc4ea3d2c88c2960b03b8c2:i:execute"
 							]
 						}
 					]
