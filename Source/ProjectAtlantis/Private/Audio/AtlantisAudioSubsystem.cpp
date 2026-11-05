@@ -244,8 +244,14 @@ void UAtlantisAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag
 	{
 		UE_LOG(LogAtlantisAudioSubsystem, Warning, TEXT("Fact [%s] holds a payload shape the music subsystem doesn't handle."), *Tag.ToString());
 	}
-	UpdateMusicAxes();
-	UpdateRoomType();
+	if (Tag == TAG_AudioFact_Environment_Room)
+	{
+		UpdateRoomType();
+	}
+	else
+	{
+		UpdateMusicAxes();
+	}	
 }
 
 void UAtlantisAudioSubsystem::SubscribeToFacts()
@@ -374,13 +380,13 @@ void UAtlantisAudioSubsystem::UpdateRoomType()
 {
 	const FGameplayTag* TagPtr = TagFacts.Find(TAG_AudioFact_Environment_Room);
 
-	if(!TagPtr)
+	if (!TagPtr)
 	{
 		return;
 	}
 
 	int32 RoomID = 0;
-	if(!UAtlantisAudioDeveloperSettings::GetRoomTypeId(*TagPtr, RoomID))
+	if (!UAtlantisAudioDeveloperSettings::GetRoomTypeId(*TagPtr, RoomID))
 	{
 		return;
 	}
@@ -389,7 +395,7 @@ void UAtlantisAudioSubsystem::UpdateRoomType()
 	{
 		return;
 	}
-	
+
 	using namespace ProjectAtlantisAudio::EnvironmentInterface;
 	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Music RoomType set to %d [%s]."), RoomID, *TagPtr->ToString());
 	MusicAudioComponent->SetIntParameter(Inputs::RoomType.Resolve(), RoomID);
