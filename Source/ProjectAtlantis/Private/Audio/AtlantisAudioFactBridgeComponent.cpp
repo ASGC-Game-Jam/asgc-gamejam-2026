@@ -62,7 +62,7 @@ void UAtlantisAudioFactBridgeComponent::TryBindSources()
     }
 
     APawn* Pawn = Cast<APawn>(GetOwner());
-    if(!Pawn || !Pawn->IsLocallyControlled())
+    if (!Pawn || !Pawn->IsLocallyControlled())
     {
         return;
     }
