@@ -104,6 +104,7 @@ void UAtlantisAudioFactBridgeComponent::TryBindSources()
     if (JournalSubsystem)
     {
         JournalSubsystem->OnInvestigationUpdated.AddDynamic(this, &ThisClass::HandleInvestigationUpdated);
+        JournalSubsystem->OnJournalInvestigationsCleared.AddDynamic(this, &ThisClass::HandleInvestigationsCleared);
     }
 	else
 	{
@@ -133,6 +134,7 @@ void UAtlantisAudioFactBridgeComponent::UnbindSources()
     if (JournalSubsystem)
     {
         JournalSubsystem->OnInvestigationUpdated.RemoveDynamic(this, &ThisClass::HandleInvestigationUpdated);
+        JournalSubsystem->OnJournalInvestigationsCleared.RemoveDynamic(this, &ThisClass::HandleInvestigationsCleared);
         JournalSubsystem = nullptr;
     }
 
@@ -183,6 +185,8 @@ void UAtlantisAudioFactBridgeComponent::SendInvestigationStatus(const FString& T
 {
     FAtlantisAudioKeyedStatePayload Payload;
     Payload.Key = FName(*Title);
+
+    SentInvestigationTitles.Add(Title);
 
     switch (Status)
     {
@@ -240,4 +244,16 @@ void UAtlantisAudioFactBridgeComponent::HandleHidingStateChanged(bool bHiding)
 void UAtlantisAudioFactBridgeComponent::HandleInvestigationUpdated(EJournalInvestigationStatus OldStatus, EJournalInvestigationStatus Status, const FString& Title)
 {
     SendInvestigationStatus(Title,Status);
+}
+
+void UAtlantisAudioFactBridgeComponent::HandleInvestigationsCleared()
+{
+    const TSet<FString> Titles = SentInvestigationTitles;
+
+    for (const FString& Title : Titles)
+    {
+        SendInvestigationStatus(Title, EJournalInvestigationStatus::Undiscovered);
+    }
+
+    SentInvestigationTitles.Reset();
 }

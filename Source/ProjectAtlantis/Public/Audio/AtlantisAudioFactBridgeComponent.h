@@ -57,6 +57,9 @@ private:
 
 	UFUNCTION()
 	void HandleInvestigationUpdated(EJournalInvestigationStatus OldStatus, EJournalInvestigationStatus Status, const FString& Title);
+	
+	UFUNCTION()
+	void HandleInvestigationsCleared();
 
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisOxygenComponent> OxygenComponent;
@@ -68,4 +71,8 @@ private:
 	TObjectPtr<UAtlantisJournalSubsystem> JournalSubsystem;
 
 	bool bSourcesBound = false;
+
+	/** Investigations already sent to the music. The journal has emptied itself by the time it says it cleared. */
+	TSet<FString> SentInvestigationTitles;
+
 };

@@ -313,6 +313,22 @@ void FAtlantisAudioFactBridgeSpec::Define()
 
 			TestEqual(TEXT("Each change sends one fact"), Fixture->Count(TAG_AudioFact_Investigation_Status), 3);
 		});
+
+		It(TEXT("should reset investigations when the journal clears"), [this]()
+		{
+			Fixture->StartPlayer();
+			const FName Key(TEXT("Mystery"));
+
+			Fixture->Journal->UpdateInvestigationStatus(TEXT("Mystery"), EJournalInvestigationStatus::Inprogress);
+
+			Fixture->Journal->ClearInvestigations();
+			
+			TestInvestigationFact(TEXT("Clearing resets the investigation"), Key, TAG_AudioState_Investigation_Undiscovered);
+
+			const int32 CountBefore = Fixture->Count(TAG_AudioFact_Investigation_Status);
+			Fixture->Journal->ClearInvestigations();
+			TestEqual(TEXT("A second clear sends nothing"), Fixture->Count(TAG_AudioFact_Investigation_Status), CountBefore);
+		});
 	});
 
 	Describe(TEXT("Binding"), [this]()
