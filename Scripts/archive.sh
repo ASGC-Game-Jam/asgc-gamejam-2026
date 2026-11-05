@@ -25,15 +25,14 @@ PACKAGE_PATH="$BUILD_PATH/Package/Mac"
 ARCHIVE_PATH="$BUILD_PATH/ProjectAtlantis-$RELEASE_VERSION-Mac.zip"
 
 APP_PATH="$PACKAGE_PATH/ProjectAtlantis-Mac-Shipping.app"
-if [[ ! -d "$APP_PATH" ]]; then
-	printf 'Shipping app not found: %s\n' "$APP_PATH" >&2
+if [[ ! -x "$APP_PATH/Contents/MacOS/ProjectAtlantis-Mac-Shipping" ]]; then
+	printf 'Shipping executable missing or not executable: %s\n' "$APP_PATH/Contents/MacOS/ProjectAtlantis-Mac-Shipping" >&2
 	exit 1
 fi
 
 # Archive only the complete app bundle, excluding adjacent manifests and reports.
 ARCHIVE_INPUT="$(mktemp -d "$BUILD_PATH/archive.XXXXXX")"
 trap 'rm -rf "$ARCHIVE_INPUT"' EXIT
-mkdir "$ARCHIVE_INPUT/Mac"
-ditto "$APP_PATH" "$ARCHIVE_INPUT/Mac/$(basename "$APP_PATH")"
-ditto -c -k --sequesterRsrc --keepParent "$ARCHIVE_INPUT/Mac" "$ARCHIVE_PATH"
+ditto "$APP_PATH" "$ARCHIVE_INPUT/$(basename "$APP_PATH")"
+ditto -c -k --norsrc --keepParent "$ARCHIVE_INPUT/$(basename "$APP_PATH")" "$ARCHIVE_PATH"
 printf 'Mac archive created: %s\n' "$ARCHIVE_PATH"

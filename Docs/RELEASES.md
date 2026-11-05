@@ -85,7 +85,7 @@ signing and [Apple notarization](https://developer.apple.com/documentation/secur
 
 **Note:** The current Mac build is not notarized. To run a trusted team build:
 
-1. Download and extract the ZIP, then open `Mac/ProjectAtlantis-Mac-Shipping.app`.
+1. Download and extract the ZIP, then open `ProjectAtlantis-Mac-Shipping.app`.
 2. If macOS blocks it because the developer cannot be verified, open **System Settings > Privacy & Security** and click **Open Anyway**.
 3. Confirm **Open**. Subsequent launches can use the app normally.
 
@@ -114,7 +114,7 @@ On macOS, after completing the smoke tests, run [Scripts/archive.sh](../Scripts/
 It archives the latest successful Mac build using its saved version, even if the
 checkout has changed since building. To select an older build, pass its version
 (for example, `./Scripts/archive.sh 0.1.0`). The ZIP includes only the Shipping app
-bundle under `Mac/`, excluding adjacent manifests and reports.
+bundle at its root, excluding adjacent manifests and reports.
 
 ## Make a GitHub Release
 
