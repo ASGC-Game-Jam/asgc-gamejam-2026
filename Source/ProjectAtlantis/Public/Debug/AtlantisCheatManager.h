@@ -28,9 +28,9 @@ class PROJECTATLANTIS_API UAtlantisCheatManager : public UCheatManager
 public:
 	UAtlantisCheatManager();
 
-	/** Returns the possessed Atlantis character to its initial spawn without reloading. */
+	/** Reloads the current standalone level with fresh player state, including oxygen. */
 	UFUNCTION(Exec, BlueprintCallable, Category = "Atlantis|Debug")
-	void ResetPlayer();
+	void RestartGame();
 
 	/** Override in Blueprint to append commands, including Cheat Manager Extension commands. */
 	UFUNCTION(BlueprintNativeEvent, Category = "Atlantis|Debug")

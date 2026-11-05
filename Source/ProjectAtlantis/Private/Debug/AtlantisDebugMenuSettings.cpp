@@ -26,7 +26,7 @@ FAtlantisDebugInputMappings UAtlantisDebugMenuSettings::CreateInputMappings(UObj
 	};
 	Mappings.Toggle = PressAction(TEXT("IA_DebugToggle"));
 	Mappings.GamepadToggle = PressAction(TEXT("IA_DebugGamepadToggle"));
-	Mappings.Reset = PressAction(TEXT("IA_DebugReset"));
+	Mappings.Reset = PressAction(TEXT("IA_DebugRestart"));
 	Mappings.Close = PressAction(TEXT("IA_DebugClose"));
 	auto MapKey = [](UInputMappingContext* Context, UInputAction* Action, const FKey& Key)
 	{

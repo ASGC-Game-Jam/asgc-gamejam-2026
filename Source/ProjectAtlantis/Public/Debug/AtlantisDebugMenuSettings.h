@@ -41,11 +41,11 @@ public:
 	UPROPERTY(Config, EditAnywhere, Category = "Input")
 	FKey ToggleMenuGamepadModifier = EKeys::Gamepad_LeftThumbstick;
 
-	UPROPERTY(Config, EditAnywhere, Category = "Input")
+	UPROPERTY(Config, EditAnywhere, Category = "Input", meta = (DisplayName = "Restart Game Key"))
 	FKey ResetPlayerKey = EKeys::F10;
 
-	/** Applies only while the debug menu is open, preserving gameplay bindings. */
-	UPROPERTY(Config, EditAnywhere, Category = "Input")
+	/** Restarts the game only while the debug menu is open, preserving gameplay bindings. */
+	UPROPERTY(Config, EditAnywhere, Category = "Input", meta = (DisplayName = "Restart Game Gamepad Key"))
 	FKey ResetPlayerGamepadKey = EKeys::Gamepad_RightThumbstick;
 
 	FAtlantisDebugInputMappings CreateInputMappings(UObject* Outer) const;

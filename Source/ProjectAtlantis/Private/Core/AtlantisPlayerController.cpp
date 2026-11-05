@@ -11,10 +11,10 @@
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
 #include "HAL/PlatformProperties.h"
-#include "Core/AtlantisPlayerCharacter.h"
 #include "Debug/AtlantisCheatManager.h"
 #include "Debug/AtlantisDebugMenu.h"
 #include "Debug/AtlantisDebugMenuSettings.h"
+#include "Kismet/GameplayStatics.h"
 
 AAtlantisPlayerController::AAtlantisPlayerController()
 {
@@ -84,31 +84,16 @@ void AAtlantisPlayerController::ToggleDebugMenu()
 #endif
 }
 
-void AAtlantisPlayerController::RequestDebugReset()
+void AAtlantisPlayerController::RequestDebugRestart()
 {
 #if !UE_BUILD_SHIPPING
-	if (IsLocalController() && (DebugMenu || (bControlsEnabled && !bShowMouseCursor)))
+	if (!IsLocalController() || GetNetMode() != NM_Standalone
+		|| (!DebugMenu && (!bControlsEnabled || bShowMouseCursor)))
 	{
-		if (HasAuthority())
-		{
-			ServerDebugReset_Implementation();
-		}
-		else
-		{
-			ServerDebugReset();
-		}
+		return;
 	}
-#endif
-}
-
-void AAtlantisPlayerController::ServerDebugReset_Implementation()
-{
-#if !UE_BUILD_SHIPPING
-	if (AAtlantisPlayerCharacter* PlayerCharacter = Cast<AAtlantisPlayerCharacter>(GetPawn()))
-	{
-		PlayerCharacter->MoveToStart();
-		ClientSetRotation(GetControlRotation(), true);
-	}
+	CloseDebugMenu();
+	UGameplayStatics::OpenLevel(this, FName(*UGameplayStatics::GetCurrentLevelName(this, true)));
 #endif
 }
 
@@ -175,7 +160,7 @@ void AAtlantisPlayerController::SetupInputComponent()
 		DebugMenuMappingContext = DebugInput.Menu;
 		EnhancedInput->BindAction(DebugInput.Toggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
 		EnhancedInput->BindAction(DebugInput.GamepadToggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
-		EnhancedInput->BindAction(DebugInput.Reset, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::RequestDebugReset);
+		EnhancedInput->BindAction(DebugInput.Reset, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::RequestDebugRestart);
 		EnhancedInput->BindAction(DebugInput.Close, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::CloseDebugMenu);
 		RefreshDebugInputContext();
 #endif

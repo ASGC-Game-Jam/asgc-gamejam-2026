@@ -8,37 +8,34 @@ commands.
 | Action | Keyboard | Gamepad |
 | --- | --- | --- |
 | Open menu | F7 | Hold left stick click + press Hamburger / Menu |
-| Reset immediately | F10 | Right stick click while menu is open |
+| Restart game | F10 | Right stick click while menu is open |
 | Close menu | Escape / F7 | B / Circle / Hamburger / Menu |
 | Navigate / activate | Arrow keys / Enter | D-pad / A / Cross |
 
 Like Screenshot Capture, bindings use `UDeveloperSettings` and Game.ini:
 **Project Settings > Game > Debug Menu** exposes keyboard and gamepad toggle /
-reset keys and a gamepad toggle modifier. Set a key to None to disable that
+restart keys and a gamepad toggle modifier. Set a key to None to disable that
 shortcut, then restart PIE or the game. The default modifier avoids taking over
-the Menu button's existing Input Action. Right-stick reset is available only
+the Menu button's existing Input Action. Right-stick restart is available only
 inside the menu. Keep keyboard bindings distinct from Screenshot Capture.
 The menu displays the configured shortcuts.
 
 Shortcuts use Enhanced Input actions and two mapping contexts built from these
 settings. The gameplay context handles F7, F10, and the stick + Menu chord using
 Unreal's chord trigger. While the debug menu is open, the controller withdraws
-its gameplay mappings and applies the menu context for toggle, Back, and reset.
+its gameplay mappings and applies the menu context for toggle, Back, and restart.
 Closing restores gameplay mappings and ignores keys still held during the
 transition. Navigation and button activation use the widget's normal UI handling.
 The debug menu does not open while another menu is showing the mouse cursor or
 gameplay controls are disabled; close that menu first. There is no custom Slate
 input processor or pressed-key tracking.
 
-Click **Reset Player to Start** for the same action, or enter `ResetPlayer` in the
-Unreal console (use `EnableCheats` first in network sessions if needed).
-
-Reset teleports the existing Atlantis character to its BeginPlay position and
-rotation, clears pending movement input and velocity, restores camera facing, and
-selects the default movement mode for the destination volume. After a successful
-teleport, ballast returns to its PlayerState class default, updating its oxygen
-reservation through the normal state setter. Inventory and current oxygen are
-preserved. Reset is not a respawn or a level reload.
+Click **Restart Game** for the same action, or enter `RestartGame` in the Unreal
+console. This uses Unreal's built-in level restart in standalone play / PIE,
+closing the menu and reloading the current level. A fresh player and PlayerState
+restore oxygen, ballast, position, and other level-owned state through normal
+game initialization. GameInstance and saved data are not cleared. Network
+sessions are not restarted by this command.
 
 ## Adding actions
 

@@ -153,9 +153,8 @@ what `AAtlantisPlayerCharacter::MoveToStart()` is for — it returns the charact
 captured at `BeginPlay`, keeping all its state. Good for respawn-on-fall-out-of-world; not a
 substitute for real respawning if the pawn accumulates state that should reset.
 
-`MoveToStart` is authority-guarded and clears movement after a collision-aware teleport.
-The [development debug menu](./Debug%20Menu.md) routes client reset requests to the server.
-`MoveToTransform` still requires server-only callers; it is not authority-guarded.
+> ⚠️ `MoveToStart` and `MoveToTransform` are not authority-guarded today. Called on a client they
+> move the actor locally and desync it. Treat them as server-only until that is fixed.
 
 ---
 

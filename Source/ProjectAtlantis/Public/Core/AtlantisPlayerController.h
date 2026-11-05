@@ -46,8 +46,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Debug")
 	void ToggleDebugMenu();
 
-	/** Development-only reset, routed to authority for network PIE sessions. */
-	void RequestDebugReset();
+	/** Restarts the current standalone game level, recreating player state and oxygen. */
+	void RequestDebugRestart();
 	bool IsDebugMenuOpen() const { return DebugMenu != nullptr; }
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -106,9 +106,6 @@ public:
 	void UnrestrictControls(FName ID, UInputMappingContext* MappingContext);
 
 protected:
-	UFUNCTION(Server, Reliable)
-	void ServerDebugReset();
-
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisDebugMenu> DebugMenu;
 

@@ -7,18 +7,18 @@ UAtlantisCheatManager::UAtlantisCheatManager()
 {
 #if !UE_BUILD_SHIPPING
 	FAtlantisDebugAction Action;
-	Action.Label = NSLOCTEXT("AtlantisDebug", "ResetPlayer", "Reset Player to Start");
-	Action.Command = TEXT("ResetPlayer");
+	Action.Label = NSLOCTEXT("AtlantisDebug", "RestartGame", "Restart Game");
+	Action.Command = TEXT("RestartGame");
 	DebugActions.Add(Action);
 #endif
 }
 
-void UAtlantisCheatManager::ResetPlayer()
+void UAtlantisCheatManager::RestartGame()
 {
 #if !UE_BUILD_SHIPPING
 	if (AAtlantisPlayerController* Controller = Cast<AAtlantisPlayerController>(GetOuter()))
 	{
-		Controller->RequestDebugReset();
+		Controller->RequestDebugRestart();
 	}
 #endif
 }

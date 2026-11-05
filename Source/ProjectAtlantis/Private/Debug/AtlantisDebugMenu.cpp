@@ -54,7 +54,7 @@ TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 	TSharedRef<SHorizontalBox> ResetHint = SNew(SHorizontalBox)
 		+ SHorizontalBox::Slot().AutoWidth().VAlign(VAlign_Center)
 		[
-			HintText(FText::Format(NSLOCTEXT("AtlantisDebug", "ResetKeyboardHint", "Reset: {0} / "),
+			HintText(FText::Format(NSLOCTEXT("AtlantisDebug", "RestartKeyboardHint", "Restart: {0} / "),
 				Settings->ResetPlayerKey.GetDisplayName()))
 		]
 		+ SHorizontalBox::Slot().AutoWidth().VAlign(VAlign_Center)[MakeKeyHint(Settings->ResetPlayerGamepadKey)]
