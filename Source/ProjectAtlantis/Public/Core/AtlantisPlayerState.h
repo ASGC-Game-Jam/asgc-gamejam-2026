@@ -135,6 +135,10 @@ private:
 	
 	UFUNCTION()
 	void HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn);
+
+	UFUNCTION()
+	void HandleCurrentOxygenChanged(float OldOxygen, float NewOxygen);
+
 	void HandleActiveGameplayTick(UWorld* World, double ActiveDeltaSeconds);
 
 	// Ballast reservations, not consumption rates; tune in Blueprint class defaults.

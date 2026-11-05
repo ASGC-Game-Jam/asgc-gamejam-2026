@@ -117,6 +117,24 @@ void FAtlantisBallastStateSpec::Define()
 
 	Describe(TEXT("ModeTransitions"), [this]()
 	{
+		It(TEXT("should switch from Wander to Descend when usable oxygen runs out"), [this]()
+		{
+			if (!Fixture->State)
+			{
+				return;
+			}
+
+			Fixture->State->DispatchBeginPlay();
+			Fixture->State->SetBallastState(EAtlantisBallastState::Wander);
+			TestTrue(TEXT("Player starts in Wander"), Fixture->State->GetBallastState() == EAtlantisBallastState::Wander);
+			const float Reservation = Fixture->Oxygen->GetAllocatedOxygen();
+
+			TestTrue(TEXT("Drain usable oxygen"), Fixture->Oxygen->RequestOxygen(Fixture->Oxygen->GetAvailableOxygen()));
+			TestTrue(TEXT("Player falls back to Descend"), Fixture->State->GetBallastState() == EAtlantisBallastState::Descend);
+			TestEqual(TEXT("Descend releases the reservation"), Fixture->Oxygen->GetAllocatedOxygen(), 0.f);
+			TestEqual(TEXT("Released oxygen becomes usable"), Fixture->Oxygen->GetAvailableOxygen(), Reservation);
+		});
+
 		It(TEXT("should allow emergency ascent and descent with an empty tank"), [this]()
 		{
 			if (!Fixture->State)
