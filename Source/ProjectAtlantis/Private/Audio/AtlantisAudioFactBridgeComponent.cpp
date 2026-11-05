@@ -202,6 +202,7 @@ void UAtlantisAudioFactBridgeComponent::SendInvestigationStatus(const FString& T
 
 void UAtlantisAudioFactBridgeComponent::HandleControllerChanged(APawn* Pawn, AController* OldController, AController* NewController)
 {
+    UnbindSources();
     TryBindSources();
 }
 

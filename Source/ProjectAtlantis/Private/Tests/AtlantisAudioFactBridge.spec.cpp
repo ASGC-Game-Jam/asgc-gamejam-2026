@@ -327,15 +327,19 @@ void FAtlantisAudioFactBridgeSpec::Define()
 			TestEqual(TEXT("Starting facts are sent after possession"), Fixture->Count(TAG_AudioFact_Oxygen_Level), 1);
 		});
 
-		It(TEXT("should not send facts twice if the controller changes again"), [this]()
+		It(TEXT("should stop sending facts when unpossessed and resume when possessed again"), [this]()
 		{
 			Fixture->StartPlayer();
 
-			Fixture->Pawn->PossessedBy(Fixture->World->SpawnActor<AAIController>());
-			TestEqual(TEXT("Starting facts aren't repeated"), Fixture->Count(TAG_AudioFact_Oxygen_Level), 1);
+			Fixture->Pawn->UnPossessed();
+			const int32 CountBefore = Fixture->TotalCount();
 
+			Fixture->Hiding->OnHidingStateChanged.Broadcast(true);
 			Fixture->Oxygen->RequestOxygen(25.f);
-			TestEqual(TEXT("A change only sends one fact"), Fixture->Count(TAG_AudioFact_Oxygen_Level), 2);
+			TestEqual(TEXT("Nothing is sent while unpossessed"), Fixture->TotalCount(), CountBefore);
+
+			Fixture->Pawn->PossessedBy(Fixture->Controller);
+			TestTrue(TEXT("Facts are sent again after possession"), Fixture->TotalCount() > CountBefore);
 		});
 
 		It(TEXT("should stop sending facts after end play"), [this]()
