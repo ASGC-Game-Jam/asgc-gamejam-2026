@@ -33,6 +33,6 @@ fi
 # Archive only the complete app bundle, excluding adjacent manifests and reports.
 ARCHIVE_INPUT="$(mktemp -d "$BUILD_PATH/archive.XXXXXX")"
 trap 'rm -rf "$ARCHIVE_INPUT"' EXIT
-ditto "$APP_PATH" "$ARCHIVE_INPUT/$(basename "$APP_PATH")"
-ditto -c -k --norsrc --keepParent "$ARCHIVE_INPUT/$(basename "$APP_PATH")" "$ARCHIVE_PATH"
+ditto "$APP_PATH" "$ARCHIVE_INPUT/ProjectAtlantis.app"
+ditto -c -k --norsrc --keepParent "$ARCHIVE_INPUT/ProjectAtlantis.app" "$ARCHIVE_PATH"
 printf 'Mac archive created: %s\n' "$ARCHIVE_PATH"

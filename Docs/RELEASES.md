@@ -85,7 +85,7 @@ signing and [Apple notarization](https://developer.apple.com/documentation/secur
 
 **Note:** The current Mac build is not notarized. To run a trusted team build:
 
-1. Download and extract the ZIP, then open `ProjectAtlantis-Mac-Shipping.app`.
+1. Download and extract the ZIP, then open `ProjectAtlantis.app`.
 2. If macOS blocks it because the developer cannot be verified, open **System Settings > Privacy & Security** and click **Open Anyway**.
 3. Confirm **Open**. Subsequent launches can use the app normally.
 
