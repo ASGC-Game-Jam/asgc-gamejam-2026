@@ -1,0 +1,312 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/CommonConversations/ConversationRequirementNode_InventoryCheck",
+	"asset": "ConversationRequirementNode_InventoryCheck",
+	"assetClass": "Blueprint",
+	"parentClass": "ConversationRequirementNode",
+	"blueprintType": "BPTYPE_Const",
+	"graphs": [
+		{
+			"name": "IsRequirementSatisfied",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "04fade4d4a8743b3fc3116905cac22a0",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 1584,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "04fade4d4a8743b3fc3116905cac22a0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b62a069c45acd51404821e818cdf49f1:o:CastFailed",
+								"bbd132154a64f8bf3387baa9865a8860:o:else"
+							]
+						},
+						{
+							"id": "04fade4d4a8743b3fc3116905cac22a0:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "byte:/Script/CommonConversationRuntime.EConversationRequirementResult",
+							"defaultValue": "FailedAndHidden",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4643188a4c21d1d84050e5856fc88d8d",
+					"class": "K2Node_VariableGet",
+					"title": "Get HasItem",
+					"x": 960,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4643188a4c21d1d84050e5856fc88d8d:o:HasItem",
+							"name": "HasItem",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"bbd132154a64f8bf3387baa9865a8860:i:Condition"
+							]
+						},
+						{
+							"id": "4643188a4c21d1d84050e5856fc88d8d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacterCommonConversatinos.BP_AtlantisPlayerCharacterCommonConversatinos_C",
+							"defaultValue": null,
+							"links": [
+								"b62a069c45acd51404821e818cdf49f1:o:AsBP Atlantis Player Character Common Conversatinos"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9bce61fb48918380c575afbbb38cdcbe",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Pawn",
+					"x": 176,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9bce61fb48918380c575afbbb38cdcbe:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "9bce61fb48918380c575afbbb38cdcbe:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9bce61fb48918380c575afbbb38cdcbe:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "9bce61fb48918380c575afbbb38cdcbe:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": [
+								"b62a069c45acd51404821e818cdf49f1:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b62a069c45acd51404821e818cdf49f1",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisPlayerCharacterCommonConversatinos",
+					"x": 496,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b62a069c45acd51404821e818cdf49f1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f6bf50a14a5ce0049bf4969c11372447:o:then"
+							]
+						},
+						{
+							"id": "b62a069c45acd51404821e818cdf49f1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bbd132154a64f8bf3387baa9865a8860:i:execute"
+							]
+						},
+						{
+							"id": "b62a069c45acd51404821e818cdf49f1:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"04fade4d4a8743b3fc3116905cac22a0:i:execute"
+							]
+						},
+						{
+							"id": "b62a069c45acd51404821e818cdf49f1:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"9bce61fb48918380c575afbbb38cdcbe:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b62a069c45acd51404821e818cdf49f1:o:AsBP Atlantis Player Character Common Conversatinos",
+							"name": "AsBP Atlantis Player Character Common Conversatinos",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacterCommonConversatinos.BP_AtlantisPlayerCharacterCommonConversatinos_C",
+							"defaultValue": null,
+							"links": [
+								"4643188a4c21d1d84050e5856fc88d8d:i:self"
+							]
+						},
+						{
+							"id": "b62a069c45acd51404821e818cdf49f1:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bbd132154a64f8bf3387baa9865a8860",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1232,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bbd132154a64f8bf3387baa9865a8860:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b62a069c45acd51404821e818cdf49f1:o:then"
+							]
+						},
+						{
+							"id": "bbd132154a64f8bf3387baa9865a8860:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"4643188a4c21d1d84050e5856fc88d8d:o:HasItem"
+							]
+						},
+						{
+							"id": "bbd132154a64f8bf3387baa9865a8860:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f73befcf4a6f387fcd42a2bd8df5fcb0:i:execute"
+							]
+						},
+						{
+							"id": "bbd132154a64f8bf3387baa9865a8860:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"04fade4d4a8743b3fc3116905cac22a0:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f6bf50a14a5ce0049bf4969c11372447",
+					"class": "K2Node_FunctionEntry",
+					"title": "Is Requirement Satisfied",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f6bf50a14a5ce0049bf4969c11372447:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b62a069c45acd51404821e818cdf49f1:i:execute"
+							]
+						},
+						{
+							"id": "f6bf50a14a5ce0049bf4969c11372447:o:Context",
+							"name": "Context",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationContext",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f73befcf4a6f387fcd42a2bd8df5fcb0",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 1584,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f73befcf4a6f387fcd42a2bd8df5fcb0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bbd132154a64f8bf3387baa9865a8860:o:then"
+							]
+						},
+						{
+							"id": "f73befcf4a6f387fcd42a2bd8df5fcb0:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "byte:/Script/CommonConversationRuntime.EConversationRequirementResult",
+							"defaultValue": "Passed",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"NodeName": "",
+			"Compiled_NodeGUID": "00000000000000000000000000000000",
+			"bShowPropertyDetails": true,
+			"bShowPropertyEditors": false,
+			"ParentNode": null
+		}
+	}
+}

@@ -1,0 +1,1191 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/CommonConversations/BP_ConeItem",
+	"asset": "BP_ConeItem",
+	"assetClass": "Blueprint",
+	"parentClass": "StaticMeshActor",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "afb1d4494229a9914f2f58b7bfbab881",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "afb1d4494229a9914f2f58b7bfbab881:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "5f3344ab44cf40f80b9097b01bed6fe4",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "5f3344ab44cf40f80b9097b01bed6fe4:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5f3344ab44cf40f80b9097b01bed6fe4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5f3344ab44cf40f80b9097b01bed6fe4:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "617923cb4676a62d5df4bf92d190fce1",
+					"class": "K2Node_VariableSet",
+					"title": "Set HasItem",
+					"x": 1104,
+					"y": 672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "617923cb4676a62d5df4bf92d190fce1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b1b63e474a5c11a0166a0bb3826aa250:o:then"
+							]
+						},
+						{
+							"id": "617923cb4676a62d5df4bf92d190fce1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bf6d90774cd30f519279e7bcfec6688c:i:execute"
+							]
+						},
+						{
+							"id": "617923cb4676a62d5df4bf92d190fce1:i:HasItem",
+							"name": "HasItem",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "617923cb4676a62d5df4bf92d190fce1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacterCommonConversatinos.BP_AtlantisPlayerCharacterCommonConversatinos_C",
+							"defaultValue": null,
+							"links": [
+								"b1b63e474a5c11a0166a0bb3826aa250:o:AsBP Atlantis Player Character Common Conversatinos"
+							]
+						},
+						{
+							"id": "617923cb4676a62d5df4bf92d190fce1:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "742b7d6946d6d7dea5ea0bb1d7e894c2",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Component Begin Overlap (StaticMeshComponent)",
+					"x": 32,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "742b7d6946d6d7dea5ea0bb1d7e894c2:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "742b7d6946d6d7dea5ea0bb1d7e894c2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b1b63e474a5c11a0166a0bb3826aa250:i:execute"
+							]
+						},
+						{
+							"id": "742b7d6946d6d7dea5ea0bb1d7e894c2:o:OverlappedComponent",
+							"name": "OverlappedComponent",
+							"direction": "output",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "742b7d6946d6d7dea5ea0bb1d7e894c2:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"b1b63e474a5c11a0166a0bb3826aa250:i:Object"
+							]
+						},
+						{
+							"id": "742b7d6946d6d7dea5ea0bb1d7e894c2:o:OtherComp",
+							"name": "OtherComp",
+							"direction": "output",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "742b7d6946d6d7dea5ea0bb1d7e894c2:o:OtherBodyIndex",
+							"name": "OtherBodyIndex",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "742b7d6946d6d7dea5ea0bb1d7e894c2:o:bFromSweep",
+							"name": "bFromSweep",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "742b7d6946d6d7dea5ea0bb1d7e894c2:o:SweepResult",
+							"name": "SweepResult",
+							"direction": "output",
+							"type": "struct:/Script/Engine.HitResult",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b1b63e474a5c11a0166a0bb3826aa250",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisPlayerCharacterCommonConversatinos",
+					"x": 560,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b1b63e474a5c11a0166a0bb3826aa250:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"742b7d6946d6d7dea5ea0bb1d7e894c2:o:then"
+							]
+						},
+						{
+							"id": "b1b63e474a5c11a0166a0bb3826aa250:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"617923cb4676a62d5df4bf92d190fce1:i:execute"
+							]
+						},
+						{
+							"id": "b1b63e474a5c11a0166a0bb3826aa250:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b1b63e474a5c11a0166a0bb3826aa250:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"742b7d6946d6d7dea5ea0bb1d7e894c2:o:OtherActor"
+							]
+						},
+						{
+							"id": "b1b63e474a5c11a0166a0bb3826aa250:o:AsBP Atlantis Player Character Common Conversatinos",
+							"name": "AsBP Atlantis Player Character Common Conversatinos",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacterCommonConversatinos.BP_AtlantisPlayerCharacterCommonConversatinos_C",
+							"defaultValue": null,
+							"links": [
+								"617923cb4676a62d5df4bf92d190fce1:i:self"
+							]
+						},
+						{
+							"id": "b1b63e474a5c11a0166a0bb3826aa250:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bf6d90774cd30f519279e7bcfec6688c",
+					"class": "K2Node_CallFunction",
+					"title": "Destroy Actor",
+					"x": 1360,
+					"y": 640,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bf6d90774cd30f519279e7bcfec6688c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"617923cb4676a62d5df4bf92d190fce1:o:then"
+							]
+						},
+						{
+							"id": "bf6d90774cd30f519279e7bcfec6688c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bf6d90774cd30f519279e7bcfec6688c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c0320904469163f5d49dae92f65f5425",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "c0320904469163f5d49dae92f65f5425:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c0320904469163f5d49dae92f65f5425:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e14481ed404b4b0cee0bc2b2b08c12c7",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "e14481ed404b4b0cee0bc2b2b08c12c7:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e14481ed404b4b0cee0bc2b2b08c12c7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e14481ed404b4b0cee0bc2b2b08c12c7:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"StaticMeshComponent":
+			{
+				"_class": "StaticMeshComponent",
+				"_name": "StaticMeshComponent0",
+				"ForcedLodModel": 0,
+				"MinLOD": 0,
+				"SubDivisionStepSize": 32,
+				"WireframeColorOverride":
+				{
+					"B": 255,
+					"G": 255,
+					"R": 255,
+					"A": 255
+				},
+				"StaticMesh": "/Engine/BasicShapes/Cone.Cone",
+				"WorldPositionOffsetDisableDistance": 0,
+				"bForceNaniteForMasked": false,
+				"bDisallowNanite": false,
+				"bForceDisableNanite": false,
+				"bEvaluateWorldPositionOffset": true,
+				"bWorldPositionOffsetWritesVelocity": true,
+				"bEvaluateWorldPositionOffsetInRayTracing": false,
+				"StaticMeshImportVersion": 0,
+				"bOverrideWireframeColor": false,
+				"bOverrideMinLOD": false,
+				"bIgnoreInstanceForTextureStreaming": false,
+				"bOverrideLightMapRes": false,
+				"bCastDistanceFieldIndirectShadow": false,
+				"bOverrideDistanceFieldSelfShadowBias": false,
+				"bUseSubDivisions": true,
+				"bUseDefaultCollision": false,
+				"bCustomOverrideVertexColorPerLOD": false,
+				"bDisplayNaniteFallbackMesh": false,
+				"bSortTriangles": false,
+				"bReverseCulling": false,
+				"bEnableVertexColorMeshPainting": true,
+				"bEnableTextureColorMeshPainting": true,
+				"bOverrideMeshPaintTextureCoordinateIndex": false,
+				"bOverrideMeshPaintTextureResolution": false,
+				"OverriddenMeshPaintTextureCoordinateIndex": 0,
+				"OverriddenMeshPaintTextureResolution": 0,
+				"OverriddenLightMapRes": 64,
+				"MeshPaintTexture": null,
+				"MeshPaintTextureCooked": null,
+				"MaterialCacheTileCount":
+				{
+					"X": 8,
+					"Y": 8
+				},
+				"DistanceFieldIndirectShadowMinVisibility": 0.10000000000000001,
+				"DistanceFieldSelfShadowBias": 0,
+				"StreamingDistanceMultiplier": 1,
+				"NanitePixelProgrammableDistance": 0,
+				"StreamingTextureData": [],
+				"StaticMeshDerivedDataKey": "",
+				"MaterialStreamingRelativeBoxes": [],
+				"LightmassSettings":
+				{
+					"bUseTwoSidedLighting": false,
+					"bShadowIndirectOnly": false,
+					"bUseEmissiveForStaticLighting": false,
+					"bUseVertexNormalForHemisphereGather": false,
+					"EmissiveLightFalloffExponent": 8,
+					"EmissiveLightExplicitInfluenceRadius": 0,
+					"EmissiveBoost": 1,
+					"DiffuseBoost": 1,
+					"FullyOccludedSamplesFraction": 1
+				},
+				"OverrideMaterials": [
+					"/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial"
+				],
+				"OverlayMaterial": null,
+				"OverlayMaterialMaxDrawDistance": 0,
+				"MaterialSlotsOverlayMaterial": [],
+				"bEnableMaterialParameterCaching": false,
+				"MinDrawDistance": 0,
+				"LDMaxDrawDistance": 0,
+				"CachedMaxDrawDistance": 0,
+				"DepthPriorityGroup": "SDPG_World",
+				"ViewOwnerDepthPriorityGroup": "SDPG_World",
+				"IndirectLightingCacheQuality": "ILCQ_Point",
+				"LightmapType": "Default",
+				"HLODBatchingPolicy": "None",
+				"ShadowCacheInvalidationBehavior": "Auto",
+				"bEnableAutoLODGeneration": true,
+				"bIsActorTextureStreamingBuiltData": false,
+				"bIsValidTextureStreamingBuiltData": false,
+				"bNeverDistanceCull": false,
+				"bAlwaysCreatePhysicsState": false,
+				"bGenerateOverlapEvents": true,
+				"bMultiBodyOverlap": false,
+				"bTraceComplexOnMove": false,
+				"bReturnMaterialOnMove": false,
+				"bUseViewOwnerDepthPriorityGroup": false,
+				"bAllowCullDistanceVolume": true,
+				"bVisibleInReflectionCaptures": true,
+				"bVisibleInRealTimeSkyCaptures": true,
+				"bVisibleInRayTracing": true,
+				"bRenderInMainPass": true,
+				"bRenderInDepthPass": true,
+				"bReceivesDecals": true,
+				"bHoldout": false,
+				"bOwnerNoSee": false,
+				"bOnlyOwnerSee": false,
+				"bTreatAsBackgroundForOcclusion": false,
+				"bUseAsOccluder": true,
+				"bSelectable": true,
+				"bWantsEditorEffects": false,
+				"bConsiderForActorPlacementWhenHidden": false,
+				"bForceMipStreaming": false,
+				"bHasPerInstanceHitProxies": false,
+				"CastShadow": true,
+				"bEmissiveLightSource": false,
+				"bAffectDynamicIndirectLighting": true,
+				"bAffectIndirectLightingWhileHidden": false,
+				"bAffectDistanceFieldLighting": true,
+				"bCastDynamicShadow": true,
+				"bCastStaticShadow": true,
+				"bCastVolumetricTranslucentShadow": false,
+				"bCastContactShadow": true,
+				"bSelfShadowOnly": false,
+				"bCastFarShadow": false,
+				"bCastInsetShadow": false,
+				"bCastCinematicShadow": false,
+				"bCastHiddenShadow": false,
+				"bCastShadowAsTwoSided": false,
+				"bLightAttachmentsAsGroup": false,
+				"bExcludeFromLightAttachmentGroup": false,
+				"bReceiveMobileCSMShadows": true,
+				"bSingleSampleShadowFromStationaryLights": false,
+				"bIgnoreRadialImpulse": false,
+				"bIgnoreRadialForce": false,
+				"bApplyImpulseOnDamage": true,
+				"bReplicatePhysicsToAutonomousProxy": true,
+				"bFillCollisionUnderneathForNavmesh": false,
+				"bRasterizeAsFilledConvexVolume": false,
+				"AlwaysLoadOnClient": true,
+				"AlwaysLoadOnServer": true,
+				"bUseEditorCompositing": false,
+				"bRenderCustomDepth": false,
+				"bVisibleInSceneCaptureOnly": false,
+				"bHiddenInSceneCapture": false,
+				"bRayTracingFarField": false,
+				"bLumenHeightfield": false,
+				"FirstPersonPrimitiveType": "None",
+				"bHasNoStreamableTextures": false,
+				"bStaticWhenNotMoveable": true,
+				"bHasCustomNavigableGeometry": "Yes",
+				"HitProxyPriority": "HPP_World",
+				"CanCharacterStepUpOn": "ECB_Yes",
+				"LightingChannels":
+				{
+					"bChannel0": true,
+					"bChannel1": false,
+					"bChannel2": false
+				},
+				"RayTracingGroupCullingPriority": "CP_4_DEFAULT",
+				"CustomDepthStencilWriteMask": "ERSM_Default",
+				"ExcludeFromHLODLevels": 0,
+				"RayTracingGroupId": -1,
+				"VisibilityId": -1,
+				"CustomDepthStencilValue": 0,
+				"CustomPrimitiveData":
+				{
+					"Data": []
+				},
+				"TranslucencySortPriority": 0,
+				"TranslucencySortDistanceOffset": 0,
+				"RuntimeVirtualTextures": [],
+				"VirtualTextureLodBias": 0,
+				"VirtualTextureCullMips": 0,
+				"VirtualTextureMinCoverage": 0,
+				"VirtualTextureRenderPassType": "Exclusive",
+				"BoundsScale": 1,
+				"BodyInstance":
+				{
+					"PositionSolverIterationCount": 8,
+					"VelocitySolverIterationCount": 2,
+					"ProjectionSolverIterationCount": 1,
+					"ObjectType": "ECC_WorldStatic",
+					"CollisionEnabled": "QueryOnly",
+					"SleepFamily": "Normal",
+					"DOFMode": "Default",
+					"bUseCCD": false,
+					"bUseMACD": false,
+					"bAllowPartialIslandSleep": true,
+					"bIgnoreAnalyticCollisions": false,
+					"bNotifyRigidBodyCollision": false,
+					"bSmoothEdgeCollisions": false,
+					"bLockTranslation": true,
+					"bLockRotation": true,
+					"bLockXTranslation": false,
+					"bLockYTranslation": false,
+					"bLockZTranslation": false,
+					"bLockXRotation": false,
+					"bLockYRotation": false,
+					"bLockZRotation": false,
+					"bOverrideMaxAngularVelocity": false,
+					"bOverrideMaxDepenetrationVelocity": false,
+					"bOverrideWalkableSlopeOnInstance": false,
+					"bOverrideIterationCounts": false,
+					"bInterpolateWhenSubStepping": true,
+					"bInertiaConditioning": true,
+					"bOneWayInteraction": false,
+					"bOverrideSolverAsyncDeltaTime": false,
+					"SolverAsyncDeltaTime": 0.016666670000000001,
+					"CollisionProfileName": "OverlapAll",
+					"CollisionResponses":
+					{
+						"ResponseArray": [
+							{
+								"Channel": "WorldStatic",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "WorldDynamic",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Pawn",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Visibility",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Camera",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "PhysicsBody",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Vehicle",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Destructible",
+								"Response": "ECR_Overlap"
+							}
+						]
+					},
+					"MaxDepenetrationVelocity": 0,
+					"MassInKgOverride": 100,
+					"LinearDamping": 0.01,
+					"AngularDamping": 0,
+					"CustomDOFPlaneNormal":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"COMNudge":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"MassScale": 1,
+					"GravityGroupIndex": 0,
+					"InertiaTensorScale":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"WalkableSlopeOverride":
+					{
+						"WalkableSlopeBehavior": "WalkableSlope_Default",
+						"WalkableSlopeAngle": 0
+					},
+					"PhysMaterialOverride": null,
+					"MaxAngularVelocity": 3600,
+					"CustomSleepThresholdMultiplier": 1,
+					"StabilizationThresholdMultiplier": 1,
+					"PhysicsBlendWeight": 0,
+					"bSimulatePhysics": false,
+					"bOverrideMass": false,
+					"bEnableGravity": true,
+					"bUpdateKinematicFromSimulation": false,
+					"bGyroscopicTorqueEnabled": false,
+					"bAutoWeld": true,
+					"bStartAwake": true,
+					"bGenerateWakeEvents": false,
+					"bUpdateMassWhenScaleChanges": true
+				},
+				"AttachParent": null,
+				"AttachSocketName": "None",
+				"RelativeLocation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"RelativeRotation":
+				{
+					"Pitch": 0,
+					"Yaw": 0,
+					"Roll": 0
+				},
+				"RelativeScale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				},
+				"ComponentVelocity":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"bAbsoluteLocation": false,
+				"bAbsoluteRotation": false,
+				"bAbsoluteScale": false,
+				"bVisible": true,
+				"bShouldUpdatePhysicsVolume": false,
+				"bHiddenInGame": false,
+				"bBoundsChangeTriggersStreamingDataRebuild": true,
+				"bUseAttachParentBound": false,
+				"bComputeFastLocalBounds": false,
+				"bComputeBoundsOnceForGame": false,
+				"bComputedBoundsOnceForGame": false,
+				"bIsNotRenderAttachmentRoot": false,
+				"bVisualizeComponent": false,
+				"Mobility": "Static",
+				"DetailMode": "DM_Low",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": true,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"bStaticMeshReplicateMovement": false,
+			"StaticMeshPhysicsReplicationMode": "Default",
+			"NavigationGeometryGatheringMode": "Default",
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": false,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": true,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent":
+			{
+				"_class": "StaticMeshComponent",
+				"_name": "StaticMeshComponent0",
+				"ForcedLodModel": 0,
+				"MinLOD": 0,
+				"SubDivisionStepSize": 32,
+				"WireframeColorOverride":
+				{
+					"B": 255,
+					"G": 255,
+					"R": 255,
+					"A": 255
+				},
+				"StaticMesh": "/Engine/BasicShapes/Cone.Cone",
+				"WorldPositionOffsetDisableDistance": 0,
+				"bForceNaniteForMasked": false,
+				"bDisallowNanite": false,
+				"bForceDisableNanite": false,
+				"bEvaluateWorldPositionOffset": true,
+				"bWorldPositionOffsetWritesVelocity": true,
+				"bEvaluateWorldPositionOffsetInRayTracing": false,
+				"StaticMeshImportVersion": 0,
+				"bOverrideWireframeColor": false,
+				"bOverrideMinLOD": false,
+				"bIgnoreInstanceForTextureStreaming": false,
+				"bOverrideLightMapRes": false,
+				"bCastDistanceFieldIndirectShadow": false,
+				"bOverrideDistanceFieldSelfShadowBias": false,
+				"bUseSubDivisions": true,
+				"bUseDefaultCollision": false,
+				"bCustomOverrideVertexColorPerLOD": false,
+				"bDisplayNaniteFallbackMesh": false,
+				"bSortTriangles": false,
+				"bReverseCulling": false,
+				"bEnableVertexColorMeshPainting": true,
+				"bEnableTextureColorMeshPainting": true,
+				"bOverrideMeshPaintTextureCoordinateIndex": false,
+				"bOverrideMeshPaintTextureResolution": false,
+				"OverriddenMeshPaintTextureCoordinateIndex": 0,
+				"OverriddenMeshPaintTextureResolution": 0,
+				"OverriddenLightMapRes": 64,
+				"MeshPaintTexture": null,
+				"MeshPaintTextureCooked": null,
+				"MaterialCacheTileCount":
+				{
+					"X": 8,
+					"Y": 8
+				},
+				"DistanceFieldIndirectShadowMinVisibility": 0.10000000000000001,
+				"DistanceFieldSelfShadowBias": 0,
+				"StreamingDistanceMultiplier": 1,
+				"NanitePixelProgrammableDistance": 0,
+				"StreamingTextureData": [],
+				"StaticMeshDerivedDataKey": "",
+				"MaterialStreamingRelativeBoxes": [],
+				"LightmassSettings":
+				{
+					"bUseTwoSidedLighting": false,
+					"bShadowIndirectOnly": false,
+					"bUseEmissiveForStaticLighting": false,
+					"bUseVertexNormalForHemisphereGather": false,
+					"EmissiveLightFalloffExponent": 8,
+					"EmissiveLightExplicitInfluenceRadius": 0,
+					"EmissiveBoost": 1,
+					"DiffuseBoost": 1,
+					"FullyOccludedSamplesFraction": 1
+				},
+				"OverrideMaterials": [
+					"/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial"
+				],
+				"OverlayMaterial": null,
+				"OverlayMaterialMaxDrawDistance": 0,
+				"MaterialSlotsOverlayMaterial": [],
+				"bEnableMaterialParameterCaching": false,
+				"MinDrawDistance": 0,
+				"LDMaxDrawDistance": 0,
+				"CachedMaxDrawDistance": 0,
+				"DepthPriorityGroup": "SDPG_World",
+				"ViewOwnerDepthPriorityGroup": "SDPG_World",
+				"IndirectLightingCacheQuality": "ILCQ_Point",
+				"LightmapType": "Default",
+				"HLODBatchingPolicy": "None",
+				"ShadowCacheInvalidationBehavior": "Auto",
+				"bEnableAutoLODGeneration": true,
+				"bIsActorTextureStreamingBuiltData": false,
+				"bIsValidTextureStreamingBuiltData": false,
+				"bNeverDistanceCull": false,
+				"bAlwaysCreatePhysicsState": false,
+				"bGenerateOverlapEvents": true,
+				"bMultiBodyOverlap": false,
+				"bTraceComplexOnMove": false,
+				"bReturnMaterialOnMove": false,
+				"bUseViewOwnerDepthPriorityGroup": false,
+				"bAllowCullDistanceVolume": true,
+				"bVisibleInReflectionCaptures": true,
+				"bVisibleInRealTimeSkyCaptures": true,
+				"bVisibleInRayTracing": true,
+				"bRenderInMainPass": true,
+				"bRenderInDepthPass": true,
+				"bReceivesDecals": true,
+				"bHoldout": false,
+				"bOwnerNoSee": false,
+				"bOnlyOwnerSee": false,
+				"bTreatAsBackgroundForOcclusion": false,
+				"bUseAsOccluder": true,
+				"bSelectable": true,
+				"bWantsEditorEffects": false,
+				"bConsiderForActorPlacementWhenHidden": false,
+				"bForceMipStreaming": false,
+				"bHasPerInstanceHitProxies": false,
+				"CastShadow": true,
+				"bEmissiveLightSource": false,
+				"bAffectDynamicIndirectLighting": true,
+				"bAffectIndirectLightingWhileHidden": false,
+				"bAffectDistanceFieldLighting": true,
+				"bCastDynamicShadow": true,
+				"bCastStaticShadow": true,
+				"bCastVolumetricTranslucentShadow": false,
+				"bCastContactShadow": true,
+				"bSelfShadowOnly": false,
+				"bCastFarShadow": false,
+				"bCastInsetShadow": false,
+				"bCastCinematicShadow": false,
+				"bCastHiddenShadow": false,
+				"bCastShadowAsTwoSided": false,
+				"bLightAttachmentsAsGroup": false,
+				"bExcludeFromLightAttachmentGroup": false,
+				"bReceiveMobileCSMShadows": true,
+				"bSingleSampleShadowFromStationaryLights": false,
+				"bIgnoreRadialImpulse": false,
+				"bIgnoreRadialForce": false,
+				"bApplyImpulseOnDamage": true,
+				"bReplicatePhysicsToAutonomousProxy": true,
+				"bFillCollisionUnderneathForNavmesh": false,
+				"bRasterizeAsFilledConvexVolume": false,
+				"AlwaysLoadOnClient": true,
+				"AlwaysLoadOnServer": true,
+				"bUseEditorCompositing": false,
+				"bRenderCustomDepth": false,
+				"bVisibleInSceneCaptureOnly": false,
+				"bHiddenInSceneCapture": false,
+				"bRayTracingFarField": false,
+				"bLumenHeightfield": false,
+				"FirstPersonPrimitiveType": "None",
+				"bHasNoStreamableTextures": false,
+				"bStaticWhenNotMoveable": true,
+				"bHasCustomNavigableGeometry": "Yes",
+				"HitProxyPriority": "HPP_World",
+				"CanCharacterStepUpOn": "ECB_Yes",
+				"LightingChannels":
+				{
+					"bChannel0": true,
+					"bChannel1": false,
+					"bChannel2": false
+				},
+				"RayTracingGroupCullingPriority": "CP_4_DEFAULT",
+				"CustomDepthStencilWriteMask": "ERSM_Default",
+				"ExcludeFromHLODLevels": 0,
+				"RayTracingGroupId": -1,
+				"VisibilityId": -1,
+				"CustomDepthStencilValue": 0,
+				"CustomPrimitiveData":
+				{
+					"Data": []
+				},
+				"TranslucencySortPriority": 0,
+				"TranslucencySortDistanceOffset": 0,
+				"RuntimeVirtualTextures": [],
+				"VirtualTextureLodBias": 0,
+				"VirtualTextureCullMips": 0,
+				"VirtualTextureMinCoverage": 0,
+				"VirtualTextureRenderPassType": "Exclusive",
+				"BoundsScale": 1,
+				"BodyInstance":
+				{
+					"PositionSolverIterationCount": 8,
+					"VelocitySolverIterationCount": 2,
+					"ProjectionSolverIterationCount": 1,
+					"ObjectType": "ECC_WorldStatic",
+					"CollisionEnabled": "QueryOnly",
+					"SleepFamily": "Normal",
+					"DOFMode": "Default",
+					"bUseCCD": false,
+					"bUseMACD": false,
+					"bAllowPartialIslandSleep": true,
+					"bIgnoreAnalyticCollisions": false,
+					"bNotifyRigidBodyCollision": false,
+					"bSmoothEdgeCollisions": false,
+					"bLockTranslation": true,
+					"bLockRotation": true,
+					"bLockXTranslation": false,
+					"bLockYTranslation": false,
+					"bLockZTranslation": false,
+					"bLockXRotation": false,
+					"bLockYRotation": false,
+					"bLockZRotation": false,
+					"bOverrideMaxAngularVelocity": false,
+					"bOverrideMaxDepenetrationVelocity": false,
+					"bOverrideWalkableSlopeOnInstance": false,
+					"bOverrideIterationCounts": false,
+					"bInterpolateWhenSubStepping": true,
+					"bInertiaConditioning": true,
+					"bOneWayInteraction": false,
+					"bOverrideSolverAsyncDeltaTime": false,
+					"SolverAsyncDeltaTime": 0.016666670000000001,
+					"CollisionProfileName": "OverlapAll",
+					"CollisionResponses":
+					{
+						"ResponseArray": [
+							{
+								"Channel": "WorldStatic",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "WorldDynamic",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Pawn",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Visibility",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Camera",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "PhysicsBody",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Vehicle",
+								"Response": "ECR_Overlap"
+							},
+							{
+								"Channel": "Destructible",
+								"Response": "ECR_Overlap"
+							}
+						]
+					},
+					"MaxDepenetrationVelocity": 0,
+					"MassInKgOverride": 100,
+					"LinearDamping": 0.01,
+					"AngularDamping": 0,
+					"CustomDOFPlaneNormal":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"COMNudge":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"MassScale": 1,
+					"GravityGroupIndex": 0,
+					"InertiaTensorScale":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"WalkableSlopeOverride":
+					{
+						"WalkableSlopeBehavior": "WalkableSlope_Default",
+						"WalkableSlopeAngle": 0
+					},
+					"PhysMaterialOverride": null,
+					"MaxAngularVelocity": 3600,
+					"CustomSleepThresholdMultiplier": 1,
+					"StabilizationThresholdMultiplier": 1,
+					"PhysicsBlendWeight": 0,
+					"bSimulatePhysics": false,
+					"bOverrideMass": false,
+					"bEnableGravity": true,
+					"bUpdateKinematicFromSimulation": false,
+					"bGyroscopicTorqueEnabled": false,
+					"bAutoWeld": true,
+					"bStartAwake": true,
+					"bGenerateWakeEvents": false,
+					"bUpdateMassWhenScaleChanges": true
+				},
+				"AttachParent": null,
+				"AttachSocketName": "None",
+				"RelativeLocation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"RelativeRotation":
+				{
+					"Pitch": 0,
+					"Yaw": 0,
+					"Roll": 0
+				},
+				"RelativeScale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				},
+				"ComponentVelocity":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"bAbsoluteLocation": false,
+				"bAbsoluteRotation": false,
+				"bAbsoluteScale": false,
+				"bVisible": true,
+				"bShouldUpdatePhysicsVolume": false,
+				"bHiddenInGame": false,
+				"bBoundsChangeTriggersStreamingDataRebuild": true,
+				"bUseAttachParentBound": false,
+				"bComputeFastLocalBounds": false,
+				"bComputeBoundsOnceForGame": false,
+				"bComputedBoundsOnceForGame": false,
+				"bIsNotRenderAttachmentRoot": false,
+				"bVisualizeComponent": false,
+				"Mobility": "Static",
+				"DetailMode": "DM_Low",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": true,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}
