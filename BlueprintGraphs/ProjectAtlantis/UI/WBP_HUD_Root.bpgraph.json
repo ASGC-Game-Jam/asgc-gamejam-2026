@@ -77,7 +77,7 @@
 					"title": "Event Tick",
 					"x": 0,
 					"y": 416,
-					"comment": "This node is disabled and will not be called.\r\nDrag off pins to build functionality.",
+					"comment": null,
 					"pins": [
 						{
 							"id": "9a1dada148b435b3786aed81785b1f86:o:OutputDelegate",
@@ -112,6 +112,70 @@
 							"links": []
 						}
 					]
+				},
+				{
+					"guid": "ae0d22064e69c7ba30fa7c900f4a5557",
+					"class": "K2Node_VariableGet",
+					"title": "Get WBPP_CommonConversations",
+					"x": 208,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ae0d22064e69c7ba30fa7c900f4a5557:o:WBPP_CommonConversations",
+							"name": "WBPP_CommonConversations",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/CommonConversations/WBPP_CommonConversations.WBPP_CommonConversations_C",
+							"defaultValue": null,
+							"links": [
+								"ce52588a47d752c20c4ef48a1564a6a1:i:self"
+							]
+						},
+						{
+							"id": "ae0d22064e69c7ba30fa7c900f4a5557:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_HUD_Root.WBP_HUD_Root_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ce52588a47d752c20c4ef48a1564a6a1",
+					"class": "K2Node_CallFunction",
+					"title": "Activate Widget",
+					"x": 416,
+					"y": 448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ce52588a47d752c20c4ef48a1564a6a1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ce52588a47d752c20c4ef48a1564a6a1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ce52588a47d752c20c4ef48a1564a6a1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonUI.CommonActivatableWidget",
+							"defaultValue": null,
+							"links": [
+								"ae0d22064e69c7ba30fa7c900f4a5557:o:WBPP_CommonConversations"
+							]
+						}
+					]
 				}
 			],
 			"comments": []
@@ -127,6 +191,7 @@
 		},
 		"defaults":
 		{
+			"WBPP_CommonConversations": null,
 			"WBP_OxygenIndicator": null,
 			"WBP_DialogueBox": null,
 			"WBP_BuildVersion": null,
@@ -170,7 +235,7 @@
 			"DesignSizeMode": "FillScreen",
 			"PaletteCategory": "User Created",
 			"PreviewBackground": null,
-			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedTick": true,
 			"bHasScriptImplementedPaint": false,
 			"TickFrequency": "Auto",
 			"DesiredFocusWidget":

@@ -1,0 +1,890 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/CommonConversations/ConversationTaskNode_PromptMessage",
+	"asset": "ConversationTaskNode_PromptMessage",
+	"assetClass": "Blueprint",
+	"parentClass": "ConversationTaskNode",
+	"blueprintType": "BPTYPE_Const",
+	"graphs": [
+		{
+			"name": "ExecuteTaskNode",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "136f53914c829c9a481f05a46321a7cb",
+					"class": "K2Node_VariableGet",
+					"title": "Get Context",
+					"x": 1568,
+					"y": -48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "136f53914c829c9a481f05a46321a7cb:o:Context",
+							"name": "Context",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationContext",
+							"defaultValue": null,
+							"links": [
+								"d73560ba49cf6c069da70db18f8c21f9:i:Context"
+							]
+						}
+					]
+				},
+				{
+					"guid": "15d33b1943d360ef663694b3d53245dd",
+					"class": "K2Node_CallFunction",
+					"title": "Get Current Conversation Node Handle",
+					"x": 288,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "15d33b1943d360ef663694b3d53245dd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationContextHelpers",
+							"defaultValue": "/Script/CommonConversationRuntime.Default__ConversationContextHelpers",
+							"links": []
+						},
+						{
+							"id": "15d33b1943d360ef663694b3d53245dd:i:Context",
+							"name": "Context",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationContext",
+							"defaultValue": null,
+							"links": [
+								"d611f27646016487c8ec3e8fbc91df1b:o:Context"
+							]
+						},
+						{
+							"id": "15d33b1943d360ef663694b3d53245dd:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationNodeHandle",
+							"defaultValue": null,
+							"links": [
+								"2e72fb71406bd3a0bca6c5a0b295093a:i:CurrentNode"
+							]
+						}
+					]
+				},
+				{
+					"guid": "23119e8940621598bcb000b820dabf71",
+					"class": "K2Node_VariableGet",
+					"title": "Get Speaker ID",
+					"x": 16,
+					"y": 439,
+					"comment": null,
+					"pins": [
+						{
+							"id": "23119e8940621598bcb000b820dabf71:o:Speaker ID",
+							"name": "Speaker ID",
+							"direction": "output",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": null,
+							"links": [
+								"6f25b9d442bb17178f2f2fafc4a121cd:i:GameplayTag",
+								"85d874a94ee3c773a5551cb85b900a97:i:SpeakerID",
+								"b3d10fd5418810397414509a856f37b5:i:ParticipantTag"
+							]
+						},
+						{
+							"id": "23119e8940621598bcb000b820dabf71:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/CommonConversations/ConversationTaskNode_PromptMessage.ConversationTaskNode_PromptMessage_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2e72fb71406bd3a0bca6c5a0b295093a",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Client Conversation Message Payload",
+					"x": 720,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2e72fb71406bd3a0bca6c5a0b295093a:o:ClientConversationMessagePayload",
+							"name": "ClientConversationMessagePayload",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationMessagePayload",
+							"defaultValue": null,
+							"links": [
+								"fdf89fd245291f60831590bb305a45a4:i:ClientConversationMessagePayload"
+							]
+						},
+						{
+							"id": "2e72fb71406bd3a0bca6c5a0b295093a:i:Message",
+							"name": "Message",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationMessage",
+							"defaultValue": null,
+							"links": [
+								"85d874a94ee3c773a5551cb85b900a97:o:ClientConversationMessage"
+							]
+						},
+						{
+							"id": "2e72fb71406bd3a0bca6c5a0b295093a:i:Participants",
+							"name": "Participants",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationParticipants",
+							"defaultValue": "(List=)",
+							"links": []
+						},
+						{
+							"id": "2e72fb71406bd3a0bca6c5a0b295093a:i:CurrentNode",
+							"name": "CurrentNode",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationNodeHandle",
+							"defaultValue": null,
+							"links": [
+								"15d33b1943d360ef663694b3d53245dd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2e72fb71406bd3a0bca6c5a0b295093a:i:Options",
+							"name": "Options",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationOptionEntry[]",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4c6780f44d707dcd675b89b9ebd1004f",
+					"class": "K2Node_CallFunction",
+					"title": "Get Participant Display Name",
+					"x": 496,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4c6780f44d707dcd675b89b9ebd1004f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b3d10fd5418810397414509a856f37b5:o:then"
+							]
+						},
+						{
+							"id": "4c6780f44d707dcd675b89b9ebd1004f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d73560ba49cf6c069da70db18f8c21f9:i:execute"
+							]
+						},
+						{
+							"id": "4c6780f44d707dcd675b89b9ebd1004f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationParticipantComponent",
+							"defaultValue": null,
+							"links": [
+								"b3d10fd5418810397414509a856f37b5:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4c6780f44d707dcd675b89b9ebd1004f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4d15ddd74a0df0a1afee4780b999e851",
+					"class": "K2Node_VariableGet",
+					"title": "Get Message",
+					"x": 16,
+					"y": 518,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4d15ddd74a0df0a1afee4780b999e851:o:Message",
+							"name": "Message",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"85d874a94ee3c773a5551cb85b900a97:i:Text"
+							]
+						},
+						{
+							"id": "4d15ddd74a0df0a1afee4780b999e851:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/CommonConversations/ConversationTaskNode_PromptMessage.ConversationTaskNode_PromptMessage_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6f25b9d442bb17178f2f2fafc4a121cd",
+					"class": "K2Node_CallFunction",
+					"title": "Get Tag Name",
+					"x": 224,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6f25b9d442bb17178f2f2fafc4a121cd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/GameplayTags.BlueprintGameplayTagLibrary",
+							"defaultValue": "/Script/GameplayTags.Default__BlueprintGameplayTagLibrary",
+							"links": []
+						},
+						{
+							"id": "6f25b9d442bb17178f2f2fafc4a121cd:i:GameplayTag",
+							"name": "GameplayTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": null,
+							"links": [
+								"23119e8940621598bcb000b820dabf71:o:Speaker ID"
+							]
+						},
+						{
+							"id": "6f25b9d442bb17178f2f2fafc4a121cd:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"e36a7a7b4ff2f45d6cce258a2b257000:i:InName"
+							]
+						}
+					]
+				},
+				{
+					"guid": "85d874a94ee3c773a5551cb85b900a97",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Client Conversation Message",
+					"x": 160,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "85d874a94ee3c773a5551cb85b900a97:o:ClientConversationMessage",
+							"name": "ClientConversationMessage",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationMessage",
+							"defaultValue": null,
+							"links": [
+								"2e72fb71406bd3a0bca6c5a0b295093a:i:Message",
+								"d73560ba49cf6c069da70db18f8c21f9:i:Message"
+							]
+						},
+						{
+							"id": "85d874a94ee3c773a5551cb85b900a97:i:SpeakerID",
+							"name": "SpeakerID",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": null,
+							"links": [
+								"23119e8940621598bcb000b820dabf71:o:Speaker ID"
+							]
+						},
+						{
+							"id": "85d874a94ee3c773a5551cb85b900a97:i:ParticipantDisplayName",
+							"name": "ParticipantDisplayName",
+							"direction": "input",
+							"type": "Text",
+							"defaultValue": null,
+							"links": [
+								"e36a7a7b4ff2f45d6cce258a2b257000:o:ReturnValue"
+							]
+						},
+						{
+							"id": "85d874a94ee3c773a5551cb85b900a97:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "Text",
+							"defaultValue": null,
+							"links": [
+								"4d15ddd74a0df0a1afee4780b999e851:o:Message"
+							]
+						},
+						{
+							"id": "85d874a94ee3c773a5551cb85b900a97:i:MetadataParameters",
+							"name": "MetadataParameters",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationNodeParameterPair[]",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a97c152d4cbc8317b159d4800e426d69",
+					"class": "K2Node_CallFunction",
+					"title": "Start Conversation from Graph",
+					"x": -352,
+					"y": -704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationLibrary",
+							"defaultValue": "/Script/CommonConversationRuntime.Default__ConversationLibrary",
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:i:ConversationEntryTag",
+							"name": "ConversationEntryTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:i:Instigator",
+							"name": "Instigator",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:i:InstigatorTag",
+							"name": "InstigatorTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:i:Target",
+							"name": "Target",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:i:TargetTag",
+							"name": "TargetTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:i:Graph",
+							"name": "Graph",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationDatabase",
+							"defaultValue": "/Game/ProjectAtlantis/Core/CommonConversations/BaseConversationDatabase.BaseConversationDatabase",
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:i:EntryPointIdentifier",
+							"name": "EntryPointIdentifier",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a97c152d4cbc8317b159d4800e426d69:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/CommonConversationRuntime.ConversationInstance",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b3d10fd5418810397414509a856f37b5",
+					"class": "K2Node_CallFunction",
+					"title": "Get Conversation Participant",
+					"x": 192,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b3d10fd5418810397414509a856f37b5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d611f27646016487c8ec3e8fbc91df1b:o:then"
+							]
+						},
+						{
+							"id": "b3d10fd5418810397414509a856f37b5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4c6780f44d707dcd675b89b9ebd1004f:i:execute"
+							]
+						},
+						{
+							"id": "b3d10fd5418810397414509a856f37b5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationContextHelpers",
+							"defaultValue": "/Script/CommonConversationRuntime.Default__ConversationContextHelpers",
+							"links": []
+						},
+						{
+							"id": "b3d10fd5418810397414509a856f37b5:i:Context",
+							"name": "Context",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationContext",
+							"defaultValue": null,
+							"links": [
+								"d611f27646016487c8ec3e8fbc91df1b:o:Context"
+							]
+						},
+						{
+							"id": "b3d10fd5418810397414509a856f37b5:i:ParticipantTag",
+							"name": "ParticipantTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": null,
+							"links": [
+								"23119e8940621598bcb000b820dabf71:o:Speaker ID"
+							]
+						},
+						{
+							"id": "b3d10fd5418810397414509a856f37b5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/CommonConversationRuntime.ConversationParticipantComponent",
+							"defaultValue": null,
+							"links": [
+								"4c6780f44d707dcd675b89b9ebd1004f:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c7c3a4974124e8dea13b2290cb8e7bde",
+					"class": "K2Node_CallFunction",
+					"title": "Get Conversation Participant",
+					"x": -400,
+					"y": -1296,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c7c3a4974124e8dea13b2290cb8e7bde:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c7c3a4974124e8dea13b2290cb8e7bde:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c7c3a4974124e8dea13b2290cb8e7bde:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationContextHelpers",
+							"defaultValue": "/Script/CommonConversationRuntime.Default__ConversationContextHelpers",
+							"links": []
+						},
+						{
+							"id": "c7c3a4974124e8dea13b2290cb8e7bde:i:Context",
+							"name": "Context",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationContext",
+							"defaultValue": null,
+							"links": [
+								"d611f27646016487c8ec3e8fbc91df1b:o:Context"
+							]
+						},
+						{
+							"id": "c7c3a4974124e8dea13b2290cb8e7bde:i:ParticipantTag",
+							"name": "ParticipantTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c7c3a4974124e8dea13b2290cb8e7bde:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/CommonConversationRuntime.ConversationParticipantComponent",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d3c3060c4e908e2460de38bfbec54c0c",
+					"class": "K2Node_CallFunction",
+					"title": "Make Conversation Participant",
+					"x": -272,
+					"y": -1008,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d3c3060c4e908e2460de38bfbec54c0c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d3c3060c4e908e2460de38bfbec54c0c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d3c3060c4e908e2460de38bfbec54c0c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationContextHelpers",
+							"defaultValue": "/Script/CommonConversationRuntime.Default__ConversationContextHelpers",
+							"links": []
+						},
+						{
+							"id": "d3c3060c4e908e2460de38bfbec54c0c:i:Context",
+							"name": "Context",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationContext",
+							"defaultValue": null,
+							"links": [
+								"d611f27646016487c8ec3e8fbc91df1b:o:Context"
+							]
+						},
+						{
+							"id": "d3c3060c4e908e2460de38bfbec54c0c:i:ParticipantActor",
+							"name": "ParticipantActor",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d3c3060c4e908e2460de38bfbec54c0c:i:ParticipantTag",
+							"name": "ParticipantTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d611f27646016487c8ec3e8fbc91df1b",
+					"class": "K2Node_FunctionEntry",
+					"title": "Execute Task Node",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d611f27646016487c8ec3e8fbc91df1b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b3d10fd5418810397414509a856f37b5:i:execute"
+							]
+						},
+						{
+							"id": "d611f27646016487c8ec3e8fbc91df1b:o:Context",
+							"name": "Context",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationContext",
+							"defaultValue": null,
+							"links": [
+								"15d33b1943d360ef663694b3d53245dd:i:Context",
+								"b3d10fd5418810397414509a856f37b5:i:Context",
+								"c7c3a4974124e8dea13b2290cb8e7bde:i:Context",
+								"d3c3060c4e908e2460de38bfbec54c0c:i:Context"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d73560ba49cf6c069da70db18f8c21f9",
+					"class": "K2Node_CallFunction",
+					"title": "Pause Conversation and Send Client Choices",
+					"x": 1728,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d73560ba49cf6c069da70db18f8c21f9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4c6780f44d707dcd675b89b9ebd1004f:o:then"
+							]
+						},
+						{
+							"id": "d73560ba49cf6c069da70db18f8c21f9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f07539894370b141fec5aeb2eeebc274:i:execute"
+							]
+						},
+						{
+							"id": "d73560ba49cf6c069da70db18f8c21f9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationContextHelpers",
+							"defaultValue": "/Script/CommonConversationRuntime.Default__ConversationContextHelpers",
+							"links": []
+						},
+						{
+							"id": "d73560ba49cf6c069da70db18f8c21f9:i:Context",
+							"name": "Context",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationContext",
+							"defaultValue": null,
+							"links": [
+								"136f53914c829c9a481f05a46321a7cb:o:Context"
+							]
+						},
+						{
+							"id": "d73560ba49cf6c069da70db18f8c21f9:i:Message",
+							"name": "Message",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationMessage",
+							"defaultValue": null,
+							"links": [
+								"85d874a94ee3c773a5551cb85b900a97:o:ClientConversationMessage"
+							]
+						},
+						{
+							"id": "d73560ba49cf6c069da70db18f8c21f9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationTaskResult",
+							"defaultValue": null,
+							"links": [
+								"f07539894370b141fec5aeb2eeebc274:i:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e36a7a7b4ff2f45d6cce258a2b257000",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (Name)",
+					"x": 192,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e36a7a7b4ff2f45d6cce258a2b257000:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "e36a7a7b4ff2f45d6cce258a2b257000:i:InName",
+							"name": "InName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": null,
+							"links": [
+								"6f25b9d442bb17178f2f2fafc4a121cd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e36a7a7b4ff2f45d6cce258a2b257000:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"85d874a94ee3c773a5551cb85b900a97:i:ParticipantDisplayName"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f07539894370b141fec5aeb2eeebc274",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 2144,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f07539894370b141fec5aeb2eeebc274:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d73560ba49cf6c069da70db18f8c21f9:o:then"
+							]
+						},
+						{
+							"id": "f07539894370b141fec5aeb2eeebc274:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationTaskResult",
+							"defaultValue": null,
+							"links": [
+								"d73560ba49cf6c069da70db18f8c21f9:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fdf89fd245291f60831590bb305a45a4",
+					"class": "K2Node_BreakStruct",
+					"title": "Break Client Conversation Message Payload",
+					"x": 1248,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fdf89fd245291f60831590bb305a45a4:i:ClientConversationMessagePayload",
+							"name": "ClientConversationMessagePayload",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationMessagePayload",
+							"defaultValue": null,
+							"links": [
+								"2e72fb71406bd3a0bca6c5a0b295093a:o:ClientConversationMessagePayload"
+							]
+						},
+						{
+							"id": "fdf89fd245291f60831590bb305a45a4:o:Message",
+							"name": "Message",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationMessage",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fdf89fd245291f60831590bb305a45a4:o:Participants",
+							"name": "Participants",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationParticipants",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fdf89fd245291f60831590bb305a45a4:o:CurrentNode",
+							"name": "CurrentNode",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationNodeHandle",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fdf89fd245291f60831590bb305a45a4:o:Options",
+							"name": "Options",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationOptionEntry[]",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"Speaker ID":
+			{
+				"type": "struct:/Script/GameplayTags.GameplayTag",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Message":
+			{
+				"type": "text",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"Speaker ID":
+			{
+				"TagName": "None"
+			},
+			"Message": "",
+			"SubNodes": [],
+			"bHasRequirements": false,
+			"bHasDynamicChoices": false,
+			"bIgnoreRequirementsWhileAdvancingConversations": false,
+			"DefaultNodeBodyColor":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"OutputConnections": [],
+			"NodeName": "",
+			"Compiled_NodeGUID": "00000000000000000000000000000000",
+			"bShowPropertyDetails": true,
+			"bShowPropertyEditors": false,
+			"ParentNode": null
+		}
+	}
+}

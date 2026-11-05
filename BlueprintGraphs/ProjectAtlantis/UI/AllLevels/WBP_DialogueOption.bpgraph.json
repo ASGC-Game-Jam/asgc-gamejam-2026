@@ -1,0 +1,2108 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/AllLevels/WBP_DialogueOption",
+	"asset": "WBP_DialogueOption",
+	"assetClass": "WidgetBlueprint",
+	"parentClass": "CommonBoundActionButton",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "OnClicked",
+			"type": "Delegate",
+			"nodes": [
+				{
+					"guid": "f72816e844dcd42246979b904a29c4d5",
+					"class": "K2Node_FunctionEntry",
+					"title": "OnClicked",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f72816e844dcd42246979b904a29c4d5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0cae8f1840736db10a5ab5a8b31be249",
+					"class": "K2Node_Event",
+					"title": "Event On Pressed",
+					"x": 32,
+					"y": -128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0cae8f1840736db10a5ab5a8b31be249:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0cae8f1840736db10a5ab5a8b31be249:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e50b595547fcedeaf4ffe582e3f9c889:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0e6a4f2940a2d32fe2e120bcdd3fae34",
+					"class": "K2Node_CallFunction",
+					"title": "Get Owning Player",
+					"x": 32,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0e6a4f2940a2d32fe2e120bcdd3fae34:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0e6a4f2940a2d32fe2e120bcdd3fae34:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"c7b005074ced21fea6b93c9205b4ab63:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "78a74f1f4d295cf70a6ff983f1965588",
+					"class": "K2Node_VariableGet",
+					"title": "Get Option",
+					"x": 64,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "78a74f1f4d295cf70a6ff983f1965588:o:Option",
+							"name": "Option",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationOptionEntry",
+							"defaultValue": null,
+							"links": [
+								"9e1bbf0440cbd09d17d028ba60c18387:i:ClientConversationOptionEntry"
+							]
+						},
+						{
+							"id": "78a74f1f4d295cf70a6ff983f1965588:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_DialogueOption.WBP_DialogueOption_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9e1bbf0440cbd09d17d028ba60c18387",
+					"class": "K2Node_BreakStruct",
+					"title": "Break Client Conversation Option Entry",
+					"x": 208,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9e1bbf0440cbd09d17d028ba60c18387:i:ClientConversationOptionEntry",
+							"name": "ClientConversationOptionEntry",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ClientConversationOptionEntry",
+							"defaultValue": null,
+							"links": [
+								"78a74f1f4d295cf70a6ff983f1965588:o:Option"
+							]
+						},
+						{
+							"id": "9e1bbf0440cbd09d17d028ba60c18387:o:ChoiceText",
+							"name": "ChoiceText",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9e1bbf0440cbd09d17d028ba60c18387:o:ChoiceTags",
+							"name": "ChoiceTags",
+							"direction": "output",
+							"type": "struct:/Script/GameplayTags.GameplayTagContainer",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9e1bbf0440cbd09d17d028ba60c18387:o:ChoiceType",
+							"name": "ChoiceType",
+							"direction": "output",
+							"type": "byte:/Script/CommonConversationRuntime.EConversationChoiceType",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9e1bbf0440cbd09d17d028ba60c18387:o:ChoiceReference",
+							"name": "ChoiceReference",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationChoiceReference",
+							"defaultValue": null,
+							"links": [
+								"afdcc8514629800a61a21e9c36017e8f:i:Choice"
+							]
+						},
+						{
+							"id": "9e1bbf0440cbd09d17d028ba60c18387:o:ExtraData",
+							"name": "ExtraData",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationNodeParameterPair[]",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "afdcc8514629800a61a21e9c36017e8f",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Advance Conversation Request",
+					"x": 592,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "afdcc8514629800a61a21e9c36017e8f:o:AdvanceConversationRequest",
+							"name": "AdvanceConversationRequest",
+							"direction": "output",
+							"type": "struct:/Script/CommonConversationRuntime.AdvanceConversationRequest",
+							"defaultValue": null,
+							"links": [
+								"eb4108664452503d42ebcf95aa8c4d57:i:InChoicePicked"
+							]
+						},
+						{
+							"id": "afdcc8514629800a61a21e9c36017e8f:i:Choice",
+							"name": "Choice",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationChoiceReference",
+							"defaultValue": null,
+							"links": [
+								"9e1bbf0440cbd09d17d028ba60c18387:o:ChoiceReference"
+							]
+						},
+						{
+							"id": "afdcc8514629800a61a21e9c36017e8f:i:UserParameters",
+							"name": "UserParameters",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.ConversationNodeParameterPair[]",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c7b005074ced21fea6b93c9205b4ab63",
+					"class": "K2Node_CallFunction",
+					"title": "Get Controlled Pawn",
+					"x": 320,
+					"y": -224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c7b005074ced21fea6b93c9205b4ab63:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Controller",
+							"defaultValue": null,
+							"links": [
+								"0e6a4f2940a2d32fe2e120bcdd3fae34:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c7b005074ced21fea6b93c9205b4ab63:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.Pawn",
+							"defaultValue": null,
+							"links": [
+								"e50b595547fcedeaf4ffe582e3f9c889:i:Actor"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e146e6394ef3783ec99519bba8157a4e",
+					"class": "K2Node_CallMaterialParameterCollectionFunction",
+					"title": "Set Scalar Parameter Value",
+					"x": 368,
+					"y": 432,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e146e6394ef3783ec99519bba8157a4e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e146e6394ef3783ec99519bba8157a4e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e146e6394ef3783ec99519bba8157a4e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMaterialLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMaterialLibrary",
+							"links": []
+						},
+						{
+							"id": "e146e6394ef3783ec99519bba8157a4e:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e146e6394ef3783ec99519bba8157a4e:i:Collection",
+							"name": "Collection",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialParameterCollection",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e146e6394ef3783ec99519bba8157a4e:i:ParameterName",
+							"name": "ParameterName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "e146e6394ef3783ec99519bba8157a4e:i:ParameterValue",
+							"name": "ParameterValue",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e4c8c51d4d5009bbb3f28cbe4bc7fba1",
+					"class": "K2Node_Event",
+					"title": "Event On Hovered",
+					"x": 112,
+					"y": 432,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e4c8c51d4d5009bbb3f28cbe4bc7fba1:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e4c8c51d4d5009bbb3f28cbe4bc7fba1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e50b595547fcedeaf4ffe582e3f9c889",
+					"class": "K2Node_CallFunction",
+					"title": "Find Conversation Component",
+					"x": 608,
+					"y": -128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e50b595547fcedeaf4ffe582e3f9c889:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0cae8f1840736db10a5ab5a8b31be249:o:then"
+							]
+						},
+						{
+							"id": "e50b595547fcedeaf4ffe582e3f9c889:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eb4108664452503d42ebcf95aa8c4d57:i:execute"
+							]
+						},
+						{
+							"id": "e50b595547fcedeaf4ffe582e3f9c889:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationContextHelpers",
+							"defaultValue": "/Script/CommonConversationRuntime.Default__ConversationContextHelpers",
+							"links": []
+						},
+						{
+							"id": "e50b595547fcedeaf4ffe582e3f9c889:i:Actor",
+							"name": "Actor",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"c7b005074ced21fea6b93c9205b4ab63:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e50b595547fcedeaf4ffe582e3f9c889:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/CommonConversationRuntime.ConversationParticipantComponent",
+							"defaultValue": null,
+							"links": [
+								"eb4108664452503d42ebcf95aa8c4d57:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "eb4108664452503d42ebcf95aa8c4d57",
+					"class": "K2Node_CallFunction",
+					"title": "Request Server Advance Conversation",
+					"x": 1024,
+					"y": -144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eb4108664452503d42ebcf95aa8c4d57:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e50b595547fcedeaf4ffe582e3f9c889:o:then"
+							]
+						},
+						{
+							"id": "eb4108664452503d42ebcf95aa8c4d57:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eb4108664452503d42ebcf95aa8c4d57:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonConversationRuntime.ConversationParticipantComponent",
+							"defaultValue": null,
+							"links": [
+								"e50b595547fcedeaf4ffe582e3f9c889:o:ReturnValue"
+							]
+						},
+						{
+							"id": "eb4108664452503d42ebcf95aa8c4d57:i:InChoicePicked",
+							"name": "InChoicePicked",
+							"direction": "input",
+							"type": "struct:/Script/CommonConversationRuntime.AdvanceConversationRequest",
+							"defaultValue": null,
+							"links": [
+								"afdcc8514629800a61a21e9c36017e8f:o:AdvanceConversationRequest"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"OnClicked":
+			{
+				"type": "mcdelegate",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"ButtonText":
+			{
+				"type": "text",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Option":
+			{
+				"type": "struct:/Script/CommonConversationRuntime.ClientConversationOptionEntry",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"ButtonText": "Button",
+			"Option":
+			{
+				"ChoiceText": "",
+				"ChoiceTags":
+				{
+					"GameplayTags": []
+				},
+				"ChoiceType": "ServerOnly",
+				"ChoiceReference":
+				{
+					"NodeReference":
+					{
+						"NodeGUID": "00000000000000000000000000000000"
+					},
+					"NodeParameters": []
+				},
+				"ExtraData": []
+			},
+			"Text_ActionName": null,
+			"bLinkRequiresHoldToBindingHold": false,
+			"ClickEvent":
+			{
+			},
+			"MinWidth": 0,
+			"MinHeight": 0,
+			"MaxWidth": 0,
+			"MaxHeight": 0,
+			"Style": null,
+			"bHideInputAction": false,
+			"PressedSlateSoundOverride":
+			{
+				"ResourceObject": null
+			},
+			"ClickedSlateSoundOverride":
+			{
+				"ResourceObject": null
+			},
+			"HoveredSlateSoundOverride":
+			{
+				"ResourceObject": null
+			},
+			"SelectedPressedSlateSoundOverride":
+			{
+				"ResourceObject": null
+			},
+			"SelectedClickedSlateSoundOverride":
+			{
+				"ResourceObject": null
+			},
+			"SelectedHoveredSlateSoundOverride":
+			{
+				"ResourceObject": null
+			},
+			"LockedPressedSlateSoundOverride":
+			{
+				"ResourceObject": null
+			},
+			"LockedClickedSlateSoundOverride":
+			{
+				"ResourceObject": null
+			},
+			"LockedHoveredSlateSoundOverride":
+			{
+				"ResourceObject": null
+			},
+			"bApplyAlphaOnDisable": true,
+			"bLocked": false,
+			"bSelectable": false,
+			"bShouldSelectUponReceivingFocus": false,
+			"bInteractableWhenSelected": false,
+			"bToggleable": false,
+			"bTriggerClickedAfterSelection": false,
+			"bDisplayInputActionWhenNotInteractable": true,
+			"bHideInputActionWithKeyboard": false,
+			"bShouldUseFallbackDefaultInputAction": true,
+			"bRequiresHold": false,
+			"HoldData": null,
+			"bSimulateHoverOnTouchInput": true,
+			"ClickMethod": "DownAndUp",
+			"TouchMethod": "DownAndUp",
+			"PressMethod": "DownAndUp",
+			"InputPriority": 0,
+			"TriggeringInputAction":
+			{
+				"DataTable": null,
+				"RowName": "None"
+			},
+			"TriggeringEnhancedInputAction": null,
+			"bStyleNoLongerNeedsConversion": true,
+			"bNavigateToNextWidgetOnDisable": false,
+			"bIsPersistentBinding": false,
+			"InputModeOverride": "Menu",
+			"NormalStyle":
+			{
+				"Normal":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Hovered":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Pressed":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Disabled":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "NoDrawType",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"NormalForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"HoveredForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"PressedForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"DisabledForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"NormalPadding":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"PressedPadding":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"PressedSlateSound":
+				{
+					"ResourceObject": null
+				},
+				"ClickedSlateSound":
+				{
+					"ResourceObject": null
+				},
+				"HoveredSlateSound":
+				{
+					"ResourceObject": null
+				}
+			},
+			"SelectedStyle":
+			{
+				"Normal":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Hovered":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Pressed":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Disabled":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "NoDrawType",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"NormalForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"HoveredForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"PressedForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"DisabledForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"NormalPadding":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"PressedPadding":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"PressedSlateSound":
+				{
+					"ResourceObject": null
+				},
+				"ClickedSlateSound":
+				{
+					"ResourceObject": null
+				},
+				"HoveredSlateSound":
+				{
+					"ResourceObject": null
+				}
+			},
+			"DisabledStyle":
+			{
+				"Normal":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Hovered":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Pressed":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Disabled":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "NoDrawType",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"NormalForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"HoveredForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"PressedForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"DisabledForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"NormalPadding":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"PressedPadding":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"PressedSlateSound":
+				{
+					"ResourceObject": null
+				},
+				"ClickedSlateSound":
+				{
+					"ResourceObject": null
+				},
+				"HoveredSlateSound":
+				{
+					"ResourceObject": null
+				}
+			},
+			"LockedStyle":
+			{
+				"Normal":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Hovered":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Pressed":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "Image",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 32,
+						"Y": 32
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"Disabled":
+				{
+					"TintColor":
+					{
+						"SpecifiedColor":
+						{
+							"R": 1,
+							"G": 1,
+							"B": 1,
+							"A": 1
+						},
+						"ColorUseRule": "UseColor_Specified"
+					},
+					"DrawAs": "NoDrawType",
+					"Tiling": "NoTile",
+					"Mirroring": "NoMirror",
+					"ImageType": "NoImage",
+					"ImageSize":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Margin":
+					{
+						"Left": 0,
+						"Top": 0,
+						"Right": 0,
+						"Bottom": 0
+					},
+					"ResourceObject": null,
+					"OutlineSettings":
+					{
+						"CornerRadii":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0,
+							"W": 0
+						},
+						"Color":
+						{
+							"SpecifiedColor":
+							{
+								"R": 0,
+								"G": 0,
+								"B": 0,
+								"A": 0
+							},
+							"ColorUseRule": "UseColor_Specified"
+						},
+						"Width": 0,
+						"RoundingType": "HalfHeightRadius",
+						"bUseBrushTransparency": false
+					},
+					"UVRegion":
+					{
+						"Min":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"Max":
+						{
+							"X": 0,
+							"Y": 0
+						},
+						"bIsValid": false
+					},
+					"bIsDynamicallyLoaded": false,
+					"ResourceName": "None"
+				},
+				"NormalForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"HoveredForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"PressedForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"DisabledForeground":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 0,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Foreground"
+				},
+				"NormalPadding":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"PressedPadding":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"PressedSlateSound":
+				{
+					"ResourceObject": null
+				},
+				"ClickedSlateSound":
+				{
+					"ResourceObject": null
+				},
+				"HoveredSlateSound":
+				{
+					"ResourceObject": null
+				}
+			},
+			"InputActionWidget": null,
+			"bDisplayInActionBar": false,
+			"bConsumePointerInput": false,
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": true,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "Common UI",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
+}
