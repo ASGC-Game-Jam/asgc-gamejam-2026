@@ -15,8 +15,8 @@
 					"guid": "0005c64b404c422fad1df9b38d098c42",
 					"class": "K2Node_FormatText",
 					"title": "Format Text",
-					"x": 912,
-					"y": 208,
+					"x": 1573,
+					"y": 671,
 					"comment": null,
 					"pins": [
 						{
@@ -34,17 +34,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"acf9bd2148d6cb43d181dfb103e404b1:i:InText"
-							]
-						},
-						{
-							"id": "0005c64b404c422fad1df9b38d098c42:i:Capacity",
-							"name": "Capacity",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"32bb4058412b7da093b5fda12d8c75b7:o:ReturnValue"
+								"919e3f4d4f6ff28b664234b17ebca399:i:B"
 							]
 						},
 						{
@@ -56,6 +46,85 @@
 							"links": [
 								"6eb4fca546a0ee8e8a55ddb217418e61:o:ReturnValue"
 							]
+						},
+						{
+							"id": "0005c64b404c422fad1df9b38d098c42:i:Capacity",
+							"name": "Capacity",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"32bb4058412b7da093b5fda12d8c75b7:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "09d71d3c49c9bf33178e6fa71ea7f5a4",
+					"class": "K2Node_VariableGet",
+					"title": "Get IsOutOfOxygen",
+					"x": 1216,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "09d71d3c49c9bf33178e6fa71ea7f5a4:o:IsOutOfOxygen",
+							"name": "IsOutOfOxygen",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2dcc8a9a48ef187039144f892a911a9b:i:bPickA",
+								"866d4ccf4c6f5dce9da3f681f1579ccb:i:bPickA"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0b23639046979083cfe4e5842247039e",
+					"class": "K2Node_VariableSet",
+					"title": "Set IsOutOfOxygen",
+					"x": 928,
+					"y": -47,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0b23639046979083cfe4e5842247039e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f5e7d9434588fdf04feb5eaa9cdfe900:o:then"
+							]
+						},
+						{
+							"id": "0b23639046979083cfe4e5842247039e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"22056d494e4c9baf3c3090a85a009cc9:i:execute"
+							]
+						},
+						{
+							"id": "0b23639046979083cfe4e5842247039e:i:IsOutOfOxygen",
+							"name": "IsOutOfOxygen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"cfffe92a4bd93ce9669aa79a85ad7194:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0b23639046979083cfe4e5842247039e:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
 						}
 					]
 				},
@@ -63,8 +132,8 @@
 					"guid": "1b808416455e0e2bd20ed3aebb87a227",
 					"class": "K2Node_VariableGet",
 					"title": "Get Oxygen Component",
-					"x": 64,
-					"y": 144,
+					"x": 5,
+					"y": 479,
 					"comment": null,
 					"pins": [
 						{
@@ -74,6 +143,7 @@
 							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
 							"defaultValue": null,
 							"links": [
+								"38b6fcd1491215543087f497c8b39385:i:self",
 								"b0540057478a3cb4d87c35af29956304:i:self",
 								"c0bdf21746fd17c43e98979d4eea7372:i:self"
 							]
@@ -92,8 +162,8 @@
 					"guid": "22056d494e4c9baf3c3090a85a009cc9",
 					"class": "K2Node_CallFunction",
 					"title": "Set Percent",
-					"x": 800,
-					"y": -64,
+					"x": 1728,
+					"y": -80,
 					"comment": null,
 					"pins": [
 						{
@@ -103,7 +173,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"f5e7d9434588fdf04feb5eaa9cdfe900:o:then"
+								"0b23639046979083cfe4e5842247039e:o:then"
 							]
 						},
 						{
@@ -113,7 +183,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"acf9bd2148d6cb43d181dfb103e404b1:i:execute"
+								"7fe43eda4d478035625669b6c5644d38:i:execute"
 							]
 						},
 						{
@@ -133,7 +203,63 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
+								"2dcc8a9a48ef187039144f892a911a9b:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2dcc8a9a48ef187039144f892a911a9b",
+					"class": "K2Node_CallFunction",
+					"title": "Select Float",
+					"x": 1392,
+					"y": 113,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2dcc8a9a48ef187039144f892a911a9b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "2dcc8a9a48ef187039144f892a911a9b:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "2dcc8a9a48ef187039144f892a911a9b:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
 								"9738e61f472619bb6610fcb28716a804:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2dcc8a9a48ef187039144f892a911a9b:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"09d71d3c49c9bf33178e6fa71ea7f5a4:o:IsOutOfOxygen"
+							]
+						},
+						{
+							"id": "2dcc8a9a48ef187039144f892a911a9b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"22056d494e4c9baf3c3090a85a009cc9:i:InPercent"
 							]
 						}
 					]
@@ -142,8 +268,8 @@
 					"guid": "32bb4058412b7da093b5fda12d8c75b7",
 					"class": "K2Node_CallFunction",
 					"title": "To Text (Float)",
-					"x": 672,
-					"y": 320,
+					"x": 1280,
+					"y": 800,
 					"comment": null,
 					"pins": [
 						{
@@ -236,8 +362,8 @@
 					"guid": "385dac864057bbf06650a7ac598ac525",
 					"class": "K2Node_VariableGet",
 					"title": "Get PercentageText",
-					"x": 1024,
-					"y": 32,
+					"x": 2224,
+					"y": 176,
 					"comment": null,
 					"pins": [
 						{
@@ -261,11 +387,41 @@
 					]
 				},
 				{
+					"guid": "38b6fcd1491215543087f497c8b39385",
+					"class": "K2Node_CallFunction",
+					"title": "GetCurrentOxygen",
+					"x": 304,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "38b6fcd1491215543087f497c8b39385:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+							"defaultValue": null,
+							"links": [
+								"1b808416455e0e2bd20ed3aebb87a227:o:Oxygen Component"
+							]
+						},
+						{
+							"id": "38b6fcd1491215543087f497c8b39385:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"cfffe92a4bd93ce9669aa79a85ad7194:i:A"
+							]
+						}
+					]
+				},
+				{
 					"guid": "606688eb4e9a4fdf69ed90b359e5819a",
 					"class": "K2Node_VariableGet",
 					"title": "Get OxygenDisplay",
-					"x": 608,
-					"y": 16,
+					"x": 1552,
+					"y": -224,
 					"comment": null,
 					"pins": [
 						{
@@ -275,7 +431,8 @@
 							"type": "object:/Script/UMG.ProgressBar",
 							"defaultValue": null,
 							"links": [
-								"22056d494e4c9baf3c3090a85a009cc9:i:self"
+								"22056d494e4c9baf3c3090a85a009cc9:i:self",
+								"7fe43eda4d478035625669b6c5644d38:i:self"
 							]
 						},
 						{
@@ -292,8 +449,8 @@
 					"guid": "6eb4fca546a0ee8e8a55ddb217418e61",
 					"class": "K2Node_CallFunction",
 					"title": "To Text (Float)",
-					"x": 672,
-					"y": 224,
+					"x": 1280,
+					"y": 704,
 					"comment": null,
 					"pins": [
 						{
@@ -383,11 +540,171 @@
 					]
 				},
 				{
+					"guid": "7fe43eda4d478035625669b6c5644d38",
+					"class": "K2Node_CallFunction",
+					"title": "Set Fill Color and Opacity",
+					"x": 2192,
+					"y": -80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7fe43eda4d478035625669b6c5644d38:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"22056d494e4c9baf3c3090a85a009cc9:o:then"
+							]
+						},
+						{
+							"id": "7fe43eda4d478035625669b6c5644d38:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"acf9bd2148d6cb43d181dfb103e404b1:i:execute"
+							]
+						},
+						{
+							"id": "7fe43eda4d478035625669b6c5644d38:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.ProgressBar",
+							"defaultValue": null,
+							"links": [
+								"606688eb4e9a4fdf69ed90b359e5819a:o:OxygenDisplay"
+							]
+						},
+						{
+							"id": "7fe43eda4d478035625669b6c5644d38:i:InColor",
+							"name": "InColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"866d4ccf4c6f5dce9da3f681f1579ccb:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "866d4ccf4c6f5dce9da3f681f1579ccb",
+					"class": "K2Node_CallFunction",
+					"title": "Select Color",
+					"x": 1904,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "866d4ccf4c6f5dce9da3f681f1579ccb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "866d4ccf4c6f5dce9da3f681f1579ccb:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.693872,G=0.174647,B=0.174647,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "866d4ccf4c6f5dce9da3f681f1579ccb:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "866d4ccf4c6f5dce9da3f681f1579ccb:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"09d71d3c49c9bf33178e6fa71ea7f5a4:o:IsOutOfOxygen"
+							]
+						},
+						{
+							"id": "866d4ccf4c6f5dce9da3f681f1579ccb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": null,
+							"links": [
+								"7fe43eda4d478035625669b6c5644d38:i:InColor"
+							]
+						}
+					]
+				},
+				{
+					"guid": "919e3f4d4f6ff28b664234b17ebca399",
+					"class": "K2Node_CallFunction",
+					"title": "Select Text",
+					"x": 2064,
+					"y": 624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "919e3f4d4f6ff28b664234b17ebca399:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "919e3f4d4f6ff28b664234b17ebca399:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "OXYGEN EMPTY | WANDER LOCKED",
+							"links": []
+						},
+						{
+							"id": "919e3f4d4f6ff28b664234b17ebca399:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"0005c64b404c422fad1df9b38d098c42:o:Result"
+							]
+						},
+						{
+							"id": "919e3f4d4f6ff28b664234b17ebca399:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"ad598e584d696451c75c198effcf56ae:o:IsOutOfOxygen"
+							]
+						},
+						{
+							"id": "919e3f4d4f6ff28b664234b17ebca399:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"acf9bd2148d6cb43d181dfb103e404b1:i:InText"
+							]
+						}
+					]
+				},
+				{
 					"guid": "9738e61f472619bb6610fcb28716a804",
 					"class": "K2Node_PromotableOperator",
 					"title": "float / float",
-					"x": 608,
-					"y": 80,
+					"x": 1040,
+					"y": 173,
 					"comment": null,
 					"pins": [
 						{
@@ -417,7 +734,7 @@
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"22056d494e4c9baf3c3090a85a009cc9:i:InPercent"
+								"2dcc8a9a48ef187039144f892a911a9b:i:B"
 							]
 						}
 					]
@@ -426,8 +743,8 @@
 					"guid": "acf9bd2148d6cb43d181dfb103e404b1",
 					"class": "K2Node_CallFunction",
 					"title": "SetText (Text)",
-					"x": 1200,
-					"y": -64,
+					"x": 2624,
+					"y": -80,
 					"comment": null,
 					"pins": [
 						{
@@ -437,7 +754,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"22056d494e4c9baf3c3090a85a009cc9:o:then"
+								"7fe43eda4d478035625669b6c5644d38:o:then"
 							]
 						},
 						{
@@ -465,7 +782,27 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"0005c64b404c422fad1df9b38d098c42:o:Result"
+								"919e3f4d4f6ff28b664234b17ebca399:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ad598e584d696451c75c198effcf56ae",
+					"class": "K2Node_VariableGet",
+					"title": "Get IsOutOfOxygen",
+					"x": 1933,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ad598e584d696451c75c198effcf56ae:o:IsOutOfOxygen",
+							"name": "IsOutOfOxygen",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"919e3f4d4f6ff28b664234b17ebca399:i:bPickA"
 							]
 						}
 					]
@@ -474,8 +811,8 @@
 					"guid": "b0540057478a3cb4d87c35af29956304",
 					"class": "K2Node_CallFunction",
 					"title": "GetAvailableOxygen",
-					"x": 272,
-					"y": 64,
+					"x": 304,
+					"y": 373,
 					"comment": null,
 					"pins": [
 						{
@@ -505,8 +842,8 @@
 					"guid": "c0bdf21746fd17c43e98979d4eea7372",
 					"class": "K2Node_CallFunction",
 					"title": "GetOxygenCapacity",
-					"x": 272,
-					"y": 160,
+					"x": 304,
+					"y": 784,
 					"comment": null,
 					"pins": [
 						{
@@ -533,11 +870,57 @@
 					]
 				},
 				{
+					"guid": "cfffe92a4bd93ce9669aa79a85ad7194",
+					"class": "K2Node_PromotableOperator",
+					"title": "float <= float",
+					"x": 672,
+					"y": 151,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cfffe92a4bd93ce9669aa79a85ad7194:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"38b6fcd1491215543087f497c8b39385:o:ReturnValue"
+							]
+						},
+						{
+							"id": "cfffe92a4bd93ce9669aa79a85ad7194:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0001",
+							"links": []
+						},
+						{
+							"id": "cfffe92a4bd93ce9669aa79a85ad7194:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"0b23639046979083cfe4e5842247039e:i:IsOutOfOxygen"
+							]
+						},
+						{
+							"id": "cfffe92a4bd93ce9669aa79a85ad7194:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "f5e7d9434588fdf04feb5eaa9cdfe900",
 					"class": "K2Node_FunctionEntry",
 					"title": "Refresh Oxygen Display",
-					"x": 368,
-					"y": -48,
+					"x": 333,
+					"y": -63,
 					"comment": null,
 					"pins": [
 						{
@@ -547,7 +930,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"22056d494e4c9baf3c3090a85a009cc9:i:execute"
+								"0b23639046979083cfe4e5842247039e:i:execute"
 							]
 						}
 					]
@@ -1981,7 +2364,7 @@
 			},
 			"Oxygen Component":
 			{
-				"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+				"type": "Object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": false
