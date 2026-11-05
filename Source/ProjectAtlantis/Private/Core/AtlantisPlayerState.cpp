@@ -135,12 +135,19 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 		       static_cast<uint8>(NewBallastState), RequiredAllocation);
 		return;
 	}
-	else if (OxygenComponent->GetCurrentOxygen() <= RequiredAllocation)
+	float Allocation = RequiredAllocation;
+	if (RequiredAllocation > 0.f && OxygenComponent->GetCurrentOxygen() <= RequiredAllocation)
 	{
-		return;
+		if (NewBallastState != EAtlantisBallastState::Ascend)
+		{
+			return;
+		}
+
+		// Emergency ascent lets a player who runs out of oxygen leave the floor.
+		Allocation = 0.f;
 	}
 
-	if (!OxygenComponent->ReallocateOxygen(RequiredAllocation))
+	if (!OxygenComponent->ReallocateOxygen(Allocation))
 	{
 		return;
 	}

@@ -91,7 +91,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	const TArray<FString>& GetEquippedItems() const { return EquippedItems; }
 
-	/** Reserves oxygen for the requested mode only when total oxygen is strictly above its allocation. */
+	/** Changes ballast mode. Ascend can work without a reservation when oxygen is too low. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetBallastState(EAtlantisBallastState NewBallastState);
 
