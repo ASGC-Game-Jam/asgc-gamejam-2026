@@ -48,8 +48,14 @@ private:
     void UnsubscribeFromFacts();
 
     void UpdateMusicAxes();
+    void UpdateLayerSplits();
+
     float GetRuleContribution(const FAtlantisMusicAxisRule& Rule) const;
 
+#if WITH_EDITOR
+    void HandleObjectPropertyChanged(UObject* Object, FPropertyChangedEvent& Event);
+    FDelegateHandle ObjectPropertyChangedHandle;
+#endif
 
     // Stored Delegate Handles
     FDelegateHandle PostWorldInitHandle;
@@ -70,7 +76,6 @@ private:
     UPROPERTY(Transient)
     TObjectPtr<UAtlantisMusicAxisMapping> AxisMapping;
 
-
 	bool bIsActive = true;
     float RunningSweepTime = 0.f;
     float SweepTimerInterval = 0.033f;
@@ -86,5 +91,5 @@ private:
 
     float CurrentPlayerState = 0.f;
     float CurrentTension = 0.f;
-
+    
 };

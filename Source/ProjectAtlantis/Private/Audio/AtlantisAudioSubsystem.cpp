@@ -13,7 +13,7 @@
 #include "Audio/AtlantisAudioPayloadTypes.h"
 #include "StructUtils/InstancedStruct.h"
 #include "Audio/AtlantisMusicAxisMapping.h"
-
+#include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_MusicLayers.h"
 
 
 DEFINE_LOG_CATEGORY(LogAtlantisAudioSubsystem);
@@ -39,6 +39,10 @@ void UAtlantisAudioSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	UE_LOG(LogAtlantisAudioSubsystem, Log, TEXT("=================================================="));
 
 	PostWorldInitHandle = FWorldDelegates::OnPostWorldInitialization.AddUObject(this, &UAtlantisAudioSubsystem::HandlePostWorldInitialization);
+
+#if WITH_EDITOR
+	ObjectPropertyChangedHandle = FCoreUObjectDelegates::OnObjectPropertyChanged.AddUObject(this, &UAtlantisAudioSubsystem::HandleObjectPropertyChanged);
+#endif
 }
 
 void UAtlantisAudioSubsystem::Deinitialize()
@@ -52,6 +56,11 @@ void UAtlantisAudioSubsystem::Deinitialize()
 	}
 
 	StopTrackingWorld();
+
+#if WITH_EDITOR
+	FCoreUObjectDelegates::OnObjectPropertyChanged.Remove(ObjectPropertyChangedHandle);
+	ObjectPropertyChangedHandle.Reset();
+#endif
 
 	Super::Deinitialize();
 }
@@ -141,6 +150,7 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 	GeneratorHandle = UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle(MusicAudioComponent);
 
 	UpdateMusicAxes();
+	UpdateLayerSplits();
 
 	TrackedWorld->GetTimerManager().SetTimer(SweepTimerHandle, this, &UAtlantisAudioSubsystem::UpdateAxisTestSweep, SweepTimerInterval, true);
 }
@@ -362,3 +372,33 @@ void UAtlantisAudioSubsystem::UpdateMusicAxes()
 }
 
 
+void UAtlantisAudioSubsystem::UpdateLayerSplits()
+{
+	if (!AxisMapping)
+	{
+		return;
+	}
+
+	if (!MusicAudioComponent)
+	{
+		return;
+	}
+
+	using namespace ProjectAtlantisAudio::MusicLayersInterface;
+	MusicAudioComponent->SetFloatParameter(Inputs::ActiveSplit.Resolve(), AxisMapping->ActiveLayerSplit);
+	MusicAudioComponent->SetFloatParameter(Inputs::PassiveSplit.Resolve(), AxisMapping->PassiveLayerSplit);
+	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Music layer splits: Active %.2f, Passive %.2f"), AxisMapping->ActiveLayerSplit, AxisMapping->PassiveLayerSplit);
+}
+
+#if WITH_EDITOR
+void UAtlantisAudioSubsystem::HandleObjectPropertyChanged(UObject* Object, FPropertyChangedEvent& Event)
+{
+	if (Object != AxisMapping)
+	{
+		return;
+	}
+
+	UpdateMusicAxes();
+	UpdateLayerSplits();
+}
+#endif

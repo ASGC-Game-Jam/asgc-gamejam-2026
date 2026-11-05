@@ -4,6 +4,7 @@
 // TODO: include each new interface header here as you add them
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_MusicAxes.h"
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_Environment.h"
+#include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_MusicLayers.h"
 
 namespace ProjectAtlantisAudio
 {
@@ -12,5 +13,6 @@ namespace ProjectAtlantisAudio
 		// TODO: call each new interface's Register function here
 		RegisterMusicAxesInterface();
 		RegisterEnvironmentInterface();
+		RegisterMusicLayersInterface();
 	}
 }

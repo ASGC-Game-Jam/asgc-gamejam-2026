@@ -25,8 +25,10 @@
 				"MemberMetadata":
 				{
 					"0328725C44E8A71D412CA0ADAFF7B86C": "/Game/ProjectAtlantis/Audio/Music/MSS_AtlantisAmbientMusic.MSS_AtlantisAmbientMusic:MetasoundEditorGraphMemberDefaultFloat_2",
+					"2AB7AEF342D7C0617726CA90B214D977": "/Game/ProjectAtlantis/Audio/Music/MSS_AtlantisAmbientMusic.MSS_AtlantisAmbientMusic:MetasoundEditorGraphMemberDefaultFloat_4",
 					"2BB1B353463DACD051DDBC993DEF54A8": "/Game/ProjectAtlantis/Audio/Music/MSS_AtlantisAmbientMusic.MSS_AtlantisAmbientMusic:MetasoundEditorGraphMemberDefaultFloat_1",
 					"2BB616574D3EE805AA5B6BBABD7C841A": "/Game/ProjectAtlantis/Audio/Music/MSS_AtlantisAmbientMusic.MSS_AtlantisAmbientMusic:MetasoundEditorGraphMemberDefaultInt_0",
+					"2FD0C16D483B5DFB9ECEC19B78344FCD": "/Game/ProjectAtlantis/Audio/Music/MSS_AtlantisAmbientMusic.MSS_AtlantisAmbientMusic:MetasoundEditorGraphMemberDefaultFloat_3",
 					"3940407642C5C874E96ECAB4086012BD": "/Game/ProjectAtlantis/Audio/Music/MSS_AtlantisAmbientMusic.MSS_AtlantisAmbientMusic:MetasoundEditorGraphMemberDefaultLiteral_0",
 					"56696E854424E8ABC6036FA5757CCED0": "/Game/ProjectAtlantis/Audio/Music/MSS_AtlantisAmbientMusic.MSS_AtlantisAmbientMusic:MetasoundEditorGraphMemberDefaultBool_0",
 					"9FF6B8C047439BBEE8549EA07AA53BA6": "/Game/ProjectAtlantis/Audio/Music/MSS_AtlantisAmbientMusic.MSS_AtlantisAmbientMusic:MetasoundEditorGraphMemberDefaultLiteral_3",
@@ -54,6 +56,14 @@
 				},
 				{
 					"Name": "Atlantis.Environment",
+					"Number":
+					{
+						"Major": 1,
+						"Minor": 0
+					}
+				},
+				{
+					"Name": "Atlantis.Music.Layers",
 					"Number":
 					{
 						"Major": 1,
@@ -2652,8 +2662,8 @@
 										{
 											"3D419A7A457683347745FE9688A7DB83":
 											{
-												"X": -3168,
-												"Y": 938
+												"X": -3648,
+												"Y": 925.16668701171875
 											}
 										},
 										"Comment": "",
@@ -3158,8 +3168,8 @@
 										{
 											"D97D212C4AFB516E4A4C59A4CBE12758":
 											{
-												"X": -3168,
-												"Y": 1683.5
+												"X": -3632,
+												"Y": 1669
 											}
 										},
 										"Comment": "",
@@ -3472,49 +3482,28 @@
 								}
 							},
 							{
-								"ID": "39D82DF6489CE3CAD9F0B5A782124F6E",
-								"ClassID": "29EABC3A41805A49817CD5A756770F7C",
-								"Name": "Multiply",
+								"ID": "0E97B86F4293FAB93DD5F18BCD9ED616",
+								"ClassID": "249A2E4E4A7195CD8BAB97A8F2C37793",
+								"Name": "Input",
 								"Interface":
 								{
 									"Inputs": [
 										{
-											"Name": "PrimaryOperand",
+											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "839870904FB0CB165C41AAD269031987"
-										},
-										{
-											"Name": "AdditionalOperands",
-											"TypeName": "Float",
-											"VertexID": "05ACEB5F4E04B1992885DA11E9BC86E4"
+											"VertexID": "08FC0D3D48A3A8522A8EBD9598F3C4F0"
 										}
 									],
 									"Outputs": [
 										{
-											"Name": "Out",
+											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "DF859E00E6B223C1313F89B8EB6AC9BC"
+											"VertexID": "B11C99AD4266A530BA62BBB8715D2F13"
 										}
 									],
 									"Environment": []
 								},
-								"InputLiterals": [
-									{
-										"VertexID": "05ACEB5F4E04B1992885DA11E9BC86E4",
-										"Value":
-										{
-											"Type": "Float",
-											"AsNumDefault": 0,
-											"AsBoolean": [],
-											"AsInteger": [],
-											"AsFloat": [
-												2
-											],
-											"AsString": [],
-											"AsUObject": []
-										}
-									}
-								],
+								"InputLiterals": [],
 								"Configuration": "None",
 								"ClassInterfaceOverride": "None",
 								"Style":
@@ -3524,10 +3513,10 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"03A0B8AD4C0E3BA70AA92EB0DAAE2179":
+											"D5FEE353418182A8886EC2AB62A13994":
 											{
-												"X": -2868,
-												"Y": 1710
+												"X": -3632,
+												"Y": 1915
 											}
 										},
 										"Comment": "",
@@ -3674,7 +3663,7 @@
 											"AsBoolean": [],
 											"AsInteger": [],
 											"AsFloat": [
-												0.45000000000000001
+												1
 											],
 											"AsString": [],
 											"AsUObject": []
@@ -3692,8 +3681,299 @@
 										{
 											"8ACE4E2449DF5CAA2329BB9EFEA747FA":
 											{
-												"X": -2865,
-												"Y": 964.99993896484375
+												"X": -2896,
+												"Y": 965
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "2FD0C16D483B5DFB9ECEC19B78344FCD",
+								"ClassID": "A0EBD7E344B1F5436919DBB81986BED3",
+								"Name": "Atlantis.Music.Layers.ActiveSplit",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Atlantis.Music.Layers.ActiveSplit",
+											"TypeName": "Float",
+											"VertexID": "2E2AB76A85DC7B8E103A4F5E6C5A00A3"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Atlantis.Music.Layers.ActiveSplit",
+											"TypeName": "Float",
+											"VertexID": "C502B26ECED384DD42DA6C62718AACCD"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "2AB7AEF342D7C0617726CA90B214D977",
+								"ClassID": "A0EBD7E344B1F5436919DBB81986BED3",
+								"Name": "Atlantis.Music.Layers.PassiveSplit",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Atlantis.Music.Layers.PassiveSplit",
+											"TypeName": "Float",
+											"VertexID": "2E2AB76A85DC7B8E103A4F5E6C5A00A3"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Atlantis.Music.Layers.PassiveSplit",
+											"TypeName": "Float",
+											"VertexID": "C502B26ECED384DD42DA6C62718AACCD"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "5081D9994997BAFCD78F84B3B12C7794",
+								"ClassID": "DA3FDF7A479F8D1BD51A1EBEBB9F671E",
+								"Name": "Subtract",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "PrimaryOperand",
+											"TypeName": "Float",
+											"VertexID": "839870904FB0CB165C41AAD269031987"
+										},
+										{
+											"Name": "AdditionalOperands",
+											"TypeName": "Float",
+											"VertexID": "05ACEB5F4E04B1992885DA11E9BC86E4"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Out",
+											"TypeName": "Float",
+											"VertexID": "DF859E00E6B223C1313F89B8EB6AC9BC"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"FEF686C34FF45C897E3A1FAA3AA26E48":
+											{
+												"X": -3228,
+												"Y": 951.5
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "018724014C1D74FB24101DA9618EA5BD",
+								"ClassID": "249A2E4E4A7195CD8BAB97A8F2C37793",
+								"Name": "Input",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Value",
+											"TypeName": "Float",
+											"VertexID": "EEEBF61F43EE2EFCBD76158BC457D59B"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Value",
+											"TypeName": "Float",
+											"VertexID": "208FCE7D4B5E01AEC8455385FBBDAB32"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"58EAA3AD48B33200865F89A2CDFFAFF4":
+											{
+												"X": -3616,
+												"Y": 1136
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "9665ADFA40D2F9263E0F2DBD2FF96C56",
+								"ClassID": "DA3FDF7A479F8D1BD51A1EBEBB9F671E",
+								"Name": "Subtract",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "PrimaryOperand",
+											"TypeName": "Float",
+											"VertexID": "839870904FB0CB165C41AAD269031987"
+										},
+										{
+											"Name": "AdditionalOperands",
+											"TypeName": "Float",
+											"VertexID": "05ACEB5F4E04B1992885DA11E9BC86E4"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Out",
+											"TypeName": "Float",
+											"VertexID": "DF859E00E6B223C1313F89B8EB6AC9BC"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"ED13EB264F1689DF81A73BA8BB76A47E":
+											{
+												"X": -3265,
+												"Y": 1695.5
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
+								"ID": "1EC61B1740F2D73A79674B925E8C10AE",
+								"ClassID": "0FDD126A479BE6321219F2AF659198A3",
+								"Name": "Add",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "PrimaryOperand",
+											"TypeName": "Float",
+											"VertexID": "839870904FB0CB165C41AAD269031987"
+										},
+										{
+											"Name": "AdditionalOperands",
+											"TypeName": "Float",
+											"VertexID": "05ACEB5F4E04B1992885DA11E9BC86E4"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Out",
+											"TypeName": "Float",
+											"VertexID": "DF859E00E6B223C1313F89B8EB6AC9BC"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [
+									{
+										"VertexID": "05ACEB5F4E04B1992885DA11E9BC86E4",
+										"Value":
+										{
+											"Type": "Float",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [],
+											"AsFloat": [
+												1
+											],
+											"AsString": [],
+											"AsUObject": []
+										}
+									}
+								],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"6652E29847A38AEA6768D48FFDE1971B":
+											{
+												"X": -3040,
+												"Y": 1709.851806640625
 											}
 										},
 										"Comment": "",
@@ -4084,10 +4364,10 @@
 								"ToVertexID": "A372D5A4428E821648E884BE5947DA61"
 							},
 							{
-								"FromNodeID": "39D82DF6489CE3CAD9F0B5A782124F6E",
-								"FromVertexID": "DF859E00E6B223C1313F89B8EB6AC9BC",
-								"ToNodeID": "6BCFF6184B9EC89FE432C0801D03CC1A",
-								"ToVertexID": "5B5E388EAFF17BB7FC6ADD44A1D9997B"
+								"FromNodeID": "2AB7AEF342D7C0617726CA90B214D977",
+								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
+								"ToNodeID": "0E97B86F4293FAB93DD5F18BCD9ED616",
+								"ToVertexID": "08FC0D3D48A3A8522A8EBD9598F3C4F0"
 							},
 							{
 								"FromNodeID": "6BCFF6184B9EC89FE432C0801D03CC1A",
@@ -4114,10 +4394,10 @@
 								"ToVertexID": "20B877D36237A1AED1CB1F6B7EC11596"
 							},
 							{
-								"FromNodeID": "BC5B216D4B866B98485CE1946C9F605D",
-								"FromVertexID": "5DB902924A2ED808CDA7509A14D5E7F3",
-								"ToNodeID": "39D82DF6489CE3CAD9F0B5A782124F6E",
-								"ToVertexID": "839870904FB0CB165C41AAD269031987"
+								"FromNodeID": "0E97B86F4293FAB93DD5F18BCD9ED616",
+								"FromVertexID": "B11C99AD4266A530BA62BBB8715D2F13",
+								"ToNodeID": "9665ADFA40D2F9263E0F2DBD2FF96C56",
+								"ToVertexID": "05ACEB5F4E04B1992885DA11E9BC86E4"
 							},
 							{
 								"FromNodeID": "62D9E15841E71DE25F3F4CB6BD4AB308",
@@ -4170,13 +4450,49 @@
 							{
 								"FromNodeID": "A7316D774215A3A5492C63A1D7F16C1D",
 								"FromVertexID": "1BECEE3044466644EB9A1E8CEB175F89",
-								"ToNodeID": "E4F1D48C49DC83FA92201989F18CD5B2",
+								"ToNodeID": "5081D9994997BAFCD78F84B3B12C7794",
 								"ToVertexID": "839870904FB0CB165C41AAD269031987"
 							},
 							{
 								"FromNodeID": "E4F1D48C49DC83FA92201989F18CD5B2",
 								"FromVertexID": "DF859E00E6B223C1313F89B8EB6AC9BC",
 								"ToNodeID": "CDCEDC6C4CB484A24BB4C18833A9ED0A",
+								"ToVertexID": "5B5E388EAFF17BB7FC6ADD44A1D9997B"
+							},
+							{
+								"FromNodeID": "5081D9994997BAFCD78F84B3B12C7794",
+								"FromVertexID": "DF859E00E6B223C1313F89B8EB6AC9BC",
+								"ToNodeID": "E4F1D48C49DC83FA92201989F18CD5B2",
+								"ToVertexID": "839870904FB0CB165C41AAD269031987"
+							},
+							{
+								"FromNodeID": "2FD0C16D483B5DFB9ECEC19B78344FCD",
+								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
+								"ToNodeID": "018724014C1D74FB24101DA9618EA5BD",
+								"ToVertexID": "EEEBF61F43EE2EFCBD76158BC457D59B"
+							},
+							{
+								"FromNodeID": "018724014C1D74FB24101DA9618EA5BD",
+								"FromVertexID": "208FCE7D4B5E01AEC8455385FBBDAB32",
+								"ToNodeID": "5081D9994997BAFCD78F84B3B12C7794",
+								"ToVertexID": "05ACEB5F4E04B1992885DA11E9BC86E4"
+							},
+							{
+								"FromNodeID": "BC5B216D4B866B98485CE1946C9F605D",
+								"FromVertexID": "5DB902924A2ED808CDA7509A14D5E7F3",
+								"ToNodeID": "9665ADFA40D2F9263E0F2DBD2FF96C56",
+								"ToVertexID": "839870904FB0CB165C41AAD269031987"
+							},
+							{
+								"FromNodeID": "9665ADFA40D2F9263E0F2DBD2FF96C56",
+								"FromVertexID": "DF859E00E6B223C1313F89B8EB6AC9BC",
+								"ToNodeID": "1EC61B1740F2D73A79674B925E8C10AE",
+								"ToVertexID": "839870904FB0CB165C41AAD269031987"
+							},
+							{
+								"FromNodeID": "1EC61B1740F2D73A79674B925E8C10AE",
+								"FromVertexID": "DF859E00E6B223C1313F89B8EB6AC9BC",
+								"ToNodeID": "6BCFF6184B9EC89FE432C0801D03CC1A",
 								"ToVertexID": "5B5E388EAFF17BB7FC6ADD44A1D9997B"
 							}
 						],
@@ -4263,7 +4579,7 @@
 									"MoveMode": "GroupMovement",
 									"bColorBubble": false
 								},
-								"970CF20941F7978C14DDA9A76193BE31":
+								"DB4A653A48E2D82F85C400933613C4AA":
 								{
 									"Color":
 									{
@@ -4272,18 +4588,43 @@
 										"B": 1,
 										"A": 0.5
 									},
-									"Comment": "The lowest gameplay value above the baseline is 0.6 (Alerted), so split at 0.55:",
+									"Comment": "Active layer when Player State ≥ ActiveSplit, Ambient below it. Player State − ActiveSplit + 1, then To Int, gives 1 at or above the split and 0 below it. Tune the split in DA_AtlantisMusicAxisMapping.",
 									"Depth": -1,
 									"FontSize": 18,
 									"Position":
 									{
-										"X": -2920,
-										"Y": 707
+										"X": -3694,
+										"Y": 826
 									},
 									"Size":
 									{
-										"X": 256,
-										"Y": 384
+										"X": 1488,
+										"Y": 512
+									},
+									"MoveMode": "GroupMovement",
+									"bColorBubble": false
+								},
+								"E8B0AFD141857040D97CD798F92325D0":
+								{
+									"Color":
+									{
+										"R": 0.77397099999999996,
+										"G": 0.30729200000000001,
+										"B": 1,
+										"A": 0.5
+									},
+									"Comment": "Passive layer on when Tension ≥ PassiveSplit. Tension − PassiveSplit + 1, then To Int, gives 1 at or above the split and 0 below it. Tune the split in DA_AtlantisMusicAxisMapping.",
+									"Depth": -1,
+									"FontSize": 18,
+									"Position":
+									{
+										"X": -3678,
+										"Y": 1573
+									},
+									"Size":
+									{
+										"X": 1472,
+										"Y": 544
 									},
 									"MoveMode": "GroupMovement",
 									"bColorBubble": false
@@ -4333,7 +4674,9 @@
 							1,
 							2,
 							1,
-							0
+							0,
+							0,
+							1
 						],
 						"RequiredMembers":
 						{
@@ -4595,6 +4938,90 @@
 							"Name": "Atlantis.Environment.RoomType",
 							"TypeName": "Int32",
 							"VertexID": "352CEF984F42266959CFFCAEAE0F0C48"
+						},
+						{
+							"DefaultLiteral":
+							{
+								"Type": "None",
+								"AsNumDefault": 0,
+								"AsBoolean": [],
+								"AsInteger": [],
+								"AsFloat": [],
+								"AsString": [],
+								"AsUObject": []
+							},
+							"Defaults": [
+								{
+									"Literal":
+									{
+										"Type": "Float",
+										"AsNumDefault": 0,
+										"AsBoolean": [],
+										"AsInteger": [],
+										"AsFloat": [
+											0.55000000000000004
+										],
+										"AsString": [],
+										"AsUObject": []
+									},
+									"PageID": "00000000000000000000000000000000"
+								}
+							],
+							"NodeID": "2FD0C16D483B5DFB9ECEC19B78344FCD",
+							"Metadata":
+							{
+								"DisplayName": "",
+								"Description": "",
+								"SortOrderIndex": 0,
+								"bIsAdvancedDisplay": false,
+								"bSerializeText": false
+							},
+							"AccessType": "Reference",
+							"Name": "Atlantis.Music.Layers.ActiveSplit",
+							"TypeName": "Float",
+							"VertexID": "DE813CF546E1E7AF3D2283A6A558D4CE"
+						},
+						{
+							"DefaultLiteral":
+							{
+								"Type": "None",
+								"AsNumDefault": 0,
+								"AsBoolean": [],
+								"AsInteger": [],
+								"AsFloat": [],
+								"AsString": [],
+								"AsUObject": []
+							},
+							"Defaults": [
+								{
+									"Literal":
+									{
+										"Type": "Float",
+										"AsNumDefault": 0,
+										"AsBoolean": [],
+										"AsInteger": [],
+										"AsFloat": [
+											0.5
+										],
+										"AsString": [],
+										"AsUObject": []
+									},
+									"PageID": "00000000000000000000000000000000"
+								}
+							],
+							"NodeID": "2AB7AEF342D7C0617726CA90B214D977",
+							"Metadata":
+							{
+								"DisplayName": "",
+								"Description": "",
+								"SortOrderIndex": 1,
+								"bIsAdvancedDisplay": false,
+								"bSerializeText": false
+							},
+							"AccessType": "Reference",
+							"Name": "Atlantis.Music.Layers.PassiveSplit",
+							"TypeName": "Float",
+							"VertexID": "3687B5F446F6CD63F68F71BA229D0133"
 						}
 					],
 					"Outputs": [
@@ -10633,13 +11060,13 @@
 					}
 				},
 				{
-					"ID": "29EABC3A41805A49817CD5A756770F7C",
+					"ID": "DA3FDF7A479F8D1BD51A1EBEBB9F671E",
 					"Metadata":
 					{
 						"ClassName":
 						{
 							"Namespace": "UE",
-							"Name": "Multiply",
+							"Name": "Subtract",
 							"Variant": "Float"
 						},
 						"Version":
@@ -10700,7 +11127,7 @@
 											"AsBoolean": [],
 											"AsInteger": [],
 											"AsFloat": [
-												1
+												0
 											],
 											"AsString": [],
 											"AsUObject": []
@@ -10742,7 +11169,7 @@
 											"AsBoolean": [],
 											"AsInteger": [],
 											"AsFloat": [
-												1
+												0
 											],
 											"AsString": [],
 											"AsUObject": []
@@ -10788,7 +11215,7 @@
 					{
 						"Display":
 						{
-							"ImageName": "MetasoundEditor.Graph.Node.Math.Multiply",
+							"ImageName": "MetasoundEditor.Graph.Node.Math.Subtract",
 							"bShowName": false,
 							"bShowInputNames": false,
 							"bShowOutputNames": false,
