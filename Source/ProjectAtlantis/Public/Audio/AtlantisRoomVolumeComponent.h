@@ -12,6 +12,7 @@
 /**
  * Add to an Audio Gameplay Volume to say which room it is.
  * Its priority comes from the Reverb Volume Component on the same volume, so the room and reverb always agree.
+ * Don't disable this volume during play. If the listener is inside it, the music stays in this room.
  */
 UCLASS(ClassGroup = (Atlantis), meta = (BlueprintSpawnableComponent))
 class PROJECTATLANTIS_API UAtlantisRoomVolumeComponent : public UActorComponent, public IAudioGameplayVolumeInteraction

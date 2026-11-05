@@ -48,6 +48,8 @@ private:
     void UnsubscribeFromFacts();
 
     void UpdateMusicAxes();
+    void UpdateRoomType();
+    
     float GetRuleContribution(const FAtlantisMusicAxisRule& Rule) const;
 
 
@@ -87,4 +89,5 @@ private:
     float CurrentPlayerState = 0.f;
     float CurrentTension = 0.f;
 
+    TMap<FGameplayTag, FGameplayTag> TagFacts;
 };
