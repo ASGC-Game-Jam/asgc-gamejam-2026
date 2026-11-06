@@ -8,13 +8,18 @@
 #include "Core/AtlantisHidingComponent.h"
 #include "Core/AtlantisOxygenComponent.h"
 #include "Core/AtlantisPlayerState.h"
-#include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "GameFramework/Pawn.h"
 #include "StructUtils/InstancedStruct.h"
 #include "TimerManager.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisAudioFactBridge, Log, All);
+
+namespace
+{
+	// About two seconds at 60 fps.
+	constexpr int32 MaxPlayerStateRetries = 120;
+}
 
 
 
@@ -41,12 +46,7 @@ void UAtlantisAudioFactBridgeComponent::EndPlay(const EEndPlayReason::Type EndPl
         Pawn->ReceiveControllerChangedDelegate.RemoveDynamic(this, &ThisClass::HandleControllerChanged);
     }
 
-    // The world can already be gone if this component is being cleaned up during shutdown.
-    if (UWorld* World = GetWorld())
-    {
-        World->GetTimerManager().ClearAllTimersForObject(this);
-    }
-
+    // Also cancels any pending player state retry.
     UnbindSources();
 
     Super::EndPlay(EndPlayReason);
@@ -70,11 +70,22 @@ void UAtlantisAudioFactBridgeComponent::TryBindSources()
     AAtlantisPlayerState* PlayerState = Pawn->GetPlayerState<AAtlantisPlayerState>();
     if (!PlayerState)
     {
+        // The player state can arrive a few ticks after possession. If it never does, the game
+        // mode is probably using a different player state class, so stop retrying and say so.
+        if (PlayerStateRetryCount >= MaxPlayerStateRetries)
+        {
+            UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("No AAtlantisPlayerState on [%s] after %d ticks (found [%s]). Oxygen and hiding facts won't reach the music."),
+                *GetNameSafe(Pawn), MaxPlayerStateRetries, *GetNameSafe(Pawn->GetPlayerState()));
+            return;
+        }
+
+        ++PlayerStateRetryCount;
         GetWorld()->GetTimerManager().SetTimerForNextTick(this, &ThisClass::TryBindSources);
         return;
     }
 
     bSourcesBound = true;
+    PlayerStateRetryCount = 0;
 
     OxygenComponent = PlayerState->GetOxygenComponent();
     if (OxygenComponent)
@@ -99,18 +110,6 @@ void UAtlantisAudioFactBridgeComponent::TryBindSources()
 		UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("No hiding component on [%s]. Hiding facts won't reach the music."), *GetNameSafe(Pawn));
 	}
 
-    const UGameInstance* GameInstance = GetWorld()->GetGameInstance();
-    JournalSubsystem = GameInstance ? GameInstance->GetSubsystem<UAtlantisJournalSubsystem>() : nullptr;
-    if (JournalSubsystem)
-    {
-        JournalSubsystem->OnInvestigationUpdated.AddDynamic(this, &ThisClass::HandleInvestigationUpdated);
-        JournalSubsystem->OnJournalInvestigationsCleared.AddDynamic(this, &ThisClass::HandleInvestigationsCleared);
-    }
-	else
-	{
-		UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("No journal subsystem found. Investigation facts won't reach the music."));
-	}
-
 	SendInitialFacts();
 }
 
@@ -131,12 +130,13 @@ void UAtlantisAudioFactBridgeComponent::UnbindSources()
         HidingComponent = nullptr;
     }
 
-    if (JournalSubsystem)
+    // Cancel any pending player state retry, so a new possession starts with a fresh count.
+    // The world can already be gone if this component is being cleaned up during shutdown.
+    if (UWorld* World = GetWorld())
     {
-        JournalSubsystem->OnInvestigationUpdated.RemoveDynamic(this, &ThisClass::HandleInvestigationUpdated);
-        JournalSubsystem->OnJournalInvestigationsCleared.RemoveDynamic(this, &ThisClass::HandleInvestigationsCleared);
-        JournalSubsystem = nullptr;
+        World->GetTimerManager().ClearAllTimersForObject(this);
     }
+    PlayerStateRetryCount = 0;
 
     bSourcesBound = false;
 
@@ -156,13 +156,6 @@ void UAtlantisAudioFactBridgeComponent::SendInitialFacts()
         HandleHidingStateChanged(HidingComponent->IsHiding());
     }
 
-    if (JournalSubsystem)
-    {
-        for (const FString& Title : JournalSubsystem->GetInvestigations())
-        {
-            SendInvestigationStatus(Title, JournalSubsystem->GetInvestigationStatus(Title));
-        }
-    }
 }
 
 void UAtlantisAudioFactBridgeComponent::SendOxygenLevel()
@@ -179,29 +172,6 @@ void UAtlantisAudioFactBridgeComponent::SendOxygenLevel()
 
     UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Oxygen_Level, FInstancedStruct::Make(Payload));
 
-}
-
-void UAtlantisAudioFactBridgeComponent::SendInvestigationStatus(const FString& Title, EJournalInvestigationStatus Status)
-{
-    FAtlantisAudioKeyedStatePayload Payload;
-    Payload.Key = FName(*Title);
-
-    SentInvestigationTitles.Add(Title);
-
-    switch (Status)
-    {
-        case EJournalInvestigationStatus::Undiscovered:
-            Payload.State = TAG_AudioState_Investigation_Undiscovered;
-            break;
-        case EJournalInvestigationStatus::Inprogress:
-            Payload.State = TAG_AudioState_Investigation_InProgress;
-            break;
-        case EJournalInvestigationStatus::Complete:
-            Payload.State = TAG_AudioState_Investigation_Complete;
-            break;
-    }
-
-    UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Investigation_Status, FInstancedStruct::Make(Payload));
 }
 
 void UAtlantisAudioFactBridgeComponent::HandleControllerChanged(APawn* Pawn, AController* OldController, AController* NewController)
@@ -239,21 +209,4 @@ void UAtlantisAudioFactBridgeComponent::HandleHidingStateChanged(bool bHiding)
     Payload.bValue = bHiding;
 
     UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Stealth_Hiding, FInstancedStruct::Make(Payload));
-}
-
-void UAtlantisAudioFactBridgeComponent::HandleInvestigationUpdated(EJournalInvestigationStatus OldStatus, EJournalInvestigationStatus Status, const FString& Title)
-{
-    SendInvestigationStatus(Title,Status);
-}
-
-void UAtlantisAudioFactBridgeComponent::HandleInvestigationsCleared()
-{
-    const TSet<FString> Titles = SentInvestigationTitles;
-
-    for (const FString& Title : Titles)
-    {
-        SendInvestigationStatus(Title, EJournalInvestigationStatus::Undiscovered);
-    }
-
-    SentInvestigationTitles.Reset();
 }

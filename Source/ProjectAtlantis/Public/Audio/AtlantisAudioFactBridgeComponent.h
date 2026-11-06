@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Journal/AtlantisJournalSubsystem.h"
 
 #include "AtlantisAudioFactBridgeComponent.generated.h"
 
@@ -14,8 +13,9 @@ class UAtlantisHidingComponent;
 class UAtlantisOxygenComponent;
 
 /**
- * Forwards existing gameplay events to the audio ecosystem as facts.
+ * Forwards the local player's oxygen and hiding events to the audio ecosystem as facts.
  * Only translates events into facts. How a fact sounds is decided by the music axis mapping.
+ * Investigations aren't per-pawn, so they're reported by UAtlantisJournalAudioBridge instead.
  */
 UCLASS(ClassGroup = (Atlantis), meta = (BlueprintSpawnableComponent))
 class PROJECTATLANTIS_API UAtlantisAudioFactBridgeComponent : public UActorComponent
@@ -27,15 +27,16 @@ protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 private:
-	/** Binds to the sources once the owner is locally controlled. Safe to call more than once. */
+	/** Binds to the sources once the owner is locally controlled. Waits a limited number of ticks for the player state. Safe to call more than once. */
 	void TryBindSources();
+
+	/** Stops listening to every source and cancels any pending retry. Called on end play, and before rebinding when the controller changes. */
 	void UnbindSources();
 
 	/** Sends each fact's current value once, so the music is right from the start. */
 	void SendInitialFacts();
 
 	void SendOxygenLevel();
-	void SendInvestigationStatus(const FString& Title, EJournalInvestigationStatus Status);
 
 	UFUNCTION()
 	void HandleControllerChanged(APawn* Pawn, AController* OldController, AController* NewController);
@@ -55,24 +56,15 @@ private:
 	UFUNCTION()
 	void HandleHidingStateChanged(bool bHiding);
 
-	UFUNCTION()
-	void HandleInvestigationUpdated(EJournalInvestigationStatus OldStatus, EJournalInvestigationStatus Status, const FString& Title);
-	
-	UFUNCTION()
-	void HandleInvestigationsCleared();
-
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisOxygenComponent> OxygenComponent;
 
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisHidingComponent> HidingComponent;
 
-	UPROPERTY(Transient)
-	TObjectPtr<UAtlantisJournalSubsystem> JournalSubsystem;
-
 	bool bSourcesBound = false;
 
-	/** Investigations already sent to the music. The journal has emptied itself by the time it says it cleared. */
-	TSet<FString> SentInvestigationTitles;
+	/** Ticks spent waiting for an Atlantis player state. Reset whenever binding starts over. */
+	int32 PlayerStateRetryCount = 0;
 
 };

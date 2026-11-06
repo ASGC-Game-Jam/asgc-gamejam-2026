@@ -14,7 +14,6 @@
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "GameFramework/Pawn.h"
-#include "Journal/AtlantisJournalSubsystem.h"
 #include "Misc/AutomationTest.h"
 #include "StructUtils/InstancedStruct.h"
 #include "Tests/AtlantisAudioTestFactListener.h"
@@ -22,7 +21,7 @@
 
 namespace
 {
-	// A throwaway game instance and world, so each test gets its own router and journal.
+	// A throwaway game instance and world, so each test gets its own router.
 	struct FAtlantisFactBridgeFixture
 	{
 		struct FSubscription
@@ -34,7 +33,6 @@ namespace
 		TStrongObjectPtr<UGameInstance> GameInstance;
 		UWorld* World = nullptr;
 		UASGC_DataRouterSubsystem* Router = nullptr;
-		UAtlantisJournalSubsystem* Journal = nullptr;
 		AAtlantisPlayerState* PlayerState = nullptr;
 		UAtlantisOxygenComponent* Oxygen = nullptr;
 		AController* Controller = nullptr;
@@ -47,7 +45,6 @@ namespace
 		{
 			GameInstance->InitializeStandalone();
 			World = GameInstance->GetWorld();
-			Journal = GameInstance->GetSubsystem<UAtlantisJournalSubsystem>();
 			if (!World)
 			{
 				return;
@@ -62,8 +59,7 @@ namespace
 				const FGameplayTag FactTags[] = {
 					TAG_AudioFact_Oxygen_Level,
 					TAG_AudioFact_Oxygen_Critical,
-					TAG_AudioFact_Stealth_Hiding,
-					TAG_AudioFact_Investigation_Status};
+					TAG_AudioFact_Stealth_Hiding};
 
 				for (const FGameplayTag& Tag : FactTags)
 				{
@@ -185,16 +181,6 @@ BEGIN_DEFINE_SPEC(FAtlantisAudioFactBridgeSpec, "Atlantis.Audio.FactBridge",
 			TestEqual(What, Payload->bValue, bExpected);
 		}
 	}
-
-	void TestInvestigationFact(const TCHAR* What, const FName& ExpectedKey, const FGameplayTag& ExpectedState)
-	{
-		const FAtlantisAudioKeyedStatePayload* Payload = Fixture->Last<FAtlantisAudioKeyedStatePayload>(TAG_AudioFact_Investigation_Status);
-		if (TestNotNull(TEXT("Payload holds a keyed state"), Payload))
-		{
-			TestEqual(TEXT("The investigation's title is the key"), Payload->Key, ExpectedKey);
-			TestTrue(What, Payload->State == ExpectedState);
-		}
-	}
 END_DEFINE_SPEC(FAtlantisAudioFactBridgeSpec)
 
 void FAtlantisAudioFactBridgeSpec::Define()
@@ -204,7 +190,6 @@ void FAtlantisAudioFactBridgeSpec::Define()
 		Fixture = MakeUnique<FAtlantisFactBridgeFixture>();
 		TestNotNull(TEXT("Test world created"), Fixture->World);
 		TestNotNull(TEXT("Test world has a router"), Fixture->Router);
-		TestNotNull(TEXT("Journal subsystem exists"), Fixture->Journal);
 		TestNotNull(TEXT("Oxygen component exists"), Fixture->Oxygen);
 		TestNotNull(TEXT("Controller spawned"), Fixture->Controller);
 	});
@@ -226,16 +211,6 @@ void FAtlantisAudioFactBridgeSpec::Define()
 			TestOxygenLevel(TEXT("Oxygen starts full"), 1.f);
 			TestBoolFact(TEXT("Oxygen doesn't start critical"), TAG_AudioFact_Oxygen_Critical, false);
 			TestBoolFact(TEXT("Player doesn't start hiding"), TAG_AudioFact_Stealth_Hiding, false);
-		});
-
-		It(TEXT("should send the status of an investigation that already exists"), [this]()
-		{
-			Fixture->Journal->UpdateInvestigationStatus(TEXT("Existing"), EJournalInvestigationStatus::Inprogress);
-
-			Fixture->StartPlayer();
-
-			TestEqual(TEXT("One investigation fact"), Fixture->Count(TAG_AudioFact_Investigation_Status), 1);
-			TestInvestigationFact(TEXT("Status is in progress"), FName(TEXT("Existing")), TAG_AudioState_Investigation_InProgress);
 		});
 	});
 
@@ -296,39 +271,6 @@ void FAtlantisAudioFactBridgeSpec::Define()
 			TestEqual(TEXT("Leaving sends one more fact"), Fixture->Count(TAG_AudioFact_Stealth_Hiding), 3);
 			TestBoolFact(TEXT("Player has stopped hiding"), TAG_AudioFact_Stealth_Hiding, false);
 		});
-
-		It(TEXT("should map each investigation status to its state tag"), [this]()
-		{
-			Fixture->StartPlayer();
-			const FName Key(TEXT("Mystery"));
-
-			Fixture->Journal->UpdateInvestigationStatus(TEXT("Mystery"), EJournalInvestigationStatus::Undiscovered);
-			TestInvestigationFact(TEXT("Undiscovered maps to its tag"), Key, TAG_AudioState_Investigation_Undiscovered);
-
-			Fixture->Journal->UpdateInvestigationStatus(TEXT("Mystery"), EJournalInvestigationStatus::Inprogress);
-			TestInvestigationFact(TEXT("In progress maps to its tag"), Key, TAG_AudioState_Investigation_InProgress);
-
-			Fixture->Journal->UpdateInvestigationStatus(TEXT("Mystery"), EJournalInvestigationStatus::Complete);
-			TestInvestigationFact(TEXT("Complete maps to its tag"), Key, TAG_AudioState_Investigation_Complete);
-
-			TestEqual(TEXT("Each change sends one fact"), Fixture->Count(TAG_AudioFact_Investigation_Status), 3);
-		});
-
-		It(TEXT("should reset investigations when the journal clears"), [this]()
-		{
-			Fixture->StartPlayer();
-			const FName Key(TEXT("Mystery"));
-
-			Fixture->Journal->UpdateInvestigationStatus(TEXT("Mystery"), EJournalInvestigationStatus::Inprogress);
-
-			Fixture->Journal->ClearInvestigations();
-			
-			TestInvestigationFact(TEXT("Clearing resets the investigation"), Key, TAG_AudioState_Investigation_Undiscovered);
-
-			const int32 CountBefore = Fixture->Count(TAG_AudioFact_Investigation_Status);
-			Fixture->Journal->ClearInvestigations();
-			TestEqual(TEXT("A second clear sends nothing"), Fixture->Count(TAG_AudioFact_Investigation_Status), CountBefore);
-		});
 	});
 
 	Describe(TEXT("Binding"), [this]()
@@ -367,7 +309,6 @@ void FAtlantisAudioFactBridgeSpec::Define()
 			Fixture->Pawn->Destroy();
 
 			Fixture->Oxygen->RequestOxygen(25.f);
-			Fixture->Journal->UpdateInvestigationStatus(TEXT("Mystery"), EJournalInvestigationStatus::Inprogress);
 			Hiding->OnHidingStateChanged.Broadcast(true);
 			TestEqual(TEXT("Nothing more is sent"), Fixture->TotalCount(), CountBefore);
 		});
