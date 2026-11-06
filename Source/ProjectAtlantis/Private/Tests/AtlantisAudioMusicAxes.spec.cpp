@@ -186,6 +186,28 @@ void FAtlantisAudioMusicAxesSpec::Define()
 		World->DestroyWorld(false);
 	});
 
+#if WITH_EDITOR
+	It(TEXT("should recalculate the axes when the mapping is edited"), [this]()
+	{
+		FAtlantisAudioSubsystemTestAccess::UpdateAxes(Subsystem.Get());
+		Mapping->PlayerStateBaseline = 0.8f;
+
+		FAtlantisAudioSubsystemTestAccess::NotifyPropertyChanged(Subsystem.Get(), Mapping.Get());
+
+		ExpectAxes(0.8f, 0.3f);
+	});
+
+		It(TEXT("should ignore edits to other objects"), [this]()
+	{
+		FAtlantisAudioSubsystemTestAccess::UpdateAxes(Subsystem.Get());
+		Mapping->PlayerStateBaseline = 0.8f;
+
+		FAtlantisAudioSubsystemTestAccess::NotifyPropertyChanged(Subsystem.Get(), GameInstance.Get());
+
+		ExpectAxes(0.5f, 0.3f);
+	});
+#endif
+
 }
 
 #endif
