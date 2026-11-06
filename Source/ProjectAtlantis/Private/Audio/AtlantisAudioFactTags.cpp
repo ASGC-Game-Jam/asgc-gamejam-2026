@@ -17,3 +17,6 @@ UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioState_Enemy_Combat, "Audio.State.Enemy.C
 UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioState_Investigation_Undiscovered, "Audio.State.Investigation.Undiscovered", "Mirrors EJournalInvestigationStatus::Undiscovered.");
 UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioState_Investigation_InProgress, "Audio.State.Investigation.InProgress", "Mirrors EJournalInvestigationStatus::Inprogress.");
 UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioState_Investigation_Complete, "Audio.State.Investigation.Complete", "Mirrors EJournalInvestigationStatus::Complete.");
+
+UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_Room_Default, "Room.Default", "The player isn't inside any room volume. Sounds neutral.");
+UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Environment_Room, "Audio.Fact.Environment.Room", "TagPayload: the Room tag for the space the player is in.");

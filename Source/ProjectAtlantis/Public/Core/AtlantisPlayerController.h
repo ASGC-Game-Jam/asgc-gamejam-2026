@@ -10,6 +10,7 @@ struct FInputActionValue;
 class UInputMappingContext;
 class UInputAction;
 class UEnhancedInputLocalPlayerSubsystem;
+class UAtlantisDebugMenu;
 enum class EAtlantisBallastState : uint8;
 
 /** The desired set of control mapping contexts changed. */
@@ -38,6 +39,19 @@ class PROJECTATLANTIS_API AAtlantisPlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
+	AAtlantisPlayerController();
+	virtual void AddCheats(bool bForce = false) override;
+
+	/** Opens/closes the development menu while gameplay has input focus. */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|Debug")
+	void ToggleDebugMenu();
+
+	/** Restarts the current standalone game level, recreating player state and oxygen. */
+	void RequestDebugRestart();
+	bool IsDebugMenuOpen() const { return DebugMenu != nullptr; }
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
 	void UpdateMovementControls(bool bInWater);
 	virtual void OnRep_Pawn() override;
 
@@ -92,6 +106,18 @@ public:
 	void UnrestrictControls(FName ID, UInputMappingContext* MappingContext);
 
 protected:
+	UPROPERTY(Transient)
+	TObjectPtr<UAtlantisDebugMenu> DebugMenu;
+
+	UPROPERTY(Transient)
+	TObjectPtr<UInputMappingContext> DebugGameplayMappingContext;
+
+	UPROPERTY(Transient)
+	TObjectPtr<UInputMappingContext> DebugMenuMappingContext;
+
+	void RefreshDebugInputContext();
+	void CloseDebugMenu();
+
 	virtual void SetupInputComponent() override;
 	virtual void OnPossess(APawn* InPawn) override;
 

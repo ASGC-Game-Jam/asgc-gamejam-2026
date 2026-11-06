@@ -5,6 +5,9 @@ exec(open(unreal.Paths.project_dir() + 'Tools/Journal/seed_discovered_clue.py').
 Use seed_journal() for the combined demo; clear_clues() clears it.
 Individual helpers: seed_clues(), seed_grouped_clues(), seed_puzzles(),
 seed_grouped_puzzles(), revise_clue(), set_group_incomplete().
+Objectives: seed_objectives(), seed_objectives(text='Updated objective'),
+seed_objectives(state='Completed', show_history=True), clear_objectives().
+Each seed_objectives() call replaces the full objective snapshot in PIE.
 """
 import unreal
 
@@ -132,6 +135,40 @@ def set_group_incomplete(entry_id='Story436_A1', incomplete=True):
     if not journal.set_investigation_entry(entry):
         raise RuntimeError('Placeholder update rejected: ' + entry_id)
     unreal.log('Owner-supplied incompleteness updated for ' + entry_id)
+
+
+def seed_objectives(state='Active', text='[Placeholder] Investigate the abandoned cafe', show_history=False):
+    """Replace the PIE objective snapshot with one supplied objective; leave clues intact.
+
+    State accepts Active, Completed or Failed. Completed/Failed are hidden unless
+    show_history=True. Repeated calls reuse the same ID to exercise live updates.
+    """
+    states = {
+        'Active': unreal.JournalObjectiveDisplayState.ACTIVE,
+        'Completed': unreal.JournalObjectiveDisplayState.COMPLETED,
+        'Failed': unreal.JournalObjectiveDisplayState.FAILED,
+    }
+    if state not in states:
+        raise ValueError('State must be Active, Completed or Failed.')
+    journal = _current_journal()
+    objective = unreal.JournalObjectivePresentation()
+    objective.objective_id = 'Issue144_Placeholder'
+    objective.text = text
+    objective.context = 'Placeholder context: look for signs of what happened.'
+    objective.location = '[Placeholder] Calypso\'s Cafe'
+    objective.state = states[state]
+    if not journal.submit_objective_snapshot([objective]):
+        raise RuntimeError('Objective snapshot was rejected; supply nonblank objective text.')
+    journal.set_history_visibility(show_history, show_history)
+    unreal.log('Objective snapshot replaced. Open Journal > Objectives to review ' + state + ' presentation.')
+
+
+def clear_objectives():
+    """Clear objective presentation and reset history visibility; leave clues intact."""
+    journal = _current_journal()
+    journal.clear_objectives()
+    journal.set_history_visibility(False, False)
+    unreal.log('Journal objectives cleared.')
 
 
 def seed_journal():
