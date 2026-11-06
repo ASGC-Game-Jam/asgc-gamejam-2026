@@ -8,6 +8,8 @@
 
 #include "AtlantisPlayerState.generated.h"
 
+class UGameplayAnalyticsSubsystem;
+
 UENUM(BlueprintType)
 enum class EAtlantisBallastState : uint8
 {
@@ -46,6 +48,7 @@ class PROJECTATLANTIS_API AAtlantisPlayerState : public APlayerState
 
 public:
 	virtual void BeginPlay() override;
+	virtual void EndPlay(EEndPlayReason::Type EndPlayReason) override;
 	
 	AAtlantisPlayerState();
 
@@ -88,7 +91,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState")
 	const TArray<FString>& GetEquippedItems() const { return EquippedItems; }
 
-	/** Reserves oxygen for the requested mode only when total oxygen is strictly above its allocation. */
+	/** Changes ballast mode. Ascend can work without a reservation when oxygen is too low. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|PlayerState")
 	void SetBallastState(EAtlantisBallastState NewBallastState);
 
@@ -133,6 +136,11 @@ private:
 	UFUNCTION()
 	void HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn);
 
+	UFUNCTION()
+	void HandleCurrentOxygenChanged(float OldOxygen, float NewOxygen);
+
+	void HandleActiveGameplayTick(UWorld* World, double ActiveDeltaSeconds);
+
 	// Ballast reservations, not consumption rates; tune in Blueprint class defaults.
  
 	/**	Required Oxygen Allocation for Descending Ballast State. */
@@ -152,4 +160,7 @@ private:
 	
 	/** True while the player breathes underwater */
 	bool IsUsingOxygen() const;
+
+	TWeakObjectPtr<UGameplayAnalyticsSubsystem> GameplayAnalyticsSubsystem;
+	FDelegateHandle ActiveGameplayTickHandle;
 };

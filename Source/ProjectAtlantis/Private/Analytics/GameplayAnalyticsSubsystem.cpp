@@ -269,7 +269,9 @@ void UGameplayAnalyticsSubsystem::OnWorldPostActorTick(UWorld* World, ELevelTick
 		return;
 	}
 	// Engine frame time is undilated; world DeltaSeconds changes with gameplay time dilation.
-	AdvanceGameplayTime(FApp::GetDeltaTime());
+	const double ActiveDeltaSeconds = FApp::GetDeltaTime();
+	AdvanceGameplayTime(ActiveDeltaSeconds);
+	ActiveGameplayTick.Broadcast(World, ActiveDeltaSeconds);
 }
 
 void UGameplayAnalyticsSubsystem::AdvanceGameplayTime(double Seconds)

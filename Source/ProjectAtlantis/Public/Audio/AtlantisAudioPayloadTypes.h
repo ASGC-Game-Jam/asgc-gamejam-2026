@@ -46,3 +46,14 @@ struct PROJECTATLANTIS_API FAtlantisAudioKeyedStatePayload
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis Audio|Payloads", meta = (Categories = "Audio.State"))
 	FGameplayTag State;
 };
+
+/** A single gameplay tag. The fact tag defines what it means (e.g. Audio.Fact.Environment.Room carries a Room tag). */
+USTRUCT(BlueprintType)
+struct PROJECTATLANTIS_API FAtlantisAudioTagPayload
+{
+	GENERATED_BODY()
+
+	/** The tag being reported. See the fact tag's description for what it means. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis Audio|Payloads")
+	FGameplayTag Tag;
+};

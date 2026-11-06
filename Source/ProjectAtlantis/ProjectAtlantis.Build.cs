@@ -8,6 +8,7 @@ public class ProjectAtlantis : ModuleRules
 	public ProjectAtlantis(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+		PublicDependencyModuleNames.Add("DeveloperSettings");
 
 		PublicDependencyModuleNames.AddRange(new string[]
 			{
@@ -38,7 +39,9 @@ public class ProjectAtlantis : ModuleRules
 				"Harmonix",
 				"SmartObjectsModule",
 				"Analytics",
-				"CommonUI"
+				"CommonUI",
+				"AudioGameplay",
+				"AudioGameplayVolume"
 			});
 
 		if (Target.ProjectDefinitions.Contains("WITH_SCREENSHOT_CAPTURE=1"))
@@ -46,10 +49,16 @@ public class ProjectAtlantis : ModuleRules
 			DynamicallyLoadedModuleNames.Add("ScreenshotCapture");
 		}
 
-        PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
+		PrivateIncludePathModuleNames.AddRange(new string[] { "GameAnalytics" });
+
+		// Raw SVG fallbacks are read by Slate at runtime, outside the cooked asset system.
+		if (Target.Configuration != UnrealTargetConfiguration.Shipping)
+		{
+				RuntimeDependencies.Add("$(ProjectDir)/Content/ProjectAtlantis/UI/Debug/Icons/*.svg", StagedFileType.NonUFS);
+		}
 
 		// Uncomment if you are using Slate UI
-		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 		
 		// Uncomment if you are using online features
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");

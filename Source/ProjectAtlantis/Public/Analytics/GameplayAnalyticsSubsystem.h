@@ -13,6 +13,8 @@
 class UWorld;
 struct FWorldContext;
 
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnActiveGameplayAnalyticsTick, UWorld*, double);
+
 UENUM(BlueprintType)
 enum class EGameplayAnalyticsAggregation : uint8
 {
@@ -95,6 +97,9 @@ public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 
+	/** Fired once per eligible active gameplay frame after the manager advances its shared clock. */
+	FOnActiveGameplayAnalyticsTick& GetOnActiveGameplayTick() { return ActiveGameplayTick; }
+
 	/** Register a stable ID and aggregation strategy. Priority is clamped to [-100, 100]; higher values send sooner. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Analytics")
 	bool RegisterMetric(const FString& EventId, EGameplayAnalyticsAggregation Aggregation, int32 Priority = 0);
@@ -156,6 +161,7 @@ private:
 	FDelegateHandle TickHandle;
 	FDelegateHandle PreLoadHandle;
 	FTSTicker::FDelegateHandle PersistenceTickerHandle;
+	FOnActiveGameplayAnalyticsTick ActiveGameplayTick;
 	UPROPERTY()
 	TObjectPtr<UGameplayAnalyticsSaveGame> State;
 	bool bSessionOpen = false;

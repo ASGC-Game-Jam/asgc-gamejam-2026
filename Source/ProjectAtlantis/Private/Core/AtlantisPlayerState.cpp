@@ -3,6 +3,9 @@
 
 #include "Core/AtlantisPlayerState.h"
 #include "Core/AtlantisOxygenComponent.h"
+#include "Analytics/GameplayAnalyticsSubsystem.h"
+#include "Engine/GameInstance.h"
+#include "Engine/World.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Net/UnrealNetwork.h"
@@ -14,6 +17,42 @@ void AAtlantisPlayerState::BeginPlay()
 	Super::BeginPlay();
 	OnPawnSet.AddDynamic(this, &AAtlantisPlayerState::HandlePawnSet);
 	RefreshOxygenConsumption();
+
+	if (!HasAuthority())
+	{
+		return;
+	}
+
+	OxygenComponent->OnCurrentOxygenChanged.AddDynamic(this, &AAtlantisPlayerState::HandleCurrentOxygenChanged);
+
+	if (UGameInstance* GameInstance = GetGameInstance())
+	{
+		GameplayAnalyticsSubsystem = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>();
+		if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
+		{
+			Analytics->RegisterMetric(TEXT("Ballast:Duration:Descend"), EGameplayAnalyticsAggregation::Sum);
+			Analytics->RegisterMetric(TEXT("Ballast:Duration:Wander"), EGameplayAnalyticsAggregation::Sum);
+			Analytics->RegisterMetric(TEXT("Ballast:Duration:Ascend"), EGameplayAnalyticsAggregation::Sum);
+			ActiveGameplayTickHandle = Analytics->GetOnActiveGameplayTick().AddUObject(
+				this, &AAtlantisPlayerState::HandleActiveGameplayTick);
+		}
+	}
+}
+
+void AAtlantisPlayerState::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	OxygenComponent->OnCurrentOxygenChanged.RemoveDynamic(this, &AAtlantisPlayerState::HandleCurrentOxygenChanged);
+
+	if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
+	{
+		if (ActiveGameplayTickHandle.IsValid())
+		{
+			Analytics->GetOnActiveGameplayTick().Remove(ActiveGameplayTickHandle);
+			ActiveGameplayTickHandle.Reset();
+		}
+	}
+	GameplayAnalyticsSubsystem.Reset();
+	Super::EndPlay(EndPlayReason);
 }
 
 AAtlantisPlayerState::AAtlantisPlayerState()
@@ -29,6 +68,43 @@ AAtlantisPlayerState::AAtlantisPlayerState()
 void AAtlantisPlayerState::HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn)
 {
 	RefreshOxygenConsumption();
+}
+
+void AAtlantisPlayerState::HandleCurrentOxygenChanged(float OldOxygen, float NewOxygen)
+{
+	if (BallastState == EAtlantisBallastState::Wander && OxygenComponent->IsDepletedOxygen())
+	{
+		SetBallastState(EAtlantisBallastState::Descend);
+	}
+}
+
+void AAtlantisPlayerState::HandleActiveGameplayTick(UWorld* World, const double ActiveDeltaSeconds)
+{
+	if (!HasAuthority() || World != GetWorld() || ActiveDeltaSeconds <= 0.0 || !FMath::IsFinite(ActiveDeltaSeconds))
+	{
+		return;
+	}
+
+	const TCHAR* MetricId = nullptr;
+	switch (BallastState)
+	{
+	case EAtlantisBallastState::Descend:
+		MetricId = TEXT("Ballast:Duration:Descend");
+		break;
+	case EAtlantisBallastState::Wander:
+		MetricId = TEXT("Ballast:Duration:Wander");
+		break;
+	case EAtlantisBallastState::Ascend:
+		MetricId = TEXT("Ballast:Duration:Ascend");
+		break;
+	default:
+		return;
+	}
+
+	if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
+	{
+		Analytics->RecordValue(MetricId, static_cast<float>(ActiveDeltaSeconds));
+	}
 }
 
 void AAtlantisPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -71,12 +147,19 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 		       static_cast<uint8>(NewBallastState), RequiredAllocation);
 		return;
 	}
-	else if (OxygenComponent->GetCurrentOxygen() <= RequiredAllocation)
+	float Allocation = RequiredAllocation;
+	if (RequiredAllocation > 0.f && OxygenComponent->GetCurrentOxygen() <= RequiredAllocation)
 	{
-		return;
+		if (NewBallastState != EAtlantisBallastState::Ascend)
+		{
+			return;
+		}
+
+		// Emergency ascent lets a player who runs out of oxygen leave the floor.
+		Allocation = 0.f;
 	}
 
-	if (!OxygenComponent->ReallocateOxygen(RequiredAllocation))
+	if (!OxygenComponent->ReallocateOxygen(Allocation))
 	{
 		return;
 	}
@@ -85,6 +168,43 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 	BallastState = NewBallastState;
 
 	OnRep_BallastState(OldBallastState);
+
+	// Count only accepted, authoritative state changes. Initial and replicated
+	// notifications are deliberately excluded from analytics.
+	if (UWorld* World = GetWorld())
+	{
+		if (UGameInstance* GameInstance = World->GetGameInstance())
+		{
+			if (UGameplayAnalyticsSubsystem* Analytics = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>())
+			{
+				const TCHAR* MetricId = nullptr;
+				switch (NewBallastState)
+				{
+				case EAtlantisBallastState::Descend:
+				{
+					MetricId = TEXT("Ballast:Entered:Descend");
+					break;
+				}
+				case EAtlantisBallastState::Wander:
+				{
+					MetricId = TEXT("Ballast:Entered:Wander");
+					break;
+				}
+				case EAtlantisBallastState::Ascend:
+				{
+					MetricId = TEXT("Ballast:Entered:Ascend");
+					break;
+				}
+				default: break;
+				}
+				if (MetricId)
+				{
+					Analytics->RegisterMetric(MetricId, EGameplayAnalyticsAggregation::Count);
+					Analytics->RecordEvent(MetricId);
+				}
+			}
+		}
+	}
 }
 
 void AAtlantisPlayerState::SetTraversalMode(const EAtlantisTraversalMode NewTraversalMode)

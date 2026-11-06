@@ -1,0 +1,883 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/Developers/clara/BP_ClaraActor",
+	"asset": "BP_ClaraActor",
+	"assetClass": "Blueprint",
+	"parentClass": "Actor",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "b298e8184b421125f072eaa7e2bde1b2",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b298e8184b421125f072eaa7e2bde1b2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0541e7f54fd426f9c7332d906932e1e5",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Atlantis Audio Keyed State Payload",
+					"x": -96,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0541e7f54fd426f9c7332d906932e1e5:o:AtlantisAudioKeyedStatePayload",
+							"name": "AtlantisAudioKeyedStatePayload",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.AtlantisAudioKeyedStatePayload",
+							"defaultValue": null,
+							"links": [
+								"e6ddd2254197567b470dcdaaf441c157:i:Value"
+							]
+						},
+						{
+							"id": "0541e7f54fd426f9c7332d906932e1e5:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "0541e7f54fd426f9c7332d906932e1e5:i:State",
+							"name": "State",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Audio.State.Enemy.Combat\")",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "57b131ba47089745378ce8ba0bc542b4",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Atlantis Audio Keyed State Payload",
+					"x": 0,
+					"y": 1008,
+					"comment": null,
+					"pins": [
+						{
+							"id": "57b131ba47089745378ce8ba0bc542b4:o:AtlantisAudioKeyedStatePayload",
+							"name": "AtlantisAudioKeyedStatePayload",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.AtlantisAudioKeyedStatePayload",
+							"defaultValue": null,
+							"links": [
+								"dcca880f4f89cd0314f9098531e6d64f:i:Value"
+							]
+						},
+						{
+							"id": "57b131ba47089745378ce8ba0bc542b4:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "57b131ba47089745378ce8ba0bc542b4:i:State",
+							"name": "State",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Audio.State.Enemy.Idle\")",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5f5c985947060816cb8c6a97d5dc15b5",
+					"class": "K2Node_CallFunction",
+					"title": "SetAudioDataPayload",
+					"x": 48,
+					"y": 512,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5f5c985947060816cb8c6a97d5dc15b5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7e321da04a79dcf816bad9bbbbec6a74:o:then"
+							]
+						},
+						{
+							"id": "5f5c985947060816cb8c6a97d5dc15b5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5f5c985947060816cb8c6a97d5dc15b5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisAudioDataBPFL",
+							"defaultValue": "/Script/ProjectAtlantis.Default__AtlantisAudioDataBPFL",
+							"links": []
+						},
+						{
+							"id": "5f5c985947060816cb8c6a97d5dc15b5:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5f5c985947060816cb8c6a97d5dc15b5:i:Tag",
+							"name": "Tag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Audio.Fact.Enemy.Status\")",
+							"links": []
+						},
+						{
+							"id": "5f5c985947060816cb8c6a97d5dc15b5:i:Payload",
+							"name": "Payload",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.InstancedStruct",
+							"defaultValue": null,
+							"links": [
+								"7e321da04a79dcf816bad9bbbbec6a74:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5f5c985947060816cb8c6a97d5dc15b5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "741e618c42ae190880720a8586d34622",
+					"class": "K2Node_CallFunction",
+					"title": "SetAudioDataPayload",
+					"x": 32,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "741e618c42ae190880720a8586d34622:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e6ddd2254197567b470dcdaaf441c157:o:then"
+							]
+						},
+						{
+							"id": "741e618c42ae190880720a8586d34622:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "741e618c42ae190880720a8586d34622:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisAudioDataBPFL",
+							"defaultValue": "/Script/ProjectAtlantis.Default__AtlantisAudioDataBPFL",
+							"links": []
+						},
+						{
+							"id": "741e618c42ae190880720a8586d34622:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "741e618c42ae190880720a8586d34622:i:Tag",
+							"name": "Tag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Audio.Fact.Enemy.Status\")",
+							"links": []
+						},
+						{
+							"id": "741e618c42ae190880720a8586d34622:i:Payload",
+							"name": "Payload",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.InstancedStruct",
+							"defaultValue": null,
+							"links": [
+								"e6ddd2254197567b470dcdaaf441c157:o:ReturnValue"
+							]
+						},
+						{
+							"id": "741e618c42ae190880720a8586d34622:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7e321da04a79dcf816bad9bbbbec6a74",
+					"class": "K2Node_InstancedStruct",
+					"title": "Make Instanced Struct",
+					"x": -176,
+					"y": 512,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7e321da04a79dcf816bad9bbbbec6a74:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dc25569d41ed99043a8d40ac59df366d:o:Pressed"
+							]
+						},
+						{
+							"id": "7e321da04a79dcf816bad9bbbbec6a74:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5f5c985947060816cb8c6a97d5dc15b5:i:execute"
+							]
+						},
+						{
+							"id": "7e321da04a79dcf816bad9bbbbec6a74:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.BlueprintInstancedStructLibrary",
+							"defaultValue": "/Script/Engine.Default__BlueprintInstancedStructLibrary",
+							"links": []
+						},
+						{
+							"id": "7e321da04a79dcf816bad9bbbbec6a74:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.AtlantisAudioKeyedStatePayload",
+							"defaultValue": null,
+							"links": [
+								"f706a78e4d8532f27b96cfb1fabc44db:o:AtlantisAudioKeyedStatePayload"
+							]
+						},
+						{
+							"id": "7e321da04a79dcf816bad9bbbbec6a74:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.InstancedStruct",
+							"defaultValue": null,
+							"links": [
+								"5f5c985947060816cb8c6a97d5dc15b5:i:Payload"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7e7fc02244d91a7385dc478687792328",
+					"class": "K2Node_CallFunction",
+					"title": "SetAudioDataPayload",
+					"x": 128,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7e7fc02244d91a7385dc478687792328:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dcca880f4f89cd0314f9098531e6d64f:o:then"
+							]
+						},
+						{
+							"id": "7e7fc02244d91a7385dc478687792328:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7e7fc02244d91a7385dc478687792328:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisAudioDataBPFL",
+							"defaultValue": "/Script/ProjectAtlantis.Default__AtlantisAudioDataBPFL",
+							"links": []
+						},
+						{
+							"id": "7e7fc02244d91a7385dc478687792328:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7e7fc02244d91a7385dc478687792328:i:Tag",
+							"name": "Tag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Audio.Fact.Enemy.Status\")",
+							"links": []
+						},
+						{
+							"id": "7e7fc02244d91a7385dc478687792328:i:Payload",
+							"name": "Payload",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.InstancedStruct",
+							"defaultValue": null,
+							"links": [
+								"dcca880f4f89cd0314f9098531e6d64f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7e7fc02244d91a7385dc478687792328:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "826234984974f220fd01c78fa4dda431",
+					"class": "K2Node_InputDebugKey",
+					"title": "Debug Key 0",
+					"x": -544,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "826234984974f220fd01c78fa4dda431:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "826234984974f220fd01c78fa4dda431:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "826234984974f220fd01c78fa4dda431:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "826234984974f220fd01c78fa4dda431:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "struct:/Script/EnhancedInput.InputActionValue",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "db4c0de949d489c73603edbf76f01fd8",
+					"class": "K2Node_InputDebugKey",
+					"title": "Debug Key 2",
+					"x": -544,
+					"y": 720,
+					"comment": null,
+					"pins": [
+						{
+							"id": "db4c0de949d489c73603edbf76f01fd8:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dcca880f4f89cd0314f9098531e6d64f:i:execute"
+							]
+						},
+						{
+							"id": "db4c0de949d489c73603edbf76f01fd8:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "db4c0de949d489c73603edbf76f01fd8:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "db4c0de949d489c73603edbf76f01fd8:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "struct:/Script/EnhancedInput.InputActionValue",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "dc25569d41ed99043a8d40ac59df366d",
+					"class": "K2Node_InputDebugKey",
+					"title": "Debug Key 1",
+					"x": -560,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dc25569d41ed99043a8d40ac59df366d:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7e321da04a79dcf816bad9bbbbec6a74:i:execute"
+							]
+						},
+						{
+							"id": "dc25569d41ed99043a8d40ac59df366d:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "dc25569d41ed99043a8d40ac59df366d:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "dc25569d41ed99043a8d40ac59df366d:o:ActionValue",
+							"name": "ActionValue",
+							"direction": "output",
+							"type": "struct:/Script/EnhancedInput.InputActionValue",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "dcca880f4f89cd0314f9098531e6d64f",
+					"class": "K2Node_InstancedStruct",
+					"title": "Make Instanced Struct",
+					"x": -96,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dcca880f4f89cd0314f9098531e6d64f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"db4c0de949d489c73603edbf76f01fd8:o:Pressed"
+							]
+						},
+						{
+							"id": "dcca880f4f89cd0314f9098531e6d64f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7e7fc02244d91a7385dc478687792328:i:execute"
+							]
+						},
+						{
+							"id": "dcca880f4f89cd0314f9098531e6d64f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.BlueprintInstancedStructLibrary",
+							"defaultValue": "/Script/Engine.Default__BlueprintInstancedStructLibrary",
+							"links": []
+						},
+						{
+							"id": "dcca880f4f89cd0314f9098531e6d64f:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.AtlantisAudioKeyedStatePayload",
+							"defaultValue": null,
+							"links": [
+								"57b131ba47089745378ce8ba0bc542b4:o:AtlantisAudioKeyedStatePayload"
+							]
+						},
+						{
+							"id": "dcca880f4f89cd0314f9098531e6d64f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.InstancedStruct",
+							"defaultValue": null,
+							"links": [
+								"7e7fc02244d91a7385dc478687792328:i:Payload"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e6ddd2254197567b470dcdaaf441c157",
+					"class": "K2Node_InstancedStruct",
+					"title": "Make Instanced Struct",
+					"x": -192,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e6ddd2254197567b470dcdaaf441c157:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ed6372bb4d4717789df220a313f247a7:o:then"
+							]
+						},
+						{
+							"id": "e6ddd2254197567b470dcdaaf441c157:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"741e618c42ae190880720a8586d34622:i:execute"
+							]
+						},
+						{
+							"id": "e6ddd2254197567b470dcdaaf441c157:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.BlueprintInstancedStructLibrary",
+							"defaultValue": "/Script/Engine.Default__BlueprintInstancedStructLibrary",
+							"links": []
+						},
+						{
+							"id": "e6ddd2254197567b470dcdaaf441c157:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "struct:/Script/ProjectAtlantis.AtlantisAudioKeyedStatePayload",
+							"defaultValue": null,
+							"links": [
+								"0541e7f54fd426f9c7332d906932e1e5:o:AtlantisAudioKeyedStatePayload"
+							]
+						},
+						{
+							"id": "e6ddd2254197567b470dcdaaf441c157:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.InstancedStruct",
+							"defaultValue": null,
+							"links": [
+								"741e618c42ae190880720a8586d34622:i:Payload"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ed6372bb4d4717789df220a313f247a7",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": -480,
+					"y": -192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ed6372bb4d4717789df220a313f247a7:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ed6372bb4d4717789df220a313f247a7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e6ddd2254197567b470dcdaaf441c157:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f706a78e4d8532f27b96cfb1fabc44db",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Atlantis Audio Keyed State Payload",
+					"x": -80,
+					"y": 672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f706a78e4d8532f27b96cfb1fabc44db:o:AtlantisAudioKeyedStatePayload",
+							"name": "AtlantisAudioKeyedStatePayload",
+							"direction": "output",
+							"type": "struct:/Script/ProjectAtlantis.AtlantisAudioKeyedStatePayload",
+							"defaultValue": null,
+							"links": [
+								"7e321da04a79dcf816bad9bbbbec6a74:i:Value"
+							]
+						},
+						{
+							"id": "f706a78e4d8532f27b96cfb1fabc44db:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "f706a78e4d8532f27b96cfb1fabc44db:i:State",
+							"name": "State",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"Audio.State.Enemy.Searching\")",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"NewVar":
+			{
+				"type": "int",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+			"DefaultSceneRoot":
+			{
+				"class": "SceneComponent",
+				"parent": null,
+				"properties":
+				{
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": false,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": true,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			}
+		},
+		"defaults":
+		{
+			"DefaultSceneRoot": null,
+			"NewVar": 0,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": true,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Player0",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}

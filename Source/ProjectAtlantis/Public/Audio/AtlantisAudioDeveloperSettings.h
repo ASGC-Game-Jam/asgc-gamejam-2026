@@ -13,7 +13,10 @@
  */
 
  class UMetaSoundSource;
+ class UAtlantisMusicAxisMapping;
  struct FInstancedStruct;
+ class UAtlantisRoomTypeTable;
+
 
 UCLASS(config=Game, DefaultConfig)
 class PROJECTATLANTIS_API UAtlantisAudioDeveloperSettings : public UDeveloperSettings
@@ -30,9 +33,16 @@ public:
 
 	static bool DetermineIfMusicSubsystemEnabled();
 	static TObjectPtr<UMetaSoundSource> GetMusicMetaSoundSource(); 
+	static bool IsMusicPlaybackWorld(const UWorld* World);
 	
 	/** Checks Tag is registered and Payload holds the registered struct type. Fails loudly on a breach. Returns true if valid. */
 	static bool ValidatePayload(FGameplayTag Tag, const FInstancedStruct& Payload);
+
+	static UAtlantisMusicAxisMapping* GetMusicAxisMapping();
+
+	/** Finds the RoomType pin ID for a room tag. Logs an error and returns false if the tag or table is missing. */
+	static bool GetRoomTypeId(FGameplayTag RoomTag, int32& OutRoomTypeId);
+
 
 protected:
 
@@ -44,8 +54,20 @@ protected:
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
 	TSoftObjectPtr<UMetaSoundSource> MusicMetaSoundSource;
 
+	/** Persistent maps where the subsystem owns music. Menu music is owned by the menu Blueprint. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
+	TArray<TSoftObjectPtr<UWorld>> MusicPlaybackMaps;
+
 	/** Maps each audio fact tag to the struct type its payload must use. */
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Validation")
 	TMap<FGameplayTag, TSoftObjectPtr<const UScriptStruct>> PayloadRegistry;
+
+	/** The routing sheet the music subsystem uses to turn facts into axis values. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Music Axes")
+	TSoftObjectPtr<UAtlantisMusicAxisMapping> MusicAxisMapping;
+
+	/** The table that matches room tags to RoomType pin IDs. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Rooms")
+	TSoftObjectPtr<UAtlantisRoomTypeTable> RoomTypeTable;
 
 };

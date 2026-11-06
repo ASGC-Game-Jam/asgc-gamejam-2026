@@ -6,6 +6,9 @@
 #include "HAL/IConsoleManager.h"
 #include "StructUtils/InstancedStruct.h"
 #include "MetasoundSource.h"
+#include "Engine/World.h"
+#include "Audio/AtlantisMusicAxisMapping.h"
+#include "Audio/AtlantisRoomTypeTable.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisAudioValidation, Log, All);
 
@@ -82,6 +85,21 @@ TObjectPtr<UMetaSoundSource> UAtlantisAudioDeveloperSettings::GetMusicMetaSoundS
 	return Settings->MusicMetaSoundSource.LoadSynchronous();
 }
 
+bool UAtlantisAudioDeveloperSettings::IsMusicPlaybackWorld(const UWorld* World)
+{
+	if (!World || !World->IsGameWorld() || World->GetNetMode() == NM_DedicatedServer)
+	{
+		return false;
+	}
+
+	const FString MapPackage = UWorld::RemovePIEPrefix(World->GetOutermost()->GetName());
+	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
+	return Settings->MusicPlaybackMaps.ContainsByPredicate([&MapPackage](const TSoftObjectPtr<UWorld>& Map)
+	{
+		return Map.ToSoftObjectPath().GetLongPackageName() == MapPackage;
+	});
+}
+
 bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FInstancedStruct& Payload)
 {
 	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
@@ -124,4 +142,29 @@ bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FI
 	// All four checks passed, so it's safe to route.
 	return true;
 
+}
+
+UAtlantisMusicAxisMapping* UAtlantisAudioDeveloperSettings::GetMusicAxisMapping()
+{
+	return GetDefault<UAtlantisAudioDeveloperSettings>()->MusicAxisMapping.LoadSynchronous();
+}
+
+bool UAtlantisAudioDeveloperSettings::GetRoomTypeId(FGameplayTag RoomTag, int32& OutRoomTypeId)
+{
+	const UAtlantisRoomTypeTable* Table = GetDefault<UAtlantisAudioDeveloperSettings>()->RoomTypeTable.LoadSynchronous();
+	if (!Table)
+	{
+		UE_LOG(LogAtlantisAudioValidation, Error, TEXT("No Room Type Table is set. Assign one in Project Settings > Game > Atlantis Audio Settings."));
+		return false;
+	}
+
+	const int32* RoomTypeId = Table->RoomTypeIds.Find(RoomTag);
+	if (!RoomTypeId)
+	{
+		UE_LOG(LogAtlantisAudioValidation, Error, TEXT("Room tag [%s] isn't in [%s]. Add it to the table."), *RoomTag.ToString(), *GetNameSafe(Table));
+		return false;
+	}
+
+	OutRoomTypeId = *RoomTypeId;
+	return true;
 }
