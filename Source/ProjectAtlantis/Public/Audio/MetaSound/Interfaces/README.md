@@ -77,7 +77,7 @@ void UpdateMusicAxes(UAudioComponent* AudioComp, float PlayerState, float Tensio
 }
 ```
 
-Most gameplay code shouldn't set pins directly, though. Gameplay sends facts through `SetAudioDataPayload` (the audio front door), and the audio subsystem decides how they reach these pins. Intermittent facts like `Atlantis.Environment`'s `RoomType` are delivered in batches by parameter pack (#105).
+Most gameplay code shouldn't set pins directly, though. Gameplay sends facts through `SetAudioDataPayload` (the audio front door), and the audio subsystem decides how they reach these pins. For example, room volumes send `Audio.Fact.Environment.Room`, and the audio subsystem turns the room tag into an ID using `DA_AtlantisRoomTypeTable` (set in Project Settings > Game > Atlantis Audio Settings), then sets `Atlantis.Environment`'s `RoomType` pin. A parameter pack (#105) may batch intermittent pins like this later.
 
 ---
 

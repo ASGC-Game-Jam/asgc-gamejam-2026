@@ -1,0 +1,31 @@
+// Copyright (c) 2026 ASGC
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Blueprint/UserWidget.h"
+#include "AtlantisDebugMenu.generated.h"
+
+struct FSlateBrush;
+struct FKey;
+
+/** Native menu with standard Slate button navigation; no binary assets required. */
+UCLASS()
+class PROJECTATLANTIS_API UAtlantisDebugMenu : public UUserWidget
+{
+	GENERATED_BODY()
+
+public:
+	UAtlantisDebugMenu(const FObjectInitializer& ObjectInitializer);
+
+	void FocusFirstAction();
+	virtual void ReleaseSlateResources(bool bReleaseChildren) override;
+
+protected:
+	virtual TSharedRef<SWidget> RebuildWidget() override;
+
+private:
+	TSharedRef<SWidget> MakeKeyHint(const FKey& Key);
+	TArray<TSharedPtr<FSlateBrush>> InputIconBrushes;
+	TSharedPtr<SWidget> FirstAction;
+};
