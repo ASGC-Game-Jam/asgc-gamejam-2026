@@ -56,4 +56,12 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Music Axes")
 	TArray<FAtlantisMusicAxisRule> Rules;
+
+	/** The Player State value where the music switches from the Ambient layer to the Active layer. Raise it to make Active harder to reach. */
+	UPROPERTY(EditAnywhere, Category = "Music Layers", meta = (ClampMin = "0", ClampMax = "1"))
+	float ActiveLayerSplit = 0.55f;
+
+	/** The Tension value where the Passive layer comes in. Raise it to make Passive harder to reach. */
+	UPROPERTY(EditAnywhere, Category = "Music Layers", meta = (ClampMin = "0", ClampMax = "1"))
+	float PassiveLayerSplit = 0.5f;
 };

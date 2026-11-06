@@ -1,4 +1,4 @@
-# 🎵 MetaSound Interface Template Guide
+# MetaSound Interface Template Guide
 
 Welcome to the **Project Atlantis** Audio Interface System! This directory contains explicit boilerplate code templates used to register custom **Audio Parameter Interfaces** with Unreal Engine's MetaSound graph registry.
 
@@ -23,7 +23,7 @@ To build a new gameplay audio interface contract (e.g., a `WeaponInterface` or `
 ### 1. Duplicate the Template Files
 `AtlantisAudioInterface_MusicAxes.h/.cpp` is the template: it keeps the `!!CHANGE THIS!!` markers. Copy the header into `Public/Audio/MetaSound/Interfaces/` and the `.cpp` into `Private/Audio/MetaSound/Interfaces/`, then rename them to your new system (e.g., `AtlantisAudioInterface_Weapon.h/.cpp`).
 
-`AtlantisAudioInterface_Environment.h/.cpp` is an example of a finished copy, with integer pins and the markers removed.
+`AtlantisAudioInterface_Environment.h/.cpp` and `AtlantisAudioInterface_MusicLayers.h/.cpp` are examples of finished copies, with the markers removed. Environment uses integer pins. MusicLayers uses float pins with default values, so a graph previews correctly in the MetaSound editor before the game sets them.
 
 ### 2. Update the `!!CHANGE THIS!!` Tags
 Open your new files and locate the markers. You must rename:
@@ -49,6 +49,7 @@ void RegisterAllMetaSoundInterfaces()
 {
     RegisterMusicAxesInterface();
     RegisterEnvironmentInterface();
+    RegisterMusicLayersInterface();
     RegisterWeaponInterface();
 }
 ```
@@ -69,7 +70,7 @@ void UpdateMusicAxes(UAudioComponent* AudioComp, float PlayerState, float Tensio
 {
     if (AudioComp)
     {
-        // Safe, optimized, and string-less data updates!
+        // Uses the compiled pin names, so a typo is a build error rather than a silent miss.
         AudioComp->SetFloatParameter(ProjectAtlantisAudio::MusicAxesInterface::Inputs::PlayerStateAxis, PlayerState);
         AudioComp->SetFloatParameter(ProjectAtlantisAudio::MusicAxesInterface::Inputs::TensionAxis, Tension);
     }
@@ -77,6 +78,24 @@ void UpdateMusicAxes(UAudioComponent* AudioComp, float PlayerState, float Tensio
 ```
 
 Most gameplay code shouldn't set pins directly, though. Gameplay sends facts through `SetAudioDataPayload` (the audio front door), and the audio subsystem decides how they reach these pins. For example, room volumes send `Audio.Fact.Environment.Room`, and the audio subsystem turns the room tag into an ID using `DA_AtlantisRoomTypeTable` (set in Project Settings > Game > Atlantis Audio Settings), then sets `Atlantis.Environment`'s `RoomType` pin. A parameter pack (#105) may batch intermittent pins like this later.
+
+---
+
+## Tuning the Music
+
+All music tuning lives in one asset: **`DA_AtlantisMusicAxisMapping`**, set in **Project Settings > Game > Atlantis Audio Settings**. Designers shouldn't need to edit code or graph maths to tune the music.
+
+| Section | What it controls | Reaches the music through |
+|---|---|---|
+| **Music Axes** | Where Player State and Tension rest (the baselines), and how each gameplay fact pushes them (the rules) | `Atlantis.Music.Axes` |
+| **Music Layers** | The Player State value where Ambient switches to Active (`ActiveLayerSplit`), and the Tension value where Passive comes in (`PassiveLayerSplit`) | `Atlantis.Music.Layers` |
+
+In `MSS_AtlantisAmbientMusic`, each layer is chosen with `Axis - Split + 1`, then `To Int` and `Clamp 0..1`. This gives 1 at or above the split and 0 below it. The comment boxes in the graph say the same.
+
+**Live tuning:** in the editor, changes to the asset during Play are heard straight away. The audio subsystem listens for edits to the mapping asset and resends the axes and split points. This works from the Details panel or from an editor utility widget.
+
+> [!WARNING]
+> **Tuning during Play edits the real asset**, not a temporary copy, which is the opposite of how Play normally behaves. Changes stay in the asset after you stop. Save them if you want to keep them, or revert the asset if you don't.
 
 ---
 
