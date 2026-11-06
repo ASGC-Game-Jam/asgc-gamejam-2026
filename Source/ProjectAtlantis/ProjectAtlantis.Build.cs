@@ -38,7 +38,9 @@ public class ProjectAtlantis : ModuleRules
 				"Harmonix",
 				"SmartObjectsModule",
 				"Analytics",
-				"CommonUI"
+				"CommonUI",
+				"AudioGameplay",
+				"AudioGameplayVolume"
 			});
 
 		if (Target.ProjectDefinitions.Contains("WITH_SCREENSHOT_CAPTURE=1"))
