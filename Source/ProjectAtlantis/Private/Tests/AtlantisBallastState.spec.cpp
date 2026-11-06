@@ -117,6 +117,45 @@ void FAtlantisBallastStateSpec::Define()
 
 	Describe(TEXT("ModeTransitions"), [this]()
 	{
+		It(TEXT("should switch from Wander to Descend when usable oxygen runs out"), [this]()
+		{
+			if (!Fixture->State)
+			{
+				return;
+			}
+
+			Fixture->State->DispatchBeginPlay();
+			Fixture->State->SetBallastState(EAtlantisBallastState::Wander);
+			TestTrue(TEXT("Player starts in Wander"), Fixture->State->GetBallastState() == EAtlantisBallastState::Wander);
+			const float Reservation = Fixture->Oxygen->GetAllocatedOxygen();
+
+			TestTrue(TEXT("Drain usable oxygen"), Fixture->Oxygen->RequestOxygen(Fixture->Oxygen->GetAvailableOxygen()));
+			TestTrue(TEXT("Player falls back to Descend"), Fixture->State->GetBallastState() == EAtlantisBallastState::Descend);
+			TestEqual(TEXT("Descend releases the reservation"), Fixture->Oxygen->GetAllocatedOxygen(), 0.f);
+			TestEqual(TEXT("Released oxygen becomes usable"), Fixture->Oxygen->GetAvailableOxygen(), Reservation);
+		});
+
+		It(TEXT("should allow emergency ascent and descent with an empty tank"), [this]()
+		{
+			if (!Fixture->State)
+			{
+				return;
+			}
+
+			TestTrue(TEXT("Drain the tank"), Fixture->Oxygen->RequestOxygen(Fixture->Oxygen->GetAvailableOxygen()));
+			Fixture->State->SetBallastState(EAtlantisBallastState::Wander);
+			TestTrue(TEXT("Wander is blocked at zero oxygen"), Fixture->State->GetBallastState() == EAtlantisBallastState::Descend);
+
+			Fixture->State->SetBallastState(EAtlantisBallastState::Ascend);
+			TestTrue(TEXT("Player enters Ascend"), Fixture->State->GetBallastState() == EAtlantisBallastState::Ascend);
+			TestEqual(TEXT("Emergency Ascend reserves no oxygen"), Fixture->Oxygen->GetAllocatedOxygen(), 0.f);
+			TestEqual(TEXT("Tank stays empty"), Fixture->Oxygen->GetCurrentOxygen(), 0.f);
+			TestEqual(TEXT("Ascend emits one ballast event"), Fixture->Listener->BallastEventCount, 1);
+
+			Fixture->State->SetBallastState(EAtlantisBallastState::Descend);
+			TestTrue(TEXT("Player can return to Descend"), Fixture->State->GetBallastState() == EAtlantisBallastState::Descend);
+		});
+
 		It(TEXT("should replace reservations and emit one event with the new mode"), [this]()
 		{
 			if (!Fixture->State)

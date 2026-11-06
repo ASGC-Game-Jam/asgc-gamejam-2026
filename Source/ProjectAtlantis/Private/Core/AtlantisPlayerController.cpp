@@ -119,7 +119,6 @@ void AAtlantisPlayerController::ServerSetBallastState_Implementation(const EAtla
 		return;
 	}
 
-	// PlayerState accepts the request only when the required oxygen can be reserved.
 	if (AAtlantisPlayerState* AtlantisPlayerState = GetPlayerState<AAtlantisPlayerState>())
 	{
 		AtlantisPlayerState->SetBallastState(NewBallastState);

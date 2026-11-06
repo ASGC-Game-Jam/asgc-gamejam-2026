@@ -23,6 +23,8 @@ void AAtlantisPlayerState::BeginPlay()
 		return;
 	}
 
+	OxygenComponent->OnCurrentOxygenChanged.AddDynamic(this, &AAtlantisPlayerState::HandleCurrentOxygenChanged);
+
 	if (UGameInstance* GameInstance = GetGameInstance())
 	{
 		GameplayAnalyticsSubsystem = GameInstance->GetSubsystem<UGameplayAnalyticsSubsystem>();
@@ -39,6 +41,8 @@ void AAtlantisPlayerState::BeginPlay()
 
 void AAtlantisPlayerState::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+	OxygenComponent->OnCurrentOxygenChanged.RemoveDynamic(this, &AAtlantisPlayerState::HandleCurrentOxygenChanged);
+
 	if (UGameplayAnalyticsSubsystem* Analytics = GameplayAnalyticsSubsystem.Get())
 	{
 		if (ActiveGameplayTickHandle.IsValid())
@@ -64,6 +68,14 @@ AAtlantisPlayerState::AAtlantisPlayerState()
 void AAtlantisPlayerState::HandlePawnSet(APlayerState* PlayerState, APawn* NewPawn, APawn* OldPawn)
 {
 	RefreshOxygenConsumption();
+}
+
+void AAtlantisPlayerState::HandleCurrentOxygenChanged(float OldOxygen, float NewOxygen)
+{
+	if (BallastState == EAtlantisBallastState::Wander && OxygenComponent->IsDepletedOxygen())
+	{
+		SetBallastState(EAtlantisBallastState::Descend);
+	}
 }
 
 void AAtlantisPlayerState::HandleActiveGameplayTick(UWorld* World, const double ActiveDeltaSeconds)
@@ -135,12 +147,19 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 		       static_cast<uint8>(NewBallastState), RequiredAllocation);
 		return;
 	}
-	else if (OxygenComponent->GetCurrentOxygen() <= RequiredAllocation)
+	float Allocation = RequiredAllocation;
+	if (RequiredAllocation > 0.f && OxygenComponent->GetCurrentOxygen() <= RequiredAllocation)
 	{
-		return;
+		if (NewBallastState != EAtlantisBallastState::Ascend)
+		{
+			return;
+		}
+
+		// Emergency ascent lets a player who runs out of oxygen leave the floor.
+		Allocation = 0.f;
 	}
 
-	if (!OxygenComponent->ReallocateOxygen(RequiredAllocation))
+	if (!OxygenComponent->ReallocateOxygen(Allocation))
 	{
 		return;
 	}
