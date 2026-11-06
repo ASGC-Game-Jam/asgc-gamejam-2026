@@ -402,6 +402,16 @@ void UAtlantisAudioSubsystem::UpdateRoomType()
 		return;
 	}
 
+	if (!MusicAudioComponent)
+	{
+		return;
+	}
+
+	using namespace ProjectAtlantisAudio::EnvironmentInterface;
+	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Music RoomType set to %d [%s]."), RoomID, *TagPtr->ToString());
+	MusicAudioComponent->SetIntParameter(Inputs::RoomType.Resolve(), RoomID);
+}
+
 void UAtlantisAudioSubsystem::UpdateLayerSplits()
 {
 	if (!AxisMapping)
@@ -432,7 +442,3 @@ void UAtlantisAudioSubsystem::HandleObjectPropertyChanged(UObject* Object, FProp
 	UpdateLayerSplits();
 }
 #endif
-	using namespace ProjectAtlantisAudio::EnvironmentInterface;
-	UE_LOG(LogAtlantisAudioSubsystem, Verbose, TEXT("Music RoomType set to %d [%s]."), RoomID, *TagPtr->ToString());
-	MusicAudioComponent->SetIntParameter(Inputs::RoomType.Resolve(), RoomID);
-}
