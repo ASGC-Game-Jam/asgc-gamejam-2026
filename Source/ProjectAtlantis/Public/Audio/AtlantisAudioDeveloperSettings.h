@@ -15,6 +15,8 @@
  class UMetaSoundSource;
  class UAtlantisMusicAxisMapping;
  struct FInstancedStruct;
+ class UAtlantisRoomTypeTable;
+
 
 UCLASS(config=Game, DefaultConfig)
 class PROJECTATLANTIS_API UAtlantisAudioDeveloperSettings : public UDeveloperSettings
@@ -38,6 +40,10 @@ public:
 
 	static UAtlantisMusicAxisMapping* GetMusicAxisMapping();
 
+	/** Finds the RoomType pin ID for a room tag. Logs an error and returns false if the tag or table is missing. */
+	static bool GetRoomTypeId(FGameplayTag RoomTag, int32& OutRoomTypeId);
+
+
 protected:
 
 	friend struct FAtlantisAudioValidationTestAccess;
@@ -59,4 +65,9 @@ protected:
 	/** The routing sheet the music subsystem uses to turn facts into axis values. */
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Music Axes")
 	TSoftObjectPtr<UAtlantisMusicAxisMapping> MusicAxisMapping;
+
+	/** The table that matches room tags to RoomType pin IDs. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Rooms")
+	TSoftObjectPtr<UAtlantisRoomTypeTable> RoomTypeTable;
+
 };

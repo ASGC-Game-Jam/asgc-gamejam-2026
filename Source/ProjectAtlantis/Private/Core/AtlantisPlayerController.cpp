@@ -11,6 +11,112 @@
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
 #include "HAL/PlatformProperties.h"
+#include "Debug/AtlantisCheatManager.h"
+#include "Debug/AtlantisDebugMenu.h"
+#include "Debug/AtlantisDebugMenuSettings.h"
+#include "Kismet/GameplayStatics.h"
+
+AAtlantisPlayerController::AAtlantisPlayerController()
+{
+	CheatClass = UAtlantisCheatManager::StaticClass();
+}
+
+void AAtlantisPlayerController::AddCheats(bool bForce)
+{
+	// Existing controller Blueprints serialize the old engine CheatManager default.
+	// Upgrade only that default, preserving explicitly configured project subclasses.
+	if (CheatClass == UCheatManager::StaticClass())
+	{
+		CheatClass = UAtlantisCheatManager::StaticClass();
+	}
+	Super::AddCheats(bForce);
+}
+
+void AAtlantisPlayerController::ToggleDebugMenu()
+{
+#if !UE_BUILD_SHIPPING
+	if (!IsLocalController())
+	{
+		return;
+	}
+	if (DebugMenu)
+	{
+		DebugMenu->RemoveFromParent();
+		DebugMenu = nullptr;
+		SetIgnoreMoveInput(false);
+		SetIgnoreLookInput(false);
+		bShowMouseCursor = false;
+		SetInputMode(FInputModeGameOnly());
+		EnableAllControls();
+		RefreshDebugInputContext();
+		return;
+	}
+	// Do not take input ownership from another menu.
+	if (bShowMouseCursor || !bControlsEnabled || !GetPawn())
+	{
+		return;
+	}
+	EnableCheats();
+	if (!Cast<UAtlantisCheatManager>(CheatManager))
+	{
+		return;
+	}
+	DebugMenu = CreateWidget<UAtlantisDebugMenu>(this);
+	if (!DebugMenu)
+	{
+		return;
+	}
+	if (!DebugMenu->AddToPlayerScreen(10000))
+	{
+		DebugMenu = nullptr;
+		return;
+	}
+	SetIgnoreMoveInput(true);
+	SetIgnoreLookInput(true);
+	DisableAllControls();
+	RefreshDebugInputContext();
+	bShowMouseCursor = true;
+	FInputModeGameAndUI Mode;
+	Mode.SetWidgetToFocus(DebugMenu->TakeWidget());
+	Mode.SetHideCursorDuringCapture(false);
+	SetInputMode(Mode);
+	DebugMenu->FocusFirstAction();
+#endif
+}
+
+void AAtlantisPlayerController::RequestDebugRestart()
+{
+#if !UE_BUILD_SHIPPING
+	if (!IsLocalController() || GetNetMode() != NM_Standalone
+		|| (!DebugMenu && (!bControlsEnabled || bShowMouseCursor)))
+	{
+		return;
+	}
+	CloseDebugMenu();
+	UGameplayStatics::OpenLevel(this, FName(*UGameplayStatics::GetCurrentLevelName(this, true)));
+#endif
+}
+
+void AAtlantisPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = GetEnhancedInputSubsystem())
+	{
+		if (DebugGameplayMappingContext)
+		{
+			Subsystem->RemoveMappingContext(DebugGameplayMappingContext);
+		}
+		if (DebugMenuMappingContext)
+		{
+			Subsystem->RemoveMappingContext(DebugMenuMappingContext);
+		}
+	}
+	if (DebugMenu)
+	{
+		DebugMenu->RemoveFromParent();
+		DebugMenu = nullptr;
+	}
+	Super::EndPlay(EndPlayReason);
+}
 
 // Anonymous namespace: everything inside has internal linkage, so these helpers are private to
 // this .cpp. Another file can define its own MakeControlOptions without a duplicate-symbol link
@@ -48,6 +154,16 @@ void AAtlantisPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
 	{
+#if !UE_BUILD_SHIPPING
+		const FAtlantisDebugInputMappings DebugInput = GetDefault<UAtlantisDebugMenuSettings>()->CreateInputMappings(this);
+		DebugGameplayMappingContext = DebugInput.Gameplay;
+		DebugMenuMappingContext = DebugInput.Menu;
+		EnhancedInput->BindAction(DebugInput.Toggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
+		EnhancedInput->BindAction(DebugInput.GamepadToggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
+		EnhancedInput->BindAction(DebugInput.Reset, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::RequestDebugRestart);
+		EnhancedInput->BindAction(DebugInput.Close, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::CloseDebugMenu);
+		RefreshDebugInputContext();
+#endif
 		if (DescendBallastAction)
 		{
 			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this,
@@ -70,6 +186,29 @@ void AAtlantisPlayerController::SetupInputComponent()
 	}
 	
 	RefreshMovementControls();
+}
+
+void AAtlantisPlayerController::RefreshDebugInputContext()
+{
+#if !UE_BUILD_SHIPPING
+	UEnhancedInputLocalPlayerSubsystem* Subsystem = GetEnhancedInputSubsystem();
+	if (!Subsystem || !DebugGameplayMappingContext || !DebugMenuMappingContext)
+	{
+		return;
+	}
+	const FModifyContextOptions Options = MakeControlOptions();
+	Subsystem->RemoveMappingContext(DebugGameplayMappingContext, Options);
+	Subsystem->RemoveMappingContext(DebugMenuMappingContext, Options);
+	Subsystem->AddMappingContext(DebugMenu ? DebugMenuMappingContext : DebugGameplayMappingContext, 1000, Options);
+#endif
+}
+
+void AAtlantisPlayerController::CloseDebugMenu()
+{
+	if (DebugMenu)
+	{
+		ToggleDebugMenu();
+	}
 }
 
 void AAtlantisPlayerController::OnPossess(APawn* InPawn)
@@ -119,7 +258,6 @@ void AAtlantisPlayerController::ServerSetBallastState_Implementation(const EAtla
 		return;
 	}
 
-	// PlayerState accepts the request only when the required oxygen can be reserved.
 	if (AAtlantisPlayerState* AtlantisPlayerState = GetPlayerState<AAtlantisPlayerState>())
 	{
 		AtlantisPlayerState->SetBallastState(NewBallastState);
