@@ -27,4 +27,11 @@ struct FAtlantisAudioSubsystemTestAccess
 	static float PlayerState(const UAtlantisAudioSubsystem* Subsystem) { return Subsystem->CurrentPlayerState; }
 	static float Tension(const UAtlantisAudioSubsystem* Subsystem) { return Subsystem->CurrentTension; }
 	static void StartTracking(UAtlantisAudioSubsystem* Subsystem, UWorld* World) { Subsystem->HandlePostWorldInitialization(World, UWorld::InitializationValues()); }
+#if WITH_EDITOR
+	static void NotifyPropertyChanged(UAtlantisAudioSubsystem* Subsystem, UObject* Object)
+	{
+		FPropertyChangedEvent Event(nullptr);
+		Subsystem->HandleObjectPropertyChanged(Object, Event);
+	}
+#endif
 };
