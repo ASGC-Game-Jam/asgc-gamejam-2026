@@ -1,0 +1,80 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Audio/System/SoundClasses/SC_Ambience",
+	"asset": "SC_Ambience",
+	"assetClass": "SoundClass",
+	"parentClass": null,
+	"blueprintType": null,
+	"graphs": [],
+	"properties":
+	{
+		"Properties":
+		{
+			"Volume": 1,
+			"Pitch": 1,
+			"LowPassFilterFrequency": 20000,
+			"AttenuationDistanceScale": 1,
+			"LFEBleed": 0,
+			"VoiceCenterChannelVolume": 0,
+			"RadioFilterVolume": 0,
+			"RadioFilterVolumeThreshold": 0,
+			"bApplyEffects": false,
+			"bAlwaysPlay": false,
+			"bIsUISound": false,
+			"bIsMusic": false,
+			"bCenterChannelOnly": false,
+			"bApplyAmbientVolumes": true,
+			"bReverb": true,
+			"Default2DReverbSendAmount": 0,
+			"ModulationSettings":
+			{
+				"VolumeModulationDestination":
+				{
+					"Value": 0,
+					"bEnableModulation": true,
+					"Modulator": null,
+					"Modulators": [
+						"/Game/ProjectAtlantis/Audio/System/Modulation/Settings/CB_User_Ambience.CB_User_Ambience",
+						"/Game/ProjectAtlantis/Audio/System/Modulation/Settings/CB_User_Main.CB_User_Main"
+					]
+				},
+				"PitchModulationDestination":
+				{
+					"Value": 0,
+					"bEnableModulation": false,
+					"Modulator": null,
+					"Modulators": []
+				},
+				"HighpassModulationDestination":
+				{
+					"Value": 20,
+					"bEnableModulation": false,
+					"Modulator": null,
+					"Modulators": []
+				},
+				"LowpassModulationDestination":
+				{
+					"Value": 20000,
+					"bEnableModulation": false,
+					"Modulator": null,
+					"Modulators": []
+				}
+			},
+			"OutputTarget": "Speaker",
+			"LoadingBehavior": "Inherited",
+			"SizeOfFirstAudioChunkInSeconds":
+			{
+				"Default": 0,
+				"PerPlatform":
+				{
+				}
+			},
+			"DefaultSubmix": null
+		},
+		"ChildClasses": [],
+		"PassiveSoundMixModifiers": [],
+		"ParentClass": "/Game/ProjectAtlantis/Audio/System/SoundClasses/SC_Main.SC_Main",
+		"AssetUserData": []
+	}
+}
