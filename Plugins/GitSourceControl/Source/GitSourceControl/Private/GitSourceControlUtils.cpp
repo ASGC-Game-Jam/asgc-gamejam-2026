@@ -44,6 +44,11 @@
 #include "Async/Async.h"
 #include "UObject/Linker.h"
 
+#if PLATFORM_MAC
+#include "Mac/MacSystemIncludes.h"
+#include "Apple/ScopeAutoreleasePool.h"
+#endif
+
 #ifndef GIT_DEBUG_STATUS
 #define GIT_DEBUG_STATUS 0
 #endif
