@@ -10,6 +10,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
+#include "TimerManager.h"
 #include "HAL/PlatformProperties.h"
 #include "Debug/AtlantisCheatManager.h"
 #include "Debug/AtlantisDebugMenu.h"
@@ -167,24 +168,36 @@ void AAtlantisPlayerController::SetupInputComponent()
 		if (DescendBallastAction)
 		{
 			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this,
-			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Descend);
+				&AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Descend);
 		}
 		if (WanderBallastAction)
 		{
 			EnhancedInput->BindAction(WanderBallastAction, ETriggerEvent::Started, this,
-			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
+				&AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
 		}
 		if (AscendBallastAction)
 		{
 			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this,
-			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
+				&AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
+		}
+		// ADDED: one key that steps through the ballast states (Descend -> Wander -> Ascend -> Descend).
+		if (CycleBallastAction)
+		{
+			EnhancedInput->BindAction(CycleBallastAction, ETriggerEvent::Started, this,
+				&AAtlantisPlayerController::CycleBallastState);
+		}
+		// Steps the other way (Descend -> Ascend -> Wander -> Descend).
+		if (CycleBallastBackAction)
+		{
+			EnhancedInput->BindAction(CycleBallastBackAction, ETriggerEvent::Started, this,
+				&AAtlantisPlayerController::CycleBallastBackState);
 		}
 	}
 	if (BallastMappingContext && !CurrentMappingContexts.Contains(BallastMappingContext))
 	{
 		AddControls(BallastMappingContext);
 	}
-	
+
 	RefreshMovementControls();
 }
 
@@ -248,6 +261,80 @@ void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& Act
 	if (bControlsEnabled && GetPawn())
 	{
 		ServerSetBallastState(NewBallastState);
+	}
+}
+
+// ADDED: steps the *pending* ballast state forward one step per press. The real state is only
+// applied (via RequestBallastState) once BallastCommitDelay seconds pass without another press.
+void AAtlantisPlayerController::CycleBallastState(const FInputActionValue& ActionValue)
+{
+	if (!bControlsEnabled || !GetPawn())
+	{
+		return;
+	}
+
+	const AAtlantisPlayerState* State = GetPlayerState<AAtlantisPlayerState>();
+	if (!State)
+	{
+		return;
+	}
+
+	// GetBallastState() is a guess, check the real getter name in AtlantisPlayerState.h
+	const EAtlantisBallastState From =
+		PendingBallastState.IsSet() ? PendingBallastState.GetValue() : State->GetBallastState();
+
+	EAtlantisBallastState Next = EAtlantisBallastState::Descend;
+	switch (From)
+	{
+	case EAtlantisBallastState::Descend: Next = EAtlantisBallastState::Wander; break;
+	case EAtlantisBallastState::Wander:  Next = EAtlantisBallastState::Ascend; break;
+	default:                             Next = EAtlantisBallastState::Descend; break;
+	}
+	PendingBallastState = Next;
+
+	// Setting the timer again restarts it, so each press extends the window
+	GetWorldTimerManager().SetTimer(BallastCommitTimer, this,
+		&AAtlantisPlayerController::CommitPendingBallastState, BallastCommitDelay, false);
+}
+
+// Same as CycleBallastState, but steps the pending state backwards.
+void AAtlantisPlayerController::CycleBallastBackState(const FInputActionValue& ActionValue)
+{
+	if (!bControlsEnabled || !GetPawn())
+	{
+		return;
+	}
+
+	const AAtlantisPlayerState* State = GetPlayerState<AAtlantisPlayerState>();
+	if (!State)
+	{
+		return;
+	}
+
+	const EAtlantisBallastState From =
+		PendingBallastState.IsSet() ? PendingBallastState.GetValue() : State->GetBallastState();
+
+	EAtlantisBallastState Next = EAtlantisBallastState::Wander;
+	switch (From)
+	{
+	case EAtlantisBallastState::Descend: Next = EAtlantisBallastState::Ascend; break;
+	case EAtlantisBallastState::Wander:  Next = EAtlantisBallastState::Descend; break;
+	default:                             Next = EAtlantisBallastState::Wander; break;
+	}
+	PendingBallastState = Next;
+
+	GetWorldTimerManager().SetTimer(BallastCommitTimer, this,
+		&AAtlantisPlayerController::CommitPendingBallastState, BallastCommitDelay, false);
+}
+
+// ADDED: applies the pending state once the player has stopped cycling.
+void AAtlantisPlayerController::CommitPendingBallastState()
+{
+	if (PendingBallastState.IsSet())
+	{
+		const EAtlantisBallastState ToApply = PendingBallastState.GetValue();
+		PendingBallastState.Reset();
+		RequestBallastState(FInputActionValue(), ToApply);
 	}
 }
 
@@ -337,6 +424,11 @@ void AAtlantisPlayerController::EnableAllControls()
 void AAtlantisPlayerController::DisableAllControls()
 {
 	bControlsEnabled = false;
+
+	// ADDED: drop any half-finished ballast cycle so it can't fire while controls are off.
+	GetWorldTimerManager().ClearTimer(BallastCommitTimer);
+	PendingBallastState.Reset();
+
 	ClearMappingContexts();
 
 	OnControlsDisabled.Broadcast();

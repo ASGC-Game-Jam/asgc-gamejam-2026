@@ -142,10 +142,30 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
 	TObjectPtr<UInputAction> AscendBallastAction;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> CycleBallastAction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
+	TObjectPtr<UInputAction> CycleBallastBackAction;
+
+	/** Seconds without a cycle press before the pending state is applied. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast", meta = (ClampMin = "0.0"))
+	float BallastCommitDelay = 0.4f;
+
 	void RequestBallastState(const FInputActionValue& ActionValue, EAtlantisBallastState NewBallastState);
 
 	UFUNCTION(Server, Reliable)
 	void ServerSetBallastState(EAtlantisBallastState NewBallastState);
+
+	void CycleBallastState(const FInputActionValue& ActionValue);
+	void CycleBallastBackState(const FInputActionValue& ActionValue);
+
+	void CommitPendingBallastState();
+
+	FTimerHandle BallastCommitTimer;
+
+	/** Set while the player is cycling. Not applied to the PlayerState until the delay passes. */
+	TOptional<EAtlantisBallastState> PendingBallastState;
 
 	/** Pushes every context in the desired set to the input subsystem. */
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|Controls")
