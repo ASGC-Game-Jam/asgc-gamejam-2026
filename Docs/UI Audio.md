@@ -1,6 +1,6 @@
 # UI Audio: Sound Styles
 
-> **Status: proposal.** Nothing here is built yet. Comments welcome before implementation starts.
+> **Status: proposal.** Nothing here is built yet. Comments welcome before implementation starts. The system will be a reusable project plugin, **Sound Styles**; see [Plugin](#plugin).
 
 UI sounds work like CSS. Widgets are tagged with **sound classes** (gameplay tags), and one table that audio owns, the **stylesheet**, decides what each class sounds like. UI developers never pick sound assets, and audio can re-skin every button in the game without touching a widget.
 
@@ -25,10 +25,10 @@ WBP_PauseMenu          scope: Menu
 
 | Tag root | Meaning | Examples |
 |---|---|---|
-| `Audio.UI.Style` | **Class**: what kind of element this is | `Audio.UI.Style.Menu.Primary`, `Audio.UI.Style.Journal.Tab` |
-| `Audio.UI.Event` | **Event**: what just happened to it | `Audio.UI.Event.Hover`, `Audio.UI.Event.Press`, `Audio.UI.Event.Open` |
+| `UISound.Class` | **Class**: what kind of element this is | `UISound.Class.Menu.Primary`, `UISound.Class.Journal.Tab` |
+| `UISound.Event` | **Event**: what just happened to it | `UISound.Event.Hover`, `UISound.Event.Press`, `UISound.Event.Open` |
 
-Starting events: `Hover` (mouse over or gamepad focus), `Press`, `Release`, `Open`, `Close`, `Select` (tabs), `Notify`, `Type`. Add more as needed; nothing in code lists them. Tag names below drop the `Audio.UI.Style.` / `Audio.UI.Event.` prefix for readability.
+Starting events: `Hover` (mouse over or gamepad focus), `Press`, `Release`, `Open`, `Close`, `Select` (tabs), `Notify`, `Type`. Add more as needed; nothing in code lists them. Tag names below drop the `UISound.Class.` / `UISound.Event.` prefix for readability.
 
 ### Classes inherit from their parent tag
 
@@ -46,7 +46,7 @@ A button with class `Menu.Back`:
 - **Press:** `Menu.Back` sets it, so it plays the soft close.
 - **Hover:** neither `Menu.Back` nor `Menu` sets it, so it falls through to the root and plays the tick.
 
-A new class only lists what's different. The root (`Audio.UI.Style` itself) is the game-wide default.
+A new class only lists what's different. The root (`UISound.Class` itself) is the game-wide default.
 
 An event can be set to **silent**, which stops it inheriting a sound. For example, journal tabs set Press to silent and play `Select` only when the tab actually changes.
 
@@ -90,12 +90,12 @@ State mixes are **separate from `CBM_User`**, the player's volume settings. When
 
 ### UI developers: a screen
 
-1. Add the **Atlantis UI Sound Scope** interface to the screen widget and return its class from **Get UI Sound Classes**, for example `Menu`.
+1. Add the **Sound Style Scope** interface to the screen widget and return its class from **Get UI Sound Classes**, for example `Menu`.
 2. In the screen's open and close handlers, call **Play Widget UI Sound** with `Open` / `Close`, and **Push** / **Pop UI Audio State** if the screen should change the mix.
 
 ### UI developers: a button
 
-1. In the widget designer, right-click the Button and choose **Replace With > Atlantis Button**. The slot, style and bindings carry over.
+1. In the widget designer, right-click the Button and choose **Replace With > Sound Style Button**. The slot, style and bindings carry over.
 2. Leave **Sound Classes** empty to use the screen's scope. Set it only when the button should sound different.
 3. Leave the Button Style's own **Hovered/Pressed Sound** slots empty, or the sound plays twice.
 
@@ -103,7 +103,7 @@ If no existing class fits, ask audio for one rather than adding sounds to the wi
 
 ### Audio: adding or changing a class
 
-1. Add the tag under `Audio.UI.Style` in Project Settings > GameplayTags.
+1. Add the tag under `UISound.Class` in Project Settings > GameplayTags.
 2. Add a row for it in `DA_AtlantisUISoundStyles`, filling only the events that differ from its parent.
 3. Make sound presets from `MSS_Stereo_OneShot_lib` (#65). They route to `SC_UI` and `Submix_UI` with high priority.
 
@@ -111,7 +111,7 @@ No code changes and no widget changes.
 
 ### Finding the row to edit
 
-Set `Atlantis.Audio.UI.Debug 1` in the console. Each UI sound then logs the widget, its classes and scopes, the event, and which row answered:
+Set `SoundStyles.Debug 1` in the console. Each UI sound then logs the widget, its classes and scopes, the event, and which row answered:
 
 ```
 QuitButton  scope Menu / Press   -> row Menu
@@ -125,7 +125,7 @@ Rule of thumb: **if the sound should still play with the HUD turned off, it isn'
 
 | Sound | Path |
 |---|---|
-| Button hover, press, tab select | UI: Atlantis Button and classes |
+| Button hover, press, tab select | UI: Sound Style Button and classes |
 | Screens opening and closing | UI: Play Widget UI Sound |
 | World ducked under pause, muffled under journal | UI: screen audio states |
 | Journal updated, clue found, objective complete | UI: `Notify`, played by the widget that **shows** it. Notifications can arrive while the journal is closed, so this needs a HUD notification widget, which doesn't exist yet |
@@ -137,13 +137,48 @@ Rule of thumb: **if the sound should still play with the HUD turned off, it isn'
 
 **Player feedback is not part of this system.** It listens to the same audio facts as the music (the fact bridge, #489, already sends the oxygen facts), so the alarm stays audible while the journal, a cutscene or the debug menu hides the HUD, and stays in step with the music. It gets its own design.
 
+## Plugin
+
+The system is built as a project plugin, **Sound Styles** (`Plugins/SoundStyles`), so it has no dependency on game code and can be reused in other projects. The game uses it like any other plugin.
+
+### What lives where
+
+| Plugin (`Plugins/SoundStyles`) | Game (ProjectAtlantis) |
+|---|---|
+| `USoundStyleTable`, `FSoundStyleClass`, `FSoundStyleEvent` (the data types) | `DA_AtlantisUISoundStyles` (the table asset and its rows) |
+| `USoundStyleSubsystem` (resolution, playback, state stack, debug output) | Class tags: `UISound.Class.Menu`, `UISound.Class.Journal`, ... |
+| `USoundStyleButton` and `ISoundStyleScope` | Game-specific events: `Select`, `Notify`, `Type`, ... |
+| `USoundStyleSettings`: **Project Settings > Plugins > Sound Styles**, where the project picks its table | Sound presets (from `MSS_Stereo_OneShot_lib`), state mixes (`CBM_UIState_*`) |
+| Root tags `UISound.Class` and `UISound.Event`, plus the events the plugin plays itself: `Hover`, `Press`, `Release`, `Open`, `Close` | Widgets: scopes, classes and Play UI Sound calls |
+| Automated tests for resolution and the state stack | Player feedback (not part of this system) |
+
+The rule: **the plugin knows how sounds are chosen and played, the game decides which sounds and where.** Nothing in the plugin names a game class, asset or tag below the roots.
+
+### Structure
+
+```
+Plugins/SoundStyles/
+  SoundStyles.uplugin           depends on the AudioModulation plugin
+  Source/SoundStyles/           runtime module
+    Public/   SoundStyleTable.h, SoundStyleSubsystem.h, SoundStyleButton.h,
+              SoundStyleScope.h, SoundStyleSettings.h, SoundStyleTags.h
+    Private/  ... and Tests/
+  Source/SoundStylesEditor/     editor module, added later for the two-pane editor
+```
+
+- **Runtime module dependencies:** `Core`, `CoreUObject`, `Engine`, `UMG`, `Slate`, `SlateCore`, `GameplayTags`, `DeveloperSettings`, `AudioModulation`.
+- **Game side:** enable the plugin in `ProjectAtlantis.uproject` and add `SoundStyles` to the game module's dependencies, only if game C++ calls it. Blueprint-only use needs just the plugin enabled.
+- **Settings move into the plugin.** The table is no longer set in Atlantis Audio Settings, because the plugin can't see game settings.
+- **Tests** are named `SoundStyles.*`, so they run separately from the game's `Atlantis.*` tests.
+- **Ownership:** a plugin is code the whole team depends on, so changes to it should keep it generic. Game-specific needs go in game code or data, not in the plugin.
+
 ## Design details
 
 ### Data
 
 ```cpp
 USTRUCT(BlueprintType)
-struct FAtlantisUISoundEvent
+struct FSoundStyleEvent
 {
     // Empty means silent: stops this event inheriting from the parent class.
     UPROPERTY(EditAnywhere)
@@ -155,10 +190,10 @@ struct FAtlantisUISoundEvent
 };
 
 USTRUCT(BlueprintType)
-struct FAtlantisUISoundClass
+struct FSoundStyleClass
 {
-    UPROPERTY(EditAnywhere, meta = (Categories = "Audio.UI.Event"))
-    TMap<FGameplayTag, FAtlantisUISoundEvent> Events;
+    UPROPERTY(EditAnywhere, meta = (Categories = "UISound.Event"))
+    TMap<FGameplayTag, FSoundStyleEvent> Events;
 
     // Active while a screen of this class is open. Optional.
     UPROPERTY(EditAnywhere)
@@ -166,10 +201,10 @@ struct FAtlantisUISoundClass
 };
 
 UCLASS()
-class UAtlantisUISoundStyleTable : public UPrimaryDataAsset
+class USoundStyleTable : public UPrimaryDataAsset
 {
-    UPROPERTY(EditAnywhere, meta = (Categories = "Audio.UI.Style"))
-    TMap<FGameplayTag, FAtlantisUISoundClass> Classes;
+    UPROPERTY(EditAnywhere, meta = (Categories = "UISound.Class"))
+    TMap<FGameplayTag, FSoundStyleClass> Classes;
 };
 ```
 
@@ -191,7 +226,7 @@ Resolve(widget classes, scope chain, Event):
     return the root's answer for Event (may be nothing)
 ```
 
-The root is excluded from the per-class walks, so a widget's own classes can't hide its scope behind the global default. Scopes are found once when the widget is built, by walking up parent widgets (across nested user widgets) to each widget implementing the scope interface. A class outside `Audio.UI.Style` logs a warning and is ignored.
+The root is excluded from the per-class walks, so a widget's own classes can't hide its scope behind the global default. Scopes are found once when the widget is built, by walking up parent widgets (across nested user widgets) to each widget implementing the scope interface. A class outside `UISound.Class` logs a warning and is ignored.
 
 ### Playback
 
@@ -201,9 +236,9 @@ All timing (minimum intervals, the focus settle window) uses **real time**, beca
 
 ### Subsystem
 
-`UAtlantisUISoundSubsystem` is a game instance subsystem, so it lives from the main menu through every level. It:
+`USoundStyleSubsystem` is a game instance subsystem, so it lives from the main menu through every level. It:
 
-- loads the table from Atlantis Audio Settings in `Initialize` and keeps it loaded. It logs an error if the table isn't set.
+- loads the table set in **Project Settings > Plugins > Sound Styles** in `Initialize` and keeps it loaded. It logs an error if the table isn't set.
 - plays sounds: **Play UI Sound** (classes + event) and **Play Widget UI Sound** (a widget + event, which uses the widget's classes and scopes).
 - keeps the **screen audio state stack**, with each mix reference-counted so two screens sharing a mix don't cancel each other.
 - **clears every state on level travel.** A screen can open a level without closing first (pause menu > Return to Main Menu), and a state left active would duck the next level.
@@ -213,7 +248,7 @@ All timing (minimum intervals, the focus settle window) uses **real time**, beca
 
 ### Button
 
-`UAtlantisButton` extends `UButton` with **Sound Classes** (a tag container with a Blueprint setter, so MVVM can bind it).
+`USoundStyleButton` extends `UButton` with **Sound Classes** (a tag container with a Blueprint setter, so MVVM can bind it).
 
 - It adds its own bindings to `OnHovered`, `OnPressed` and `OnReleased` when its Slate widget is built. Blueprint bindings on the same events keep working.
 - **Gamepad:** on `OnReceivedFocus`, it plays Hover only if the button isn't already hovered, so a mouse click (which also focuses) doesn't play a second hover.
@@ -222,7 +257,7 @@ All timing (minimum intervals, the focus settle window) uses **real time**, beca
 
 ### Scope interface
 
-`IAtlantisUISoundScope`, implementable in Blueprint, with one function: **Get UI Sound Classes** (returns a tag container). Screens and wrapper widgets implement it.
+`ISoundStyleScope`, implementable in Blueprint, with one function: **Get UI Sound Classes** (returns a tag container). Screens and wrapper widgets implement it.
 
 ### Typewriter
 
@@ -249,7 +284,7 @@ Every widget is a plain `UserWidget` with UMG Buttons, and nothing plays a sound
 
 | Widget | Plan |
 |---|---|
-| `WBP_MenuButton` | Inner Button becomes an Atlantis Button with no classes, so it follows each menu's scope |
+| `WBP_MenuButton` | Inner Button becomes an Sound Style Button with no classes, so it follows each menu's scope |
 | `WBP_MainMenu` | Scope `Menu`. New Game: `Menu.Primary.NewGame`. Quit needs a short delay before Quit Game, or its press sound is cut off |
 | `WBP_PauseMenu` | Scope `Menu`, state `Pause`, Open/Close sounds. Return to Game: `Menu.Primary`. Return to Main Menu: `Menu.Back` |
 | `WBP_CreditsScreen` | Scope `Menu`, Open sound. Back button: `Menu.Back` |
@@ -271,9 +306,9 @@ Two things the review found that affect UI audio:
 
 | Step | What | Who |
 |---|---|---|
-| 1 | Tags, `DA_AtlantisUISoundStyles` and the settings entry | Audio |
+| 1 | Plugin skeleton (`.uplugin`, runtime module, enabled in the project), root and plugin tags, data types, settings, and `DA_AtlantisUISoundStyles` | Audio |
 | 2 | Subsystem: resolution with classes and scopes, Play UI Sound, debug output, tests | Audio |
-| 3 | Scope interface and `UAtlantisButton` (hover, press, release, gamepad focus, settle window) | Audio |
+| 3 | Scope interface and `USoundStyleButton` (hover, press, release, gamepad focus, settle window) | Audio |
 | 4 | Convert `WBP_MenuButton` and the menus; first sound pass | Audio + UI |
 | 5 | Screen audio states: stack, state mixes, clearing on travel; pause and journal | Audio |
 | 6 | Journal tabs, rows and Notify | Audio + UI |
