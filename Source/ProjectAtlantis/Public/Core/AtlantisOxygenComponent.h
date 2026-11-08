@@ -91,18 +91,23 @@ public:
 	/** Sends a request to increase oxygen capacity; no negative floats allowed. Returns true if the capacity is increased, or false otherwise. */
 	UFUNCTION(BlueprintPure, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestIncreaseOxygenCapacity(const float O2CapacityAmount);
-	
+
 	/** Sends a request to decrease oxygen capacity; no negative floats allowed. Current Oxygen is reduced if capacity falls below Current Oxygen. Returns true if the capacity is decreased, or false otherwise. */
 	UFUNCTION(BlueprintPure, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestDecreaseOxygenCapacity(const float O2CapacityAmount);
-	
-	/** Starts or stops passive consumption of oxygen */
+
+
+	/**
+	* Starts or stops passive consumption of oxygen. Turning consumption off starts passive refill.
+	* Assumes "not consuming" means the player is breathing air. If a future input pauses the drain
+	* without granting air
+	*/
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	void SetConsumingOxygen(bool bNewConsumingOxygen);
 
 	UFUNCTION(BlueprintPure, Category = "Atlantis|PlayerState|Oxygen")
 	bool IsConsumingOxygen() const;
-	
+
 	/** Consumes the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestOxygen(float RequestedOxygen);
@@ -110,7 +115,7 @@ public:
 	/** Restores the requested oxygen. Flag to restore to full. Returns whether the value changed. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RestoreOxygen(const float RestoreOxygenAmount, const bool bRestoreFullFlag);
-	
+
 	/** Locks the requested oxygen if enough is available. Returns whether the request was accepted. */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestOxygenAllocation(float RequestedOxygen);
@@ -138,16 +143,21 @@ private:
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float CurrentOxygen = 100.f;
 
-	/** Oxygen consumed per second*/
+	/** Oxygen restored per second while not consuming o2 */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
+	float OxygenRefillRate = 0.5f;
+	/** Oxygen consumed per second  */
 	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
 	float OxygenConsumptionRate = 1.f;
-	
+
 	/** Seconds betweem drain steps. Lower values it should look smoother on the hud but more events */
-	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.1"))
 	float OxygenConsumptionInterval = 0.25f;
-	
+
 	FTimerHandle OxygenConsumptionTimerHandle;
 	
+	FTimerHandle OxygenRefillTimerHandle;
+
 	/** Indicates whether oxygen level is critical. */
 	UPROPERTY(ReplicatedUsing = OnRep_CriticalOxygen, BlueprintReadOnly, Category = "Atlantis|PlayerState|Oxygen",
 		meta = (AllowPrivateAccess = "true"))
@@ -182,13 +192,22 @@ private:
 	void UpdateOxygenThresholds();
 
 	void SetAllocatedOxygen(float NewAllocatedOxygen);
-	
+
 	/** Sets the current level of oxygen by value. Returns true if the value was changed and false otherwise */
 	bool SetCurrentOxygen(float NewCurrentOxygen);
 
 	/** Returns true when the owning actor has network authority */
 	bool HasOwnerAuthority() const;
-	
+
 	/** Spends one interval's worth of oxygen */
 	void ConsumeOxygen();
+
+	/** Restores one interval's worth of oxygen. The capacity clamp is handled by SetCurrentOxygen. */
+	void RefillOxygen();
+
+	/** Stops the refill timer and starts the looping drain timer. */
+	void StartOxygenConsumption();
+
+	/** Stops the drain timer and starts the looping refill timer. */
+	void StartOxygenRefill();
 };
