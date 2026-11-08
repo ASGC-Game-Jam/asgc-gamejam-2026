@@ -10,9 +10,20 @@ Install the following before cloning the repository
 - [Git](https://git-scm.com/install/)
 - [Git LFS](https://git-lfs.com/)
 - Unreal Engine 5.8.3
-- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/older-downloads/) or [Rider](https://www.jetbrains.com/rider/download/) (or another IDE configured for Unreal Engine C++ development)
+- Windows: [Visual Studio 2022](https://visualstudio.microsoft.com/vs/older-downloads/) or [Rider](https://www.jetbrains.com/rider/download/)
   - [Setting up Visual Studio](https://dev.epicgames.com/documentation/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)
-  - [Setting up Rider](https://tomlooman.com/setup-unreal-engine-cpp-rider/)
+- macOS: [Rider](https://www.jetbrains.com/rider/download/) or Xcode. A full
+  Xcode installation is required for its compiler and macOS SDK.
+
+See [Setting up Rider](https://tomlooman.com/setup-unreal-engine-cpp-rider/) for
+general Unreal development guidance.
+
+The engine version above applies to this checkout. Other branches may require a
+different version; check `EngineAssociation` in `ProjectAtlantis.uproject` and
+the setup instructions on that branch before installing or switching engines.
+
+For Mac-specific requirements and build instructions, see the
+[macOS setup guide](SETUP-macOS.md).
 
 Verify Git LFS is installed
 
@@ -88,8 +99,8 @@ compiles shaders, and prepares the project
 
 ## Connect Unreal revision control
 
-Build `ProjectAtlantisEditor` in Development Editor /
-Win64 and confirm **Git LFS 2** is enabled in Plugins. Connect **Revision Control >
+Build `ProjectAtlantisEditor` in Development Editor / Win64 on Windows or
+Development / Mac on macOS, and confirm **Git LFS 2** is enabled in Plugins. Connect **Revision Control >
 Git** to the existing repository, enable **Uses Git LFS 2 File Locking workflow**,
 and set the owner name to your Gitea identity. Do not initialize a new repository.
 GitHub and Gitea credentials remain local; the plugin uses the existing LFS endpoint.
@@ -103,11 +114,12 @@ files must be explicitly added with `git add`. Commit/push using Git to retain
 locks through PR merge, or use asset-specific Check In with the patched plugin:
 editor Check In and push now retain locks regardless of **Keep Files Checked Out**.
 Release locks explicitly after merge; the plugin does not monitor PR status.
+
 ## Refresh IDE Projects After an Engine Upgrade
 
 Rider and Visual Studio can retain generated build paths for the previous
 engine even when `ProjectAtlantis.uproject` has the correct engine association.
-After switching to Unreal 5.8, regenerate both project formats from the
+On Windows, after switching to Unreal 5.8, regenerate both project formats from the
 repository root using the new engine:
 
 ```powershell
