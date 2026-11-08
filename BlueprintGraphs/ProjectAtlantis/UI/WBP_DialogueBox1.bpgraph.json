@@ -1,0 +1,2142 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/UI/WBP_DialogueBox1",
+	"asset": "WBP_DialogueBox1",
+	"assetClass": "WidgetBlueprint",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "SetText",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "1c230ef64bdcd8484bdb419cd0e4fe5f",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Multi-Line Text Box)",
+					"x": 176,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:then"
+							]
+						},
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"a3cb0ddd457c4666104af5a7a30f00ab:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:Text"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6a5644f44cbfb2d49c9ce8b80fac6695",
+					"class": "K2Node_FunctionEntry",
+					"title": "SetText",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6a5644f44cbfb2d49c9ce8b80fac6695:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:i:execute"
+							]
+						},
+						{
+							"id": "6a5644f44cbfb2d49c9ce8b80fac6695:o:Text",
+							"name": "Text",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:i:InText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a3cb0ddd457c4666104af5a7a30f00ab",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": -96,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a3cb0ddd457c4666104af5a7a30f00ab:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:i:self"
+							]
+						},
+						{
+							"id": "a3cb0ddd457c4666104af5a7a30f00ab:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox1.WBP_DialogueBox1_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "Foreach With Delay",
+			"type": "Macro",
+			"nodes": [
+				{
+					"guid": "012940b643514a1b7943b6926a758d85",
+					"class": "K2Node_CallFunction",
+					"title": "Delay",
+					"x": 2576,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "012940b643514a1b7943b6926a758d85:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"167d9f974bd89707a838b5983afce25b:o:then"
+							]
+						},
+						{
+							"id": "012940b643514a1b7943b6926a758d85:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ae7318a4864d6393acc5081c09b031a:i:execute"
+							]
+						},
+						{
+							"id": "012940b643514a1b7943b6926a758d85:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "012940b643514a1b7943b6926a758d85:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "012940b643514a1b7943b6926a758d85:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"80526d3841bd538bbfc7cd992360fd38:o:DelayDuration"
+							]
+						},
+						{
+							"id": "012940b643514a1b7943b6926a758d85:i:LatentInfo",
+							"name": "LatentInfo",
+							"direction": "input",
+							"type": "struct:/Script/Engine.LatentActionInfo",
+							"defaultValue": "(Linkage=-1,UUID=-1,ExecutionFunction=\"\",CallbackTarget=None)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "086cd8df4a5de61a66fb8cb3dd3ce791",
+					"class": "K2Node_CallFunction",
+					"title": "integer < integer",
+					"x": 1296,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "086cd8df4a5de61a66fb8cb3dd3ce791:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "086cd8df4a5de61a66fb8cb3dd3ce791:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"4352c02744d5c2db141ac7967e01d755:o:Variable"
+							]
+						},
+						{
+							"id": "086cd8df4a5de61a66fb8cb3dd3ce791:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"ba480fde44d9a5f5a07133a4b0bbb833:o:ReturnValue"
+							]
+						},
+						{
+							"id": "086cd8df4a5de61a66fb8cb3dd3ce791:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"5155c55646d1fe378691508467339c98:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "167d9f974bd89707a838b5983afce25b",
+					"class": "K2Node_AssignmentStatement",
+					"title": "Assign",
+					"x": 2320,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "167d9f974bd89707a838b5983afce25b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ec8a1ef54271b34d32fd0da98bad550d:o:then_1"
+							]
+						},
+						{
+							"id": "167d9f974bd89707a838b5983afce25b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"012940b643514a1b7943b6926a758d85:i:execute"
+							]
+						},
+						{
+							"id": "167d9f974bd89707a838b5983afce25b:i:Variable",
+							"name": "Variable",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"4352c02744d5c2db141ac7967e01d755:o:Variable"
+							]
+						},
+						{
+							"id": "167d9f974bd89707a838b5983afce25b:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"f2df4e94467832914a239b8bbb50b2a5:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "23a1e5604a6bb30443fa938114b95174",
+					"class": "K2Node_AssignmentStatement",
+					"title": "Assign",
+					"x": 368,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "23a1e5604a6bb30443fa938114b95174:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"80526d3841bd538bbfc7cd992360fd38:o:Break"
+							]
+						},
+						{
+							"id": "23a1e5604a6bb30443fa938114b95174:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "23a1e5604a6bb30443fa938114b95174:i:Variable",
+							"name": "Variable",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7e87fc7f4e4c67e9ff923f8c6868c71e:o:Variable"
+							]
+						},
+						{
+							"id": "23a1e5604a6bb30443fa938114b95174:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4352c02744d5c2db141ac7967e01d755",
+					"class": "K2Node_TemporaryVariable",
+					"title": "Local Integer",
+					"x": 672,
+					"y": 336,
+					"comment": "Loop Counter",
+					"pins": [
+						{
+							"id": "4352c02744d5c2db141ac7967e01d755:o:Variable",
+							"name": "Variable",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"086cd8df4a5de61a66fb8cb3dd3ce791:i:A",
+								"167d9f974bd89707a838b5983afce25b:i:Variable",
+								"4e4f3e9947ebe7f05c37d4be029a63bf:i:Value",
+								"bdf3f3e74e451faaae3e3c8ddc90c010:i:Variable",
+								"f2df4e94467832914a239b8bbb50b2a5:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4e4f3e9947ebe7f05c37d4be029a63bf",
+					"class": "K2Node_AssignmentStatement",
+					"title": "Assign",
+					"x": 1920,
+					"y": -48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4e4f3e9947ebe7f05c37d4be029a63bf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ae7318a4864d6393acc5081c09b031a:o:then"
+							]
+						},
+						{
+							"id": "4e4f3e9947ebe7f05c37d4be029a63bf:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ec8a1ef54271b34d32fd0da98bad550d:i:execute"
+							]
+						},
+						{
+							"id": "4e4f3e9947ebe7f05c37d4be029a63bf:i:Variable",
+							"name": "Variable",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"5ec0b01c47744ad35c1534952f8c61ee:o:Variable"
+							]
+						},
+						{
+							"id": "4e4f3e9947ebe7f05c37d4be029a63bf:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"4352c02744d5c2db141ac7967e01d755:o:Variable"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5155c55646d1fe378691508467339c98",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "AND Boolean",
+					"x": 1456,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5155c55646d1fe378691508467339c98:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "5155c55646d1fe378691508467339c98:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c3f729764156e58e155fa589d4b9404f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5155c55646d1fe378691508467339c98:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"086cd8df4a5de61a66fb8cb3dd3ce791:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5155c55646d1fe378691508467339c98:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"5ae7318a4864d6393acc5081c09b031a:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5a3c396b4bd60b5f40eaa8a7799aa9a0",
+					"class": "K2Node_Tunnel",
+					"title": "Outputs",
+					"x": 2512,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5a3c396b4bd60b5f40eaa8a7799aa9a0:i:Loop Body",
+							"name": "Loop Body",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ec8a1ef54271b34d32fd0da98bad550d:o:then_0"
+							]
+						},
+						{
+							"id": "5a3c396b4bd60b5f40eaa8a7799aa9a0:i:Array Element",
+							"name": "Array Element",
+							"direction": "input",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"d33e0fd74e0e9d2b68ba72949391682a:o:Output"
+							]
+						},
+						{
+							"id": "5a3c396b4bd60b5f40eaa8a7799aa9a0:i:Array Index",
+							"name": "Array Index",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"5ec0b01c47744ad35c1534952f8c61ee:o:Variable"
+							]
+						},
+						{
+							"id": "5a3c396b4bd60b5f40eaa8a7799aa9a0:i:Completed",
+							"name": "Completed",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e5f4bb1f41999fd9c605f49c739e8def:o:then"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5ae7318a4864d6393acc5081c09b031a",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1472,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5ae7318a4864d6393acc5081c09b031a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"012940b643514a1b7943b6926a758d85:o:then",
+								"81d1bbbb4bca82f450a83aa1acdbc6c0:o:then"
+							]
+						},
+						{
+							"id": "5ae7318a4864d6393acc5081c09b031a:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"5155c55646d1fe378691508467339c98:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5ae7318a4864d6393acc5081c09b031a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4e4f3e9947ebe7f05c37d4be029a63bf:i:execute"
+							]
+						},
+						{
+							"id": "5ae7318a4864d6393acc5081c09b031a:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e5f4bb1f41999fd9c605f49c739e8def:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5ec0b01c47744ad35c1534952f8c61ee",
+					"class": "K2Node_TemporaryVariable",
+					"title": "Local Integer",
+					"x": 672,
+					"y": 448,
+					"comment": "Array Index",
+					"pins": [
+						{
+							"id": "5ec0b01c47744ad35c1534952f8c61ee:o:Variable",
+							"name": "Variable",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"4e4f3e9947ebe7f05c37d4be029a63bf:i:Variable",
+								"5a3c396b4bd60b5f40eaa8a7799aa9a0:i:Array Index",
+								"81d1bbbb4bca82f450a83aa1acdbc6c0:i:Variable",
+								"d33e0fd74e0e9d2b68ba72949391682a:i:Dimension 1"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7e87fc7f4e4c67e9ff923f8c6868c71e",
+					"class": "K2Node_TemporaryVariable",
+					"title": "Local Boolean",
+					"x": 160,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7e87fc7f4e4c67e9ff923f8c6868c71e:o:Variable",
+							"name": "Variable",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"23a1e5604a6bb30443fa938114b95174:i:Variable",
+								"c3f729764156e58e155fa589d4b9404f:i:A",
+								"e5f4bb1f41999fd9c605f49c739e8def:i:Variable"
+							]
+						}
+					]
+				},
+				{
+					"guid": "80526d3841bd538bbfc7cd992360fd38",
+					"class": "K2Node_Tunnel",
+					"title": "Inputs",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "80526d3841bd538bbfc7cd992360fd38:o:Exec",
+							"name": "Exec",
+							"direction": "output",
+							"type": "Exec",
+							"defaultValue": null,
+							"links": [
+								"bdf3f3e74e451faaae3e3c8ddc90c010:i:execute"
+							]
+						},
+						{
+							"id": "80526d3841bd538bbfc7cd992360fd38:o:Array",
+							"name": "Array",
+							"direction": "output",
+							"type": "wildcard[]",
+							"defaultValue": null,
+							"links": [
+								"ba480fde44d9a5f5a07133a4b0bbb833:i:TargetArray",
+								"d33e0fd74e0e9d2b68ba72949391682a:i:Array"
+							]
+						},
+						{
+							"id": "80526d3841bd538bbfc7cd992360fd38:o:DelayDuration",
+							"name": "DelayDuration",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"012940b643514a1b7943b6926a758d85:i:Duration"
+							]
+						},
+						{
+							"id": "80526d3841bd538bbfc7cd992360fd38:o:Break",
+							"name": "Break",
+							"direction": "output",
+							"type": "Exec",
+							"defaultValue": null,
+							"links": [
+								"23a1e5604a6bb30443fa938114b95174:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "81d1bbbb4bca82f450a83aa1acdbc6c0",
+					"class": "K2Node_AssignmentStatement",
+					"title": "Assign",
+					"x": 752,
+					"y": -64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "81d1bbbb4bca82f450a83aa1acdbc6c0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bdf3f3e74e451faaae3e3c8ddc90c010:o:then"
+							]
+						},
+						{
+							"id": "81d1bbbb4bca82f450a83aa1acdbc6c0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ae7318a4864d6393acc5081c09b031a:i:execute"
+							]
+						},
+						{
+							"id": "81d1bbbb4bca82f450a83aa1acdbc6c0:i:Variable",
+							"name": "Variable",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"5ec0b01c47744ad35c1534952f8c61ee:o:Variable"
+							]
+						},
+						{
+							"id": "81d1bbbb4bca82f450a83aa1acdbc6c0:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ba480fde44d9a5f5a07133a4b0bbb833",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Length",
+					"x": 1008,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ba480fde44d9a5f5a07133a4b0bbb833:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "ba480fde44d9a5f5a07133a4b0bbb833:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "wildcard[]",
+							"defaultValue": null,
+							"links": [
+								"80526d3841bd538bbfc7cd992360fd38:o:Array"
+							]
+						},
+						{
+							"id": "ba480fde44d9a5f5a07133a4b0bbb833:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"086cd8df4a5de61a66fb8cb3dd3ce791:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bdf3f3e74e451faaae3e3c8ddc90c010",
+					"class": "K2Node_AssignmentStatement",
+					"title": "Assign",
+					"x": 496,
+					"y": -64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bdf3f3e74e451faaae3e3c8ddc90c010:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"80526d3841bd538bbfc7cd992360fd38:o:Exec"
+							]
+						},
+						{
+							"id": "bdf3f3e74e451faaae3e3c8ddc90c010:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"81d1bbbb4bca82f450a83aa1acdbc6c0:i:execute"
+							]
+						},
+						{
+							"id": "bdf3f3e74e451faaae3e3c8ddc90c010:i:Variable",
+							"name": "Variable",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"4352c02744d5c2db141ac7967e01d755:o:Variable"
+							]
+						},
+						{
+							"id": "bdf3f3e74e451faaae3e3c8ddc90c010:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c3f729764156e58e155fa589d4b9404f",
+					"class": "K2Node_CallFunction",
+					"title": "NOT Boolean",
+					"x": 1232,
+					"y": -209,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3f729764156e58e155fa589d4b9404f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "c3f729764156e58e155fa589d4b9404f:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7e87fc7f4e4c67e9ff923f8c6868c71e:o:Variable"
+							]
+						},
+						{
+							"id": "c3f729764156e58e155fa589d4b9404f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"5155c55646d1fe378691508467339c98:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d33e0fd74e0e9d2b68ba72949391682a",
+					"class": "K2Node_GetArrayItem",
+					"title": "Get (a copy)",
+					"x": 1920,
+					"y": -144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d33e0fd74e0e9d2b68ba72949391682a:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "wildcard[]",
+							"defaultValue": null,
+							"links": [
+								"80526d3841bd538bbfc7cd992360fd38:o:Array"
+							]
+						},
+						{
+							"id": "d33e0fd74e0e9d2b68ba72949391682a:i:Dimension 1",
+							"name": "Dimension 1",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"5ec0b01c47744ad35c1534952f8c61ee:o:Variable"
+							]
+						},
+						{
+							"id": "d33e0fd74e0e9d2b68ba72949391682a:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "wildcard",
+							"defaultValue": null,
+							"links": [
+								"5a3c396b4bd60b5f40eaa8a7799aa9a0:i:Array Element"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e5f4bb1f41999fd9c605f49c739e8def",
+					"class": "K2Node_AssignmentStatement",
+					"title": "Assign",
+					"x": 2320,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e5f4bb1f41999fd9c605f49c739e8def:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ae7318a4864d6393acc5081c09b031a:o:else"
+							]
+						},
+						{
+							"id": "e5f4bb1f41999fd9c605f49c739e8def:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5a3c396b4bd60b5f40eaa8a7799aa9a0:i:Completed"
+							]
+						},
+						{
+							"id": "e5f4bb1f41999fd9c605f49c739e8def:i:Variable",
+							"name": "Variable",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7e87fc7f4e4c67e9ff923f8c6868c71e:o:Variable"
+							]
+						},
+						{
+							"id": "e5f4bb1f41999fd9c605f49c739e8def:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ec8a1ef54271b34d32fd0da98bad550d",
+					"class": "K2Node_ExecutionSequence",
+					"title": "Sequence",
+					"x": 2128,
+					"y": -48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ec8a1ef54271b34d32fd0da98bad550d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4e4f3e9947ebe7f05c37d4be029a63bf:o:then"
+							]
+						},
+						{
+							"id": "ec8a1ef54271b34d32fd0da98bad550d:o:then_0",
+							"name": "then_0",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5a3c396b4bd60b5f40eaa8a7799aa9a0:i:Loop Body"
+							]
+						},
+						{
+							"id": "ec8a1ef54271b34d32fd0da98bad550d:o:then_1",
+							"name": "then_1",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"167d9f974bd89707a838b5983afce25b:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f2df4e94467832914a239b8bbb50b2a5",
+					"class": "K2Node_CallFunction",
+					"title": "int + int",
+					"x": 2160,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f2df4e94467832914a239b8bbb50b2a5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "f2df4e94467832914a239b8bbb50b2a5:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"4352c02744d5c2db141ac7967e01d755:o:Variable"
+							]
+						},
+						{
+							"id": "f2df4e94467832914a239b8bbb50b2a5:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "1",
+							"links": []
+						},
+						{
+							"id": "f2df4e94467832914a239b8bbb50b2a5:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"167d9f974bd89707a838b5983afce25b:i:Value"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "062bf59b49c6c160129b1ea5f5e422e5",
+					"text": "Init Loop Counter",
+					"x": 448,
+					"y": -128,
+					"width": 240,
+					"height": 224
+				},
+				{
+					"guid": "0f88c9784d255f303b5cb49e139f0aed",
+					"text": "Test Loop Condition",
+					"x": 976,
+					"y": -96,
+					"width": 704,
+					"height": 208
+				},
+				{
+					"guid": "2b6c83d0494a0ef1134cc4bb1ecc1549",
+					"text": "Increment Loop Counter",
+					"x": 2112,
+					"y": 272,
+					"width": 400,
+					"height": 240
+				},
+				{
+					"guid": "5031627c49e7dd9d1c603ca48553ded8",
+					"text": "Init Array Index",
+					"x": 704,
+					"y": -128,
+					"width": 240,
+					"height": 224
+				},
+				{
+					"guid": "ad5666e54ea6f9e6457157b6278a3b67",
+					"text": "Warning: Do not add, remove, or reorder elements in the input array during the execution of the loop body!",
+					"x": 368,
+					"y": -288,
+					"width": 2256,
+					"height": 48
+				},
+				{
+					"guid": "f93a5c9a43baae770e5639b2bfe81b40",
+					"text": "Execute Loop Body",
+					"x": 1872,
+					"y": -192,
+					"width": 448,
+					"height": 320
+				}
+			]
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "165285ce43706df60837eba192aba83b",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "Append",
+					"x": 2192,
+					"y": 720,
+					"comment": null,
+					"pins": [
+						{
+							"id": "165285ce43706df60837eba192aba83b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "165285ce43706df60837eba192aba83b:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"3a69536c4bf279635fc0f784f4e78e4e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "165285ce43706df60837eba192aba83b:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"3179d5fc4e98cb82d60883acad00b540:o:Array Element"
+							]
+						},
+						{
+							"id": "165285ce43706df60837eba192aba83b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"8a5c804c48651f818e2dad8ef0e11643:i:InString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1a9bb4b34ea885845608aba47b424c05",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": 2368,
+					"y": 672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1a9bb4b34ea885845608aba47b424c05:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"85f1885742b5bc887576dc9f38a50a56:i:self"
+							]
+						},
+						{
+							"id": "1a9bb4b34ea885845608aba47b424c05:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox1.WBP_DialogueBox1_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1b9cee59497305cf8d9431b7fcf6e0f6",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "1b9cee59497305cf8d9431b7fcf6e0f6:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1b9cee59497305cf8d9431b7fcf6e0f6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1e87e5db4eb28447e6aa4088649b0574",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": -224,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1e87e5db4eb28447e6aa4088649b0574:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"e3260b5542921c4cd2a7f281caa5871c:i:self"
+							]
+						},
+						{
+							"id": "1e87e5db4eb28447e6aa4088649b0574:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox1.WBP_DialogueBox1_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3179d5fc4e98cb82d60883acad00b540",
+					"class": "K2Node_MacroInstance",
+					"title": "Foreach with Delay",
+					"x": 1360,
+					"y": 591,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3179d5fc4e98cb82d60883acad00b540:i:Exec",
+							"name": "Exec",
+							"direction": "input",
+							"type": "Exec",
+							"defaultValue": null,
+							"links": [
+								"e3260b5542921c4cd2a7f281caa5871c:o:then"
+							]
+						},
+						{
+							"id": "3179d5fc4e98cb82d60883acad00b540:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"37fccf9842fbbcbc61150390bcb7c2a4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3179d5fc4e98cb82d60883acad00b540:i:DelayDuration",
+							"name": "DelayDuration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"f197cf07420b50ca5473d680cac35922:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3179d5fc4e98cb82d60883acad00b540:i:Break",
+							"name": "Break",
+							"direction": "input",
+							"type": "Exec",
+							"defaultValue": null,
+							"links": [
+								"49bad7d64e2849c6dc87e5b8f29316c3:o:then"
+							]
+						},
+						{
+							"id": "3179d5fc4e98cb82d60883acad00b540:o:Loop Body",
+							"name": "Loop Body",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"85f1885742b5bc887576dc9f38a50a56:i:execute"
+							]
+						},
+						{
+							"id": "3179d5fc4e98cb82d60883acad00b540:o:Array Element",
+							"name": "Array Element",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"165285ce43706df60837eba192aba83b:i:B"
+							]
+						},
+						{
+							"id": "3179d5fc4e98cb82d60883acad00b540:o:Array Index",
+							"name": "Array Index",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3179d5fc4e98cb82d60883acad00b540:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"445b724e4edee05b9082308381c5fd02:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "37fccf9842fbbcbc61150390bcb7c2a4",
+					"class": "K2Node_CallFunction",
+					"title": "Get Character Array from String",
+					"x": 560,
+					"y": 522,
+					"comment": null,
+					"pins": [
+						{
+							"id": "37fccf9842fbbcbc61150390bcb7c2a4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "37fccf9842fbbcbc61150390bcb7c2a4:i:SourceString",
+							"name": "SourceString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"44162920416cb74ac8a8a7bfb4866207:o:ReturnValue"
+							]
+						},
+						{
+							"id": "37fccf9842fbbcbc61150390bcb7c2a4:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"3179d5fc4e98cb82d60883acad00b540:i:Array",
+								"bb3f4e6044362bd71ce666be5a711ad6:i:TargetArray"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3a69536c4bf279635fc0f784f4e78e4e",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Text)",
+					"x": 1968,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3a69536c4bf279635fc0f784f4e78e4e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "3a69536c4bf279635fc0f784f4e78e4e:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"7990ed0d46693cb838d1fb9ce6d4e352:o:Text"
+							]
+						},
+						{
+							"id": "3a69536c4bf279635fc0f784f4e78e4e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"165285ce43706df60837eba192aba83b:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "415496514549b0597bdd79b08bdb4781",
+					"class": "K2Node_VariableGet",
+					"title": "Get Dialogue Sentence",
+					"x": 208,
+					"y": 544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "415496514549b0597bdd79b08bdb4781:o:Dialogue Sentence",
+							"name": "Dialogue Sentence",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"44162920416cb74ac8a8a7bfb4866207:i:InText"
+							]
+						},
+						{
+							"id": "415496514549b0597bdd79b08bdb4781:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox1.WBP_DialogueBox1_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "44162920416cb74ac8a8a7bfb4866207",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Text)",
+					"x": 400,
+					"y": 545,
+					"comment": null,
+					"pins": [
+						{
+							"id": "44162920416cb74ac8a8a7bfb4866207:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "44162920416cb74ac8a8a7bfb4866207:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"415496514549b0597bdd79b08bdb4781:o:Dialogue Sentence"
+							]
+						},
+						{
+							"id": "44162920416cb74ac8a8a7bfb4866207:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"37fccf9842fbbcbc61150390bcb7c2a4:i:SourceString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "445b724e4edee05b9082308381c5fd02",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Multi-Line Text Box)",
+					"x": 1856,
+					"y": 880,
+					"comment": null,
+					"pins": [
+						{
+							"id": "445b724e4edee05b9082308381c5fd02:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3179d5fc4e98cb82d60883acad00b540:o:Completed"
+							]
+						},
+						{
+							"id": "445b724e4edee05b9082308381c5fd02:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6b6ef0a24f9f661fa9e16986df03c279:i:execute"
+							]
+						},
+						{
+							"id": "445b724e4edee05b9082308381c5fd02:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"bc1c17f94215257f13b38c938a78cd7b:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "445b724e4edee05b9082308381c5fd02:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"80afd4d447dbb1210e7b94be1d6698db:o:Dialogue Sentence"
+							]
+						}
+					]
+				},
+				{
+					"guid": "49bad7d64e2849c6dc87e5b8f29316c3",
+					"class": "K2Node_CustomEvent",
+					"title": "SkipTypeWriterEffect",
+					"x": -176,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "49bad7d64e2849c6dc87e5b8f29316c3:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "49bad7d64e2849c6dc87e5b8f29316c3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3179d5fc4e98cb82d60883acad00b540:i:Break"
+							]
+						}
+					]
+				},
+				{
+					"guid": "598c091845a8ca82cc5bf0935d05e882",
+					"class": "K2Node_VariableGet",
+					"title": "Get Type Writer Delay Duration",
+					"x": 1040,
+					"y": 676,
+					"comment": null,
+					"pins": [
+						{
+							"id": "598c091845a8ca82cc5bf0935d05e882:o:Type Writer Delay Duration",
+							"name": "Type Writer Delay Duration",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"f197cf07420b50ca5473d680cac35922:i:A"
+							]
+						},
+						{
+							"id": "598c091845a8ca82cc5bf0935d05e882:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox1.WBP_DialogueBox1_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6b6ef0a24f9f661fa9e16986df03c279",
+					"class": "K2Node_VariableSet",
+					"title": "Set Type Writer Finished",
+					"x": 2144,
+					"y": 912,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6b6ef0a24f9f661fa9e16986df03c279:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"445b724e4edee05b9082308381c5fd02:o:then"
+							]
+						},
+						{
+							"id": "6b6ef0a24f9f661fa9e16986df03c279:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6b6ef0a24f9f661fa9e16986df03c279:i:Type Writer Finished",
+							"name": "Type Writer Finished",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "6b6ef0a24f9f661fa9e16986df03c279:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "6b6ef0a24f9f661fa9e16986df03c279:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox1.WBP_DialogueBox1_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6f02a805468809255cdd9fbd85daee44",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": 1488,
+					"y": 448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6f02a805468809255cdd9fbd85daee44:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"7990ed0d46693cb838d1fb9ce6d4e352:i:self"
+							]
+						},
+						{
+							"id": "6f02a805468809255cdd9fbd85daee44:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox1.WBP_DialogueBox1_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7990ed0d46693cb838d1fb9ce6d4e352",
+					"class": "K2Node_VariableGet",
+					"title": "Get Text",
+					"x": 1760,
+					"y": 448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7990ed0d46693cb838d1fb9ce6d4e352:o:Text",
+							"name": "Text",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"3a69536c4bf279635fc0f784f4e78e4e:i:InText"
+							]
+						},
+						{
+							"id": "7990ed0d46693cb838d1fb9ce6d4e352:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"6f02a805468809255cdd9fbd85daee44:o:MultiLineEditableTextBox_110"
+							]
+						}
+					]
+				},
+				{
+					"guid": "80afd4d447dbb1210e7b94be1d6698db",
+					"class": "K2Node_VariableGet",
+					"title": "Get Dialogue Sentence",
+					"x": 1680,
+					"y": 1028,
+					"comment": null,
+					"pins": [
+						{
+							"id": "80afd4d447dbb1210e7b94be1d6698db:o:Dialogue Sentence",
+							"name": "Dialogue Sentence",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"445b724e4edee05b9082308381c5fd02:i:InText"
+							]
+						},
+						{
+							"id": "80afd4d447dbb1210e7b94be1d6698db:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox1.WBP_DialogueBox1_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "85f1885742b5bc887576dc9f38a50a56",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Multi-Line Text Box)",
+					"x": 2624,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "85f1885742b5bc887576dc9f38a50a56:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3179d5fc4e98cb82d60883acad00b540:o:Loop Body"
+							]
+						},
+						{
+							"id": "85f1885742b5bc887576dc9f38a50a56:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "85f1885742b5bc887576dc9f38a50a56:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"1a9bb4b34ea885845608aba47b424c05:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "85f1885742b5bc887576dc9f38a50a56:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"8a5c804c48651f818e2dad8ef0e11643:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8a5c804c48651f818e2dad8ef0e11643",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (String)",
+					"x": 2384,
+					"y": 720,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8a5c804c48651f818e2dad8ef0e11643:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "8a5c804c48651f818e2dad8ef0e11643:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"165285ce43706df60837eba192aba83b:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8a5c804c48651f818e2dad8ef0e11643:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"85f1885742b5bc887576dc9f38a50a56:i:InText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "baa402854b1b37371c11648b72503d2a",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "baa402854b1b37371c11648b72503d2a:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "baa402854b1b37371c11648b72503d2a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "baa402854b1b37371c11648b72503d2a:o:MyGeometry",
+							"name": "MyGeometry",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.Geometry",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "baa402854b1b37371c11648b72503d2a:o:InDeltaTime",
+							"name": "InDeltaTime",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bb3f4e6044362bd71ce666be5a711ad6",
+					"class": "K2Node_CallArrayFunction",
+					"title": "Length",
+					"x": 944,
+					"y": 896,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bb3f4e6044362bd71ce666be5a711ad6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetArrayLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetArrayLibrary",
+							"links": []
+						},
+						{
+							"id": "bb3f4e6044362bd71ce666be5a711ad6:i:TargetArray",
+							"name": "TargetArray",
+							"direction": "input",
+							"type": "string[]",
+							"defaultValue": null,
+							"links": [
+								"37fccf9842fbbcbc61150390bcb7c2a4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "bb3f4e6044362bd71ce666be5a711ad6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"f197cf07420b50ca5473d680cac35922:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bc1c17f94215257f13b38c938a78cd7b",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": 1552,
+					"y": 976,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bc1c17f94215257f13b38c938a78cd7b:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"445b724e4edee05b9082308381c5fd02:i:self"
+							]
+						},
+						{
+							"id": "bc1c17f94215257f13b38c938a78cd7b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox1.WBP_DialogueBox1_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "be9d7ba14220dd9529c3149ac1c217bf",
+					"class": "K2Node_CustomEvent",
+					"title": "StartDialogue",
+					"x": -176,
+					"y": 576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "be9d7ba14220dd9529c3149ac1c217bf:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "be9d7ba14220dd9529c3149ac1c217bf:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e3260b5542921c4cd2a7f281caa5871c:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e3260b5542921c4cd2a7f281caa5871c",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Multi-Line Text Box)",
+					"x": 64,
+					"y": 576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3260b5542921c4cd2a7f281caa5871c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"be9d7ba14220dd9529c3149ac1c217bf:o:then"
+							]
+						},
+						{
+							"id": "e3260b5542921c4cd2a7f281caa5871c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3179d5fc4e98cb82d60883acad00b540:i:Exec"
+							]
+						},
+						{
+							"id": "e3260b5542921c4cd2a7f281caa5871c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"1e87e5db4eb28447e6aa4088649b0574:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "e3260b5542921c4cd2a7f281caa5871c:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e91d1ae74f0ef6f0f4c51891a3b158a6",
+					"class": "K2Node_Event",
+					"title": "Event Pre Construct",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "e91d1ae74f0ef6f0f4c51891a3b158a6:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e91d1ae74f0ef6f0f4c51891a3b158a6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e91d1ae74f0ef6f0f4c51891a3b158a6:o:IsDesignTime",
+							"name": "IsDesignTime",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f197cf07420b50ca5473d680cac35922",
+					"class": "K2Node_PromotableOperator",
+					"title": "float / float",
+					"x": 1200,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f197cf07420b50ca5473d680cac35922:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"598c091845a8ca82cc5bf0935d05e882:o:Type Writer Delay Duration"
+							]
+						},
+						{
+							"id": "f197cf07420b50ca5473d680cac35922:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"bb3f4e6044362bd71ce666be5a711ad6:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f197cf07420b50ca5473d680cac35922:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"3179d5fc4e98cb82d60883acad00b540:i:DelayDuration"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"Dialogue Sentence":
+			{
+				"type": "text",
+				"category": "Dialogue",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Type Writer Delay Duration":
+			{
+				"type": "real:float",
+				"category": "Dialogue",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Type Writer Finished":
+			{
+				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"MultiLineEditableTextBox_110": null,
+			"Dialogue Sentence": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			"Type Writer Delay Duration": 3,
+			"Type Writer Finished": false,
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "DesiredOnScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
+}

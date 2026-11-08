@@ -8,6 +8,119 @@
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
+			"name": "SetText",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "1c230ef64bdcd8484bdb419cd0e4fe5f",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Multi-Line Text Box)",
+					"x": 176,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:then"
+							]
+						},
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"a3cb0ddd457c4666104af5a7a30f00ab:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:Text"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6a5644f44cbfb2d49c9ce8b80fac6695",
+					"class": "K2Node_FunctionEntry",
+					"title": "SetText",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6a5644f44cbfb2d49c9ce8b80fac6695:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:i:execute"
+							]
+						},
+						{
+							"id": "6a5644f44cbfb2d49c9ce8b80fac6695:o:Text",
+							"name": "Text",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:i:InText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a3cb0ddd457c4666104af5a7a30f00ab",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": -96,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a3cb0ddd457c4666104af5a7a30f00ab:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:i:self"
+							]
+						},
+						{
+							"id": "a3cb0ddd457c4666104af5a7a30f00ab:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
 			"name": "Foreach With Delay",
 			"type": "Macro",
 			"nodes": [
@@ -1089,84 +1202,6 @@
 					]
 				},
 				{
-					"guid": "23e44a2e4fd02c82947f6487ae95488d",
-					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTextBox",
-					"x": 2432,
-					"y": 646,
-					"comment": null,
-					"pins": [
-						{
-							"id": "23e44a2e4fd02c82947f6487ae95488d:o:DialogueTextBox",
-							"name": "DialogueTextBox",
-							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"5564049f4fa7bb512fa02e8fdbc16da6:i:self"
-							]
-						},
-						{
-							"id": "23e44a2e4fd02c82947f6487ae95488d:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "26ebec0e41a73618da8967bf995bd8d9",
-					"class": "K2Node_CallFunction",
-					"title": "SetText (Text)",
-					"x": 1920,
-					"y": 880,
-					"comment": null,
-					"pins": [
-						{
-							"id": "26ebec0e41a73618da8967bf995bd8d9:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"83df2a8142c42612df78a383f1254e80:o:Completed"
-							]
-						},
-						{
-							"id": "26ebec0e41a73618da8967bf995bd8d9:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"beee6bf24a36db7b331e5897791cadb5:i:execute"
-							]
-						},
-						{
-							"id": "26ebec0e41a73618da8967bf995bd8d9:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"94f25f9147f974cde055d998db0d307e:o:DialogueTextBox"
-							]
-						},
-						{
-							"id": "26ebec0e41a73618da8967bf995bd8d9:i:InText",
-							"name": "InText",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"fbfc883044ed661ecc5875923e6c9280:o:Dialogue Sentence"
-							]
-						}
-					]
-				},
-				{
 					"guid": "2eba045f42dc17fdaf5a6c9aa8fafe50",
 					"class": "K2Node_CallArrayFunction",
 					"title": "Length",
@@ -1233,107 +1268,49 @@
 					]
 				},
 				{
-					"guid": "46974ba24e24a652b823ca86fcd4a654",
-					"class": "K2Node_VariableGet",
-					"title": "Get Text",
-					"x": 1760,
-					"y": 480,
-					"comment": null,
-					"pins": [
-						{
-							"id": "46974ba24e24a652b823ca86fcd4a654:o:Text",
-							"name": "Text",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"d4896d5d4be6d4464fc6aa85e21d6ca1:i:InText"
-							]
-						},
-						{
-							"id": "46974ba24e24a652b823ca86fcd4a654:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"b7e6fe2f481fb94fa313a783cfb5f600:o:DialogueTextBox"
-							]
-						}
-					]
-				},
-				{
-					"guid": "4de2583c459e7d82c020a18db7d8b02b",
-					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTextBox",
-					"x": -144,
-					"y": 679,
-					"comment": null,
-					"pins": [
-						{
-							"id": "4de2583c459e7d82c020a18db7d8b02b:o:DialogueTextBox",
-							"name": "DialogueTextBox",
-							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"c6d89ef343dcf6eb181677bfd4272048:i:self"
-							]
-						},
-						{
-							"id": "4de2583c459e7d82c020a18db7d8b02b:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "5564049f4fa7bb512fa02e8fdbc16da6",
+					"guid": "47c0c1f245ef96aad6cda79ba101d57c",
 					"class": "K2Node_CallFunction",
-					"title": "SetText (Text)",
-					"x": 2624,
-					"y": 575,
+					"title": "SetText",
+					"x": 1888,
+					"y": 880,
 					"comment": null,
 					"pins": [
 						{
-							"id": "5564049f4fa7bb512fa02e8fdbc16da6:i:execute",
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"83df2a8142c42612df78a383f1254e80:o:Loop Body"
+								"83df2a8142c42612df78a383f1254e80:o:Completed"
 							]
 						},
 						{
-							"id": "5564049f4fa7bb512fa02e8fdbc16da6:o:then",
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "5564049f4fa7bb512fa02e8fdbc16da6:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
 							"links": [
-								"23e44a2e4fd02c82947f6487ae95488d:o:DialogueTextBox"
+								"beee6bf24a36db7b331e5897791cadb5:i:execute"
 							]
 						},
 						{
-							"id": "5564049f4fa7bb512fa02e8fdbc16da6:i:InText",
-							"name": "InText",
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:Text",
+							"name": "Text",
 							"direction": "input",
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"d13f555541ff5f7a249d5190f6aad9c4:o:ReturnValue"
+								"fbfc883044ed661ecc5875923e6c9280:o:Dialogue Sentence"
 							]
 						}
 					]
@@ -1363,6 +1340,52 @@
 							"links": [
 								"83df2a8142c42612df78a383f1254e80:i:Break"
 							]
+						}
+					]
+				},
+				{
+					"guid": "6578361f41bf46d9fc10f5b0d1e7408c",
+					"class": "K2Node_CallFunction",
+					"title": "SetText",
+					"x": 0,
+					"y": 576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8eeb4af0427e0e4169bc778c5e06508c:o:then"
+							]
+						},
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"83df2a8142c42612df78a383f1254e80:i:Exec"
+							]
+						},
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "Text",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -1463,7 +1486,7 @@
 							"type": "Exec",
 							"defaultValue": null,
 							"links": [
-								"c6d89ef343dcf6eb181677bfd4272048:o:then"
+								"6578361f41bf46d9fc10f5b0d1e7408c:o:then"
 							]
 						},
 						{
@@ -1503,7 +1526,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"5564049f4fa7bb512fa02e8fdbc16da6:i:execute"
+								"f52277d14fb7b00352f297bda58173f2:i:execute"
 							]
 						},
 						{
@@ -1531,7 +1554,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"26ebec0e41a73618da8967bf995bd8d9:i:execute"
+								"47c0c1f245ef96aad6cda79ba101d57c:i:execute"
 							]
 						}
 					]
@@ -1559,7 +1582,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"c6d89ef343dcf6eb181677bfd4272048:i:execute"
+								"6578361f41bf46d9fc10f5b0d1e7408c:i:execute"
 							]
 						}
 					]
@@ -1604,53 +1627,55 @@
 					]
 				},
 				{
-					"guid": "94f25f9147f974cde055d998db0d307e",
+					"guid": "a46940d04a78ddc10f9a21a5586d4e3a",
 					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTextBox",
-					"x": 1680,
-					"y": 950,
-					"comment": null,
-					"pins": [
-						{
-							"id": "94f25f9147f974cde055d998db0d307e:o:DialogueTextBox",
-							"name": "DialogueTextBox",
-							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"26ebec0e41a73618da8967bf995bd8d9:i:self"
-							]
-						},
-						{
-							"id": "94f25f9147f974cde055d998db0d307e:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "b7e6fe2f481fb94fa313a783cfb5f600",
-					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTextBox",
-					"x": 1584,
+					"title": "Get Text",
+					"x": 1760,
 					"y": 480,
 					"comment": null,
 					"pins": [
 						{
-							"id": "b7e6fe2f481fb94fa313a783cfb5f600:o:DialogueTextBox",
-							"name": "DialogueTextBox",
+							"id": "a46940d04a78ddc10f9a21a5586d4e3a:o:Text",
+							"name": "Text",
 							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
+							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"46974ba24e24a652b823ca86fcd4a654:i:self"
+								"d4896d5d4be6d4464fc6aa85e21d6ca1:i:InText"
 							]
 						},
 						{
-							"id": "b7e6fe2f481fb94fa313a783cfb5f600:i:self",
+							"id": "a46940d04a78ddc10f9a21a5586d4e3a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"be1a868a43475ffd0d5878b4a2e10728:o:MultiLineEditableTextBox_110"
+							]
+						}
+					]
+				},
+				{
+					"guid": "be1a868a43475ffd0d5878b4a2e10728",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": 1488,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "be1a868a43475ffd0d5878b4a2e10728:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"a46940d04a78ddc10f9a21a5586d4e3a:i:self"
+							]
+						},
+						{
+							"id": "be1a868a43475ffd0d5878b4a2e10728:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
@@ -1674,7 +1699,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"26ebec0e41a73618da8967bf995bd8d9:o:then"
+								"47c0c1f245ef96aad6cda79ba101d57c:o:then"
 							]
 						},
 						{
@@ -1706,54 +1731,6 @@
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "c6d89ef343dcf6eb181677bfd4272048",
-					"class": "K2Node_CallFunction",
-					"title": "SetText (Text)",
-					"x": 32,
-					"y": 576,
-					"comment": null,
-					"pins": [
-						{
-							"id": "c6d89ef343dcf6eb181677bfd4272048:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"8eeb4af0427e0e4169bc778c5e06508c:o:then"
-							]
-						},
-						{
-							"id": "c6d89ef343dcf6eb181677bfd4272048:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"83df2a8142c42612df78a383f1254e80:i:Exec"
-							]
-						},
-						{
-							"id": "c6d89ef343dcf6eb181677bfd4272048:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"4de2583c459e7d82c020a18db7d8b02b:o:DialogueTextBox"
-							]
-						},
-						{
-							"id": "c6d89ef343dcf6eb181677bfd4272048:i:InText",
-							"name": "InText",
-							"direction": "input",
-							"type": "text",
 							"defaultValue": null,
 							"links": []
 						}
@@ -1792,7 +1769,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"5564049f4fa7bb512fa02e8fdbc16da6:i:InText"
+								"f52277d14fb7b00352f297bda58173f2:i:Text"
 							]
 						}
 					]
@@ -1820,7 +1797,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"46974ba24e24a652b823ca86fcd4a654:o:Text"
+								"a46940d04a78ddc10f9a21a5586d4e3a:o:Text"
 							]
 						},
 						{
@@ -1862,6 +1839,52 @@
 					]
 				},
 				{
+					"guid": "f52277d14fb7b00352f297bda58173f2",
+					"class": "K2Node_CallFunction",
+					"title": "SetText",
+					"x": 2624,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"83df2a8142c42612df78a383f1254e80:o:Loop Body"
+							]
+						},
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"d13f555541ff5f7a249d5190f6aad9c4:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
 					"guid": "fbfc883044ed661ecc5875923e6c9280",
 					"class": "K2Node_VariableGet",
 					"title": "Get Dialogue Sentence",
@@ -1876,7 +1899,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"26ebec0e41a73618da8967bf995bd8d9:i:InText"
+								"47c0c1f245ef96aad6cda79ba101d57c:i:Text"
 							]
 						},
 						{
@@ -1908,14 +1931,14 @@
 			{
 				"type": "real:float",
 				"category": "Dialogue",
-				"defaultValue": "3.000000",
+				"defaultValue": "",
 				"instanceEditable": true
 			},
 			"Type Writer Finished":
 			{
 				"type": "bool",
 				"category": "Default",
-				"defaultValue": "False",
+				"defaultValue": "",
 				"instanceEditable": false
 			}
 		},
@@ -1924,10 +1947,10 @@
 		},
 		"defaults":
 		{
-			"DialogueTextBox": null,
+			"MultiLineEditableTextBox_110": null,
 			"Dialogue Sentence": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-			"Delay Duration": 3,
-			"TypeWriterFinished": false,
+			"Type Writer Delay Duration": 3,
+			"Type Writer Finished": false,
 			"ColorAndOpacity":
 			{
 				"R": 1,

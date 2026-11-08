@@ -1663,6 +1663,170 @@
 					]
 				},
 				{
+					"guid": "2d9e30e34289df739e30b08932e8e6cf",
+					"class": "K2Node_VariableGet",
+					"title": "Get DialogueTextBox",
+					"x": 544,
+					"y": -40,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2d9e30e34289df739e30b08932e8e6cf:o:DialogueTextBox",
+							"name": "DialogueTextBox",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"385800fe492800199f23bfbfe9cde1d1:i:self"
+							]
+						},
+						{
+							"id": "2d9e30e34289df739e30b08932e8e6cf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "385800fe492800199f23bfbfe9cde1d1",
+					"class": "K2Node_CallFunction",
+					"title": "SetText",
+					"x": 816,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "385800fe492800199f23bfbfe9cde1d1:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3cd68c0c443bf8826a646aa7390a754f:o:then"
+							]
+						},
+						{
+							"id": "385800fe492800199f23bfbfe9cde1d1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "385800fe492800199f23bfbfe9cde1d1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"2d9e30e34289df739e30b08932e8e6cf:o:DialogueTextBox"
+							]
+						},
+						{
+							"id": "385800fe492800199f23bfbfe9cde1d1:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"3cd68c0c443bf8826a646aa7390a754f:o:Output_Get"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3cd68c0c443bf8826a646aa7390a754f",
+					"class": "K2Node_VariableSet",
+					"title": "Set Dialogue Sentence",
+					"x": 528,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3cd68c0c443bf8826a646aa7390a754f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"dd7091b944062aa49f924c93e95b2d75:o:then"
+							]
+						},
+						{
+							"id": "3cd68c0c443bf8826a646aa7390a754f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"385800fe492800199f23bfbfe9cde1d1:i:execute"
+							]
+						},
+						{
+							"id": "3cd68c0c443bf8826a646aa7390a754f:i:Dialogue Sentence",
+							"name": "Dialogue Sentence",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"c2274f124965f2b98ec82f86eb6dc452:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3cd68c0c443bf8826a646aa7390a754f:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"385800fe492800199f23bfbfe9cde1d1:i:Text"
+							]
+						},
+						{
+							"id": "3cd68c0c443bf8826a646aa7390a754f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"776af4ac433d92d083de77abc43afe44:o:DialogueTextBox"
+							]
+						}
+					]
+				},
+				{
+					"guid": "776af4ac433d92d083de77abc43afe44",
+					"class": "K2Node_VariableGet",
+					"title": "Get DialogueTextBox",
+					"x": 320,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "776af4ac433d92d083de77abc43afe44:o:DialogueTextBox",
+							"name": "DialogueTextBox",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"3cd68c0c443bf8826a646aa7390a754f:i:self"
+							]
+						},
+						{
+							"id": "776af4ac433d92d083de77abc43afe44:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "9360b0e44fd46ab7ac23e4a042fdc273",
 					"class": "K2Node_CallFunction",
 					"title": "Set Visibility",
@@ -1676,9 +1840,7 @@
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
-							"links": [
-								"ee6412c94c6932aeb35592a2da158545:o:then"
-							]
+							"links": []
 						},
 						{
 							"id": "9360b0e44fd46ab7ac23e4a042fdc273:o:then",
@@ -1741,7 +1903,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"ee6412c94c6932aeb35592a2da158545:i:InText"
+								"3cd68c0c443bf8826a646aa7390a754f:i:Dialogue Sentence"
 							]
 						}
 					]
@@ -1751,7 +1913,7 @@
 					"class": "K2Node_FunctionEntry",
 					"title": "UpdateTextView",
 					"x": 0,
-					"y": 0,
+					"y": 16,
 					"comment": null,
 					"pins": [
 						{
@@ -1761,7 +1923,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"ee6412c94c6932aeb35592a2da158545:i:execute"
+								"3cd68c0c443bf8826a646aa7390a754f:i:execute"
 							]
 						},
 						{
@@ -1803,84 +1965,6 @@
 							"links": []
 						}
 					]
-				},
-				{
-					"guid": "e5c973e54a4ceb2d7484cc98f5cb0335",
-					"class": "K2Node_VariableGet",
-					"title": "Get TextView",
-					"x": 800,
-					"y": 80,
-					"comment": null,
-					"pins": [
-						{
-							"id": "e5c973e54a4ceb2d7484cc98f5cb0335:o:TextView",
-							"name": "TextView",
-							"direction": "output",
-							"type": "object:/Script/UMG.MultiLineEditableTextBox",
-							"defaultValue": null,
-							"links": [
-								"ee6412c94c6932aeb35592a2da158545:i:self"
-							]
-						},
-						{
-							"id": "e5c973e54a4ceb2d7484cc98f5cb0335:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "ee6412c94c6932aeb35592a2da158545",
-					"class": "K2Node_CallFunction",
-					"title": "SetText (Multi-Line Text Box)",
-					"x": 976,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "ee6412c94c6932aeb35592a2da158545:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"dd7091b944062aa49f924c93e95b2d75:o:then"
-							]
-						},
-						{
-							"id": "ee6412c94c6932aeb35592a2da158545:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"9360b0e44fd46ab7ac23e4a042fdc273:i:execute"
-							]
-						},
-						{
-							"id": "ee6412c94c6932aeb35592a2da158545:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.MultiLineEditableTextBox",
-							"defaultValue": null,
-							"links": [
-								"e5c973e54a4ceb2d7484cc98f5cb0335:o:TextView"
-							]
-						},
-						{
-							"id": "ee6412c94c6932aeb35592a2da158545:i:InText",
-							"name": "InText",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"c2274f124965f2b98ec82f86eb6dc452:o:ReturnValue"
-							]
-						}
-					]
 				}
 			],
 			"comments": []
@@ -1904,7 +1988,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"b9267f29421bf1b61b4e2fbe7ea1f895:o:then"
+								"2797f9f04bf9ea52683e44b2bf1cd748:o:then"
 							]
 						},
 						{
@@ -1978,7 +2062,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"b9267f29421bf1b61b4e2fbe7ea1f895:i:execute"
+								"2797f9f04bf9ea52683e44b2bf1cd748:i:execute"
 							]
 						}
 					]
@@ -2235,6 +2319,54 @@
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2797f9f04bf9ea52683e44b2bf1cd748",
+					"class": "K2Node_CallFunction",
+					"title": "SetText",
+					"x": 2432,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2797f9f04bf9ea52683e44b2bf1cd748:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"066e96954f31f90250de35a3f39b78df:o:else"
+							]
+						},
+						{
+							"id": "2797f9f04bf9ea52683e44b2bf1cd748:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"00043b5b4f2f348b5660ada120a046f6:i:execute"
+							]
+						},
+						{
+							"id": "2797f9f04bf9ea52683e44b2bf1cd748:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"6a7de109431d4ea0b4c962a9061eb421:o:DialogueTextBox"
+							]
+						},
+						{
+							"id": "2797f9f04bf9ea52683e44b2bf1cd748:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
 							"defaultValue": null,
 							"links": []
 						}
@@ -3563,6 +3695,34 @@
 					]
 				},
 				{
+					"guid": "6a7de109431d4ea0b4c962a9061eb421",
+					"class": "K2Node_VariableGet",
+					"title": "Get DialogueTextBox",
+					"x": 2208,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6a7de109431d4ea0b4c962a9061eb421:o:DialogueTextBox",
+							"name": "DialogueTextBox",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"2797f9f04bf9ea52683e44b2bf1cd748:i:self"
+							]
+						},
+						{
+							"id": "6a7de109431d4ea0b4c962a9061eb421:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "6ba2590f456b5306eee1d6a7e01c6cd1",
 					"class": "K2Node_CallFunction",
 					"title": "SwitchFlow",
@@ -4460,54 +4620,6 @@
 					]
 				},
 				{
-					"guid": "b9267f29421bf1b61b4e2fbe7ea1f895",
-					"class": "K2Node_CallFunction",
-					"title": "SetText (Multi-Line Text Box)",
-					"x": 2416,
-					"y": -16,
-					"comment": null,
-					"pins": [
-						{
-							"id": "b9267f29421bf1b61b4e2fbe7ea1f895:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"066e96954f31f90250de35a3f39b78df:o:else"
-							]
-						},
-						{
-							"id": "b9267f29421bf1b61b4e2fbe7ea1f895:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"00043b5b4f2f348b5660ada120a046f6:i:execute"
-							]
-						},
-						{
-							"id": "b9267f29421bf1b61b4e2fbe7ea1f895:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.MultiLineEditableTextBox",
-							"defaultValue": null,
-							"links": [
-								"dc7214e34abbf66a150fe7936c9f558b:o:TextView"
-							]
-						},
-						{
-							"id": "b9267f29421bf1b61b4e2fbe7ea1f895:i:InText",
-							"name": "InText",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "bb9a18f143a3c0c6addd48a08b49dba9",
 					"class": "K2Node_CallFunction",
 					"title": "ChooseChoice",
@@ -4746,34 +4858,6 @@
 						},
 						{
 							"id": "bfdf6a1c456c23be69730bb2c469014d:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "dc7214e34abbf66a150fe7936c9f558b",
-					"class": "K2Node_VariableGet",
-					"title": "Get TextView",
-					"x": 2240,
-					"y": 160,
-					"comment": null,
-					"pins": [
-						{
-							"id": "dc7214e34abbf66a150fe7936c9f558b:o:TextView",
-							"name": "TextView",
-							"direction": "output",
-							"type": "object:/Script/UMG.MultiLineEditableTextBox",
-							"defaultValue": null,
-							"links": [
-								"b9267f29421bf1b61b4e2fbe7ea1f895:i:self"
-							]
-						},
-						{
-							"id": "dc7214e34abbf66a150fe7936c9f558b:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
@@ -5326,13 +5410,13 @@
 		},
 		"defaults":
 		{
-			"TextView": null,
 			"MainStoryBox": null,
 			"JournalUpdated": null,
 			"JournalEntryList": null,
 			"JournalEntry": null,
 			"JournalButton": null,
 			"JournalBox": null,
+			"DialogueTextBox": null,
 			"ChoicesView": null,
 			"Story": null,
 			"Timer":

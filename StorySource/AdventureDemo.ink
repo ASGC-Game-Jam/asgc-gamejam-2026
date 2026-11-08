@@ -54,7 +54,7 @@ LIST Items = cone, cube, sphere, watch
 
 === Main ===
 
-{!Welcome! This demo provides some examples for how to set up dialogue, quests, and a journal in InkPot. # Linetime: 2.5} 
+{! Atlantis is sealing itself off district by district as the Bleaching spreads. The Oceanography Council has sent you down to find their missing contact, Sir Richard Black. # Linetime: 2.5} 
 
 {
     - QuestMeetEmmy !? ToldEmmyJournal:
@@ -256,7 +256,7 @@ LIST QuestFindShapes = BlueAsked, GotShapes, ToldBlue
 
 {
     - QuestMeetEmmy !? MetEmmy:
-        Go talk to the silver pawn.
+        Go talk to the Castella.
     - QuestMeetEmmy !? OpenedJournal:
       Check out the new entries in your journal, then head back to Emmy.
     - QuestMeetEmmy !? ToldEmmyJournal:
