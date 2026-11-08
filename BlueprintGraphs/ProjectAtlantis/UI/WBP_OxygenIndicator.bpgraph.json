@@ -129,6 +129,34 @@
 					]
 				},
 				{
+					"guid": "0ceae99f46ef5cbd6e4bdf8f8d69a782",
+					"class": "K2Node_CallFunction",
+					"title": "GetAllocatedOxygen",
+					"x": 304,
+					"y": 576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0ceae99f46ef5cbd6e4bdf8f8d69a782:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
+							"defaultValue": null,
+							"links": [
+								"1b808416455e0e2bd20ed3aebb87a227:o:Oxygen Component"
+							]
+						},
+						{
+							"id": "0ceae99f46ef5cbd6e4bdf8f8d69a782:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "1b808416455e0e2bd20ed3aebb87a227",
 					"class": "K2Node_VariableGet",
 					"title": "Get Oxygen Component",
@@ -143,6 +171,7 @@
 							"type": "object:/Script/ProjectAtlantis.AtlantisOxygenComponent",
 							"defaultValue": null,
 							"links": [
+								"0ceae99f46ef5cbd6e4bdf8f8d69a782:i:self",
 								"38b6fcd1491215543087f497c8b39385:i:self",
 								"b0540057478a3cb4d87c35af29956304:i:self",
 								"c0bdf21746fd17c43e98979d4eea7372:i:self"
@@ -391,7 +420,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "GetCurrentOxygen",
 					"x": 304,
-					"y": 112,
+					"y": 272,
 					"comment": null,
 					"pins": [
 						{
@@ -843,7 +872,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "GetOxygenCapacity",
 					"x": 304,
-					"y": 784,
+					"y": 480,
 					"comment": null,
 					"pins": [
 						{
@@ -1024,6 +1053,34 @@
 					]
 				},
 				{
+					"guid": "046bb5ed4f2c6e352198dea734bd002c",
+					"class": "K2Node_VariableGet",
+					"title": "Get varMID",
+					"x": 3296,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "046bb5ed4f2c6e352198dea734bd002c:o:varMID",
+							"name": "varMID",
+							"direction": "output",
+							"type": "object:/Script/Engine.MaterialInstanceDynamic",
+							"defaultValue": null,
+							"links": [
+								"2a8911254632a871431901827bf3b1c0:i:self"
+							]
+						},
+						{
+							"id": "046bb5ed4f2c6e352198dea734bd002c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "10c8408f44efd00611261ba78f729be4",
 					"class": "K2Node_VariableGet",
 					"title": "Get OxygenDisplay",
@@ -1170,6 +1227,60 @@
 					]
 				},
 				{
+					"guid": "2a8911254632a871431901827bf3b1c0",
+					"class": "K2Node_CallFunction",
+					"title": "Set Scalar Parameter Value",
+					"x": 3472,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2a8911254632a871431901827bf3b1c0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fc8b8d974e5497e8335c4c89fe87160a:o:then"
+							]
+						},
+						{
+							"id": "2a8911254632a871431901827bf3b1c0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2a8911254632a871431901827bf3b1c0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInstanceDynamic",
+							"defaultValue": null,
+							"links": [
+								"046bb5ed4f2c6e352198dea734bd002c:o:varMID"
+							]
+						},
+						{
+							"id": "2a8911254632a871431901827bf3b1c0:i:ParameterName",
+							"name": "ParameterName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "Available",
+							"links": []
+						},
+						{
+							"id": "2a8911254632a871431901827bf3b1c0:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "303c0edf4ab4a74c4105edad52198826",
 					"class": "K2Node_CallFunction",
 					"title": "Refresh Oxygen Display",
@@ -1230,6 +1341,60 @@
 							"links": [
 								"9ff4fecc45d28ac0ddce64a268446e06:i:execute"
 							]
+						}
+					]
+				},
+				{
+					"guid": "3130fd8643b736724114bb9964c16916",
+					"class": "K2Node_VariableSet",
+					"title": "Set varMID",
+					"x": 3072,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3130fd8643b736724114bb9964c16916:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a8dfca1a4f77e76061b6108e6169b3d2:o:then"
+							]
+						},
+						{
+							"id": "3130fd8643b736724114bb9964c16916:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3130fd8643b736724114bb9964c16916:i:varMID",
+							"name": "varMID",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInstanceDynamic",
+							"defaultValue": null,
+							"links": [
+								"a8dfca1a4f77e76061b6108e6169b3d2:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3130fd8643b736724114bb9964c16916:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3130fd8643b736724114bb9964c16916:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Engine.MaterialInstanceDynamic",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -1330,6 +1495,34 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "61e684c4402c9ad89865e79030b29fa4",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 2656,
+					"y": 736,
+					"comment": null,
+					"pins": [
+						{
+							"id": "61e684c4402c9ad89865e79030b29fa4:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "61e684c4402c9ad89865e79030b29fa4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a8dfca1a4f77e76061b6108e6169b3d2:i:execute"
+							]
 						}
 					]
 				},
@@ -1601,8 +1794,8 @@
 					"guid": "9800f1e84a56822b287f28a1134dec58",
 					"class": "K2Node_VariableGet",
 					"title": "Get PercentageText",
-					"x": 2976,
-					"y": 656,
+					"x": 2880,
+					"y": 640,
 					"comment": null,
 					"pins": [
 						{
@@ -1825,6 +2018,56 @@
 					]
 				},
 				{
+					"guid": "a8dfca1a4f77e76061b6108e6169b3d2",
+					"class": "K2Node_CallFunction",
+					"title": "Get Dynamic Material",
+					"x": 2848,
+					"y": 736,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a8dfca1a4f77e76061b6108e6169b3d2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"61e684c4402c9ad89865e79030b29fa4:o:then"
+							]
+						},
+						{
+							"id": "a8dfca1a4f77e76061b6108e6169b3d2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3130fd8643b736724114bb9964c16916:i:execute"
+							]
+						},
+						{
+							"id": "a8dfca1a4f77e76061b6108e6169b3d2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Image",
+							"defaultValue": null,
+							"links": [
+								"b8bee8b44ad85996f9eb5a9b111fae66:o:BarImage"
+							]
+						},
+						{
+							"id": "a8dfca1a4f77e76061b6108e6169b3d2:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.MaterialInstanceDynamic",
+							"defaultValue": null,
+							"links": [
+								"3130fd8643b736724114bb9964c16916:i:varMID"
+							]
+						}
+					]
+				},
+				{
 					"guid": "a9f070344508401e7a651d9cedf961d1",
 					"class": "K2Node_CallFunction",
 					"title": "GetOxygenCapacity",
@@ -1904,6 +2147,34 @@
 						},
 						{
 							"id": "b7ea13f24aea147b3f9bb5a9c87b5aac:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b8bee8b44ad85996f9eb5a9b111fae66",
+					"class": "K2Node_VariableGet",
+					"title": "Get BarImage",
+					"x": 2656,
+					"y": 816,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b8bee8b44ad85996f9eb5a9b111fae66:o:BarImage",
+							"name": "BarImage",
+							"direction": "output",
+							"type": "object:/Script/UMG.Image",
+							"defaultValue": null,
+							"links": [
+								"a8dfca1a4f77e76061b6108e6169b3d2:i:self"
+							]
+						},
+						{
+							"id": "b8bee8b44ad85996f9eb5a9b111fae66:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_OxygenIndicator.WBP_OxygenIndicator_C",
@@ -2192,7 +2463,7 @@
 					"guid": "fbb08e6d4ad761f0232b90bf796b343f",
 					"class": "K2Node_CallFunction",
 					"title": "To Text (Float)",
-					"x": 2928,
+					"x": 2864,
 					"y": 560,
 					"comment": null,
 					"pins": [
@@ -2286,7 +2557,7 @@
 					"guid": "fc8b8d974e5497e8335c4c89fe87160a",
 					"class": "K2Node_VariableSet",
 					"title": "Set Text",
-					"x": 3168,
+					"x": 3136,
 					"y": 512,
 					"comment": null,
 					"pins": [
@@ -2306,7 +2577,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"2a8911254632a871431901827bf3b1c0:i:execute"
+							]
 						},
 						{
 							"id": "fc8b8d974e5497e8335c4c89fe87160a:i:Text",
@@ -2368,6 +2641,13 @@
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": false
+			},
+			"varMID":
+			{
+				"type": "object:/Script/Engine.MaterialInstanceDynamic",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
 			}
 		},
 		"components":
@@ -2377,8 +2657,11 @@
 		{
 			"PercentageText": null,
 			"OxygenDisplay": null,
+			"FrameImage": null,
+			"BarImage": null,
 			"Atlantis Player State": null,
 			"Oxygen Component": null,
+			"varMID": null,
 			"ColorAndOpacity":
 			{
 				"R": 1,
