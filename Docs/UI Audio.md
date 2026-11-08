@@ -1,6 +1,6 @@
 # UI Audio: Sound Styles
 
-> **Status: proposal.** Nothing here is built yet. Comments welcome before implementation starts. The system will be a reusable project plugin, **Sound Styles**; see [Plugin](#plugin).
+> **Status: proposal.** Nothing here is built yet. Comments welcome before implementation starts. The system will be **Sound Styles**, a reusable MIT-licensed plugin owned by Clara Smith; see [Plugin](#plugin).
 
 UI sounds work like CSS. Widgets are tagged with **sound classes** (gameplay tags), and one table that audio owns, the **stylesheet**, decides what each class sounds like. UI developers never pick sound assets, and audio can re-skin every button in the game without touching a widget.
 
@@ -139,7 +139,17 @@ Rule of thumb: **if the sound should still play with the HUD turned off, it isn'
 
 ## Plugin
 
-The system is built as a project plugin, **Sound Styles** (`Plugins/SoundStyles`), so it has no dependency on game code and can be reused in other projects. The game uses it like any other plugin.
+The system is built as a plugin, **Sound Styles**, so it has no dependency on game code and can be reused in other projects. The game uses it like any other plugin.
+
+### Ownership and license
+
+Sound Styles is **Clara Smith's own plugin, licensed MIT**, and developed in its own repository (`clarasmith-sound/SoundStyles`), not in this one. ASGC uses it under the MIT license, which is compatible with this project's AGPL-3.0.
+
+- **Its files carry `Copyright (c) 2026 Clara Smith`**, not the ASGC header, and the plugin folder includes its `LICENSE` file.
+- **ASGC includes a release copy** in `Plugins/SoundStyles`, not a git submodule, so nobody needs extra clone steps. The plugin's README in that folder records its source repository and version.
+- **Changes go upstream first.** Fix or extend the plugin in its own repository, then a PR here copies in the new version. Don't edit `Plugins/SoundStyles` in this repo directly, or the next update will overwrite the change.
+- **Contributions are welcome** as PRs to the plugin's repository, under the same MIT license.
+- **No ASGC code goes into the plugin.** It's written fresh, so it stays clean to license separately. Game code that uses it (the style table, classes, widget setup, player feedback) stays in this project under AGPL.
 
 ### What lives where
 
@@ -158,6 +168,8 @@ The rule: **the plugin knows how sounds are chosen and played, the game decides 
 
 ```
 Plugins/SoundStyles/
+  LICENSE                       MIT
+  README.md                     source repository, version, usage
   SoundStyles.uplugin           depends on the AudioModulation plugin
   Source/SoundStyles/           runtime module
     Public/   SoundStyleTable.h, SoundStyleSubsystem.h, SoundStyleButton.h,
@@ -170,7 +182,7 @@ Plugins/SoundStyles/
 - **Game side:** enable the plugin in `ProjectAtlantis.uproject` and add `SoundStyles` to the game module's dependencies, only if game C++ calls it. Blueprint-only use needs just the plugin enabled.
 - **Settings move into the plugin.** The table is no longer set in Atlantis Audio Settings, because the plugin can't see game settings.
 - **Tests** are named `SoundStyles.*`, so they run separately from the game's `Atlantis.*` tests.
-- **Ownership:** a plugin is code the whole team depends on, so changes to it should keep it generic. Game-specific needs go in game code or data, not in the plugin.
+- **Keep it generic:** game-specific needs go in game code or data, not in the plugin.
 
 ## Design details
 
@@ -304,15 +316,16 @@ Two things the review found that affect UI audio:
 
 ## Implementation plan
 
-| Step | What | Who |
-|---|---|---|
-| 1 | Plugin skeleton (`.uplugin`, runtime module, enabled in the project), root and plugin tags, data types, settings, and `DA_AtlantisUISoundStyles` | Audio |
-| 2 | Subsystem: resolution with classes and scopes, Play UI Sound, debug output, tests | Audio |
-| 3 | Scope interface and `USoundStyleButton` (hover, press, release, gamepad focus, settle window) | Audio |
-| 4 | Convert `WBP_MenuButton` and the menus; first sound pass | Audio + UI |
-| 5 | Screen audio states: stack, state mixes, clearing on travel; pause and journal | Audio |
-| 6 | Journal tabs, rows and Notify | Audio + UI |
-| 7 | Dialogue typewriter | Audio + UI |
-| 8 | Loading suppression and minimum intervals | Audio |
-| 9 | Audio section in the style guide | Audio + UI design |
-| Later | Two-pane editor, looping events, slider/checkbox/dropdown adapters | Audio |
+| Step | What | Where | Who |
+|---|---|---|---|
+| 1 | Plugin skeleton (`.uplugin`, runtime module, `LICENSE`, README), root and plugin tags, data types, settings | Plugin repo | Clara |
+| 2 | Subsystem: resolution with classes and scopes, Play UI Sound, debug output, tests | Plugin repo | Clara |
+| 3 | Scope interface and `USoundStyleButton` (hover, press, release, gamepad focus, settle window) | Plugin repo | Clara |
+| 4 | First release copied into `Plugins/SoundStyles` and enabled; `DA_AtlantisUISoundStyles`, class tags, settings entry | This repo | Audio |
+| 5 | Convert `WBP_MenuButton` and the menus; first sound pass | This repo | Audio + UI |
+| 6 | Screen audio states (stack, clearing on travel) in the plugin; state mixes for pause and journal in the game | Both | Audio |
+| 7 | Journal tabs, rows and Notify | This repo | Audio + UI |
+| 8 | Dialogue typewriter | This repo | Audio + UI |
+| 9 | Loading suppression and minimum intervals | Plugin repo | Clara |
+| 10 | Audio section in the style guide | Style guide | Audio + UI design |
+| Later | Two-pane editor, looping events, slider/checkbox/dropdown adapters | Plugin repo | Clara |
