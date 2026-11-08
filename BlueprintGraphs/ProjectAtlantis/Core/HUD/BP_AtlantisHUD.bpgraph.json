@@ -1,8 +1,9 @@
 {
-	"version": 1,
+	"version": 2,
 	"generatedBy": "keystone-blueprint-export",
 	"package": "/Game/ProjectAtlantis/Core/HUD/BP_AtlantisHUD",
 	"asset": "BP_AtlantisHUD",
+	"assetClass": "Blueprint",
 	"parentClass": "HUD",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
@@ -142,14 +143,14 @@
 							"name": "Class",
 							"direction": "input",
 							"type": "class:/Script/UMG.UserWidget",
-							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_HUD_Root.WBP_HUD_Root_C",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_HUD_Root2.WBP_HUD_Root2_C",
 							"links": []
 						},
 						{
 							"id": "acd636f74abe624d8620d88b92a4721d:o:ReturnValue",
 							"name": "ReturnValue",
 							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_HUD_Root.WBP_HUD_Root_C",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_HUD_Root2.WBP_HUD_Root2_C",
 							"defaultValue": null,
 							"links": [
 								"5b8b10184ee299c693ccef91b8e10ca2:i:self"
@@ -198,5 +199,204 @@
 			],
 			"comments": []
 		}
-	]
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+			"DefaultSceneRoot":
+			{
+				"class": "SceneComponent",
+				"parent": null,
+				"properties":
+				{
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": false,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": true,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			}
+		},
+		"defaults":
+		{
+			"DefaultSceneRoot": null,
+			"PlayerOwner": null,
+			"bLostFocusPaused": false,
+			"bShowHUD": true,
+			"bShowDebugInfo": false,
+			"bShowHitBoxDebugInfo": false,
+			"bShowOverlays": false,
+			"bEnableDebugTextShadow": false,
+			"PostRenderedActors": [],
+			"DebugDisplay": [
+				"AI"
+			],
+			"ToggledDebugCategories": [],
+			"Canvas": null,
+			"DebugCanvas": null,
+			"DebugTextList": [],
+			"ShowDebugTargetDesiredClass": null,
+			"ShowDebugTargetActor": null,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_DuringPhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": true,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": true,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": false,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
 }
