@@ -1,8 +1,9 @@
 {
-	"version": 1,
+	"version": 2,
 	"generatedBy": "keystone-blueprint-export",
 	"package": "/Game/ProjectAtlantis/UI/WBP_PauseMenu",
 	"asset": "WBP_PauseMenu",
+	"assetClass": "WidgetBlueprint",
 	"parentClass": "UserWidget",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
@@ -167,15 +168,15 @@
 					]
 				},
 				{
-					"guid": "4c3de9074bac614c3d10f9a64278fb12",
+					"guid": "3607ed7740a4e4a1643ffa97e44411bf",
 					"class": "K2Node_CallFunction",
-					"title": "Set Input Mode Game And UI",
+					"title": "Set Input Mode Game Only",
 					"x": 896,
 					"y": 144,
 					"comment": null,
 					"pins": [
 						{
-							"id": "4c3de9074bac614c3d10f9a64278fb12:i:execute",
+							"id": "3607ed7740a4e4a1643ffa97e44411bf:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
@@ -185,7 +186,7 @@
 							]
 						},
 						{
-							"id": "4c3de9074bac614c3d10f9a64278fb12:o:then",
+							"id": "3607ed7740a4e4a1643ffa97e44411bf:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -195,7 +196,7 @@
 							]
 						},
 						{
-							"id": "4c3de9074bac614c3d10f9a64278fb12:i:self",
+							"id": "3607ed7740a4e4a1643ffa97e44411bf:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
@@ -203,7 +204,7 @@
 							"links": []
 						},
 						{
-							"id": "4c3de9074bac614c3d10f9a64278fb12:i:PlayerController",
+							"id": "3607ed7740a4e4a1643ffa97e44411bf:i:PlayerController",
 							"name": "PlayerController",
 							"direction": "input",
 							"type": "object:/Script/Engine.PlayerController",
@@ -213,31 +214,7 @@
 							]
 						},
 						{
-							"id": "4c3de9074bac614c3d10f9a64278fb12:i:InWidgetToFocus",
-							"name": "InWidgetToFocus",
-							"direction": "input",
-							"type": "object:/Script/UMG.Widget",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "4c3de9074bac614c3d10f9a64278fb12:i:InMouseLockMode",
-							"name": "InMouseLockMode",
-							"direction": "input",
-							"type": "byte:/Script/Engine.EMouseLockMode",
-							"defaultValue": "DoNotLock",
-							"links": []
-						},
-						{
-							"id": "4c3de9074bac614c3d10f9a64278fb12:i:bHideCursorDuringCapture",
-							"name": "bHideCursorDuringCapture",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "4c3de9074bac614c3d10f9a64278fb12:i:bFlushInput",
+							"id": "3607ed7740a4e4a1643ffa97e44411bf:i:bFlushInput",
 							"name": "bFlushInput",
 							"direction": "input",
 							"type": "bool",
@@ -316,7 +293,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"4c3de9074bac614c3d10f9a64278fb12:i:execute"
+								"3607ed7740a4e4a1643ffa97e44411bf:i:execute"
 							]
 						},
 						{
@@ -598,7 +575,7 @@
 							"type": "object:/Script/Engine.PlayerController",
 							"defaultValue": null,
 							"links": [
-								"4c3de9074bac614c3d10f9a64278fb12:i:PlayerController",
+								"3607ed7740a4e4a1643ffa97e44411bf:i:PlayerController",
 								"c004a1cb4cc491a7a5653c9ba711996c:i:InputPin"
 							]
 						}
@@ -851,7 +828,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"4c3de9074bac614c3d10f9a64278fb12:o:then"
+								"3607ed7740a4e4a1643ffa97e44411bf:o:then"
 							]
 						},
 						{
@@ -893,5 +870,117 @@
 			],
 			"comments": []
 		}
-	]
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"WBP_MenuFrame": null,
+			"ReturnToMainMenuButton": null,
+			"ReturnToGameButton": null,
+			"QuitButton": null,
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "Visible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
 }
