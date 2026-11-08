@@ -8,6 +8,8 @@
 #include "AtlantisPlayerCharacter.generated.h"
 
 class UAtlantisHidingComponent;
+class UAtlantisAudioFactBridgeComponent;
+
 
 UCLASS()
 class PROJECTATLANTIS_API AAtlantisPlayerCharacter : public ACharacter
@@ -63,4 +65,8 @@ private:
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Atlantis|Stealth")
 	TObjectPtr<UAtlantisHidingComponent> HidingComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Atlantis|Audio")
+	TObjectPtr<UAtlantisAudioFactBridgeComponent> AudioFactBridgeComponent;
+
 };
