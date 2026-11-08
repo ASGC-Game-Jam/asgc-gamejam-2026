@@ -4,11 +4,45 @@
 
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterfaceRegistration.h"
 
+#if PLATFORM_MAC && WITH_EDITOR
+#include <errno.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+namespace
+{
+	// A revoked debugger console prevents the embedded Python interpreter from
+	// creating its standard streams. Leave working Xcode and terminal streams intact.
+	void RepairUnavailableStandardStreams()
+	{
+		for (int Stream = STDIN_FILENO; Stream <= STDERR_FILENO; ++Stream)
+		{
+			struct stat StreamStat;
+			if (fstat(Stream, &StreamStat) == 0 || errno != EBADF)
+			{
+				continue;
+			}
+
+			const int NullStream = open("/dev/null", Stream == STDIN_FILENO ? O_RDONLY : O_WRONLY);
+			if (NullStream >= 0 && NullStream != Stream)
+			{
+				dup2(NullStream, Stream);
+				close(NullStream);
+			}
+		}
+	}
+}
+#endif
+
 class FProjectAtlantisModule : public FDefaultGameModuleImpl
 {
 public:
 	virtual void StartupModule() override
 	{
+#if PLATFORM_MAC && WITH_EDITOR
+		RepairUnavailableStandardStreams();
+#endif
 		ProjectAtlantisAudio::RegisterAllMetaSoundInterfaces();
 		
 #if WITH_GAMEPLAY_DEBUGGER
