@@ -1,0 +1,528 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Maps/POC/L_WaterSimulation_POC",
+	"asset": "L_WaterSimulation_POC",
+	"assetClass": "World",
+	"parentClass": "LevelScriptActor",
+	"blueprintType": "BPTYPE_LevelScript",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "314e11f644a2f226df3453ac3b3a11c3",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 592,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "314e11f644a2f226df3453ac3b3a11c3:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ff5717a7443a9e6329f37da570308f9f:o:then"
+							]
+						},
+						{
+							"id": "314e11f644a2f226df3453ac3b3a11c3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "314e11f644a2f226df3453ac3b3a11c3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"ff5717a7443a9e6329f37da570308f9f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "314e11f644a2f226df3453ac3b3a11c3:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "614969dc4e8c00fbc7b326964f5179f1",
+					"class": "K2Node_InputKey",
+					"title": "Escape",
+					"x": 64,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "614969dc4e8c00fbc7b326964f5179f1:o:Pressed",
+							"name": "Pressed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ff5717a7443a9e6329f37da570308f9f:i:execute"
+							]
+						},
+						{
+							"id": "614969dc4e8c00fbc7b326964f5179f1:o:Released",
+							"name": "Released",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "614969dc4e8c00fbc7b326964f5179f1:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ff5717a7443a9e6329f37da570308f9f",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 224,
+					"y": 48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ff5717a7443a9e6329f37da570308f9f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"614969dc4e8c00fbc7b326964f5179f1:o:Pressed"
+							]
+						},
+						{
+							"id": "ff5717a7443a9e6329f37da570308f9f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"314e11f644a2f226df3453ac3b3a11c3:i:execute"
+							]
+						},
+						{
+							"id": "ff5717a7443a9e6329f37da570308f9f:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/UI/WBP_PauseMenu.WBP_PauseMenu_C",
+							"links": []
+						},
+						{
+							"id": "ff5717a7443a9e6329f37da570308f9f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_PauseMenu.WBP_PauseMenu_C",
+							"defaultValue": null,
+							"links": [
+								"314e11f644a2f226df3453ac3b3a11c3:i:self"
+							]
+						},
+						{
+							"id": "ff5717a7443a9e6329f37da570308f9f:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "1cfa7b3c448b2f19a1ae83a6edca7515",
+					"text": "This processing should be moved out of the level blueprint so it can be applied to any level",
+					"x": 32,
+					"y": -64,
+					"width": 768,
+					"height": 320
+				}
+			]
+		}
+	],
+	"properties":
+	{
+		"worldSettings":
+		{
+			"VisibilityCellSize": 200,
+			"VisibilityAggressiveness": "VIS_LeastAggressive",
+			"bPrecomputeVisibility": false,
+			"bPlaceCellsOnlyAlongCameraTracks": false,
+			"bEnableWorldBoundsChecks": true,
+			"bEnableNavigationSystem": true,
+			"bEnableAISystem": true,
+			"bEnableWorldComposition": false,
+			"bUseClientSideLevelStreamingVolumes": false,
+			"bEnableWorldOriginRebasing": false,
+			"bGlobalGravitySet": false,
+			"bMinimizeBSPSections": false,
+			"bForceNoPrecomputedLighting": true,
+			"bForceVolumetricLightmapsOnly": false,
+			"bHighPriorityLoading": false,
+			"bHighPriorityLoadingLocal": false,
+			"bOverrideDefaultBroadphaseSettings": false,
+			"bGenerateSingleClusterForLevel": false,
+			"bHideEnableStreamingWarning": false,
+			"bIncludeGridSizeInNameForFoliageActors": true,
+			"bIncludeGridSizeInNameForPartitionedActors": true,
+			"bReuseAddressAndPort": false,
+			"AISystemClass": "/Script/AIModule.AISystem",
+			"LevelInstancePivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"NavigationSystemConfig":
+			{
+				"_class": "NavigationSystemModuleConfig",
+				"_name": "NavigationSystemModuleConfig_0",
+				"bStrictlyStatic": false,
+				"bCreateOnClient": false,
+				"bAutoSpawnMissingNavData": true,
+				"bSpawnNavDataInNavBoundsLevel": false,
+				"NavigationSystemClass": "/Script/NavigationSystem.NavigationSystemV1",
+				"SupportedAgentsMask":
+				{
+					"bSupportsAgent0": true,
+					"bSupportsAgent1": true,
+					"bSupportsAgent2": true,
+					"bSupportsAgent3": true,
+					"bSupportsAgent4": true,
+					"bSupportsAgent5": true,
+					"bSupportsAgent6": true,
+					"bSupportsAgent7": true,
+					"bSupportsAgent8": true,
+					"bSupportsAgent9": true,
+					"bSupportsAgent10": true,
+					"bSupportsAgent11": true,
+					"bSupportsAgent12": true,
+					"bSupportsAgent13": true,
+					"bSupportsAgent14": true,
+					"bSupportsAgent15": true
+				},
+				"DefaultAgentName": "None",
+				"bIsOverriden": false
+			},
+			"WorldPartition":
+			{
+				"_class": "WorldPartition",
+				"_name": "WorldPartition_0",
+				"WorldPartitionStreamingPolicyClass": "/Script/Engine.WorldPartitionLevelStreamingPolicy",
+				"bStreamingWasEnabled": true,
+				"RuntimeHash": "/Game/ProjectAtlantis/Maps/POC/L_WaterSimulation_POC.L_WaterSimulation_POC:PersistentLevel.WorldSettings.WorldPartition_0.WorldPartitionRuntimeHashSet_0",
+				"bEnableStreaming": false,
+				"ServerStreamingMode": "ProjectDefault",
+				"ServerStreamingOutMode": "ProjectDefault",
+				"DataLayersLogicOperator": "Or",
+				"bAllowShowingHLODsInEditor": true,
+				"bHasStandaloneHLOD": false,
+				"bIsStandaloneHLODWorld": false,
+				"bDisableContentBundles": false,
+				"RuntimeCellsTransformerStack": [],
+				"DefaultHLODLayer": null
+			},
+			"InstancedFoliageGridSize": 25600,
+			"LandscapeSplineMeshesGridSize": 25600,
+			"NavigationDataChunkGridSize": 102400,
+			"NavigationDataBuilderLoadingCellSize": 409600,
+			"DefaultPlacementGridSize": 25600,
+			"BaseNavmeshDataLayers": [],
+			"WorldToMeters": 100,
+			"KillZ": -1048575,
+			"KillZDamageType": "/Engine/EngineDamageTypes/DmgTypeBP_Environmental.DmgTypeBP_Environmental_C",
+			"GlobalGravityZ": 0,
+			"DefaultPhysicsVolumeClass": "/Script/Engine.DefaultPhysicsVolume",
+			"PhysicsCollisionHandlerClass": null,
+			"DefaultGameMode": "/Game/ProjectAtlantis/Core/GameModes/BP_AtlantisGameMode.BP_AtlantisGameMode_C",
+			"GameNetworkManagerClass": "/Script/Engine.GameNetworkManager",
+			"PackedLightAndShadowMapTextureSize": 1024,
+			"DefaultColorScale":
+			{
+				"X": 1,
+				"Y": 1,
+				"Z": 1
+			},
+			"DefaultMaxDistanceFieldOcclusionDistance": 600,
+			"GlobalDistanceFieldViewDistance": 20000,
+			"DynamicIndirectShadowsSelfShadowingIntensity": 0.80000000000000004,
+			"LightmassSettings":
+			{
+				"StaticLightingLevelScale": 1,
+				"NumIndirectLightingBounces": 3,
+				"NumSkyLightingBounces": 1,
+				"IndirectLightingQuality": 1,
+				"IndirectLightingSmoothness": 1,
+				"EnvironmentColor":
+				{
+					"B": 0,
+					"G": 0,
+					"R": 0,
+					"A": 0
+				},
+				"EnvironmentIntensity": 1,
+				"EmissiveBoost": 1,
+				"DiffuseBoost": 1,
+				"VolumeLightingMethod": "VLM_VolumetricLightmap",
+				"bUseAmbientOcclusion": false,
+				"bGenerateAmbientOcclusionMaterialMask": false,
+				"bVisualizeMaterialDiffuse": false,
+				"bVisualizeAmbientOcclusion": false,
+				"bCompressLightmaps": true,
+				"VolumetricLightmapDetailCellSize": 200,
+				"VolumetricLightmapMaximumBrickMemoryMb": 30,
+				"VolumetricLightmapLoadingCellSize": 3200,
+				"VolumetricLightmapSphericalHarmonicSmoothing": 0.02,
+				"VolumeLightSamplePlacementScale": 1,
+				"DirectIlluminationOcclusionFraction": 0.5,
+				"IndirectIlluminationOcclusionFraction": 1,
+				"OcclusionExponent": 1,
+				"FullyOccludedSamplesFraction": 1,
+				"MaxOcclusionDistance": 200
+			},
+			"VolumetricLightmapLoadingRange": 6400,
+			"NaniteSettings":
+			{
+				"bAllowMaskedMaterials": true
+			},
+			"DefaultReverbSettings":
+			{
+				"bApplyReverb": true,
+				"ReverbEffect": null,
+				"ReverbPluginEffect": null,
+				"Volume": 0.5,
+				"FadeTime": 2
+			},
+			"DefaultAmbientZoneSettings":
+			{
+				"bIsWorldSettings": true,
+				"ExteriorVolume": 1,
+				"ExteriorTime": 0.5,
+				"ExteriorLPF": 20000,
+				"ExteriorLPFTime": 0.5,
+				"InteriorVolume": 1,
+				"InteriorTime": 0.5,
+				"InteriorLPF": 20000,
+				"InteriorLPFTime": 0.5
+			},
+			"DefaultBaseSoundMix": null,
+			"HLODSetupAsset": null,
+			"OverrideBaseMaterial": null,
+			"HierarchicalLODSetup": [],
+			"NumHLODLevels": 0,
+			"HLODBakingTransform":
+			{
+				"Rotation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0,
+					"W": 1
+				},
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"Scale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				}
+			},
+			"BookMarks": null,
+			"MinGlobalTimeDilation": 0.0001,
+			"MaxGlobalTimeDilation": 20,
+			"MinCinematicTimeDilation": 0.0001,
+			"MaxCinematicTimeDilation": 20,
+			"MinUndilatedFrameTime": 0.00050000000000000001,
+			"MaxUndilatedFrameTime": 0.40000000000000002,
+			"BroadphaseSettings":
+			{
+				"bUseMBPOnClient": false,
+				"bUseMBPOnServer": false,
+				"bUseMBPOuterBounds": false,
+				"MBPBounds":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"IsValid": false
+				},
+				"MBPOuterBounds":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"IsValid": false
+				},
+				"MBPNumSubdivs": 2
+			},
+			"ReplicationViewers": [],
+			"AssetUserData": [],
+			"AssetUserDataEditorOnly": [],
+			"DefaultWorldPartitionSettings":
+			{
+				"LoadedEditorRegions": [],
+				"LoadedEditorLocationVolumes": [],
+				"NotLoadedDataLayers": [],
+				"LoadedDataLayers": []
+			},
+			"MaxNumberOfBookmarks": 10,
+			"DefaultBookmarkClass": "/Script/Engine.BookMark",
+			"BookmarkArray": [
+				null,
+				"/Game/ProjectAtlantis/Maps/POC/L_WaterSimulation_POC.L_WaterSimulation_POC:PersistentLevel.WorldSettings.BookMark_0",
+				"/Game/ProjectAtlantis/Maps/POC/L_WaterSimulation_POC.L_WaterSimulation_POC:PersistentLevel.WorldSettings.BookMark_1",
+				"/Game/ProjectAtlantis/Maps/POC/L_WaterSimulation_POC.L_WaterSimulation_POC:PersistentLevel.WorldSettings.BookMark_2",
+				"/Game/ProjectAtlantis/Maps/POC/L_WaterSimulation_POC.L_WaterSimulation_POC:PersistentLevel.WorldSettings.BookMark_3",
+				null,
+				null,
+				null,
+				null,
+				null
+			],
+			"LastBookmarkClass": "/Script/Engine.BookMark",
+			"DefaultBookmark": null,
+			"SpriteComponent": null,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": true,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": true,
+			"bAllowTickBeforeBeginPlay": true,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": false,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": false,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": true,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 10,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "WorldSettings",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": false,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": false,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}
