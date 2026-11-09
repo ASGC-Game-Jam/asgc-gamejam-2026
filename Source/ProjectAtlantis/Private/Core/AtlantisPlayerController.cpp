@@ -180,13 +180,11 @@ void AAtlantisPlayerController::SetupInputComponent()
 			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this,
 			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
 		}
-		// ADDED: one key that steps through the ballast states (Descend -> Wander -> Ascend -> Descend).
 		if (CycleBallastAction)
 		{
 			EnhancedInput->BindAction(CycleBallastAction, ETriggerEvent::Started, this,
 				&AAtlantisPlayerController::CycleBallastState);
 		}
-		// Steps the other way (Descend -> Ascend -> Wander -> Descend).
 		if (CycleBallastBackAction)
 		{
 			EnhancedInput->BindAction(CycleBallastBackAction, ETriggerEvent::Started, this,
@@ -264,8 +262,6 @@ void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& Act
 	}
 }
 
-// ADDED: steps the *pending* ballast state forward one step per press. The real state is only
-// applied (via RequestBallastState) once BallastCommitDelay seconds pass without another press.
 void AAtlantisPlayerController::CycleBallastState(const FInputActionValue& ActionValue)
 {
 	if (!bControlsEnabled || !GetPawn())
@@ -279,7 +275,6 @@ void AAtlantisPlayerController::CycleBallastState(const FInputActionValue& Actio
 		return;
 	}
 
-	// GetBallastState() is a guess, check the real getter name in AtlantisPlayerState.h
 	const EAtlantisBallastState From =
 		PendingBallastState.IsSet() ? PendingBallastState.GetValue() : State->GetBallastState();
 
@@ -297,7 +292,6 @@ void AAtlantisPlayerController::CycleBallastState(const FInputActionValue& Actio
 		&AAtlantisPlayerController::CommitPendingBallastState, BallastCommitDelay, false);
 }
 
-// Same as CycleBallastState, but steps the pending state backwards.
 void AAtlantisPlayerController::CycleBallastBackState(const FInputActionValue& ActionValue)
 {
 	if (!bControlsEnabled || !GetPawn())
@@ -327,7 +321,6 @@ void AAtlantisPlayerController::CycleBallastBackState(const FInputActionValue& A
 		&AAtlantisPlayerController::CommitPendingBallastState, BallastCommitDelay, false);
 }
 
-// ADDED: applies the pending state once the player has stopped cycling.
 void AAtlantisPlayerController::CommitPendingBallastState()
 {
 	if (PendingBallastState.IsSet())
