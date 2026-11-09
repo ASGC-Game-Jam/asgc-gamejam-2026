@@ -650,7 +650,7 @@
 					"guid": "b7072d264014c93277746fabdb23293e",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 1280,
+					"x": 1312,
 					"y": 0,
 					"comment": null,
 					"pins": [
@@ -833,7 +833,7 @@
 					"class": "K2Node_VariableGet",
 					"title": "Get Story",
 					"x": 880,
-					"y": 192,
+					"y": 199,
 					"comment": null,
 					"pins": [
 						{
@@ -919,8 +919,8 @@
 					"guid": "0b258a6e4609576311d7cfa1ad474806",
 					"class": "K2Node_CustomEvent",
 					"title": "Event OnStoryBegin",
-					"x": -528,
-					"y": -432,
+					"x": -3264,
+					"y": -640,
 					"comment": null,
 					"pins": [
 						{
@@ -959,8 +959,8 @@
 					"guid": "12b50a2543ef534022cf95837e574b67",
 					"class": "K2Node_CallFunction",
 					"title": "ShowStory",
-					"x": -160,
-					"y": -432,
+					"x": -2896,
+					"y": -640,
 					"comment": null,
 					"pins": [
 						{
@@ -1058,58 +1058,6 @@
 					]
 				},
 				{
-					"guid": "1e58676542d31044717833a674bd59e3",
-					"class": "K2Node_CreateWidget",
-					"title": "Create Widget",
-					"x": -496,
-					"y": -896,
-					"comment": null,
-					"pins": [
-						{
-							"id": "1e58676542d31044717833a674bd59e3:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "1e58676542d31044717833a674bd59e3:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"8aa82e3847a161580befe6bbc78ce782:i:execute"
-							]
-						},
-						{
-							"id": "1e58676542d31044717833a674bd59e3:i:Class",
-							"name": "Class",
-							"direction": "input",
-							"type": "class:/Script/UMG.UserWidget",
-							"defaultValue": "/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
-							"links": []
-						},
-						{
-							"id": "1e58676542d31044717833a674bd59e3:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "1e58676542d31044717833a674bd59e3:i:OwningPlayer",
-							"name": "OwningPlayer",
-							"direction": "input",
-							"type": "object:/Script/Engine.PlayerController",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "2a18b3404637342c528082a46a7d7968",
 					"class": "K2Node_CallFunction",
 					"title": "AddToList",
@@ -1167,8 +1115,8 @@
 					"guid": "306083d047be0b30c074059f1295de87",
 					"class": "K2Node_GetArrayItem",
 					"title": "Get (a copy)",
-					"x": -96,
-					"y": -1040,
+					"x": -64,
+					"y": -922,
 					"comment": null,
 					"pins": [
 						{
@@ -1205,8 +1153,8 @@
 					"guid": "316a331845702dd2c57c6f8f5bec88c9",
 					"class": "K2Node_CallFunction",
 					"title": "Get All Widgets Of Class",
-					"x": -480,
-					"y": -1072,
+					"x": -464,
+					"y": -976,
 					"comment": null,
 					"pins": [
 						{
@@ -1362,78 +1310,6 @@
 					]
 				},
 				{
-					"guid": "364346a04cffa5c945d7b4901bc116aa",
-					"class": "K2Node_VariableGet",
-					"title": "Get Story",
-					"x": 96,
-					"y": 800,
-					"comment": null,
-					"pins": [
-						{
-							"id": "364346a04cffa5c945d7b4901bc116aa:o:Story",
-							"name": "Story",
-							"direction": "output",
-							"type": "object:/Script/Inkpot.InkpotStory",
-							"defaultValue": null,
-							"links": [
-								"a7a6ff8f4c761ba1dba6ba9a74661785:i:self"
-							]
-						},
-						{
-							"id": "364346a04cffa5c945d7b4901bc116aa:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Maps/Tutorial/L_Tutorial_Main.L_Tutorial_Main_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "3b19a0974228ddbac3ef30b286af47f1",
-					"class": "K2Node_ActorBoundEvent",
-					"title": "On Actor End Overlap (TriggerBoxEmmy)",
-					"x": -496,
-					"y": 944,
-					"comment": null,
-					"pins": [
-						{
-							"id": "3b19a0974228ddbac3ef30b286af47f1:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "3b19a0974228ddbac3ef30b286af47f1:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"754e512b4acdc7ad4b5ba6bfe860ddb3:i:execute"
-							]
-						},
-						{
-							"id": "3b19a0974228ddbac3ef30b286af47f1:o:OverlappedActor",
-							"name": "OverlappedActor",
-							"direction": "output",
-							"type": "object:/Script/Engine.Actor",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "3b19a0974228ddbac3ef30b286af47f1:o:OtherActor",
-							"name": "OtherActor",
-							"direction": "output",
-							"type": "object:/Script/Engine.Actor",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "3b4d631b4a7a463c578f30bc038b177d",
 					"class": "K2Node_VariableSet",
 					"title": "Set bShowMouseCursor",
@@ -1457,9 +1333,7 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": [
-								"7d83c0ec4f0d4186bcb1b582f2af7c3a:i:execute"
-							]
+							"links": []
 						},
 						{
 							"id": "3b4d631b4a7a463c578f30bc038b177d:i:bShowMouseCursor",
@@ -1493,7 +1367,7 @@
 					"guid": "485358f148dd6ca2e5aacea62d8a5e94",
 					"class": "K2Node_VariableGet",
 					"title": "Get Story Display",
-					"x": 368,
+					"x": 352,
 					"y": -848,
 					"comment": null,
 					"pins": [
@@ -1521,8 +1395,8 @@
 					"guid": "5efb2b9e4146837795b01db0315b3f0c",
 					"class": "K2Node_GetEngineSubsystem",
 					"title": "Get Inkpot",
-					"x": 1376,
-					"y": -944,
+					"x": -2352,
+					"y": -1040,
 					"comment": null,
 					"pins": [
 						{
@@ -1535,48 +1409,6 @@
 								"7d83c0ec4f0d4186bcb1b582f2af7c3a:i:self",
 								"7e3cbc4c4e85b26fb574e2b96cf0fa70:i:self"
 							]
-						}
-					]
-				},
-				{
-					"guid": "5f9f16014171115d56782ea48a8b4ffe",
-					"class": "K2Node_ActorBoundEvent",
-					"title": "On Actor Begin Overlap (TriggerBoxEmmy)",
-					"x": -528,
-					"y": 736,
-					"comment": null,
-					"pins": [
-						{
-							"id": "5f9f16014171115d56782ea48a8b4ffe:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "5f9f16014171115d56782ea48a8b4ffe:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "5f9f16014171115d56782ea48a8b4ffe:o:OverlappedActor",
-							"name": "OverlappedActor",
-							"direction": "output",
-							"type": "object:/Script/Engine.Actor",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "5f9f16014171115d56782ea48a8b4ffe:o:OtherActor",
-							"name": "OtherActor",
-							"direction": "output",
-							"type": "object:/Script/Engine.Actor",
-							"defaultValue": null,
-							"links": []
 						}
 					]
 				},
@@ -1615,32 +1447,6 @@
 					]
 				},
 				{
-					"guid": "67e5901740a094db7ed12692ed3cd6a1",
-					"class": "K2Node_VariableGet",
-					"title": "Get WBP_Display_Adventure",
-					"x": 160,
-					"y": -1184,
-					"comment": null,
-					"pins": [
-						{
-							"id": "67e5901740a094db7ed12692ed3cd6a1:o:WBP_Display_Adventure",
-							"name": "WBP_Display_Adventure",
-							"direction": "output",
-							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "67e5901740a094db7ed12692ed3cd6a1:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_HUD_Root.WBP_HUD_Root_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "754e512b4acdc7ad4b5ba6bfe860ddb3",
 					"class": "K2Node_CallFunction",
 					"title": "SwitchFlowToPath",
@@ -1655,7 +1461,6 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"3b19a0974228ddbac3ef30b286af47f1:o:then",
 								"a7a5f98c430cf05b6a7f8fbef4c82f65:o:then"
 							]
 						},
@@ -1741,8 +1546,8 @@
 					"guid": "7d83c0ec4f0d4186bcb1b582f2af7c3a",
 					"class": "K2Node_AssignDelegate",
 					"title": "Assign On Story Begin",
-					"x": 1664,
-					"y": -1120,
+					"x": -2064,
+					"y": -1216,
 					"comment": null,
 					"pins": [
 						{
@@ -1752,7 +1557,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"3b4d631b4a7a463c578f30bc038b177d:o:then"
+								"c55f503d41c31ac1bc88eda398fe6925:o:then"
 							]
 						},
 						{
@@ -1791,8 +1596,8 @@
 					"guid": "7e3cbc4c4e85b26fb574e2b96cf0fa70",
 					"class": "K2Node_AssignDelegate",
 					"title": "Assign On Story End",
-					"x": 1664,
-					"y": -880,
+					"x": -2064,
+					"y": -976,
 					"comment": null,
 					"pins": [
 						{
@@ -1811,7 +1616,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"823e84c341c49026afd81b884f715503:i:execute"
+							]
 						},
 						{
 							"id": "7e3cbc4c4e85b26fb574e2b96cf0fa70:i:self",
@@ -1850,7 +1657,6 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"89f23fb6433a7c49d06a219929fdb7c6:o:then",
 								"8aa82e3847a161580befe6bbc78ce782:o:then"
 							]
 						},
@@ -1922,8 +1728,8 @@
 					"guid": "823e84c341c49026afd81b884f715503",
 					"class": "K2Node_CallFunction",
 					"title": "Get Actor Of Class",
-					"x": -1344,
-					"y": -1072,
+					"x": -1584,
+					"y": -976,
 					"comment": null,
 					"pins": [
 						{
@@ -1933,7 +1739,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"c55f503d41c31ac1bc88eda398fe6925:o:then"
+								"7e3cbc4c4e85b26fb574e2b96cf0fa70:o:then"
 							]
 						},
 						{
@@ -1986,8 +1792,8 @@
 					"guid": "82a66bce49a8a65720b67489b0ac58ce",
 					"class": "K2Node_VariableGet",
 					"title": "Get Story Display",
-					"x": -448,
-					"y": -512,
+					"x": -3184,
+					"y": -720,
 					"comment": null,
 					"pins": [
 						{
@@ -2011,56 +1817,10 @@
 					]
 				},
 				{
-					"guid": "89f23fb6433a7c49d06a219929fdb7c6",
-					"class": "K2Node_CallFunction",
-					"title": "Add to Viewport",
-					"x": 112,
-					"y": -896,
-					"comment": null,
-					"pins": [
-						{
-							"id": "89f23fb6433a7c49d06a219929fdb7c6:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "89f23fb6433a7c49d06a219929fdb7c6:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"7ec3e6d74213ac99fbda0888df749db3:i:execute"
-							]
-						},
-						{
-							"id": "89f23fb6433a7c49d06a219929fdb7c6:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.UserWidget",
-							"defaultValue": null,
-							"links": [
-								"8aa82e3847a161580befe6bbc78ce782:o:Output_Get"
-							]
-						},
-						{
-							"id": "89f23fb6433a7c49d06a219929fdb7c6:i:ZOrder",
-							"name": "ZOrder",
-							"direction": "input",
-							"type": "int",
-							"defaultValue": "0",
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "8aa82e3847a161580befe6bbc78ce782",
 					"class": "K2Node_VariableSet",
 					"title": "Set Story Display",
-					"x": -128,
+					"x": 176,
 					"y": -960,
 					"comment": null,
 					"pins": [
@@ -2071,7 +1831,6 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"1e58676542d31044717833a674bd59e3:o:then",
 								"316a331845702dd2c57c6f8f5bec88c9:o:then"
 							]
 						},
@@ -2101,9 +1860,7 @@
 							"direction": "output",
 							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
 							"defaultValue": null,
-							"links": [
-								"89f23fb6433a7c49d06a219929fdb7c6:i:self"
-							]
+							"links": []
 						},
 						{
 							"id": "8aa82e3847a161580befe6bbc78ce782:i:self",
@@ -2119,8 +1876,8 @@
 					"guid": "9a45b66447a5132f960412b6415e6c88",
 					"class": "K2Node_CustomEvent",
 					"title": "Event OnStoryEnd",
-					"x": -528,
-					"y": -48,
+					"x": -3296,
+					"y": -240,
 					"comment": null,
 					"pins": [
 						{
@@ -2302,135 +2059,11 @@
 					]
 				},
 				{
-					"guid": "a7a6ff8f4c761ba1dba6ba9a74661785",
-					"class": "K2Node_CallFunction",
-					"title": "SetValue",
-					"x": 288,
-					"y": 720,
-					"comment": null,
-					"pins": [
-						{
-							"id": "a7a6ff8f4c761ba1dba6ba9a74661785:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"b473fbad44fed6f4e02223995527c817:o:then"
-							]
-						},
-						{
-							"id": "a7a6ff8f4c761ba1dba6ba9a74661785:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "a7a6ff8f4c761ba1dba6ba9a74661785:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Inkpot.InkpotStory",
-							"defaultValue": null,
-							"links": [
-								"364346a04cffa5c945d7b4901bc116aa:o:Story"
-							]
-						},
-						{
-							"id": "a7a6ff8f4c761ba1dba6ba9a74661785:i:Variable",
-							"name": "Variable",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": "clocktime",
-							"links": []
-						},
-						{
-							"id": "a7a6ff8f4c761ba1dba6ba9a74661785:i:Value",
-							"name": "Value",
-							"direction": "input",
-							"type": "struct:/Script/Inkpot.InkpotValue",
-							"defaultValue": null,
-							"links": [
-								"e9e31bd8487722e522d0ba9e29c3e47c:o:TimeString"
-							]
-						},
-						{
-							"id": "a7a6ff8f4c761ba1dba6ba9a74661785:o:Success",
-							"name": "Success",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "b473fbad44fed6f4e02223995527c817",
-					"class": "K2Node_CallFunction",
-					"title": "SwitchFlowToPath",
-					"x": -112,
-					"y": 720,
-					"comment": null,
-					"pins": [
-						{
-							"id": "b473fbad44fed6f4e02223995527c817:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "b473fbad44fed6f4e02223995527c817:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"a7a6ff8f4c761ba1dba6ba9a74661785:i:execute"
-							]
-						},
-						{
-							"id": "b473fbad44fed6f4e02223995527c817:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:self",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "b473fbad44fed6f4e02223995527c817:i:Flow",
-							"name": "Flow",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": "TalkEmmy",
-							"links": []
-						},
-						{
-							"id": "b473fbad44fed6f4e02223995527c817:i:Path",
-							"name": "Path",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": "NPC_Emmy",
-							"links": []
-						},
-						{
-							"id": "b473fbad44fed6f4e02223995527c817:i:Restart",
-							"name": "Restart",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "c55f503d41c31ac1bc88eda398fe6925",
 					"class": "K2Node_CallFunction",
 					"title": "Delay",
-					"x": -1360,
-					"y": -1168,
+					"x": -2848,
+					"y": -1216,
 					"comment": null,
 					"pins": [
 						{
@@ -2450,7 +2083,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"823e84c341c49026afd81b884f715503:i:execute"
+								"7d83c0ec4f0d4186bcb1b582f2af7c3a:i:execute"
 							]
 						},
 						{
@@ -2638,8 +2271,8 @@
 					"guid": "e2b0c2af40f901731e22c2b775b3dd13",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
-					"x": -1584,
-					"y": -1072,
+					"x": -3088,
+					"y": -1216,
 					"comment": null,
 					"pins": [
 						{
@@ -2666,8 +2299,8 @@
 					"guid": "e2b80a004aa3dcbadd44e5963bc163c3",
 					"class": "K2Node_ActorBoundEvent",
 					"title": "On Actor Begin Overlap (TriggerBoxBlue)",
-					"x": -528,
-					"y": 496,
+					"x": -512,
+					"y": 736,
 					"comment": null,
 					"pins": [
 						{
@@ -2764,8 +2397,8 @@
 					"guid": "e59e75db4cfd7ccd88e60b9c9cbba6a7",
 					"class": "K2Node_CallFunction",
 					"title": "SwitchFlowToPath",
-					"x": -112,
-					"y": 480,
+					"x": -96,
+					"y": 720,
 					"comment": null,
 					"pins": [
 						{
@@ -2821,31 +2454,11 @@
 					]
 				},
 				{
-					"guid": "e9e31bd8487722e522d0ba9e29c3e47c",
-					"class": "K2Node_Composite",
-					"title": "GetTimeString_2",
-					"x": 112,
-					"y": 880,
-					"comment": null,
-					"pins": [
-						{
-							"id": "e9e31bd8487722e522d0ba9e29c3e47c:o:TimeString",
-							"name": "TimeString",
-							"direction": "output",
-							"type": "struct:/Script/Inkpot.InkpotValue",
-							"defaultValue": null,
-							"links": [
-								"a7a6ff8f4c761ba1dba6ba9a74661785:i:Value"
-							]
-						}
-					]
-				},
-				{
 					"guid": "eae3a4df41ee30042cb322a53ea001da",
 					"class": "K2Node_VariableSet",
 					"title": "Set Story",
-					"x": -640,
-					"y": -1056,
+					"x": -992,
+					"y": -960,
 					"comment": null,
 					"pins": [
 						{
@@ -2900,8 +2513,8 @@
 					"guid": "f5bb9e0d4080cdd7b0e728887e7ea795",
 					"class": "K2Node_VariableGet",
 					"title": "Get Story",
-					"x": -1008,
-					"y": -1008,
+					"x": -1248,
+					"y": -921,
 					"comment": null,
 					"pins": [
 						{
@@ -2939,18 +2552,18 @@
 				{
 					"guid": "8a710a6941bcd22269f032995aa701c8",
 					"text": "Story End",
-					"x": -592,
-					"y": -112,
-					"width": 640,
+					"x": -3360,
+					"y": -304,
+					"width": 544,
 					"height": 208
 				},
 				{
 					"guid": "989a48f24a72f2f8605f2593238f3e25",
 					"text": "Display story when it begins",
-					"x": -592,
-					"y": -576,
+					"x": -3360,
+					"y": -784,
 					"width": 848,
-					"height": 336
+					"height": 352
 				},
 				{
 					"guid": "a11c3cb84e817664488854b5cadcf10a",
@@ -2963,8 +2576,8 @@
 				{
 					"guid": "eb299eb44195a6ce5b3e82b902ae5cb0",
 					"text": "Bind Inkpot events",
-					"x": 1312,
-					"y": -1200,
+					"x": -2416,
+					"y": -1296,
 					"width": 656,
 					"height": 528
 				}

@@ -128,8 +128,8 @@
 					"guid": "0316f9a045a00e84cccd908c2aa57064",
 					"class": "K2Node_Tunnel",
 					"title": "Inputs",
-					"x": 0,
-					"y": 0,
+					"x": -176,
+					"y": -6,
 					"comment": null,
 					"pins": [
 						{
@@ -139,7 +139,7 @@
 							"type": "Exec",
 							"defaultValue": null,
 							"links": [
-								"e332277f4e9945416930e88ca5d19909:i:execute"
+								"c0edcb1b4ed7e12212d7dcb1dd786be5:i:execute"
 							]
 						},
 						{
@@ -160,7 +160,8 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"15cb5b144f6f2593c1f1d6ab546516e0:i:Duration"
+								"15cb5b144f6f2593c1f1d6ab546516e0:i:Duration",
+								"cf43aa4c405a20f54802ec8c96ec38f6:i:A"
 							]
 						},
 						{
@@ -739,6 +740,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
+								"c0edcb1b4ed7e12212d7dcb1dd786be5:o:then",
 								"ed78c6ea4f5f8cefdc7c9aa828cf8ced:o:else"
 							]
 						},
@@ -859,6 +861,102 @@
 					]
 				},
 				{
+					"guid": "c0edcb1b4ed7e12212d7dcb1dd786be5",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 224,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0edcb1b4ed7e12212d7dcb1dd786be5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0316f9a045a00e84cccd908c2aa57064:o:Exec"
+							]
+						},
+						{
+							"id": "c0edcb1b4ed7e12212d7dcb1dd786be5:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"cf43aa4c405a20f54802ec8c96ec38f6:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c0edcb1b4ed7e12212d7dcb1dd786be5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9e8043cd494d73882a652aad1c01d41e:i:execute"
+							]
+						},
+						{
+							"id": "c0edcb1b4ed7e12212d7dcb1dd786be5:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e332277f4e9945416930e88ca5d19909:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cf43aa4c405a20f54802ec8c96ec38f6",
+					"class": "K2Node_PromotableOperator",
+					"title": "Equal (Float)",
+					"x": 16,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cf43aa4c405a20f54802ec8c96ec38f6:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0316f9a045a00e84cccd908c2aa57064:o:DelayDuration"
+							]
+						},
+						{
+							"id": "cf43aa4c405a20f54802ec8c96ec38f6:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cf43aa4c405a20f54802ec8c96ec38f6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c0edcb1b4ed7e12212d7dcb1dd786be5:i:Condition"
+							]
+						},
+						{
+							"id": "cf43aa4c405a20f54802ec8c96ec38f6:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "d4c0417b45cc39b57e7202ac7f0744fe",
 					"class": "K2Node_GetArrayItem",
 					"title": "Get (a copy)",
@@ -913,7 +1011,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"0316f9a045a00e84cccd908c2aa57064:o:Exec"
+								"c0edcb1b4ed7e12212d7dcb1dd786be5:o:else"
 							]
 						},
 						{
@@ -1012,7 +1110,7 @@
 					"text": "Increment Loop Counter",
 					"x": 2112,
 					"y": 272,
-					"width": 400,
+					"width": 416,
 					"height": 240
 				},
 				{
@@ -1107,6 +1205,116 @@
 						},
 						{
 							"id": "066ffdd845da7af5e1750b82027c0bc2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0d1b6c56491e76b84474b8979f16d4ed",
+					"class": "K2Node_VariableSet",
+					"title": "Set Type Writer Finished",
+					"x": 160,
+					"y": 864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"62a7f87040cef80eb696bd985d7f2907:o:then"
+							]
+						},
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"83df2a8142c42612df78a383f1254e80:i:Break"
+							]
+						},
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:i:Type Writer Finished",
+							"name": "Type Writer Finished",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "10f32efe44d8c87514b726a61db434bd",
+					"class": "K2Node_VariableSet",
+					"title": "Set Type Writer Delay Duration",
+					"x": 0,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8eeb4af0427e0e4169bc778c5e06508c:o:then"
+							]
+						},
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6578361f41bf46d9fc10f5b0d1e7408c:i:execute"
+							]
+						},
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:i:Type Writer Delay Duration",
+							"name": "Type Writer Delay Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"8eeb4af0427e0e4169bc778c5e06508c:o:Speed"
+							]
+						},
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
@@ -1243,8 +1451,8 @@
 					"guid": "3484df484dcf784e337b0bbc480d4a1d",
 					"class": "K2Node_VariableGet",
 					"title": "Get Type Writer Delay Duration",
-					"x": 1040,
-					"y": 676,
+					"x": 928,
+					"y": 768,
 					"comment": null,
 					"pins": [
 						{
@@ -1291,9 +1499,7 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": [
-								"beee6bf24a36db7b331e5897791cadb5:i:execute"
-							]
+							"links": []
 						},
 						{
 							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:self",
@@ -1338,7 +1544,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"83df2a8142c42612df78a383f1254e80:i:Break"
+								"0d1b6c56491e76b84474b8979f16d4ed:i:execute"
 							]
 						}
 					]
@@ -1347,7 +1553,7 @@
 					"guid": "6578361f41bf46d9fc10f5b0d1e7408c",
 					"class": "K2Node_CallFunction",
 					"title": "SetText",
-					"x": 0,
+					"x": 272,
 					"y": 576,
 					"comment": null,
 					"pins": [
@@ -1358,7 +1564,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"8eeb4af0427e0e4169bc778c5e06508c:o:then"
+								"10f32efe44d8c87514b726a61db434bd:o:then"
 							]
 						},
 						{
@@ -1383,7 +1589,7 @@
 							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:Text",
 							"name": "Text",
 							"direction": "input",
-							"type": "Text",
+							"type": "text",
 							"defaultValue": null,
 							"links": []
 						}
@@ -1435,7 +1641,7 @@
 					"title": "Event Tick",
 					"x": 0,
 					"y": 416,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"comment": "This node is disabled and will not be called.\r\nDrag off pins to build functionality.",
 					"pins": [
 						{
 							"id": "790df0194f28e73933bb4894f496bed0:o:OutputDelegate",
@@ -1516,7 +1722,7 @@
 							"type": "Exec",
 							"defaultValue": null,
 							"links": [
-								"62a7f87040cef80eb696bd985d7f2907:o:then"
+								"0d1b6c56491e76b84474b8979f16d4ed:o:then"
 							]
 						},
 						{
@@ -1582,7 +1788,17 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"6578361f41bf46d9fc10f5b0d1e7408c:i:execute"
+								"10f32efe44d8c87514b726a61db434bd:i:execute"
+							]
+						},
+						{
+							"id": "8eeb4af0427e0e4169bc778c5e06508c:o:Speed",
+							"name": "Speed",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"10f32efe44d8c87514b726a61db434bd:i:Type Writer Delay Duration"
 							]
 						}
 					]
@@ -1676,58 +1892,6 @@
 						},
 						{
 							"id": "be1a868a43475ffd0d5878b4a2e10728:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "beee6bf24a36db7b331e5897791cadb5",
-					"class": "K2Node_VariableSet",
-					"title": "Set Type Writer Finished",
-					"x": 2144,
-					"y": 912,
-					"comment": null,
-					"pins": [
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"47c0c1f245ef96aad6cda79ba101d57c:o:then"
-							]
-						},
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:i:Type Writer Finished",
-							"name": "Type Writer Finished",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						},
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",

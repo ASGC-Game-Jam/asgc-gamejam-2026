@@ -630,6 +630,98 @@
 					]
 				},
 				{
+					"guid": "33dfce7949cec3af588b73868bfd7616",
+					"class": "K2Node_VariableSet",
+					"title": "Set Main Story Box",
+					"x": 2624,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ff8861343c0168606e188b8e4a08359:o:then"
+							]
+						},
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:i:Main Story Box",
+							"name": "Main Story Box",
+							"direction": "input",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": [
+								"6e7fa7494ac41e15e56431b04bf12538:o:OutputPin"
+							]
+						},
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "37ac0b9546bfc394dcd0068c610ebcba",
+					"class": "K2Node_GetArrayItem",
+					"title": "Get (a copy)",
+					"x": 1504,
+					"y": 51,
+					"comment": null,
+					"pins": [
+						{
+							"id": "37ac0b9546bfc394dcd0068c610ebcba:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
+							"defaultValue": null,
+							"links": [
+								"72ac572d460921c96be3d68499035018:o:FoundWidgets"
+							]
+						},
+						{
+							"id": "37ac0b9546bfc394dcd0068c610ebcba:i:Dimension 1",
+							"name": "Dimension 1",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "37ac0b9546bfc394dcd0068c610ebcba:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:i:Display Widget"
+							]
+						}
+					]
+				},
+				{
 					"guid": "46545aba4cc247d0823800822994bff5",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
@@ -681,7 +773,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"72ac572d460921c96be3d68499035018:i:execute"
+							]
 						},
 						{
 							"id": "5b35eb894a1473020b5fb49d73a3e6f8:i:Story",
@@ -746,11 +840,229 @@
 					]
 				},
 				{
+					"guid": "5ff8861343c0168606e188b8e4a08359",
+					"class": "K2Node_VariableSet",
+					"title": "Set Dialogue Text Box",
+					"x": 2320,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:o:then"
+							]
+						},
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"33dfce7949cec3af588b73868bfd7616:i:execute"
+							]
+						},
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:i:Dialogue Text Box",
+							"name": "Dialogue Text Box",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"85d07b14478d72a53ec04bb122478c81:o:DialogueTextBox"
+							]
+						},
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6e7fa7494ac41e15e56431b04bf12538",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2560,
+					"y": 137,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6e7fa7494ac41e15e56431b04bf12538:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": [
+								"7203ff9f4c5bc91415217781d78519f8:o:MainStoryBox"
+							]
+						},
+						{
+							"id": "6e7fa7494ac41e15e56431b04bf12538:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": [
+								"33dfce7949cec3af588b73868bfd7616:i:Main Story Box"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7203ff9f4c5bc91415217781d78519f8",
+					"class": "K2Node_VariableGet",
+					"title": "Get MainStoryBox",
+					"x": 2048,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7203ff9f4c5bc91415217781d78519f8:o:MainStoryBox",
+							"name": "MainStoryBox",
+							"direction": "output",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": [
+								"6e7fa7494ac41e15e56431b04bf12538:i:InputPin"
+							]
+						},
+						{
+							"id": "7203ff9f4c5bc91415217781d78519f8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:o:Output_Get"
+							]
+						}
+					]
+				},
+				{
+					"guid": "72ac572d460921c96be3d68499035018",
+					"class": "K2Node_CallFunction",
+					"title": "Get All Widgets Of Class",
+					"x": 1120,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5b35eb894a1473020b5fb49d73a3e6f8:o:then"
+							]
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:i:execute"
+							]
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:o:FoundWidgets",
+							"name": "FoundWidgets",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
+							"defaultValue": null,
+							"links": [
+								"37ac0b9546bfc394dcd0068c610ebcba:i:Array"
+							]
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:WidgetClass",
+							"name": "WidgetClass",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"links": []
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:TopLevelOnly",
+							"name": "TopLevelOnly",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "85d07b14478d72a53ec04bb122478c81",
+					"class": "K2Node_VariableGet",
+					"title": "Get DialogueTextBox",
+					"x": 2032,
+					"y": 54,
+					"comment": null,
+					"pins": [
+						{
+							"id": "85d07b14478d72a53ec04bb122478c81:o:DialogueTextBox",
+							"name": "DialogueTextBox",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"5ff8861343c0168606e188b8e4a08359:i:Dialogue Text Box"
+							]
+						},
+						{
+							"id": "85d07b14478d72a53ec04bb122478c81:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:o:Output_Get"
+							]
+						}
+					]
+				},
+				{
 					"guid": "9e520bd2420d5fa5c2cd0883fbd2a6c3",
 					"class": "K2Node_CallFunction",
 					"title": "Delay",
 					"x": 208,
-					"y": 32,
+					"y": 0,
 					"comment": null,
 					"pins": [
 						{
@@ -803,6 +1115,65 @@
 							"direction": "input",
 							"type": "struct:/Script/Engine.LatentActionInfo",
 							"defaultValue": "(Linkage=-1,UUID=-1,ExecutionFunction=\"\",CallbackTarget=None)",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a4473fb7441e5013761b2382da0baa0c",
+					"class": "K2Node_VariableSet",
+					"title": "Set Display Widget",
+					"x": 1792,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"72ac572d460921c96be3d68499035018:o:then"
+							]
+						},
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ff8861343c0168606e188b8e4a08359:i:execute"
+							]
+						},
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:i:Display Widget",
+							"name": "Display Widget",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"37ac0b9546bfc394dcd0068c610ebcba:o:Output"
+							]
+						},
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"7203ff9f4c5bc91415217781d78519f8:i:self",
+								"85d07b14478d72a53ec04bb122478c81:i:self"
+							]
+						},
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -882,6 +1253,34 @@
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": true
+			},
+			"NewVar":
+			{
+				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Display Widget":
+			{
+				"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Dialogue Text Box":
+			{
+				"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Main Story Box":
+			{
+				"type": "object:/Script/UMG.HorizontalBox",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
 			}
 		},
 		"components":
@@ -891,6 +1290,10 @@
 		{
 			"Never Interacted With": true,
 			"Story": null,
+			"NewVar": true,
+			"Display Widget": null,
+			"Dialogue Text Box": null,
+			"Main Story Box": null,
 			"Mesh":
 			{
 				"_class": "SkeletalMeshComponent",
