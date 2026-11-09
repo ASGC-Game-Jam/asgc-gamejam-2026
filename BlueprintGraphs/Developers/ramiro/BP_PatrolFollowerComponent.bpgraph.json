@@ -8,6 +8,898 @@
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
+			"name": "AdvanceTarget",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "0ff6258642b04a613540f2b27d474587",
+					"class": "K2Node_Composite",
+					"title": "Get Spline Points",
+					"x": -112,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0ff6258642b04a613540f2b27d474587:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e13be750497833fc22f3d59553ecdcbe:o:then"
+							]
+						},
+						{
+							"id": "0ff6258642b04a613540f2b27d474587:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35e9d2bb4fefb2b2c3c7e391634e585d:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "35e9d2bb4fefb2b2c3c7e391634e585d",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 80,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "35e9d2bb4fefb2b2c3c7e391634e585d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0ff6258642b04a613540f2b27d474587:o:then"
+							]
+						},
+						{
+							"id": "35e9d2bb4fefb2b2c3c7e391634e585d:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"93952bc54d2e0f62949c4497af3412f4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "35e9d2bb4fefb2b2c3c7e391634e585d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5a0301994a8082a3b9dbb7aac4e4e0a3:i:InputPin"
+							]
+						},
+						{
+							"id": "35e9d2bb4fefb2b2c3c7e391634e585d:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a5623a9d4e9436af426343aff1142335:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4283337340e8fa915c3996b3b7d0ca63",
+					"class": "K2Node_PromotableOperator",
+					"title": "integer >= integer",
+					"x": 768,
+					"y": 432,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4283337340e8fa915c3996b3b7d0ca63:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"a5623a9d4e9436af426343aff1142335:o:Output_Get"
+							]
+						},
+						{
+							"id": "4283337340e8fa915c3996b3b7d0ca63:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"fb7f6b7b4f95bb5d7644eab20e6292a5:o:SplinePoints"
+							]
+						},
+						{
+							"id": "4283337340e8fa915c3996b3b7d0ca63:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f5a187774a80070f39978da895bae1bd:i:B"
+							]
+						},
+						{
+							"id": "4283337340e8fa915c3996b3b7d0ca63:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "548fa7584950274faf7d7999aaae073a",
+					"class": "K2Node_VariableSet",
+					"title": "Set bReversed",
+					"x": 1264,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "548fa7584950274faf7d7999aaae073a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"902dee73486da041bbd87ca418d47232:o:then"
+							]
+						},
+						{
+							"id": "548fa7584950274faf7d7999aaae073a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8458121149fa15d40aac92be529372ba:i:execute"
+							]
+						},
+						{
+							"id": "548fa7584950274faf7d7999aaae073a:i:bReversed",
+							"name": "bReversed",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7d51862347bedda9f1bf1c9f15062e3e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "548fa7584950274faf7d7999aaae073a:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "548fa7584950274faf7d7999aaae073a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5a0301994a8082a3b9dbb7aac4e4e0a3",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 656,
+					"y": -240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5a0301994a8082a3b9dbb7aac4e4e0a3:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35e9d2bb4fefb2b2c3c7e391634e585d:o:then"
+							]
+						},
+						{
+							"id": "5a0301994a8082a3b9dbb7aac4e4e0a3:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9982ba2b43d751ceaa510ebe0c25a444:i: "
+							]
+						}
+					]
+				},
+				{
+					"guid": "72c3ddaf46aead84e551ed88bf3b1cbf",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1232,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "72c3ddaf46aead84e551ed88bf3b1cbf:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"902dee73486da041bbd87ca418d47232:o:else"
+							]
+						},
+						{
+							"id": "72c3ddaf46aead84e551ed88bf3b1cbf:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8458121149fa15d40aac92be529372ba:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7d51862347bedda9f1bf1c9f15062e3e",
+					"class": "K2Node_CallFunction",
+					"title": "NOT Boolean",
+					"x": 1072,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7d51862347bedda9f1bf1c9f15062e3e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "7d51862347bedda9f1bf1c9f15062e3e:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7f10cf4b4600db6c79f0d1a6cc9d2f0a:o:bReversed"
+							]
+						},
+						{
+							"id": "7d51862347bedda9f1bf1c9f15062e3e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"548fa7584950274faf7d7999aaae073a:i:bReversed"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7da1744e46056c3f728302a9060fe797",
+					"class": "K2Node_VariableGet",
+					"title": "Get TargetIdx",
+					"x": 656,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7da1744e46056c3f728302a9060fe797:o:TargetIdx",
+							"name": "TargetIdx",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"9982ba2b43d751ceaa510ebe0c25a444:i:Value"
+							]
+						},
+						{
+							"id": "7da1744e46056c3f728302a9060fe797:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7f10cf4b4600db6c79f0d1a6cc9d2f0a",
+					"class": "K2Node_VariableGet",
+					"title": "Get bReversed",
+					"x": 928,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7f10cf4b4600db6c79f0d1a6cc9d2f0a:o:bReversed",
+							"name": "bReversed",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"7d51862347bedda9f1bf1c9f15062e3e:i:A"
+							]
+						},
+						{
+							"id": "7f10cf4b4600db6c79f0d1a6cc9d2f0a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8458121149fa15d40aac92be529372ba",
+					"class": "K2Node_VariableSet",
+					"title": "Set TargetIdx",
+					"x": 1408,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8458121149fa15d40aac92be529372ba:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"548fa7584950274faf7d7999aaae073a:o:then",
+								"72c3ddaf46aead84e551ed88bf3b1cbf:o:OutputPin"
+							]
+						},
+						{
+							"id": "8458121149fa15d40aac92be529372ba:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8458121149fa15d40aac92be529372ba:i:TargetIdx",
+							"name": "TargetIdx",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"a72b548e4a3106aa5fef7691a1496ac9:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8458121149fa15d40aac92be529372ba:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8458121149fa15d40aac92be529372ba:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "902dee73486da041bbd87ca418d47232",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1040,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "902dee73486da041bbd87ca418d47232:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a5623a9d4e9436af426343aff1142335:o:then"
+							]
+						},
+						{
+							"id": "902dee73486da041bbd87ca418d47232:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f5a187774a80070f39978da895bae1bd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "902dee73486da041bbd87ca418d47232:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"548fa7584950274faf7d7999aaae073a:i:execute"
+							]
+						},
+						{
+							"id": "902dee73486da041bbd87ca418d47232:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"72c3ddaf46aead84e551ed88bf3b1cbf:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "93952bc54d2e0f62949c4497af3412f4",
+					"class": "K2Node_CallFunction",
+					"title": "IsLooping",
+					"x": -224,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "93952bc54d2e0f62949c4497af3412f4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "93952bc54d2e0f62949c4497af3412f4:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"35e9d2bb4fefb2b2c3c7e391634e585d:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9982ba2b43d751ceaa510ebe0c25a444",
+					"class": "K2Node_MacroInstance",
+					"title": "Increment Int",
+					"x": 832,
+					"y": -256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9982ba2b43d751ceaa510ebe0c25a444:i: ",
+							"name": " ",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5a0301994a8082a3b9dbb7aac4e4e0a3:o:OutputPin"
+							]
+						},
+						{
+							"id": "9982ba2b43d751ceaa510ebe0c25a444:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"7da1744e46056c3f728302a9060fe797:o:TargetIdx"
+							]
+						},
+						{
+							"id": "9982ba2b43d751ceaa510ebe0c25a444:o:  ",
+							"name": "  ",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a2b98e164e30aed481c64a949a782693:i:execute"
+							]
+						},
+						{
+							"id": "9982ba2b43d751ceaa510ebe0c25a444:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"ffa05c27460cb4ea2ee6e18679d9fa49:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9c4e25b44491797acf3dbcafa82ebf53",
+					"class": "K2Node_PromotableOperator",
+					"title": "integer < integer",
+					"x": 784,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9c4e25b44491797acf3dbcafa82ebf53:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"a5623a9d4e9436af426343aff1142335:o:Output_Get"
+							]
+						},
+						{
+							"id": "9c4e25b44491797acf3dbcafa82ebf53:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9c4e25b44491797acf3dbcafa82ebf53:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f5a187774a80070f39978da895bae1bd:i:A"
+							]
+						},
+						{
+							"id": "9c4e25b44491797acf3dbcafa82ebf53:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a2b98e164e30aed481c64a949a782693",
+					"class": "K2Node_VariableSet",
+					"title": "Set TargetIdx",
+					"x": 1184,
+					"y": -256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a2b98e164e30aed481c64a949a782693:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9982ba2b43d751ceaa510ebe0c25a444:o:  "
+							]
+						},
+						{
+							"id": "a2b98e164e30aed481c64a949a782693:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a2b98e164e30aed481c64a949a782693:i:TargetIdx",
+							"name": "TargetIdx",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"ffa05c27460cb4ea2ee6e18679d9fa49:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a2b98e164e30aed481c64a949a782693:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a2b98e164e30aed481c64a949a782693:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a5623a9d4e9436af426343aff1142335",
+					"class": "K2Node_VariableSet",
+					"title": "Set NextPoint",
+					"x": 512,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a5623a9d4e9436af426343aff1142335:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35e9d2bb4fefb2b2c3c7e391634e585d:o:else"
+							]
+						},
+						{
+							"id": "a5623a9d4e9436af426343aff1142335:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"902dee73486da041bbd87ca418d47232:i:execute"
+							]
+						},
+						{
+							"id": "a5623a9d4e9436af426343aff1142335:i:NextPoint",
+							"name": "NextPoint",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"a8d5feef47cd1d4b4eb2059ef91f2654:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a5623a9d4e9436af426343aff1142335:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"4283337340e8fa915c3996b3b7d0ca63:i:A",
+								"9c4e25b44491797acf3dbcafa82ebf53:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a72b548e4a3106aa5fef7691a1496ac9",
+					"class": "K2Node_Composite",
+					"title": "Calculate Next Point_2",
+					"x": 1184,
+					"y": 400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a72b548e4a3106aa5fef7691a1496ac9:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"8458121149fa15d40aac92be529372ba:i:TargetIdx"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a8d5feef47cd1d4b4eb2059ef91f2654",
+					"class": "K2Node_Composite",
+					"title": "Calculate Next Point",
+					"x": 240,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a8d5feef47cd1d4b4eb2059ef91f2654:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"a5623a9d4e9436af426343aff1142335:i:NextPoint"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d1df112e4673be7ec3619e8af83b852d",
+					"class": "K2Node_VariableGet",
+					"title": "Get SplinePoints",
+					"x": 880,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d1df112e4673be7ec3619e8af83b852d:o:SplinePoints",
+							"name": "SplinePoints",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"ffa05c27460cb4ea2ee6e18679d9fa49:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e13be750497833fc22f3d59553ecdcbe",
+					"class": "K2Node_FunctionEntry",
+					"title": "AdvanceTarget",
+					"x": -336,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e13be750497833fc22f3d59553ecdcbe:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0ff6258642b04a613540f2b27d474587:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f5a187774a80070f39978da895bae1bd",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "OR Boolean",
+					"x": 928,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f5a187774a80070f39978da895bae1bd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "f5a187774a80070f39978da895bae1bd:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"9c4e25b44491797acf3dbcafa82ebf53:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f5a187774a80070f39978da895bae1bd:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"4283337340e8fa915c3996b3b7d0ca63:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f5a187774a80070f39978da895bae1bd:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"902dee73486da041bbd87ca418d47232:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fb7f6b7b4f95bb5d7644eab20e6292a5",
+					"class": "K2Node_VariableGet",
+					"title": "Get SplinePoints",
+					"x": 576,
+					"y": 464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fb7f6b7b4f95bb5d7644eab20e6292a5:o:SplinePoints",
+							"name": "SplinePoints",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"4283337340e8fa915c3996b3b7d0ca63:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ffa05c27460cb4ea2ee6e18679d9fa49",
+					"class": "K2Node_CallFunction",
+					"title": "% (Integer)",
+					"x": 1040,
+					"y": -216,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ffa05c27460cb4ea2ee6e18679d9fa49:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "ffa05c27460cb4ea2ee6e18679d9fa49:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"9982ba2b43d751ceaa510ebe0c25a444:o:Result"
+							]
+						},
+						{
+							"id": "ffa05c27460cb4ea2ee6e18679d9fa49:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"d1df112e4673be7ec3619e8af83b852d:o:SplinePoints"
+							]
+						},
+						{
+							"id": "ffa05c27460cb4ea2ee6e18679d9fa49:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"a2b98e164e30aed481c64a949a782693:i:TargetIdx"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "12d3cb9346d86746a9f5a78352eb0671",
+					"text": "Loop",
+					"x": 592,
+					"y": -320,
+					"width": 896,
+					"height": 224
+				},
+				{
+					"guid": "4c4e76c64f883e6ee7d78583a1378399",
+					"text": "Ping Pong",
+					"x": 455,
+					"y": 89,
+					"width": 1152,
+					"height": 448
+				}
+			]
+		},
+		{
 			"name": "ApplyCurrentDistance",
 			"type": "Function",
 			"nodes": [
@@ -1214,7 +2106,7 @@
 					"guid": "b77c1018453435572f3c4fbfd9a7acf2",
 					"class": "K2Node_FunctionEntry",
 					"title": "IsLooping",
-					"x": 192,
+					"x": 432,
 					"y": 336,
 					"comment": null,
 					"pins": [
