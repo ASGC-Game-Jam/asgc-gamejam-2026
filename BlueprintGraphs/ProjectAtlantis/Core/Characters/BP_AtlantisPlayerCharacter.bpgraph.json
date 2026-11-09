@@ -2448,6 +2448,50 @@
 					]
 				},
 				{
+					"guid": "05ded0f442e558dbb203ed9b44c3dc48",
+					"class": "K2Node_CallFunction",
+					"title": "Un Crouch",
+					"x": 1328,
+					"y": 976,
+					"comment": null,
+					"pins": [
+						{
+							"id": "05ded0f442e558dbb203ed9b44c3dc48:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6a23fb7843db31e6fb15208b938830fe:o:Completed"
+							]
+						},
+						{
+							"id": "05ded0f442e558dbb203ed9b44c3dc48:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "05ded0f442e558dbb203ed9b44c3dc48:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Character",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "05ded0f442e558dbb203ed9b44c3dc48:i:bClientSimulation",
+							"name": "bClientSimulation",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "06ae4c56487b527bae7dcdaa1d281841",
 					"class": "K2Node_VariableSet",
 					"title": "Set As BP Atlantis Player Controller",
@@ -3285,7 +3329,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"6a23fb7843db31e6fb15208b938830fe:o:Triggered"
+								"6a23fb7843db31e6fb15208b938830fe:o:Started"
 							]
 						},
 						{
@@ -3882,10 +3926,14 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
+<<<<<<< Updated upstream
 							"links": [
 <<<<<<< Updated upstream
 								"3410409e486b3f9a3a0008b417b44b02:i:execute"
 							]
+=======
+							"links": []
+>>>>>>> Stashed changes
 						},
 						{
 							"id": "6a23fb7843db31e6fb15208b938830fe:o:Started",
@@ -3900,7 +3948,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"3410409e486b3f9a3a0008b417b44b02:i:execute"
+							]
 						},
 						{
 <<<<<<< Updated upstream
@@ -3936,7 +3986,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"05ded0f442e558dbb203ed9b44c3dc48:i:execute"
+							]
 						},
 						{
 <<<<<<< Updated upstream
@@ -7951,7 +8003,7 @@
 					"AgentStepHeight": -1,
 					"NavWalkingSearchHeightScale": 0.5,
 					"PreferredNavData": "None",
-					"bCanCrouch": false,
+					"bCanCrouch": true,
 					"bCanJump": true,
 					"bCanWalk": true,
 					"bCanSwim": true,
