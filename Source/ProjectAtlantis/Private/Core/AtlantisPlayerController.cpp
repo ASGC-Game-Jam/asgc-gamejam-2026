@@ -178,7 +178,7 @@ void AAtlantisPlayerController::SetupInputComponent()
 		if (AscendBallastAction)
 		{
 			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this,
-				&AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
 		}
 		// ADDED: one key that steps through the ballast states (Descend -> Wander -> Ascend -> Descend).
 		if (CycleBallastAction)
