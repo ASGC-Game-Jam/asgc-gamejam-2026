@@ -727,6 +727,543 @@
 			"comments": []
 		},
 		{
+			"name": "GetTargetDistance",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "0d9931664b40270ad70ad0bc40f86dd4",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 416,
+					"y": 42,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0d9931664b40270ad70ad0bc40f86dd4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3840ea234b2e5672e3e34094e4d93b86:o:then"
+							]
+						},
+						{
+							"id": "0d9931664b40270ad70ad0bc40f86dd4:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"a42f6fd04a8c11a0ccb0269bfe93a7ef:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "21c2c4784179edd55ab6d485bb44e1c7",
+					"class": "K2Node_PromotableOperator",
+					"title": "Equal (Integer)",
+					"x": -240,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "21c2c4784179edd55ab6d485bb44e1c7:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"90cff7584ae2be975555888ae7798bc7:o:TargetIdx"
+							]
+						},
+						{
+							"id": "21c2c4784179edd55ab6d485bb44e1c7:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "21c2c4784179edd55ab6d485bb44e1c7:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"4799d97b4ebe15aa1e56108af3a5373c:i:B"
+							]
+						},
+						{
+							"id": "21c2c4784179edd55ab6d485bb44e1c7:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3840ea234b2e5672e3e34094e4d93b86",
+					"class": "K2Node_FunctionEntry",
+					"title": "GetTargetDistance",
+					"x": 176,
+					"y": -34,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3840ea234b2e5672e3e34094e4d93b86:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0d9931664b40270ad70ad0bc40f86dd4:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4799d97b4ebe15aa1e56108af3a5373c",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "AND Boolean",
+					"x": -48,
+					"y": 263,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4799d97b4ebe15aa1e56108af3a5373c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "4799d97b4ebe15aa1e56108af3a5373c:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c3afdc324a9aae2a57f96e8e0c8ba483:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4799d97b4ebe15aa1e56108af3a5373c:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"21c2c4784179edd55ab6d485bb44e1c7:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4799d97b4ebe15aa1e56108af3a5373c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"a42f6fd04a8c11a0ccb0269bfe93a7ef:i:bPickA"
+							]
+						}
+					]
+				},
+				{
+					"guid": "794887cf41e2b0c61dc703999d57e8a7",
+					"class": "K2Node_VariableGet",
+					"title": "Get PatrolPath",
+					"x": -832,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "794887cf41e2b0c61dc703999d57e8a7:o:PatrolPath",
+							"name": "PatrolPath",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Placeables/AI/BP_PatrolPath.BP_PatrolPath_C",
+							"defaultValue": null,
+							"links": [
+								"d9c394ee4f276dad91a831bfbc73577e:i:self"
+							]
+						},
+						{
+							"id": "794887cf41e2b0c61dc703999d57e8a7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "90cff7584ae2be975555888ae7798bc7",
+					"class": "K2Node_VariableGet",
+					"title": "Get TargetIdx",
+					"x": -656,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "90cff7584ae2be975555888ae7798bc7:o:TargetIdx",
+							"name": "TargetIdx",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"21c2c4784179edd55ab6d485bb44e1c7:i:A",
+								"b6f53ee14fb6710ff1555e9923ead9d0:i:PointIndex"
+							]
+						},
+						{
+							"id": "90cff7584ae2be975555888ae7798bc7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a42f6fd04a8c11a0ccb0269bfe93a7ef",
+					"class": "K2Node_CallFunction",
+					"title": "Select Float",
+					"x": 160,
+					"y": 74,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a42f6fd04a8c11a0ccb0269bfe93a7ef:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "a42f6fd04a8c11a0ccb0269bfe93a7ef:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"c0f233ad4c1e40d3ac86c2b09cbb7352:o:SplineLength"
+							]
+						},
+						{
+							"id": "a42f6fd04a8c11a0ccb0269bfe93a7ef:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b6f53ee14fb6710ff1555e9923ead9d0:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a42f6fd04a8c11a0ccb0269bfe93a7ef:i:bPickA",
+							"name": "bPickA",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"4799d97b4ebe15aa1e56108af3a5373c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a42f6fd04a8c11a0ccb0269bfe93a7ef:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0d9931664b40270ad70ad0bc40f86dd4:i:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b6f53ee14fb6710ff1555e9923ead9d0",
+					"class": "K2Node_CallFunction",
+					"title": "Get Distance Along Spline at Spline Point",
+					"x": -368,
+					"y": 88,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b6f53ee14fb6710ff1555e9923ead9d0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"d9c394ee4f276dad91a831bfbc73577e:o:PatrolSpline"
+							]
+						},
+						{
+							"id": "b6f53ee14fb6710ff1555e9923ead9d0:i:PointIndex",
+							"name": "PointIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"90cff7584ae2be975555888ae7798bc7:o:TargetIdx"
+							]
+						},
+						{
+							"id": "b6f53ee14fb6710ff1555e9923ead9d0:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"a42f6fd04a8c11a0ccb0269bfe93a7ef:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c0f233ad4c1e40d3ac86c2b09cbb7352",
+					"class": "K2Node_CallFunction",
+					"title": "GetPathLength",
+					"x": -304,
+					"y": -112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0f233ad4c1e40d3ac86c2b09cbb7352:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c0f233ad4c1e40d3ac86c2b09cbb7352:o:SplineLength",
+							"name": "SplineLength",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"a42f6fd04a8c11a0ccb0269bfe93a7ef:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c3afdc324a9aae2a57f96e8e0c8ba483",
+					"class": "K2Node_CallFunction",
+					"title": "IsLooping",
+					"x": -368,
+					"y": 224,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3afdc324a9aae2a57f96e8e0c8ba483:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c3afdc324a9aae2a57f96e8e0c8ba483:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"4799d97b4ebe15aa1e56108af3a5373c:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d9c394ee4f276dad91a831bfbc73577e",
+					"class": "K2Node_CallFunction",
+					"title": "GetPatrolSpline",
+					"x": -656,
+					"y": 88,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d9c394ee4f276dad91a831bfbc73577e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/AI/BP_PatrolPath.BP_PatrolPath_C",
+							"defaultValue": null,
+							"links": [
+								"794887cf41e2b0c61dc703999d57e8a7:o:PatrolPath"
+							]
+						},
+						{
+							"id": "d9c394ee4f276dad91a831bfbc73577e:o:PatrolSpline",
+							"name": "PatrolSpline",
+							"direction": "output",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"b6f53ee14fb6710ff1555e9923ead9d0:i:self"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "IsLooping",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "483a422747d5baf162f00893e740ba9f",
+					"class": "K2Node_CallFunction",
+					"title": "Is Closed Loop",
+					"x": 384,
+					"y": 448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "483a422747d5baf162f00893e740ba9f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"9a49fe7d4fb1e10dbef2a1a34f6409a7:o:PatrolSpline"
+							]
+						},
+						{
+							"id": "483a422747d5baf162f00893e740ba9f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"f30f060d40d9ac9060bd1ab426ca3bf3:i:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "996d3622456ada531b1a2a87d840a794",
+					"class": "K2Node_VariableGet",
+					"title": "Get PatrolPath",
+					"x": -16,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "996d3622456ada531b1a2a87d840a794:o:PatrolPath",
+							"name": "PatrolPath",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Placeables/AI/BP_PatrolPath.BP_PatrolPath_C",
+							"defaultValue": null,
+							"links": [
+								"9a49fe7d4fb1e10dbef2a1a34f6409a7:i:self"
+							]
+						},
+						{
+							"id": "996d3622456ada531b1a2a87d840a794:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9a49fe7d4fb1e10dbef2a1a34f6409a7",
+					"class": "K2Node_CallFunction",
+					"title": "GetPatrolSpline",
+					"x": 144,
+					"y": 448,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a49fe7d4fb1e10dbef2a1a34f6409a7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/AI/BP_PatrolPath.BP_PatrolPath_C",
+							"defaultValue": null,
+							"links": [
+								"996d3622456ada531b1a2a87d840a794:o:PatrolPath"
+							]
+						},
+						{
+							"id": "9a49fe7d4fb1e10dbef2a1a34f6409a7:o:PatrolSpline",
+							"name": "PatrolSpline",
+							"direction": "output",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"483a422747d5baf162f00893e740ba9f:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b77c1018453435572f3c4fbfd9a7acf2",
+					"class": "K2Node_FunctionEntry",
+					"title": "IsLooping",
+					"x": 192,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b77c1018453435572f3c4fbfd9a7acf2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f30f060d40d9ac9060bd1ab426ca3bf3:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f30f060d40d9ac9060bd1ab426ca3bf3",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 640,
+					"y": 336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f30f060d40d9ac9060bd1ab426ca3bf3:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b77c1018453435572f3c4fbfd9a7acf2:o:then"
+							]
+						},
+						{
+							"id": "f30f060d40d9ac9060bd1ab426ca3bf3:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"483a422747d5baf162f00893e740ba9f:o:ReturnValue"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
 			"name": "EventGraph",
 			"type": "Ubergraph",
 			"nodes": [
@@ -734,20 +1271,10 @@
 					"guid": "03064faa4022e63e841a85acc22e2270",
 					"class": "K2Node_Composite",
 					"title": "Change Direction",
-					"x": 1744,
+					"x": 1888,
 					"y": 256,
 					"comment": null,
 					"pins": [
-						{
-							"id": "03064faa4022e63e841a85acc22e2270:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"4299f11a4f36ccf99c2317ad6746842e:o:then"
-							]
-						},
 						{
 							"id": "03064faa4022e63e841a85acc22e2270:o:then",
 							"name": "then",
@@ -757,6 +1284,16 @@
 							"links": [
 								"10a22e314f87860950efb4a7a9f25943:i:execute"
 							]
+						},
+						{
+							"id": "03064faa4022e63e841a85acc22e2270:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4299f11a4f36ccf99c2317ad6746842e:o:then"
+							]
 						}
 					]
 				},
@@ -764,7 +1301,7 @@
 					"guid": "08ec1a634a837faf2a76e6b16fbb73aa",
 					"class": "K2Node_VariableSet",
 					"title": "Set CurrentDistance",
-					"x": 1152,
+					"x": 1216,
 					"y": 320,
 					"comment": null,
 					"pins": [
@@ -799,14 +1336,6 @@
 							]
 						},
 						{
-							"id": "08ec1a634a837faf2a76e6b16fbb73aa:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "08ec1a634a837faf2a76e6b16fbb73aa:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
@@ -816,6 +1345,14 @@
 								"0964f1454ff21c1ccc7058acd0365890:i:A",
 								"3604d7aa4158f9edf6dfb5a78e13619f:i:InputPin"
 							]
+						},
+						{
+							"id": "08ec1a634a837faf2a76e6b16fbb73aa:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -823,7 +1360,7 @@
 					"guid": "095eaeb6472c0e9fa54ea7b0436c25df",
 					"class": "K2Node_CallFunction",
 					"title": "Clamp (Float)",
-					"x": 880,
+					"x": 944,
 					"y": 400,
 					"comment": null,
 					"pins": [
@@ -860,7 +1397,7 @@
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"e0a96e364b13356928a1538088656c9a:o:SplineLength"
+								"0b3a642c4c001cf34e656aa7752d06e2:o:OutputPin"
 							]
 						},
 						{
@@ -879,8 +1416,8 @@
 					"guid": "0964f1454ff21c1ccc7058acd0365890",
 					"class": "K2Node_PromotableOperator",
 					"title": "float <= float",
-					"x": 1456,
-					"y": 480,
+					"x": 1472,
+					"y": 464,
 					"comment": null,
 					"pins": [
 						{
@@ -922,6 +1459,37 @@
 					]
 				},
 				{
+					"guid": "0b3a642c4c001cf34e656aa7752d06e2",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 864,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0b3a642c4c001cf34e656aa7752d06e2:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"e0a96e364b13356928a1538088656c9a:o:SplineLength"
+							]
+						},
+						{
+							"id": "0b3a642c4c001cf34e656aa7752d06e2:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"095eaeb6472c0e9fa54ea7b0436c25df:i:Max",
+								"24345e02414d5d78fd1f43972c23a784:i:B"
+							]
+						}
+					]
+				},
+				{
 					"guid": "10a22e314f87860950efb4a7a9f25943",
 					"class": "K2Node_CallFunction",
 					"title": "ApplyCurrentDistance",
@@ -937,8 +1505,8 @@
 							"defaultValue": null,
 							"links": [
 								"03064faa4022e63e841a85acc22e2270:o:then",
-								"4299f11a4f36ccf99c2317ad6746842e:o:else",
-								"e552ed2e47deec2755332f85d327aa97:o:then"
+								"1c480b6c44decd5e90086697f80c1144:o:OutputPin",
+								"944a9d1e4f6011941d57f99801bd4f9d:o:OutputPin"
 							]
 						},
 						{
@@ -960,11 +1528,41 @@
 					]
 				},
 				{
+					"guid": "1c480b6c44decd5e90086697f80c1144",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1888,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1c480b6c44decd5e90086697f80c1144:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4299f11a4f36ccf99c2317ad6746842e:o:else"
+							]
+						},
+						{
+							"id": "1c480b6c44decd5e90086697f80c1144:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"10a22e314f87860950efb4a7a9f25943:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "24345e02414d5d78fd1f43972c23a784",
 					"class": "K2Node_PromotableOperator",
 					"title": "float >= float",
 					"x": 1488,
-					"y": 599,
+					"y": 569,
 					"comment": null,
 					"pins": [
 						{
@@ -984,7 +1582,7 @@
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"e0a96e364b13356928a1538088656c9a:o:SplineLength"
+								"0b3a642c4c001cf34e656aa7752d06e2:o:OutputPin"
 							]
 						},
 						{
@@ -1012,7 +1610,7 @@
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
 					"x": 1424,
-					"y": 608,
+					"y": 576,
 					"comment": null,
 					"pins": [
 						{
@@ -1074,10 +1672,40 @@
 					]
 				},
 				{
+					"guid": "3f43cb1246bb3c4da0ff3b98e8ea4043",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 928,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3f43cb1246bb3c4da0ff3b98e8ea4043:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"ec9445754c1f11f19f3a928a0da86a3d:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3f43cb1246bb3c4da0ff3b98e8ea4043:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4c1f0d8e41fa0e86b3f18aa2be8ae93e:i:A"
+							]
+						}
+					]
+				},
+				{
 					"guid": "4299f11a4f36ccf99c2317ad6746842e",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 1536,
+					"x": 1680,
 					"y": 303,
 					"comment": null,
 					"pins": [
@@ -1118,7 +1746,37 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"10a22e314f87860950efb4a7a9f25943:i:execute"
+								"1c480b6c44decd5e90086697f80c1144:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "43c0e3c14a7b9bcc26816ab2e605a82a",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 960,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "43c0e3c14a7b9bcc26816ab2e605a82a:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"e0a96e364b13356928a1538088656c9a:o:SplineLength"
+							]
+						},
+						{
+							"id": "43c0e3c14a7b9bcc26816ab2e605a82a:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"4c1f0d8e41fa0e86b3f18aa2be8ae93e:i:B"
 							]
 						}
 					]
@@ -1128,7 +1786,7 @@
 					"class": "K2Node_CallFunction",
 					"title": "% (Float)",
 					"x": 1024,
-					"y": 80,
+					"y": 94,
 					"comment": null,
 					"pins": [
 						{
@@ -1146,7 +1804,7 @@
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"ec9445754c1f11f19f3a928a0da86a3d:o:ReturnValue"
+								"3f43cb1246bb3c4da0ff3b98e8ea4043:o:OutputPin"
 							]
 						},
 						{
@@ -1156,7 +1814,7 @@
 							"type": "real:double",
 							"defaultValue": null,
 							"links": [
-								"e0a96e364b13356928a1538088656c9a:o:SplineLength"
+								"43c0e3c14a7b9bcc26816ab2e605a82a:o:OutputPin"
 							]
 						},
 						{
@@ -1220,26 +1878,6 @@
 					]
 				},
 				{
-					"guid": "67066da644ae60b5868f77a36381a8a5",
-					"class": "K2Node_Composite",
-					"title": "Is Looping",
-					"x": 352,
-					"y": 336,
-					"comment": null,
-					"pins": [
-						{
-							"id": "67066da644ae60b5868f77a36381a8a5:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": null,
-							"links": [
-								"a460078a44a3148f3ed8fd98a95a88dc:i:Condition"
-							]
-						}
-					]
-				},
-				{
 					"guid": "684dd594410bfbb7113c1e9f0fd4b3e6",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
@@ -1278,6 +1916,16 @@
 					"comment": null,
 					"pins": [
 						{
+							"id": "8e96a3724668f8aad0dd3a8fd1584d4f:o:Is Valid",
+							"name": "Is Valid",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f42ae5344c466daa4e7b6e93615d718f:i:execute"
+							]
+						},
+						{
 							"id": "8e96a3724668f8aad0dd3a8fd1584d4f:i:exec",
 							"name": "exec",
 							"direction": "input",
@@ -1286,15 +1934,35 @@
 							"links": [
 								"a7fae9ea4fd79e5454a66fa49c07790a:o:then"
 							]
+						}
+					]
+				},
+				{
+					"guid": "944a9d1e4f6011941d57f99801bd4f9d",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1888,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "944a9d1e4f6011941d57f99801bd4f9d:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e552ed2e47deec2755332f85d327aa97:o:then"
+							]
 						},
 						{
-							"id": "8e96a3724668f8aad0dd3a8fd1584d4f:o:Is Valid",
-							"name": "Is Valid",
+							"id": "944a9d1e4f6011941d57f99801bd4f9d:o:OutputPin",
+							"name": "OutputPin",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"f42ae5344c466daa4e7b6e93615d718f:i:execute"
+								"10a22e314f87860950efb4a7a9f25943:i:execute"
 							]
 						}
 					]
@@ -1324,7 +1992,7 @@
 							"type": "bool",
 							"defaultValue": null,
 							"links": [
-								"67066da644ae60b5868f77a36381a8a5:o:ReturnValue"
+								"d55ac07c4bf14c4202488fbb512aff8b:o:ReturnValue"
 							]
 						},
 						{
@@ -1381,8 +2049,8 @@
 					"guid": "b23b6c554b373a8f3fc36b817bcc4ee4",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
-					"x": 288,
-					"y": 432,
+					"x": 112,
+					"y": 448,
 					"comment": null,
 					"pins": [
 						{
@@ -1441,7 +2109,7 @@
 					"guid": "ca815b744df8a3bc1fd766a9bb413dd0",
 					"class": "K2Node_Event",
 					"title": "Event Tick",
-					"x": 160,
+					"x": -16,
 					"y": 272,
 					"comment": null,
 					"pins": [
@@ -1476,11 +2144,39 @@
 					]
 				},
 				{
+					"guid": "d55ac07c4bf14c4202488fbb512aff8b",
+					"class": "K2Node_CallFunction",
+					"title": "IsLooping",
+					"x": 176,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d55ac07c4bf14c4202488fbb512aff8b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d55ac07c4bf14c4202488fbb512aff8b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"a460078a44a3148f3ed8fd98a95a88dc:i:Condition"
+							]
+						}
+					]
+				},
+				{
 					"guid": "e0a96e364b13356928a1538088656c9a",
 					"class": "K2Node_CallFunction",
 					"title": "GetPathLength",
 					"x": 512,
-					"y": 544,
+					"y": 560,
 					"comment": null,
 					"pins": [
 						{
@@ -1498,9 +2194,8 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"095eaeb6472c0e9fa54ea7b0436c25df:i:Max",
-								"24345e02414d5d78fd1f43972c23a784:i:B",
-								"4c1f0d8e41fa0e86b3f18aa2be8ae93e:i:B"
+								"0b3a642c4c001cf34e656aa7752d06e2:i:InputPin",
+								"43c0e3c14a7b9bcc26816ab2e605a82a:i:InputPin"
 							]
 						}
 					]
@@ -1530,7 +2225,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"10a22e314f87860950efb4a7a9f25943:i:execute"
+								"944a9d1e4f6011941d57f99801bd4f9d:i:InputPin"
 							]
 						},
 						{
@@ -1566,19 +2261,9 @@
 					"class": "K2Node_Composite",
 					"title": "GetNextDistance",
 					"x": 528,
-					"y": 384,
+					"y": 398,
 					"comment": null,
 					"pins": [
-						{
-							"id": "ec9445754c1f11f19f3a928a0da86a3d:i:deltaSeconds",
-							"name": "deltaSeconds",
-							"direction": "input",
-							"type": "real:double",
-							"defaultValue": null,
-							"links": [
-								"b23b6c554b373a8f3fc36b817bcc4ee4:o:OutputPin"
-							]
-						},
 						{
 							"id": "ec9445754c1f11f19f3a928a0da86a3d:o:ReturnValue",
 							"name": "ReturnValue",
@@ -1587,7 +2272,17 @@
 							"defaultValue": null,
 							"links": [
 								"095eaeb6472c0e9fa54ea7b0436c25df:i:Value",
-								"4c1f0d8e41fa0e86b3f18aa2be8ae93e:i:A"
+								"3f43cb1246bb3c4da0ff3b98e8ea4043:i:InputPin"
+							]
+						},
+						{
+							"id": "ec9445754c1f11f19f3a928a0da86a3d:i:deltaSeconds",
+							"name": "deltaSeconds",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b23b6c554b373a8f3fc36b817bcc4ee4:o:OutputPin"
 							]
 						}
 					]
@@ -1629,19 +2324,19 @@
 							"links": []
 						},
 						{
-							"id": "f42ae5344c466daa4e7b6e93615d718f:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "f42ae5344c466daa4e7b6e93615d718f:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
 							"type": "real:double",
 							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "f42ae5344c466daa4e7b6e93615d718f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PatrolFollowerComponent.BP_PatrolFollowerComponent_C",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -1649,12 +2344,20 @@
 			],
 			"comments": [
 				{
+					"guid": "0bd479c74fb018b21d6807972aa73912",
+					"text": "Back and Foward",
+					"x": 896,
+					"y": 192,
+					"width": 1136,
+					"height": 464
+				},
+				{
 					"guid": "484cb4974535a646cd95449c2f4c3013",
 					"text": "Loop",
 					"x": 896,
 					"y": -16,
 					"width": 576,
-					"height": 272
+					"height": 176
 				}
 			]
 		}
@@ -1697,6 +2400,20 @@
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": false
+			},
+			"TargetIdx":
+			{
+				"type": "int",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"WaitTimer":
+			{
+				"type": "struct:/Script/Engine.TimerHandle",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
 			}
 		},
 		"components":
@@ -1709,6 +2426,10 @@
 			"CurrentDistance": 0,
 			"Spline Length": 0,
 			"bReversed": false,
+			"TargetIdx": 1,
+			"WaitTimer":
+			{
+			},
 			"PrimaryComponentTick":
 			{
 				"TickGroup": "TG_DuringPhysics",
