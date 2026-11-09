@@ -142,9 +142,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
 	TObjectPtr<UInputAction> AscendBallastAction;
 
+	/** Input action that cycles to the next ballast state. */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
 	TObjectPtr<UInputAction> CycleBallastAction;
 
+	/** Input action that cycles to the previous ballast state. */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Atlantis|Controls|Ballast")
 	TObjectPtr<UInputAction> CycleBallastBackAction;
 

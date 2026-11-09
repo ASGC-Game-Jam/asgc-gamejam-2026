@@ -418,7 +418,7 @@ void AAtlantisPlayerController::DisableAllControls()
 {
 	bControlsEnabled = false;
 
-	// ADDED: drop any half-finished ballast cycle so it can't fire while controls are off.
+	// drop any half-finished ballast cycle so it can't fire while controls are off.
 	GetWorldTimerManager().ClearTimer(BallastCommitTimer);
 	PendingBallastState.Reset();
 
