@@ -173,7 +173,7 @@ void AAtlantisPlayerController::SetupInputComponent()
 		if (WanderBallastAction)
 		{
 			EnhancedInput->BindAction(WanderBallastAction, ETriggerEvent::Started, this,
-				&AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
+			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
 		}
 		if (AscendBallastAction)
 		{
