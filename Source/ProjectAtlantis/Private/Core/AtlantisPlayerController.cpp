@@ -258,6 +258,8 @@ void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& Act
 {
 	if (bControlsEnabled && GetPawn())
 	{
+		GetWorldTimerManager().ClearTimer(BallastCommitTimer);
+		PendingBallastState.Reset();
 		ServerSetBallastState(NewBallastState);
 	}
 }
@@ -278,12 +280,18 @@ void AAtlantisPlayerController::CycleBallastState(const FInputActionValue& Actio
 	const EAtlantisBallastState From =
 		PendingBallastState.IsSet() ? PendingBallastState.GetValue() : State->GetBallastState();
 
-	EAtlantisBallastState Next = EAtlantisBallastState::Descend;
+		EAtlantisBallastState Next = EAtlantisBallastState::Descend;
 	switch (From)
 	{
-	case EAtlantisBallastState::Descend: Next = EAtlantisBallastState::Wander; break;
-	case EAtlantisBallastState::Wander:  Next = EAtlantisBallastState::Ascend; break;
-	default:                             Next = EAtlantisBallastState::Descend; break;
+	case EAtlantisBallastState::Descend:
+		Next = EAtlantisBallastState::Wander;
+		break;
+	case EAtlantisBallastState::Wander:
+		Next = EAtlantisBallastState::Ascend;
+		break;
+	default:
+		Next = EAtlantisBallastState::Descend;
+		break;
 	}
 	PendingBallastState = Next;
 
@@ -308,12 +316,18 @@ void AAtlantisPlayerController::CycleBallastBackState(const FInputActionValue& A
 	const EAtlantisBallastState From =
 		PendingBallastState.IsSet() ? PendingBallastState.GetValue() : State->GetBallastState();
 
-	EAtlantisBallastState Next = EAtlantisBallastState::Wander;
+		EAtlantisBallastState Next = EAtlantisBallastState::Wander;
 	switch (From)
 	{
-	case EAtlantisBallastState::Descend: Next = EAtlantisBallastState::Ascend; break;
-	case EAtlantisBallastState::Wander:  Next = EAtlantisBallastState::Descend; break;
-	default:                             Next = EAtlantisBallastState::Wander; break;
+	case EAtlantisBallastState::Descend:
+		Next = EAtlantisBallastState::Ascend;
+		break;
+	case EAtlantisBallastState::Wander:
+		Next = EAtlantisBallastState::Descend;
+		break;
+	default:
+		Next = EAtlantisBallastState::Wander;
+		break;
 	}
 	PendingBallastState = Next;
 
