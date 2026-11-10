@@ -3599,6 +3599,61 @@
 					]
 				},
 				{
+					"guid": "2c1ab04f497df3083ce29683577b99ae",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateChoicesView",
+					"x": 304,
+					"y": -368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2c1ab04f497df3083ce29683577b99ae:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7a5941d94a000e2554ec888c21d11f59:o:then",
+								"7a716cd4468554e54af05eb2d82ada99:o:then"
+							]
+						},
+						{
+							"id": "2c1ab04f497df3083ce29683577b99ae:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2c1ab04f497df3083ce29683577b99ae:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2c1ab04f497df3083ce29683577b99ae:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"47d96eb94985796b5bac16ae82240611:o:Story"
+							]
+						},
+						{
+							"id": "2c1ab04f497df3083ce29683577b99ae:o:HasChoices",
+							"name": "HasChoices",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "2e7aaaab43bde86a66571cae2364ec30",
 					"class": "K2Node_VariableGet",
 					"title": "Get Story",
@@ -4137,6 +4192,7 @@
 							"type": "object:/Script/Inkpot.InkpotStory",
 							"defaultValue": null,
 							"links": [
+								"2c1ab04f497df3083ce29683577b99ae:i:Story",
 								"7a5941d94a000e2554ec888c21d11f59:i:Story"
 							]
 						},
@@ -4617,7 +4673,7 @@
 							"id": "616e00ba4f3d1452be536e838b37e85f:i:Delegate",
 							"name": "Delegate",
 							"direction": "input",
-							"type": "Delegate",
+							"type": "delegate",
 							"defaultValue": null,
 							"links": [
 								"5b1afc9648e21f68bd9a3ba593e6a523:o:OutputDelegate"
@@ -4736,7 +4792,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"b3b0ec0f4ed75b1c11ebdaa044d67bdb:i:execute"
+								"b0fdae36435a944ec8b23f84d33c598a:i:execute"
 							]
 						},
 						{
@@ -5104,7 +5160,7 @@
 							"id": "7140058047b52c609997f0bef6000654:i:Delegate",
 							"name": "Delegate",
 							"direction": "input",
-							"type": "Delegate",
+							"type": "delegate",
 							"defaultValue": null,
 							"links": [
 								"57e0b20a413c499ae13402a19586a2ff:o:OutputDelegate"
@@ -5116,7 +5172,7 @@
 					"guid": "7a5941d94a000e2554ec888c21d11f59",
 					"class": "K2Node_CallFunction",
 					"title": "Custom Continue If You Can",
-					"x": 48,
+					"x": -208,
 					"y": -368,
 					"comment": null,
 					"pins": [
@@ -5137,7 +5193,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"7a716cd4468554e54af05eb2d82ada99:i:execute"
+								"2c1ab04f497df3083ce29683577b99ae:i:execute"
 							]
 						},
 						{
@@ -5174,7 +5230,7 @@
 					"guid": "7a716cd4468554e54af05eb2d82ada99",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 400,
+					"x": 96,
 					"y": -352,
 					"comment": null,
 					"pins": [
@@ -5184,9 +5240,7 @@
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
-							"links": [
-								"7a5941d94a000e2554ec888c21d11f59:o:then"
-							]
+							"links": []
 						},
 						{
 							"id": "7a716cd4468554e54af05eb2d82ada99:i:Condition",
@@ -5204,7 +5258,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"2c1ab04f497df3083ce29683577b99ae:i:execute"
+							]
 						},
 						{
 							"id": "7a716cd4468554e54af05eb2d82ada99:o:else",
@@ -5544,11 +5600,19 @@
 							"id": "88ab911d492b04d4568224af0bc72bfd:i:Text",
 							"name": "Text",
 							"direction": "input",
-							"type": "Text",
+							"type": "text",
 							"defaultValue": null,
 							"links": [
 								"daa55147490e4204952521949fd8462c:o:Result"
 							]
+						},
+						{
+							"id": "88ab911d492b04d4568224af0bc72bfd:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
 						},
 						{
 							"id": "88ab911d492b04d4568224af0bc72bfd:i:self",
@@ -5559,14 +5623,6 @@
 							"links": [
 								"dd30f0b14f1d470def4bad9b27cf9571:o:TrustDisplay"
 							]
-						},
-						{
-							"id": "88ab911d492b04d4568224af0bc72bfd:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "Text",
-							"defaultValue": null,
-							"links": []
 						}
 					]
 				},
@@ -5640,7 +5696,7 @@
 							"id": "8a344faa4350480b39b559a4e540a729:i:Delegate",
 							"name": "Delegate",
 							"direction": "input",
-							"type": "Delegate",
+							"type": "delegate",
 							"defaultValue": null,
 							"links": [
 								"e847f24947cbdcf64a0560a929103bfe:o:OutputDelegate"
@@ -6036,7 +6092,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"b3b0ec0f4ed75b1c11ebdaa044d67bdb:o:then"
+								"631e62a44134d4ae56875f830266ea9b:o:then"
 							]
 						},
 						{
@@ -6046,7 +6102,7 @@
 							"type": "bool",
 							"defaultValue": null,
 							"links": [
-								"b3b0ec0f4ed75b1c11ebdaa044d67bdb:o:HasChoices"
+								"e256845c49c1cf67a923e49a11e3675f:o:ReturnValue"
 							]
 						},
 						{
@@ -6123,64 +6179,6 @@
 							"defaultValue": null,
 							"links": [
 								"066e96954f31f90250de35a3f39b78df:i:Condition"
-							]
-						}
-					]
-				},
-				{
-					"guid": "b3b0ec0f4ed75b1c11ebdaa044d67bdb",
-					"class": "K2Node_CallFunction",
-					"title": "UpdateChoicesView",
-					"x": 480,
-					"y": -960,
-					"comment": null,
-					"pins": [
-						{
-							"id": "b3b0ec0f4ed75b1c11ebdaa044d67bdb:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"631e62a44134d4ae56875f830266ea9b:o:then"
-							]
-						},
-						{
-							"id": "b3b0ec0f4ed75b1c11ebdaa044d67bdb:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"b0fdae36435a944ec8b23f84d33c598a:i:execute"
-							]
-						},
-						{
-							"id": "b3b0ec0f4ed75b1c11ebdaa044d67bdb:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:self",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "b3b0ec0f4ed75b1c11ebdaa044d67bdb:i:Story",
-							"name": "Story",
-							"direction": "input",
-							"type": "object:/Script/Inkpot.InkpotStory",
-							"defaultValue": null,
-							"links": [
-								"f8f71b3745105bbbec95edb4ce4b2e1a:o:Story"
-							]
-						},
-						{
-							"id": "b3b0ec0f4ed75b1c11ebdaa044d67bdb:o:HasChoices",
-							"name": "HasChoices",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": null,
-							"links": [
-								"b0fdae36435a944ec8b23f84d33c598a:i:Condition"
 							]
 						}
 					]
@@ -6585,6 +6583,36 @@
 					]
 				},
 				{
+					"guid": "e256845c49c1cf67a923e49a11e3675f",
+					"class": "K2Node_CallFunction",
+					"title": "HasChoices",
+					"x": 528,
+					"y": -928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e256845c49c1cf67a923e49a11e3675f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"f8f71b3745105bbbec95edb4ce4b2e1a:o:Story"
+							]
+						},
+						{
+							"id": "e256845c49c1cf67a923e49a11e3675f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"b0fdae36435a944ec8b23f84d33c598a:i:Condition"
+							]
+						}
+					]
+				},
+				{
 					"guid": "e58d6473406a7e6009992c9d26cd9cfe",
 					"class": "K2Node_CustomEvent",
 					"title": "OnTimerExprired",
@@ -6948,7 +6976,7 @@
 							"defaultValue": null,
 							"links": [
 								"631e62a44134d4ae56875f830266ea9b:i:Story",
-								"b3b0ec0f4ed75b1c11ebdaa044d67bdb:i:Story"
+								"e256845c49c1cf67a923e49a11e3675f:i:self"
 							]
 						}
 					]
@@ -7070,10 +7098,10 @@
 				{
 					"guid": "9ce67dec4be4cf153ee6c18c2c2e7b4c",
 					"text": "Choice made, continue the story",
-					"x": 0,
-					"y": -432,
-					"width": 617,
-					"height": 245
+					"x": -327,
+					"y": -427,
+					"width": 944,
+					"height": 240
 				},
 				{
 					"guid": "aa4ecf6f4eed3e0c17ae029a918f644e",

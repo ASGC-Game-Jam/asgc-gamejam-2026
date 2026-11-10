@@ -2382,6 +2382,62 @@
 					]
 				},
 				{
+					"guid": "04b293ce4601cbcc028d06a5b339664a",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateChoicesView",
+					"x": 2704,
+					"y": 880,
+					"comment": null,
+					"pins": [
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"47c0c1f245ef96aad6cda79ba101d57c:o:then"
+							]
+						},
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"5669611a431bef9036dee1bf3ce65b74:o:DisplayWidget"
+							]
+						},
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"7482e97e41cffeb5d7fc23a6c8041f3e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:o:HasChoices",
+							"name": "HasChoices",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "066ffdd845da7af5e1750b82027c0bc2",
 					"class": "K2Node_VariableGet",
 					"title": "Get Dialogue Sentence",
@@ -2459,6 +2515,78 @@
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
 							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "101c35b747baa0bc6482d69dfa131770",
+					"class": "K2Node_CallFunction",
+					"title": "Get All Widgets Of Class",
+					"x": 1632,
+					"y": 73,
+					"comment": null,
+					"pins": [
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7320dc8a40a4cdee34fcf1ba2c50fa77:o:then"
+							]
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"27a862b4468d5e7a54b2098b6164ecdb:i:execute"
+							]
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:o:FoundWidgets",
+							"name": "FoundWidgets",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
+							"defaultValue": null,
+							"links": [
+								"5a5a371649cbcf03d8d4eea1e578bfee:i:Array"
+							]
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:WidgetClass",
+							"name": "WidgetClass",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"links": []
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:TopLevelOnly",
+							"name": "TopLevelOnly",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
 							"links": []
 						}
 					]
@@ -2606,6 +2734,80 @@
 					]
 				},
 				{
+					"guid": "1da1052144b6dc88649e11956a528b7e",
+					"class": "K2Node_GetEngineSubsystem",
+					"title": "Get Inkpot",
+					"x": 2144,
+					"y": 1142,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1da1052144b6dc88649e11956a528b7e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"7482e97e41cffeb5d7fc23a6c8041f3e:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "27a862b4468d5e7a54b2098b6164ecdb",
+					"class": "K2Node_VariableSet",
+					"title": "Set DisplayWidget",
+					"x": 2240,
+					"y": 89,
+					"comment": null,
+					"pins": [
+						{
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"101c35b747baa0bc6482d69dfa131770:o:then"
+							]
+						},
+						{
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:i:DisplayWidget",
+							"name": "DisplayWidget",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"5a5a371649cbcf03d8d4eea1e578bfee:o:Output"
+							]
+						},
+						{
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "2eba045f42dc17fdaf5a6c9aa8fafe50",
 					"class": "K2Node_CallArrayFunction",
 					"title": "Length",
@@ -2695,7 +2897,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"04b293ce4601cbcc028d06a5b339664a:i:execute"
+							]
 						},
 						{
 							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:self",
@@ -2738,6 +2942,72 @@
 							"type": "bool",
 							"defaultValue": "true",
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5669611a431bef9036dee1bf3ce65b74",
+					"class": "K2Node_VariableGet",
+					"title": "Get DisplayWidget",
+					"x": 2368,
+					"y": 949,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5669611a431bef9036dee1bf3ce65b74:o:DisplayWidget",
+							"name": "DisplayWidget",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"04b293ce4601cbcc028d06a5b339664a:i:self"
+							]
+						},
+						{
+							"id": "5669611a431bef9036dee1bf3ce65b74:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5a5a371649cbcf03d8d4eea1e578bfee",
+					"class": "K2Node_GetArrayItem",
+					"title": "Get (a copy)",
+					"x": 2000,
+					"y": 127,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5a5a371649cbcf03d8d4eea1e578bfee:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
+							"defaultValue": null,
+							"links": [
+								"101c35b747baa0bc6482d69dfa131770:o:FoundWidgets"
+							]
+						},
+						{
+							"id": "5a5a371649cbcf03d8d4eea1e578bfee:i:Dimension 1",
+							"name": "Dimension 1",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "5a5a371649cbcf03d8d4eea1e578bfee:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"27a862b4468d5e7a54b2098b6164ecdb:i:DisplayWidget"
+							]
 						}
 					]
 				},
@@ -2809,7 +3079,7 @@
 							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:Text",
 							"name": "Text",
 							"direction": "input",
-							"type": "Text",
+							"type": "text",
 							"defaultValue": null,
 							"links": []
 						},
@@ -2836,6 +3106,34 @@
 							"type": "bool",
 							"defaultValue": "true",
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7320dc8a40a4cdee34fcf1ba2c50fa77",
+					"class": "K2Node_Event",
+					"title": "Event On Initialized",
+					"x": 1344,
+					"y": 73,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7320dc8a40a4cdee34fcf1ba2c50fa77:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7320dc8a40a4cdee34fcf1ba2c50fa77:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"101c35b747baa0bc6482d69dfa131770:i:execute"
+							]
 						}
 					]
 				},
@@ -2875,6 +3173,44 @@
 							"defaultValue": null,
 							"links": [
 								"83df2a8142c42612df78a383f1254e80:i:DelayDuration"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7482e97e41cffeb5d7fc23a6c8041f3e",
+					"class": "K2Node_CallFunction",
+					"title": "GetStory",
+					"x": 2336,
+					"y": 1104,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7482e97e41cffeb5d7fc23a6c8041f3e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"1da1052144b6dc88649e11956a528b7e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7482e97e41cffeb5d7fc23a6c8041f3e:i:InkpotStoryAsset",
+							"name": "InkpotStoryAsset",
+							"direction": "input",
+							"type": "softobject:/Script/Inkpot.InkpotStoryAsset",
+							"defaultValue": "/Game/InkpotDemo/Stories/AdventureDemo.AdventureDemo",
+							"links": []
+						},
+						{
+							"id": "7482e97e41cffeb5d7fc23a6c8041f3e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"04b293ce4601cbcc028d06a5b339664a:i:Story"
 							]
 						}
 					]
@@ -2973,7 +3309,7 @@
 							"id": "83df2a8142c42612df78a383f1254e80:o:Loop Body",
 							"name": "Loop Body",
 							"direction": "output",
-							"type": "Exec",
+							"type": "exec",
 							"defaultValue": null,
 							"links": [
 								"f52277d14fb7b00352f297bda58173f2:i:execute"
@@ -3001,7 +3337,7 @@
 							"id": "83df2a8142c42612df78a383f1254e80:o:Completed",
 							"name": "Completed",
 							"direction": "output",
-							"type": "Exec",
+							"type": "exec",
 							"defaultValue": null,
 							"links": [
 								"47c0c1f245ef96aad6cda79ba101d57c:i:execute"
@@ -3098,7 +3434,7 @@
 							"id": "a46940d04a78ddc10f9a21a5586d4e3a:o:Text",
 							"name": "Text",
 							"direction": "output",
-							"type": "Text",
+							"type": "text",
 							"defaultValue": null,
 							"links": [
 								"d4896d5d4be6d4464fc6aa85e21d6ca1:i:InText"
@@ -3345,7 +3681,16 @@
 					]
 				}
 			],
-			"comments": []
+			"comments": [
+				{
+					"guid": "caa32837449bcf9ac639ae9d2f1f109f",
+					"text": "This Ref will have to be updated manually (I don't know a solution)",
+					"x": 2272,
+					"y": 1040,
+					"width": 434,
+					"height": 229
+				}
+			]
 		}
 	],
 	"properties":
@@ -3369,6 +3714,13 @@
 			"Type Writer Finished":
 			{
 				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"DisplayWidget":
+			{
+				"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": false
