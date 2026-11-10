@@ -32,9 +32,9 @@ bool FAtlantisBallastInputHintsTest::RunTest(const FString& Parameters)
 	if (TestNotNull(TEXT("Common Input subsystem created"), Subsystem))
 	{
 		AAtlantisPlayerController* Controller = World->SpawnActor<AAtlantisPlayerController>();
-		Controller->SetPlayer(LocalPlayer);
-		// The standalone dummy world does not run actor initialization automatically.
+		// Enhanced Input needs to find the controller in the world as soon as SetPlayer notifies the player.
 		World->AddController(Controller);
+		Controller->SetPlayer(LocalPlayer);
 		UClass* WidgetClass = LoadClass<UAtlantisBallastIndicatorWidget>(nullptr,
 			TEXT("/Game/ProjectAtlantis/UI/WBP_BallastIndicator.WBP_BallastIndicator_C"));
 		Subsystem->SetCurrentInputType(ECommonInputType::Gamepad);

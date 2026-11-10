@@ -62,7 +62,7 @@ At the first observation/tick/flush after a forward UTC date change, day counter
 
 ## Validation
 
-Build with Unreal 5.7.4:
+Build with Unreal 5.9:
 
 ```text
 Build.bat ProjectAtlantisEditor Win64 Development -Project=<absolute ProjectAtlantis.uproject> -WaitMutex -NoHotReloadFromIDE -NoUBA -NoDebugInfo

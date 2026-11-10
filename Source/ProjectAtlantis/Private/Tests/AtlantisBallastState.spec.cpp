@@ -124,6 +124,7 @@ void FAtlantisBallastStateSpec::Define()
 				return;
 			}
 
+			Fixture->World->InitializeActorsForPlay(FURL());
 			Fixture->State->DispatchBeginPlay();
 			Fixture->State->SetBallastState(EAtlantisBallastState::Wander);
 			TestTrue(TEXT("Player starts in Wander"), Fixture->State->GetBallastState() == EAtlantisBallastState::Wander);

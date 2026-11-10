@@ -6,7 +6,7 @@ if [[ $# -gt 2 ]]; then
 	exit 1
 fi
 
-UE_PATH="${2:-${UE_PATH:-/Users/Shared/Epic Games/UE_5.7}}"
+UE_PATH="${2:-${UE_PATH:-/Users/Shared/Epic Games/UE_5.9}}"
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 source "$PROJECT_ROOT/Scripts/release-version.sh"
 RELEASE_VERSION="$(release_version "${1:-}")"

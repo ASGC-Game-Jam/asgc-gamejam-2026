@@ -21,7 +21,7 @@ paths in the examples below.
 ### Windows (PowerShell)
 
 ```powershell
-& "C:\Program Files\Epic Games\UE_5.7\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" `
+& "C:\Program Files\Epic Games\UE_5.9\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" `
   "C:\path\to\asgc-gamejam-2026\ProjectAtlantis.uproject" `
   -unattended -nop4 -NullRHI -ExecCmds="Automation RunTests Atlantis.PlayerState.BallastAllocation" `
   -TestExit="Automation Test Queue Empty"
@@ -32,7 +32,7 @@ paths in the examples below.
 Run the executable inside the editor's app bundle:
 
 ```bash
-"/Users/Shared/Epic Games/UE_5.7/Engine/Binaries/Mac/UnrealEditor.app/Contents/MacOS/UnrealEditor" \
+"/Users/Shared/Epic Games/UE_5.9/Engine/Binaries/Mac/UnrealEditor.app/Contents/MacOS/UnrealEditor" \
   "/path/to/asgc-gamejam-2026/ProjectAtlantis.uproject" \
   -unattended -nop4 -NullRHI -ExecCmds="Automation RunTests Atlantis.PlayerState.BallastAllocation" \
   -TestExit="Automation Test Queue Empty"
