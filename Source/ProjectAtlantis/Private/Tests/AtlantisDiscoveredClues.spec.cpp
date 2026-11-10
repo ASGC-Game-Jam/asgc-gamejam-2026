@@ -49,8 +49,8 @@ namespace
 			FString Error;
 			Player = GameInstance->CreateLocalPlayer(0, Error, false);
 			APlayerController* Controller = World->SpawnActor<APlayerController>();
-			Controller->SetPlayer(Player);
 			World->AddController(Controller);
+			Controller->SetPlayer(Player);
 			UClass* Class = LoadClass<UUserWidget>(nullptr, TEXT("/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C"));
 			Shell = Class ? CreateWidget<UUserWidget>(Controller, Class) : nullptr;
 			if (Shell)

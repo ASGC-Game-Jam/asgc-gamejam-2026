@@ -9,7 +9,7 @@ Install the following before cloning the repository
 
 - [Git](https://git-scm.com/install/)
 - [Git LFS](https://git-lfs.com/)
-- Unreal Engine 5.7.4
+- Unreal Engine 5.9 Preview
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/older-downloads/) or [Rider](https://www.jetbrains.com/rider/download/) (or another IDE configured for Unreal Engine C++ development)
   - [Setting up Visual Studio](https://dev.epicgames.com/documentation/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)
   - [Setting up Rider](https://tomlooman.com/setup-unreal-engine-cpp-rider/)
@@ -103,6 +103,22 @@ files must be explicitly added with `git add`. Commit/push using Git to retain
 locks through PR merge, or use asset-specific Check In with the patched plugin:
 editor Check In and push now retain locks regardless of **Keep Files Checked Out**.
 Release locks explicitly after merge; the plugin does not monitor PR status.
+
+## Refresh IDE Project Files After Upgrading
+
+Close the editor, then regenerate the project files from the repository root
+using the Unreal 5.9 installation:
+
+```powershell
+$UnrealBuild = 'C:\Program Files\Epic Games\UE_5.9\Engine\Build\BatchFiles\Build.bat'
+& $UnrealBuild -projectfiles "-project=$PWD\ProjectAtlantis.uproject" -game -engine
+```
+
+Reopen the generated solution in Visual Studio or open
+`ProjectAtlantis.uproject` directly in Rider. Build **Development Editor / Win64**.
+
+Visual Studio 2022 can build the game and editor C++ targets. Use Visual Studio
+2026 to include Unreal 5.9's .NET 10 C# projects in the generated solution.
 
 ## Verify Your Setup
 

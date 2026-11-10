@@ -24,7 +24,7 @@ This project exists to give people a chance to build something real together. Wh
 
 ## Technology
 
-- Unreal Engine 5.7.4
+- Unreal Engine 5.9 Preview
 - C++ & Blueprints
 - GitHub
 - [Git LFS](https://git-lfs.com/) ([Gitea](https://gittea.dev/))

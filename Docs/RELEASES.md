@@ -69,7 +69,7 @@ The script keeps the package, staging files, and build log together under
 `Builds/ProjectAtlantis-build-<version>/`. The Shipping app is in `Package/Mac` and
 targets both Apple Silicon and Intel through the shared Mac architecture settings
 in `Config/DefaultEngine.ini`. The engine defaults to
-`/Users/Shared/Epic Games/UE_5.7`; pass a different installation as the second argument:
+`/Users/Shared/Epic Games/UE_5.9`; pass a different installation as the second argument:
 
 ```sh
 ./Scripts/build.sh 1.2.0 "/path/to/Unreal Engine"
