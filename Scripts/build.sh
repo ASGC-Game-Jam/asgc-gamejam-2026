@@ -27,8 +27,8 @@ mkdir -p "$BUILD_PATH"
 } 2>&1 | tee "$BUILD_PATH/build.log"
 
 APP_PATH="$OUTPUT_PATH/Mac/ProjectAtlantis-Mac-Shipping.app"
-if [[ ! -d "$APP_PATH" ]]; then
-	printf 'Shipping app not found: %s\n' "$APP_PATH" >&2
+if [[ ! -x "$APP_PATH/Contents/MacOS/ProjectAtlantis-Mac-Shipping" ]]; then
+	printf 'Shipping executable missing or not executable: %s\n' "$APP_PATH/Contents/MacOS/ProjectAtlantis-Mac-Shipping" >&2
 	exit 1
 fi
 
