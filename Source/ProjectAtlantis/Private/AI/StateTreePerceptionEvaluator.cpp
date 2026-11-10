@@ -190,7 +190,7 @@ void FStateTreePerceptionEvaluator::HandleStatus(AAtlantisEnemyController& Enemy
 	}
 	
 	// Otherwise, if we're only aware of a player, we're alert.
-	if (PerceivedActors.IsEmpty() == false)
+	else if (PerceivedActors.IsEmpty() == false)
 	{
 		SetEnemyStatus(EnemyController, EMonsterStatus::Alerted);
 	}
@@ -238,6 +238,11 @@ void FStateTreePerceptionEvaluator::Tick(FStateTreeExecutionContext& Context, co
 	}
 	
 	const AAtlantisAICharacter* EnemyPawn = EnemyController->GetPawn<AAtlantisAICharacter>();
+	// ensure only reports once per session, so a misconfigured pawn doesn't spam the log every tick.
+	if (!ensureMsgf(EnemyPawn != nullptr, TEXT("[%hs] %s's pawn is not an AtlantisAICharacter! Perception can't be processed."), __FUNCTION__, *EnemyController->GetName()))
+	{
+		return;
+	}
 	
 	UE_CVLOG_CIRCLE(EnemyPawn != nullptr,
 		EnemyController,
