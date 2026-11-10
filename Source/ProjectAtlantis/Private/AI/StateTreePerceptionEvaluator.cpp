@@ -297,6 +297,7 @@ void FStateTreePerceptionEvaluator::Tick(FStateTreeExecutionContext& Context, co
 	
 	HandleStatus(*EnemyController, PerceivedActors);
 	WriteOutputs(InstanceData, EnemyController);
+	EnemyController->SetDetection(InstanceData.Suspicion);
 }
 
 void FStateTreePerceptionEvaluator::WriteOutputs(FStateTreePerceptionEvaluatorInstanceData& InstanceData, const AAtlantisEnemyController* EnemyController) const

@@ -3,6 +3,7 @@
 
 #include "Core/AtlantisEnemyController.h"
 
+#include "AI/AtlantisDetectionMarkerComponent.h"
 #include "AI/AtlantisSightConeComponent.h"
 #include "AITypes.h"
 #include "Perception/AIPerceptionComponent.h"
@@ -73,4 +74,45 @@ void AAtlantisEnemyController::SetStatus(EMonsterStatus InStatus)
 	const EMonsterStatus OldStatus = CurrentStatus;
 	CurrentStatus = InStatus;
 	OnStatusChanged.Broadcast(OldStatus, CurrentStatus);
+	NotifyDetectionChanged(false);
+}
+
+void AAtlantisEnemyController::SetDetection(float InMeter)
+{
+	DetectionMeter = FMath::Clamp(InMeter, 0.f, 1.f);
+	NotifyDetectionChanged(false);
+}
+
+void AAtlantisEnemyController::OnPossess(APawn* InPawn)
+{
+	Super::OnPossess(InPawn);
+
+	DetectionMarker = InPawn != nullptr ? InPawn->FindComponentByClass<UAtlantisDetectionMarkerComponent>() : nullptr;
+	NotifyDetectionChanged(true);
+}
+
+void AAtlantisEnemyController::OnUnPossess()
+{
+	DetectionMarker.Reset();
+	Super::OnUnPossess();
+}
+
+void AAtlantisEnemyController::NotifyDetectionChanged(bool bForce)
+{
+	// Reaching exactly 0 or 1 always counts, so the bar never stops just short of empty/full.
+	const bool bMeterChanged = FMath::Abs(DetectionMeter - LastNotifiedMeter) > 0.01f
+		|| ((DetectionMeter <= 0.f || DetectionMeter >= 1.f) && DetectionMeter != LastNotifiedMeter);
+	if (!bForce && !bMeterChanged && CurrentStatus == LastNotifiedStatus)
+	{
+		return;
+	}
+
+	LastNotifiedMeter = DetectionMeter;
+	LastNotifiedStatus = CurrentStatus;
+
+	if (UAtlantisDetectionMarkerComponent* const Marker = DetectionMarker.Get())
+	{
+		Marker->SetDetection(DetectionMeter, CurrentStatus);
+	}
+	OnDetectionChanged.Broadcast(DetectionMeter, CurrentStatus);
 }
