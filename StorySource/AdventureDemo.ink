@@ -80,7 +80,7 @@ On to your next adventure.
     - QuestMeetEmmy ? OpenedJournal:
         -> timequest
     - QuestMeetEmmy ? MetEmmy:
-        -> intro.EmmyGivesJournal
+        -> castella_talk_7.EmmyGivesJournal
     }
 -> intro
 
@@ -109,25 +109,6 @@ So who let you in here?
     
     Fine. If you'd come to steal samples you'd have run by now. But the bulwarks closed every submarine route weeks ago. How did you get down here?
     -> where_you_came_from
-
-Check out the EventGraph in the Level Blueprint to see how it's organized.
-
-~ QuestMeetEmmy += MetEmmy
-
-- (EmmyGivesJournal)
-
-This is an example of some DIALOGUE. I'll add an entry on DIALOGUE to your JOURNAL. Plus an entry on JOURNAL ENTRIES. # Linetime: 2
-
-~ JournalEntries += (journal, dialogue)
-
-(Woah, meta).
-
-{
-    - QuestMeetEmmy ? OpenedJournal:
-        -> timequest
-    -else:
-        Check those out by clicking on your Journal in the top right, then come back. (You may need to back away and approach me again to start a new conversaton). # Linetime: 2.5
-    }
 
 -> DONE
 = where_you_came_from
@@ -190,6 +171,27 @@ If his notes are right, this could push the bleached coral back. Even something 
 There's an inventor out in the Wilds. Sabelle. If anyone can build Richard's machine, it's them.
 Go on, then. Find out what the scientists in District 1 know. I'll keep digging here.
 Conversation over. Castella's trust is now {trust}.
+
+//Check out the Level EventGraph in the Level Blueprint to see this Demo is organized.
+
+~ QuestMeetEmmy += MetEmmy
+
+- (EmmyGivesJournal)
+
+This is an example of some DIALOGUE. I'll add an entry on DIALOGUE to your JOURNAL. Plus an entry on JOURNAL ENTRIES. # Linetime: 2
+
+~ JournalEntries += (journal, dialogue)
+
+(Woah, meta).
+
+{
+    - QuestMeetEmmy ? OpenedJournal:
+        -> timequest
+    -else:
+        Check those out by clicking on your Journal in the top right, then come back. (You may need to back away and approach me again to start a new conversaton). # Linetime: 2.5
+    }
+
+
 -> DONE
 = timequest
 ~ QuestMeetEmmy += ToldEmmyJournal
