@@ -32,9 +32,15 @@ class PROJECTATLANTIS_API AAtlantisEnemyController : public AAtlantisAIControlle
 
 public:
 	// Sets default values for this actor's properties
-	AAtlantisEnemyController();
+	AAtlantisEnemyController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 	virtual void Tick(float DeltaSeconds) override;
+	
+	/**
+	 * Turns toward the focal point at MaxYawRateDegreesPerSecond instead of snapping.
+	 * The controller owns facing: while swimming, UAtlantisMovementComponent never turns an AI pawn by itself.
+	 */
+	virtual void UpdateControlRotation(float DeltaTime, bool bUpdatePawn = true) override;
 	
 	/** Sets the status and broadcasts OnStatusChanged if it actually changed. */
 	void SetStatus(EMonsterStatus InStatus);
@@ -56,6 +62,10 @@ protected:
 	// Read from Blueprints via GetCurrentStatus().
 	UPROPERTY(VisibleInstanceOnly, Category = "Atlantis|AI")
 	EMonsterStatus CurrentStatus = EMonsterStatus::Idle;
+	
+	/** How fast the enemy turns toward what it's looking at, in degrees per second. 0 = snap instantly. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|AI|Movement", meta = (ClampMin = 0, UIMin = 0, UIMax = 720, ForceUnits = "deg/s"))
+	float MaxYawRateDegreesPerSecond = 180.f;
 	
 	/** Debug visualizer for the sight sense. We call it every tick; its settings live on the component. */
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Atlantis|AI")

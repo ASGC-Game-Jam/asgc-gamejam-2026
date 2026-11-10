@@ -191,6 +191,63 @@
 				"bNeedsUCSSerializationIndexEvaluted": false,
 				"CreationMethod": "Native"
 			},
+			"CurrentStatus": "Idle",
+			"MaxYawRateDegreesPerSecond": 180,
+			"SightCone":
+			{
+				"_class": "AtlantisSightConeComponent",
+				"_name": "Sight Cone",
+				"bDrawSightCone": true,
+				"IdleColor":
+				{
+					"B": 0,
+					"G": 255,
+					"R": 0,
+					"A": 255
+				},
+				"SuspiciousColor":
+				{
+					"B": 0,
+					"G": 255,
+					"R": 255,
+					"A": 255
+				},
+				"DetectedColor":
+				{
+					"B": 0,
+					"G": 0,
+					"R": 255,
+					"A": 255
+				},
+				"bDrawLoseSightCone": true,
+				"LoseSightConeBrightness": 0.40000000000000002,
+				"NumSides": 16,
+				"LineThickness": 1.5,
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
 			"StateTreeComponent":
 			{
 				"_class": "StateTreeAIComponent",
@@ -243,15 +300,16 @@
 			"bSetControlRotationFromPawnOrientation": true,
 			"PathFollowingComponent":
 			{
-				"_class": "PathFollowingComponent",
+				"_class": "AtlantisPathFollowingComponent",
 				"_name": "PathFollowingComponent",
+				"IntermediatePointTolerance": 30,
 				"PrimaryComponentTick":
 				{
 					"TickGroup": "TG_DuringPhysics",
 					"EndTickGroup": "TG_PrePhysics",
 					"bTickEvenWhenPaused": false,
 					"bCanEverTick": true,
-					"bStartWithTickEnabled": false,
+					"bStartWithTickEnabled": true,
 					"bAllowTickOnDedicatedServer": true,
 					"TickInterval": 0
 				},
@@ -262,7 +320,7 @@
 				"bNetAddressable": false,
 				"bReplicateUsingRegisteredSubObjectList": false,
 				"bReplicates": false,
-				"bAutoActivate": false,
+				"bAutoActivate": true,
 				"bEditableWhenInherited": true,
 				"bCanEverAffectNavigation": false,
 				"bIsEditorOnly": false,

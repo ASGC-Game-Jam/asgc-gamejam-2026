@@ -45,6 +45,25 @@ struct PROJECTATLANTIS_API FStateTreePerceptionEvaluatorInstanceData
 	
 	UPROPERTY(EditDefaultsOnly, Category = Context)
 	TObjectPtr<AAtlantisEnemyController> AIController;
+	
+	// Output-category values can be bound by any state, task or condition in the tree.
+	// They are written every tick, including when the evaluator can't run (so states never read stale data).
+	
+	/** The enemy's current status. Idle until perception says otherwise. */
+	UPROPERTY(VisibleAnywhere, Category = Output)
+	EMonsterStatus Status = EMonsterStatus::Idle;
+	
+	/** Where the most relevant player was last seen. Only meaningful when SuspectActor is set. */
+	UPROPERTY(VisibleAnywhere, Category = Output)
+	FVector LastKnownLocation = FVector::ZeroVector;
+	
+	/** The player the enemy is reacting to (aggroed first, then most suspicious), or null. */
+	UPROPERTY(VisibleAnywhere, Category = Output)
+	TObjectPtr<AActor> SuspectActor = nullptr;
+	
+	/** Detection meter (0-1) of SuspectActor. */
+	UPROPERTY(VisibleAnywhere, Category = Output)
+	float Suspicion = 0.f;
 };
 
 // You may notice that this struct is... well, a struct. Most State Tree Elements are composed of structs and not classes.
@@ -73,6 +92,8 @@ struct PROJECTATLANTIS_API FStateTreePerceptionEvaluator : public FStateTreeEval
 	const;
 	void HandleStatus(AAtlantisEnemyController& EnemyController,
 	                  TMap<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceivedActors) const;
+	/** Fills the Output properties from the controller's state (or Idle defaults when there is no controller). */
+	void WriteOutputs(FStateTreePerceptionEvaluatorInstanceData& InstanceData, const AAtlantisEnemyController* EnemyController) const;
 	virtual void Tick(FStateTreeExecutionContext& Context, const float DeltaTime) const override;
 	
 	// An example of a parameter that can logically exist in the struct itself, rather than the Instance Data.

@@ -75,98 +75,6 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
-					"guid": "1d173ecf436eff90a33a9c84ecda6961",
-					"class": "K2Node_CallFunction",
-					"title": "Print String",
-					"x": 704,
-					"y": 80,
-					"comment": null,
-					"pins": [
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"4182d94049c1aa4fbb6fe19722a9555f:o:Combat"
-							]
-						},
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetSystemLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
-							"links": []
-						},
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:i:WorldContextObject",
-							"name": "WorldContextObject",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:i:InString",
-							"name": "InString",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": "UN FORASTEROOOO",
-							"links": []
-						},
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:i:bPrintToScreen",
-							"name": "bPrintToScreen",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:i:bPrintToLog",
-							"name": "bPrintToLog",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:i:TextColor",
-							"name": "TextColor",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.LinearColor",
-							"defaultValue": "(R=1.000000,G=0.107821,B=0.000000,A=1.000000)",
-							"links": []
-						},
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:i:Duration",
-							"name": "Duration",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": "5.000000",
-							"links": []
-						},
-						{
-							"id": "1d173ecf436eff90a33a9c84ecda6961:i:Key",
-							"name": "Key",
-							"direction": "input",
-							"type": "name",
-							"defaultValue": "None",
-							"links": []
-						}
-					]
-				},
-				{
 					"guid": "284b90df444cbdc437bdf8bcdd231c12",
 					"class": "K2Node_CallParentFunction",
 					"title": "Parent: Tick",
@@ -241,80 +149,6 @@
 					]
 				},
 				{
-					"guid": "4182d94049c1aa4fbb6fe19722a9555f",
-					"class": "K2Node_SwitchEnum",
-					"title": "Switch on EMonsterStatus",
-					"x": 352,
-					"y": -64,
-					"comment": null,
-					"pins": [
-						{
-							"id": "4182d94049c1aa4fbb6fe19722a9555f:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"6b42f2d749ae7afa6e574d92ef55a6dc:o:then"
-							]
-						},
-						{
-							"id": "4182d94049c1aa4fbb6fe19722a9555f:i:Selection",
-							"name": "Selection",
-							"direction": "input",
-							"type": "byte:/Script/ProjectAtlantis.EMonsterStatus",
-							"defaultValue": null,
-							"links": [
-								"6b42f2d749ae7afa6e574d92ef55a6dc:o:NewStatus"
-							]
-						},
-						{
-							"id": "4182d94049c1aa4fbb6fe19722a9555f:i:NotEqual_ByteByte",
-							"name": "NotEqual_ByteByte",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetMathLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
-							"links": []
-						},
-						{
-							"id": "4182d94049c1aa4fbb6fe19722a9555f:o:Idle",
-							"name": "Idle",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "4182d94049c1aa4fbb6fe19722a9555f:o:Alerted",
-							"name": "Alerted",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"5e532a9642bff7af25234897a74f5b32:i:execute"
-							]
-						},
-						{
-							"id": "4182d94049c1aa4fbb6fe19722a9555f:o:Searching",
-							"name": "Searching",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "4182d94049c1aa4fbb6fe19722a9555f:o:Combat",
-							"name": "Combat",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"1d173ecf436eff90a33a9c84ecda6961:i:execute"
-							]
-						}
-					]
-				},
-				{
 					"guid": "44db10904ffe723ec9f0d6a07a60de91",
 					"class": "K2Node_Event",
 					"title": "Event ActorBeginOverlap",
@@ -348,146 +182,6 @@
 							"defaultValue": null,
 							"links": [
 								"df8d595d48ce54f00166ca80e0eef98f:i:OtherActor"
-							]
-						}
-					]
-				},
-				{
-					"guid": "5e532a9642bff7af25234897a74f5b32",
-					"class": "K2Node_CallFunction",
-					"title": "Print String",
-					"x": 672,
-					"y": -96,
-					"comment": null,
-					"pins": [
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"4182d94049c1aa4fbb6fe19722a9555f:o:Alerted"
-							]
-						},
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetSystemLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
-							"links": []
-						},
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:i:WorldContextObject",
-							"name": "WorldContextObject",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:i:InString",
-							"name": "InString",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": "Must have been the wind...",
-							"links": []
-						},
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:i:bPrintToScreen",
-							"name": "bPrintToScreen",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:i:bPrintToLog",
-							"name": "bPrintToLog",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:i:TextColor",
-							"name": "TextColor",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.LinearColor",
-							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
-							"links": []
-						},
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:i:Duration",
-							"name": "Duration",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": "2.000000",
-							"links": []
-						},
-						{
-							"id": "5e532a9642bff7af25234897a74f5b32:i:Key",
-							"name": "Key",
-							"direction": "input",
-							"type": "name",
-							"defaultValue": "None",
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "6b42f2d749ae7afa6e574d92ef55a6dc",
-					"class": "K2Node_CustomEvent",
-					"title": "HandleStatusChanged",
-					"x": 80,
-					"y": -80,
-					"comment": null,
-					"pins": [
-						{
-							"id": "6b42f2d749ae7afa6e574d92ef55a6dc:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": [
-								"9d1991194621122ff910a6b977b0205f:i:Delegate"
-							]
-						},
-						{
-							"id": "6b42f2d749ae7afa6e574d92ef55a6dc:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"4182d94049c1aa4fbb6fe19722a9555f:i:execute"
-							]
-						},
-						{
-							"id": "6b42f2d749ae7afa6e574d92ef55a6dc:o:OldStatus",
-							"name": "OldStatus",
-							"direction": "output",
-							"type": "byte:/Script/ProjectAtlantis.EMonsterStatus",
-							"defaultValue": "None",
-							"links": []
-						},
-						{
-							"id": "6b42f2d749ae7afa6e574d92ef55a6dc:o:NewStatus",
-							"name": "NewStatus",
-							"direction": "output",
-							"type": "byte:/Script/ProjectAtlantis.EMonsterStatus",
-							"defaultValue": null,
-							"links": [
-								"4182d94049c1aa4fbb6fe19722a9555f:i:Selection"
 							]
 						}
 					]
@@ -554,9 +248,7 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": [
-								"9d1991194621122ff910a6b977b0205f:i:execute"
-							]
+							"links": []
 						},
 						{
 							"id": "88e256ac43255423075de8a0b1931795:i:self",
@@ -565,52 +257,6 @@
 							"type": "object:/Script/Engine.Actor",
 							"defaultValue": null,
 							"links": []
-						}
-					]
-				},
-				{
-					"guid": "9d1991194621122ff910a6b977b0205f",
-					"class": "K2Node_AddDelegate",
-					"title": "Bind Event to On Status Changed",
-					"x": 384,
-					"y": -224,
-					"comment": null,
-					"pins": [
-						{
-							"id": "9d1991194621122ff910a6b977b0205f:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"88e256ac43255423075de8a0b1931795:o:then"
-							]
-						},
-						{
-							"id": "9d1991194621122ff910a6b977b0205f:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "9d1991194621122ff910a6b977b0205f:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/ProjectAtlantis.AtlantisEnemyController",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "9d1991194621122ff910a6b977b0205f:i:Delegate",
-							"name": "Delegate",
-							"direction": "input",
-							"type": "delegate",
-							"defaultValue": null,
-							"links": [
-								"6b42f2d749ae7afa6e574d92ef55a6dc:o:OutputDelegate"
-							]
 						}
 					]
 				},
@@ -671,27 +317,24 @@
 		},
 		"components":
 		{
-			"BP_PatrolFollowerComponent":
+			"PatrolComponent":
 			{
-				"class": "BP_PatrolFollowerComponent_C",
+				"class": "AtlantisPatrolComponent",
 				"parent": null,
 				"properties":
 				{
-					"PatrolPath": null,
-					"TravelTime": 0,
-					"CurrentDistance": 0,
-					"Spline Length": 0,
-					"bReversed": false,
-					"TargetIdx": 1,
-					"WaitTimer":
+					"PatrolRoute": null,
+					"Cursor":
 					{
+						"PointIndex": -1,
+						"Direction": "Forward"
 					},
 					"PrimaryComponentTick":
 					{
 						"TickGroup": "TG_DuringPhysics",
 						"EndTickGroup": "TG_PrePhysics",
 						"bTickEvenWhenPaused": false,
-						"bCanEverTick": true,
+						"bCanEverTick": false,
 						"bStartWithTickEnabled": true,
 						"bAllowTickOnDedicatedServer": true,
 						"TickInterval": 0
@@ -715,7 +358,7 @@
 		},
 		"defaults":
 		{
-			"BP_PatrolFollowerComponent": null,
+			"PatrolComponent": null,
 			"Mesh":
 			{
 				"_class": "SkeletalMeshComponent",
@@ -1351,8 +994,20 @@
 			},
 			"CharacterMovement":
 			{
-				"_class": "CharacterMovementComponent",
+				"_class": "AtlantisMovementComponent",
 				"_name": "CharMoveComp",
+				"SwimFacingInterpolationSpeed": 8,
+				"MinSwimFacingSpeed": 1,
+				"DescendBuoyancy": 0.5,
+				"AscendBuoyancy": 1.5,
+				"SurfaceAttachDistance": 8,
+				"SurfaceDetachDistance": 20,
+				"SurfaceContactOffset": 2,
+				"MaxSurfaceNormalChangeDegrees": 60,
+				"MinSurfaceVerticalNormal": 0.10000000000000001,
+				"BlockedSurfaceReattachDelay": 0.20000000000000001,
+				"MaxSwimAcceleration": 2000,
+				"MaxVerticalSwimSpeed": 150,
 				"GravityScale": 0,
 				"MaxStepHeight": 45,
 				"JumpZVelocity": 420,
@@ -1395,7 +1050,7 @@
 				"BrakingSubStepTime": 0.030303030000000002,
 				"BrakingDecelerationWalking": 2048,
 				"BrakingDecelerationFalling": 0,
-				"BrakingDecelerationSwimming": 0,
+				"BrakingDecelerationSwimming": 250,
 				"BrakingDecelerationFlying": 0,
 				"AirControl": 0.050000000000000003,
 				"AirControlBoostMultiplier": 2,

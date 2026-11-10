@@ -1,0 +1,95 @@
+// Copyright (c) 2026 ASGC
+
+#include "AI/AtlantisPathFollowingComponent.h"
+
+#include "AI/AtlantisAITypes.h"
+#include "AI/AtlantisNavGraph.h"
+#include "NavigationData.h"
+
+UAtlantisPathFollowingComponent::UAtlantisPathFollowingComponent(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+}
+
+bool UAtlantisPathFollowingComponent::IsFollowingGraphPath() const
+{
+	return Path.IsValid() && Path->GetNavigationDataUsed() == nullptr;
+}
+
+void UAtlantisPathFollowingComponent::SetMoveSegment(int32 SegmentStartIndex)
+{
+	Super::SetMoveSegment(SegmentStartIndex);
+
+	CurrentSegmentMode = EAtlantisTraversalMode::None;
+	if (IsFollowingGraphPath() && Path->GetPathPoints().IsValidIndex(SegmentStartIndex))
+	{
+		CurrentSegmentMode = Atlantis::AI::DecodeTraversalModeFlags(Path->GetPathPoints()[SegmentStartIndex].Flags);
+	}
+}
+
+void UAtlantisPathFollowingComponent::FollowPathSegment(float DeltaTime)
+{
+	if (!IsFollowingGraphPath())
+	{
+		Super::FollowPathSegment(DeltaTime);
+		return;
+	}
+
+	switch (CurrentSegmentMode)
+	{
+	case EAtlantisTraversalMode::Swimming:
+		// Engine following steers in 3D; the movement component keeps vertical velocity while swimming.
+		Super::FollowPathSegment(DeltaTime);
+		break;
+
+	default:
+		// SurfaceWalking and others get their own handler here later.
+		if (!bHasLoggedUnsupportedMode)
+		{
+			bHasLoggedUnsupportedMode = true;
+			UE_LOG(LogAtlantisAI, Warning, TEXT("[%hs] %s: path segment uses unsupported traversal mode %s. Aborting move."),
+				__FUNCTION__, *GetNameSafe(GetOwner()), *UEnum::GetValueAsString(CurrentSegmentMode));
+		}
+		OnPathFinished(FPathFollowingResult(EPathFollowingResult::Aborted, FPathFollowingResultFlags::InvalidPath));
+		break;
+	}
+}
+
+bool UAtlantisPathFollowingComponent::HasReachedDestination(const FVector& CurrentLocation) const
+{
+	if (!IsFollowingGraphPath())
+	{
+		return Super::HasReachedDestination(CurrentLocation);
+	}
+
+	const FVector GoalLocation = *Path->GetPathPointLocation(Path->GetPathPoints().Num() - 1);
+	return FVector::DistSquared(CurrentLocation, GoalLocation) <= FMath::Square(FMath::Max(AcceptanceRadius, IntermediatePointTolerance));
+}
+
+bool UAtlantisPathFollowingComponent::HasReachedCurrentTarget(const FVector& CurrentLocation) const
+{
+	if (!IsFollowingGraphPath())
+	{
+		return Super::HasReachedCurrentTarget(CurrentLocation);
+	}
+
+	const FVector CurrentTarget = GetCurrentTargetLocation();
+
+	// Moved past the target along the segment: count it as reached.
+	if (FVector::DotProduct(CurrentTarget - CurrentLocation, GetCurrentDirection()) < 0.)
+	{
+		return true;
+	}
+
+	return FVector::DistSquared(CurrentLocation, CurrentTarget) <= FMath::Square(IntermediatePointTolerance);
+}
+
+int32 UAtlantisPathFollowingComponent::DetermineStartingPathPoint(const FNavigationPath* ConsideredPath) const
+{
+	if (ConsideredPath != nullptr && ConsideredPath->IsValid() && ConsideredPath->GetNavigationDataUsed() == nullptr)
+	{
+		// Swim paths always start at the agent's current location.
+		return 0;
+	}
+	return Super::DetermineStartingPathPoint(ConsideredPath);
+}
