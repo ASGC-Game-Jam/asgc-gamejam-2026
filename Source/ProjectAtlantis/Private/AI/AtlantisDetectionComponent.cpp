@@ -162,9 +162,26 @@ void UAtlantisDetectionComponent::UpdateDetection(float DeltaTime)
 			continue;
 		}
 
+		// Where the sight sense actually saw the player. The actor may already be elsewhere (the sense updates
+		// time-sliced), so its current location would leave a wrong last known location for one tick.
+		FVector SeenLocation = SensedActor->GetActorLocation();
+		FActorPerceptionBlueprintInfo PerceptionInfo;
+		if (Perception->GetActorsPerception(SensedActor, PerceptionInfo))
+		{
+			const FAISenseID SightId = UAISense::GetSenseID<UAISense_Sight>();
+			for (const FAIStimulus& Stimulus : PerceptionInfo.LastSensedStimuli)
+			{
+				if (Stimulus.Type == SightId && Stimulus.WasSuccessfullySensed())
+				{
+					SeenLocation = Stimulus.StimulusLocation;
+					break;
+				}
+			}
+		}
+
 		FAtlantisDetectionFactors Factors;
-		Factors.Distance = GetSightDistance(EnemyPawn->GetActorLocation(), SensedActor->GetActorLocation());
-		TickSensed(Players.FindOrAdd(SensedActor), ComputeSightFillRate(Factors, SightDistanceCurve), DeltaTime, SensedActor->GetActorLocation(), Now);
+		Factors.Distance = GetSightDistance(EnemyPawn->GetActorLocation(), SeenLocation);
+		TickSensed(Players.FindOrAdd(SensedActor), ComputeSightFillRate(Factors, SightDistanceCurve), DeltaTime, SeenLocation, Now);
 		SensedThisTick.Add(SensedActor);
 	}
 
