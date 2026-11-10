@@ -105,7 +105,7 @@ So who let you in here?
     ~ trust -= 5
     (flat)It was not. I locked it myself.
     
-    She sighs, and some of the fight goes out of her shoulders.
+    She sighs, and some of the fight goes out of her shoulders. # italic: true
     
     Fine. If you'd come to steal samples you'd have run by now. But the bulwarks closed every submarine route weeks ago. How did you get down here?
     -> where_you_came_from
@@ -135,12 +135,12 @@ This is an example of some DIALOGUE. I'll add an entry on DIALOGUE to your JOURN
     * [Through a cave. I startled something enormous, and the roof came down behind me.]
         ~ trust += 5
         (surprised and amused)Oh my goodness! Did you really do that?! You're remarkably impossible.
-        For a moment she laughs like the young woman she is. Then the tiredness settles back over her face.
+        For a moment she laughs like the young woman she is. Then the tiredness settles back over her face. # italic: true
         That was the Leviathan, you know. Half the city prays to it and the other half blames it for the Bleaching.
         -> hoping_to_find_richard
     * [Does it matter? I'm here now.]
         (sharp)It matters to me if you dragged the Bleaching in with you.
-        She looks you over the way a doctor does: eyes, hands, the skin at your wrists.
+        She looks you over the way a doctor does: eyes, hands, the skin at your wrists. # italic: true
         No marks. Good. Sit down, then, and don't touch anything that glows.
         -> hoping_to_find_richard
 -> DONE
@@ -153,13 +153,13 @@ Richard left all of this behind when he vanished. Notes, samples, half-finished 
         -> tell_me_its_worth
 -> DONE
 = tell_me_its_worth
-You work through the crates together. Near the bottom of one, a rolled schematic slides out from between two sample jars.
+You work through the crates together. Near the bottom of one, a rolled schematic slides out from between two sample jars. # italic: true
 Hmmm… this isn't medicine. It's a machine.
 If his notes are right, this could push the bleached coral back. Even something the size of the Colossus. But look at the parts list. Half of it only exists in Districts 3 and 4, and the bulwarks are shut.
-    She stares at the drawing for a long moment.
+    She stares at the drawing for a long moment. # italic: true
 (strained)This is all so much bigger than me… I feel like a bandage that is trying to stop an aneurysm. Please tell me it's worth something.
  * It's worth something. We'll find the parts, and we'll find Richard.
-    A small, tired smile.
+    A small, tired smile. # italic: true
     Richard used to say things like that. Usually right before doing something reckless.
     I can't carry all of this by myself. Will you trust me with his notes?
         ** I trust you.
@@ -174,7 +174,7 @@ If his notes are right, this could push the bleached coral back. Even something 
  * Then stop bandaging and focus on the machine.
     ~ trust -= 10
     (cold)Stop bandaging. Right. And let the people in front of me die while I tinker with drawings.
-    Her clasped hands tighten until the knuckles pale.
+    Her clasped hands tighten until the knuckles pale. # italic: true
     I can't stop any of it. I'll save who I can, but what if I can't save even one?
         ** I'm sorry. That came out wrong.
             ~ trust += 5
