@@ -78,8 +78,8 @@
 					"guid": "3270f3804927e66bccf6b29c48f99692",
 					"class": "K2Node_CallParentFunction",
 					"title": "Parent: Tick",
-					"x": 200,
-					"y": 208,
+					"x": 192,
+					"y": 400,
 					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
 					"pins": [
 						{
@@ -121,12 +121,272 @@
 					]
 				},
 				{
+					"guid": "34c57aa1429694ad473af8bf4c4ef9cf",
+					"class": "K2Node_SwitchEnum",
+					"title": "Switch on EMonsterStatus",
+					"x": 400,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4359fb8a40d1b916ab5de184f0077898:o:then"
+							]
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:i:Selection",
+							"name": "Selection",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EMonsterStatus",
+							"defaultValue": null,
+							"links": [
+								"4359fb8a40d1b916ab5de184f0077898:o:NewStatus"
+							]
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:i:NotEqual_ByteByte",
+							"name": "NotEqual_ByteByte",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:o:Idle",
+							"name": "Idle",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:o:Alerted",
+							"name": "Alerted",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c680afd54294ac30f6efc89600138ab9:i:execute"
+							]
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:o:Searching",
+							"name": "Searching",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:o:Combat",
+							"name": "Combat",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4a59e3754bb04596a094e68fa074a630:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4359fb8a40d1b916ab5de184f0077898",
+					"class": "K2Node_CustomEvent",
+					"title": "HandleStatusChanged",
+					"x": 128,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4359fb8a40d1b916ab5de184f0077898:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"6fdf08a84f0b6941d85c9ba70f3c0ea9:i:Delegate"
+							]
+						},
+						{
+							"id": "4359fb8a40d1b916ab5de184f0077898:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"34c57aa1429694ad473af8bf4c4ef9cf:i:execute"
+							]
+						},
+						{
+							"id": "4359fb8a40d1b916ab5de184f0077898:o:OldStatus",
+							"name": "OldStatus",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EMonsterStatus",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "4359fb8a40d1b916ab5de184f0077898:o:NewStatus",
+							"name": "NewStatus",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EMonsterStatus",
+							"defaultValue": null,
+							"links": [
+								"34c57aa1429694ad473af8bf4c4ef9cf:i:Selection"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4a59e3754bb04596a094e68fa074a630",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 752,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"34c57aa1429694ad473af8bf4c4ef9cf:o:Combat"
+							]
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "SPOTTED!!!!",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=1.000000,G=0.000052,B=0.012629,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "5.000000",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6fdf08a84f0b6941d85c9ba70f3c0ea9",
+					"class": "K2Node_AddDelegate",
+					"title": "Bind Event to On Status Changed",
+					"x": 432,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6fdf08a84f0b6941d85c9ba70f3c0ea9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b030d07d414ec38d1eb175adf538d069:o:then"
+							]
+						},
+						{
+							"id": "6fdf08a84f0b6941d85c9ba70f3c0ea9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6fdf08a84f0b6941d85c9ba70f3c0ea9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisEnemyController",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6fdf08a84f0b6941d85c9ba70f3c0ea9:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"4359fb8a40d1b916ab5de184f0077898:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
 					"guid": "7799fc8e40885bad70039682717bf149",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
 					"x": 0,
 					"y": 0,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"comment": null,
 					"pins": [
 						{
 							"id": "7799fc8e40885bad70039682717bf149:o:OutputDelegate",
@@ -154,7 +414,7 @@
 					"title": "Parent: BeginPlay",
 					"x": 200,
 					"y": 0,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"comment": null,
 					"pins": [
 						{
 							"id": "b030d07d414ec38d1eb175adf538d069:i:execute",
@@ -172,7 +432,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"6fdf08a84f0b6941d85c9ba70f3c0ea9:i:execute"
+							]
 						},
 						{
 							"id": "b030d07d414ec38d1eb175adf538d069:i:self",
@@ -188,8 +450,8 @@
 					"guid": "c21331f24e527d341cd4e4850d891cb8",
 					"class": "K2Node_Event",
 					"title": "Event Tick",
-					"x": 0,
-					"y": 208,
+					"x": -8,
+					"y": 400,
 					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
 					"pins": [
 						{
@@ -219,6 +481,98 @@
 							"links": [
 								"3270f3804927e66bccf6b29c48f99692:i:DeltaSeconds"
 							]
+						}
+					]
+				},
+				{
+					"guid": "c680afd54294ac30f6efc89600138ab9",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 720,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"34c57aa1429694ad473af8bf4c4ef9cf:o:Alerted"
+							]
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Alerted",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
 						}
 					]
 				}
@@ -292,6 +646,62 @@
 					}
 				],
 				"DominantSense": "/Script/AIModule.AISense_Sight",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"CurrentStatus": "Idle",
+			"SightCone":
+			{
+				"_class": "AtlantisSightConeComponent",
+				"_name": "Sight Cone",
+				"bDrawSightCone": true,
+				"IdleColor":
+				{
+					"B": 0,
+					"G": 255,
+					"R": 0,
+					"A": 255
+				},
+				"SuspiciousColor":
+				{
+					"B": 0,
+					"G": 255,
+					"R": 255,
+					"A": 255
+				},
+				"DetectedColor":
+				{
+					"B": 0,
+					"G": 0,
+					"R": 255,
+					"A": 255
+				},
+				"bDrawLoseSightCone": true,
+				"LoseSightConeBrightness": 0.40000000000000002,
+				"NumSides": 16,
+				"LineThickness": 1.5,
 				"PrimaryComponentTick":
 				{
 					"TickGroup": "TG_DuringPhysics",
