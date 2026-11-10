@@ -1001,6 +1001,30 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": []
+						},
+						{
+							"id": "58485ecd413e691fce526483bd47c8d4:i:Bold",
+							"name": "Bold",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "58485ecd413e691fce526483bd47c8d4:i:Italic",
+							"name": "Italic",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "58485ecd413e691fce526483bd47c8d4:i:IgnoreAboveVariables",
+							"name": "IgnoreAboveVariables",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
 						}
 					]
 				},
@@ -2163,11 +2187,65 @@
 			"type": "Function",
 			"nodes": [
 				{
+					"guid": "0d2c06984d2df2f5c5aa0f86baa3136d",
+					"class": "K2Node_CallFunction",
+					"title": "Get Key Value By Index",
+					"x": 64,
+					"y": -335,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0d2c06984d2df2f5c5aa0f86baa3136d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.BlueprintMapLibrary",
+							"defaultValue": "/Script/Engine.Default__BlueprintMapLibrary",
+							"links": []
+						},
+						{
+							"id": "0d2c06984d2df2f5c5aa0f86baa3136d:i:TargetMap",
+							"name": "TargetMap",
+							"direction": "input",
+							"type": "name{k:v}",
+							"defaultValue": null,
+							"links": [
+								"e5232ecc42a3876250fea398152de1b0:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0d2c06984d2df2f5c5aa0f86baa3136d:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "0d2c06984d2df2f5c5aa0f86baa3136d:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0d2c06984d2df2f5c5aa0f86baa3136d:o:Value",
+							"name": "Value",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"b9d7b27c4b47e1944b3451acaaae5d96:i:InString"
+							]
+						}
+					]
+				},
+				{
 					"guid": "0e6b3fd248c8ca50729fc78ff3df0258",
 					"class": "K2Node_CallFunction",
 					"title": "StartDialogue",
-					"x": 576,
-					"y": -180,
+					"x": 1152,
+					"y": -112,
 					"comment": null,
 					"pins": [
 						{
@@ -2177,7 +2255,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"3cd68c0c443bf8826a646aa7390a754f:o:then"
+								"385800fe492800199f23bfbfe9cde1d1:o:then"
 							]
 						},
 						{
@@ -2214,7 +2292,7 @@
 					"guid": "129aeaad4164bd51d42502a552679d51",
 					"class": "K2Node_CallFunction",
 					"title": "GetCurrentText",
-					"x": 272,
+					"x": 0,
 					"y": 176,
 					"comment": null,
 					"pins": [
@@ -2244,8 +2322,8 @@
 					"guid": "1312c64c4dfd92bf926e87a960fdaee8",
 					"class": "K2Node_CallFunction",
 					"title": "GetTagWithPrefixAndStrip",
-					"x": -256,
-					"y": -107,
+					"x": 256,
+					"y": -555,
 					"comment": null,
 					"pins": [
 						{
@@ -2336,7 +2414,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"0e6b3fd248c8ca50729fc78ff3df0258:i:execute"
+							]
 						},
 						{
 							"id": "385800fe492800199f23bfbfe9cde1d1:i:self",
@@ -2357,6 +2437,34 @@
 							"links": [
 								"3cd68c0c443bf8826a646aa7390a754f:o:Output_Get"
 							]
+						},
+						{
+							"id": "385800fe492800199f23bfbfe9cde1d1:i:Bold",
+							"name": "Bold",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"715da32341c66853447c24924f4d6c48:o:ReturnValue"
+							]
+						},
+						{
+							"id": "385800fe492800199f23bfbfe9cde1d1:i:Italic",
+							"name": "Italic",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8ac16b704dd79458c478db835e7b4630:o:ReturnValue"
+							]
+						},
+						{
+							"id": "385800fe492800199f23bfbfe9cde1d1:i:IgnoreAboveVariables",
+							"name": "IgnoreAboveVariables",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
 						}
 					]
 				},
@@ -2384,9 +2492,7 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": [
-								"0e6b3fd248c8ca50729fc78ff3df0258:i:execute"
-							]
+							"links": []
 						},
 						{
 							"id": "3cd68c0c443bf8826a646aa7390a754f:i:Dialogue Sentence",
@@ -2424,8 +2530,8 @@
 					"guid": "650feea04d6a2ba4ec6f78aacef81af2",
 					"class": "K2Node_CommutativeAssociativeBinaryOperator",
 					"title": "Max (Float)",
-					"x": 208,
-					"y": -80,
+					"x": 720,
+					"y": -528,
 					"comment": "Sets a min line length for lines with no tag",
 					"pins": [
 						{
@@ -2467,6 +2573,44 @@
 					]
 				},
 				{
+					"guid": "715da32341c66853447c24924f4d6c48",
+					"class": "K2Node_CallFunction",
+					"title": "NOT Boolean",
+					"x": 576,
+					"y": -288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "715da32341c66853447c24924f4d6c48:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "715da32341c66853447c24924f4d6c48:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"b9d7b27c4b47e1944b3451acaaae5d96:o:ReturnValue"
+							]
+						},
+						{
+							"id": "715da32341c66853447c24924f4d6c48:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"385800fe492800199f23bfbfe9cde1d1:i:Bold"
+							]
+						}
+					]
+				},
+				{
 					"guid": "776af4ac433d92d083de77abc43afe44",
 					"class": "K2Node_VariableGet",
 					"title": "Get DialogueTextBox",
@@ -2496,45 +2640,105 @@
 					]
 				},
 				{
-					"guid": "9360b0e44fd46ab7ac23e4a042fdc273",
+					"guid": "878e14e74af66e8f9710cabf26d8e369",
 					"class": "K2Node_CallFunction",
-					"title": "Set Visibility",
-					"x": 1408,
-					"y": 0,
+					"title": "Is Empty",
+					"x": 336,
+					"y": -168,
 					"comment": null,
 					"pins": [
 						{
-							"id": "9360b0e44fd46ab7ac23e4a042fdc273:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "9360b0e44fd46ab7ac23e4a042fdc273:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "9360b0e44fd46ab7ac23e4a042fdc273:i:self",
+							"id": "878e14e74af66e8f9710cabf26d8e369:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Script/UMG.Widget",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "878e14e74af66e8f9710cabf26d8e369:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
 							"defaultValue": null,
 							"links": [
-								"e1432ada48dd2e7a0806f1b3b1720bd8:o:MainStoryBox"
+								"bd4dfab645f2397b25f41bbd7ca4f41a:o:Value"
 							]
 						},
 						{
-							"id": "9360b0e44fd46ab7ac23e4a042fdc273:i:InVisibility",
-							"name": "InVisibility",
+							"id": "878e14e74af66e8f9710cabf26d8e369:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8ac16b704dd79458c478db835e7b4630:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8ac16b704dd79458c478db835e7b4630",
+					"class": "K2Node_CallFunction",
+					"title": "NOT Boolean",
+					"x": 576,
+					"y": -144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8ac16b704dd79458c478db835e7b4630:i:self",
+							"name": "self",
 							"direction": "input",
-							"type": "byte:/Script/UMG.ESlateVisibility",
-							"defaultValue": "Visible",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "8ac16b704dd79458c478db835e7b4630:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"878e14e74af66e8f9710cabf26d8e369:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8ac16b704dd79458c478db835e7b4630:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"385800fe492800199f23bfbfe9cde1d1:i:Italic"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9a3fbb91497a6ad48f5d31a8bfd5d06b",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": -400,
+					"y": -177,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9a3fbb91497a6ad48f5d31a8bfd5d06b:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"bfcbb35f49d1e52d58f32a9a1054ee31:i:Story"
+							]
+						},
+						{
+							"id": "9a3fbb91497a6ad48f5d31a8bfd5d06b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
 							"links": []
 						}
 					]
@@ -2543,8 +2747,8 @@
 					"guid": "9bd46f65475dd9adc0591395f2948719",
 					"class": "K2Node_VariableGet",
 					"title": "Get Story",
-					"x": -432,
-					"y": -83,
+					"x": 80,
+					"y": -531,
 					"comment": null,
 					"pins": [
 						{
@@ -2571,8 +2775,8 @@
 					"guid": "9c4d9c4a4b00abb69f058ba9b74fbce8",
 					"class": "K2Node_CallFunction",
 					"title": "String To Float",
-					"x": 64,
-					"y": -83,
+					"x": 576,
+					"y": -531,
 					"comment": null,
 					"pins": [
 						{
@@ -2606,10 +2810,148 @@
 					]
 				},
 				{
+					"guid": "b9d7b27c4b47e1944b3451acaaae5d96",
+					"class": "K2Node_CallFunction",
+					"title": "Is Empty",
+					"x": 336,
+					"y": -312,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b9d7b27c4b47e1944b3451acaaae5d96:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "b9d7b27c4b47e1944b3451acaaae5d96:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"0d2c06984d2df2f5c5aa0f86baa3136d:o:Value"
+							]
+						},
+						{
+							"id": "b9d7b27c4b47e1944b3451acaaae5d96:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"715da32341c66853447c24924f4d6c48:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bd4dfab645f2397b25f41bbd7ca4f41a",
+					"class": "K2Node_CallFunction",
+					"title": "Get Key Value By Index",
+					"x": 64,
+					"y": -189,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bd4dfab645f2397b25f41bbd7ca4f41a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.BlueprintMapLibrary",
+							"defaultValue": "/Script/Engine.Default__BlueprintMapLibrary",
+							"links": []
+						},
+						{
+							"id": "bd4dfab645f2397b25f41bbd7ca4f41a:i:TargetMap",
+							"name": "TargetMap",
+							"direction": "input",
+							"type": "name{k:v}",
+							"defaultValue": null,
+							"links": [
+								"bfcbb35f49d1e52d58f32a9a1054ee31:o:ReturnValue"
+							]
+						},
+						{
+							"id": "bd4dfab645f2397b25f41bbd7ca4f41a:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "bd4dfab645f2397b25f41bbd7ca4f41a:o:Key",
+							"name": "Key",
+							"direction": "output",
+							"type": "name",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "bd4dfab645f2397b25f41bbd7ca4f41a:o:Value",
+							"name": "Value",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"878e14e74af66e8f9710cabf26d8e369:i:InString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bfcbb35f49d1e52d58f32a9a1054ee31",
+					"class": "K2Node_CallFunction",
+					"title": "MapCurrentTagsWithDelimiter",
+					"x": -240,
+					"y": -200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bfcbb35f49d1e52d58f32a9a1054ee31:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotLibrary",
+							"links": []
+						},
+						{
+							"id": "bfcbb35f49d1e52d58f32a9a1054ee31:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"9a3fbb91497a6ad48f5d31a8bfd5d06b:o:Story"
+							]
+						},
+						{
+							"id": "bfcbb35f49d1e52d58f32a9a1054ee31:i:TagDelimiter",
+							"name": "TagDelimiter",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "italic: ",
+							"links": []
+						},
+						{
+							"id": "bfcbb35f49d1e52d58f32a9a1054ee31:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "name{k:v}",
+							"defaultValue": null,
+							"links": [
+								"bd4dfab645f2397b25f41bbd7ca4f41a:i:TargetMap"
+							]
+						}
+					]
+				},
+				{
 					"guid": "c2274f124965f2b98ec82f86eb6dc452",
 					"class": "K2Node_CallFunction",
 					"title": "To Text (String)",
-					"x": 544,
+					"x": 272,
 					"y": 192,
 					"comment": null,
 					"pins": [
@@ -2644,10 +2986,38 @@
 					]
 				},
 				{
+					"guid": "d7e93f06457d5e4d929808bee5f22f66",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": -400,
+					"y": -321,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d7e93f06457d5e4d929808bee5f22f66:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"e5232ecc42a3876250fea398152de1b0:i:Story"
+							]
+						},
+						{
+							"id": "d7e93f06457d5e4d929808bee5f22f66:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "dd7091b944062aa49f924c93e95b2d75",
 					"class": "K2Node_FunctionEntry",
 					"title": "UpdateTextView",
-					"x": 0,
+					"x": -208,
 					"y": 16,
 					"comment": null,
 					"pins": [
@@ -2674,35 +3044,70 @@
 					]
 				},
 				{
-					"guid": "e1432ada48dd2e7a0806f1b3b1720bd8",
-					"class": "K2Node_VariableGet",
-					"title": "Get MainStoryBox",
-					"x": 1216,
-					"y": 208,
+					"guid": "e5232ecc42a3876250fea398152de1b0",
+					"class": "K2Node_CallFunction",
+					"title": "MapCurrentTagsWithDelimiter",
+					"x": -240,
+					"y": -344,
 					"comment": null,
 					"pins": [
 						{
-							"id": "e1432ada48dd2e7a0806f1b3b1720bd8:o:MainStoryBox",
-							"name": "MainStoryBox",
-							"direction": "output",
-							"type": "object:/Script/UMG.HorizontalBox",
+							"id": "e5232ecc42a3876250fea398152de1b0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotLibrary",
+							"links": []
+						},
+						{
+							"id": "e5232ecc42a3876250fea398152de1b0:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
 							"defaultValue": null,
 							"links": [
-								"9360b0e44fd46ab7ac23e4a042fdc273:i:self"
+								"d7e93f06457d5e4d929808bee5f22f66:o:Story"
 							]
 						},
 						{
-							"id": "e1432ada48dd2e7a0806f1b3b1720bd8:i:self",
-							"name": "self",
+							"id": "e5232ecc42a3876250fea398152de1b0:i:TagDelimiter",
+							"name": "TagDelimiter",
 							"direction": "input",
-							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
-							"defaultValue": null,
+							"type": "string",
+							"defaultValue": "bold: ",
 							"links": []
+						},
+						{
+							"id": "e5232ecc42a3876250fea398152de1b0:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "name{k:v}",
+							"defaultValue": null,
+							"links": [
+								"0d2c06984d2df2f5c5aa0f86baa3136d:i:TargetMap"
+							]
 						}
 					]
 				}
 			],
-			"comments": []
+			"comments": [
+				{
+					"guid": "0699345c4da3552e921623b7abff3801",
+					"text": "Support Italic / Bold cases",
+					"x": -468,
+					"y": -395,
+					"width": 1248,
+					"height": 352
+				},
+				{
+					"guid": "26bdcc354f37c9704c74f2b1bb352c30",
+					"text": "Writer Mode Speed",
+					"x": 16,
+					"y": -608,
+					"width": 936,
+					"height": 195
+				}
+			]
 		},
 		{
 			"name": "EventGraph",
@@ -3103,6 +3508,30 @@
 							"direction": "input",
 							"type": "text",
 							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2797f9f04bf9ea52683e44b2bf1cd748:i:Bold",
+							"name": "Bold",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "2797f9f04bf9ea52683e44b2bf1cd748:i:Italic",
+							"name": "Italic",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "2797f9f04bf9ea52683e44b2bf1cd748:i:IgnoreAboveVariables",
+							"name": "IgnoreAboveVariables",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
 							"links": []
 						}
 					]
