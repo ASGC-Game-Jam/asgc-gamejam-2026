@@ -107,9 +107,47 @@
 		},
 		"components":
 		{
+			"Detection":
+			{
+				"class": "AtlantisDetectionComponent",
+				"parent": null,
+				"properties":
+				{
+					"SightDistanceCurve": "/Game/ProjectAtlantis/Core/AI/SightDistanceCurve.SightDistanceCurve",
+					"SuspicionThreshold": 0.29999999999999999,
+					"MaxSearchDuration": 45,
+					"GraceTime": 5,
+					"DecayPerSecond": 0.10000000000000001,
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": true,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			}
 		},
 		"defaults":
 		{
+			"Detection": null,
 			"AIPerception":
 			{
 				"_class": "AIPerceptionComponent",
