@@ -46,6 +46,8 @@ The demo covers patterns for implementing:
 
 // STORY
 
+VAR trust = 0
+
 VAR clocktime = ""
 
 LIST Items = cone, cube, sphere, watch
@@ -67,7 +69,7 @@ On to your next adventure.
 
 -> DONE
 
-=== NPC_Emmy ===
+=== NPC_Castella ===
 {
     - QuestGetTime ? ToldEmmyTime:
         -> thanks
@@ -83,7 +85,30 @@ On to your next adventure.
 -> intro
 
 = intro
-Hi, I'm Emmy. I have a TriggerVolume around me that you moved into. That triggered a "Switch Flow to Path" node that brought you into my NPC dialogue knot. # Linetime: 2.5
+Crates of waterlogged notebooks are stacked to the ceiling. A young jellyfolk woman in a bubble helmet and a healer's coat sits among them, hands clasped tight in her lap. She looks up at you with tired eyes. # Linetime: 2.5 italic: true
+
+(wary)Hmmm… You're not one of the King's guards. And you're certainly not Richard.
+
+So who let you in here?
+
+/** {InventoryItems ? watch} [The time is {clocktime}]
+    Thanks!
+* {InventoryItems !? watch} [She wouldn't say.]
+    To you either? I should steal her watch.*/
+* [I'm a friend of Richard's. I came down to find him.]
+    ~ trust += 5
+    A friend. Hmmm. He has a lot of those, and lately none of them know where he is either.
+    She sets down the notebook she was holding.
+    The bulwarks closed every submarine route weeks ago. How did you even get down here?
+    -> where_you_came_from
+* [The door was open.]
+    ~ trust -= 5
+    (flat)It was not. I locked it myself.
+    
+    She sighs, and some of the fight goes out of her shoulders.
+    
+    Fine. If you'd come to steal samples you'd have run by now. But the bulwarks closed every submarine route weeks ago. How did you get down here?
+    -> where_you_came_from
 
 Check out the EventGraph in the Level Blueprint to see how it's organized.
 
@@ -105,7 +130,67 @@ This is an example of some DIALOGUE. I'll add an entry on DIALOGUE to your JOURN
     }
 
 -> DONE
+= where_you_came_from
 
+    * [Through a cave. I startled something enormous, and the roof came down behind me.]
+        ~ trust += 5
+        (surprised and amused)Oh my goodness! Did you really do that?! You're remarkably impossible.
+        For a moment she laughs like the young woman she is. Then the tiredness settles back over her face.
+        That was the Leviathan, you know. Half the city prays to it and the other half blames it for the Bleaching.
+        -> hoping_to_find_richard
+    * [Does it matter? I'm here now.]
+        (sharp)It matters to me if you dragged the Bleaching in with you.
+        She looks you over the way a doctor does: eyes, hands, the skin at your wrists.
+        No marks. Good. Sit down, then, and don't touch anything that glows.
+        -> hoping_to_find_richard
+-> DONE
+= hoping_to_find_richard
+Richard left all of this behind when he vanished. Notes, samples, half-finished drawings. I'm meant to sort it for the King's people, and I'm hoping it tells me where he went.
+    * Let me help you go through it.
+        ~ trust += 10
+        -> tell_me_its_worth
+    * What do his notes say about the Bleaching?
+        -> tell_me_its_worth
+-> DONE
+= tell_me_its_worth
+You work through the crates together. Near the bottom of one, a rolled schematic slides out from between two sample jars.
+Hmmm… this isn't medicine. It's a machine.
+If his notes are right, this could push the bleached coral back. Even something the size of the Colossus. But look at the parts list. Half of it only exists in Districts 3 and 4, and the bulwarks are shut.
+    She stares at the drawing for a long moment.
+(strained)This is all so much bigger than me… I feel like a bandage that is trying to stop an aneurysm. Please tell me it's worth something.
+ * It's worth something. We'll find the parts, and we'll find Richard.
+    A small, tired smile.
+    Richard used to say things like that. Usually right before doing something reckless.
+    I can't carry all of this by myself. Will you trust me with his notes?
+        ** I trust you.
+            ~ trust += 5
+            -> castella_talk_6
+ * Honestly? I don't know yet.
+    ~ trust += 5
+    (relieved)Honest. Good.
+    If someone's dying, I tell them. I'd rather you did the same for me than tell me pretty things.
+        ** Then here's the truth: I'm not leaving until I find him.
+            -> castella_talk_7
+ * Then stop bandaging and focus on the machine.
+    ~ trust -= 10
+    (cold)Stop bandaging. Right. And let the people in front of me die while I tinker with drawings.
+    Her clasped hands tighten until the knuckles pale.
+    I can't stop any of it. I'll save who I can, but what if I can't save even one?
+        ** I'm sorry. That came out wrong.
+            ~ trust += 5
+            -> castella_talk_7
+        ** Then the machine is the only real chance.
+            -> castella_talk_7
+-> DONE
+= castella_talk_6
+    I won't waste that.
+    -> castella_talk_7
+-> DONE
+= castella_talk_7
+There's an inventor out in the Wilds. Sabelle. If anyone can build Richard's machine, it's them.
+Go on, then. Find out what the scientists in District 1 know. I'll keep digging here.
+Conversation over. Castella's trust is now {trust}.
+-> DONE
 = timequest
 ~ QuestMeetEmmy += ToldEmmyJournal
 {Great, now let's try a quest. |}
@@ -209,7 +294,7 @@ Blue: Sorry, I'm busy looking for my {list_with_commas(shapes)}. If you find the
 * [Sure, I can get them for you.]
     Thanks!
 * [Can't you get them?]
-    {NPC_Emmy.timequest.YouDoIt: Yeah look I'm not a nerd like Emmy; I'm not going to wax philisophic about narrative design.} # Linetime: 2.5
+    {NPC_Castella.timequest.YouDoIt: Yeah look I'm not a nerd like Emmy; I'm not going to wax philisophic about narrative design.} # Linetime: 2.5
     
     {QuestGetTime ? EmmyAsked: If you want to know the time, you'll need to get my shapes.|I can't get them myself because reasons--can you help me?} # Linetime: 2.5
 
@@ -256,7 +341,7 @@ LIST QuestFindShapes = BlueAsked, GotShapes, ToldBlue
 
 {
     - QuestMeetEmmy !? MetEmmy:
-        Go talk to the Castella.
+        Go talk to Castella.
     - QuestMeetEmmy !? OpenedJournal:
       Check out the new entries in your journal, then head back to Emmy.
     - QuestMeetEmmy !? ToldEmmyJournal:
