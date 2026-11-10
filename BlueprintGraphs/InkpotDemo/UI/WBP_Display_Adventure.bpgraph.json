@@ -2406,7 +2406,9 @@
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"3cd68c0c443bf8826a646aa7390a754f:o:then"
+							]
 						},
 						{
 							"id": "385800fe492800199f23bfbfe9cde1d1:o:then",
@@ -2492,7 +2494,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"385800fe492800199f23bfbfe9cde1d1:i:execute"
+							]
 						},
 						{
 							"id": "3cd68c0c443bf8826a646aa7390a754f:i:Dialogue Sentence",
@@ -3595,6 +3599,34 @@
 					]
 				},
 				{
+					"guid": "2e7aaaab43bde86a66571cae2364ec30",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 1152,
+					"y": -1520,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2e7aaaab43bde86a66571cae2364ec30:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"8a344faa4350480b39b559a4e540a729:i:self"
+							]
+						},
+						{
+							"id": "2e7aaaab43bde86a66571cae2364ec30:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "2f81e9dd467b376fdd17049ab36b9b95",
 					"class": "K2Node_MultiGate",
 					"title": "MultiGate",
@@ -4506,6 +4538,44 @@
 					]
 				},
 				{
+					"guid": "5e96e3c9481230016375169544a15744",
+					"class": "K2Node_CallFunction",
+					"title": "InkpotValueAsInt",
+					"x": 1760,
+					"y": -1728,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5e96e3c9481230016375169544a15744:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotValueLibrary",
+							"defaultValue": "/Script/Inkpot.Default__InkpotValueLibrary",
+							"links": []
+						},
+						{
+							"id": "5e96e3c9481230016375169544a15744:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"e847f24947cbdcf64a0560a929103bfe:o:NewValue"
+							]
+						},
+						{
+							"id": "5e96e3c9481230016375169544a15744:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"daa55147490e4204952521949fd8462c:i:Value"
+							]
+						}
+					]
+				},
+				{
 					"guid": "616e00ba4f3d1452be536e838b37e85f",
 					"class": "K2Node_CallFunction",
 					"title": "SetOnVariableChange",
@@ -4520,7 +4590,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"7140058047b52c609997f0bef6000654:o:then"
+								"8a344faa4350480b39b559a4e540a729:o:then"
 							]
 						},
 						{
@@ -4547,7 +4617,7 @@
 							"id": "616e00ba4f3d1452be536e838b37e85f:i:Delegate",
 							"name": "Delegate",
 							"direction": "input",
-							"type": "delegate",
+							"type": "Delegate",
 							"defaultValue": null,
 							"links": [
 								"5b1afc9648e21f68bd9a3ba593e6a523:o:OutputDelegate"
@@ -5017,7 +5087,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"616e00ba4f3d1452be536e838b37e85f:i:execute"
+								"8a344faa4350480b39b559a4e540a729:i:execute"
 							]
 						},
 						{
@@ -5034,7 +5104,7 @@
 							"id": "7140058047b52c609997f0bef6000654:i:Delegate",
 							"name": "Delegate",
 							"direction": "input",
-							"type": "delegate",
+							"type": "Delegate",
 							"defaultValue": null,
 							"links": [
 								"57e0b20a413c499ae13402a19586a2ff:o:OutputDelegate"
@@ -5443,6 +5513,244 @@
 					]
 				},
 				{
+					"guid": "88ab911d492b04d4568224af0bc72bfd",
+					"class": "K2Node_VariableSet",
+					"title": "Set Text",
+					"x": 2272,
+					"y": -1808,
+					"comment": null,
+					"pins": [
+						{
+							"id": "88ab911d492b04d4568224af0bc72bfd:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8c5faa1747e62a7921389b9f83ff1e3d:o:then"
+							]
+						},
+						{
+							"id": "88ab911d492b04d4568224af0bc72bfd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"962f28a74fc4b00e7927cfabeed02c9d:i:execute"
+							]
+						},
+						{
+							"id": "88ab911d492b04d4568224af0bc72bfd:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "Text",
+							"defaultValue": null,
+							"links": [
+								"daa55147490e4204952521949fd8462c:o:Result"
+							]
+						},
+						{
+							"id": "88ab911d492b04d4568224af0bc72bfd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"dd30f0b14f1d470def4bad9b27cf9571:o:TrustDisplay"
+							]
+						},
+						{
+							"id": "88ab911d492b04d4568224af0bc72bfd:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "Text",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8958ac5f471c05965927be8a62093ba5",
+					"class": "K2Node_VariableGet",
+					"title": "Get TrustDisplay",
+					"x": 2464,
+					"y": -1945,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8958ac5f471c05965927be8a62093ba5:o:TrustDisplay",
+							"name": "TrustDisplay",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"9162e0424f14497e3677bfa3dac5e3bc:i:self"
+							]
+						},
+						{
+							"id": "8958ac5f471c05965927be8a62093ba5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8a344faa4350480b39b559a4e540a729",
+					"class": "K2Node_CallFunction",
+					"title": "SetOnVariableChange",
+					"x": 1328,
+					"y": -1600,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8a344faa4350480b39b559a4e540a729:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7140058047b52c609997f0bef6000654:o:then"
+							]
+						},
+						{
+							"id": "8a344faa4350480b39b559a4e540a729:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"616e00ba4f3d1452be536e838b37e85f:i:execute"
+							]
+						},
+						{
+							"id": "8a344faa4350480b39b559a4e540a729:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"2e7aaaab43bde86a66571cae2364ec30:o:Story"
+							]
+						},
+						{
+							"id": "8a344faa4350480b39b559a4e540a729:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "Delegate",
+							"defaultValue": null,
+							"links": [
+								"e847f24947cbdcf64a0560a929103bfe:o:OutputDelegate"
+							]
+						},
+						{
+							"id": "8a344faa4350480b39b559a4e540a729:i:Variable",
+							"name": "Variable",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "trust",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8c5faa1747e62a7921389b9f83ff1e3d",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 1456,
+					"y": -1840,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8c5faa1747e62a7921389b9f83ff1e3d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e847f24947cbdcf64a0560a929103bfe:o:then"
+							]
+						},
+						{
+							"id": "8c5faa1747e62a7921389b9f83ff1e3d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"88ab911d492b04d4568224af0bc72bfd:i:execute"
+							]
+						},
+						{
+							"id": "8c5faa1747e62a7921389b9f83ff1e3d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"cf5845b74813279adac59bab467d8f26:o:TrustDisplay"
+							]
+						},
+						{
+							"id": "8c5faa1747e62a7921389b9f83ff1e3d:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Visible",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "9162e0424f14497e3677bfa3dac5e3bc",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 2624,
+					"y": -2016,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9162e0424f14497e3677bfa3dac5e3bc:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e1c084a14d194994481112966fe65bb2:o:then"
+							]
+						},
+						{
+							"id": "9162e0424f14497e3677bfa3dac5e3bc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9162e0424f14497e3677bfa3dac5e3bc:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"8958ac5f471c05965927be8a62093ba5:o:TrustDisplay"
+							]
+						},
+						{
+							"id": "9162e0424f14497e3677bfa3dac5e3bc:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Hidden",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "91b283b74ebab533a34e61b7f838fe5f",
 					"class": "K2Node_CallFunction",
 					"title": "ContinueMaximally",
@@ -5485,6 +5793,100 @@
 							"name": "ReturnValue",
 							"direction": "output",
 							"type": "string",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "962f28a74fc4b00e7927cfabeed02c9d",
+					"class": "K2Node_CallFunction",
+					"title": "Set Timer by Event",
+					"x": 2464,
+					"y": -1824,
+					"comment": null,
+					"pins": [
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"88ab911d492b04d4568224af0bc72bfd:o:then"
+							]
+						},
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"e1c084a14d194994481112966fe65bb2:o:OutputDelegate"
+							]
+						},
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:i:Time",
+							"name": "Time",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:i:bLooping",
+							"name": "bLooping",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:i:bMaxOncePerFrame",
+							"name": "bMaxOncePerFrame",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:i:InitialStartDelay",
+							"name": "InitialStartDelay",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:i:InitialStartDelayVariance",
+							"name": "InitialStartDelayVariance",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "962f28a74fc4b00e7927cfabeed02c9d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Engine.TimerHandle",
 							"defaultValue": null,
 							"links": []
 						}
@@ -6031,6 +6433,100 @@
 					]
 				},
 				{
+					"guid": "cf5845b74813279adac59bab467d8f26",
+					"class": "K2Node_VariableGet",
+					"title": "Get TrustDisplay",
+					"x": 1296,
+					"y": -1769,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cf5845b74813279adac59bab467d8f26:o:TrustDisplay",
+							"name": "TrustDisplay",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"8c5faa1747e62a7921389b9f83ff1e3d:i:self"
+							]
+						},
+						{
+							"id": "cf5845b74813279adac59bab467d8f26:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "daa55147490e4204952521949fd8462c",
+					"class": "K2Node_FormatText",
+					"title": "Format Text",
+					"x": 1968,
+					"y": -1648,
+					"comment": null,
+					"pins": [
+						{
+							"id": "daa55147490e4204952521949fd8462c:i:Format",
+							"name": "Format",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": "Trust: {Value}",
+							"links": []
+						},
+						{
+							"id": "daa55147490e4204952521949fd8462c:o:Result",
+							"name": "Result",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"88ab911d492b04d4568224af0bc72bfd:i:Text"
+							]
+						},
+						{
+							"id": "daa55147490e4204952521949fd8462c:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": null,
+							"links": [
+								"5e96e3c9481230016375169544a15744:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dd30f0b14f1d470def4bad9b27cf9571",
+					"class": "K2Node_VariableGet",
+					"title": "Get TrustDisplay",
+					"x": 2112,
+					"y": -1840,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dd30f0b14f1d470def4bad9b27cf9571:o:TrustDisplay",
+							"name": "TrustDisplay",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"88ab911d492b04d4568224af0bc72bfd:i:self"
+							]
+						},
+						{
+							"id": "dd30f0b14f1d470def4bad9b27cf9571:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "e165a11d4fd863016cb5f19a43482fe4",
 					"class": "K2Node_VariableGet",
 					"title": "Get Story",
@@ -6055,6 +6551,36 @@
 							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e1c084a14d194994481112966fe65bb2",
+					"class": "K2Node_CustomEvent",
+					"title": "HideTrustWidge",
+					"x": 2224,
+					"y": -2016,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e1c084a14d194994481112966fe65bb2:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"962f28a74fc4b00e7927cfabeed02c9d:i:Delegate"
+							]
+						},
+						{
+							"id": "e1c084a14d194994481112966fe65bb2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9162e0424f14497e3677bfa3dac5e3bc:i:execute"
+							]
 						}
 					]
 				},
@@ -6130,6 +6656,62 @@
 							"defaultValue": null,
 							"links": [
 								"a9ea30ab420b69bc8d8f6280c1c36ddb:i:Time"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e847f24947cbdcf64a0560a929103bfe",
+					"class": "K2Node_CustomEvent",
+					"title": "UpdateTrust",
+					"x": 1072,
+					"y": -1840,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e847f24947cbdcf64a0560a929103bfe:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"8a344faa4350480b39b559a4e540a729:i:Delegate"
+							]
+						},
+						{
+							"id": "e847f24947cbdcf64a0560a929103bfe:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8c5faa1747e62a7921389b9f83ff1e3d:i:execute"
+							]
+						},
+						{
+							"id": "e847f24947cbdcf64a0560a929103bfe:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e847f24947cbdcf64a0560a929103bfe:o:Variable",
+							"name": "Variable",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e847f24947cbdcf64a0560a929103bfe:o:NewValue",
+							"name": "NewValue",
+							"direction": "output",
+							"type": "struct:/Script/Inkpot.InkpotValue",
+							"defaultValue": null,
+							"links": [
+								"5e96e3c9481230016375169544a15744:i:Value"
 							]
 						}
 					]
@@ -6574,6 +7156,7 @@
 		},
 		"defaults":
 		{
+			"TrustDisplay": null,
 			"MainStoryBox": null,
 			"JournalUpdated": null,
 			"JournalEntryList": null,
