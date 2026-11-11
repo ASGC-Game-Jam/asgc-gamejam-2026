@@ -230,27 +230,32 @@ void UAtlantisMovementComponent::PhysicsRotation(float DeltaTime)
 		return;
 	}
 
-	// Passive ballast motion should not tilt the character. On input release, return
-	// upright immediately: residual vertical drift must not tilt the body farther.
+	// Ascend and Descend keep the swimmer upright while steering along the horizontal velocity.
 	const AAtlantisPlayerState* PlayerState = CharacterOwner->GetPlayerState<AAtlantisPlayerState>();
 	const bool bPassiveBallast = PlayerState &&
-	(PlayerState->GetBallastState() == EAtlantisBallastState::Ascend ||
+		(PlayerState->GetBallastState() == EAtlantisBallastState::Ascend ||
 		PlayerState->GetBallastState() == EAtlantisBallastState::Descend);
 
+	const FVector FacingVelocity = bPassiveBallast ? ProjectToGravityFloor(Velocity) : Velocity;
 	const bool bSwimmingWithInput = !Acceleration.IsNearlyZero() &&
-		Velocity.SizeSquared() > FMath::Square(MinSwimFacingSpeed);
+		FacingVelocity.SizeSquared() > FMath::Square(MinSwimFacingSpeed);
+	const FRotator CurrentRotation = UpdatedComponent->GetComponentRotation();
+	FRotator TargetRotation(0.f, CurrentRotation.Yaw, 0.f);
+	if (bSwimmingWithInput)
+	{
+		const FRotator TravelRotation = FacingVelocity.Rotation();
+		TargetRotation.Yaw = TravelRotation.Yaw;
+		if (!bPassiveBallast)
+		{
+			TargetRotation.Pitch = TravelRotation.Pitch;
+		}
+	}
 
-	const FRotator TargetRotation = !bPassiveBallast && bSwimmingWithInput
-		                                ? Velocity.Rotation()
-		                                : FRotator(0.f, UpdatedComponent->GetComponentRotation().Yaw, 0.f);
-	const FQuat Target = TargetRotation.Quaternion();
-
-	// Interpolate neutral pitch/roll independently so quaternion shortest-path
-	// interpolation cannot gradually change the heading while righting a tilted pose.
+	// Interpolate upright poses per axis so leveling pitch and roll cannot change an idle heading.
 	const FQuat Facing = !bPassiveBallast && bSwimmingWithInput
-		                     ? FMath::QInterpTo(UpdatedComponent->GetComponentQuat(), Target, DeltaTime,
+	                     ? FMath::QInterpTo(UpdatedComponent->GetComponentQuat(), TargetRotation.Quaternion(), DeltaTime,
 		                                        SwimFacingInterpolationSpeed)
-		                     : FMath::RInterpTo(UpdatedComponent->GetComponentRotation(), TargetRotation, DeltaTime,
+	                     : FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime,
 		                                        SwimFacingInterpolationSpeed).Quaternion();
 	FHitResult Hit;
 	SafeMoveUpdatedComponent(FVector::ZeroVector, Facing, true, Hit);
