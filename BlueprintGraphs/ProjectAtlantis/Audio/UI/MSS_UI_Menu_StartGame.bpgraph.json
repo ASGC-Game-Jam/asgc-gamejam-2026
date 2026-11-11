@@ -37,7 +37,7 @@
 			},
 			"Interfaces": [
 				{
-					"Name": "UE.OutputFormat.Mono",
+					"Name": "UE.OutputFormat.Stereo",
 					"Number":
 					{
 						"Major": 1,
@@ -83,7 +83,7 @@
 						"Nodes": [
 							{
 								"ID": "245D6BA34A75700F249751A9FE5E2092",
-								"ClassID": "039EE18D4C9378462582698921FC1356",
+								"ClassID": "DAA1226649D6D9994EABEDBA8CA9B3E0",
 								"Name": "UE.Source.OneShot.OnFinished",
 								"Interface":
 								{
@@ -113,7 +113,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"3E8C0BAC4E98A1AD5D0FCD9E74EB0111":
+											"3BB68AF24EAED8F24861C3A0974CD2EC":
 											{
 												"X": 600,
 												"Y": 0
@@ -128,20 +128,20 @@
 							},
 							{
 								"ID": "40F0FD6B4F8C274225CE529C8A00C82A",
-								"ClassID": "3FEBC12C40828AC3A659B79402FD1504",
-								"Name": "UE.OutputFormat.Mono.Audio:0",
+								"ClassID": "941B3348411EFCEC978440B5BB03EFC8",
+								"Name": "UE.OutputFormat.Stereo.Audio:0",
 								"Interface":
 								{
 									"Inputs": [
 										{
-											"Name": "UE.OutputFormat.Mono.Audio:0",
+											"Name": "UE.OutputFormat.Stereo.Audio:0",
 											"TypeName": "Audio",
 											"VertexID": "1073B4F9A62848057651709D850DE57C"
 										}
 									],
 									"Outputs": [
 										{
-											"Name": "UE.OutputFormat.Mono.Audio:0",
+											"Name": "UE.OutputFormat.Stereo.Audio:0",
 											"TypeName": "Audio",
 											"VertexID": "60C9C8D3384EDEE648234ABCFEADF2E6"
 										}
@@ -158,7 +158,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"C8E61BD646A8F0CC4C96AAB92C56596D":
+											"82DF4BDA443A9DA6AEB149A3E5A979AF":
 											{
 												"X": 600,
 												"Y": 120
@@ -172,8 +172,53 @@
 								}
 							},
 							{
+								"ID": "886FE2774285DE7E1F610AA184886F3B",
+								"ClassID": "941B3348411EFCEC978440B5BB03EFC8",
+								"Name": "UE.OutputFormat.Stereo.Audio:1",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "UE.OutputFormat.Stereo.Audio:1",
+											"TypeName": "Audio",
+											"VertexID": "1073B4F9A62848057651709D850DE57C"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "UE.OutputFormat.Stereo.Audio:1",
+											"TypeName": "Audio",
+											"VertexID": "60C9C8D3384EDEE648234ABCFEADF2E6"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"93B3D5B642FDA795D62DEF9A1A15E73D":
+											{
+												"X": 600,
+												"Y": 240
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
+							},
+							{
 								"ID": "9B8E1F2F43671E096400EDB9A49FD984",
-								"ClassID": "A419C0C4467C3C3EFD4D5EA5C157917D",
+								"ClassID": "CD9391AE4ABE4272BFB824A65A827AAC",
 								"Name": "UE.Source.OnPlay",
 								"Interface":
 								{
@@ -203,7 +248,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"177AA11C42BB47D3DF236499733EF4D4":
+											"34758D50467DD7302BFDDF91A680A999":
 											{
 												"X": 0,
 												"Y": 0
@@ -218,8 +263,8 @@
 							},
 							{
 								"ID": "4D657461536F756E64536F7572636500",
-								"ClassID": "552A32244C076353BA369FA82C5347D2",
-								"Name": "59567DE64E5A7BB33CD6D7A81D988CD5",
+								"ClassID": "D19C34394FFD11A6E8ECECBB45AF3D43",
+								"Name": "2C78FDEA446F87A803246080BADCB5EC",
 								"Interface":
 								{
 									"Inputs": [
@@ -276,9 +321,14 @@
 											"VertexID": "8909996544EF5BDD20E6D89513D5C1E6"
 										},
 										{
-											"Name": "UE.OutputFormat.Mono.Audio:0",
+											"Name": "UE.OutputFormat.Stereo.Audio:0",
 											"TypeName": "Audio",
-											"VertexID": "264AD5934C7B4DBFC28F9CA9CDAF91C1"
+											"VertexID": "09C110474CEA29E72432E793048FA213"
+										},
+										{
+											"Name": "UE.OutputFormat.Stereo.Audio:1",
+											"TypeName": "Audio",
+											"VertexID": "975B25DE4E2CBE036AB611A6E9A6D3ED"
 										}
 									],
 									"Environment": []
@@ -293,7 +343,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"FC03C98C4C3CF69BED3D2DB2B61BDAC8":
+											"E046E68A4ABE2C8F0C0D8086E3E03C05":
 											{
 												"X": 300,
 												"Y": 0
@@ -307,8 +357,8 @@
 								}
 							},
 							{
-								"ID": "D776CBF5443D8761B1604288E0F92BAC",
-								"ClassID": "3CD001E04A379BD10830DE9725D839BD",
+								"ID": "5830C3754C70816403634B9F8EF39B7A",
+								"ClassID": "E29795DB41B51092690712BE89103C94",
 								"Name": "Input",
 								"Interface":
 								{
@@ -316,14 +366,14 @@
 										{
 											"Name": "Value",
 											"TypeName": "Trigger",
-											"VertexID": "96884FEF484E29A12FDC22829E118254"
+											"VertexID": "E1EEBF7C499A52E7316C5CAE9C8BF172"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
 											"TypeName": "Trigger",
-											"VertexID": "846C40F340DE51EDAE6878BFB85763BB"
+											"VertexID": "119F57284028D153808BBA8969E08308"
 										}
 									],
 									"Environment": []
@@ -338,7 +388,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"F5373387451C97710FB565B25947B68C":
+											"C2553BF5481C61BA6E2FA886932A8505":
 											{
 												"X": 0,
 												"Y": 0
@@ -353,7 +403,7 @@
 							},
 							{
 								"ID": "19E95DAF49C514C0E33AAD8E8ECC632E",
-								"ClassID": "7C4E20474F2AAB653B9B31B673B7367B",
+								"ClassID": "7794494C4B5A62C4B8A746AAC8DABFCD",
 								"Name": "Modulator",
 								"Interface":
 								{
@@ -392,8 +442,8 @@
 								}
 							},
 							{
-								"ID": "9945536048C35B4264046A873E76AAD6",
-								"ClassID": "3CD001E04A379BD10830DE9725D839BD",
+								"ID": "BEFC64D94D1F162AE728CA801B14A2E1",
+								"ClassID": "E29795DB41B51092690712BE89103C94",
 								"Name": "Input",
 								"Interface":
 								{
@@ -401,14 +451,14 @@
 										{
 											"Name": "Value",
 											"TypeName": "Modulator",
-											"VertexID": "B86920D7498EFC4C68DA08BA15D07943"
+											"VertexID": "87AAEA534ED18235F3E8E1A671122B30"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
 											"TypeName": "Modulator",
-											"VertexID": "DC01559B49A965AE67ED5FB6B4DF75CE"
+											"VertexID": "B452A6334A60460CA96CA5B8ED3D0C15"
 										}
 									],
 									"Environment": []
@@ -423,7 +473,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"256D31BC4131CE22ED316BA05DC3D0B5":
+											"D12FDB19441031BB2CCDCDAE5EBCB92D":
 											{
 												"X": 0,
 												"Y": 120
@@ -438,7 +488,7 @@
 							},
 							{
 								"ID": "7386D82A478776E3417563B0BEC5918A",
-								"ClassID": "59B57D4141EDB191358A1EA20FB5AB61",
+								"ClassID": "80FEADD2481107F165CD6E9C0EE1D092",
 								"Name": "Gain.Final",
 								"Interface":
 								{
@@ -477,8 +527,8 @@
 								}
 							},
 							{
-								"ID": "C9C3B6C6444EA2B0C13478BCDDE17091",
-								"ClassID": "3CD001E04A379BD10830DE9725D839BD",
+								"ID": "C859E0CE4B37DB512C968C9F7EBE4670",
+								"ClassID": "E29795DB41B51092690712BE89103C94",
 								"Name": "Input",
 								"Interface":
 								{
@@ -486,14 +536,14 @@
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "623FCD904DEA9F9AAA2346BC16AAB540"
+											"VertexID": "FFA8BAA6458464D50144E39A9157A6C5"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "7F2CB7064DFD16A632C936A1107B3C2E"
+											"VertexID": "9B26228B4434F92089847FA55B67B966"
 										}
 									],
 									"Environment": []
@@ -508,7 +558,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"521C6DA6459C416DE120DDA35847CD87":
+											"9D079CF54D10E7C63CC0D0B0867AD675":
 											{
 												"X": 0,
 												"Y": 240
@@ -523,7 +573,7 @@
 							},
 							{
 								"ID": "1C1718D24D69EFC4F4316684E68E98CC",
-								"ClassID": "59B57D4141EDB191358A1EA20FB5AB61",
+								"ClassID": "80FEADD2481107F165CD6E9C0EE1D092",
 								"Name": "Gain.RNG.Min",
 								"Interface":
 								{
@@ -562,8 +612,8 @@
 								}
 							},
 							{
-								"ID": "335F418C48BEBBF840ABB18335D7645A",
-								"ClassID": "3CD001E04A379BD10830DE9725D839BD",
+								"ID": "CECA5AD341056EA23623BC92326C3CD4",
+								"ClassID": "E29795DB41B51092690712BE89103C94",
 								"Name": "Input",
 								"Interface":
 								{
@@ -571,14 +621,14 @@
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "DAF9F9A04A94DE9BE12E148FD809EAF4"
+											"VertexID": "A906E92C455DE65EF29C4BA677C04F7F"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "4BBA1ABB4C990EFF4AD5A8932E6FD440"
+											"VertexID": "DA14B2094D6CD4813BB707A0CB41C118"
 										}
 									],
 									"Environment": []
@@ -593,7 +643,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"76E94B594377E42812FDB7A5464F120D":
+											"646A0CA8419EB2630DD5F29F9252C1E8":
 											{
 												"X": 0,
 												"Y": 360
@@ -608,7 +658,7 @@
 							},
 							{
 								"ID": "3993A69645F14DE731D7AE92E89DDB73",
-								"ClassID": "59B57D4141EDB191358A1EA20FB5AB61",
+								"ClassID": "80FEADD2481107F165CD6E9C0EE1D092",
 								"Name": "Gain.RNG.Max",
 								"Interface":
 								{
@@ -647,8 +697,8 @@
 								}
 							},
 							{
-								"ID": "13E7960E402E2077DFE8E5B224AEFCBB",
-								"ClassID": "3CD001E04A379BD10830DE9725D839BD",
+								"ID": "F3413F0A4A1BF197FD1DD1B9A59261A3",
+								"ClassID": "E29795DB41B51092690712BE89103C94",
 								"Name": "Input",
 								"Interface":
 								{
@@ -656,14 +706,14 @@
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "403EBB77488571015C15FB83A69616ED"
+											"VertexID": "0BA2C7394E0072E2B57A968BC0667213"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "8F0FC1C448CC111CD096F3AA7F6541AF"
+											"VertexID": "88A5B0A443B36B64FFF7F29750511DE7"
 										}
 									],
 									"Environment": []
@@ -678,7 +728,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"4F52F64C4900C880586B9BAADA1E6895":
+											"3EA90FC142F792B8B61231979C4D1F33":
 											{
 												"X": 0,
 												"Y": 480
@@ -693,7 +743,7 @@
 							},
 							{
 								"ID": "C47505214C238301B3296E9D5CA8272D",
-								"ClassID": "59B57D4141EDB191358A1EA20FB5AB61",
+								"ClassID": "80FEADD2481107F165CD6E9C0EE1D092",
 								"Name": "Pitch.RNG.Min",
 								"Interface":
 								{
@@ -732,8 +782,8 @@
 								}
 							},
 							{
-								"ID": "5C920BC343CD3215286A6EACEC506637",
-								"ClassID": "3CD001E04A379BD10830DE9725D839BD",
+								"ID": "1BB796C549070EEC9C19C6890634620E",
+								"ClassID": "E29795DB41B51092690712BE89103C94",
 								"Name": "Input",
 								"Interface":
 								{
@@ -741,14 +791,14 @@
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "43AC966D42661E8D0E95B88870D9B159"
+											"VertexID": "082FC25A4CC0AC3CC258F49DE702A865"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "D0068534491BFA0ADEC6B6813D1E669A"
+											"VertexID": "E969F12E4D678A1ACB5DF9929B012137"
 										}
 									],
 									"Environment": []
@@ -763,7 +813,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"7E1EB8E6424E0EA52344369C7B50E1F6":
+											"00A0D9FC4B8CFD51F6211AAD2DB4F92C":
 											{
 												"X": 0,
 												"Y": 600
@@ -778,7 +828,7 @@
 							},
 							{
 								"ID": "2C3A140B4CFAA388287BF1A0A03BE472",
-								"ClassID": "59B57D4141EDB191358A1EA20FB5AB61",
+								"ClassID": "80FEADD2481107F165CD6E9C0EE1D092",
 								"Name": "Pitch.RNG.Max",
 								"Interface":
 								{
@@ -817,8 +867,8 @@
 								}
 							},
 							{
-								"ID": "ACEACB9542BFA6D30CAF8AB6737E7A08",
-								"ClassID": "3CD001E04A379BD10830DE9725D839BD",
+								"ID": "925B67C94CE7E1AC7FDE74875D2722B1",
+								"ClassID": "E29795DB41B51092690712BE89103C94",
 								"Name": "Input",
 								"Interface":
 								{
@@ -826,14 +876,14 @@
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "6F94A9294D7BB6BCF56F32ACCA383F00"
+											"VertexID": "C92F9AE84034EED725C9AE927223BC30"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
 											"TypeName": "Float",
-											"VertexID": "ECC5458C4CF589BFF0916CB16A7654AC"
+											"VertexID": "8D7C3E1F4DAE969C44C7A68CC8F3FA61"
 										}
 									],
 									"Environment": []
@@ -848,7 +898,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"E1801A0441BF172BC5CB8C8D2654DC65":
+											"0D3373214724AB24382946856A0EBCFC":
 											{
 												"X": 0,
 												"Y": 720
@@ -863,7 +913,7 @@
 							},
 							{
 								"ID": "7E72CC1E4A491114E4D82D84F246770E",
-								"ClassID": "60E68D394AAF6ACF2F3F02844A8F546F",
+								"ClassID": "B0F50F0947CCD28E2B384DBD783E80E1",
 								"Name": "Wavs",
 								"Interface":
 								{
@@ -902,8 +952,8 @@
 								}
 							},
 							{
-								"ID": "323C642948C7C5D561EE6097FDDB7B12",
-								"ClassID": "3CD001E04A379BD10830DE9725D839BD",
+								"ID": "78C8FD8441E20C321F7CC7896C8DC683",
+								"ClassID": "E29795DB41B51092690712BE89103C94",
 								"Name": "Input",
 								"Interface":
 								{
@@ -911,14 +961,14 @@
 										{
 											"Name": "Value",
 											"TypeName": "WaveAsset:Array",
-											"VertexID": "56DFCB7D4F2E3BE5E9392CA3F6013520"
+											"VertexID": "412254DD4471C59B30AE8189F1230622"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
 											"TypeName": "WaveAsset:Array",
-											"VertexID": "59D16B2C41FD6B78C1905BADC700998E"
+											"VertexID": "F6429CD840AF4847A17D5FB55B21EAE1"
 										}
 									],
 									"Environment": []
@@ -933,7 +983,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"AA2C14E247D2D035A2D242979D067EC0":
+											"EA819AF14C8B12BACB3932A9FCCD341F":
 											{
 												"X": 0,
 												"Y": 840
@@ -948,7 +998,7 @@
 							},
 							{
 								"ID": "4EB1DDB04740C57D50DC1E91029CB270",
-								"ClassID": "2C5533524AC221CDAAB112AB8086095F",
+								"ClassID": "4B5EEF4C4FB3C222F944369AC987008C",
 								"Name": "No Repeats",
 								"Interface":
 								{
@@ -987,8 +1037,8 @@
 								}
 							},
 							{
-								"ID": "7C171D3E412DE3D55A2D97A4810148D9",
-								"ClassID": "3CD001E04A379BD10830DE9725D839BD",
+								"ID": "689943D845FC4209A4A674AE25DF85A9",
+								"ClassID": "E29795DB41B51092690712BE89103C94",
 								"Name": "Input",
 								"Interface":
 								{
@@ -996,14 +1046,14 @@
 										{
 											"Name": "Value",
 											"TypeName": "Int32",
-											"VertexID": "AD8F821946D277E7D9E5E0A63EFB2AFE"
+											"VertexID": "BCDEB21442DF064E172BE6B4941CCAB1"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Value",
 											"TypeName": "Int32",
-											"VertexID": "754AA7004CE90193E492E39D4C51A79E"
+											"VertexID": "7F504C944B9CB7ED1803E696862C067F"
 										}
 									],
 									"Environment": []
@@ -1018,7 +1068,7 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"8AB88F1E44E1EAD6F03E2CA165289071":
+											"B9978964445CE5CC3BDBADA5F1EA9414":
 											{
 												"X": 0,
 												"Y": 960
@@ -1036,108 +1086,108 @@
 							{
 								"FromNodeID": "9B8E1F2F43671E096400EDB9A49FD984",
 								"FromVertexID": "CC02F2799674D5DA72ABBEB51D1DC820",
-								"ToNodeID": "D776CBF5443D8761B1604288E0F92BAC",
-								"ToVertexID": "96884FEF484E29A12FDC22829E118254"
+								"ToNodeID": "5830C3754C70816403634B9F8EF39B7A",
+								"ToVertexID": "E1EEBF7C499A52E7316C5CAE9C8BF172"
 							},
 							{
-								"FromNodeID": "D776CBF5443D8761B1604288E0F92BAC",
-								"FromVertexID": "846C40F340DE51EDAE6878BFB85763BB",
+								"FromNodeID": "5830C3754C70816403634B9F8EF39B7A",
+								"FromVertexID": "119F57284028D153808BBA8969E08308",
 								"ToNodeID": "4D657461536F756E64536F7572636500",
 								"ToVertexID": "2C230B93469E8682A6DD84A6DC015E6A"
 							},
 							{
 								"FromNodeID": "19E95DAF49C514C0E33AAD8E8ECC632E",
 								"FromVertexID": "A5C7D99132FCC6B4666B5E34B99C427D",
-								"ToNodeID": "9945536048C35B4264046A873E76AAD6",
-								"ToVertexID": "B86920D7498EFC4C68DA08BA15D07943"
+								"ToNodeID": "BEFC64D94D1F162AE728CA801B14A2E1",
+								"ToVertexID": "87AAEA534ED18235F3E8E1A671122B30"
 							},
 							{
-								"FromNodeID": "9945536048C35B4264046A873E76AAD6",
-								"FromVertexID": "DC01559B49A965AE67ED5FB6B4DF75CE",
+								"FromNodeID": "BEFC64D94D1F162AE728CA801B14A2E1",
+								"FromVertexID": "B452A6334A60460CA96CA5B8ED3D0C15",
 								"ToNodeID": "4D657461536F756E64536F7572636500",
 								"ToVertexID": "BF9F699C47DBBB331E75348E399E48FC"
 							},
 							{
 								"FromNodeID": "7386D82A478776E3417563B0BEC5918A",
 								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
-								"ToNodeID": "C9C3B6C6444EA2B0C13478BCDDE17091",
-								"ToVertexID": "623FCD904DEA9F9AAA2346BC16AAB540"
+								"ToNodeID": "C859E0CE4B37DB512C968C9F7EBE4670",
+								"ToVertexID": "FFA8BAA6458464D50144E39A9157A6C5"
 							},
 							{
-								"FromNodeID": "C9C3B6C6444EA2B0C13478BCDDE17091",
-								"FromVertexID": "7F2CB7064DFD16A632C936A1107B3C2E",
+								"FromNodeID": "C859E0CE4B37DB512C968C9F7EBE4670",
+								"FromVertexID": "9B26228B4434F92089847FA55B67B966",
 								"ToNodeID": "4D657461536F756E64536F7572636500",
 								"ToVertexID": "B84777D64D074AABFA513A990391438E"
 							},
 							{
 								"FromNodeID": "1C1718D24D69EFC4F4316684E68E98CC",
 								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
-								"ToNodeID": "335F418C48BEBBF840ABB18335D7645A",
-								"ToVertexID": "DAF9F9A04A94DE9BE12E148FD809EAF4"
+								"ToNodeID": "CECA5AD341056EA23623BC92326C3CD4",
+								"ToVertexID": "A906E92C455DE65EF29C4BA677C04F7F"
 							},
 							{
-								"FromNodeID": "335F418C48BEBBF840ABB18335D7645A",
-								"FromVertexID": "4BBA1ABB4C990EFF4AD5A8932E6FD440",
+								"FromNodeID": "CECA5AD341056EA23623BC92326C3CD4",
+								"FromVertexID": "DA14B2094D6CD4813BB707A0CB41C118",
 								"ToNodeID": "4D657461536F756E64536F7572636500",
 								"ToVertexID": "3DEF0D7B49EE55C0BA6688A0EF225AD9"
 							},
 							{
 								"FromNodeID": "3993A69645F14DE731D7AE92E89DDB73",
 								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
-								"ToNodeID": "13E7960E402E2077DFE8E5B224AEFCBB",
-								"ToVertexID": "403EBB77488571015C15FB83A69616ED"
+								"ToNodeID": "F3413F0A4A1BF197FD1DD1B9A59261A3",
+								"ToVertexID": "0BA2C7394E0072E2B57A968BC0667213"
 							},
 							{
-								"FromNodeID": "13E7960E402E2077DFE8E5B224AEFCBB",
-								"FromVertexID": "8F0FC1C448CC111CD096F3AA7F6541AF",
+								"FromNodeID": "F3413F0A4A1BF197FD1DD1B9A59261A3",
+								"FromVertexID": "88A5B0A443B36B64FFF7F29750511DE7",
 								"ToNodeID": "4D657461536F756E64536F7572636500",
 								"ToVertexID": "F21CB8C44D1581BDB30D8A8437AF8BAA"
 							},
 							{
 								"FromNodeID": "C47505214C238301B3296E9D5CA8272D",
 								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
-								"ToNodeID": "5C920BC343CD3215286A6EACEC506637",
-								"ToVertexID": "43AC966D42661E8D0E95B88870D9B159"
+								"ToNodeID": "1BB796C549070EEC9C19C6890634620E",
+								"ToVertexID": "082FC25A4CC0AC3CC258F49DE702A865"
 							},
 							{
-								"FromNodeID": "5C920BC343CD3215286A6EACEC506637",
-								"FromVertexID": "D0068534491BFA0ADEC6B6813D1E669A",
+								"FromNodeID": "1BB796C549070EEC9C19C6890634620E",
+								"FromVertexID": "E969F12E4D678A1ACB5DF9929B012137",
 								"ToNodeID": "4D657461536F756E64536F7572636500",
 								"ToVertexID": "45F3D82B47AC546B7AD83B9E0864A695"
 							},
 							{
 								"FromNodeID": "2C3A140B4CFAA388287BF1A0A03BE472",
 								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
-								"ToNodeID": "ACEACB9542BFA6D30CAF8AB6737E7A08",
-								"ToVertexID": "6F94A9294D7BB6BCF56F32ACCA383F00"
+								"ToNodeID": "925B67C94CE7E1AC7FDE74875D2722B1",
+								"ToVertexID": "C92F9AE84034EED725C9AE927223BC30"
 							},
 							{
-								"FromNodeID": "ACEACB9542BFA6D30CAF8AB6737E7A08",
-								"FromVertexID": "ECC5458C4CF589BFF0916CB16A7654AC",
+								"FromNodeID": "925B67C94CE7E1AC7FDE74875D2722B1",
+								"FromVertexID": "8D7C3E1F4DAE969C44C7A68CC8F3FA61",
 								"ToNodeID": "4D657461536F756E64536F7572636500",
 								"ToVertexID": "7819B98244FB4778F13FC6B5356F5C88"
 							},
 							{
 								"FromNodeID": "7E72CC1E4A491114E4D82D84F246770E",
 								"FromVertexID": "4A9CDE1A7DF9DBE37333606187D2E6BE",
-								"ToNodeID": "323C642948C7C5D561EE6097FDDB7B12",
-								"ToVertexID": "56DFCB7D4F2E3BE5E9392CA3F6013520"
+								"ToNodeID": "78C8FD8441E20C321F7CC7896C8DC683",
+								"ToVertexID": "412254DD4471C59B30AE8189F1230622"
 							},
 							{
-								"FromNodeID": "323C642948C7C5D561EE6097FDDB7B12",
-								"FromVertexID": "59D16B2C41FD6B78C1905BADC700998E",
+								"FromNodeID": "78C8FD8441E20C321F7CC7896C8DC683",
+								"FromVertexID": "F6429CD840AF4847A17D5FB55B21EAE1",
 								"ToNodeID": "4D657461536F756E64536F7572636500",
 								"ToVertexID": "4848D839401BAD341D43CF9DCB8895E7"
 							},
 							{
 								"FromNodeID": "4EB1DDB04740C57D50DC1E91029CB270",
 								"FromVertexID": "7DC45740C6500C9D104E14427524BB26",
-								"ToNodeID": "7C171D3E412DE3D55A2D97A4810148D9",
-								"ToVertexID": "AD8F821946D277E7D9E5E0A63EFB2AFE"
+								"ToNodeID": "689943D845FC4209A4A674AE25DF85A9",
+								"ToVertexID": "BCDEB21442DF064E172BE6B4941CCAB1"
 							},
 							{
-								"FromNodeID": "7C171D3E412DE3D55A2D97A4810148D9",
-								"FromVertexID": "754AA7004CE90193E492E39D4C51A79E",
+								"FromNodeID": "689943D845FC4209A4A674AE25DF85A9",
+								"FromVertexID": "7F504C944B9CB7ED1803E696862C067F",
 								"ToNodeID": "4D657461536F756E64536F7572636500",
 								"ToVertexID": "65DECE0A4D408E8B86FEE798B401B11A"
 							},
@@ -1149,8 +1199,14 @@
 							},
 							{
 								"FromNodeID": "4D657461536F756E64536F7572636500",
-								"FromVertexID": "264AD5934C7B4DBFC28F9CA9CDAF91C1",
+								"FromVertexID": "09C110474CEA29E72432E793048FA213",
 								"ToNodeID": "40F0FD6B4F8C274225CE529C8A00C82A",
+								"ToVertexID": "1073B4F9A62848057651709D850DE57C"
+							},
+							{
+								"FromNodeID": "4D657461536F756E64536F7572636500",
+								"FromVertexID": "975B25DE4E2CBE036AB611A6E9A6D3ED",
+								"ToNodeID": "886FE2774285DE7E1F610AA184886F3B",
 								"ToVertexID": "1073B4F9A62848057651709D850DE57C"
 							}
 						],
@@ -1187,7 +1243,7 @@
 					"ClassName":
 					{
 						"Namespace": "None",
-						"Name": "DFD8D8A246807FFECC977CA572847C6C",
+						"Name": "F233403B4678ED1EAFDB54A0C17567A1",
 						"Variant": "None"
 					},
 					"Version":
@@ -1234,7 +1290,8 @@
 					{
 						"DefaultSortOrder": [
 							0,
-							100
+							100,
+							101
 						],
 						"RequiredMembers":
 						{
@@ -1321,7 +1378,7 @@
 							"AccessType": "Reference",
 							"Name": "Modulator",
 							"TypeName": "Modulator",
-							"VertexID": "3CC698E6421766736063C49BFAF7619B"
+							"VertexID": "A2EA43CF4E4C43B9AD9E80AB876EDEA5"
 						},
 						{
 							"DefaultLiteral":
@@ -1363,7 +1420,7 @@
 							"AccessType": "Reference",
 							"Name": "Gain.Final",
 							"TypeName": "Float",
-							"VertexID": "F6A6625041B51571D5F02AAFF90398BF"
+							"VertexID": "C2A6097B4104A86E659B4DA43DE061D9"
 						},
 						{
 							"DefaultLiteral":
@@ -1385,7 +1442,7 @@
 										"AsBoolean": [],
 										"AsInteger": [],
 										"AsFloat": [
-											0.70794579999999996
+											1
 										],
 										"AsString": [],
 										"AsUObject": []
@@ -1405,7 +1462,7 @@
 							"AccessType": "Reference",
 							"Name": "Gain.RNG.Min",
 							"TypeName": "Float",
-							"VertexID": "3EB3149F4389906924DAB3855109F2C5"
+							"VertexID": "04EA5DA644441A61FC32FD96D63ECB60"
 						},
 						{
 							"DefaultLiteral":
@@ -1447,7 +1504,7 @@
 							"AccessType": "Reference",
 							"Name": "Gain.RNG.Max",
 							"TypeName": "Float",
-							"VertexID": "6D204A324C517FDA401C43BCD4618AD5"
+							"VertexID": "7D50299349638B5E4E652794C1BE82F5"
 						},
 						{
 							"DefaultLiteral":
@@ -1469,7 +1526,7 @@
 										"AsBoolean": [],
 										"AsInteger": [],
 										"AsFloat": [
-											-0.10000000000000001
+											0
 										],
 										"AsString": [],
 										"AsUObject": []
@@ -1489,7 +1546,7 @@
 							"AccessType": "Reference",
 							"Name": "Pitch.RNG.Min",
 							"TypeName": "Float",
-							"VertexID": "5C403554450278034E198A9E465B6EC8"
+							"VertexID": "0DB930CE48DE6D4080F469B553A01F09"
 						},
 						{
 							"DefaultLiteral":
@@ -1511,7 +1568,7 @@
 										"AsBoolean": [],
 										"AsInteger": [],
 										"AsFloat": [
-											0.10000000000000001
+											0
 										],
 										"AsString": [],
 										"AsUObject": []
@@ -1531,7 +1588,7 @@
 							"AccessType": "Reference",
 							"Name": "Pitch.RNG.Max",
 							"TypeName": "Float",
-							"VertexID": "10B8F0074CCAA99BA606FB8FEFB88A51"
+							"VertexID": "1A67526245A779099BEDCC9D69F3918D"
 						},
 						{
 							"DefaultLiteral":
@@ -1571,7 +1628,7 @@
 							"AccessType": "Reference",
 							"Name": "Wavs",
 							"TypeName": "WaveAsset:Array",
-							"VertexID": "FDFB43D54188E7D711F1CE934BC47FE1"
+							"VertexID": "68161C704E2D878486D858BA53EC0935"
 						},
 						{
 							"DefaultLiteral":
@@ -1613,7 +1670,7 @@
 							"AccessType": "Reference",
 							"Name": "No Repeats",
 							"TypeName": "Int32",
-							"VertexID": "4319B87A484EF8329D73CA920714B1E9"
+							"VertexID": "A56828434CEBE4D9D0E6C983C464CC28"
 						}
 					],
 					"Outputs": [
@@ -1643,9 +1700,24 @@
 								"bSerializeText": false
 							},
 							"AccessType": "Reference",
-							"Name": "UE.OutputFormat.Mono.Audio:0",
+							"Name": "UE.OutputFormat.Stereo.Audio:0",
 							"TypeName": "Audio",
-							"VertexID": "264AD5934C7B4DBFC28F9CA9CDAF91C1"
+							"VertexID": "09C110474CEA29E72432E793048FA213"
+						},
+						{
+							"NodeID": "886FE2774285DE7E1F610AA184886F3B",
+							"Metadata":
+							{
+								"DisplayName": "",
+								"Description": "",
+								"SortOrderIndex": 101,
+								"bIsAdvancedDisplay": false,
+								"bSerializeText": false
+							},
+							"AccessType": "Reference",
+							"Name": "UE.OutputFormat.Stereo.Audio:1",
+							"TypeName": "Audio",
+							"VertexID": "975B25DE4E2CBE036AB611A6E9A6D3ED"
 						}
 					],
 					"Environment": []
@@ -1665,7 +1737,7 @@
 			"Subgraphs": [],
 			"Dependencies": [
 				{
-					"ID": "039EE18D4C9378462582698921FC1356",
+					"ID": "DAA1226649D6D9994EABEDBA8CA9B3E0",
 					"Metadata":
 					{
 						"ClassName":
@@ -1784,7 +1856,7 @@
 					}
 				},
 				{
-					"ID": "3FEBC12C40828AC3A659B79402FD1504",
+					"ID": "941B3348411EFCEC978440B5BB03EFC8",
 					"Metadata":
 					{
 						"ClassName":
@@ -1903,7 +1975,7 @@
 					}
 				},
 				{
-					"ID": "A419C0C4467C3C3EFD4D5EA5C157917D",
+					"ID": "CD9391AE4ABE4272BFB824A65A827AAC",
 					"Metadata":
 					{
 						"ClassName":
@@ -2022,13 +2094,13 @@
 					}
 				},
 				{
-					"ID": "552A32244C076353BA369FA82C5347D2",
+					"ID": "D19C34394FFD11A6E8ECECBB45AF3D43",
 					"Metadata":
 					{
 						"ClassName":
 						{
 							"Namespace": "None",
-							"Name": "59567DE64E5A7BB33CD6D7A81D988CD5",
+							"Name": "2C78FDEA446F87A803246080BADCB5EC",
 							"Variant": "None"
 						},
 						"Version":
@@ -2075,7 +2147,8 @@
 						{
 							"DefaultSortOrder": [
 								10,
-								100
+								100,
+								101
 							],
 							"RequiredMembers":
 							{
@@ -2226,7 +2299,7 @@
 											"AsBoolean": [],
 											"AsInteger": [],
 											"AsFloat": [
-												0.70794579999999996
+												1
 											],
 											"AsString": [],
 											"AsUObject": []
@@ -2310,7 +2383,7 @@
 											"AsBoolean": [],
 											"AsInteger": [],
 											"AsFloat": [
-												-0.10000000000000001
+												0
 											],
 											"AsString": [],
 											"AsUObject": []
@@ -2352,7 +2425,7 @@
 											"AsBoolean": [],
 											"AsInteger": [],
 											"AsFloat": [
-												0.10000000000000001
+												0
 											],
 											"AsString": [],
 											"AsUObject": []
@@ -2484,9 +2557,24 @@
 									"bSerializeText": false
 								},
 								"AccessType": "Reference",
-								"Name": "UE.OutputFormat.Mono.Audio:0",
+								"Name": "UE.OutputFormat.Stereo.Audio:0",
 								"TypeName": "Audio",
-								"VertexID": "264AD5934C7B4DBFC28F9CA9CDAF91C1"
+								"VertexID": "09C110474CEA29E72432E793048FA213"
+							},
+							{
+								"NodeID": "886FE2774285DE7E1F610AA184886F3B",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 101,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "UE.OutputFormat.Stereo.Audio:1",
+								"TypeName": "Audio",
+								"VertexID": "975B25DE4E2CBE036AB611A6E9A6D3ED"
 							}
 						],
 						"Environment": []
@@ -2504,7 +2592,7 @@
 					}
 				},
 				{
-					"ID": "3CD001E04A379BD10830DE9725D839BD",
+					"ID": "E29795DB41B51092690712BE89103C94",
 					"Metadata":
 					{
 						"ClassName":
@@ -2562,7 +2650,7 @@
 					}
 				},
 				{
-					"ID": "7C4E20474F2AAB653B9B31B673B7367B",
+					"ID": "7794494C4B5A62C4B8A746AAC8DABFCD",
 					"Metadata":
 					{
 						"ClassName":
@@ -2681,7 +2769,7 @@
 					}
 				},
 				{
-					"ID": "59B57D4141EDB191358A1EA20FB5AB61",
+					"ID": "80FEADD2481107F165CD6E9C0EE1D092",
 					"Metadata":
 					{
 						"ClassName":
@@ -2800,7 +2888,7 @@
 					}
 				},
 				{
-					"ID": "60E68D394AAF6ACF2F3F02844A8F546F",
+					"ID": "B0F50F0947CCD28E2B384DBD783E80E1",
 					"Metadata":
 					{
 						"ClassName":
@@ -2919,7 +3007,7 @@
 					}
 				},
 				{
-					"ID": "2C5533524AC221CDAAB112AB8086095F",
+					"ID": "4B5EEF4C4FB3C222F944369AC987008C",
 					"Metadata":
 					{
 						"ClassName":
@@ -3051,14 +3139,14 @@
 			"IdCounter": 1
 		},
 		"ReferencedAssetClassKeys": [
-			"External_None.59567DE64E5A7BB33CD6D7A81D988CD5_1.0"
+			"External_None.2C78FDEA446F87A803246080BADCB5EC_1.0"
 		],
 		"ReferencedAssetClassObjects": [
-			"/Game/ProjectAtlantis/Audio/MetaSoundLibrary/MSS_OneShot_lib.MSS_OneShot_lib"
+			"/Game/ProjectAtlantis/Audio/MetaSoundLibrary/MSS_Stereo_OneShot_lib.MSS_Stereo_OneShot_lib"
 		],
 		"ReferenceAssetClassCache": [],
 		"Graph": null,
-		"OutputFormat": "Mono",
+		"OutputFormat": "Stereo",
 		"QualitySetting": "None",
 		"QualitySettingGuid": "00000000000000000000000000000000",
 		"BlockRateOverride":
@@ -3103,18 +3191,16 @@
 		"EnvelopeFollowerReleaseTime": 100,
 		"ModulationSettings":
 		{
-			"VolumeRouting": "Union",
+			"VolumeRouting": "Inherit",
 			"PitchRouting": "Inherit",
 			"HighpassRouting": "Inherit",
 			"LowpassRouting": "Inherit",
 			"VolumeModulationDestination":
 			{
 				"Value": 0,
-				"bEnableModulation": true,
+				"bEnableModulation": false,
 				"Modulator": null,
-				"Modulators": [
-					null
-				]
+				"Modulators": []
 			},
 			"PitchModulationDestination":
 			{
@@ -3161,12 +3247,12 @@
 		"SubtitlePriority": 10000,
 		"Volume": 1,
 		"Pitch": 1,
-		"NumChannels": 1,
+		"NumChannels": 2,
 		"ChannelOffsets": [],
 		"ChannelSizes": [],
 		"LUFS": 0,
 		"SamplePeakDB": 0,
-		"SampleRate": 0,
+		"SampleRate": 48000,
 		"ImportedSampleRate": 0,
 		"CuePoints": [],
 		"CuePointOrigin": "MarkerTransformation",
@@ -3203,7 +3289,7 @@
 		{
 		},
 		"Transformations": [],
-		"SoundClassObject": "/Game/ProjectAtlantis/Audio/System/SoundClasses/SC_SFX.SC_SFX",
+		"SoundClassObject": "/Game/ProjectAtlantis/Audio/System/SoundClasses/SC_UI.SC_UI",
 		"bDebug": false,
 		"bOverrideConcurrency": false,
 		"bEnableBusSends": true,
@@ -3211,10 +3297,10 @@
 		"bEnableSubmixSends": true,
 		"bHasDelayNode": false,
 		"bHasConcatenatorNode": false,
-		"bBypassVolumeScaleForPriority": false,
+		"bBypassVolumeScaleForPriority": true,
 		"VirtualizationMode": "Restart",
 		"ConcurrencySet": [
-			null
+			"/Game/ProjectAtlantis/Audio/Config/Concurrencies/SCON_UI.SCON_UI"
 		],
 		"ConcurrencyOverrides":
 		{
@@ -3240,7 +3326,7 @@
 		"Duration": 9999,
 		"MaxDistance": 2097152,
 		"TotalSamples": 0,
-		"Priority": 1,
+		"Priority": 90,
 		"AttenuationSettings": null,
 		"SoundSubmixObject": "/Game/ProjectAtlantis/Audio/System/Submixes/Submix_UI.Submix_UI",
 		"SoundSubmixSends": [],
