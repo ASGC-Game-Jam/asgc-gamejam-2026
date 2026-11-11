@@ -2424,7 +2424,7 @@
 							"type": "object:/Script/Inkpot.InkpotStory",
 							"defaultValue": null,
 							"links": [
-								"7482e97e41cffeb5d7fc23a6c8041f3e:o:ReturnValue"
+								"6b4e4ddd4586532ed6d9738ecaf6e903:o:Story"
 							]
 						},
 						{
@@ -2462,6 +2462,54 @@
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0cbd289b45bdc7e82ef434bc063245de",
+					"class": "K2Node_AssignDelegate",
+					"title": "Assign On Story Begin",
+					"x": 2752,
+					"y": 73,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0cbd289b45bdc7e82ef434bc063245de:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"27a862b4468d5e7a54b2098b6164ecdb:o:then"
+							]
+						},
+						{
+							"id": "0cbd289b45bdc7e82ef434bc063245de:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0cbd289b45bdc7e82ef434bc063245de:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"8293156341cc643b092a03b434f243e1:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0cbd289b45bdc7e82ef434bc063245de:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "Delegate",
+							"defaultValue": null,
+							"links": [
+								"7ee31ee6457b33061aaee4ab871bc65d:o:OutputDelegate"
+							]
 						}
 					]
 				},
@@ -2734,26 +2782,6 @@
 					]
 				},
 				{
-					"guid": "1da1052144b6dc88649e11956a528b7e",
-					"class": "K2Node_GetEngineSubsystem",
-					"title": "Get Inkpot",
-					"x": 2144,
-					"y": 1142,
-					"comment": null,
-					"pins": [
-						{
-							"id": "1da1052144b6dc88649e11956a528b7e:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "object:/Script/Inkpot.Inkpot",
-							"defaultValue": null,
-							"links": [
-								"7482e97e41cffeb5d7fc23a6c8041f3e:i:self"
-							]
-						}
-					]
-				},
-				{
 					"guid": "27a862b4468d5e7a54b2098b6164ecdb",
 					"class": "K2Node_VariableSet",
 					"title": "Set DisplayWidget",
@@ -2777,7 +2805,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"0cbd289b45bdc7e82ef434bc063245de:i:execute"
+							]
 						},
 						{
 							"id": "27a862b4468d5e7a54b2098b6164ecdb:i:DisplayWidget",
@@ -2790,18 +2820,18 @@
 							]
 						},
 						{
-							"id": "27a862b4468d5e7a54b2098b6164ecdb:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						},
-						{
 							"id": "27a862b4468d5e7a54b2098b6164ecdb:o:Output_Get",
 							"name": "Output_Get",
 							"direction": "output",
 							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -2874,6 +2904,60 @@
 					]
 				},
 				{
+					"guid": "3f6a779c40ed1123247326b20d4e65e5",
+					"class": "K2Node_VariableSet",
+					"title": "Set Story",
+					"x": 2912,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3f6a779c40ed1123247326b20d4e65e5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7ee31ee6457b33061aaee4ab871bc65d:o:then"
+							]
+						},
+						{
+							"id": "3f6a779c40ed1123247326b20d4e65e5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3f6a779c40ed1123247326b20d4e65e5:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"7ee31ee6457b33061aaee4ab871bc65d:o:Story"
+							]
+						},
+						{
+							"id": "3f6a779c40ed1123247326b20d4e65e5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3f6a779c40ed1123247326b20d4e65e5:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "47c0c1f245ef96aad6cda79ba101d57c",
 					"class": "K2Node_CallFunction",
 					"title": "SetText",
@@ -2913,7 +2997,7 @@
 							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:Text",
 							"name": "Text",
 							"direction": "input",
-							"type": "Text",
+							"type": "text",
 							"defaultValue": null,
 							"links": [
 								"fbfc883044ed661ecc5875923e6c9280:o:Dialogue Sentence"
@@ -2950,7 +3034,7 @@
 					"class": "K2Node_VariableGet",
 					"title": "Get DisplayWidget",
 					"x": 2368,
-					"y": 949,
+					"y": 950,
 					"comment": null,
 					"pins": [
 						{
@@ -3110,6 +3194,34 @@
 					]
 				},
 				{
+					"guid": "6b4e4ddd4586532ed6d9738ecaf6e903",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 2512,
+					"y": 1008,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6b4e4ddd4586532ed6d9738ecaf6e903:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"04b293ce4601cbcc028d06a5b339664a:i:Story"
+							]
+						},
+						{
+							"id": "6b4e4ddd4586532ed6d9738ecaf6e903:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "7320dc8a40a4cdee34fcf1ba2c50fa77",
 					"class": "K2Node_Event",
 					"title": "Event On Initialized",
@@ -3178,44 +3290,6 @@
 					]
 				},
 				{
-					"guid": "7482e97e41cffeb5d7fc23a6c8041f3e",
-					"class": "K2Node_CallFunction",
-					"title": "GetStory",
-					"x": 2336,
-					"y": 1104,
-					"comment": null,
-					"pins": [
-						{
-							"id": "7482e97e41cffeb5d7fc23a6c8041f3e:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Inkpot.Inkpot",
-							"defaultValue": null,
-							"links": [
-								"1da1052144b6dc88649e11956a528b7e:o:ReturnValue"
-							]
-						},
-						{
-							"id": "7482e97e41cffeb5d7fc23a6c8041f3e:i:InkpotStoryAsset",
-							"name": "InkpotStoryAsset",
-							"direction": "input",
-							"type": "softobject:/Script/Inkpot.InkpotStoryAsset",
-							"defaultValue": "/Game/InkpotDemo/Stories/AdventureDemo.AdventureDemo",
-							"links": []
-						},
-						{
-							"id": "7482e97e41cffeb5d7fc23a6c8041f3e:o:ReturnValue",
-							"name": "ReturnValue",
-							"direction": "output",
-							"type": "object:/Script/Inkpot.InkpotStory",
-							"defaultValue": null,
-							"links": [
-								"04b293ce4601cbcc028d06a5b339664a:i:Story"
-							]
-						}
-					]
-				},
-				{
 					"guid": "790df0194f28e73933bb4894f496bed0",
 					"class": "K2Node_Event",
 					"title": "Event Tick",
@@ -3254,6 +3328,66 @@
 							"type": "real:float",
 							"defaultValue": "0.0",
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7ee31ee6457b33061aaee4ab871bc65d",
+					"class": "K2Node_CustomEvent",
+					"title": "EventOnStoryBegin_Event",
+					"x": 2496,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7ee31ee6457b33061aaee4ab871bc65d:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"0cbd289b45bdc7e82ef434bc063245de:i:Delegate"
+							]
+						},
+						{
+							"id": "7ee31ee6457b33061aaee4ab871bc65d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3f6a779c40ed1123247326b20d4e65e5:i:execute"
+							]
+						},
+						{
+							"id": "7ee31ee6457b33061aaee4ab871bc65d:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"3f6a779c40ed1123247326b20d4e65e5:i:Story"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8293156341cc643b092a03b434f243e1",
+					"class": "K2Node_GetEngineSubsystem",
+					"title": "Get Inkpot",
+					"x": 2480,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8293156341cc643b092a03b434f243e1:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"0cbd289b45bdc7e82ef434bc063245de:i:self"
+							]
 						}
 					]
 				},
@@ -3620,7 +3754,7 @@
 							"id": "f52277d14fb7b00352f297bda58173f2:i:Text",
 							"name": "Text",
 							"direction": "input",
-							"type": "Text",
+							"type": "text",
 							"defaultValue": null,
 							"links": [
 								"d13f555541ff5f7a249d5190f6aad9c4:o:ReturnValue"
@@ -3681,16 +3815,7 @@
 					]
 				}
 			],
-			"comments": [
-				{
-					"guid": "caa32837449bcf9ac639ae9d2f1f109f",
-					"text": "This Ref will have to be updated manually (I don't know a solution)",
-					"x": 2272,
-					"y": 1040,
-					"width": 434,
-					"height": 229
-				}
-			]
+			"comments": []
 		}
 	],
 	"properties":
@@ -3724,6 +3849,13 @@
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": false
+			},
+			"Story":
+			{
+				"type": "object:/Script/Inkpot.InkpotStory",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
 			}
 		},
 		"components":
@@ -3735,6 +3867,8 @@
 			"Dialogue Sentence": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 			"Type Writer Delay Duration": 3,
 			"Type Writer Finished": false,
+			"DisplayWidget": null,
+			"Story": null,
 			"ColorAndOpacity":
 			{
 				"R": 1,
