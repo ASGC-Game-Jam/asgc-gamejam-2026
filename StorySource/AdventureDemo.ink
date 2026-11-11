@@ -281,7 +281,7 @@ Hi there--could you help me out? I'm trying to find my {list_with_commas(shapes)
 
 Hi, I'm Blue.
 
-* [Emmy wants to know the time.]
+* [Castella wants to know the time.]
 * [Do you have the time?]
 -
 ~ QuestGetTime += AskedTime
@@ -296,7 +296,7 @@ Blue: Sorry, I'm busy looking for my {list_with_commas(shapes)}. If you find the
 * [Sure, I can get them for you.]
     Thanks!
 * [Can't you get them?]
-    {NPC_Castella.timequest.YouDoIt: Yeah look I'm not a nerd like Emmy; I'm not going to wax philisophic about narrative design.} # Linetime: 2.5
+    {NPC_Castella.timequest.YouDoIt: Yeah look I'm not a nerd like Castella; I'm not going to wax philisophic about narrative design.} # Linetime: 2.5
     
     {QuestGetTime ? EmmyAsked: If you want to know the time, you'll need to get my shapes.|I can't get them myself because reasons--can you help me?} # Linetime: 2.5
 
@@ -345,11 +345,11 @@ LIST QuestFindShapes = BlueAsked, GotShapes, ToldBlue
     - QuestMeetEmmy !? MetEmmy:
         Go talk to Castella.
     - QuestMeetEmmy !? OpenedJournal:
-      Check out the new entries in your journal, then head back to Emmy.
+      Check out the new entries in your journal, then head back to Castella.
     - QuestMeetEmmy !? ToldEmmyJournal:
-        You read your journal--head back and tell Emmy.
+        You read your journal--head back and tell Castella.
     - QuestMeetEmmy ? ToldEmmyJournal:
-        You read your journal and told Emmy.
+        You read your journal and told Castella.
 }
 
 -> DONE
@@ -358,10 +358,10 @@ LIST QuestFindShapes = BlueAsked, GotShapes, ToldBlue
 
 {
     - QuestGetTime ? ToldEmmyTime: Quest Complete.
-    - QuestGetTime ? GotAnswer: Go tell Emmy.
+    - QuestGetTime ? GotAnswer: Go tell Castella.
     - QuestGetTime ? AskedTime: -> FindShapes_quest
     - QuestGetTime ? EmmyAsked: go talk to Blue.
-    - QuestGetTime !? EmmyAsked: Go talk to Emmy.
+    - QuestGetTime !? EmmyAsked: Go talk to Castella.
     }
 
 -> DONE
@@ -399,7 +399,7 @@ VAR JournalBookmark = -> empty_entry
 + {JournalEntries has dialogue} [Dialogue]
     ~ JournalBookmark = -> dialogue_entry
     -> Journal
-+ {JournalEntries has EmmyTime} [Quest: Give Emmy the time]
++ {JournalEntries has EmmyTime} [Quest: Give Castella the time]
     ~ JournalBookmark = -> EmmyTime_entry
     -> Journal
 + {JournalEntries has BlueShapes} [Quest: Find Blue's Shapes]
@@ -465,13 +465,13 @@ In the demo, we're triggering quest text when the player interacts with the shap
 
 = EmmyTime_entry
 
-Emmy asked you to ask Blue what time it is.
+Castella asked you to ask Blue what time it is.
 
 {
-    - QuestGetTime ? ToldEmmyTime: You had to find Blue's shapes first, but {InventoryItems ? watch:she gave you her watch, so you were able to tell Emmy the time|she still refused to give you the time of day, and you had to tell Emmy}.
+    - QuestGetTime ? ToldEmmyTime: You had to find Blue's shapes first, but {InventoryItems ? watch:she gave you her watch, so you were able to tell Castella the time|she still refused to give you the time of day, and you had to tell Castella}.
     - QuestGetTime ? GotAnswer:
         You told Blue where to find her shapes, {InventoryItems ? watch:and she gave you her watch|but she didn't like your tone, so she refused to tell you the time}.
-        You should go tell Emmy.
+        You should go tell Castella.
     - QuestGetTime ? AskedTime: Blue won't give you the time until you  {QuestFindShapes < GotShapes:find her shapes and }tell her where to find {QuestFindShapes < GotShapes:them|her shapes}.
     - else: You should go talk to Blue.
     }
@@ -500,7 +500,7 @@ Blue asked you to find her shapes before she'll give you the time.
 = dialogue_entry
 ~ QuestMeetEmmy += OpenedJournal
     
-The Dialogue pattern in this demo is using trigger volumes to initiate dialogue for each NPC, and each NPC has their own knot in the AdventureDemo.ink: NPC_Emmy and NPC_Blue.<br>
+The Dialogue pattern in this demo is using trigger volumes to initiate dialogue for each NPC, and each NPC has their own knot in the AdventureDemo.ink: NPC_Castella and NPC_Blue.<br>
 
 The logic to update the UI with each line of dialogue and handle player choices lives in `WBP_Display_Adventure`.<br>
 
