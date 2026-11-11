@@ -4,7 +4,7 @@
 	"package": "/Game/ProjectAtlantis/Placeables/AI/BP_PatrolPath",
 	"asset": "BP_PatrolPath",
 	"assetClass": "Blueprint",
-	"parentClass": "Actor",
+	"parentClass": "AtlantisPatrolPath",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
@@ -86,6 +86,184 @@
 							"links": [
 								"be6a96fb4f9aabd81b1f4ea7fb1e5fce:i:execute"
 							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "GetRouteSpline",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "1f6a2c314fe5350481c878abfef3df17",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1f6a2c314fe5350481c878abfef3df17:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9721f57c4c77164503d1d689fdcb8bde:o:then"
+							]
+						},
+						{
+							"id": "1f6a2c314fe5350481c878abfef3df17:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"bad8b12d41dd4f02ee9cd5a6329757d3:o:PatrolSpline"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9721f57c4c77164503d1d689fdcb8bde",
+					"class": "K2Node_FunctionEntry",
+					"title": "GetRouteSpline",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9721f57c4c77164503d1d689fdcb8bde:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1f6a2c314fe5350481c878abfef3df17:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bad8b12d41dd4f02ee9cd5a6329757d3",
+					"class": "K2Node_VariableGet",
+					"title": "Get PatrolSpline",
+					"x": 48,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bad8b12d41dd4f02ee9cd5a6329757d3:o:PatrolSpline",
+							"name": "PatrolSpline",
+							"direction": "output",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"1f6a2c314fe5350481c878abfef3df17:i:ReturnValue"
+							]
+						},
+						{
+							"id": "bad8b12d41dd4f02ee9cd5a6329757d3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/AI/BP_PatrolPath.BP_PatrolPath_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "GetWaitTimeAtPoint",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "04da14f245bc2eda18dc2aab3ee3f1f2",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "04da14f245bc2eda18dc2aab3ee3f1f2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7e00ecb24199f4ea1137b08277dae6c7:o:then"
+							]
+						},
+						{
+							"id": "04da14f245bc2eda18dc2aab3ee3f1f2:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"d7aecff9444438e0abf5ebacde945d2c:o:DefaultWaitTime"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7e00ecb24199f4ea1137b08277dae6c7",
+					"class": "K2Node_FunctionEntry",
+					"title": "GetWaitTimeAtPoint",
+					"x": -128,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7e00ecb24199f4ea1137b08277dae6c7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"04da14f245bc2eda18dc2aab3ee3f1f2:i:execute"
+							]
+						},
+						{
+							"id": "7e00ecb24199f4ea1137b08277dae6c7:o:PointIndex",
+							"name": "PointIndex",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d7aecff9444438e0abf5ebacde945d2c",
+					"class": "K2Node_VariableGet",
+					"title": "Get DefaultWaitTime",
+					"x": 80,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d7aecff9444438e0abf5ebacde945d2c:o:DefaultWaitTime",
+							"name": "DefaultWaitTime",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"04da14f245bc2eda18dc2aab3ee3f1f2:i:ReturnValue"
+							]
+						},
+						{
+							"id": "d7aecff9444438e0abf5ebacde945d2c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPatrolPath",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				}
@@ -223,13 +401,6 @@
 	{
 		"variables":
 		{
-			"DefaultWaitTime":
-			{
-				"type": "real:double",
-				"category": "Patrol",
-				"defaultValue": "",
-				"instanceEditable": true
-			}
 		},
 		"components":
 		{
