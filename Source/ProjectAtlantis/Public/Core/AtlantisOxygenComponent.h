@@ -96,12 +96,10 @@ public:
 	UFUNCTION(BlueprintPure, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	bool RequestDecreaseOxygenCapacity(const float O2CapacityAmount);
 
-
 	/**
-	* Starts or stops passive consumption of oxygen. Turning consumption off starts passive refill.
-	* Assumes "not consuming" means the player is breathing air. If a future input pauses the drain
-	* without granting air
-	*/
+	 * Turns passive oxygen drain on or off. Turning it off starts a passive refill,
+	 * because "not consuming" is treated as "breathing air" (e.g. surfaced or in an air pocket).
+	 */
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "Atlantis|PlayerState|Oxygen")
 	void SetConsumingOxygen(bool bNewConsumingOxygen);
 
@@ -143,7 +141,7 @@ private:
 		Category = "Atlantis|PlayerState|Oxygen", meta = (AllowPrivateAccess = "true"))
 	float CurrentOxygen = 100.f;
 
-	/** Oxygen restored per second while not consuming o2 */
+	/** Oxygen restored per second while the player isn't consuming oxygen (breathing air). */
 	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|PlayerState|Oxygen", meta = (ClampMin = "0.0"))
 	float OxygenRefillRate = 0.5f;
 	/** Oxygen consumed per second  */
@@ -202,12 +200,12 @@ private:
 	/** Spends one interval's worth of oxygen */
 	void ConsumeOxygen();
 
-	/** Restores one interval's worth of oxygen. The capacity clamp is handled by SetCurrentOxygen. */
+	/** Timer callback: restores OxygenRefillRate x OxygenConsumptionInterval oxygen. SetCurrentOxygen keeps it within capacity. */
 	void RefillOxygen();
 
-	/** Stops the refill timer and starts the looping drain timer. */
+	/** Switches to draining: cancels any refill and removes oxygen every OxygenConsumptionInterval seconds. */
 	void StartOxygenConsumption();
 
-	/** Stops the drain timer and starts the looping refill timer. */
+	/** Switches to refilling: cancels the drain and restores oxygen every OxygenConsumptionInterval seconds, up to capacity. */
 	void StartOxygenRefill();
 };
