@@ -979,7 +979,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"8824106b4c83aa704f146fbe0acbfd0e:i:execute"
+							]
 						},
 						{
 							"id": "12b50a2543ef534022cf95837e574b67:i:self",
@@ -1953,6 +1955,52 @@
 					]
 				},
 				{
+					"guid": "8824106b4c83aa704f146fbe0acbfd0e",
+					"class": "K2Node_CallFunction",
+					"title": "Set Visibility",
+					"x": 1936,
+					"y": -176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8824106b4c83aa704f146fbe0acbfd0e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"12b50a2543ef534022cf95837e574b67:o:then"
+							]
+						},
+						{
+							"id": "8824106b4c83aa704f146fbe0acbfd0e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8824106b4c83aa704f146fbe0acbfd0e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"b03aa0884860bdf8af91bfac9fb4d8a1:o:MainStoryBox"
+							]
+						},
+						{
+							"id": "8824106b4c83aa704f146fbe0acbfd0e:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Visible",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "8aa82e3847a161580befe6bbc78ce782",
 					"class": "K2Node_VariableSet",
 					"title": "Set Story Display",
@@ -2247,6 +2295,36 @@
 					]
 				},
 				{
+					"guid": "b03aa0884860bdf8af91bfac9fb4d8a1",
+					"class": "K2Node_VariableGet",
+					"title": "Get MainStoryBox",
+					"x": 1680,
+					"y": -240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b03aa0884860bdf8af91bfac9fb4d8a1:o:MainStoryBox",
+							"name": "MainStoryBox",
+							"direction": "output",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": [
+								"8824106b4c83aa704f146fbe0acbfd0e:i:self"
+							]
+						},
+						{
+							"id": "b03aa0884860bdf8af91bfac9fb4d8a1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"d97307244d2c120557aaf59bb74f7b16:o:Story Display"
+							]
+						}
+					]
+				},
+				{
 					"guid": "b2f346de402cc956c89127845784243d",
 					"class": "K2Node_ActorBoundEvent",
 					"title": "On Actor End Overlap (TriggerCapsCube)",
@@ -2285,6 +2363,34 @@
 							"name": "OtherActor",
 							"direction": "output",
 							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d97307244d2c120557aaf59bb74f7b16",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story Display",
+					"x": 1504,
+					"y": -240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d97307244d2c120557aaf59bb74f7b16:o:Story Display",
+							"name": "Story Display",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"b03aa0884860bdf8af91bfac9fb4d8a1:i:self"
+							]
+						},
+						{
+							"id": "d97307244d2c120557aaf59bb74f7b16:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Maps/Tutorial/L_Tutorial_Main.L_Tutorial_Main_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -2674,7 +2780,7 @@
 					"text": "Start Story",
 					"x": 2061,
 					"y": -822,
-					"width": 608,
+					"width": 624,
 					"height": 400
 				},
 				{
@@ -2698,7 +2804,7 @@
 					"text": "Display story when it begins",
 					"x": 864,
 					"y": -320,
-					"width": 848,
+					"width": 1392,
 					"height": 336
 				},
 				{
