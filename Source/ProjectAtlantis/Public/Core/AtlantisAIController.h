@@ -13,8 +13,7 @@ class PROJECTATLANTIS_API AAtlantisAIController : public AAIController
 {
 	GENERATED_BODY()
 public:
-	// Keeps the default argument so subclasses with default constructors still compile.
-	// Replaces the engine path following with UAtlantisPathFollowingComponent (3D reach tests for swimming).
+	// We replace the engine's 2D-ish, check for arrival, for our own that checks in fully 3D
 	AAtlantisAIController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 protected:
