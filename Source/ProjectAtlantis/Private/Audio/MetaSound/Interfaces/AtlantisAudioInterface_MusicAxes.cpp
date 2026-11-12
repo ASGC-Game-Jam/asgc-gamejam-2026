@@ -65,7 +65,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisPlayerState", "PlayerState"),
-							LOCTEXT("AtlantisPlayerState_Description", "Music intensity from 0 to 1. 0 is the ambient floor (never silent), the middle is passive, 1 is full combat."),
+							LOCTEXT("AtlantisPlayerState_Description", "Music intensity from 0 to 1. Currently unused: the music is passive and driven by Tension, so this stays at its baseline."),
 							GetMetasoundDataTypeName<float>(),
 							PlayerStateAxis.Resolve(),
 							FText(),
@@ -74,7 +74,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisTension", "Tension"),
-							LOCTEXT("AtlantisTension_Description", "Pressure and focus from 0 to 1. Rising values add puzzle, stealth or combat push, and danger subtracts from the mix."),
+							LOCTEXT("AtlantisTension_Description", "Pressure from 0 to 1. Rises with tension states such as puzzles, low oxygen, low trust or hiding. Higher values bring in the passive layer."),
 							GetMetasoundDataTypeName<float>(),
 							TensionAxis.Resolve(),
 							FText(),
