@@ -1,0 +1,572 @@
+# Inkpot Demo
+Small demo project in Unreal showing how to use the Inkpot plugin for Unreal Engine created by [The Chinese Room](https://www.thechineseroom.co.uk/).<br><br>
+Inkpot is a wrapper for the scripting language **Ink** developed by [Inkle Studios](https://www.inklestudios.com/ink/)<br>
+See the [Inkpot github](https://github.com/The-Chinese-Room/Inkpot) for more info on the Inkpot plugin itself.<br><br>
+This project works with Unreal Engine version 5.7 or later.<br>
+
+---
+
+## Folder structure 
+
+	Content
+		InkpotDemo
+			Framework 
+				BP_InkpotDemoGameMode 
+					- game mode Blueprint, creates UI, 
+					handles Inkpot OnStoryBegin.
+			Maps
+				AdventureDemo
+					- An example of how to use Ink and Inkpot for dialogue, quests, and a player journal
+				Demo 		
+					- A demo of Ink scripts interacting with 
+					level blueprints and actors. 
+				HelloInk	
+					- The most minimal demo using the default ink story.
+				Intro 		
+					- An intro screen for those that don't read docs.
+				Test 		
+					- for testing out all list operations.
+			Props
+				BP_InkyCube	
+					- actor blueprint showing how to get Ink variable
+					change notification. 
+			Stories			
+				- all the Inkpot story assets.
+			UI
+				WBP_Display
+					- the main display widget, 
+					this is where most of the Ink control logic lies.
+				WBP_Display_Adventure
+					- the display widget for the Adventure Demo, based off the main Demo but with additional functionality.
+				WBP_Choice
+					- widget for choices that can be made in a story, 
+					used by WBP_Display.
+
+---
+
+## Editing Ink source
+Use Inky, which you can get from here.<br>
+https://github.com/inkle/inky
+
+---
+
+## Importing ink files 
+To import, drag the ink source file into a content browser window within the Unreal Editor.<br>
+The will create the InkpotStoryAsset, that contains the compiled JSON from source.<br>
+
+![DragFile](Documentation/DragFile.png)
+
+### Note: .net 5.0 requirement
+If your Ink file fails to import, then you most likely do not have **.net 5.0** installed.<br>
+Inkpot compiles your source when you import using the InkleCate compiler, & InkleCate requires the **.net 5.0** framework.<br>
+To fix install the **.net 5.0** framework <br>
+https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-5.0.17-windows-x64-installer<br>
+
+---
+
+## Setting up auto reimport
+Open editor, preferences.<br> 
+Look Under general, loading and saving, auto reimport.<br>
+Add a new 'Directories to Monitor' entry by clicking the plus.<br>
+
+Include the source folder, map directory to the corresponding folder in the unreal content browser.
+
+![AutoReimportOptions](Documentation/AutoReimport.png)
+
+Once this is setup, the content directory will automatically update when you update, create or delete any ink files in the source folder.
+
+---
+
+## Starting a story 
+In blueprints, get the Inkpot subsystem and call BeginStory, passing in the InpotStoryAsset. 
+
+![BeginStory](Documentation/BeginStory.png)
+
+This returns the runtime InkpotStory that executes the script.  
+In this demo, the stories are started by the Level Blueprint.
+
+---
+
+## Getting story updates
+Once the story has been started using the BeginStory function of Inkpot, it will return an InkpotStory.<br>
+The InkpotStory is the runtime for the Ink script execution.<br>
+In this demo, the UI is hooked up to the InkpotStory created by the level blueprint.<br>
+This is done in the game mode blueprint, BP_InkpotDemoGameMode.<br>
+
+![BindStoryBegin](Documentation/BindBegin.png)
+
+The UI, where all of the story updates happen, is defined by the widget WBP_Display.<br>
+The event graph looks like this. <br>
+
+![UIEventGraph](Documentation/UIEventGraph.png)
+
+Here we see the events that drive Ink execution.<br>
+
+### OnContinue 
+This is called once the story has continued. Here we update the UI to show the current story's text, and update the choices if there are any. <br>
+This event happens in response to Continue being called on the story.<br>
+
+### OnMakeChoice
+A choice has been made. In this demo the user has clicked on a choice shown ( see OnItemClicked ), and the ChooseChoice function has been called.<br> 
+Here, we continue the story, which will result in OnContinue being called thereby updating the UI. <br>
+
+### OnSwitchFlow
+Flows allow several 'threads' of story to run at the same time. This is used in the demo level to give contextual story snippets fopr wherever the player has walked to.<br>
+This event is called in response to calling the function SwitchFlow on the InkpotStory object.<br>
+
+### Additional Functions
+You'll find a more complete list of InkPot functions accessible from blueprints in [Inkpot/Source/Inkpot/Public/Inkpot/InkpotStory.h](InkpotDemo/Plugins/Inkpot/Source/Inkpot/Public/Inkpot/InkpotStory.h).
+
+---
+
+## Variables
+Ink supports type free variables, Blueprints require typed variables.<br><br>  
+### First value types
+For bool, int, float and string types use the blueprint function library, UInkpotValueLibrary, to convert from one to the other.<br>
+
+	/* Create an Ink Value from a boolean */
+	FInkpotValue MakeBoolInkpotValue(bool bValue);
+
+	/* Cast Ink value to a boolean */
+	bool InkpotValueAsBool(FInkpotValue Value);
+
+	/* Create an Ink Value from an integer */
+	FInkpotValue MakeIntInkpotValue(int32 Value);
+
+	/* Cast Ink value to an integer*/
+	int32 InkpotValueAsInt(FInkpotValue Value);
+
+	/* Create an Ink Value from a float */
+	FInkpotValue MakeFloatInkpotValue(float Value);
+
+	/* Cast Ink value to a float*/
+	float InkpotValueAsFloat(FInkpotValue Value);
+
+	/* Create an Ink Value from a string */
+	FInkpotValue MakeStringInkpotValue(const FString &Value);
+
+	/* Cast Ink value to a string*/
+	FString InkpotValueAsString(FInkpotValue Value);
+
+	/* Get an Inkpot List from an Ink List */
+	FInkpotList InkpotValueAsList(FInkpotValue Value);    
+
+![MakeInkpotValue](Documentation/InpotValueAs.png)
+
+![MakeInkpotValue](Documentation/MakeInkpotValue.png)
+
+Alternatively, values can be set directly through the InkpotStory object using one of the Set or Get functions.<br>
+These functions also report whether the variable exists in the script via the return parameter *Success*. 
+
+	void SetBool(const FString &Variable, bool bValue, bool &Success );
+	void GetBool(const FString &Variable, bool &ReturnValue, bool &Success );
+
+	void SetInt(const FString &Variable, int32 Value, bool &Success );
+	void GetInt(const FString &Variable, int32 &ReturnValue, bool &Success );
+
+	void SetFloat( const FString& Variable, float Value, bool &Success );
+	void GetFloat( const FString& Variable, float &ReturnValue, bool &Success );
+
+	void SetString( const FString& Variable, const FString& Value, bool &Success );
+	void GetString( const FString& Variable, FString &ReturnValue, bool &Success );
+
+	void SetEmpty( const FString& Variable );
+
+![StorySetNGet](Documentation/StorySetNGet.png)
+
+To check if a variable simply exists, call this function.<br>
+
+	bool IsVariableDefined( const FString& Variable );
+
+![VariableExists](Documentation/VariableExistence.png)
+
+### List types
+Ink's List type is a litte more complex. It requires a reference to an *origin* defined within the story on creation.<br>
+Ink's List has a corresponding type FInkpotList that can be used easily within blueprints.<br>
+To create an Inkpot list to within blueprints use one of the following functions from UInkpotListLibrary.<br>
+
+	/* converts comma delimited list of item names to a new inkpotlist */
+	FInkpotList MakeInkpotList(UInkpotStory *Story, FString Origin, FString Value);
+
+	/* converts string array of item names to a new inkpotlist */
+	FInkpotList MakeInkpotListFromStringArray(UInkpotStory *Story, FString Origin, TArray<FString> Values);
+
+![MakeInkpotList](Documentation/MakeInkpotList.png)
+
+To get an Inkpot list from a Inkpot value, simply use the conversion function from UInkpotValueLibrary.<br>
+
+	/* Get an array of strings from an Ink List */
+	FInkpotList InkpotValueAsList(FInkpotValue Value);
+
+![InkpotValueAsList](Documentation/InkpotValueAsList.png)
+
+Once you have an inkpot list, you can manipulate it as you would in a regular Ink script using the following functions.<br> 
+
+	/* prints the contents of the list to a comma delimeted string. */
+	void ToString( const FInkpotList &Value, FString &ReturnValue, bool bUseOrigin );
+
+	/* Converts an inkpot list to an array of strings. */
+	void ToStringArray(const FInkpotList &Value, TArray<FString> &ReturnValue, bool bUseOrigin);
+
+	/* Returns a new list that is the combination of both lists passed in. 
+	Equivalent to calling (A + B) in ink.. */
+	FInkpotList Union(const FInkpotList &A, const FInkpotList &B);
+
+	/* Returns a new list that is the intersection of both lists passed in. 
+	Equivalent to calling (A ^ B) in ink.
+	FInkpotList Intersect(const FInkpotList &A, const FInkpotList &B);
+
+	/* Returns true if there is an intersection of both lists passed in, 
+	bool HasIntersection(const FInkpotList &A, const FInkpotList &B);
+
+	/* Returns a new list that is the first list with items in the second list removed. 
+	Equivalent to calling (A - B) in ink.*/
+	FInkpotList Without( const FInkpotList &A, const FInkpotList &B );
+
+	/* Returns true if the the first list contains all the items that are in the second list. 
+	Equivalent to calling (A ? B) in ink.
+	bool ContainsList( const FInkpotList &Source, const FInkpotList &Querant );
+
+	/* Returns true if the list contains an item matching the given name. 
+	bool ContainsItem(const FInkpotList &Source, const FString &ItemName);
+
+	/* Returns true if all the item values in the first list 
+	are greater than all the item values in the second list. 
+	Equivalent to calling (A > B) in ink. */
+	bool GreaterThan(const FInkpotList &A, const FInkpotList &B);
+
+	/* Returns true if the item values in the first list overlap 
+	or are all greater than the item values in the second list. 
+	Equivalent to (A >= B) in ink. */
+	bool GreaterThanOrEquals(const FInkpotList &A, const FInkpotList &B);
+
+	/* Returns true if all the item values first list are 
+	less than all the item values in the second list. 
+	Equivalent to calling (A < B) in ink. */
+	bool LessThan(const FInkpotList &A, const FInkpotList &B);
+
+	/* Returns true if the item values in the first list overlap 
+	or are all less than the item values in the second list. 
+	Equivalent to (A <= B) in ink. */
+	bool LessThanOrEquals(const FInkpotList &A, const FInkpotList &B);
+
+	/* Returns true if the both lists contain the same items, false otherwise. */
+	bool Equals(const FInkpotList &A, const FInkpotList &B);
+
+	/* Returns a list containing the min item from the passed in list. 
+	Equivalent of calling ( LIST_MIN( A ) ) in ink. */
+	FInkpotList MinItem(const FInkpotList &A);
+
+	/* Returns a list containing the max item from the passed in list. 
+	Equivalent of calling ( LIST_MAX( A ) ) in ink. */
+	FInkpotList MaxItem(const FInkpotList &A);
+
+	/* Returns a list containing the inverse of the list passed in 
+	with respect to the origin. 
+	Equivalent of calling LIST_INVERT( A ) in ink*/
+	FInkpotList Inverse(const FInkpotList &A);
+
+	/* Returns a list containing the all of the items 
+	as defined by the list origin. 
+	Equivalent of calling LIST_ALL( A ).*/
+	FInkpotList All(const FInkpotList &A);
+
+![ListOperations](Documentation/ListOperations.png)	
+
+### Change notification
+There are a couple of ways of getting change notification from Inkpot, *Story Change Delegate* and *Inkpot Watch Component*.
+
+#### Story Change Delegate
+Variable change notification can be achieved through binding to the set on variable change delegate of the story.
+![OnVariableChange](Documentation/SetOnVaraibleChange.png)
+
+#### InkPotWatch component
+The InkPotWatch component allows Actors to receive the notification of variable change.
+Open up the Actor blueprint and Click Add component, choose InkpotWatch.
+
+![AddComponent](Documentation/AddComponent.png)
+
+Rename it to represent its purpose
+
+![RenameComponent](Documentation/RenameComponent.png)
+
+Then hook up the event, 
+
+![ChangeNotify](Documentation/ChangeNotify.png)
+
+And when this blueprint is placed in the world, set the 'Variable Watch' field to the name of the ink variable to be watched.
+
+![InstanceDetails](Documentation/InstanceDetails.png)
+
+## External Functions
+As of version 0.2.20 of Inkpot, you can bind external C++ and Blueprint functions to Ink, so that they can be called directly from the Ink script.<br>
+
+### Hooking up to Blueprints
+Here are the steps you need to follow to bind a _Blueprint_ function to Ink.<br>
+First, in your ink script define the external function as you normally would.<br>
+( don't forget to reimport your Ink files )<br> 
+
+	EXTERNAL MyExternalBPFunction( ABoolean, TheAnswer, PI, Message, AreasVisited )
+
+Use the _Bind External Function_ node, to declare the binding to your story, like so<br>
+
+![BindeExternalNode](Documentation/BindeExternalNode.png)
+
+_Function Name_ is what we called the function when we declared it in the ink script, this should match.<br>
+
+_Function_ should link to a Blueprint function matching the general signature of _FInkpotValue MyFunction( const TArray\<FInkpotValue\> &Values )_<br>
+
+The easiest way of doing this is as follows:<br>
+
+1. Drag off the Function pin, then select _Create Event_ under _Event Dispatchers_<br>
+
+![BindExternalEventDispatcher](Documentation/BindExternalEventDispatcher.png)
+
+2. Then from the new _Create Event_ node, select _Create a matching function_.<br>
+
+![BindExternalCreateMatching](Documentation/BindExternalCreateMatching.png)
+
+3. All going well, you will be presented with your shiny new Blueprint function.<br>
+Which here simply prints the first parameter (a string).<br>
+
+![BindExternalFunctionBody](Documentation/BindExternalFunctionBody.png)
+
+### Parameter Passing
+Parameters from Ink are passed into the external function as an array of Inkpot values.<br>
+The parameters are ordered in the array with the left most function argument being the first at index 0 of the array, the second argument will be at index 1 and so on.<br>
+
+As values in Ink are not typed, you'll need to use helper functions to convert from Inkpot Values to the typed values that Blueprints use.<br>
+To make things easier, here are some helper functions to convert the elements of the Inkpot Value arrays.<br>
+
+![BindExternalHelpers](Documentation/BindExternalHelpers.png)
+
+See the demo for a more complete example.<br>
+
+---
+
+## Debug Log
+Inkpot has it's own debug category, which you can filter the OutputLog by.
+This can be turned off by settings and CVars.
+
+![DebugLog](Documentation/DebugLog.png)
+
+---
+
+## Inkpot Debug
+There are two debug tools in developement, *the blotter* and *the outliner*.<br>
+The Blotter allows you to view and set values whilst your story is running in the Unreal Editor.<br>
+The Outliner currently only allows you to see the overal structure of your story.<br><br>
+![StartBlotterMenu](Documentation/StartBlotter.png)
+
+### The Blotter
+![BlotterScreen](Documentation/BlotterScreen.png)
+
+### Blotter Sections 
+
+* **Current**<br>
+Shows the current line of text for the story.<br><br>
+* **Choices**<br> 
+Lists the current set of choices for the story.<br><br>
+* **Tags**<br>
+lists current and global tags if any.<br><br>
+* **Flow**<br>
+Shows current, and all other active flow names.<br><br>
+* **Variables**<br>
+Shows a list of all variables defined.<br>
+Bools, ints, floats and strings can be edited directly.<br>
+List types require that the item is defined in an origin, ie a LIST declaration within the ink script.<br>
+When adding items from other lists, prefix the item name with the origin name of the other list.<br>
+Lists can be expanded inline and set using the check the values you want to set in the list.<br>
+Variables can be filtered based on their name, by using the filter field at the top.<br>
+Variables can be pinned so that they appear at the top of the list for when you have a lot variables.<br>
+* **Origins**<br>
+Shows all of the list origins that are present in the current story. <br>
+A list origin defines the items that can be present in a list variable.<br>
+A LIST declaration within an ink script declares both the origin and the variable, which can confuse at first.<br><br>
+
+The blotter will update any time a continue happens or a variable is changed within the Ink runtime.<br>
+You should therefore make sure that your game is in an inactive state before editing the values of variables.<br>
+
+### The Outliner
+![OutlinerScreen](Documentation/Outliner.png)<br>
+Currenly only shows the structure of the current story. 
+
+---
+
+## Settings
+These can be found in the Plugins->Inkpot section of Project Settings.<br><br>
+![ProjectSettings](Documentation/ProjectSettings.png)
+
+### Story factory class
+Advanced use, most of the time just set this to InkpotStoryFactory.<br>
+
+---
+
+## Preferences and CVars
+These can be found in the Plugins->Inkpot section of Editor Preferences.<br>
+![EditorPreferences](Documentation/EditorPreferences.png)
+
+### Autogenerate Gameplay Tags 
+Generates a gameplay tag table for the ink source whenever it is imported.<br>
+For more info on gameplay tags, see below. <br>
+
+### Debug Log 
+Turns debug log on or off.<br> 
+CVar Inkpot.DebugLog<br>
+Default is true.<br>
+
+### Reload If Asset Changed
+For runtime, reloads and restarts the story if the asset has been reimported ( mainly with auto-reimport on ). <br>
+Allows for quick edits of ink whilst running the game. <br>
+CVar Inkpot.ReloadIfAssetChanged<br>
+Default is false.<br>
+
+### Replay If Reloaded
+For runtime, if the story has been reloaded, if this option is set, Inkpot will replay all choices, path & flow changes made to the current point.<br>
+Allows for quick edits of ink scripts whilst running the game, 'live edit'. <br>
+CVar Inkpot.ReplayIfReloaded<br>
+Default is false.<br>
+
+---
+
+## Gameplay Tag support
+New in version 1.20.21 Inkpot has GameplayTag support.<br>
+
+### What are Gameplay Tags
+Gameplay Tags are a user defined hierarchical labelling system used extensively within Unreal for identifying and referencing objects across systems.<br>
+They are defined once and can never be changed, reducing silly that can be introduced by mistyping the wrong string say into a blueprint node.<br>
+Gameplay Tags can be combined in GameplayTagContainers in the same way Ink List entries can be combined.<br>
+More info from Epic here.<br>
+[Using gameplay tags](https://dev.epicgames.com/documentation/en-us/unreal-engine/using-gameplay-tags-in-unreal-engine)<br>
+
+### How are they used in Inkpot
+A set of Gameplay Tags is created containing tags for all paths, variables, and list origin items within the Ink source file.<br> 
+Ink Lists can then be freely converted to GameplayTagContainers and back.<br>
+Additionally, all functions where a string would be used to look up a variable or path now have a GameplayTag variant, GT for short.<br>
+
+### Creating a Gameplay Tag Table
+Right click on any previously imported Ink story asset, and select *Asset Actions* -> *Create Inkpot Tags from Story Assets*<br>
+![CreateTags](Documentation/CreateTags.png)<br>
+
+A new asset will be created containing all the knot & stitch paths, variables, and list origin items defined in the story.<br>
+![TagCreated](Documentation/TagCreated.png)<br>
+
+Double click to see the detail of the tag table.<br>
+![TagDetail](Documentation/TagDetail.png)
+
+### Hooking up the GameplayTag Table
+Now that you have your gameplay tag table, it needs to be added to the project as an additional source of gameplay tags.<br>
+Open up the project settings, *Edit* -> *Project Settings*.<br><br>
+![TagProjectSettings](Documentation/TagProjectSettings.png)
+In the *Project* -> *Gameplay Tags* section, add the new GameplayTag table to the *Gameplay Tag Table List*.
+
+### Ink Lists and Gameplay Tags
+Ink lists can now be set and queried by gameplay tags.<br><br>
+![TagsAndLists](Documentation/TagsAndLists.png)
+Lists can be created from a single tag or a list of tags.
+
+	// Creates an Inkpot List from a gameplay tag.
+	FInkpotList MakeInkpotListFromGameplayTag(UInkpotStory *Story, FGameplayTag Tag);
+
+	// Creates a gameplay tag from an inkpot list.
+	void ToGameplayTag(const FInkpotList &Value, FGameplayTag &ReturnValue);
+
+	// Creates an Inkpot List from a gameplay tag collection.
+	FInkpotList MakeInkpotListFromGameplayTags(UInkpotStory *Story, FGameplayTagContainer Tags);
+
+	// Creates a gameplay tag from an inkpot list.
+	void ToGameplayTags(const FInkpotList &Value, FGameplayTagContainer &ReturnValue);
+
+	// Returns true if the list contains an item matching the given Gameplay Tag.
+	bool ContainsTag(const FInkpotList &Source, FGameplayTag Tag);
+	
+### Gameplay Tags story API, GT Functions
+The InkpotStory class has been updated with support for all of the functions using strings to lookup paths and variables.<br>
+These are the GT functions, all are functionalty identical to the previous string variables.<br>
+Type *GT* to find these quickly in the context menu for Inkpot menus in the Blueprint editor.<br><br>
+![TagsGTFunctions](Documentation/TagsGTFunctions.png)
+The new Blueprint nodes will allow you to select the path and variables you need from a drop down list. <br>
+![TagSelecting](Documentation/TagSelecting.png)<br>
+See InkpotStory.h for all the new GT function definitions.<br>
+
+---
+
+# Custom import pipeline
+Vesion 1.30 of Inkpot introduces a fully customisable import pipeline.<br><br>
+This allows any processing you may have for things like localisation and other processing you may do to create meta data from your ink source.<br>
+
+## Inkpot Import Pipeline Editor Utility Object
+To allow python scripts, command line utils and scripts to all be run we've based this on an Editor Utility Object.<br>
+This allows you to create Blueprint logic for the import process.<br>
+The *Inkpot Import Pipeline* obkect has one event that needs to be defined, *Event Import*. <br><br>
+![ImportPipelineMinimal](Documentation/ImportPipelineMinimal.png)<br>
+
+### Event Import
+This will be called whenever an Ink source file is imported or reimported to Unreal.<br>
+This event passess in two parameters:<br>
+* *Source File* - the fully qualified path to the source ink file. <br>
+* *New Story Asset* - the newly created story asset into which the Ink JSON will need to be set.<br>
+
+To successfully complete the import a call to *Finalise* must be made.<br>
+Failing to do this in you import pipeline will cause the import to fail.<br><br>
+![ImportPipelineFinalise](Documentation/ImportPipelineFinalise.png)<br>
+
+### Custom Asset User Data
+Inkpot allows asset user data to be attached to the *InkpotStoryAsset*.<br>
+During import this data can be created and set on the *New Story Asset*.<br>
+
+Check out the example import pipeline object *MetaDataExampleImport* for an example.<br><br>
+![ImportPipelineUserData](Documentation/ImportPipelineUserData.png)<br>
+
+Here the user data is created from a simple example C++ class included in the plugin:<br>
+
+	UCLASS()
+	class INKPOT_API UInkpotStoryMetaDataSimple : public UAssetUserData
+	{
+		GENERATED_BODY()
+
+	public:
+
+		UFUNCTION(BlueprintPure)
+		static UInkpotStoryMetaDataSimple* MakeInkpotStoryMetaDataSimple(FString SomeExtraData, FString EvenMoreExtraData);
+
+		UFUNCTION(BlueprintPure)
+		static void BreakInkpotStoryMetaDataSimple(UAssetUserData* target, FString &SomeExtraData, FString &EvenMoreExtraData);
+
+		UPROPERTY(VisibleAnywhere)
+		FString SomeExtraData;
+
+		UPROPERTY(VisibleAnywhere)
+		FString EvenMoreExtraData;
+	};
+
+**Notes:**
+1. Your class must derive from UAssetUserData.<br>
+2. The static Make and Break functions are include to make creating this class easier from the context of Blueprint & more like a struct<br>
+
+## Selecting the import pipeline
+Select the import pipeline you want to use for you project in the *Plugins->Inkpot* section of *Project Settings*.<br><br>
+![ImportPipelineSetup](Documentation/ImportPipelineSetup.png)<br>
+
+
+## Inkpot Import Pipeline Location
+All of the example import pipelines can be found in the Inkpot Content folder. <br>
+To find this in the content browser you need to enable *Plugin Content* from the folder view.<br><br>
+![ImportPipelineSetup](Documentation/ImportPipelineLocation.png)<br>
+
+
+--- 
+
+# Testing InkPlusPlus
+We have 180 active tests in Inkpot that test the implementaion of the InkPlusPlus module.<br>
+These can all be run through the *Session Frontend* within the Unreal editor.<br>
+To run the tests, first open the *Session Frontend* from Tools, Session Frontend.<br>
+
+![OpenSessionFrontEnd](Documentation/OpenSessionFrontEnd.png)
+
+Select the automation panel, and click the check box next to **Inkpot**.<br>
+Then hit the play button to start the tests.<br>
+
+![RunTests](Documentation/RunTests.png)
+
+

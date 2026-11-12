@@ -23,8 +23,12 @@ public class ProjectAtlantis : ModuleRules
 				"AIModule",
 				"StateTreeModule",
 				"GameplayStateTreeModule", 
-				"GameplayDebugger", 
-				"GameplayTags"
+				"GameplayDebugger",
+        			"GameplayTags",
+			  "StructUtils",
+
+                "Inkpot",
+                "InkpotEditor"
 			});
 
 		PrivateDependencyModuleNames.AddRange(new string[]
