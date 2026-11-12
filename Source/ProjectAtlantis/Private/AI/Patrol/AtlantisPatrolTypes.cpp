@@ -21,8 +21,7 @@ FAtlantisPatrolCursor Atlantis::AI::AdvancePatrolCursor(const FAtlantisPatrolCur
 		Next.PointIndex = (Cursor.PointIndex + 1) % NumPoints;
 		return Next;
 	}
-
-	// Open route: walk to one end, then turn around.
+	
 	Next.Direction = Cursor.Direction;
 	if (Next.Direction == EAtlantisPatrolDirection::Forward && Cursor.PointIndex >= NumPoints - 1)
 	{

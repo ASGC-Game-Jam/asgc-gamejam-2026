@@ -29,7 +29,6 @@ namespace
 FAtlantisStateTreeBeginSearchTask::FAtlantisStateTreeBeginSearchTask()
 {
 	bShouldCallTick = false;
-	// Lives on the Searching parent: its children decide when the search is over.
 	bConsideredForCompletion = false;
 }
 
@@ -133,7 +132,7 @@ EStateTreeRunStatus FAtlantisStateTreeLookAroundTask::Tick(FStateTreeExecutionCo
 	if (Glance != InstanceData.AppliedGlance)
 	{
 		InstanceData.AppliedGlance = Glance;
-		// Right, left, right... and the last glance looks back to where we started.
+		// Right, left, right... and the last glance looks back to where we started
 		const bool bLast = NumGlances > 1 && Glance == NumGlances - 1;
 		const float Offset = bLast ? 0.f : InstanceData.HalfAngle * (Glance % 2 == 0 ? 1.f : -1.f);
 		const FVector Direction = FRotator(0.f, InstanceData.StartYaw + Offset, 0.f).Vector();
@@ -160,7 +159,7 @@ EStateTreeRunStatus FAtlantisStateTreeGiveUpSearchTask::EnterState(FStateTreeExe
 	{
 		Detection->ForgetLostTargets();
 	}
-	// Let the parent's Status transition pick this up next tick; succeed then as a safety net.
+	// Let the parent's Status transition pick this up next tick
 	return EStateTreeRunStatus::Running;
 }
 

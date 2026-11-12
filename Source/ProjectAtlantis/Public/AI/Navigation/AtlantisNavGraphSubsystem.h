@@ -7,6 +7,8 @@
 #include "AI/Navigation/AtlantisNavGraph.h"
 #include "AtlantisNavGraphSubsystem.generated.h"
 
+class APhysicsVolume;
+
 UENUM(BlueprintType)
 enum class EAtlantisNavPathResult : uint8
 {
@@ -52,10 +54,25 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Atlantis|AI|Navigation")
 	bool IsSegmentClear(const FVector& From, const FVector& To) const;
 
+	/** True if Point is inside a water volume (always true in a world without water volumes). */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|AI|Navigation")
+	bool IsInWater(const FVector& Point) const;
+
+	/** True if the whole straight line between the points stays inside water. */
+	bool IsSegmentInWater(const FVector& From, const FVector& To) const;
+
 	/**
-	 * Finds a 3D path between two pawn-centre locations. Uses a direct leg when the straight line is clear
-	 * (and bAllowDirectLeg), otherwise enters the graph at the nearest visible node and leaves it at the node
-	 * nearest the goal.
+	 * Point itself when it's in water, otherwise the closest point inside a water volume, kept an agent half
+	 * height below the surface so the enemy stays submerged.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Atlantis|AI|Navigation")
+	FVector ClampToWater(const FVector& Point) const;
+
+	/**
+	 * Finds a 3D path between two pawn-centre locations. A goal out of the water (e.g. a player on a ledge) is
+	 * moved to the closest point still underwater, so enemies wait below instead of swimming out. Uses a direct
+	 * leg when the straight line is clear and underwater (and bAllowDirectLeg), otherwise enters the graph at the
+	 * nearest visible node and leaves it at the node nearest the goal.
 	 */
 	EAtlantisNavPathResult FindPath(const FVector& From, const FVector& To, const FAtlantisNavQueryFilter& Filter, bool bAllowDirectLeg, FAtlantisNavPath& OutPath);
 
@@ -65,14 +82,32 @@ public:
 	/** Nearest node with a clear line to Point, or INDEX_NONE. */
 	int32 FindNearestVisibleNode(const FVector& Point);
 
-	/** Human-readable summary for editor checks (nodes, links, components, isolated nodes, nodes inside geometry). */
-	FString Describe();
-
 	const FAtlantisNavGraph& GetGraph();
+
+	/** Swim-only nodes left out of the last build because they weren't in water (for editor checks). */
+	const TArray<FVector>& GetNodesOutsideWater() const { return NodesOutsideWater; }
 
 private:
 	void EnsureBuilt();
 
+	/** Collects the world's water volumes (done on every rebuild). */
+	void GatherWaterVolumes();
+
+	/** Logs a warning for every patrol route point that is out of the water (enemies can't reach it). */
+	void WarnAboutDryPatrolPoints() const;
+
+	/** Clear for an enemy capsule and underwater the whole way: a straight line an enemy can actually swim. */
+	bool IsSwimmable(const FVector& From, const FVector& To) const;
+
+	/**
+	 * Picks the graph nodes to enter (near From) and leave (near To) through. Prefers the nearest visible nodes;
+	 * if those aren't connected, the closest visible pair that is. Returns Graph, NoStartNode or NoEndNode.
+	 */
+	EAtlantisNavPathResult ChooseEndpointNodes(const FVector& From, const FVector& To, int32& OutStartNode, int32& OutEndNode);
+
 	FAtlantisNavGraph Graph;
 	bool bIsDirty = true;
+
+	TArray<TWeakObjectPtr<APhysicsVolume>> WaterVolumes;
+	TArray<FVector> NodesOutsideWater;
 };

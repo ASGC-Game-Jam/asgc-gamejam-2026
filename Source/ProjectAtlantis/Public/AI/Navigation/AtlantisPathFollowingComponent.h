@@ -7,13 +7,6 @@
 #include "Core/EAtlantisTraversalMode.h"
 #include "AtlantisPathFollowingComponent.generated.h"
 
-/**
- * Path following that also works for 3D swim-graph paths.
- *
- * Navmesh paths (with navigation data) use the engine behaviour untouched. Swim-graph paths (no navigation data)
- * use 3D sphere reach tests instead of the engine's 2D cylinder, and switch handling per segment by its
- * traversal mode (encoded in the path point flags). Only Swimming is handled today.
- */
 UCLASS(ClassGroup = (AI))
 class PROJECTATLANTIS_API UAtlantisPathFollowingComponent : public UPathFollowingComponent
 {
@@ -35,6 +28,13 @@ protected:
 	/** How close (in 3D) the agent must get to an intermediate swim-path point before moving on. */
 	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|AI|Navigation", meta = (ClampMin = 1, UIMin = 1, UIMax = 200, ForceUnits = "cm"))
 	float IntermediatePointTolerance = 30.f;
+
+	/**
+	 * An intermediate point the agent has already moved past still counts as reached, but only within this distance.
+	 * Further off the path (pushed by a collision, overshoot) the agent swims back to the point instead of cutting the corner.
+	 */
+	UPROPERTY(EditDefaultsOnly, Category = "Atlantis|AI|Navigation", meta = (ClampMin = 1, UIMin = 1, UIMax = 500, ForceUnits = "cm"))
+	float PassedPointMaxDistance = 150.f;
 
 private:
 	/** True when following a swim-graph path (no navigation data) rather than a navmesh path. */

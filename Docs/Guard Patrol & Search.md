@@ -160,7 +160,7 @@ Searching hiding spots is not implemented.
 ## Debugging
 
 - **State Tree debugger** (State Tree editor → Debugger, works in PIE): shows the active state per guard.
-- `Atlantis.AI.NavGraph.Draw 1` — nav graph; `Atlantis.AI.Detection.Draw 1` — last known locations, status/meter text
+- `Atlantis.AI.NavGraph.Draw 1` — each guard's current path (2 = nodes, 3 = links near the camera); `Atlantis.AI.Detection.Draw 1` — last known locations, status/meter text
   and search points.
 - `UAtlantisPatrolComponent` → **Cursor** on the guard instance (Details panel while simulating) shows the current
   point and direction.

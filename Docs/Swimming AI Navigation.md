@@ -73,12 +73,16 @@ built (next PIE).
 **In game:** open the console and run
 
 ```
-Atlantis.AI.NavGraph.Draw 1
+Atlantis.AI.NavGraph.Draw <level>
 ```
 
-Each node is drawn as a small sphere, links as lines. Colours are per component (cyan, green, yellow, magenta, orange,
-turquoise, then repeat); a **red** node has no links at all. `Atlantis.AI.NavGraph.Draw 0` turns it off. If you see
-more than one colour, part of your graph is cut off from the rest.
+| Level | Shows |
+|---|---|
+| `1` | Each AI's current path in its own colour: a thick line to the point it's heading to (sphere), the rest of the path, and a cross with the pawn's name at the goal. Best view for "why is the guard going there?". |
+| `2` | Every node as a small sphere, no links. Colours are per component (cyan, green, yellow, magenta, orange, turquoise, then repeat); a **red** node has no links at all. More than one colour means part of your graph is cut off from the rest. |
+| `3` | Nodes and links within `Atlantis.AI.NavGraph.DrawRadius` (default 1500 cm) of the camera, links thin and dimmed. Use it to inspect one area; the whole graph at once is too dense to read. |
+
+`Atlantis.AI.NavGraph.Draw 0` turns it off.
 
 **In the editor (no PIE):** `UAtlantisNavGraphLibrary::BuildAndDescribeNavGraph(WorldContext)` is a Blueprint/Python
 callable that rebuilds the graph of the given world and returns a one-line report:
@@ -111,10 +115,27 @@ locations and returns one of `EAtlantisNavPathResult`:
 | Unreachable | Start and end nodes are in different components (or A\* failed). |
 
 "Visible node" means: of the **Max Nearest Candidates** nodes closest to the point, the first one the capsule sweep
-can reach in a straight line.
+can reach in a straight line **and that stays underwater**. If the two nearest nodes aren't connected (e.g. one is
+isolated), the closest visible pair that is connected is used instead.
+
+### Staying in the water
+
+Every straight line an enemy swims (direct legs, legs into and out of the graph, graph links) must be clear **and**
+inside a water volume (`APhysicsVolume` with **Water Volume** ticked). Both ends inside the same volume is enough,
+since volumes are convex boxes; a line between volumes is sampled every metre.
+
+- **Goal out of the water** (player at the surface or up on a ledge): the goal is moved to the closest point still
+  underwater (an agent half height below the surface), so the enemy waits below and keeps facing the player instead of
+  swimming out. Once it loses sight, the normal grace time → Searching takes over.
+- **Swim-only nodes above the surface** are left out of the graph, with a warning in the log; the editor health check
+  lists them as "Outside water".
+- **Patrol route points above the surface** log a warning at BeginPlay (`LogAtlantisAI`).
+- A world **without** water volumes skips all of these checks.
 
 Other queries: `GetReachableNodeLocations` (nodes within a radius that are in the same component as the searcher, used
-by the search), `FindNearestVisibleNode`, `IsSegmentClear`, `Rebuild()` (BlueprintCallable) and `Describe()`.
+by the search), `FindNearestVisibleNode`, `IsSegmentClear`, `IsInWater`, `ClampToWater` and `Rebuild()`
+(BlueprintCallable). For an editor health check, call `UAtlantisNavGraphLibrary::BuildAndDescribeNavGraph` (counts,
+isolated nodes, nodes inside geometry, nodes outside water).
 
 ## The Swim To task
 

@@ -38,7 +38,6 @@ void UAtlantisPathFollowingComponent::FollowPathSegment(float DeltaTime)
 	switch (CurrentSegmentMode)
 	{
 	case EAtlantisTraversalMode::Swimming:
-		// Engine following steers in 3D; the movement component keeps vertical velocity while swimming.
 		Super::FollowPathSegment(DeltaTime);
 		break;
 
@@ -74,21 +73,21 @@ bool UAtlantisPathFollowingComponent::HasReachedCurrentTarget(const FVector& Cur
 	}
 
 	const FVector CurrentTarget = GetCurrentTargetLocation();
-
-	// Moved past the target along the segment: count it as reached.
-	if (FVector::DotProduct(CurrentTarget - CurrentLocation, GetCurrentDirection()) < 0.)
+	const double DistanceSq = FVector::DistSquared(CurrentLocation, CurrentTarget);
+	
+	if (FVector::DotProduct(CurrentTarget - CurrentLocation, GetCurrentDirection()) < 0.
+		&& DistanceSq <= FMath::Square(FMath::Max(PassedPointMaxDistance, IntermediatePointTolerance)))
 	{
 		return true;
 	}
 
-	return FVector::DistSquared(CurrentLocation, CurrentTarget) <= FMath::Square(IntermediatePointTolerance);
+	return DistanceSq <= FMath::Square(IntermediatePointTolerance);
 }
 
 int32 UAtlantisPathFollowingComponent::DetermineStartingPathPoint(const FNavigationPath* ConsideredPath) const
 {
 	if (ConsideredPath != nullptr && ConsideredPath->IsValid() && ConsideredPath->GetNavigationDataUsed() == nullptr)
 	{
-		// Swim paths always start at the agent's current location.
 		return 0;
 	}
 	return Super::DetermineStartingPathPoint(ConsideredPath);

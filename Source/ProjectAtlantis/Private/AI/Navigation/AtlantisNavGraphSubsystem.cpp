@@ -3,23 +3,20 @@
 #include "AI/Navigation/AtlantisNavGraphSubsystem.h"
 
 #include "AI/AtlantisAITypes.h"
+#include "AI/Navigation/AtlantisNavGraphDebug.h"
 #include "AI/Navigation/AtlantisNavGraphSettings.h"
 #include "AI/Navigation/AtlantisNavNodeSource.h"
-#include "DrawDebugHelpers.h"
+#include "AI/Patrol/AtlantisPatrolRoute.h"
+#include "Components/SplineComponent.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
-#include "HAL/IConsoleManager.h"
+#include "GameFramework/DefaultPhysicsVolume.h"
+#include "GameFramework/PhysicsVolume.h"
 
 namespace
 {
-	int32 GAtlantisNavGraphDraw = 0;
-	FAutoConsoleVariableRef CVarAtlantisNavGraphDraw(
-		TEXT("Atlantis.AI.NavGraph.Draw"),
-		GAtlantisNavGraphDraw,
-		TEXT("Draw the swimming AI nav graph. 0 = off, 1 = nodes and links."),
-		ECVF_Cheat);
-
-	const FColor ComponentColors[] = {FColor::Cyan, FColor::Green, FColor::Yellow, FColor::Magenta, FColor::Orange, FColor::Turquoise};
+	/** Spacing of the in-water samples along a line that crosses between water volumes. */
+	constexpr double WaterSampleSpacing = 100.0;
 }
 
 void UAtlantisNavGraphSubsystem::Initialize(FSubsystemCollectionBase& Collection)
@@ -37,6 +34,7 @@ void UAtlantisNavGraphSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 	Rebuild();
+	WarnAboutDryPatrolPoints();
 }
 
 bool UAtlantisNavGraphSubsystem::DoesSupportWorldType(const EWorldType::Type WorldType) const
@@ -62,16 +60,31 @@ void UAtlantisNavGraphSubsystem::Rebuild()
 		}
 	}
 
+	GatherWaterVolumes();
+
+	// Swim-only nodes above the surface can never be reached: leave them out and report them.
+	const uint8 SwimOnlyMask = Atlantis::AI::TraversalModeToMask(EAtlantisTraversalMode::Swimming);
 	Graph.Reset();
+	NodesOutsideWater.Reset();
 	for (const FAtlantisNavNodeDesc& Desc : NodeDescs)
 	{
+		if (Desc.ModeMask == SwimOnlyMask && !IsInWater(Desc.Location))
+		{
+			NodesOutsideWater.Add(Desc.Location);
+			continue;
+		}
 		Graph.AddNode(Desc.Location, Desc.ModeMask);
+	}
+	if (!NodesOutsideWater.IsEmpty())
+	{
+		UE_LOG(LogAtlantisAI, Warning, TEXT("[%hs] %d swim nav node(s) are out of the water and were left out of the graph (first at %s)."),
+			__FUNCTION__, NodesOutsideWater.Num(), *NodesOutsideWater[0].ToCompactString());
 	}
 
 	const UAtlantisNavGraphSettings* Settings = GetDefault<UAtlantisNavGraphSettings>();
 	Graph.BuildLinks(Settings->MaxLinkDistance, [this](const FVector& From, const FVector& To)
 	{
-		return IsSegmentClear(From, To);
+		return IsSwimmable(From, To);
 	});
 
 	bIsDirty = false;
@@ -105,11 +118,138 @@ bool UAtlantisNavGraphSubsystem::IsSegmentClear(const FVector& From, const FVect
 	const FCollisionShape Capsule = FCollisionShape::MakeCapsule(Settings->AgentRadius, Settings->AgentHalfHeight);
 
 	FCollisionQueryParams QueryParams(SCENE_QUERY_STAT(AtlantisNavGraphSweep), false);
-	// Players and other enemies must not cut links; water volumes only overlap, so they never block.
 	FCollisionResponseParams ResponseParams;
 	ResponseParams.CollisionResponse.SetResponse(ECC_Pawn, ECR_Ignore);
 
 	return !World->SweepTestByChannel(From, To, FQuat::Identity, ECC_Pawn, Capsule, QueryParams, ResponseParams);
+}
+
+void UAtlantisNavGraphSubsystem::GatherWaterVolumes()
+{
+	WaterVolumes.Reset();
+	if (const UWorld* World = GetWorld())
+	{
+		for (TActorIterator<APhysicsVolume> It(World); It; ++It)
+		{
+			if (It->bWaterVolume && !It->IsA<ADefaultPhysicsVolume>())
+			{
+				WaterVolumes.Add(*It);
+			}
+		}
+	}
+}
+
+bool UAtlantisNavGraphSubsystem::IsInWater(const FVector& Point) const
+{
+	if (WaterVolumes.IsEmpty())
+	{
+		return true;
+	}
+	for (const TWeakObjectPtr<APhysicsVolume>& Volume : WaterVolumes)
+	{
+		if (Volume.IsValid() && Volume->EncompassesPoint(Point))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool UAtlantisNavGraphSubsystem::IsSegmentInWater(const FVector& From, const FVector& To) const
+{
+	if (WaterVolumes.IsEmpty())
+	{
+		return true;
+	}
+
+	// Water volumes are convex boxes: both ends inside the same one means the whole line is.
+	for (const TWeakObjectPtr<APhysicsVolume>& Volume : WaterVolumes)
+	{
+		if (Volume.IsValid() && Volume->EncompassesPoint(From) && Volume->EncompassesPoint(To))
+		{
+			return true;
+		}
+	}
+
+	// Crossing between volumes (or leaving them): sample along the line.
+	const int32 NumSteps = FMath::Max(1, FMath::CeilToInt(FVector::Dist(From, To) / WaterSampleSpacing));
+	for (int32 Step = 0; Step <= NumSteps; ++Step)
+	{
+		if (!IsInWater(FMath::Lerp(From, To, static_cast<double>(Step) / NumSteps)))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+FVector UAtlantisNavGraphSubsystem::ClampToWater(const FVector& Point) const
+{
+	if (IsInWater(Point))
+	{
+		return Point;
+	}
+
+	// Closest point inside a water volume's bounds, shrunk by the agent size so the capsule stays submerged.
+	const UAtlantisNavGraphSettings* Settings = GetDefault<UAtlantisNavGraphSettings>();
+	const FVector Margin(Settings->AgentRadius, Settings->AgentRadius, Settings->AgentHalfHeight);
+	FVector Best = Point;
+	double BestDistanceSq = TNumericLimits<double>::Max();
+	for (const TWeakObjectPtr<APhysicsVolume>& Volume : WaterVolumes)
+	{
+		if (!Volume.IsValid())
+		{
+			continue;
+		}
+		FBox Box = Volume->GetComponentsBoundingBox(true);
+		const FVector Extent = Box.GetExtent();
+		Box = Box.ExpandBy(-FVector(FMath::Min(Margin.X, Extent.X), FMath::Min(Margin.Y, Extent.Y), FMath::Min(Margin.Z, Extent.Z)));
+		const FVector Candidate = Box.GetClosestPointTo(Point);
+		const double DistanceSq = FVector::DistSquared(Point, Candidate);
+		if (DistanceSq < BestDistanceSq)
+		{
+			BestDistanceSq = DistanceSq;
+			Best = Candidate;
+		}
+	}
+	return Best;
+}
+
+bool UAtlantisNavGraphSubsystem::IsSwimmable(const FVector& From, const FVector& To) const
+{
+	// Ends are snapped below the surface first: a pawn swimming at the surface has its centre just above it.
+	return IsSegmentClear(From, To) && IsSegmentInWater(ClampToWater(From), ClampToWater(To));
+}
+
+void UAtlantisNavGraphSubsystem::WarnAboutDryPatrolPoints() const
+{
+	const UWorld* World = GetWorld();
+	if (World == nullptr || WaterVolumes.IsEmpty())
+	{
+		return;
+	}
+
+	for (TActorIterator<AActor> It(World); It; ++It)
+	{
+		if (!It->Implements<UAtlantisPatrolRoute>())
+		{
+			continue;
+		}
+		const USplineComponent* Spline = IAtlantisPatrolRoute::Execute_GetRouteSpline(*It);
+		if (Spline == nullptr)
+		{
+			continue;
+		}
+		for (int32 Index = 0; Index < Spline->GetNumberOfSplinePoints(); ++Index)
+		{
+			const FVector Location = Spline->GetLocationAtSplinePoint(Index, ESplineCoordinateSpace::World);
+			if (!IsInWater(Location))
+			{
+				UE_LOG(LogAtlantisAI, Warning, TEXT("[%hs] %s: patrol point %d at %s is out of the water; swimming enemies will stop below it."),
+					__FUNCTION__, *It->GetName(), Index, *Location.ToCompactString());
+			}
+		}
+	}
 }
 
 int32 UAtlantisNavGraphSubsystem::FindNearestVisibleNode(const FVector& Point)
@@ -120,12 +260,77 @@ int32 UAtlantisNavGraphSubsystem::FindNearestVisibleNode(const FVector& Point)
 	Graph.FindNearestNodes(Point, GetDefault<UAtlantisNavGraphSettings>()->MaxNearestCandidates, Candidates);
 	for (const int32 Candidate : Candidates)
 	{
-		if (IsSegmentClear(Point, Graph.GetNodes()[Candidate].Location))
+		if (IsSwimmable(Point, Graph.GetNodes()[Candidate].Location))
 		{
 			return Candidate;
 		}
 	}
 	return INDEX_NONE;
+}
+
+EAtlantisNavPathResult UAtlantisNavGraphSubsystem::ChooseEndpointNodes(const FVector& From, const FVector& To, int32& OutStartNode, int32& OutEndNode)
+{
+	OutStartNode = FindNearestVisibleNode(From);
+	if (OutStartNode == INDEX_NONE)
+	{
+		return EAtlantisNavPathResult::NoStartNode;
+	}
+
+	OutEndNode = FindNearestVisibleNode(To);
+	if (OutEndNode == INDEX_NONE)
+	{
+		return EAtlantisNavPathResult::NoEndNode;
+	}
+
+	// The nearest nodes can sit in different components (e.g. one is an isolated node) even when another
+	// visible pair connects. Only then pay for checking every visible candidate and take the closest pair
+	// that shares a component.
+	const TArray<FAtlantisNavGraphNode>& Nodes = Graph.GetNodes();
+	if (Nodes[OutStartNode].Component == Nodes[OutEndNode].Component)
+	{
+		return EAtlantisNavPathResult::Graph;
+	}
+
+	const int32 MaxCandidates = GetDefault<UAtlantisNavGraphSettings>()->MaxNearestCandidates;
+	auto GatherVisible = [this, &Nodes, MaxCandidates](const FVector& Point, TArray<int32>& OutVisible)
+	{
+		TArray<int32> Candidates;
+		Graph.FindNearestNodes(Point, MaxCandidates, Candidates);
+		for (const int32 Candidate : Candidates)
+		{
+			if (IsSwimmable(Point, Nodes[Candidate].Location))
+			{
+				OutVisible.Add(Candidate);
+			}
+		}
+	};
+
+	TArray<int32> StartCandidates;
+	TArray<int32> EndCandidates;
+	GatherVisible(From, StartCandidates);
+	GatherVisible(To, EndCandidates);
+
+	double BestDistance = TNumericLimits<double>::Max();
+	for (const int32 StartCandidate : StartCandidates)
+	{
+		for (const int32 EndCandidate : EndCandidates)
+		{
+			if (Nodes[StartCandidate].Component != Nodes[EndCandidate].Component)
+			{
+				continue;
+			}
+			const double Distance = FVector::Dist(From, Nodes[StartCandidate].Location) + FVector::Dist(To, Nodes[EndCandidate].Location);
+			if (Distance < BestDistance)
+			{
+				BestDistance = Distance;
+				OutStartNode = StartCandidate;
+				OutEndNode = EndCandidate;
+			}
+		}
+	}
+
+	// No connected pair: the nearest nodes are kept and A* reports the goal unreachable.
+	return EAtlantisNavPathResult::Graph;
 }
 
 EAtlantisNavPathResult UAtlantisNavGraphSubsystem::FindPath(const FVector& From, const FVector& To, const FAtlantisNavQueryFilter& Filter, bool bAllowDirectLeg, FAtlantisNavPath& OutPath)
@@ -135,23 +340,22 @@ EAtlantisNavPathResult UAtlantisNavGraphSubsystem::FindPath(const FVector& From,
 	// The legs into and out of the graph, and the direct leg, are always swum.
 	constexpr EAtlantisTraversalMode OpenWaterMode = EAtlantisTraversalMode::Swimming;
 
-	if (bAllowDirectLeg && IsSegmentClear(From, To))
+	// A goal out of the water (player on a ledge or at the surface): wait at the closest point still underwater.
+	const FVector Goal = ClampToWater(To);
+
+	if (bAllowDirectLeg && IsSwimmable(From, Goal))
 	{
 		OutPath.Points.Add({From, OpenWaterMode});
-		OutPath.Points.Add({To, OpenWaterMode});
+		OutPath.Points.Add({Goal, OpenWaterMode});
 		return EAtlantisNavPathResult::Direct;
 	}
 
-	const int32 StartNode = FindNearestVisibleNode(From);
-	if (StartNode == INDEX_NONE)
+	int32 StartNode = INDEX_NONE;
+	int32 EndNode = INDEX_NONE;
+	const EAtlantisNavPathResult EndpointResult = ChooseEndpointNodes(From, Goal, StartNode, EndNode);
+	if (EndpointResult != EAtlantisNavPathResult::Graph)
 	{
-		return EAtlantisNavPathResult::NoStartNode;
-	}
-
-	const int32 EndNode = FindNearestVisibleNode(To);
-	if (EndNode == INDEX_NONE)
-	{
-		return EAtlantisNavPathResult::NoEndNode;
+		return EndpointResult;
 	}
 
 	TArray<int32> NodePath;
@@ -168,7 +372,7 @@ EAtlantisNavPathResult UAtlantisNavGraphSubsystem::FindPath(const FVector& From,
 		const FAtlantisNavGraphLink* LinkToNext = bIsLastNode ? nullptr : Graph.FindLink(NodePath[Index], NodePath[Index + 1]);
 		OutPath.Points.Add({Nodes[NodePath[Index]].Location, LinkToNext != nullptr ? LinkToNext->Mode : OpenWaterMode});
 	}
-	OutPath.Points.Add({To, OpenWaterMode});
+	OutPath.Points.Add({Goal, OpenWaterMode});
 	return EAtlantisNavPathResult::Graph;
 }
 
@@ -176,8 +380,11 @@ void UAtlantisNavGraphSubsystem::GetReachableNodeLocations(const FVector& From, 
 {
 	OutLocations.Reset();
 
-	const int32 FromNode = FindNearestVisibleNode(From);
-	if (FromNode == INDEX_NONE)
+	// Enter the graph on the side connected to Center when possible, so an isolated node next to the
+	// enemy doesn't hide every search point. Without a node visible from Center, use the one nearest From.
+	int32 FromNode = INDEX_NONE;
+	int32 CenterNode = INDEX_NONE;
+	if (ChooseEndpointNodes(From, ClampToWater(Center), FromNode, CenterNode) == EAtlantisNavPathResult::NoStartNode)
 	{
 		return;
 	}
@@ -195,40 +402,9 @@ void UAtlantisNavGraphSubsystem::GetReachableNodeLocations(const FVector& From, 
 	}
 }
 
-FString UAtlantisNavGraphSubsystem::Describe()
-{
-	Rebuild();
-
-	const UWorld* World = GetWorld();
-	const UAtlantisNavGraphSettings* Settings = GetDefault<UAtlantisNavGraphSettings>();
-	const FCollisionShape Capsule = FCollisionShape::MakeCapsule(Settings->AgentRadius, Settings->AgentHalfHeight);
-	FCollisionResponseParams ResponseParams;
-	ResponseParams.CollisionResponse.SetResponse(ECC_Pawn, ECR_Ignore);
-
-	TArray<FString> IsolatedNodes;
-	TArray<FString> BlockedNodes;
-	const TArray<FAtlantisNavGraphNode>& Nodes = Graph.GetNodes();
-	for (int32 Index = 0; Index < Nodes.Num(); ++Index)
-	{
-		if (Nodes[Index].Links.IsEmpty())
-		{
-			IsolatedNodes.Add(Nodes[Index].Location.ToCompactString());
-		}
-		if (World != nullptr && World->OverlapBlockingTestByChannel(Nodes[Index].Location, FQuat::Identity, ECC_Pawn, Capsule, FCollisionQueryParams::DefaultQueryParam, ResponseParams))
-		{
-			BlockedNodes.Add(Nodes[Index].Location.ToCompactString());
-		}
-	}
-
-	return FString::Printf(TEXT("Nodes: %d | Links: %d | Components: %d | Isolated: %d [%s] | Inside geometry: %d [%s]"),
-		Nodes.Num(), Graph.GetNumLinks(), Graph.GetNumComponents(),
-		IsolatedNodes.Num(), *FString::Join(IsolatedNodes, TEXT("; ")),
-		BlockedNodes.Num(), *FString::Join(BlockedNodes, TEXT("; ")));
-}
-
 bool UAtlantisNavGraphSubsystem::IsTickable() const
 {
-	return GAtlantisNavGraphDraw > 0 && IsInitialized();
+	return Atlantis::AI::NavGraphDebug::IsDrawEnabled() && IsInitialized();
 }
 
 TStatId UAtlantisNavGraphSubsystem::GetStatId() const
@@ -240,27 +416,8 @@ void UAtlantisNavGraphSubsystem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-#if ENABLE_DRAW_DEBUG
-	const UWorld* World = GetWorld();
-	if (World == nullptr)
+	if (const UWorld* World = GetWorld())
 	{
-		return;
+		Atlantis::AI::NavGraphDebug::DrawGraph(*World, Graph);
 	}
-
-	const TArray<FAtlantisNavGraphNode>& Nodes = Graph.GetNodes();
-	for (int32 Index = 0; Index < Nodes.Num(); ++Index)
-	{
-		const FAtlantisNavGraphNode& Node = Nodes[Index];
-		const FColor Color = ComponentColors[FMath::Max(Node.Component, 0) % UE_ARRAY_COUNT(ComponentColors)];
-		DrawDebugSphere(World, Node.Location, 20.f, 8, Node.Links.IsEmpty() ? FColor::Red : Color);
-		for (const FAtlantisNavGraphLink& Link : Node.Links)
-		{
-			// Each link is stored on both ends; draw it once.
-			if (Link.To > Index)
-			{
-				DrawDebugLine(World, Node.Location, Nodes[Link.To].Location, Color, false, -1.f, 0, 2.f);
-			}
-		}
-	}
-#endif // ENABLE_DRAW_DEBUG
 }

@@ -7,7 +7,7 @@
 
 namespace
 {
-	/** Modes tried in order when two nodes share more than one. Swimming first: it's the only mode built today. */
+	/** Modes tried in order when two nodes share more than one. */
 	constexpr EAtlantisTraversalMode LinkModePriority[] =
 	{
 		EAtlantisTraversalMode::Swimming,

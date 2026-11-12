@@ -23,7 +23,7 @@ namespace
 
 FAtlantisStateTreeSwimToTask::FAtlantisStateTreeSwimToTask()
 {
-	// Ticks only matter for re-planning / following; plain moves finish from the move-finished callback.
+	// Ticks only matter for re-planning / following
 	bShouldCallTick = true;
 }
 
@@ -48,7 +48,8 @@ EStateTreeRunStatus FAtlantisStateTreeSwimToTask::EnterState(FStateTreeExecution
 		return EStateTreeRunStatus::Failed;
 	}
 
-	// Only swimmers use the swim graph. Land enemies fail here and the tree falls back (stretch goal: land pathing).
+	// Only swimmers use the swim graph.
+	// @TODO Land Pathing
 	const UPawnMovementComponent* Movement = Pawn->GetMovementComponent();
 	if (Movement == nullptr || !Movement->IsSwimming())
 	{
@@ -62,7 +63,6 @@ EStateTreeRunStatus FAtlantisStateTreeSwimToTask::EnterState(FStateTreeExecution
 	}
 
 	const EStateTreeRunStatus Status = StartMove(Context, InstanceData);
-	// Following never finishes by itself: arriving means holding position, a failed path is retried on tick.
 	return InstanceData.bFollowTarget ? EStateTreeRunStatus::Running : Status;
 }
 
@@ -92,7 +92,6 @@ EStateTreeRunStatus FAtlantisStateTreeSwimToTask::Tick(FStateTreeExecutionContex
 
 	if ((bMoving && bTargetMoved) || bFellBehind)
 	{
-		// Unbind first: replacing a move reports the old one as finished. Don't abort yet (that would stall the swimmer).
 		const TWeakObjectPtr<UPathFollowingComponent> OldPathFollowing = InstanceData.PathFollowing;
 		const FAIRequestID OldRequestId = InstanceData.RequestId;
 		StopMove(InstanceData, /*bAbort*/ false);
@@ -194,7 +193,6 @@ void FAtlantisStateTreeSwimToTask::StopMove(FInstanceDataType& InstanceData, boo
 		return;
 	}
 
-	// Unbind first: AbortMove broadcasts OnRequestFinished synchronously.
 	if (InstanceData.MoveFinishedHandle.IsValid())
 	{
 		PathFollowing->OnRequestFinished.Remove(InstanceData.MoveFinishedHandle);
@@ -203,7 +201,6 @@ void FAtlantisStateTreeSwimToTask::StopMove(FInstanceDataType& InstanceData, boo
 
 	if (bAbort && IsMoving(InstanceData))
 	{
-		// Leaving the state (e.g. guard became Alerted): stop and hover.
 		PathFollowing->AbortMove(*PathFollowing, FPathFollowingResultFlags::OwnerFinished, InstanceData.RequestId, EPathFollowingVelocityMode::Reset);
 	}
 

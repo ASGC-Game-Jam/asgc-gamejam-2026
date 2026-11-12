@@ -47,7 +47,7 @@ bool UAtlantisPatrolComponent::SelectPoint(EAtlantisPatrolPointSelection Selecti
 		return true;
 	}
 
-	// Closest point in 3D (enemies swim, height matters).
+	// Closest point in 3D
 	const FVector OwnerLocation = GetOwner()->GetActorLocation();
 	int32 ClosestIndex = 0;
 	float ClosestDistanceSq = TNumericLimits<float>::Max();

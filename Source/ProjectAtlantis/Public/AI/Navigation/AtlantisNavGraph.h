@@ -78,7 +78,6 @@ struct FAtlantisNavQueryFilter
 class PROJECTATLANTIS_API FAtlantisNavGraph
 {
 public:
-	// FGraphAStar graph contract.
 	typedef int32 FNodeRef;
 	bool IsValidRef(FNodeRef NodeRef) const { return Nodes.IsValidIndex(NodeRef); }
 	int32 GetNeighbourCount(FNodeRef NodeRef) const { return Nodes[NodeRef].Links.Num(); }
