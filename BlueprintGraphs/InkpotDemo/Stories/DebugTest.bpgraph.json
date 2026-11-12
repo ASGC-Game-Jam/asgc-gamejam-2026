@@ -1,0 +1,25 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/InkpotDemo/Stories/DebugTest",
+	"asset": "DebugTest",
+	"assetClass": "InkpotStoryAsset",
+	"parentClass": null,
+	"blueprintType": null,
+	"graphs": [],
+	"properties":
+	{
+		"Source": "VAR myfloat = 3.142\nVAR myinteger = 42\nVAR mystring = \"Hello\"\nVAR mybool = false\nLIST mylist = one, two, three, four\nLIST mylisttoo = dog, cat, fish, xenomorph\nVAR mycollection = (dog, four)\n\n- (opts)\nHere are all the values\nmyfloat = {myfloat}\nmyinteger = {myinteger}\nmystring = {mystring}\nmybool = {mybool}\nmylist = {mylist}\nmylisttoo = {mylisttoo}\nmycollection = {mycollection}\n+refresh\n    -> opts\n\n",
+		"JSON": "{\"inkVersion\":21,\"root\":[[[\"^Here are all the values\",\"\\n\",\"^myfloat = \",\"ev\",{\"VAR?\":\"myfloat\"},\"out\",\"/ev\",\"\\n\",\"^myinteger = \",\"ev\",{\"VAR?\":\"myinteger\"},\"out\",\"/ev\",\"\\n\",\"^mystring = \",\"ev\",{\"VAR?\":\"mystring\"},\"out\",\"/ev\",\"\\n\",\"^mybool = \",\"ev\",{\"VAR?\":\"mybool\"},\"out\",\"/ev\",\"\\n\",\"^mylist = \",\"ev\",{\"VAR?\":\"mylist\"},\"out\",\"/ev\",\"\\n\",\"^mylisttoo = \",\"ev\",{\"VAR?\":\"mylisttoo\"},\"out\",\"/ev\",\"\\n\",\"^mycollection = \",\"ev\",{\"VAR?\":\"mycollection\"},\"out\",\"/ev\",\"\\n\",[\"ev\",{\"^->\":\"0.opts.44.$r1\"},{\"temp=\":\"$r\"},\"str\",{\"->\":\".^.s\"},[{\"#n\":\"$r1\"}],\"/str\",\"/ev\",{\"*\":\".^.^.c-0\",\"flg\":2},{\"s\":[\"^refresh\",{\"->\":\"$r\",\"var\":true},null]}],{\"c-0\":[\"ev\",{\"^->\":\"0.opts.c-0.$r2\"},\"/ev\",{\"temp=\":\"$r\"},{\"->\":\".^.^.44.s\"},[{\"#n\":\"$r2\"}],\"\\n\",{\"->\":\".^.^\"},{\"->\":\"0.g-0\"},null],\"#n\":\"opts\"}],{\"g-0\":[\"done\",null]}],\"done\",{\"global decl\":[\"ev\",3.142,{\"VAR=\":\"myfloat\"},42,{\"VAR=\":\"myinteger\"},\"str\",\"^Hello\",\"/str\",{\"VAR=\":\"mystring\"},false,{\"VAR=\":\"mybool\"},{\"list\":{},\"origins\":[\"mylist\"]},{\"VAR=\":\"mylist\"},{\"list\":{},\"origins\":[\"mylisttoo\"]},{\"VAR=\":\"mylisttoo\"},{\"list\":{\"mylisttoo.dog\":1,\"mylist.four\":4}},{\"VAR=\":\"mycollection\"},\"/ev\",\"end\",null]}],\"listDefs\":{\"mylist\":{\"one\":1,\"two\":2,\"three\":3,\"four\":4},\"mylisttoo\":{\"dog\":1,\"cat\":2,\"fish\":3,\"xenomorph\":4}}}",
+		"UserData": null,
+		"AssetImportData":
+		{
+			"_class": "AssetImportData",
+			"_name": "AssetImportData",
+			"SourceData":
+			{
+			}
+		},
+		"NativeClass": "/Script/Inkpot.InkpotStoryAsset"
+	}
+}

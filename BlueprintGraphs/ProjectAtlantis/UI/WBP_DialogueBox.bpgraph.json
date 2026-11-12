@@ -8,6 +8,1315 @@
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
+			"name": "SetText",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "079a1da84149d1fe446cba966ece9782",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": 496,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "079a1da84149d1fe446cba966ece9782:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"98124e1a43692ed40c54089776e174bb:i:self"
+							]
+						},
+						{
+							"id": "079a1da84149d1fe446cba966ece9782:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "116203584998b931fda922a1cf12596a",
+					"class": "K2Node_CallFunction",
+					"title": "Make Slate Font Info",
+					"x": -960,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SlateRHIRenderer.SlateFontBlueprintLibrary",
+							"defaultValue": "/Script/SlateRHIRenderer.Default__SlateFontBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:FontObject",
+							"name": "FontObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": "/Engine/EngineFonts/Roboto.Roboto",
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:FontMaterial",
+							"name": "FontMaterial",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:OutlineSettings",
+							"name": "OutlineSettings",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.FontOutlineSettings",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:TypefaceFontName",
+							"name": "TypefaceFontName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "Italic",
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:Size",
+							"name": "Size",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "24.000000",
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:LetterSpacing",
+							"name": "LetterSpacing",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:SkewAmount",
+							"name": "SkewAmount",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:bForceMonospaced",
+							"name": "bForceMonospaced",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:bMaterialIsStencil",
+							"name": "bMaterialIsStencil",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:i:MonospacedWidth",
+							"name": "MonospacedWidth",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "116203584998b931fda922a1cf12596a:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.SlateFontInfo",
+							"defaultValue": null,
+							"links": [
+								"8c779d48404774fcc3d40b869d5b5418:i:Font"
+							]
+						}
+					]
+				},
+				{
+					"guid": "13e3ba4e48a34279c2d9229746067281",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Text Block Style",
+					"x": 1984,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:o:TextBlockStyle",
+							"name": "TextBlockStyle",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.TextBlockStyle",
+							"defaultValue": null,
+							"links": [
+								"e8e4de68411148bced946c91a7835dcb:i:InTextStyle"
+							]
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:Font",
+							"name": "Font",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateFontInfo",
+							"defaultValue": null,
+							"links": [
+								"d1a500214562428e2d2f6998dbbbe0cd:o:ReturnValue"
+							]
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:ColorAndOpacity",
+							"name": "ColorAndOpacity",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": null,
+							"links": [
+								"a5798f9d4c8db950b70c30b62e9a3481:o:SlateColor"
+							]
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:ShadowOffset",
+							"name": "ShadowOffset",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.DeprecateSlateVector2D",
+							"defaultValue": "(X=0.000000,Y=0.000000)",
+							"links": []
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:ShadowColorAndOpacity",
+							"name": "ShadowColorAndOpacity",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.000000,B=0.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:HighlightColor",
+							"name": "HighlightColor",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": "(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=1.000000),ColorUseRule=UseColor_Specified)",
+							"links": []
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:HighlightShape",
+							"name": "HighlightShape",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateBrush",
+							"defaultValue": "(TintColor=(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified),DrawAs=Image,Tiling=NoTile,Mirroring=NoMirror,ImageType=NoImage,ImageSize=(X=32.000000,Y=32.000000),Margin=(Left=0.000000,Top=0.000000,Right=0.000000,Bottom=0.000000),ResourceObject=None,OutlineSettings=(CornerRadii=(X=0.000000,Y=0.000000,Z=0.000000,W=0.000000),Color=(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=0.000000),ColorUseRule=UseColor_Specified),Width=0.000000,RoundingType=HalfHeightRadius,bUseBrushTransparency=False),UVRegion=(Min=(X=0.000000,Y=0.000000),Max=(X=0.000000,Y=0.000000),bIsValid=False),bIsDynamicallyLoaded=False,ResourceName=\"\")",
+							"links": []
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:StrikeBrush",
+							"name": "StrikeBrush",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateBrush",
+							"defaultValue": "(TintColor=(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified),DrawAs=Image,Tiling=NoTile,Mirroring=NoMirror,ImageType=NoImage,ImageSize=(X=32.000000,Y=32.000000),Margin=(Left=0.000000,Top=0.000000,Right=0.000000,Bottom=0.000000),ResourceObject=None,OutlineSettings=(CornerRadii=(X=0.000000,Y=0.000000,Z=0.000000,W=0.000000),Color=(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=0.000000),ColorUseRule=UseColor_Specified),Width=0.000000,RoundingType=HalfHeightRadius,bUseBrushTransparency=False),UVRegion=(Min=(X=0.000000,Y=0.000000),Max=(X=0.000000,Y=0.000000),bIsValid=False),bIsDynamicallyLoaded=False,ResourceName=\"\")",
+							"links": []
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:UnderlineBrush",
+							"name": "UnderlineBrush",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateBrush",
+							"defaultValue": "(TintColor=(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified),DrawAs=Image,Tiling=NoTile,Mirroring=NoMirror,ImageType=NoImage,ImageSize=(X=32.000000,Y=32.000000),Margin=(Left=0.000000,Top=0.000000,Right=0.000000,Bottom=0.000000),ResourceObject=None,OutlineSettings=(CornerRadii=(X=0.000000,Y=0.000000,Z=0.000000,W=0.000000),Color=(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=0.000000),ColorUseRule=UseColor_Specified),Width=0.000000,RoundingType=HalfHeightRadius,bUseBrushTransparency=False),UVRegion=(Min=(X=0.000000,Y=0.000000),Max=(X=0.000000,Y=0.000000),bIsValid=False),bIsDynamicallyLoaded=False,ResourceName=\"\")",
+							"links": []
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:TransformPolicy",
+							"name": "TransformPolicy",
+							"direction": "input",
+							"type": "byte:/Script/SlateCore.ETextTransformPolicy",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "13e3ba4e48a34279c2d9229746067281:i:OverflowPolicy",
+							"name": "OverflowPolicy",
+							"direction": "input",
+							"type": "byte:/Script/SlateCore.ETextOverflowPolicy",
+							"defaultValue": "Clip",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "19e36a534d9bfdf0300e9b97f9aeed0c",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 464,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "19e36a534d9bfdf0300e9b97f9aeed0c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:o:then"
+							]
+						},
+						{
+							"id": "19e36a534d9bfdf0300e9b97f9aeed0c:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:Bold"
+							]
+						},
+						{
+							"id": "19e36a534d9bfdf0300e9b97f9aeed0c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"98124e1a43692ed40c54089776e174bb:i:execute"
+							]
+						},
+						{
+							"id": "19e36a534d9bfdf0300e9b97f9aeed0c:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a440db23411987024f39f096ca9e4a26:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1c230ef64bdcd8484bdb419cd0e4fe5f",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Multi-Line Text Box)",
+					"x": 80,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"55e6849a43313c44c90589bfdfa062e6:o:else"
+							]
+						},
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"19e36a534d9bfdf0300e9b97f9aeed0c:i:execute"
+							]
+						},
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"a3cb0ddd457c4666104af5a7a30f00ab:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "1c230ef64bdcd8484bdb419cd0e4fe5f:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:Text"
+							]
+						}
+					]
+				},
+				{
+					"guid": "22e0e9d0492515efbacb0fb9ef9a3268",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": -208,
+					"y": -96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "22e0e9d0492515efbacb0fb9ef9a3268:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"8c823ddd4fbb14b931616895a08452c7:i:self"
+							]
+						},
+						{
+							"id": "22e0e9d0492515efbacb0fb9ef9a3268:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4f116bea4f7cd0796815ad94e6f53d67",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": 2128,
+					"y": 592,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4f116bea4f7cd0796815ad94e6f53d67:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"e8e4de68411148bced946c91a7835dcb:i:self"
+							]
+						},
+						{
+							"id": "4f116bea4f7cd0796815ad94e6f53d67:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "528b8e76464b1cd343873f8260546908",
+					"class": "K2Node_CallFunction",
+					"title": "Make Slate Font Info",
+					"x": -960,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SlateRHIRenderer.SlateFontBlueprintLibrary",
+							"defaultValue": "/Script/SlateRHIRenderer.Default__SlateFontBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:FontObject",
+							"name": "FontObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": "/Engine/EngineFonts/Roboto.Roboto",
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:FontMaterial",
+							"name": "FontMaterial",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:OutlineSettings",
+							"name": "OutlineSettings",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.FontOutlineSettings",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:TypefaceFontName",
+							"name": "TypefaceFontName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "Bold",
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:Size",
+							"name": "Size",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "24.000000",
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:LetterSpacing",
+							"name": "LetterSpacing",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:SkewAmount",
+							"name": "SkewAmount",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:bForceMonospaced",
+							"name": "bForceMonospaced",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:bMaterialIsStencil",
+							"name": "bMaterialIsStencil",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:i:MonospacedWidth",
+							"name": "MonospacedWidth",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "528b8e76464b1cd343873f8260546908:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.SlateFontInfo",
+							"defaultValue": null,
+							"links": [
+								"df4a76a944ad9dece204289721e9d03e:i:Font"
+							]
+						}
+					]
+				},
+				{
+					"guid": "55e6849a43313c44c90589bfdfa062e6",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": -224,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "55e6849a43313c44c90589bfdfa062e6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:then"
+							]
+						},
+						{
+							"id": "55e6849a43313c44c90589bfdfa062e6:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:IgnoreAboveVariables"
+							]
+						},
+						{
+							"id": "55e6849a43313c44c90589bfdfa062e6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8c823ddd4fbb14b931616895a08452c7:i:execute"
+							]
+						},
+						{
+							"id": "55e6849a43313c44c90589bfdfa062e6:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6a5644f44cbfb2d49c9ce8b80fac6695",
+					"class": "K2Node_FunctionEntry",
+					"title": "SetText",
+					"x": -464,
+					"y": -32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6a5644f44cbfb2d49c9ce8b80fac6695:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"55e6849a43313c44c90589bfdfa062e6:i:execute"
+							]
+						},
+						{
+							"id": "6a5644f44cbfb2d49c9ce8b80fac6695:o:Text",
+							"name": "Text",
+							"direction": "output",
+							"type": "Text",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:i:InText",
+								"8c823ddd4fbb14b931616895a08452c7:i:InText"
+							]
+						},
+						{
+							"id": "6a5644f44cbfb2d49c9ce8b80fac6695:o:Bold",
+							"name": "Bold",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"19e36a534d9bfdf0300e9b97f9aeed0c:i:Condition"
+							]
+						},
+						{
+							"id": "6a5644f44cbfb2d49c9ce8b80fac6695:o:Italic",
+							"name": "Italic",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"a440db23411987024f39f096ca9e4a26:i:Condition"
+							]
+						},
+						{
+							"id": "6a5644f44cbfb2d49c9ce8b80fac6695:o:IgnoreAboveVariables",
+							"name": "IgnoreAboveVariables",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"55e6849a43313c44c90589bfdfa062e6:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "73db15f44d83af6cbe4f6faddc5bfec4",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Slate Color",
+					"x": -624,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "73db15f44d83af6cbe4f6faddc5bfec4:o:SlateColor",
+							"name": "SlateColor",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": null,
+							"links": [
+								"8c779d48404774fcc3d40b869d5b5418:i:ColorAndOpacity",
+								"df4a76a944ad9dece204289721e9d03e:i:ColorAndOpacity"
+							]
+						},
+						{
+							"id": "73db15f44d83af6cbe4f6faddc5bfec4:i:SpecifiedColor",
+							"name": "SpecifiedColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=1.000000,G=1.000000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "73db15f44d83af6cbe4f6faddc5bfec4:i:ColorUseRule",
+							"name": "ColorUseRule",
+							"direction": "input",
+							"type": "byte:/Script/SlateCore.ESlateColorStylingMode",
+							"defaultValue": "UseColor_Specified",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7cb2eeee466567706966b0ad87f57e6d",
+					"class": "K2Node_CallFunction",
+					"title": "SetTextStyle (Multi-Line Text Box)",
+					"x": 944,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7cb2eeee466567706966b0ad87f57e6d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a440db23411987024f39f096ca9e4a26:o:then"
+							]
+						},
+						{
+							"id": "7cb2eeee466567706966b0ad87f57e6d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7cb2eeee466567706966b0ad87f57e6d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"8aaa0c22400a42a052b66e8220fffef9:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "7cb2eeee466567706966b0ad87f57e6d:i:InTextStyle",
+							"name": "InTextStyle",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.TextBlockStyle",
+							"defaultValue": null,
+							"links": [
+								"8c779d48404774fcc3d40b869d5b5418:o:TextBlockStyle"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8aaa0c22400a42a052b66e8220fffef9",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": 672,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8aaa0c22400a42a052b66e8220fffef9:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"7cb2eeee466567706966b0ad87f57e6d:i:self"
+							]
+						},
+						{
+							"id": "8aaa0c22400a42a052b66e8220fffef9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8c779d48404774fcc3d40b869d5b5418",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Text Block Style",
+					"x": -176,
+					"y": 832,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:o:TextBlockStyle",
+							"name": "TextBlockStyle",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.TextBlockStyle",
+							"defaultValue": null,
+							"links": [
+								"7cb2eeee466567706966b0ad87f57e6d:i:InTextStyle"
+							]
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:Font",
+							"name": "Font",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateFontInfo",
+							"defaultValue": null,
+							"links": [
+								"116203584998b931fda922a1cf12596a:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:ColorAndOpacity",
+							"name": "ColorAndOpacity",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": null,
+							"links": [
+								"73db15f44d83af6cbe4f6faddc5bfec4:o:SlateColor"
+							]
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:ShadowOffset",
+							"name": "ShadowOffset",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.DeprecateSlateVector2D",
+							"defaultValue": "(X=0.000000,Y=0.000000)",
+							"links": []
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:ShadowColorAndOpacity",
+							"name": "ShadowColorAndOpacity",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.000000,B=0.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:HighlightColor",
+							"name": "HighlightColor",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": "(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=1.000000),ColorUseRule=UseColor_Specified)",
+							"links": []
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:HighlightShape",
+							"name": "HighlightShape",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateBrush",
+							"defaultValue": "(TintColor=(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified),DrawAs=Image,Tiling=NoTile,Mirroring=NoMirror,ImageType=NoImage,ImageSize=(X=32.000000,Y=32.000000),Margin=(Left=0.000000,Top=0.000000,Right=0.000000,Bottom=0.000000),ResourceObject=None,OutlineSettings=(CornerRadii=(X=0.000000,Y=0.000000,Z=0.000000,W=0.000000),Color=(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=0.000000),ColorUseRule=UseColor_Specified),Width=0.000000,RoundingType=HalfHeightRadius,bUseBrushTransparency=False),UVRegion=(Min=(X=0.000000,Y=0.000000),Max=(X=0.000000,Y=0.000000),bIsValid=False),bIsDynamicallyLoaded=False,ResourceName=\"\")",
+							"links": []
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:StrikeBrush",
+							"name": "StrikeBrush",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateBrush",
+							"defaultValue": "(TintColor=(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified),DrawAs=Image,Tiling=NoTile,Mirroring=NoMirror,ImageType=NoImage,ImageSize=(X=32.000000,Y=32.000000),Margin=(Left=0.000000,Top=0.000000,Right=0.000000,Bottom=0.000000),ResourceObject=None,OutlineSettings=(CornerRadii=(X=0.000000,Y=0.000000,Z=0.000000,W=0.000000),Color=(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=0.000000),ColorUseRule=UseColor_Specified),Width=0.000000,RoundingType=HalfHeightRadius,bUseBrushTransparency=False),UVRegion=(Min=(X=0.000000,Y=0.000000),Max=(X=0.000000,Y=0.000000),bIsValid=False),bIsDynamicallyLoaded=False,ResourceName=\"\")",
+							"links": []
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:UnderlineBrush",
+							"name": "UnderlineBrush",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateBrush",
+							"defaultValue": "(TintColor=(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified),DrawAs=Image,Tiling=NoTile,Mirroring=NoMirror,ImageType=NoImage,ImageSize=(X=32.000000,Y=32.000000),Margin=(Left=0.000000,Top=0.000000,Right=0.000000,Bottom=0.000000),ResourceObject=None,OutlineSettings=(CornerRadii=(X=0.000000,Y=0.000000,Z=0.000000,W=0.000000),Color=(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=0.000000),ColorUseRule=UseColor_Specified),Width=0.000000,RoundingType=HalfHeightRadius,bUseBrushTransparency=False),UVRegion=(Min=(X=0.000000,Y=0.000000),Max=(X=0.000000,Y=0.000000),bIsValid=False),bIsDynamicallyLoaded=False,ResourceName=\"\")",
+							"links": []
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:TransformPolicy",
+							"name": "TransformPolicy",
+							"direction": "input",
+							"type": "byte:/Script/SlateCore.ETextTransformPolicy",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "8c779d48404774fcc3d40b869d5b5418:i:OverflowPolicy",
+							"name": "OverflowPolicy",
+							"direction": "input",
+							"type": "byte:/Script/SlateCore.ETextOverflowPolicy",
+							"defaultValue": "Clip",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8c823ddd4fbb14b931616895a08452c7",
+					"class": "K2Node_CallFunction",
+					"title": "SetText (Multi-Line Text Box)",
+					"x": 48,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8c823ddd4fbb14b931616895a08452c7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"55e6849a43313c44c90589bfdfa062e6:o:then"
+							]
+						},
+						{
+							"id": "8c823ddd4fbb14b931616895a08452c7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8c823ddd4fbb14b931616895a08452c7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"22e0e9d0492515efbacb0fb9ef9a3268:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "8c823ddd4fbb14b931616895a08452c7:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:Text"
+							]
+						}
+					]
+				},
+				{
+					"guid": "98124e1a43692ed40c54089776e174bb",
+					"class": "K2Node_CallFunction",
+					"title": "SetTextStyle (Multi-Line Text Box)",
+					"x": 736,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "98124e1a43692ed40c54089776e174bb:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"19e36a534d9bfdf0300e9b97f9aeed0c:o:then"
+							]
+						},
+						{
+							"id": "98124e1a43692ed40c54089776e174bb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "98124e1a43692ed40c54089776e174bb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"079a1da84149d1fe446cba966ece9782:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "98124e1a43692ed40c54089776e174bb:i:InTextStyle",
+							"name": "InTextStyle",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.TextBlockStyle",
+							"defaultValue": null,
+							"links": [
+								"df4a76a944ad9dece204289721e9d03e:o:TextBlockStyle"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a3cb0ddd457c4666104af5a7a30f00ab",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": -192,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a3cb0ddd457c4666104af5a7a30f00ab:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"1c230ef64bdcd8484bdb419cd0e4fe5f:i:self"
+							]
+						},
+						{
+							"id": "a3cb0ddd457c4666104af5a7a30f00ab:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a440db23411987024f39f096ca9e4a26",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 688,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a440db23411987024f39f096ca9e4a26:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"19e36a534d9bfdf0300e9b97f9aeed0c:o:else"
+							]
+						},
+						{
+							"id": "a440db23411987024f39f096ca9e4a26:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"6a5644f44cbfb2d49c9ce8b80fac6695:o:Italic"
+							]
+						},
+						{
+							"id": "a440db23411987024f39f096ca9e4a26:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7cb2eeee466567706966b0ad87f57e6d:i:execute"
+							]
+						},
+						{
+							"id": "a440db23411987024f39f096ca9e4a26:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e8e4de68411148bced946c91a7835dcb:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a5798f9d4c8db950b70c30b62e9a3481",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Slate Color",
+					"x": 1568,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a5798f9d4c8db950b70c30b62e9a3481:o:SlateColor",
+							"name": "SlateColor",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": null,
+							"links": [
+								"13e3ba4e48a34279c2d9229746067281:i:ColorAndOpacity"
+							]
+						},
+						{
+							"id": "a5798f9d4c8db950b70c30b62e9a3481:i:SpecifiedColor",
+							"name": "SpecifiedColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=1.000000,G=1.000000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "a5798f9d4c8db950b70c30b62e9a3481:i:ColorUseRule",
+							"name": "ColorUseRule",
+							"direction": "input",
+							"type": "byte:/Script/SlateCore.ESlateColorStylingMode",
+							"defaultValue": "UseColor_Specified",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d1a500214562428e2d2f6998dbbbe0cd",
+					"class": "K2Node_CallFunction",
+					"title": "Make Slate Font Info",
+					"x": 1344,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SlateRHIRenderer.SlateFontBlueprintLibrary",
+							"defaultValue": "/Script/SlateRHIRenderer.Default__SlateFontBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:FontObject",
+							"name": "FontObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": "/Engine/EngineFonts/Roboto.Roboto",
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:FontMaterial",
+							"name": "FontMaterial",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:OutlineSettings",
+							"name": "OutlineSettings",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.FontOutlineSettings",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:TypefaceFontName",
+							"name": "TypefaceFontName",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "Regular",
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:Size",
+							"name": "Size",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "24.000000",
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:LetterSpacing",
+							"name": "LetterSpacing",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:SkewAmount",
+							"name": "SkewAmount",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:bForceMonospaced",
+							"name": "bForceMonospaced",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:bMaterialIsStencil",
+							"name": "bMaterialIsStencil",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:i:MonospacedWidth",
+							"name": "MonospacedWidth",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "d1a500214562428e2d2f6998dbbbe0cd:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.SlateFontInfo",
+							"defaultValue": null,
+							"links": [
+								"13e3ba4e48a34279c2d9229746067281:i:Font"
+							]
+						}
+					]
+				},
+				{
+					"guid": "df4a76a944ad9dece204289721e9d03e",
+					"class": "K2Node_MakeStruct",
+					"title": "Make Text Block Style",
+					"x": -160,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:o:TextBlockStyle",
+							"name": "TextBlockStyle",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.TextBlockStyle",
+							"defaultValue": null,
+							"links": [
+								"98124e1a43692ed40c54089776e174bb:i:InTextStyle"
+							]
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:Font",
+							"name": "Font",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateFontInfo",
+							"defaultValue": null,
+							"links": [
+								"528b8e76464b1cd343873f8260546908:o:ReturnValue"
+							]
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:ColorAndOpacity",
+							"name": "ColorAndOpacity",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": null,
+							"links": [
+								"73db15f44d83af6cbe4f6faddc5bfec4:o:SlateColor"
+							]
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:ShadowOffset",
+							"name": "ShadowOffset",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.DeprecateSlateVector2D",
+							"defaultValue": "(X=0.000000,Y=0.000000)",
+							"links": []
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:ShadowColorAndOpacity",
+							"name": "ShadowColorAndOpacity",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.000000,B=0.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:HighlightColor",
+							"name": "HighlightColor",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateColor",
+							"defaultValue": "(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=1.000000),ColorUseRule=UseColor_Specified)",
+							"links": []
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:HighlightShape",
+							"name": "HighlightShape",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateBrush",
+							"defaultValue": "(TintColor=(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified),DrawAs=Image,Tiling=NoTile,Mirroring=NoMirror,ImageType=NoImage,ImageSize=(X=32.000000,Y=32.000000),Margin=(Left=0.000000,Top=0.000000,Right=0.000000,Bottom=0.000000),ResourceObject=None,OutlineSettings=(CornerRadii=(X=0.000000,Y=0.000000,Z=0.000000,W=0.000000),Color=(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=0.000000),ColorUseRule=UseColor_Specified),Width=0.000000,RoundingType=HalfHeightRadius,bUseBrushTransparency=False),UVRegion=(Min=(X=0.000000,Y=0.000000),Max=(X=0.000000,Y=0.000000),bIsValid=False),bIsDynamicallyLoaded=False,ResourceName=\"\")",
+							"links": []
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:StrikeBrush",
+							"name": "StrikeBrush",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateBrush",
+							"defaultValue": "(TintColor=(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified),DrawAs=Image,Tiling=NoTile,Mirroring=NoMirror,ImageType=NoImage,ImageSize=(X=32.000000,Y=32.000000),Margin=(Left=0.000000,Top=0.000000,Right=0.000000,Bottom=0.000000),ResourceObject=None,OutlineSettings=(CornerRadii=(X=0.000000,Y=0.000000,Z=0.000000,W=0.000000),Color=(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=0.000000),ColorUseRule=UseColor_Specified),Width=0.000000,RoundingType=HalfHeightRadius,bUseBrushTransparency=False),UVRegion=(Min=(X=0.000000,Y=0.000000),Max=(X=0.000000,Y=0.000000),bIsValid=False),bIsDynamicallyLoaded=False,ResourceName=\"\")",
+							"links": []
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:UnderlineBrush",
+							"name": "UnderlineBrush",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.SlateBrush",
+							"defaultValue": "(TintColor=(SpecifiedColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),ColorUseRule=UseColor_Specified),DrawAs=Image,Tiling=NoTile,Mirroring=NoMirror,ImageType=NoImage,ImageSize=(X=32.000000,Y=32.000000),Margin=(Left=0.000000,Top=0.000000,Right=0.000000,Bottom=0.000000),ResourceObject=None,OutlineSettings=(CornerRadii=(X=0.000000,Y=0.000000,Z=0.000000,W=0.000000),Color=(SpecifiedColor=(R=0.000000,G=0.000000,B=0.000000,A=0.000000),ColorUseRule=UseColor_Specified),Width=0.000000,RoundingType=HalfHeightRadius,bUseBrushTransparency=False),UVRegion=(Min=(X=0.000000,Y=0.000000),Max=(X=0.000000,Y=0.000000),bIsValid=False),bIsDynamicallyLoaded=False,ResourceName=\"\")",
+							"links": []
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:TransformPolicy",
+							"name": "TransformPolicy",
+							"direction": "input",
+							"type": "byte:/Script/SlateCore.ETextTransformPolicy",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "df4a76a944ad9dece204289721e9d03e:i:OverflowPolicy",
+							"name": "OverflowPolicy",
+							"direction": "input",
+							"type": "byte:/Script/SlateCore.ETextOverflowPolicy",
+							"defaultValue": "Clip",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e8e4de68411148bced946c91a7835dcb",
+					"class": "K2Node_CallFunction",
+					"title": "SetTextStyle (Multi-Line Text Box)",
+					"x": 2480,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e8e4de68411148bced946c91a7835dcb:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a440db23411987024f39f096ca9e4a26:o:else"
+							]
+						},
+						{
+							"id": "e8e4de68411148bced946c91a7835dcb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e8e4de68411148bced946c91a7835dcb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"4f116bea4f7cd0796815ad94e6f53d67:o:MultiLineEditableTextBox_110"
+							]
+						},
+						{
+							"id": "e8e4de68411148bced946c91a7835dcb:i:InTextStyle",
+							"name": "InTextStyle",
+							"direction": "input",
+							"type": "struct:/Script/SlateCore.TextBlockStyle",
+							"defaultValue": null,
+							"links": [
+								"13e3ba4e48a34279c2d9229746067281:o:TextBlockStyle"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
 			"name": "Foreach With Delay",
 			"type": "Macro",
 			"nodes": [
@@ -15,8 +1324,8 @@
 					"guid": "0316f9a045a00e84cccd908c2aa57064",
 					"class": "K2Node_Tunnel",
 					"title": "Inputs",
-					"x": 0,
-					"y": 0,
+					"x": -176,
+					"y": -6,
 					"comment": null,
 					"pins": [
 						{
@@ -26,7 +1335,7 @@
 							"type": "Exec",
 							"defaultValue": null,
 							"links": [
-								"e332277f4e9945416930e88ca5d19909:i:execute"
+								"c0edcb1b4ed7e12212d7dcb1dd786be5:i:execute"
 							]
 						},
 						{
@@ -47,7 +1356,8 @@
 							"type": "real:float",
 							"defaultValue": null,
 							"links": [
-								"15cb5b144f6f2593c1f1d6ab546516e0:i:Duration"
+								"15cb5b144f6f2593c1f1d6ab546516e0:i:Duration",
+								"cf43aa4c405a20f54802ec8c96ec38f6:i:A"
 							]
 						},
 						{
@@ -626,6 +1936,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
+								"c0edcb1b4ed7e12212d7dcb1dd786be5:o:then",
 								"ed78c6ea4f5f8cefdc7c9aa828cf8ced:o:else"
 							]
 						},
@@ -746,6 +2057,102 @@
 					]
 				},
 				{
+					"guid": "c0edcb1b4ed7e12212d7dcb1dd786be5",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 224,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c0edcb1b4ed7e12212d7dcb1dd786be5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0316f9a045a00e84cccd908c2aa57064:o:Exec"
+							]
+						},
+						{
+							"id": "c0edcb1b4ed7e12212d7dcb1dd786be5:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"cf43aa4c405a20f54802ec8c96ec38f6:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c0edcb1b4ed7e12212d7dcb1dd786be5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9e8043cd494d73882a652aad1c01d41e:i:execute"
+							]
+						},
+						{
+							"id": "c0edcb1b4ed7e12212d7dcb1dd786be5:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e332277f4e9945416930e88ca5d19909:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cf43aa4c405a20f54802ec8c96ec38f6",
+					"class": "K2Node_PromotableOperator",
+					"title": "Equal (Float)",
+					"x": 16,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cf43aa4c405a20f54802ec8c96ec38f6:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"0316f9a045a00e84cccd908c2aa57064:o:DelayDuration"
+							]
+						},
+						{
+							"id": "cf43aa4c405a20f54802ec8c96ec38f6:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cf43aa4c405a20f54802ec8c96ec38f6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c0edcb1b4ed7e12212d7dcb1dd786be5:i:Condition"
+							]
+						},
+						{
+							"id": "cf43aa4c405a20f54802ec8c96ec38f6:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "d4c0417b45cc39b57e7202ac7f0744fe",
 					"class": "K2Node_GetArrayItem",
 					"title": "Get (a copy)",
@@ -800,7 +2207,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"0316f9a045a00e84cccd908c2aa57064:o:Exec"
+								"c0edcb1b4ed7e12212d7dcb1dd786be5:o:else"
 							]
 						},
 						{
@@ -899,7 +2306,7 @@
 					"text": "Increment Loop Counter",
 					"x": 2112,
 					"y": 272,
-					"width": 400,
+					"width": 416,
 					"height": 240
 				},
 				{
@@ -975,6 +2382,62 @@
 					]
 				},
 				{
+					"guid": "04b293ce4601cbcc028d06a5b339664a",
+					"class": "K2Node_CallFunction",
+					"title": "UpdateChoicesView",
+					"x": 2704,
+					"y": 880,
+					"comment": null,
+					"pins": [
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"47c0c1f245ef96aad6cda79ba101d57c:o:then"
+							]
+						},
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"5669611a431bef9036dee1bf3ce65b74:o:DisplayWidget"
+							]
+						},
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"6b4e4ddd4586532ed6d9738ecaf6e903:o:Story"
+							]
+						},
+						{
+							"id": "04b293ce4601cbcc028d06a5b339664a:o:HasChoices",
+							"name": "HasChoices",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "066ffdd845da7af5e1750b82027c0bc2",
 					"class": "K2Node_VariableGet",
 					"title": "Get Dialogue Sentence",
@@ -994,6 +2457,236 @@
 						},
 						{
 							"id": "066ffdd845da7af5e1750b82027c0bc2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0cbd289b45bdc7e82ef434bc063245de",
+					"class": "K2Node_AssignDelegate",
+					"title": "Assign On Story Begin",
+					"x": 2752,
+					"y": 73,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0cbd289b45bdc7e82ef434bc063245de:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"27a862b4468d5e7a54b2098b6164ecdb:o:then"
+							]
+						},
+						{
+							"id": "0cbd289b45bdc7e82ef434bc063245de:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0cbd289b45bdc7e82ef434bc063245de:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"8293156341cc643b092a03b434f243e1:o:ReturnValue"
+							]
+						},
+						{
+							"id": "0cbd289b45bdc7e82ef434bc063245de:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "Delegate",
+							"defaultValue": null,
+							"links": [
+								"7ee31ee6457b33061aaee4ab871bc65d:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0d1b6c56491e76b84474b8979f16d4ed",
+					"class": "K2Node_VariableSet",
+					"title": "Set Type Writer Finished",
+					"x": 160,
+					"y": 864,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"62a7f87040cef80eb696bd985d7f2907:o:then"
+							]
+						},
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"83df2a8142c42612df78a383f1254e80:i:Break"
+							]
+						},
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:i:Type Writer Finished",
+							"name": "Type Writer Finished",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "0d1b6c56491e76b84474b8979f16d4ed:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "101c35b747baa0bc6482d69dfa131770",
+					"class": "K2Node_CallFunction",
+					"title": "Get All Widgets Of Class",
+					"x": 1632,
+					"y": 73,
+					"comment": null,
+					"pins": [
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7320dc8a40a4cdee34fcf1ba2c50fa77:o:then"
+							]
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"27a862b4468d5e7a54b2098b6164ecdb:i:execute"
+							]
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:o:FoundWidgets",
+							"name": "FoundWidgets",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
+							"defaultValue": null,
+							"links": [
+								"5a5a371649cbcf03d8d4eea1e578bfee:i:Array"
+							]
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:WidgetClass",
+							"name": "WidgetClass",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"links": []
+						},
+						{
+							"id": "101c35b747baa0bc6482d69dfa131770:i:TopLevelOnly",
+							"name": "TopLevelOnly",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "10f32efe44d8c87514b726a61db434bd",
+					"class": "K2Node_VariableSet",
+					"title": "Set Type Writer Delay Duration",
+					"x": 0,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8eeb4af0427e0e4169bc778c5e06508c:o:then"
+							]
+						},
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6578361f41bf46d9fc10f5b0d1e7408c:i:execute"
+							]
+						},
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:i:Type Writer Delay Duration",
+							"name": "Type Writer Delay Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"8eeb4af0427e0e4169bc778c5e06508c:o:Speed"
+							]
+						},
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "10f32efe44d8c87514b726a61db434bd:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
@@ -1089,80 +2782,58 @@
 					]
 				},
 				{
-					"guid": "23e44a2e4fd02c82947f6487ae95488d",
-					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTextBox",
-					"x": 2432,
-					"y": 646,
+					"guid": "27a862b4468d5e7a54b2098b6164ecdb",
+					"class": "K2Node_VariableSet",
+					"title": "Set DisplayWidget",
+					"x": 2240,
+					"y": 89,
 					"comment": null,
 					"pins": [
 						{
-							"id": "23e44a2e4fd02c82947f6487ae95488d:o:DialogueTextBox",
-							"name": "DialogueTextBox",
-							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"5564049f4fa7bb512fa02e8fdbc16da6:i:self"
-							]
-						},
-						{
-							"id": "23e44a2e4fd02c82947f6487ae95488d:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "26ebec0e41a73618da8967bf995bd8d9",
-					"class": "K2Node_CallFunction",
-					"title": "SetText (Text)",
-					"x": 1920,
-					"y": 880,
-					"comment": null,
-					"pins": [
-						{
-							"id": "26ebec0e41a73618da8967bf995bd8d9:i:execute",
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"83df2a8142c42612df78a383f1254e80:o:Completed"
+								"101c35b747baa0bc6482d69dfa131770:o:then"
 							]
 						},
 						{
-							"id": "26ebec0e41a73618da8967bf995bd8d9:o:then",
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"beee6bf24a36db7b331e5897791cadb5:i:execute"
+								"0cbd289b45bdc7e82ef434bc063245de:i:execute"
 							]
 						},
 						{
-							"id": "26ebec0e41a73618da8967bf995bd8d9:i:self",
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:i:DisplayWidget",
+							"name": "DisplayWidget",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"5a5a371649cbcf03d8d4eea1e578bfee:o:Output"
+							]
+						},
+						{
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "27a862b4468d5e7a54b2098b6164ecdb:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
 							"defaultValue": null,
-							"links": [
-								"94f25f9147f974cde055d998db0d307e:o:DialogueTextBox"
-							]
-						},
-						{
-							"id": "26ebec0e41a73618da8967bf995bd8d9:i:InText",
-							"name": "InText",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"fbfc883044ed661ecc5875923e6c9280:o:Dialogue Sentence"
-							]
+							"links": []
 						}
 					]
 				},
@@ -1208,8 +2879,8 @@
 					"guid": "3484df484dcf784e337b0bbc480d4a1d",
 					"class": "K2Node_VariableGet",
 					"title": "Get Type Writer Delay Duration",
-					"x": 1040,
-					"y": 676,
+					"x": 928,
+					"y": 768,
 					"comment": null,
 					"pins": [
 						{
@@ -1233,55 +2904,151 @@
 					]
 				},
 				{
-					"guid": "46974ba24e24a652b823ca86fcd4a654",
-					"class": "K2Node_VariableGet",
-					"title": "Get Text",
-					"x": 1760,
-					"y": 480,
+					"guid": "3f6a779c40ed1123247326b20d4e65e5",
+					"class": "K2Node_VariableSet",
+					"title": "Set Story",
+					"x": 2912,
+					"y": 240,
 					"comment": null,
 					"pins": [
 						{
-							"id": "46974ba24e24a652b823ca86fcd4a654:o:Text",
-							"name": "Text",
-							"direction": "output",
-							"type": "text",
+							"id": "3f6a779c40ed1123247326b20d4e65e5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"d4896d5d4be6d4464fc6aa85e21d6ca1:i:InText"
+								"7ee31ee6457b33061aaee4ab871bc65d:o:then"
 							]
 						},
 						{
-							"id": "46974ba24e24a652b823ca86fcd4a654:i:self",
-							"name": "self",
+							"id": "3f6a779c40ed1123247326b20d4e65e5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3f6a779c40ed1123247326b20d4e65e5:i:Story",
+							"name": "Story",
 							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
+							"type": "object:/Script/Inkpot.InkpotStory",
 							"defaultValue": null,
 							"links": [
-								"b7e6fe2f481fb94fa313a783cfb5f600:o:DialogueTextBox"
+								"7ee31ee6457b33061aaee4ab871bc65d:o:Story"
 							]
+						},
+						{
+							"id": "3f6a779c40ed1123247326b20d4e65e5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3f6a779c40ed1123247326b20d4e65e5:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
 				{
-					"guid": "4de2583c459e7d82c020a18db7d8b02b",
-					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTextBox",
-					"x": -144,
-					"y": 679,
+					"guid": "47c0c1f245ef96aad6cda79ba101d57c",
+					"class": "K2Node_CallFunction",
+					"title": "SetText",
+					"x": 1888,
+					"y": 880,
 					"comment": null,
 					"pins": [
 						{
-							"id": "4de2583c459e7d82c020a18db7d8b02b:o:DialogueTextBox",
-							"name": "DialogueTextBox",
-							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"c6d89ef343dcf6eb181677bfd4272048:i:self"
+								"83df2a8142c42612df78a383f1254e80:o:Completed"
 							]
 						},
 						{
-							"id": "4de2583c459e7d82c020a18db7d8b02b:i:self",
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"04b293ce4601cbcc028d06a5b339664a:i:execute"
+							]
+						},
+						{
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"fbfc883044ed661ecc5875923e6c9280:o:Dialogue Sentence"
+							]
+						},
+						{
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:Bold",
+							"name": "Bold",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:Italic",
+							"name": "Italic",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "47c0c1f245ef96aad6cda79ba101d57c:i:IgnoreAboveVariables",
+							"name": "IgnoreAboveVariables",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5669611a431bef9036dee1bf3ce65b74",
+					"class": "K2Node_VariableGet",
+					"title": "Get DisplayWidget",
+					"x": 2368,
+					"y": 950,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5669611a431bef9036dee1bf3ce65b74:o:DisplayWidget",
+							"name": "DisplayWidget",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"04b293ce4601cbcc028d06a5b339664a:i:self"
+							]
+						},
+						{
+							"id": "5669611a431bef9036dee1bf3ce65b74:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
@@ -1291,49 +3058,39 @@
 					]
 				},
 				{
-					"guid": "5564049f4fa7bb512fa02e8fdbc16da6",
-					"class": "K2Node_CallFunction",
-					"title": "SetText (Text)",
-					"x": 2624,
-					"y": 575,
+					"guid": "5a5a371649cbcf03d8d4eea1e578bfee",
+					"class": "K2Node_GetArrayItem",
+					"title": "Get (a copy)",
+					"x": 2000,
+					"y": 127,
 					"comment": null,
 					"pins": [
 						{
-							"id": "5564049f4fa7bb512fa02e8fdbc16da6:i:execute",
-							"name": "execute",
+							"id": "5a5a371649cbcf03d8d4eea1e578bfee:i:Array",
+							"name": "Array",
 							"direction": "input",
-							"type": "exec",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
 							"defaultValue": null,
 							"links": [
-								"83df2a8142c42612df78a383f1254e80:o:Loop Body"
+								"101c35b747baa0bc6482d69dfa131770:o:FoundWidgets"
 							]
 						},
 						{
-							"id": "5564049f4fa7bb512fa02e8fdbc16da6:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
+							"id": "5a5a371649cbcf03d8d4eea1e578bfee:i:Dimension 1",
+							"name": "Dimension 1",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
 							"links": []
 						},
 						{
-							"id": "5564049f4fa7bb512fa02e8fdbc16da6:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
+							"id": "5a5a371649cbcf03d8d4eea1e578bfee:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
 							"defaultValue": null,
 							"links": [
-								"23e44a2e4fd02c82947f6487ae95488d:o:DialogueTextBox"
-							]
-						},
-						{
-							"id": "5564049f4fa7bb512fa02e8fdbc16da6:i:InText",
-							"name": "InText",
-							"direction": "input",
-							"type": "text",
-							"defaultValue": null,
-							"links": [
-								"d13f555541ff5f7a249d5190f6aad9c4:o:ReturnValue"
+								"27a862b4468d5e7a54b2098b6164ecdb:i:DisplayWidget"
 							]
 						}
 					]
@@ -1361,7 +3118,133 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"83df2a8142c42612df78a383f1254e80:i:Break"
+								"0d1b6c56491e76b84474b8979f16d4ed:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6578361f41bf46d9fc10f5b0d1e7408c",
+					"class": "K2Node_CallFunction",
+					"title": "SetText",
+					"x": 272,
+					"y": 576,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"10f32efe44d8c87514b726a61db434bd:o:then"
+							]
+						},
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"83df2a8142c42612df78a383f1254e80:i:Exec"
+							]
+						},
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:Bold",
+							"name": "Bold",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:Italic",
+							"name": "Italic",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "6578361f41bf46d9fc10f5b0d1e7408c:i:IgnoreAboveVariables",
+							"name": "IgnoreAboveVariables",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6b4e4ddd4586532ed6d9738ecaf6e903",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 2512,
+					"y": 1008,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6b4e4ddd4586532ed6d9738ecaf6e903:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"04b293ce4601cbcc028d06a5b339664a:i:Story"
+							]
+						},
+						{
+							"id": "6b4e4ddd4586532ed6d9738ecaf6e903:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7320dc8a40a4cdee34fcf1ba2c50fa77",
+					"class": "K2Node_Event",
+					"title": "Event On Initialized",
+					"x": 1344,
+					"y": 73,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7320dc8a40a4cdee34fcf1ba2c50fa77:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7320dc8a40a4cdee34fcf1ba2c50fa77:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"101c35b747baa0bc6482d69dfa131770:i:execute"
 							]
 						}
 					]
@@ -1412,7 +3295,7 @@
 					"title": "Event Tick",
 					"x": 0,
 					"y": 416,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"comment": "This node is disabled and will not be called.\r\nDrag off pins to build functionality.",
 					"pins": [
 						{
 							"id": "790df0194f28e73933bb4894f496bed0:o:OutputDelegate",
@@ -1449,6 +3332,66 @@
 					]
 				},
 				{
+					"guid": "7ee31ee6457b33061aaee4ab871bc65d",
+					"class": "K2Node_CustomEvent",
+					"title": "EventOnStoryBegin_Event",
+					"x": 2496,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7ee31ee6457b33061aaee4ab871bc65d:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"0cbd289b45bdc7e82ef434bc063245de:i:Delegate"
+							]
+						},
+						{
+							"id": "7ee31ee6457b33061aaee4ab871bc65d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3f6a779c40ed1123247326b20d4e65e5:i:execute"
+							]
+						},
+						{
+							"id": "7ee31ee6457b33061aaee4ab871bc65d:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"3f6a779c40ed1123247326b20d4e65e5:i:Story"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8293156341cc643b092a03b434f243e1",
+					"class": "K2Node_GetEngineSubsystem",
+					"title": "Get Inkpot",
+					"x": 2480,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8293156341cc643b092a03b434f243e1:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"0cbd289b45bdc7e82ef434bc063245de:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "83df2a8142c42612df78a383f1254e80",
 					"class": "K2Node_MacroInstance",
 					"title": "Foreach with Delay",
@@ -1463,7 +3406,7 @@
 							"type": "Exec",
 							"defaultValue": null,
 							"links": [
-								"c6d89ef343dcf6eb181677bfd4272048:o:then"
+								"6578361f41bf46d9fc10f5b0d1e7408c:o:then"
 							]
 						},
 						{
@@ -1493,7 +3436,7 @@
 							"type": "Exec",
 							"defaultValue": null,
 							"links": [
-								"62a7f87040cef80eb696bd985d7f2907:o:then"
+								"0d1b6c56491e76b84474b8979f16d4ed:o:then"
 							]
 						},
 						{
@@ -1503,7 +3446,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"5564049f4fa7bb512fa02e8fdbc16da6:i:execute"
+								"f52277d14fb7b00352f297bda58173f2:i:execute"
 							]
 						},
 						{
@@ -1531,7 +3474,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"26ebec0e41a73618da8967bf995bd8d9:i:execute"
+								"47c0c1f245ef96aad6cda79ba101d57c:i:execute"
 							]
 						}
 					]
@@ -1559,7 +3502,17 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"c6d89ef343dcf6eb181677bfd4272048:i:execute"
+								"10f32efe44d8c87514b726a61db434bd:i:execute"
+							]
+						},
+						{
+							"id": "8eeb4af0427e0e4169bc778c5e06508c:o:Speed",
+							"name": "Speed",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"10f32efe44d8c87514b726a61db434bd:i:Type Writer Delay Duration"
 							]
 						}
 					]
@@ -1604,156 +3557,58 @@
 					]
 				},
 				{
-					"guid": "94f25f9147f974cde055d998db0d307e",
+					"guid": "a46940d04a78ddc10f9a21a5586d4e3a",
 					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTextBox",
-					"x": 1680,
-					"y": 950,
-					"comment": null,
-					"pins": [
-						{
-							"id": "94f25f9147f974cde055d998db0d307e:o:DialogueTextBox",
-							"name": "DialogueTextBox",
-							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"26ebec0e41a73618da8967bf995bd8d9:i:self"
-							]
-						},
-						{
-							"id": "94f25f9147f974cde055d998db0d307e:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "b7e6fe2f481fb94fa313a783cfb5f600",
-					"class": "K2Node_VariableGet",
-					"title": "Get DialogueTextBox",
-					"x": 1584,
+					"title": "Get Text",
+					"x": 1760,
 					"y": 480,
 					"comment": null,
 					"pins": [
 						{
-							"id": "b7e6fe2f481fb94fa313a783cfb5f600:o:DialogueTextBox",
-							"name": "DialogueTextBox",
+							"id": "a46940d04a78ddc10f9a21a5586d4e3a:o:Text",
+							"name": "Text",
 							"direction": "output",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"46974ba24e24a652b823ca86fcd4a654:i:self"
-							]
-						},
-						{
-							"id": "b7e6fe2f481fb94fa313a783cfb5f600:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "beee6bf24a36db7b331e5897791cadb5",
-					"class": "K2Node_VariableSet",
-					"title": "Set Type Writer Finished",
-					"x": 2144,
-					"y": 912,
-					"comment": null,
-					"pins": [
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"26ebec0e41a73618da8967bf995bd8d9:o:then"
-							]
-						},
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:i:Type Writer Finished",
-							"name": "Type Writer Finished",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
-						},
-						{
-							"id": "beee6bf24a36db7b331e5897791cadb5:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
-							"defaultValue": null,
-							"links": []
-						}
-					]
-				},
-				{
-					"guid": "c6d89ef343dcf6eb181677bfd4272048",
-					"class": "K2Node_CallFunction",
-					"title": "SetText (Text)",
-					"x": 32,
-					"y": 576,
-					"comment": null,
-					"pins": [
-						{
-							"id": "c6d89ef343dcf6eb181677bfd4272048:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"8eeb4af0427e0e4169bc778c5e06508c:o:then"
-							]
-						},
-						{
-							"id": "c6d89ef343dcf6eb181677bfd4272048:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"83df2a8142c42612df78a383f1254e80:i:Exec"
-							]
-						},
-						{
-							"id": "c6d89ef343dcf6eb181677bfd4272048:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/UMG.TextBlock",
-							"defaultValue": null,
-							"links": [
-								"4de2583c459e7d82c020a18db7d8b02b:o:DialogueTextBox"
-							]
-						},
-						{
-							"id": "c6d89ef343dcf6eb181677bfd4272048:i:InText",
-							"name": "InText",
-							"direction": "input",
 							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"d4896d5d4be6d4464fc6aa85e21d6ca1:i:InText"
+							]
+						},
+						{
+							"id": "a46940d04a78ddc10f9a21a5586d4e3a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"be1a868a43475ffd0d5878b4a2e10728:o:MultiLineEditableTextBox_110"
+							]
+						}
+					]
+				},
+				{
+					"guid": "be1a868a43475ffd0d5878b4a2e10728",
+					"class": "K2Node_VariableGet",
+					"title": "Get MultiLineEditableTextBox_110",
+					"x": 1488,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "be1a868a43475ffd0d5878b4a2e10728:o:MultiLineEditableTextBox_110",
+							"name": "MultiLineEditableTextBox_110",
+							"direction": "output",
+							"type": "object:/Script/UMG.MultiLineEditableTextBox",
+							"defaultValue": null,
+							"links": [
+								"a46940d04a78ddc10f9a21a5586d4e3a:i:self"
+							]
+						},
+						{
+							"id": "be1a868a43475ffd0d5878b4a2e10728:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -1792,7 +3647,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"5564049f4fa7bb512fa02e8fdbc16da6:i:InText"
+								"f52277d14fb7b00352f297bda58173f2:i:Text"
 							]
 						}
 					]
@@ -1820,7 +3675,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"46974ba24e24a652b823ca86fcd4a654:o:Text"
+								"a46940d04a78ddc10f9a21a5586d4e3a:o:Text"
 							]
 						},
 						{
@@ -1862,6 +3717,76 @@
 					]
 				},
 				{
+					"guid": "f52277d14fb7b00352f297bda58173f2",
+					"class": "K2Node_CallFunction",
+					"title": "SetText",
+					"x": 2624,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"83df2a8142c42612df78a383f1254e80:o:Loop Body"
+							]
+						},
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:i:Text",
+							"name": "Text",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"d13f555541ff5f7a249d5190f6aad9c4:o:ReturnValue"
+							]
+						},
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:i:Bold",
+							"name": "Bold",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:i:Italic",
+							"name": "Italic",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "f52277d14fb7b00352f297bda58173f2:i:IgnoreAboveVariables",
+							"name": "IgnoreAboveVariables",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "fbfc883044ed661ecc5875923e6c9280",
 					"class": "K2Node_VariableGet",
 					"title": "Get Dialogue Sentence",
@@ -1876,7 +3801,7 @@
 							"type": "text",
 							"defaultValue": null,
 							"links": [
-								"26ebec0e41a73618da8967bf995bd8d9:i:InText"
+								"47c0c1f245ef96aad6cda79ba101d57c:i:Text"
 							]
 						},
 						{
@@ -1908,14 +3833,28 @@
 			{
 				"type": "real:float",
 				"category": "Dialogue",
-				"defaultValue": "3.000000",
+				"defaultValue": "",
 				"instanceEditable": true
 			},
 			"Type Writer Finished":
 			{
 				"type": "bool",
 				"category": "Default",
-				"defaultValue": "False",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"DisplayWidget":
+			{
+				"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Story":
+			{
+				"type": "object:/Script/Inkpot.InkpotStory",
+				"category": "Default",
+				"defaultValue": "",
 				"instanceEditable": false
 			}
 		},
@@ -1924,10 +3863,12 @@
 		},
 		"defaults":
 		{
-			"DialogueTextBox": null,
+			"MultiLineEditableTextBox_110": null,
 			"Dialogue Sentence": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-			"Delay Duration": 3,
-			"TypeWriterFinished": false,
+			"Type Writer Delay Duration": 3,
+			"Type Writer Finished": false,
+			"DisplayWidget": null,
+			"Story": null,
 			"ColorAndOpacity":
 			{
 				"R": 1,
