@@ -2,7 +2,7 @@
 
 #if WITH_DEV_AUTOMATION_TESTS
 
-#include "AI/AtlantisPerceptionModel.h"
+#include "AI/Detection/AtlantisPerceptionModel.h"
 #include "Curves/CurveFloat.h"
 #include "Misc/AutomationTest.h"
 

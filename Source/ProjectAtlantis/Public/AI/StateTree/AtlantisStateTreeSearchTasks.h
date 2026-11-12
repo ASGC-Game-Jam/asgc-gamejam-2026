@@ -6,7 +6,7 @@
 #include "StateTreeTaskBase.h"
 #include "StateTreePropertyRef.h"
 #include "StructUtils/InstancedStruct.h"
-#include "AI/AtlantisSearchPointSource.h"
+#include "AI/Search/AtlantisSearchPointSource.h"
 #include "AtlantisStateTreeSearchTasks.generated.h"
 
 class AAIController;

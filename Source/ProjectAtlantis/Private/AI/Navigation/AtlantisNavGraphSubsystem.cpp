@@ -1,10 +1,10 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisNavGraphSubsystem.h"
+#include "AI/Navigation/AtlantisNavGraphSubsystem.h"
 
 #include "AI/AtlantisAITypes.h"
-#include "AI/AtlantisNavGraphSettings.h"
-#include "AI/AtlantisNavNodeSource.h"
+#include "AI/Navigation/AtlantisNavGraphSettings.h"
+#include "AI/Navigation/AtlantisNavNodeSource.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"

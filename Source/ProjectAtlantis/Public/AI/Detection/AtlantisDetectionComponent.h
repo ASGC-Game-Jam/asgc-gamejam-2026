@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "AI/AtlantisAITypes.h"
-#include "AI/AtlantisPerceptionModel.h"
+#include "AI/Detection/AtlantisPerceptionModel.h"
 #include "AtlantisDetectionComponent.generated.h"
 
 class AAIController;

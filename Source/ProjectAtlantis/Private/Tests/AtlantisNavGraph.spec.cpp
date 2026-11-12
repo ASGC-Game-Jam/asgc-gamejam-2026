@@ -2,7 +2,7 @@
 
 #if WITH_DEV_AUTOMATION_TESTS
 
-#include "AI/AtlantisNavGraph.h"
+#include "AI/Navigation/AtlantisNavGraph.h"
 #include "AI/Navigation/NavigationTypes.h"
 #include "Misc/AutomationTest.h"
 

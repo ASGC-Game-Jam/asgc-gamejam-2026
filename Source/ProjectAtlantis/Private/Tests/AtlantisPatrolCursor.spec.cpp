@@ -2,7 +2,7 @@
 
 #if WITH_DEV_AUTOMATION_TESTS
 
-#include "AI/AtlantisPatrolTypes.h"
+#include "AI/Patrol/AtlantisPatrolTypes.h"
 #include "Misc/AutomationTest.h"
 
 namespace

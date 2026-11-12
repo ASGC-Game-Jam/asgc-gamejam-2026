@@ -1,8 +1,8 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisSearchPointSource.h"
+#include "AI/Search/AtlantisSearchPointSource.h"
 
-#include "AI/AtlantisNavGraphSubsystem.h"
+#include "AI/Navigation/AtlantisNavGraphSubsystem.h"
 #include "Engine/World.h"
 
 bool FAtlantisSearchPointSource_NavGraph::FindPoint(const FAtlantisSearchPointQuery& Query, FVector& OutPoint) const

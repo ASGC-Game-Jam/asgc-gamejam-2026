@@ -3,8 +3,8 @@
 
 #include "Core/AtlantisEnemyController.h"
 
-#include "AI/AtlantisDetectionMarkerComponent.h"
-#include "AI/AtlantisSightConeComponent.h"
+#include "AI/Detection/AtlantisDetectionMarkerComponent.h"
+#include "AI/Detection/AtlantisSightConeComponent.h"
 #include "AITypes.h"
 #include "Perception/AIPerceptionComponent.h"
 

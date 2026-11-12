@@ -19,8 +19,8 @@ Swim To (State Tree task)
             └─ UAtlantisMovementComponent         (the player's movement component, swimming)
 ```
 
-All code lives in `Source/ProjectAtlantis/{Public,Private}/AI/` (files starting with `AtlantisNav…`,
-`AtlantisPathFollowingComponent`, `AtlantisStateTreeSwimToTask`).
+Code lives in `Source/ProjectAtlantis/{Public,Private}/AI/Navigation/` (files starting with `AtlantisNav…`,
+`AtlantisPathFollowingComponent`) and `AI/StateTree/AtlantisStateTreeSwimToTask`.
 
 ## The waypoint graph
 

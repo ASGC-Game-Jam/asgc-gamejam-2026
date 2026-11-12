@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "AI/AtlantisNavNodeSource.h"
+#include "AI/Navigation/AtlantisNavNodeSource.h"
 #include "Core/EAtlantisTraversalMode.h"
 #include "AtlantisNavNode.generated.h"
 

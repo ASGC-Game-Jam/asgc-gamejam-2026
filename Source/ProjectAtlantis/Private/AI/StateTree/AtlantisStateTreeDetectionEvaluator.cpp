@@ -1,8 +1,8 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisStateTreeDetectionEvaluator.h"
+#include "AI/StateTree/AtlantisStateTreeDetectionEvaluator.h"
 
-#include "AI/AtlantisDetectionComponent.h"
+#include "AI/Detection/AtlantisDetectionComponent.h"
 #include "AIController.h"
 #include "StateTreeExecutionContext.h"
 

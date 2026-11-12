@@ -1,6 +1,6 @@
 ﻿#include "Core/AtlantisAIController.h"
 
-#include "AI/AtlantisPathFollowingComponent.h"
+#include "AI/Navigation/AtlantisPathFollowingComponent.h"
 #include "Components/StateTreeAIComponent.h"
 
 AAtlantisAIController::AAtlantisAIController(const FObjectInitializer& ObjectInitializer)

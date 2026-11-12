@@ -1,8 +1,8 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisStateTreeSelectPatrolPointTask.h"
+#include "AI/StateTree/AtlantisStateTreeSelectPatrolPointTask.h"
 
-#include "AI/AtlantisPatrolComponent.h"
+#include "AI/Patrol/AtlantisPatrolComponent.h"
 #include "StateTreeExecutionContext.h"
 
 FAtlantisStateTreeSelectPatrolPointTask::FAtlantisStateTreeSelectPatrolPointTask()

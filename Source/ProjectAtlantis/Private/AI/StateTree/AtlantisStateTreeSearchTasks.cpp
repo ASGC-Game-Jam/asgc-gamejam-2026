@@ -1,9 +1,9 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisStateTreeSearchTasks.h"
+#include "AI/StateTree/AtlantisStateTreeSearchTasks.h"
 
 #include "AI/AtlantisAITypes.h"
-#include "AI/AtlantisDetectionComponent.h"
+#include "AI/Detection/AtlantisDetectionComponent.h"
 #include "AIController.h"
 #include "GameFramework/Pawn.h"
 #include "StateTreeExecutionContext.h"

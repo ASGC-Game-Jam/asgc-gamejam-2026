@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "AI/AtlantisPatrolTypes.h"
+#include "AI/Patrol/AtlantisPatrolTypes.h"
 #include "AtlantisPatrolComponent.generated.h"
 
 class USplineComponent;

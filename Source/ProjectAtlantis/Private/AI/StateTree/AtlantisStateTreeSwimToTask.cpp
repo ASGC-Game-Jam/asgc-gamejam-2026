@@ -1,9 +1,9 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisStateTreeSwimToTask.h"
+#include "AI/StateTree/AtlantisStateTreeSwimToTask.h"
 
 #include "AI/AtlantisAITypes.h"
-#include "AI/AtlantisNavGraphSubsystem.h"
+#include "AI/Navigation/AtlantisNavGraphSubsystem.h"
 #include "AIController.h"
 #include "Algo/Transform.h"
 #include "GameFramework/Pawn.h"

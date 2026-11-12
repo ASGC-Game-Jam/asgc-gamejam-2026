@@ -1,6 +1,6 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisDetectionMarkerComponent.h"
+#include "AI/Detection/AtlantisDetectionMarkerComponent.h"
 
 #include "UI/AtlantisDetectionMarkerWidget.h"
 

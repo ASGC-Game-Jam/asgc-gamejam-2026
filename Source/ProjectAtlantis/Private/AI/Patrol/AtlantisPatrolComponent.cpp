@@ -1,9 +1,9 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisPatrolComponent.h"
+#include "AI/Patrol/AtlantisPatrolComponent.h"
 
 #include "AI/AtlantisAITypes.h"
-#include "AI/AtlantisPatrolRoute.h"
+#include "AI/Patrol/AtlantisPatrolRoute.h"
 #include "Components/SplineComponent.h"
 
 UAtlantisPatrolComponent::UAtlantisPatrolComponent()

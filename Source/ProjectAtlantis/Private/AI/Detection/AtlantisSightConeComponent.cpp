@@ -1,6 +1,6 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisSightConeComponent.h"
+#include "AI/Detection/AtlantisSightConeComponent.h"
 
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Pawn.h"

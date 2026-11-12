@@ -1,6 +1,6 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisPatrolTypes.h"
+#include "AI/Patrol/AtlantisPatrolTypes.h"
 
 FAtlantisPatrolCursor Atlantis::AI::AdvancePatrolCursor(const FAtlantisPatrolCursor& Cursor, int32 NumPoints, bool bClosedLoop)
 {

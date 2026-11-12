@@ -1,6 +1,6 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisPerceptionModel.h"
+#include "AI/Detection/AtlantisPerceptionModel.h"
 
 #include "Curves/CurveFloat.h"
 

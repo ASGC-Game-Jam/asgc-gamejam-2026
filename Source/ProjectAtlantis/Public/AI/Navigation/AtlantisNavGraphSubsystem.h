@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
-#include "AI/AtlantisNavGraph.h"
+#include "AI/Navigation/AtlantisNavGraph.h"
 #include "AtlantisNavGraphSubsystem.generated.h"
 
 UENUM(BlueprintType)

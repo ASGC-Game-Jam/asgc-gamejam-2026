@@ -1,6 +1,6 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisPatrolPath.h"
+#include "AI/Patrol/AtlantisPatrolPath.h"
 
 #include "Components/SplineComponent.h"
 

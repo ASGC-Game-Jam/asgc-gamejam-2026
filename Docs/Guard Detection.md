@@ -1,7 +1,7 @@
 # Guard Detection
 
 > A Far Cry-style detection meter: an enemy doesn't spot you instantly. While it can see you, a meter fills (faster
-> when you're close). Past a threshold it stops and watches you; when the meter is full it attacks. Break line of sight
+> when you're close). Past a threshold it stops and watches you; when the meter is full it "attacks" (Behaviour TBD). Break line of sight
 > and it goes looking for you.
 >
 > Related docs: [Guard Patrol & Search.md](./Guard%20Patrol%20%26%20Search.md),
@@ -19,8 +19,8 @@ AI Perception (sight)                         on the enemy controller
        └─ "Atlantis Detection" State Tree evaluator → ST_Enemy (Status, LastKnownLocation, SuspectActor, Suspicion)
 ```
 
-Code: `Source/ProjectAtlantis/{Public,Private}/AI/AtlantisDetectionComponent`, `AtlantisPerceptionModel`,
-`AtlantisStateTreeDetectionEvaluator`, `AtlantisDetectionMarkerComponent`, and `Public/UI/AtlantisDetectionMarkerWidget.h`.
+Code: `Source/ProjectAtlantis/{Public,Private}/AI/Detection/` (`AtlantisDetectionComponent`, `AtlantisPerceptionModel`,
+`AtlantisDetectionMarkerComponent`), `AI/StateTree/AtlantisStateTreeDetectionEvaluator`, and `Public/UI/AtlantisDetectionMarkerWidget.h`.
 
 ## Setup
 

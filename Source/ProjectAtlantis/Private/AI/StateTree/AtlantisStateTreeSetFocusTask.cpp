@@ -1,6 +1,6 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisStateTreeSetFocusTask.h"
+#include "AI/StateTree/AtlantisStateTreeSetFocusTask.h"
 
 #include "AIController.h"
 #include "StateTreeExecutionContext.h"

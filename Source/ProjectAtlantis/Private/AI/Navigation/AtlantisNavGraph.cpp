@@ -1,6 +1,6 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisNavGraph.h"
+#include "AI/Navigation/AtlantisNavGraph.h"
 
 #include "AI/Navigation/NavigationTypes.h"
 #include "Algo/Find.h"

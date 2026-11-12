@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "AI/AtlantisPatrolRoute.h"
+#include "AI/Patrol/AtlantisPatrolRoute.h"
 #include "AtlantisPatrolPath.generated.h"
 
 class USplineComponent;

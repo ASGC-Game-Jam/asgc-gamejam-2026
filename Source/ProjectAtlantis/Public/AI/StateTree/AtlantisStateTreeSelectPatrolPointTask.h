@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "StateTreeTaskBase.h"
 #include "StateTreePropertyRef.h"
-#include "AI/AtlantisPatrolTypes.h"
+#include "AI/Patrol/AtlantisPatrolTypes.h"
 #include "AtlantisStateTreeSelectPatrolPointTask.generated.h"
 
 USTRUCT()

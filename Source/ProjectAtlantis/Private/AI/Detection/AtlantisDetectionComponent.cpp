@@ -1,6 +1,6 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisDetectionComponent.h"
+#include "AI/Detection/AtlantisDetectionComponent.h"
 
 #include "AIController.h"
 #include "Core/AtlantisEnemyController.h"

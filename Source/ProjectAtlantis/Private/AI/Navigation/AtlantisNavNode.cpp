@@ -1,8 +1,8 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisNavNode.h"
+#include "AI/Navigation/AtlantisNavNode.h"
 
-#include "AI/AtlantisNavGraph.h"
+#include "AI/Navigation/AtlantisNavGraph.h"
 #include "Components/BillboardComponent.h"
 #include "Components/SceneComponent.h"
 

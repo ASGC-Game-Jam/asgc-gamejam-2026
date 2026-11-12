@@ -1,9 +1,9 @@
 // Copyright (c) 2026 ASGC
 
-#include "AI/AtlantisPathFollowingComponent.h"
+#include "AI/Navigation/AtlantisPathFollowingComponent.h"
 
 #include "AI/AtlantisAITypes.h"
-#include "AI/AtlantisNavGraph.h"
+#include "AI/Navigation/AtlantisNavGraph.h"
 #include "NavigationData.h"
 
 UAtlantisPathFollowingComponent::UAtlantisPathFollowingComponent(const FObjectInitializer& ObjectInitializer)
