@@ -1,0 +1,757 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Audio/UI/Test/L_SoundStylesTest",
+	"asset": "L_SoundStylesTest",
+	"assetClass": "World",
+	"parentClass": "LevelScriptActor",
+	"blueprintType": "BPTYPE_LevelScript",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0f612a734127113ac7864db44da757f3",
+					"class": "K2Node_CreateWidget",
+					"title": "Create Widget",
+					"x": 208,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0f612a734127113ac7864db44da757f3:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e87bf3ca4c62c330d1f4bb9450968cdb:o:then"
+							]
+						},
+						{
+							"id": "0f612a734127113ac7864db44da757f3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5c178fb04211ef4ce90e85bcef7ea3b3:i:execute"
+							]
+						},
+						{
+							"id": "0f612a734127113ac7864db44da757f3:i:Class",
+							"name": "Class",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"links": []
+						},
+						{
+							"id": "0f612a734127113ac7864db44da757f3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": [
+								"16ba745045a994baba81ad92c3acda57:i:self",
+								"5c178fb04211ef4ce90e85bcef7ea3b3:i:WBP_SoundStylesTest"
+							]
+						},
+						{
+							"id": "0f612a734127113ac7864db44da757f3:i:OwningPlayer",
+							"name": "OwningPlayer",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"c22210aa4366253d8e3f6c94f40a18bf:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "16ba745045a994baba81ad92c3acda57",
+					"class": "K2Node_CallFunction",
+					"title": "Add to Viewport",
+					"x": 912,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "16ba745045a994baba81ad92c3acda57:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5c178fb04211ef4ce90e85bcef7ea3b3:o:then"
+							]
+						},
+						{
+							"id": "16ba745045a994baba81ad92c3acda57:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"23e400154e5e4b74187ebe8bd392d5c5:i:execute"
+							]
+						},
+						{
+							"id": "16ba745045a994baba81ad92c3acda57:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.UserWidget",
+							"defaultValue": null,
+							"links": [
+								"0f612a734127113ac7864db44da757f3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "16ba745045a994baba81ad92c3acda57:i:ZOrder",
+							"name": "ZOrder",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "23e400154e5e4b74187ebe8bd392d5c5",
+					"class": "K2Node_VariableSet",
+					"title": "Set bShowMouseCursor",
+					"x": 1200,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "23e400154e5e4b74187ebe8bd392d5c5:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"16ba745045a994baba81ad92c3acda57:o:then"
+							]
+						},
+						{
+							"id": "23e400154e5e4b74187ebe8bd392d5c5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2b9360ab43c5a5697eb4a5a34807cd06:i:execute"
+							]
+						},
+						{
+							"id": "23e400154e5e4b74187ebe8bd392d5c5:i:bShowMouseCursor",
+							"name": "bShowMouseCursor",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "23e400154e5e4b74187ebe8bd392d5c5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"c22210aa4366253d8e3f6c94f40a18bf:o:ReturnValue"
+							]
+						},
+						{
+							"id": "23e400154e5e4b74187ebe8bd392d5c5:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2b9360ab43c5a5697eb4a5a34807cd06",
+					"class": "K2Node_CallFunction",
+					"title": "Set Input Mode UI Only",
+					"x": 1504,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2b9360ab43c5a5697eb4a5a34807cd06:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"23e400154e5e4b74187ebe8bd392d5c5:o:then"
+							]
+						},
+						{
+							"id": "2b9360ab43c5a5697eb4a5a34807cd06:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2b9360ab43c5a5697eb4a5a34807cd06:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "2b9360ab43c5a5697eb4a5a34807cd06:i:PlayerController",
+							"name": "PlayerController",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"c22210aa4366253d8e3f6c94f40a18bf:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2b9360ab43c5a5697eb4a5a34807cd06:i:InWidgetToFocus",
+							"name": "InWidgetToFocus",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"4f5cbf2a4f2852c005d684b5df8f8afc:o:WBP_SoundStylesTest"
+							]
+						},
+						{
+							"id": "2b9360ab43c5a5697eb4a5a34807cd06:i:InMouseLockMode",
+							"name": "InMouseLockMode",
+							"direction": "input",
+							"type": "byte:/Script/Engine.EMouseLockMode",
+							"defaultValue": "DoNotLock",
+							"links": []
+						},
+						{
+							"id": "2b9360ab43c5a5697eb4a5a34807cd06:i:bFlushInput",
+							"name": "bFlushInput",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4f5cbf2a4f2852c005d684b5df8f8afc",
+					"class": "K2Node_VariableGet",
+					"title": "Get WBP_SoundStylesTest",
+					"x": 1232,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4f5cbf2a4f2852c005d684b5df8f8afc:o:WBP_SoundStylesTest",
+							"name": "WBP_SoundStylesTest",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": [
+								"2b9360ab43c5a5697eb4a5a34807cd06:i:InWidgetToFocus"
+							]
+						},
+						{
+							"id": "4f5cbf2a4f2852c005d684b5df8f8afc:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/L_SoundStylesTest.L_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5c178fb04211ef4ce90e85bcef7ea3b3",
+					"class": "K2Node_VariableSet",
+					"title": "Set WBP_SoundStylesTest",
+					"x": 544,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0f612a734127113ac7864db44da757f3:o:then"
+							]
+						},
+						{
+							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"16ba745045a994baba81ad92c3acda57:i:execute"
+							]
+						},
+						{
+							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:i:WBP_SoundStylesTest",
+							"name": "WBP_SoundStylesTest",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": [
+								"0f612a734127113ac7864db44da757f3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/L_SoundStylesTest.L_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c22210aa4366253d8e3f6c94f40a18bf",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": -128,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c22210aa4366253d8e3f6c94f40a18bf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "c22210aa4366253d8e3f6c94f40a18bf:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c22210aa4366253d8e3f6c94f40a18bf:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "c22210aa4366253d8e3f6c94f40a18bf:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"0f612a734127113ac7864db44da757f3:i:OwningPlayer",
+								"23e400154e5e4b74187ebe8bd392d5c5:i:self",
+								"2b9360ab43c5a5697eb4a5a34807cd06:i:PlayerController"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e87bf3ca4c62c330d1f4bb9450968cdb",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e87bf3ca4c62c330d1f4bb9450968cdb:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e87bf3ca4c62c330d1f4bb9450968cdb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0f612a734127113ac7864db44da757f3:i:execute"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"worldSettings":
+		{
+			"VisibilityCellSize": 200,
+			"VisibilityAggressiveness": "VIS_LeastAggressive",
+			"bPrecomputeVisibility": false,
+			"bPlaceCellsOnlyAlongCameraTracks": false,
+			"bEnableWorldBoundsChecks": true,
+			"bEnableNavigationSystem": true,
+			"bEnableAISystem": true,
+			"bEnableWorldComposition": false,
+			"bUseClientSideLevelStreamingVolumes": false,
+			"bEnableWorldOriginRebasing": false,
+			"bGlobalGravitySet": false,
+			"bMinimizeBSPSections": false,
+			"bForceNoPrecomputedLighting": false,
+			"bForceVolumetricLightmapsOnly": false,
+			"bHighPriorityLoading": false,
+			"bHighPriorityLoadingLocal": false,
+			"bOverrideDefaultBroadphaseSettings": false,
+			"bGenerateSingleClusterForLevel": false,
+			"bHideEnableStreamingWarning": false,
+			"bIncludeGridSizeInNameForFoliageActors": false,
+			"bIncludeGridSizeInNameForPartitionedActors": false,
+			"bReuseAddressAndPort": false,
+			"AISystemClass": "/Script/AIModule.AISystem",
+			"LevelInstancePivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"NavigationSystemConfig":
+			{
+				"_class": "NavigationSystemModuleConfig",
+				"_name": "NavigationSystemModuleConfig_0",
+				"bStrictlyStatic": false,
+				"bCreateOnClient": false,
+				"bAutoSpawnMissingNavData": true,
+				"bSpawnNavDataInNavBoundsLevel": false,
+				"NavigationSystemClass": "/Script/NavigationSystem.NavigationSystemV1",
+				"SupportedAgentsMask":
+				{
+					"bSupportsAgent0": true,
+					"bSupportsAgent1": true,
+					"bSupportsAgent2": true,
+					"bSupportsAgent3": true,
+					"bSupportsAgent4": true,
+					"bSupportsAgent5": true,
+					"bSupportsAgent6": true,
+					"bSupportsAgent7": true,
+					"bSupportsAgent8": true,
+					"bSupportsAgent9": true,
+					"bSupportsAgent10": true,
+					"bSupportsAgent11": true,
+					"bSupportsAgent12": true,
+					"bSupportsAgent13": true,
+					"bSupportsAgent14": true,
+					"bSupportsAgent15": true
+				},
+				"DefaultAgentName": "None",
+				"bIsOverriden": false
+			},
+			"WorldPartition": null,
+			"InstancedFoliageGridSize": 25600,
+			"LandscapeSplineMeshesGridSize": 25600,
+			"NavigationDataChunkGridSize": 102400,
+			"NavigationDataBuilderLoadingCellSize": 409600,
+			"DefaultPlacementGridSize": 25600,
+			"BaseNavmeshDataLayers": [],
+			"WorldToMeters": 100,
+			"KillZ": -1048575,
+			"KillZDamageType": "/Engine/EngineDamageTypes/DmgTypeBP_Environmental.DmgTypeBP_Environmental_C",
+			"GlobalGravityZ": 0,
+			"DefaultPhysicsVolumeClass": "/Script/Engine.DefaultPhysicsVolume",
+			"PhysicsCollisionHandlerClass": null,
+			"DefaultGameMode": null,
+			"GameNetworkManagerClass": "/Script/Engine.GameNetworkManager",
+			"PackedLightAndShadowMapTextureSize": 1024,
+			"DefaultColorScale":
+			{
+				"X": 1,
+				"Y": 1,
+				"Z": 1
+			},
+			"DefaultMaxDistanceFieldOcclusionDistance": 600,
+			"GlobalDistanceFieldViewDistance": 20000,
+			"DynamicIndirectShadowsSelfShadowingIntensity": 0.80000000000000004,
+			"LightmassSettings":
+			{
+				"StaticLightingLevelScale": 1,
+				"NumIndirectLightingBounces": 3,
+				"NumSkyLightingBounces": 1,
+				"IndirectLightingQuality": 1,
+				"IndirectLightingSmoothness": 1,
+				"EnvironmentColor":
+				{
+					"B": 0,
+					"G": 0,
+					"R": 0,
+					"A": 0
+				},
+				"EnvironmentIntensity": 1,
+				"EmissiveBoost": 1,
+				"DiffuseBoost": 1,
+				"VolumeLightingMethod": "VLM_VolumetricLightmap",
+				"bUseAmbientOcclusion": false,
+				"bGenerateAmbientOcclusionMaterialMask": false,
+				"bVisualizeMaterialDiffuse": false,
+				"bVisualizeAmbientOcclusion": false,
+				"bCompressLightmaps": true,
+				"VolumetricLightmapDetailCellSize": 200,
+				"VolumetricLightmapMaximumBrickMemoryMb": 30,
+				"VolumetricLightmapLoadingCellSize": 3200,
+				"VolumetricLightmapSphericalHarmonicSmoothing": 0.02,
+				"VolumeLightSamplePlacementScale": 1,
+				"DirectIlluminationOcclusionFraction": 0.5,
+				"IndirectIlluminationOcclusionFraction": 1,
+				"OcclusionExponent": 1,
+				"FullyOccludedSamplesFraction": 1,
+				"MaxOcclusionDistance": 200
+			},
+			"VolumetricLightmapLoadingRange": 6400,
+			"NaniteSettings":
+			{
+				"bAllowMaskedMaterials": true
+			},
+			"DefaultReverbSettings":
+			{
+				"bApplyReverb": true,
+				"ReverbEffect": null,
+				"ReverbPluginEffect": null,
+				"Volume": 0.5,
+				"FadeTime": 2
+			},
+			"DefaultAmbientZoneSettings":
+			{
+				"bIsWorldSettings": true,
+				"ExteriorVolume": 1,
+				"ExteriorTime": 0.5,
+				"ExteriorLPF": 20000,
+				"ExteriorLPFTime": 0.5,
+				"InteriorVolume": 1,
+				"InteriorTime": 0.5,
+				"InteriorLPF": 20000,
+				"InteriorLPFTime": 0.5
+			},
+			"DefaultBaseSoundMix": null,
+			"HLODSetupAsset": null,
+			"OverrideBaseMaterial": null,
+			"HierarchicalLODSetup": [],
+			"NumHLODLevels": 0,
+			"HLODBakingTransform":
+			{
+				"Rotation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0,
+					"W": 1
+				},
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"Scale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				}
+			},
+			"BookMarks": null,
+			"MinGlobalTimeDilation": 0.0001,
+			"MaxGlobalTimeDilation": 20,
+			"MinCinematicTimeDilation": 0.0001,
+			"MaxCinematicTimeDilation": 20,
+			"MinUndilatedFrameTime": 0.00050000000000000001,
+			"MaxUndilatedFrameTime": 0.40000000000000002,
+			"BroadphaseSettings":
+			{
+				"bUseMBPOnClient": false,
+				"bUseMBPOnServer": false,
+				"bUseMBPOuterBounds": false,
+				"MBPBounds":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"IsValid": false
+				},
+				"MBPOuterBounds":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"IsValid": false
+				},
+				"MBPNumSubdivs": 2
+			},
+			"ReplicationViewers": [],
+			"AssetUserData": [],
+			"AssetUserDataEditorOnly": [],
+			"DefaultWorldPartitionSettings":
+			{
+				"LoadedEditorRegions": [],
+				"LoadedEditorLocationVolumes": [],
+				"NotLoadedDataLayers": [],
+				"LoadedDataLayers": []
+			},
+			"MaxNumberOfBookmarks": 10,
+			"DefaultBookmarkClass": "/Script/Engine.BookMark",
+			"BookmarkArray": [
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null
+			],
+			"LastBookmarkClass": "/Script/Engine.BookMark",
+			"DefaultBookmark": null,
+			"SpriteComponent": null,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": true,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": true,
+			"bAllowTickBeforeBeginPlay": true,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": false,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": false,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": true,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 10,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "WorldSettings",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": false,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": false,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}
