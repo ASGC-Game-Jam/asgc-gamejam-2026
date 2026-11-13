@@ -10,14 +10,14 @@
 	"properties":
 	{
 		"EditorData": "/Game/ProjectAtlantis/Core/AI/ST_Enemy.ST_Enemy:StateTreeEditorData_0",
-		"LastCompiledEditorDataHash": 3329765740,
+		"LastCompiledEditorDataHash": 1303565426,
 		"Schema":
 		{
 			"_class": "StateTreeAIComponentSchema",
 			"_name": "StateTreeAIComponentSchema_0",
 			"AIControllerClass": "/Game/ProjectAtlantis/Core/EnemyControllers/BP_AtlantisEnemyController.BP_AtlantisEnemyController_C",
 			"ContextActorClass": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisEnemyCharacter.BP_AtlantisEnemyCharacter_C",
-			"ScheduledTickPolicy": "Allowed",
+			"ScheduledTickPolicy": "Denied",
 			"ContextDataDescs": [
 				{
 					"Struct": "/Game/ProjectAtlantis/Core/Characters/BP_AtlantisEnemyCharacter.BP_AtlantisEnemyCharacter_C",
@@ -91,9 +91,9 @@
 					"Index": 65535
 				},
 				"ChildrenBegin": 1,
-				"ChildrenEnd": 2,
-				"EnterConditionsBegin": 2,
-				"UtilityConsiderationsBegin": 2,
+				"ChildrenEnd": 16,
+				"EnterConditionsBegin": 16,
+				"UtilityConsiderationsBegin": 23,
 				"TransitionsBegin": 0,
 				"TasksBegin": 1,
 				"ParameterTemplateIndex":
@@ -154,7 +154,7 @@
 						"TagName": "None"
 					}
 				},
-				"Name": "Test",
+				"Name": "Spotted",
 				"Tag":
 				{
 					"TagName": "None"
@@ -170,8 +170,8 @@
 				},
 				"ChildrenBegin": 2,
 				"ChildrenEnd": 2,
-				"EnterConditionsBegin": 2,
-				"UtilityConsiderationsBegin": 2,
+				"EnterConditionsBegin": 16,
+				"UtilityConsiderationsBegin": 23,
 				"TransitionsBegin": 0,
 				"TasksBegin": 1,
 				"ParameterTemplateIndex":
@@ -197,11 +197,89 @@
 				},
 				"Weight": 1,
 				"CustomTickRate": 0,
+				"CompletionTasksMask": 12,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 2,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 1,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 2,
+				"EnabledTasksNum": 2,
+				"InstanceDataNum": 3,
+				"Depth": 1,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": true,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": false,
+				"bHasSucceededTriggerTransitions": false,
+				"bHasFailedTriggerTransitions": false,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "Alerted",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 0
+				},
+				"ChildrenBegin": 3,
+				"ChildrenEnd": 3,
+				"EnterConditionsBegin": 18,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 1,
+				"TasksBegin": 3,
+				"ParameterTemplateIndex":
+				{
+					"Value": 5
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 1,
+					"StateHandle":
+					{
+						"Index": 2
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
 				"CompletionTasksMask": 4,
 				"CompletionTasksMaskBufferIndex": 0,
 				"CompletionTasksMaskBitsOffset": 2,
 				"CompletionTasksControl": "Any",
-				"EnterConditionsNum": 0,
+				"EnterConditionsNum": 1,
 				"UtilityConsiderationsNum": 0,
 				"TransitionsNum": 1,
 				"TasksNum": 1,
@@ -212,12 +290,1026 @@
 				"SelectionBehavior": "TrySelectChildrenInOrder",
 				"bHasTransitionTasks": false,
 				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": true,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": false,
+				"bHasSucceededTriggerTransitions": false,
+				"bHasFailedTriggerTransitions": false,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "Searching",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 0
+				},
+				"ChildrenBegin": 4,
+				"ChildrenEnd": 9,
+				"EnterConditionsBegin": 20,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 2,
+				"TasksBegin": 4,
+				"ParameterTemplateIndex":
+				{
+					"Value": 7
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 1,
+					"StateHandle":
+					{
+						"Index": 3
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 0,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 2,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 1,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 1,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": true,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": false,
+				"bHasSucceededTriggerTransitions": false,
+				"bHasFailedTriggerTransitions": false,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "GoToLastKnowLocation",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 3
+				},
+				"ChildrenBegin": 5,
+				"ChildrenEnd": 5,
+				"EnterConditionsBegin": 22,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 3,
+				"TasksBegin": 5,
+				"ParameterTemplateIndex":
+				{
+					"Value": 9
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 3,
+					"StateHandle":
+					{
+						"Index": 4
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
 				"bHasTickTriggerTransitions": false,
 				"bHasEventTriggerTransitions": false,
 				"bHasDelegateTriggerTransitions": false,
 				"bHasCompletedTriggerTransitions": true,
 				"bHasSucceededTriggerTransitions": true,
 				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "LookArround",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 3
+				},
+				"ChildrenBegin": 6,
+				"ChildrenEnd": 6,
+				"EnterConditionsBegin": 22,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 4,
+				"TasksBegin": 6,
+				"ParameterTemplateIndex":
+				{
+					"Value": 11
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 3,
+					"StateHandle":
+					{
+						"Index": 5
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "FindSweepPoint",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 3
+				},
+				"ChildrenBegin": 7,
+				"ChildrenEnd": 7,
+				"EnterConditionsBegin": 22,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 5,
+				"TasksBegin": 7,
+				"ParameterTemplateIndex":
+				{
+					"Value": 13
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 3,
+					"StateHandle":
+					{
+						"Index": 6
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 2,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "GoToSweepPoint",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 3
+				},
+				"ChildrenBegin": 8,
+				"ChildrenEnd": 8,
+				"EnterConditionsBegin": 22,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 7,
+				"TasksBegin": 8,
+				"ParameterTemplateIndex":
+				{
+					"Value": 15
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 3,
+					"StateHandle":
+					{
+						"Index": 7
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "GiveUp",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 3
+				},
+				"ChildrenBegin": 9,
+				"ChildrenEnd": 9,
+				"EnterConditionsBegin": 22,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 8,
+				"TasksBegin": 9,
+				"ParameterTemplateIndex":
+				{
+					"Value": 17
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 3,
+					"StateHandle":
+					{
+						"Index": 8
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "Patrol",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 0
+				},
+				"ChildrenBegin": 10,
+				"ChildrenEnd": 16,
+				"EnterConditionsBegin": 22,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 9,
+				"TasksBegin": 10,
+				"ParameterTemplateIndex":
+				{
+					"Value": 19
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 1,
+					"StateHandle":
+					{
+						"Index": 9
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 4,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 2,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 0,
+				"EnabledTasksNum": 0,
+				"InstanceDataNum": 1,
+				"Depth": 1,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": true,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": false,
+				"bHasSucceededTriggerTransitions": false,
+				"bHasFailedTriggerTransitions": false,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "ResumePatrol",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 9
+				},
+				"ChildrenBegin": 11,
+				"ChildrenEnd": 11,
+				"EnterConditionsBegin": 23,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 10,
+				"TasksBegin": 10,
+				"ParameterTemplateIndex":
+				{
+					"Value": 20
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 2,
+					"StateHandle":
+					{
+						"Index": 10
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 2,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "GoToPatrolPoint",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 9
+				},
+				"ChildrenBegin": 12,
+				"ChildrenEnd": 12,
+				"EnterConditionsBegin": 23,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 12,
+				"TasksBegin": 11,
+				"ParameterTemplateIndex":
+				{
+					"Value": 22
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 2,
+					"StateHandle":
+					{
+						"Index": 11
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 2,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "WaitAtPoint",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 9
+				},
+				"ChildrenBegin": 13,
+				"ChildrenEnd": 13,
+				"EnterConditionsBegin": 23,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 14,
+				"TasksBegin": 12,
+				"ParameterTemplateIndex":
+				{
+					"Value": 24
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 2,
+					"StateHandle":
+					{
+						"Index": 12
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "RetryDelay",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 9
+				},
+				"ChildrenBegin": 14,
+				"ChildrenEnd": 14,
+				"EnterConditionsBegin": 23,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 15,
+				"TasksBegin": 13,
+				"ParameterTemplateIndex":
+				{
+					"Value": 26
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 2,
+					"StateHandle":
+					{
+						"Index": 13
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 1,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "AdvancePatrol",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 9
+				},
+				"ChildrenBegin": 15,
+				"ChildrenEnd": 15,
+				"EnterConditionsBegin": 23,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 16,
+				"TasksBegin": 14,
+				"ParameterTemplateIndex":
+				{
+					"Value": 28
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 2,
+					"StateHandle":
+					{
+						"Index": 14
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 2,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": true,
+				"bHasSucceededTriggerTransitions": true,
+				"bHasFailedTriggerTransitions": true,
+				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
+				"bEnabled": true,
+				"bConsumeEventOnSelect": true,
+				"bHasCustomTickRate": false
+			},
+			{
+				"RequiredEventToEnter":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"Name": "NoRoute",
+				"Tag":
+				{
+					"TagName": "None"
+				},
+				"LinkedAsset": null,
+				"LinkedState":
+				{
+					"Index": 65535
+				},
+				"Parent":
+				{
+					"Index": 9
+				},
+				"ChildrenBegin": 16,
+				"ChildrenEnd": 16,
+				"EnterConditionsBegin": 23,
+				"UtilityConsiderationsBegin": 23,
+				"TransitionsBegin": 18,
+				"TasksBegin": 15,
+				"ParameterTemplateIndex":
+				{
+					"Value": 30
+				},
+				"ParameterDataHandle":
+				{
+					"Source": "StateParameterData",
+					"Index": 2,
+					"StateHandle":
+					{
+						"Index": 15
+					}
+				},
+				"ParameterBindingsBatch":
+				{
+					"Value": 65535
+				},
+				"EventDataIndex":
+				{
+					"Value": 65535
+				},
+				"Weight": 1,
+				"CustomTickRate": 0,
+				"CompletionTasksMask": 8,
+				"CompletionTasksMaskBufferIndex": 0,
+				"CompletionTasksMaskBitsOffset": 3,
+				"CompletionTasksControl": "Any",
+				"EnterConditionsNum": 0,
+				"UtilityConsiderationsNum": 0,
+				"TransitionsNum": 0,
+				"TasksNum": 1,
+				"EnabledTasksNum": 1,
+				"InstanceDataNum": 2,
+				"Depth": 2,
+				"Type": "State",
+				"SelectionBehavior": "TrySelectChildrenInOrder",
+				"bHasTransitionTasks": false,
+				"bHasStateChangeConditions": false,
+				"bHasTickTriggerTransitions": false,
+				"bHasEventTriggerTransitions": false,
+				"bHasDelegateTriggerTransitions": false,
+				"bHasCompletedTriggerTransitions": false,
+				"bHasSucceededTriggerTransitions": false,
+				"bHasFailedTriggerTransitions": false,
 				"bCheckPrerequisitesWhenActivatingChildDirectly": true,
 				"bEnabled": true,
 				"bConsumeEventOnSelect": true,
@@ -238,10 +1330,103 @@
 				{
 					"ID": "00000000000000000000000000000000"
 				},
-				"ConditionsBegin": 2,
+				"ConditionsBegin": 17,
 				"State":
 				{
-					"Index": 1
+					"Index": 0
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnTick",
+				"Priority": "Normal",
+				"Fallback": "None",
+				"ConditionsNum": 1,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 19,
+				"State":
+				{
+					"Index": 0
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnTick",
+				"Priority": "Normal",
+				"Fallback": "None",
+				"ConditionsNum": 1,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 21,
+				"State":
+				{
+					"Index": 0
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnTick",
+				"Priority": "Normal",
+				"Fallback": "None",
+				"ConditionsNum": 1,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 22,
+				"State":
+				{
+					"Index": 5
 				},
 				"Delay":
 				{
@@ -255,9 +1440,443 @@
 				"bTransitionEnabled": true,
 				"bReactivateTargetState": false,
 				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 22,
+				"State":
+				{
+					"Index": 6
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateCompleted",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 22,
+				"State":
+				{
+					"Index": 7
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateSucceeded",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 22,
+				"State":
+				{
+					"Index": 8
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateFailed",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 22,
+				"State":
+				{
+					"Index": 5
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateCompleted",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 22,
+				"State":
+				{
+					"Index": 9
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateCompleted",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 22,
+				"State":
+				{
+					"Index": 0
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnTick",
+				"Priority": "Normal",
+				"Fallback": "None",
+				"ConditionsNum": 1,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 23,
+				"State":
+				{
+					"Index": 11
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateSucceeded",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 23,
+				"State":
+				{
+					"Index": 15
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateFailed",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 23,
+				"State":
+				{
+					"Index": 12
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateSucceeded",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 23,
+				"State":
+				{
+					"Index": 13
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateFailed",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 23,
+				"State":
+				{
+					"Index": 14
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateCompleted",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 23,
+				"State":
+				{
+					"Index": 14
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateCompleted",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 23,
+				"State":
+				{
+					"Index": 11
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateSucceeded",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
+			},
+			{
+				"RequiredEvent":
+				{
+					"PayloadStruct": null,
+					"Tag":
+					{
+						"TagName": "None"
+					}
+				},
+				"RequiredDelegateDispatcher":
+				{
+					"ID": "00000000000000000000000000000000"
+				},
+				"ConditionsBegin": 23,
+				"State":
+				{
+					"Index": 15
+				},
+				"Delay":
+				{
+					"Duration": 0,
+					"RandomVariance": 0
+				},
+				"Trigger": "OnStateFailed",
+				"Priority": "None",
+				"Fallback": "None",
+				"ConditionsNum": 0,
+				"bTransitionEnabled": true,
+				"bReactivateTargetState": false,
+				"bConsumeEventOnSelect": true
 			}
 		],
-		"Nodes": "(/Script/ProjectAtlantis.StateTreePerceptionEvaluator(SightInstantAggroRadius=1000.000000,InitialPerceptionHysteresisTime=5.000000,PerceptionDecayPerSecond=0.100000,SightDistanceCurve=\"/Script/Engine.CurveFloat'/Game/ProjectAtlantis/Core/AI/SightDistanceCurve.SightDistanceCurve'\",Name=\"Perception Evaluator\",BindingsBatch=(Value=0),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=0),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535))),/Script/ProjectAtlantis.StateTreeTaskDelay(DelayTime=5.000000,bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"State Tree Task Delay\",BindingsBatch=(Value=65535),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=3),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=1))))",
+		"Nodes": "(/Script/ProjectAtlantis.AtlantisStateTreeDetectionEvaluator(Name=\"Atlantis Detection\",BindingsBatch=(Value=0),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=0),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535))),/Script/ProjectAtlantis.AtlantisStateTreeSwimToTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Swim To\",BindingsBatch=(Value=1),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=3),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=1))),/Script/ProjectAtlantis.AtlantisStateTreeSetFocusTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Set Focus\",BindingsBatch=(Value=2),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=4),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=1))),/Script/ProjectAtlantis.AtlantisStateTreeSetFocusTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Set Focus\",BindingsBatch=(Value=3),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=6),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=2))),/Script/ProjectAtlantis.AtlantisStateTreeBeginSearchTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=False,bCanEditConsideredForCompletion=True,Name=\"Begin Search\",BindingsBatch=(Value=4),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=8),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=3))),/Script/ProjectAtlantis.AtlantisStateTreeSwimToTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Swim To\",BindingsBatch=(Value=5),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=10),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=4))),/Script/ProjectAtlantis.AtlantisStateTreeLookAroundTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Look Around\",BindingsBatch=(Value=6),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=12),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=5))),/Script/ProjectAtlantis.AtlantisStateTreeFindSearchPointTask(Source=/Script/ProjectAtlantis.AtlantisSearchPointSource_NavGraph(Radius=1500.000000,MinDistanceFromOrigin=200.000000,VisitedTolerance=150.000000),bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Find Search Point\",BindingsBatch=(Value=7),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=14),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=6))),/Script/ProjectAtlantis.AtlantisStateTreeSwimToTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Swim To\",BindingsBatch=(Value=8),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=16),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=7))),/Script/ProjectAtlantis.AtlantisStateTreeGiveUpSearchTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Give Up Search\",BindingsBatch=(Value=9),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=18),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=8))),/Script/ProjectAtlantis.AtlantisStateTreeSelectPatrolPointTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Select Patrol Point\",BindingsBatch=(Value=10),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=21),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=10))),/Script/ProjectAtlantis.AtlantisStateTreeSwimToTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Swim To\",BindingsBatch=(Value=11),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=23),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=11))),/Script/StateTreeModule.StateTreeDelayTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Delay Task\",BindingsBatch=(Value=12),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=25),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=12))),/Script/StateTreeModule.StateTreeDelayTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Delay Task\",BindingsBatch=(Value=65535),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=27),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=13))),/Script/ProjectAtlantis.AtlantisStateTreeSelectPatrolPointTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Select Patrol Point\",BindingsBatch=(Value=13),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=29),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=14))),/Script/StateTreeModule.StateTreeDelayTask(bTaskEnabled=True,TransitionHandlingPriority=Normal,bConsideredForCompletion=True,bCanEditConsideredForCompletion=True,Name=\"Delay Task\",BindingsBatch=(Value=65535),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=31),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=15))),/Script/StateTreeModule.StateTreeCompareEnumCondition(bInvert=False,Operand=Copy,DeltaIndent=0,EvaluationMode=Evaluated,Name=\"Enum Compare\",BindingsBatch=(Value=14),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=0),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=SharedInstanceData,Index=0,StateHandle=(Index=65535))),/Script/StateTreeModule.StateTreeCompareEnumCondition(bInvert=True,Operand=Copy,DeltaIndent=0,EvaluationMode=Evaluated,Name=\"Enum Compare\",BindingsBatch=(Value=15),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=1),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=SharedInstanceData,Index=1,StateHandle=(Index=65535))),/Script/StateTreeModule.StateTreeCompareEnumCondition(bInvert=False,Operand=Copy,DeltaIndent=0,EvaluationMode=Evaluated,Name=\"Enum Compare\",BindingsBatch=(Value=16),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=2),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=SharedInstanceData,Index=2,StateHandle=(Index=65535))),/Script/StateTreeModule.StateTreeCompareEnumCondition(bInvert=True,Operand=Copy,DeltaIndent=0,EvaluationMode=Evaluated,Name=\"Enum Compare\",BindingsBatch=(Value=17),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=3),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=SharedInstanceData,Index=3,StateHandle=(Index=65535))),/Script/StateTreeModule.StateTreeCompareEnumCondition(bInvert=False,Operand=Copy,DeltaIndent=0,EvaluationMode=Evaluated,Name=\"Enum Compare\",BindingsBatch=(Value=18),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=4),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=SharedInstanceData,Index=4,StateHandle=(Index=65535))),/Script/StateTreeModule.StateTreeCompareEnumCondition(bInvert=True,Operand=Copy,DeltaIndent=0,EvaluationMode=Evaluated,Name=\"Enum Compare\",BindingsBatch=(Value=19),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=5),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=SharedInstanceData,Index=5,StateHandle=(Index=65535))),/Script/StateTreeModule.StateTreeCompareEnumCondition(bInvert=True,Operand=Copy,DeltaIndent=0,EvaluationMode=Evaluated,Name=\"Enum Compare\",BindingsBatch=(Value=20),OutputBindingsBatch=(Value=65535),InstanceTemplateIndex=(Value=6),ExecutionRuntimeTemplateIndex=(Value=65535),InstanceDataHandle=(Source=SharedInstanceData,Index=6,StateHandle=(Index=65535))))",
 		"DefaultInstanceData":
 		{
 		},
@@ -324,7 +1943,7 @@
 						}
 					},
 					"DataSource": "Parameter",
-					"Struct": null,
+					"Struct": "/Engine/Transient.PropertyBag_5ae8091a45c3eafc",
 					"Name": "Parameters",
 					"ID": "56581FD14D314F5A6F96B3946ADE95A9",
 					"Category": ""
@@ -372,9 +1991,9 @@
 						}
 					},
 					"DataSource": "Evaluator",
-					"Struct": "/Script/ProjectAtlantis.StateTreePerceptionEvaluatorInstanceData",
-					"Name": "Perception Evaluator",
-					"ID": "EF0A039141C546620919A79788E7E914",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeDetectionEvaluatorInstanceData",
+					"Name": "Atlantis Detection",
+					"ID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
 					"Category": ""
 				},
 				{
@@ -406,7 +2025,7 @@
 					"DataSource": "StateParameter",
 					"Struct": null,
 					"Name": "Parameters",
-					"ID": "2057C9E0469D590B1AB30E8E29B18FD3",
+					"ID": "7D4634FC48AD66E609F626B0E6EFB373",
 					"Category": ""
 				},
 				{
@@ -420,9 +2039,569 @@
 						}
 					},
 					"DataSource": "Task",
-					"Struct": "/Script/ProjectAtlantis.StateTreeTaskDelayInstanceData",
-					"Name": "State Tree Task Delay",
-					"ID": "B5D9296B458E8886882605A75E55C6C8",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeSwimToTaskInstanceData",
+					"Name": "Swim To",
+					"ID": "315F58F340C3E6E23F99FB9D7CADFBCA",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 1
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeSetFocusTaskInstanceData",
+					"Name": "Set Focus",
+					"ID": "946CFCAE4040EFCC7C36C5B282358D1E",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 2
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "F52311244BCFEBA666E0618A0E854481",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 2
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeSetFocusTaskInstanceData",
+					"Name": "Set Focus",
+					"ID": "801F448A44F712D7ED45A0A441EA3A39",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 3
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": "/Engine/Transient.PropertyBag_5089182386c10e20",
+					"Name": "Parameters",
+					"ID": "BA3A662A46F0A0C38C32379E7709CA78",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 3
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeBeginSearchTaskInstanceData",
+					"Name": "Begin Search",
+					"ID": "C9EBB70042523E22FACD219BF9CDC0D4",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 4
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "62713263419FEB29275E78B33165450A",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 4,
+						"StateHandle":
+						{
+							"Index": 4
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeSwimToTaskInstanceData",
+					"Name": "Swim To",
+					"ID": "6D05F9C44754A89ACF3BE097123D3912",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 5
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "B67B3ABB4B8441633181C9959F287872",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 4,
+						"StateHandle":
+						{
+							"Index": 5
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeLookAroundTaskInstanceData",
+					"Name": "Look Around",
+					"ID": "C498CA994CC6F4D8C7BC47A10186BBAB",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 6
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "13FCCB774AB5AFEF87AE359F2CCBD19C",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 4,
+						"StateHandle":
+						{
+							"Index": 6
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeFindSearchPointTaskInstanceData",
+					"Name": "Find Search Point",
+					"ID": "8E5BCDE54520B289DD46F19BAEDE6D6E",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 7
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "160301E1464A9B131E86B9AA947550CB",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 4,
+						"StateHandle":
+						{
+							"Index": 7
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeSwimToTaskInstanceData",
+					"Name": "Swim To",
+					"ID": "3C5CD8EE488A427B2D61E4AA481E13E9",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 8
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "7543757B4C63C54E3AE3A1A748C8E08B",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 4,
+						"StateHandle":
+						{
+							"Index": 8
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeGiveUpSearchTaskInstanceData",
+					"Name": "Give Up Search",
+					"ID": "F1ECC0B94885D6F51DD8F18AC250E9C9",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 9
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": "/Engine/Transient.PropertyBag_8834b4bc911df2a5",
+					"Name": "Parameters",
+					"ID": "A988DD03416C78B8568476811CC40F2A",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 10
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "08D9109A4BAB047051323BA780BBBB4C",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 10
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeSelectPatrolPointTaskInstanceData",
+					"Name": "Select Patrol Point",
+					"ID": "619DC8904DC1D0ECA7DEE0990E059BDB",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 11
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "B0D06B144136E0F60D1E3F81851BC6B3",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 11
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeSwimToTaskInstanceData",
+					"Name": "Swim To",
+					"ID": "06F79BC5455A10132F64FB93987A8DEA",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 12
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "C508BCF84FA90D2099F52CA848046333",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 12
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/StateTreeModule.StateTreeDelayTaskInstanceData",
+					"Name": "Delay Task",
+					"ID": "D6EC5ADD4AD41838348FC3AE636F79EC",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 13
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "B9BA432E4CE5F4BCA1311EB12603F8D3",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 13
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/StateTreeModule.StateTreeDelayTaskInstanceData",
+					"Name": "Delay Task",
+					"ID": "74BE8D714C582C56C762CA8809AD0083",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 14
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "005D6FF24FBF5C7E59DCE287487C4A5A",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 14
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/ProjectAtlantis.AtlantisStateTreeSelectPatrolPointTaskInstanceData",
+					"Name": "Select Patrol Point",
+					"ID": "FE804FC14B374A85515F91960C2C3D34",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 15
+						}
+					},
+					"DataSource": "StateParameter",
+					"Struct": null,
+					"Name": "Parameters",
+					"ID": "257F4C244AE4C4DB256D41AD85DA54B4",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "ActiveInstanceData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 15
+						}
+					},
+					"DataSource": "Task",
+					"Struct": "/Script/StateTreeModule.StateTreeDelayTaskInstanceData",
+					"Name": "Delay Task",
+					"ID": "E399494B47844CCD36A7D5BDD79BC6C9",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "SharedInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Condition",
+					"Struct": "/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData",
+					"Name": "Enum Compare",
+					"ID": "703722A04643C2700D6A6ABF5A13CCE5",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "SharedInstanceData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Condition",
+					"Struct": "/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData",
+					"Name": "Enum Compare",
+					"ID": "C58A23754CD934E144E77C9F195630DD",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "SharedInstanceData",
+						"Index": 2,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Condition",
+					"Struct": "/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData",
+					"Name": "Enum Compare",
+					"ID": "BB611BCB40A4C2887AB89C9586078EA8",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "SharedInstanceData",
+						"Index": 3,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Condition",
+					"Struct": "/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData",
+					"Name": "Enum Compare",
+					"ID": "425EB6304730794309E32CB78AD5BE56",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "SharedInstanceData",
+						"Index": 4,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Condition",
+					"Struct": "/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData",
+					"Name": "Enum Compare",
+					"ID": "C9AEC842403DC8E3E78E1DB81559E40D",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "SharedInstanceData",
+						"Index": 5,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Condition",
+					"Struct": "/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData",
+					"Name": "Enum Compare",
+					"ID": "17C4B3254595A0097931CFA615221BBE",
+					"Category": ""
+				},
+				{
+					"DataHandle":
+					{
+						"Source": "SharedInstanceData",
+						"Index": 6,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"DataSource": "Condition",
+					"Struct": "/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData",
+					"Name": "Enum Compare",
+					"ID": "DD1DA5D44292967E75B1789E564BFFD4",
 					"Category": ""
 				}
 			],
@@ -445,7 +2624,7 @@
 					},
 					"TargetPropertyPath":
 					{
-						"StructID": "EF0A039141C546620919A79788E7E914",
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
 						"Segments": [
 							{
 								"Name": "AIController",
@@ -456,13 +2635,1153 @@
 						]
 					},
 					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "315F58F340C3E6E23F99FB9D7CADFBCA",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "LastKnownLocation",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "315F58F340C3E6E23F99FB9D7CADFBCA",
+						"Segments": [
+							{
+								"Name": "TargetLocation",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "946CFCAE4040EFCC7C36C5B282358D1E",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "SuspectActor",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "946CFCAE4040EFCC7C36C5B282358D1E",
+						"Segments": [
+							{
+								"Name": "FocusTarget",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "801F448A44F712D7ED45A0A441EA3A39",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "SuspectActor",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "801F448A44F712D7ED45A0A441EA3A39",
+						"Segments": [
+							{
+								"Name": "FocusTarget",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "C9EBB70042523E22FACD219BF9CDC0D4",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "LastKnownLocation",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "C9EBB70042523E22FACD219BF9CDC0D4",
+						"Segments": [
+							{
+								"Name": "Origin",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "6D05F9C44754A89ACF3BE097123D3912",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "LastKnownLocation",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "6D05F9C44754A89ACF3BE097123D3912",
+						"Segments": [
+							{
+								"Name": "TargetLocation",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "C498CA994CC6F4D8C7BC47A10186BBAB",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "8E5BCDE54520B289DD46F19BAEDE6D6E",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalParameterData",
+						"Index": 65535,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "56581FD14D314F5A6F96B3946ADE95A9",
+						"Segments": [
+							{
+								"Name": "SearchSweepCount",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "8E5BCDE54520B289DD46F19BAEDE6D6E",
+						"Segments": [
+							{
+								"Name": "MaxSweeps",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "3C5CD8EE488A427B2D61E4AA481E13E9",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 3
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "BA3A662A46F0A0C38C32379E7709CA78",
+						"Segments": [
+							{
+								"Name": "SearchPoint",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "3C5CD8EE488A427B2D61E4AA481E13E9",
+						"Segments": [
+							{
+								"Name": "TargetLocation",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "F1ECC0B94885D6F51DD8F18AC250E9C9",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1D971B0028884FDEB543680236984FD5",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "619DC8904DC1D0ECA7DEE0990E059BDB",
+						"Segments": [
+							{
+								"Name": "Actor",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "EDB3CD9795F94E0ABD15207B98645CDC",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "06F79BC5455A10132F64FB93987A8DEA",
+						"Segments": [
+							{
+								"Name": "AIController",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 9
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "A988DD03416C78B8568476811CC40F2A",
+						"Segments": [
+							{
+								"Name": "PointLocation",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "06F79BC5455A10132F64FB93987A8DEA",
+						"Segments": [
+							{
+								"Name": "TargetLocation",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 9
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "A988DD03416C78B8568476811CC40F2A",
+						"Segments": [
+							{
+								"Name": "WaitTime",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "D6EC5ADD4AD41838348FC3AE636F79EC",
+						"Segments": [
+							{
+								"Name": "Duration",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "ContextData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1D971B0028884FDEB543680236984FD5",
+						"Segments": []
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "FE804FC14B374A85515F91960C2C3D34",
+						"Segments": [
+							{
+								"Name": "Actor",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "Status",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "703722A04643C2700D6A6ABF5A13CCE5",
+						"Segments": [
+							{
+								"Name": "Left",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							},
+							{
+								"Name": "Value",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "Status",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "C58A23754CD934E144E77C9F195630DD",
+						"Segments": [
+							{
+								"Name": "Left",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							},
+							{
+								"Name": "Value",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "Status",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "BB611BCB40A4C2887AB89C9586078EA8",
+						"Segments": [
+							{
+								"Name": "Left",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							},
+							{
+								"Name": "Value",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "Status",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "425EB6304730794309E32CB78AD5BE56",
+						"Segments": [
+							{
+								"Name": "Left",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							},
+							{
+								"Name": "Value",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "Status",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "C9AEC842403DC8E3E78E1DB81559E40D",
+						"Segments": [
+							{
+								"Name": "Left",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							},
+							{
+								"Name": "Value",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "Status",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "17C4B3254595A0097931CFA615221BBE",
+						"Segments": [
+							{
+								"Name": "Left",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							},
+							{
+								"Name": "Value",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
+				},
+				{
+					"SourceDataHandle":
+					{
+						"Source": "GlobalInstanceData",
+						"Index": 0,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					},
+					"bIsOutputBinding": false,
+					"SourcePropertyPath":
+					{
+						"StructID": "1CC05BC14C26F4CCA5C7D29F41A298D0",
+						"Segments": [
+							{
+								"Name": "Status",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"TargetPropertyPath":
+					{
+						"StructID": "DD1DA5D44292967E75B1789E564BFFD4",
+						"Segments": [
+							{
+								"Name": "Left",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							},
+							{
+								"Name": "Value",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"PropertyFunctionNode": "None"
 				}
 			],
-			"PropertyReferencePaths": [],
-			"PropertyAccesses": [],
+			"PropertyReferencePaths": [
+				{
+					"SourcePropertyPath":
+					{
+						"StructID": "BA3A662A46F0A0C38C32379E7709CA78",
+						"Segments": [
+							{
+								"Name": "SearchPoint",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"SourceDataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 3
+						}
+					}
+				},
+				{
+					"SourcePropertyPath":
+					{
+						"StructID": "A988DD03416C78B8568476811CC40F2A",
+						"Segments": [
+							{
+								"Name": "PointLocation",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"SourceDataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 9
+						}
+					}
+				},
+				{
+					"SourcePropertyPath":
+					{
+						"StructID": "56581FD14D314F5A6F96B3946ADE95A9",
+						"Segments": [
+							{
+								"Name": "WaitTime",
+								"ArrayIndex": -1,
+								"InstanceStruct": null,
+								"InstancedStructAccessType": "Unset"
+							}
+						]
+					},
+					"SourceDataHandle":
+					{
+						"Source": "GlobalParameterData",
+						"Index": 65535,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					}
+				}
+			],
+			"PropertyAccesses": [
+				{
+					"SourceIndirection":
+					{
+						"ArrayIndex":
+						{
+							"Value": 65535
+						},
+						"Offset": 0,
+						"NextIndex":
+						{
+							"Value": 65535
+						},
+						"Type": "Offset",
+						"InstanceStruct": null
+					},
+					"SourceDataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 3
+						}
+					}
+				},
+				{
+					"SourceIndirection":
+					{
+						"ArrayIndex":
+						{
+							"Value": 65535
+						},
+						"Offset": 0,
+						"NextIndex":
+						{
+							"Value": 65535
+						},
+						"Type": "Offset",
+						"InstanceStruct": null
+					},
+					"SourceDataHandle":
+					{
+						"Source": "StateParameterData",
+						"Index": 1,
+						"StateHandle":
+						{
+							"Index": 9
+						}
+					}
+				},
+				{
+					"SourceIndirection":
+					{
+						"ArrayIndex":
+						{
+							"Value": 65535
+						},
+						"Offset": 0,
+						"NextIndex":
+						{
+							"Value": 65535
+						},
+						"Type": "Offset",
+						"InstanceStruct": null
+					},
+					"SourceDataHandle":
+					{
+						"Source": "GlobalParameterData",
+						"Index": 65535,
+						"StateHandle":
+						{
+							"Index": 65535
+						}
+					}
+				}
+			],
 			"CopyBatches": [
 				{
-					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535)),DataSource=Evaluator,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.StateTreePerceptionEvaluatorInstanceData'\",Name=\"Perception Evaluator\",ID=EF0A039141C546620919A79788E7E914,Category=\"\")",
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=GlobalInstanceData,Index=0,StateHandle=(Index=65535)),DataSource=Evaluator,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeDetectionEvaluatorInstanceData'\",Name=\"Atlantis Detection\",ID=1CC05BC14C26F4CCA5C7D29F41A298D0,Category=\"\")",
 					"BindingsBegin":
 					{
 						"Value": 0
@@ -470,6 +3789,386 @@
 					"BindingsEnd":
 					{
 						"Value": 1
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=1)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeSwimToTaskInstanceData'\",Name=\"Swim To\",ID=315F58F340C3E6E23F99FB9D7CADFBCA,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 1
+					},
+					"BindingsEnd":
+					{
+						"Value": 3
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=1)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeSetFocusTaskInstanceData'\",Name=\"Set Focus\",ID=946CFCAE4040EFCC7C36C5B282358D1E,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 3
+					},
+					"BindingsEnd":
+					{
+						"Value": 5
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=2)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeSetFocusTaskInstanceData'\",Name=\"Set Focus\",ID=801F448A44F712D7ED45A0A441EA3A39,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 5
+					},
+					"BindingsEnd":
+					{
+						"Value": 7
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=2,StateHandle=(Index=3)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeBeginSearchTaskInstanceData'\",Name=\"Begin Search\",ID=C9EBB70042523E22FACD219BF9CDC0D4,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 7
+					},
+					"BindingsEnd":
+					{
+						"Value": 9
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=4)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeSwimToTaskInstanceData'\",Name=\"Swim To\",ID=6D05F9C44754A89ACF3BE097123D3912,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 9
+					},
+					"BindingsEnd":
+					{
+						"Value": 11
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=5)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeLookAroundTaskInstanceData'\",Name=\"Look Around\",ID=C498CA994CC6F4D8C7BC47A10186BBAB,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 11
+					},
+					"BindingsEnd":
+					{
+						"Value": 12
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=6)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeFindSearchPointTaskInstanceData'\",Name=\"Find Search Point\",ID=8E5BCDE54520B289DD46F19BAEDE6D6E,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 12
+					},
+					"BindingsEnd":
+					{
+						"Value": 14
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=7)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeSwimToTaskInstanceData'\",Name=\"Swim To\",ID=3C5CD8EE488A427B2D61E4AA481E13E9,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 14
+					},
+					"BindingsEnd":
+					{
+						"Value": 16
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=4,StateHandle=(Index=8)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeGiveUpSearchTaskInstanceData'\",Name=\"Give Up Search\",ID=F1ECC0B94885D6F51DD8F18AC250E9C9,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 16
+					},
+					"BindingsEnd":
+					{
+						"Value": 17
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=10)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeSelectPatrolPointTaskInstanceData'\",Name=\"Select Patrol Point\",ID=619DC8904DC1D0ECA7DEE0990E059BDB,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 17
+					},
+					"BindingsEnd":
+					{
+						"Value": 18
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=11)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeSwimToTaskInstanceData'\",Name=\"Swim To\",ID=06F79BC5455A10132F64FB93987A8DEA,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 18
+					},
+					"BindingsEnd":
+					{
+						"Value": 20
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=12)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/StateTreeModule.StateTreeDelayTaskInstanceData'\",Name=\"Delay Task\",ID=D6EC5ADD4AD41838348FC3AE636F79EC,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 20
+					},
+					"BindingsEnd":
+					{
+						"Value": 21
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=ActiveInstanceData,Index=3,StateHandle=(Index=14)),DataSource=Task,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/ProjectAtlantis.AtlantisStateTreeSelectPatrolPointTaskInstanceData'\",Name=\"Select Patrol Point\",ID=FE804FC14B374A85515F91960C2C3D34,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 21
+					},
+					"BindingsEnd":
+					{
+						"Value": 22
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=SharedInstanceData,Index=0,StateHandle=(Index=65535)),DataSource=Condition,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData'\",Name=\"Enum Compare\",ID=703722A04643C2700D6A6ABF5A13CCE5,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 22
+					},
+					"BindingsEnd":
+					{
+						"Value": 23
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=SharedInstanceData,Index=1,StateHandle=(Index=65535)),DataSource=Condition,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData'\",Name=\"Enum Compare\",ID=C58A23754CD934E144E77C9F195630DD,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 23
+					},
+					"BindingsEnd":
+					{
+						"Value": 24
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=SharedInstanceData,Index=2,StateHandle=(Index=65535)),DataSource=Condition,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData'\",Name=\"Enum Compare\",ID=BB611BCB40A4C2887AB89C9586078EA8,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 24
+					},
+					"BindingsEnd":
+					{
+						"Value": 25
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=SharedInstanceData,Index=3,StateHandle=(Index=65535)),DataSource=Condition,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData'\",Name=\"Enum Compare\",ID=425EB6304730794309E32CB78AD5BE56,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 25
+					},
+					"BindingsEnd":
+					{
+						"Value": 26
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=SharedInstanceData,Index=4,StateHandle=(Index=65535)),DataSource=Condition,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData'\",Name=\"Enum Compare\",ID=C9AEC842403DC8E3E78E1DB81559E40D,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 26
+					},
+					"BindingsEnd":
+					{
+						"Value": 27
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=SharedInstanceData,Index=5,StateHandle=(Index=65535)),DataSource=Condition,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData'\",Name=\"Enum Compare\",ID=17C4B3254595A0097931CFA615221BBE,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 27
+					},
+					"BindingsEnd":
+					{
+						"Value": 28
+					},
+					"PropertyFunctionsBegin":
+					{
+						"Value": 65535
+					},
+					"PropertyFunctionsEnd":
+					{
+						"Value": 65535
+					}
+				},
+				{
+					"TargetStruct": "/Script/StateTreeModule.StateTreeBindableStructDesc(DataHandle=(Source=SharedInstanceData,Index=6,StateHandle=(Index=65535)),DataSource=Condition,Struct=\"/Script/CoreUObject.ScriptStruct'/Script/StateTreeModule.StateTreeCompareEnumConditionInstanceData'\",Name=\"Enum Compare\",ID=DD1DA5D44292967E75B1789E564BFFD4,Category=\"\")",
+					"BindingsBegin":
+					{
+						"Value": 28
+					},
+					"BindingsEnd":
+					{
+						"Value": 29
 					},
 					"PropertyFunctionsBegin":
 					{
@@ -492,41 +4191,405 @@
 				}
 			},
 			{
-				"Id": "CB7DE8B246CF14A1EB6FBBA772E3D6AD",
+				"Id": "815AA3434D7964A1139618AA8082C0E6",
 				"Handle":
 				{
 					"Index": 1
+				}
+			},
+			{
+				"Id": "D6675CA74661619C34A94A9E232C4F04",
+				"Handle":
+				{
+					"Index": 2
+				}
+			},
+			{
+				"Id": "1EC09536410A05C7DDE78EAAE6C7455F",
+				"Handle":
+				{
+					"Index": 3
+				}
+			},
+			{
+				"Id": "E33F536448DD6F19BC0A2ABF3C04B6AA",
+				"Handle":
+				{
+					"Index": 4
+				}
+			},
+			{
+				"Id": "570345F542BD42AFAA361EBDA4B6AAD3",
+				"Handle":
+				{
+					"Index": 5
+				}
+			},
+			{
+				"Id": "EDF24A2443734DC6D0C007903BA07488",
+				"Handle":
+				{
+					"Index": 6
+				}
+			},
+			{
+				"Id": "9B7C9747462D6C54BFBE2F924D70B5EA",
+				"Handle":
+				{
+					"Index": 7
+				}
+			},
+			{
+				"Id": "BFD7F1BC41BC59755A9FE8A626C38808",
+				"Handle":
+				{
+					"Index": 8
+				}
+			},
+			{
+				"Id": "963AD36143DCFC01AFB77B8B3D00A16E",
+				"Handle":
+				{
+					"Index": 9
+				}
+			},
+			{
+				"Id": "D10BDC724CFAFBE47A4C8CB82EC42455",
+				"Handle":
+				{
+					"Index": 10
+				}
+			},
+			{
+				"Id": "B2F020B844361D942CB1B89151A463C9",
+				"Handle":
+				{
+					"Index": 11
+				}
+			},
+			{
+				"Id": "C2A2C593447A121352ACEC943971E48C",
+				"Handle":
+				{
+					"Index": 12
+				}
+			},
+			{
+				"Id": "3BC1D2C14F8D0B9E514F2A8BE9F23192",
+				"Handle":
+				{
+					"Index": 13
+				}
+			},
+			{
+				"Id": "A4FF87834F15C773970D1FBA5B7966CB",
+				"Handle":
+				{
+					"Index": 14
+				}
+			},
+			{
+				"Id": "F091A07C4A258296CA8FE99BC7E663E6",
+				"Handle":
+				{
+					"Index": 15
 				}
 			}
 		],
 		"IDToNodeMappings": [
 			{
-				"Id": "EF0A039141C546620919A79788E7E914",
+				"Id": "1CC05BC14C26F4CCA5C7D29F41A298D0",
 				"Index":
 				{
 					"Value": 0
 				}
 			},
 			{
-				"Id": "B5D9296B458E8886882605A75E55C6C8",
+				"Id": "315F58F340C3E6E23F99FB9D7CADFBCA",
 				"Index":
 				{
 					"Value": 1
+				}
+			},
+			{
+				"Id": "946CFCAE4040EFCC7C36C5B282358D1E",
+				"Index":
+				{
+					"Value": 2
+				}
+			},
+			{
+				"Id": "801F448A44F712D7ED45A0A441EA3A39",
+				"Index":
+				{
+					"Value": 3
+				}
+			},
+			{
+				"Id": "C9EBB70042523E22FACD219BF9CDC0D4",
+				"Index":
+				{
+					"Value": 4
+				}
+			},
+			{
+				"Id": "6D05F9C44754A89ACF3BE097123D3912",
+				"Index":
+				{
+					"Value": 5
+				}
+			},
+			{
+				"Id": "C498CA994CC6F4D8C7BC47A10186BBAB",
+				"Index":
+				{
+					"Value": 6
+				}
+			},
+			{
+				"Id": "8E5BCDE54520B289DD46F19BAEDE6D6E",
+				"Index":
+				{
+					"Value": 7
+				}
+			},
+			{
+				"Id": "3C5CD8EE488A427B2D61E4AA481E13E9",
+				"Index":
+				{
+					"Value": 8
+				}
+			},
+			{
+				"Id": "F1ECC0B94885D6F51DD8F18AC250E9C9",
+				"Index":
+				{
+					"Value": 9
+				}
+			},
+			{
+				"Id": "619DC8904DC1D0ECA7DEE0990E059BDB",
+				"Index":
+				{
+					"Value": 10
+				}
+			},
+			{
+				"Id": "06F79BC5455A10132F64FB93987A8DEA",
+				"Index":
+				{
+					"Value": 11
+				}
+			},
+			{
+				"Id": "D6EC5ADD4AD41838348FC3AE636F79EC",
+				"Index":
+				{
+					"Value": 12
+				}
+			},
+			{
+				"Id": "74BE8D714C582C56C762CA8809AD0083",
+				"Index":
+				{
+					"Value": 13
+				}
+			},
+			{
+				"Id": "FE804FC14B374A85515F91960C2C3D34",
+				"Index":
+				{
+					"Value": 14
+				}
+			},
+			{
+				"Id": "E399494B47844CCD36A7D5BDD79BC6C9",
+				"Index":
+				{
+					"Value": 15
+				}
+			},
+			{
+				"Id": "703722A04643C2700D6A6ABF5A13CCE5",
+				"Index":
+				{
+					"Value": 16
+				}
+			},
+			{
+				"Id": "C58A23754CD934E144E77C9F195630DD",
+				"Index":
+				{
+					"Value": 17
+				}
+			},
+			{
+				"Id": "BB611BCB40A4C2887AB89C9586078EA8",
+				"Index":
+				{
+					"Value": 18
+				}
+			},
+			{
+				"Id": "425EB6304730794309E32CB78AD5BE56",
+				"Index":
+				{
+					"Value": 19
+				}
+			},
+			{
+				"Id": "C9AEC842403DC8E3E78E1DB81559E40D",
+				"Index":
+				{
+					"Value": 20
+				}
+			},
+			{
+				"Id": "17C4B3254595A0097931CFA615221BBE",
+				"Index":
+				{
+					"Value": 21
+				}
+			},
+			{
+				"Id": "DD1DA5D44292967E75B1789E564BFFD4",
+				"Index":
+				{
+					"Value": 22
 				}
 			}
 		],
 		"IDToTransitionMappings": [
 			{
-				"Id": "078A92B94F3866B2ABF647AFBBE147E9",
+				"Id": "9BD45F534A11F308237CBF8D9E8C2D0A",
 				"Index":
 				{
 					"Value": 0
+				}
+			},
+			{
+				"Id": "1BE2B7634B4B90B762648DB0B10A7E67",
+				"Index":
+				{
+					"Value": 1
+				}
+			},
+			{
+				"Id": "BC8F48274688B38EB376E982F27C27D1",
+				"Index":
+				{
+					"Value": 2
+				}
+			},
+			{
+				"Id": "8BE1A3DF420625FDA8F2BA83A184E793",
+				"Index":
+				{
+					"Value": 3
+				}
+			},
+			{
+				"Id": "8779B1BA404FECCF1698789AF0A8A066",
+				"Index":
+				{
+					"Value": 4
+				}
+			},
+			{
+				"Id": "A4FD532A4CD5B388785E5D825504BDE5",
+				"Index":
+				{
+					"Value": 5
+				}
+			},
+			{
+				"Id": "6AEB80BF4E799CF4055373A39E52EB9C",
+				"Index":
+				{
+					"Value": 6
+				}
+			},
+			{
+				"Id": "5F0CE30141985228EA014C9EF893CCDD",
+				"Index":
+				{
+					"Value": 7
+				}
+			},
+			{
+				"Id": "736158134E9AC11B4EC6C5A78CE2FD31",
+				"Index":
+				{
+					"Value": 8
+				}
+			},
+			{
+				"Id": "A1FE76E3409B48AC2A37DB88F7EF5F81",
+				"Index":
+				{
+					"Value": 9
+				}
+			},
+			{
+				"Id": "362B4E4F489A255D05F0888A77EB5C8F",
+				"Index":
+				{
+					"Value": 10
+				}
+			},
+			{
+				"Id": "B1FFA2B5481B7488CAFFEA89BA64B63D",
+				"Index":
+				{
+					"Value": 11
+				}
+			},
+			{
+				"Id": "398B139045F032254DF8A3AA697CF764",
+				"Index":
+				{
+					"Value": 12
+				}
+			},
+			{
+				"Id": "736711404A69320C6DFE6AB9D4C0301C",
+				"Index":
+				{
+					"Value": 13
+				}
+			},
+			{
+				"Id": "FEC704FD40CAC2A0B0334690AA987AD0",
+				"Index":
+				{
+					"Value": 14
+				}
+			},
+			{
+				"Id": "F49C7D8044F5306067D1A7960EC0DD51",
+				"Index":
+				{
+					"Value": 15
+				}
+			},
+			{
+				"Id": "EAC923BD4A3C45D851A8F28DAA77D737",
+				"Index":
+				{
+					"Value": 16
+				}
+			},
+			{
+				"Id": "1D2B49DF46FF9260C01366A1F99C74C4",
+				"Index":
+				{
+					"Value": 17
 				}
 			}
 		],
 		"Parameters":
 		{
-			"Value": "None"
+			"Value": "/Engine/Transient.PropertyBag_5ae8091a45c3eafc(WaitTime=0.000000,SearchSweepCount=3)"
 		},
 		"CompletionGlobalTasksMask": 1,
 		"NumContextData": 2,

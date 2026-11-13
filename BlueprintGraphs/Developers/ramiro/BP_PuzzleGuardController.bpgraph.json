@@ -1,0 +1,1064 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/Developers/ramiro/BP_PuzzleGuardController",
+	"asset": "BP_PuzzleGuardController",
+	"assetClass": "Blueprint",
+	"parentClass": "BP_AtlantisEnemyController_C",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "4004a5ff4e057958d24cab8379cae473",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4004a5ff4e057958d24cab8379cae473:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a443314848555b7520b65091f1ed9fca:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a443314848555b7520b65091f1ed9fca",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: Construction Script",
+					"x": 200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a443314848555b7520b65091f1ed9fca:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4004a5ff4e057958d24cab8379cae473:o:then"
+							]
+						},
+						{
+							"id": "a443314848555b7520b65091f1ed9fca:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a443314848555b7520b65091f1ed9fca:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "3270f3804927e66bccf6b29c48f99692",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: Tick",
+					"x": 192,
+					"y": 400,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "3270f3804927e66bccf6b29c48f99692:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c21331f24e527d341cd4e4850d891cb8:o:then"
+							]
+						},
+						{
+							"id": "3270f3804927e66bccf6b29c48f99692:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3270f3804927e66bccf6b29c48f99692:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3270f3804927e66bccf6b29c48f99692:i:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"c21331f24e527d341cd4e4850d891cb8:o:DeltaSeconds"
+							]
+						}
+					]
+				},
+				{
+					"guid": "34c57aa1429694ad473af8bf4c4ef9cf",
+					"class": "K2Node_SwitchEnum",
+					"title": "Switch on EMonsterStatus",
+					"x": 400,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4359fb8a40d1b916ab5de184f0077898:o:then"
+							]
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:i:Selection",
+							"name": "Selection",
+							"direction": "input",
+							"type": "byte:/Script/ProjectAtlantis.EMonsterStatus",
+							"defaultValue": null,
+							"links": [
+								"4359fb8a40d1b916ab5de184f0077898:o:NewStatus"
+							]
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:i:NotEqual_ByteByte",
+							"name": "NotEqual_ByteByte",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:o:Idle",
+							"name": "Idle",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:o:Alerted",
+							"name": "Alerted",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c680afd54294ac30f6efc89600138ab9:i:execute"
+							]
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:o:Searching",
+							"name": "Searching",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "34c57aa1429694ad473af8bf4c4ef9cf:o:Combat",
+							"name": "Combat",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4a59e3754bb04596a094e68fa074a630:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4359fb8a40d1b916ab5de184f0077898",
+					"class": "K2Node_CustomEvent",
+					"title": "HandleStatusChanged",
+					"x": 128,
+					"y": 128,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4359fb8a40d1b916ab5de184f0077898:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"6fdf08a84f0b6941d85c9ba70f3c0ea9:i:Delegate"
+							]
+						},
+						{
+							"id": "4359fb8a40d1b916ab5de184f0077898:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"34c57aa1429694ad473af8bf4c4ef9cf:i:execute"
+							]
+						},
+						{
+							"id": "4359fb8a40d1b916ab5de184f0077898:o:OldStatus",
+							"name": "OldStatus",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EMonsterStatus",
+							"defaultValue": "None",
+							"links": []
+						},
+						{
+							"id": "4359fb8a40d1b916ab5de184f0077898:o:NewStatus",
+							"name": "NewStatus",
+							"direction": "output",
+							"type": "byte:/Script/ProjectAtlantis.EMonsterStatus",
+							"defaultValue": null,
+							"links": [
+								"34c57aa1429694ad473af8bf4c4ef9cf:i:Selection"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4a59e3754bb04596a094e68fa074a630",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 752,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"34c57aa1429694ad473af8bf4c4ef9cf:o:Combat"
+							]
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "SPOTTED!!!!",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=1.000000,G=0.000052,B=0.012629,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "5.000000",
+							"links": []
+						},
+						{
+							"id": "4a59e3754bb04596a094e68fa074a630:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6fdf08a84f0b6941d85c9ba70f3c0ea9",
+					"class": "K2Node_AddDelegate",
+					"title": "Bind Event to On Status Changed",
+					"x": 432,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6fdf08a84f0b6941d85c9ba70f3c0ea9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b030d07d414ec38d1eb175adf538d069:o:then"
+							]
+						},
+						{
+							"id": "6fdf08a84f0b6941d85c9ba70f3c0ea9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6fdf08a84f0b6941d85c9ba70f3c0ea9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisEnemyController",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6fdf08a84f0b6941d85c9ba70f3c0ea9:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"4359fb8a40d1b916ab5de184f0077898:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7799fc8e40885bad70039682717bf149",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7799fc8e40885bad70039682717bf149:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7799fc8e40885bad70039682717bf149:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b030d07d414ec38d1eb175adf538d069:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b030d07d414ec38d1eb175adf538d069",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: BeginPlay",
+					"x": 200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b030d07d414ec38d1eb175adf538d069:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7799fc8e40885bad70039682717bf149:o:then"
+							]
+						},
+						{
+							"id": "b030d07d414ec38d1eb175adf538d069:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6fdf08a84f0b6941d85c9ba70f3c0ea9:i:execute"
+							]
+						},
+						{
+							"id": "b030d07d414ec38d1eb175adf538d069:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c21331f24e527d341cd4e4850d891cb8",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": -8,
+					"y": 400,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "c21331f24e527d341cd4e4850d891cb8:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c21331f24e527d341cd4e4850d891cb8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3270f3804927e66bccf6b29c48f99692:i:execute"
+							]
+						},
+						{
+							"id": "c21331f24e527d341cd4e4850d891cb8:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"3270f3804927e66bccf6b29c48f99692:i:DeltaSeconds"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c680afd54294ac30f6efc89600138ab9",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 720,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"34c57aa1429694ad473af8bf4c4ef9cf:o:Alerted"
+							]
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Alerted",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "c680afd54294ac30f6efc89600138ab9:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"AIPerception":
+			{
+				"_class": "AIPerceptionComponent",
+				"_name": "AI Perception",
+				"SensesConfig": [
+					{
+						"_class": "AISenseConfig_Sight",
+						"_name": "AISenseConfig_Sight_0",
+						"Implementation": "/Script/AIModule.AISense_Sight",
+						"SightRadius": 1200,
+						"LoseSightRadius": 1500,
+						"PeripheralVisionAngleDegrees": 35,
+						"DetectionByAffiliation":
+						{
+							"bDetectEnemies": true,
+							"bDetectNeutrals": true,
+							"bDetectFriendlies": true
+						},
+						"AutoSuccessRangeFromLastSeenLocation": -1,
+						"PointOfViewBackwardOffset": 0,
+						"NearClippingRadius": 0,
+						"DebugColor":
+						{
+							"B": 0,
+							"G": 255,
+							"R": 0,
+							"A": 255
+						},
+						"MaxAge": 0,
+						"bStartsEnabled": true
+					},
+					{
+						"_class": "AISenseConfig_Hearing",
+						"_name": "AISenseConfig_Hearing_0",
+						"Implementation": "/Script/AIModule.AISense_Hearing",
+						"HearingRange": 3000,
+						"LoSHearingRange": 0,
+						"bUseLoSHearing": false,
+						"DetectionByAffiliation":
+						{
+							"bDetectEnemies": true,
+							"bDetectNeutrals": false,
+							"bDetectFriendlies": false
+						},
+						"DebugColor":
+						{
+							"B": 0,
+							"G": 255,
+							"R": 255,
+							"A": 255
+						},
+						"MaxAge": 0,
+						"bStartsEnabled": true
+					}
+				],
+				"DominantSense": "/Script/AIModule.AISense_Sight",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"CurrentStatus": "Idle",
+			"MaxYawRateDegreesPerSecond": 180,
+			"SightCone":
+			{
+				"_class": "AtlantisSightConeComponent",
+				"_name": "Sight Cone",
+				"bDrawSightCone": true,
+				"IdleColor":
+				{
+					"B": 0,
+					"G": 255,
+					"R": 0,
+					"A": 255
+				},
+				"SuspiciousColor":
+				{
+					"B": 0,
+					"G": 255,
+					"R": 255,
+					"A": 255
+				},
+				"DetectedColor":
+				{
+					"B": 0,
+					"G": 0,
+					"R": 255,
+					"A": 255
+				},
+				"bDrawLoseSightCone": true,
+				"LoseSightConeBrightness": 0.40000000000000002,
+				"NumSides": 16,
+				"LineThickness": 1.5,
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"StateTreeComponent":
+			{
+				"_class": "StateTreeAIComponent",
+				"_name": "State Tree",
+				"StateTreeRef":
+				{
+					"StateTree": "/Game/ProjectAtlantis/Core/AI/ST_Enemy.ST_Enemy",
+					"Parameters":
+					{
+						"Value": "None"
+					},
+					"PropertyOverrides": []
+				},
+				"LinkedStateTreeOverrides":
+				{
+					"OverrideItems": []
+				},
+				"bStartLogicAutomatically": true,
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": true,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"bStartAILogicOnPossess": false,
+			"bStopAILogicOnUnposses": true,
+			"bLOSflag": false,
+			"bSkipExtraLOSChecks": true,
+			"bAllowStrafe": false,
+			"bWantsPlayerState": false,
+			"bSetControlRotationFromPawnOrientation": true,
+			"PathFollowingComponent":
+			{
+				"_class": "AtlantisPathFollowingComponent",
+				"_name": "PathFollowingComponent",
+				"IntermediatePointTolerance": 30,
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": true,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": true,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"BrainComponent": null,
+			"PerceptionComponent": null,
+			"Blackboard": null,
+			"CachedGameplayTasksComponent": null,
+			"DefaultNavigationFilterClass": null,
+			"PlayerState": null,
+			"StateName": "None",
+			"Pawn": null,
+			"Character": null,
+			"TransformComponent":
+			{
+				"_class": "SceneComponent",
+				"_name": "TransformComponent0",
+				"AttachParent": null,
+				"AttachSocketName": "None",
+				"RelativeLocation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"RelativeRotation":
+				{
+					"Pitch": 0,
+					"Yaw": 0,
+					"Roll": 0
+				},
+				"RelativeScale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				},
+				"ComponentVelocity":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"bAbsoluteLocation": false,
+				"bAbsoluteRotation": true,
+				"bAbsoluteScale": false,
+				"bVisible": true,
+				"bShouldUpdatePhysicsVolume": false,
+				"bHiddenInGame": false,
+				"bBoundsChangeTriggersStreamingDataRebuild": false,
+				"bUseAttachParentBound": false,
+				"bComputeFastLocalBounds": false,
+				"bComputeBoundsOnceForGame": false,
+				"bComputedBoundsOnceForGame": false,
+				"bIsNotRenderAttachmentRoot": false,
+				"bVisualizeComponent": false,
+				"Mobility": "Movable",
+				"DetailMode": "DM_Low",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"ControlRotation":
+			{
+				"Pitch": 0,
+				"Yaw": 0,
+				"Roll": 0
+			},
+			"bAttachToPawn": false,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": true,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": true,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": true,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": false,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent":
+			{
+				"_class": "SceneComponent",
+				"_name": "TransformComponent0",
+				"AttachParent": null,
+				"AttachSocketName": "None",
+				"RelativeLocation":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"RelativeRotation":
+				{
+					"Pitch": 0,
+					"Yaw": 0,
+					"Roll": 0
+				},
+				"RelativeScale3D":
+				{
+					"X": 1,
+					"Y": 1,
+					"Z": 1
+				},
+				"ComponentVelocity":
+				{
+					"X": 0,
+					"Y": 0,
+					"Z": 0
+				},
+				"bAbsoluteLocation": false,
+				"bAbsoluteRotation": true,
+				"bAbsoluteScale": false,
+				"bVisible": true,
+				"bShouldUpdatePhysicsVolume": false,
+				"bHiddenInGame": false,
+				"bBoundsChangeTriggersStreamingDataRebuild": false,
+				"bUseAttachParentBound": false,
+				"bComputeFastLocalBounds": false,
+				"bComputeBoundsOnceForGame": false,
+				"bComputedBoundsOnceForGame": false,
+				"bIsNotRenderAttachmentRoot": false,
+				"bVisualizeComponent": false,
+				"Mobility": "Movable",
+				"DetailMode": "DM_Low",
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "BP_AtlantisEnemyController",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": true,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}

@@ -13,7 +13,8 @@ class PROJECTATLANTIS_API AAtlantisAIController : public AAIController
 {
 	GENERATED_BODY()
 public:
-	AAtlantisAIController();
+	// We replace the engine's 2D-ish, check for arrival, for our own that checks in fully 3D
+	AAtlantisAIController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 protected:
 	
