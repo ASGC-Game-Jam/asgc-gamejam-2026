@@ -1,0 +1,1919 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Placeables/Tips/BP_AtlantisInputTip",
+	"asset": "BP_AtlantisInputTip",
+	"assetClass": "Blueprint",
+	"parentClass": "BP_AtlantisTextRenderer_C",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "RefreshText",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "074d7d6145d12a4003df5eb210834c83",
+					"class": "K2Node_EnumEquality",
+					"title": "Equal (Enum)",
+					"x": -160,
+					"y": 408,
+					"comment": null,
+					"pins": [
+						{
+							"id": "074d7d6145d12a4003df5eb210834c83:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e2ecc55843f36ef52f8e678df04d3a56:i:B"
+							]
+						},
+						{
+							"id": "074d7d6145d12a4003df5eb210834c83:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "byte:/Script/CommonInput.ECommonInputType",
+							"defaultValue": null,
+							"links": [
+								"c3ff8fbd4d8e1bad8bcbe4bb0ed3eff6:o:ReturnValue"
+							]
+						},
+						{
+							"id": "074d7d6145d12a4003df5eb210834c83:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "byte:/Script/CommonInput.ECommonInputType",
+							"defaultValue": "Gamepad",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0c9345644abd0ce85f1d99b79e284cec",
+					"class": "K2Node_VariableGet",
+					"title": "Get InputKey",
+					"x": 1104,
+					"y": 553,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0c9345644abd0ce85f1d99b79e284cec:o:InputKey",
+							"name": "InputKey",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"cc79fb4542f21af063b187b1ef36ac38:i:Key"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0e4774f04d45917227d67dbe5bcd69ed",
+					"class": "K2Node_FunctionEntry",
+					"title": "RefreshText",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0e4774f04d45917227d67dbe5bcd69ed:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c883bc934e10eedfe8fcbe8b74128d90:i:Exec"
+							]
+						}
+					]
+				},
+				{
+					"guid": "15574d674547abf5705be6b5f88780df",
+					"class": "K2Node_CallFunction",
+					"title": "Set Timer by Function Name",
+					"x": 2512,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "15574d674547abf5705be6b5f88780df:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a030354c46612a5be3f9e7aaacacbb0f:o:OutputPin"
+							]
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:i:object",
+							"name": "object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:i:FunctionName",
+							"name": "FunctionName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "RefreshText",
+							"links": []
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:i:Time",
+							"name": "Time",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.250000",
+							"links": []
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:i:bLooping",
+							"name": "bLooping",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:i:bMaxOncePerFrame",
+							"name": "bMaxOncePerFrame",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:i:InitialStartDelay",
+							"name": "InitialStartDelay",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:i:InitialStartDelayVariance",
+							"name": "InitialStartDelayVariance",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.000000",
+							"links": []
+						},
+						{
+							"id": "15574d674547abf5705be6b5f88780df:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/Engine.TimerHandle",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1dbc84514ede61abdccc27a285bd05b2",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Text)",
+					"x": 1616,
+					"y": 554,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1dbc84514ede61abdccc27a285bd05b2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "1dbc84514ede61abdccc27a285bd05b2:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"cc79fb4542f21af063b187b1ef36ac38:o:ReturnValue"
+							]
+						},
+						{
+							"id": "1dbc84514ede61abdccc27a285bd05b2:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"fc27ebd74c552729b3f2f183eeb69f6f:i:To"
+							]
+						}
+					]
+				},
+				{
+					"guid": "274c468340cf99c19b22a9aa2dcd8298",
+					"class": "K2Node_CallFunction",
+					"title": "To String (Text)",
+					"x": 1600,
+					"y": 488,
+					"comment": null,
+					"pins": [
+						{
+							"id": "274c468340cf99c19b22a9aa2dcd8298:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "274c468340cf99c19b22a9aa2dcd8298:i:InText",
+							"name": "InText",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"3d8c958649c92038ed692ea5a0e90cb5:o:Text"
+							]
+						},
+						{
+							"id": "274c468340cf99c19b22a9aa2dcd8298:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"fc27ebd74c552729b3f2f183eeb69f6f:i:SourceString"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2f1bbcdb4caa29b932d3fe98b1be5dd8",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 928,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2f1bbcdb4caa29b932d3fe98b1be5dd8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c883bc934e10eedfe8fcbe8b74128d90:o:LoopBody"
+							]
+						},
+						{
+							"id": "2f1bbcdb4caa29b932d3fe98b1be5dd8:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e2ecc55843f36ef52f8e678df04d3a56:o:ReturnValue"
+							]
+						},
+						{
+							"id": "2f1bbcdb4caa29b932d3fe98b1be5dd8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8619ee614ce705e17ca9e79718165334:i:execute"
+							]
+						},
+						{
+							"id": "2f1bbcdb4caa29b932d3fe98b1be5dd8:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3d8c958649c92038ed692ea5a0e90cb5",
+					"class": "K2Node_VariableGet",
+					"title": "Get Text",
+					"x": 1424,
+					"y": 487,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3d8c958649c92038ed692ea5a0e90cb5:o:Text",
+							"name": "Text",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"274c468340cf99c19b22a9aa2dcd8298:i:InText"
+							]
+						},
+						{
+							"id": "3d8c958649c92038ed692ea5a0e90cb5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/UI/BP_AtlantisTextRenderer.BP_AtlantisTextRenderer_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4567f9e2415d651d283bffa0cebf3795",
+					"class": "K2Node_GetSubsystemFromPC",
+					"title": "Get EnhancedInputLocalPlayerSubsystem",
+					"x": -704,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4567f9e2415d651d283bffa0cebf3795:i:PlayerController",
+							"name": "PlayerController",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"d5542dc144db882a59792fbe80976151:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4567f9e2415d651d283bffa0cebf3795:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.EnhancedInputLocalPlayerSubsystem",
+							"defaultValue": null,
+							"links": [
+								"e2f09b5a44eae9cda6221fb484887adb:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "509b37e3404027fbfa3b058ac0c67a13",
+					"class": "K2Node_CallFunction",
+					"title": "Set Text",
+					"x": 2512,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "509b37e3404027fbfa3b058ac0c67a13:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"99dfd52347b96d3d7cc5dbab64c716a4:o:then"
+							]
+						},
+						{
+							"id": "509b37e3404027fbfa3b058ac0c67a13:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "509b37e3404027fbfa3b058ac0c67a13:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.TextRenderComponent",
+							"defaultValue": null,
+							"links": [
+								"c59332bd4258b825b6eee39384ebe5d1:o:TextRender"
+							]
+						},
+						{
+							"id": "509b37e3404027fbfa3b058ac0c67a13:i:Value",
+							"name": "Value",
+							"direction": "input",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"66d7f3f24f1c754c241fd2ba8de3f673:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "66d7f3f24f1c754c241fd2ba8de3f673",
+					"class": "K2Node_CallFunction",
+					"title": "To Text (String)",
+					"x": 2272,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "66d7f3f24f1c754c241fd2ba8de3f673:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetTextLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetTextLibrary",
+							"links": []
+						},
+						{
+							"id": "66d7f3f24f1c754c241fd2ba8de3f673:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"fc27ebd74c552729b3f2f183eeb69f6f:o:ReturnValue"
+							]
+						},
+						{
+							"id": "66d7f3f24f1c754c241fd2ba8de3f673:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"509b37e3404027fbfa3b058ac0c67a13:i:Value"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7465512040827c4b9bb751b467ebd539",
+					"class": "K2Node_GetSubsystemFromPC",
+					"title": "Get CommonInputSubsystem",
+					"x": -704,
+					"y": 406,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7465512040827c4b9bb751b467ebd539:i:PlayerController",
+							"name": "PlayerController",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"d5542dc144db882a59792fbe80976151:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7465512040827c4b9bb751b467ebd539:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/CommonInput.CommonInputSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c3ff8fbd4d8e1bad8bcbe4bb0ed3eff6:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "79ec20f1436926ed2d47b696f4f078a2",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 240,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "79ec20f1436926ed2d47b696f4f078a2:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a439702044fd425773b0c991eb8a51e7:o:OutputPin"
+							]
+						},
+						{
+							"id": "79ec20f1436926ed2d47b696f4f078a2:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c883bc934e10eedfe8fcbe8b74128d90:i:Break"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8039ee944a2a3c580abbd8b6b3680ab8",
+					"class": "K2Node_CallFunction",
+					"title": "Is Gamepad Key",
+					"x": 512,
+					"y": 167,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8039ee944a2a3c580abbd8b6b3680ab8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetInputLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetInputLibrary",
+							"links": []
+						},
+						{
+							"id": "8039ee944a2a3c580abbd8b6b3680ab8:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"e720c2bf4b55a8987fa8a79aee1bdc0b:o:OutputPin"
+							]
+						},
+						{
+							"id": "8039ee944a2a3c580abbd8b6b3680ab8:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e2ecc55843f36ef52f8e678df04d3a56:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8619ee614ce705e17ca9e79718165334",
+					"class": "K2Node_VariableSet",
+					"title": "Set InputKey",
+					"x": 1200,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8619ee614ce705e17ca9e79718165334:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2f1bbcdb4caa29b932d3fe98b1be5dd8:o:then"
+							]
+						},
+						{
+							"id": "8619ee614ce705e17ca9e79718165334:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a439702044fd425773b0c991eb8a51e7:i:InputPin"
+							]
+						},
+						{
+							"id": "8619ee614ce705e17ca9e79718165334:i:InputKey",
+							"name": "InputKey",
+							"direction": "input",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"fa7821334171078fd6b5809b275441a8:o:OutputPin"
+							]
+						},
+						{
+							"id": "8619ee614ce705e17ca9e79718165334:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"c310bb1b42ff19f11462398d53b462d8:i:Key"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8cb8dd394464d6d782f6f798193c7d4f",
+					"class": "K2Node_VariableGet",
+					"title": "Get InputAction",
+					"x": -608,
+					"y": 288,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8cb8dd394464d6d782f6f798193c7d4f:o:InputAction",
+							"name": "InputAction",
+							"direction": "output",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": null,
+							"links": [
+								"e2f09b5a44eae9cda6221fb484887adb:i:Action"
+							]
+						},
+						{
+							"id": "8cb8dd394464d6d782f6f798193c7d4f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Tips/BP_AtlantisInputTip.BP_AtlantisInputTip_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "99dfd52347b96d3d7cc5dbab64c716a4",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1712,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "99dfd52347b96d3d7cc5dbab64c716a4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c883bc934e10eedfe8fcbe8b74128d90:o:Completed"
+							]
+						},
+						{
+							"id": "99dfd52347b96d3d7cc5dbab64c716a4:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c310bb1b42ff19f11462398d53b462d8:o:ReturnValue"
+							]
+						},
+						{
+							"id": "99dfd52347b96d3d7cc5dbab64c716a4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"509b37e3404027fbfa3b058ac0c67a13:i:execute"
+							]
+						},
+						{
+							"id": "99dfd52347b96d3d7cc5dbab64c716a4:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a030354c46612a5be3f9e7aaacacbb0f:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a030354c46612a5be3f9e7aaacacbb0f",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2272,
+					"y": 304,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a030354c46612a5be3f9e7aaacacbb0f:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"99dfd52347b96d3d7cc5dbab64c716a4:o:else"
+							]
+						},
+						{
+							"id": "a030354c46612a5be3f9e7aaacacbb0f:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"15574d674547abf5705be6b5f88780df:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a439702044fd425773b0c991eb8a51e7",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1296,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a439702044fd425773b0c991eb8a51e7:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8619ee614ce705e17ca9e79718165334:o:then"
+							]
+						},
+						{
+							"id": "a439702044fd425773b0c991eb8a51e7:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"79ec20f1436926ed2d47b696f4f078a2:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c310bb1b42ff19f11462398d53b462d8",
+					"class": "K2Node_CallFunction",
+					"title": "Is Valid Key",
+					"x": 1488,
+					"y": 176,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c310bb1b42ff19f11462398d53b462d8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetInputLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetInputLibrary",
+							"links": []
+						},
+						{
+							"id": "c310bb1b42ff19f11462398d53b462d8:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"8619ee614ce705e17ca9e79718165334:o:Output_Get"
+							]
+						},
+						{
+							"id": "c310bb1b42ff19f11462398d53b462d8:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"99dfd52347b96d3d7cc5dbab64c716a4:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c3ff8fbd4d8e1bad8bcbe4bb0ed3eff6",
+					"class": "K2Node_CallFunction",
+					"title": "Get Current Input Type",
+					"x": -400,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3ff8fbd4d8e1bad8bcbe4bb0ed3eff6:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonInput.CommonInputSubsystem",
+							"defaultValue": null,
+							"links": [
+								"7465512040827c4b9bb751b467ebd539:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c3ff8fbd4d8e1bad8bcbe4bb0ed3eff6:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "byte:/Script/CommonInput.ECommonInputType",
+							"defaultValue": null,
+							"links": [
+								"074d7d6145d12a4003df5eb210834c83:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c59332bd4258b825b6eee39384ebe5d1",
+					"class": "K2Node_VariableGet",
+					"title": "Get TextRender",
+					"x": 2112,
+					"y": 151,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c59332bd4258b825b6eee39384ebe5d1:o:TextRender",
+							"name": "TextRender",
+							"direction": "output",
+							"type": "object:/Script/Engine.TextRenderComponent",
+							"defaultValue": null,
+							"links": [
+								"509b37e3404027fbfa3b058ac0c67a13:i:self"
+							]
+						},
+						{
+							"id": "c59332bd4258b825b6eee39384ebe5d1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/UI/BP_AtlantisTextRenderer.BP_AtlantisTextRenderer_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c883bc934e10eedfe8fcbe8b74128d90",
+					"class": "K2Node_MacroInstance",
+					"title": "For Each Loop with Break",
+					"x": 208,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c883bc934e10eedfe8fcbe8b74128d90:i:Exec",
+							"name": "Exec",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0e4774f04d45917227d67dbe5bcd69ed:o:then"
+							]
+						},
+						{
+							"id": "c883bc934e10eedfe8fcbe8b74128d90:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "struct:/Script/InputCore.Key[]",
+							"defaultValue": null,
+							"links": [
+								"e2f09b5a44eae9cda6221fb484887adb:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c883bc934e10eedfe8fcbe8b74128d90:i:Break",
+							"name": "Break",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"79ec20f1436926ed2d47b696f4f078a2:o:OutputPin"
+							]
+						},
+						{
+							"id": "c883bc934e10eedfe8fcbe8b74128d90:o:LoopBody",
+							"name": "LoopBody",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2f1bbcdb4caa29b932d3fe98b1be5dd8:i:execute"
+							]
+						},
+						{
+							"id": "c883bc934e10eedfe8fcbe8b74128d90:o:Array Element",
+							"name": "Array Element",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"e720c2bf4b55a8987fa8a79aee1bdc0b:i:InputPin"
+							]
+						},
+						{
+							"id": "c883bc934e10eedfe8fcbe8b74128d90:o:Array Index",
+							"name": "Array Index",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c883bc934e10eedfe8fcbe8b74128d90:o:Completed",
+							"name": "Completed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"99dfd52347b96d3d7cc5dbab64c716a4:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cc79fb4542f21af063b187b1ef36ac38",
+					"class": "K2Node_CallFunction",
+					"title": "Get Key Display Name",
+					"x": 1312,
+					"y": 530,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cc79fb4542f21af063b187b1ef36ac38:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetInputLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetInputLibrary",
+							"links": []
+						},
+						{
+							"id": "cc79fb4542f21af063b187b1ef36ac38:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"0c9345644abd0ce85f1d99b79e284cec:o:InputKey"
+							]
+						},
+						{
+							"id": "cc79fb4542f21af063b187b1ef36ac38:i:bLongDisplayName",
+							"name": "bLongDisplayName",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "cc79fb4542f21af063b187b1ef36ac38:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": [
+								"1dbc84514ede61abdccc27a285bd05b2:i:InText"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d5542dc144db882a59792fbe80976151",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": -1056,
+					"y": 175,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d5542dc144db882a59792fbe80976151:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "d5542dc144db882a59792fbe80976151:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d5542dc144db882a59792fbe80976151:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "d5542dc144db882a59792fbe80976151:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"4567f9e2415d651d283bffa0cebf3795:i:PlayerController",
+								"7465512040827c4b9bb751b467ebd539:i:PlayerController"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e2ecc55843f36ef52f8e678df04d3a56",
+					"class": "K2Node_PromotableOperator",
+					"title": "Equal (Boolean)",
+					"x": 720,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e2ecc55843f36ef52f8e678df04d3a56:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"8039ee944a2a3c580abbd8b6b3680ab8:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e2ecc55843f36ef52f8e678df04d3a56:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"074d7d6145d12a4003df5eb210834c83:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e2ecc55843f36ef52f8e678df04d3a56:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"2f1bbcdb4caa29b932d3fe98b1be5dd8:i:Condition"
+							]
+						},
+						{
+							"id": "e2ecc55843f36ef52f8e678df04d3a56:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e2f09b5a44eae9cda6221fb484887adb",
+					"class": "K2Node_CallFunction",
+					"title": "Query Keys Mapped to Action",
+					"x": -400,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e2f09b5a44eae9cda6221fb484887adb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "interface:/Script/EnhancedInput.EnhancedInputSubsystemInterface",
+							"defaultValue": null,
+							"links": [
+								"4567f9e2415d651d283bffa0cebf3795:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e2f09b5a44eae9cda6221fb484887adb:i:Action",
+							"name": "Action",
+							"direction": "input",
+							"type": "object:/Script/EnhancedInput.InputAction",
+							"defaultValue": null,
+							"links": [
+								"8cb8dd394464d6d782f6f798193c7d4f:o:InputAction"
+							]
+						},
+						{
+							"id": "e2f09b5a44eae9cda6221fb484887adb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key[]",
+							"defaultValue": null,
+							"links": [
+								"c883bc934e10eedfe8fcbe8b74128d90:i:Array"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e720c2bf4b55a8987fa8a79aee1bdc0b",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 432,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e720c2bf4b55a8987fa8a79aee1bdc0b:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"c883bc934e10eedfe8fcbe8b74128d90:o:Array Element"
+							]
+						},
+						{
+							"id": "e720c2bf4b55a8987fa8a79aee1bdc0b:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"8039ee944a2a3c580abbd8b6b3680ab8:i:Key",
+								"fa7821334171078fd6b5809b275441a8:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fa7821334171078fd6b5809b275441a8",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1120,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fa7821334171078fd6b5809b275441a8:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"e720c2bf4b55a8987fa8a79aee1bdc0b:o:OutputPin"
+							]
+						},
+						{
+							"id": "fa7821334171078fd6b5809b275441a8:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "struct:/Script/InputCore.Key",
+							"defaultValue": null,
+							"links": [
+								"8619ee614ce705e17ca9e79718165334:i:InputKey"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fc27ebd74c552729b3f2f183eeb69f6f",
+					"class": "K2Node_CallFunction",
+					"title": "Replace",
+					"x": 1776,
+					"y": 464,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fc27ebd74c552729b3f2f183eeb69f6f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetStringLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetStringLibrary",
+							"links": []
+						},
+						{
+							"id": "fc27ebd74c552729b3f2f183eeb69f6f:i:SourceString",
+							"name": "SourceString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"274c468340cf99c19b22a9aa2dcd8298:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fc27ebd74c552729b3f2f183eeb69f6f:i:From",
+							"name": "From",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "{key}",
+							"links": []
+						},
+						{
+							"id": "fc27ebd74c552729b3f2f183eeb69f6f:i:To",
+							"name": "To",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"1dbc84514ede61abdccc27a285bd05b2:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fc27ebd74c552729b3f2f183eeb69f6f:i:SearchCase",
+							"name": "SearchCase",
+							"direction": "input",
+							"type": "byte:/Script/CoreUObject.ESearchCase",
+							"defaultValue": "IgnoreCase",
+							"links": []
+						},
+						{
+							"id": "fc27ebd74c552729b3f2f183eeb69f6f:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"66d7f3f24f1c754c241fd2ba8de3f673:i:InString"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "272ea04b48df12ea2f4ff2bc2dfd284b",
+					"text": "Replace the placeholder {key} in the tip with the name of the input key",
+					"x": 1040,
+					"y": 400,
+					"width": 1134,
+					"height": 286
+				},
+				{
+					"guid": "3f24c28048c1e881e11f33a7b2f530da",
+					"text": "Loop on the keys assigned to the action to find the right one to display for the current input type",
+					"x": 144,
+					"y": -64,
+					"width": 1252,
+					"height": 444
+				}
+			]
+		},
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "1c9b2a164af30f0df388e3ae3901a4c4",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: Construction Script",
+					"x": 200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1c9b2a164af30f0df388e3ae3901a4c4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e5b26d9045316c842fbfffa60e5d0bbc:o:then"
+							]
+						},
+						{
+							"id": "1c9b2a164af30f0df388e3ae3901a4c4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1c9b2a164af30f0df388e3ae3901a4c4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e5b26d9045316c842fbfffa60e5d0bbc",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e5b26d9045316c842fbfffa60e5d0bbc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1c9b2a164af30f0df388e3ae3901a4c4:i:execute"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0ed6a01742b2ff2cb84afba3915af2d3",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: Tick",
+					"x": 200,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "0ed6a01742b2ff2cb84afba3915af2d3:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8bf560fc472e452cc3ea0088ae27fd60:o:then"
+							]
+						},
+						{
+							"id": "0ed6a01742b2ff2cb84afba3915af2d3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0ed6a01742b2ff2cb84afba3915af2d3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0ed6a01742b2ff2cb84afba3915af2d3:i:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"8bf560fc472e452cc3ea0088ae27fd60:o:DeltaSeconds"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3f01fa99496a3353b772508a31e2d4e8",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: BeginPlay",
+					"x": 200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3f01fa99496a3353b772508a31e2d4e8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b2f4f1eb433b5805593608b671c1b698:o:then"
+							]
+						},
+						{
+							"id": "3f01fa99496a3353b772508a31e2d4e8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c564c2214cae0df93d4a12bb4d501ce8:i:execute"
+							]
+						},
+						{
+							"id": "3f01fa99496a3353b772508a31e2d4e8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "408853de48124c5a65f585b37fe3b239",
+					"class": "K2Node_CallFunction",
+					"title": "RefreshText",
+					"x": 1088,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "408853de48124c5a65f585b37fe3b239:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"51b8c1f848d3dac308d72086a1be740f:o:then"
+							]
+						},
+						{
+							"id": "408853de48124c5a65f585b37fe3b239:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "408853de48124c5a65f585b37fe3b239:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "40f4ff9643a61d99d6edcba7afe69236",
+					"class": "K2Node_AssignDelegate",
+					"title": "Assign On Input Method Changed",
+					"x": 1056,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "40f4ff9643a61d99d6edcba7afe69236:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c564c2214cae0df93d4a12bb4d501ce8:o:then"
+							]
+						},
+						{
+							"id": "40f4ff9643a61d99d6edcba7afe69236:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "40f4ff9643a61d99d6edcba7afe69236:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CommonInput.CommonInputSubsystem",
+							"defaultValue": null,
+							"links": [
+								"7ed307544fd2a3eb8a7640a899b7c6d3:o:ReturnValue"
+							]
+						},
+						{
+							"id": "40f4ff9643a61d99d6edcba7afe69236:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"51b8c1f848d3dac308d72086a1be740f:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "51b8c1f848d3dac308d72086a1be740f",
+					"class": "K2Node_CustomEvent",
+					"title": "OnInputMethodChanged_Event",
+					"x": 752,
+					"y": 240,
+					"comment": null,
+					"pins": [
+						{
+							"id": "51b8c1f848d3dac308d72086a1be740f:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"40f4ff9643a61d99d6edcba7afe69236:i:Delegate"
+							]
+						},
+						{
+							"id": "51b8c1f848d3dac308d72086a1be740f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"408853de48124c5a65f585b37fe3b239:i:execute"
+							]
+						},
+						{
+							"id": "51b8c1f848d3dac308d72086a1be740f:o:bNewInputType",
+							"name": "bNewInputType",
+							"direction": "output",
+							"type": "byte:/Script/CommonInput.ECommonInputType",
+							"defaultValue": "MouseAndKeyboard",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6cc8809c40d72a25d539a5924a3b6a94",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: ActorBeginOverlap",
+					"x": 200,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "6cc8809c40d72a25d539a5924a3b6a94:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f4195e744d392e529b3a209a45b180a9:o:then"
+							]
+						},
+						{
+							"id": "6cc8809c40d72a25d539a5924a3b6a94:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6cc8809c40d72a25d539a5924a3b6a94:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6cc8809c40d72a25d539a5924a3b6a94:i:OtherActor",
+							"name": "OtherActor",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"f4195e744d392e529b3a209a45b180a9:o:OtherActor"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7ed307544fd2a3eb8a7640a899b7c6d3",
+					"class": "K2Node_GetSubsystemFromPC",
+					"title": "Get CommonInputSubsystem",
+					"x": 784,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7ed307544fd2a3eb8a7640a899b7c6d3:i:PlayerController",
+							"name": "PlayerController",
+							"direction": "input",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"a7000dba48010055a89208aabdc5d48e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7ed307544fd2a3eb8a7640a899b7c6d3:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/CommonInput.CommonInputSubsystem",
+							"defaultValue": null,
+							"links": [
+								"40f4ff9643a61d99d6edcba7afe69236:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8bf560fc472e452cc3ea0088ae27fd60",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "8bf560fc472e452cc3ea0088ae27fd60:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8bf560fc472e452cc3ea0088ae27fd60:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0ed6a01742b2ff2cb84afba3915af2d3:i:execute"
+							]
+						},
+						{
+							"id": "8bf560fc472e452cc3ea0088ae27fd60:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"0ed6a01742b2ff2cb84afba3915af2d3:i:DeltaSeconds"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a7000dba48010055a89208aabdc5d48e",
+					"class": "K2Node_CallFunction",
+					"title": "Get Player Controller",
+					"x": 496,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a7000dba48010055a89208aabdc5d48e:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.GameplayStatics",
+							"defaultValue": "/Script/Engine.Default__GameplayStatics",
+							"links": []
+						},
+						{
+							"id": "a7000dba48010055a89208aabdc5d48e:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a7000dba48010055a89208aabdc5d48e:i:PlayerIndex",
+							"name": "PlayerIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "a7000dba48010055a89208aabdc5d48e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Engine.PlayerController",
+							"defaultValue": null,
+							"links": [
+								"7ed307544fd2a3eb8a7640a899b7c6d3:i:PlayerController"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b2f4f1eb433b5805593608b671c1b698",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b2f4f1eb433b5805593608b671c1b698:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b2f4f1eb433b5805593608b671c1b698:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3f01fa99496a3353b772508a31e2d4e8:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c564c2214cae0df93d4a12bb4d501ce8",
+					"class": "K2Node_CallFunction",
+					"title": "RefreshText",
+					"x": 480,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c564c2214cae0df93d4a12bb4d501ce8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3f01fa99496a3353b772508a31e2d4e8:o:then"
+							]
+						},
+						{
+							"id": "c564c2214cae0df93d4a12bb4d501ce8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"40f4ff9643a61d99d6edcba7afe69236:i:execute"
+							]
+						},
+						{
+							"id": "c564c2214cae0df93d4a12bb4d501ce8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f4195e744d392e529b3a209a45b180a9",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "f4195e744d392e529b3a209a45b180a9:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f4195e744d392e529b3a209a45b180a9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6cc8809c40d72a25d539a5924a3b6a94:i:execute"
+							]
+						},
+						{
+							"id": "f4195e744d392e529b3a209a45b180a9:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"6cc8809c40d72a25d539a5924a3b6a94:i:OtherActor"
+							]
+						}
+					]
+				}
+			],
+			"comments": [
+				{
+					"guid": "eb6743394d316dee383ce1828d2ec5d3",
+					"text": "Refresh test at begin play and when input method changes in order to display the right key",
+					"x": 416,
+					"y": -80,
+					"width": 1040,
+					"height": 464
+				}
+			]
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"NewVar_0":
+			{
+				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"InputAction":
+			{
+				"type": "object:/Script/EnhancedInput.InputAction",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"NewVar_0": false,
+			"InputAction": null,
+			"TextRender": null,
+			"DefaultSceneRoot": null,
+			"Text": "",
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": true,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}
