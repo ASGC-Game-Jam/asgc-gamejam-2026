@@ -638,7 +638,9 @@
 							"direction": "output",
 							"type": "object:/Script/Engine.StaticMeshComponent",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"c4e62a2341e0460365b5bd900b3864a4:i:self"
+							]
 						},
 						{
 							"id": "029c11e64cf6af7338c79e9b194f41c0:i:self",
@@ -1771,7 +1773,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"ee9a0af84c1d5bb767ce45a922371ec7:i:execute"
+							]
 						},
 						{
 							"id": "4229bf874c2bdbbc98fd0da0fc1c8481:i:Door",
@@ -1789,7 +1793,9 @@
 							"direction": "output",
 							"type": "object:/Script/Engine.StaticMeshComponent",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"ee9a0af84c1d5bb767ce45a922371ec7:i:self"
+							]
 						},
 						{
 							"id": "4229bf874c2bdbbc98fd0da0fc1c8481:i:self",
@@ -1839,6 +1845,35 @@
 								"8c6d57a748fbf01b1359aeb64de1bddf:i:A",
 								"da36ef464ba15dff4f0013a5707cfe8a:i:A"
 							]
+						}
+					]
+				},
+				{
+					"guid": "4d447d074e4524a2379d11a1c63d8bb2",
+					"class": "K2Node_VariableGet",
+					"title": "Get DoorOverrideMaterial",
+					"x": 4768,
+					"y": 656,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4d447d074e4524a2379d11a1c63d8bb2:o:DoorOverrideMaterial",
+							"name": "DoorOverrideMaterial",
+							"direction": "output",
+							"type": "object:/Script/Engine.Material",
+							"defaultValue": null,
+							"links": [
+								"c4e62a2341e0460365b5bd900b3864a4:i:Material",
+								"ee9a0af84c1d5bb767ce45a922371ec7:i:Material"
+							]
+						},
+						{
+							"id": "4d447d074e4524a2379d11a1c63d8bb2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -4389,6 +4424,63 @@
 					]
 				},
 				{
+					"guid": "c4e62a2341e0460365b5bd900b3864a4",
+					"class": "K2Node_CallFunction",
+					"title": "Set Material",
+					"x": 4944,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c4e62a2341e0460365b5bd900b3864a4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fd93423e4d615e7874560cb862fad44b:o:then"
+							]
+						},
+						{
+							"id": "c4e62a2341e0460365b5bd900b3864a4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c4e62a2341e0460365b5bd900b3864a4:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": [
+								"029c11e64cf6af7338c79e9b194f41c0:o:Output_Get",
+								"fd93423e4d615e7874560cb862fad44b:o:Output_Get"
+							]
+						},
+						{
+							"id": "c4e62a2341e0460365b5bd900b3864a4:i:ElementIndex",
+							"name": "ElementIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "c4e62a2341e0460365b5bd900b3864a4:i:Material",
+							"name": "Material",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"4d447d074e4524a2379d11a1c63d8bb2:o:DoorOverrideMaterial"
+							]
+						}
+					]
+				},
+				{
 					"guid": "c6c7e9e647dc18528b58718d20332cb9",
 					"class": "K2Node_CallFunction",
 					"title": "Set Mesh",
@@ -4968,6 +5060,62 @@
 					]
 				},
 				{
+					"guid": "ee9a0af84c1d5bb767ce45a922371ec7",
+					"class": "K2Node_CallFunction",
+					"title": "Set Material",
+					"x": 4976,
+					"y": 944,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ee9a0af84c1d5bb767ce45a922371ec7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4229bf874c2bdbbc98fd0da0fc1c8481:o:then"
+							]
+						},
+						{
+							"id": "ee9a0af84c1d5bb767ce45a922371ec7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ee9a0af84c1d5bb767ce45a922371ec7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.PrimitiveComponent",
+							"defaultValue": null,
+							"links": [
+								"4229bf874c2bdbbc98fd0da0fc1c8481:o:Output_Get"
+							]
+						},
+						{
+							"id": "ee9a0af84c1d5bb767ce45a922371ec7:i:ElementIndex",
+							"name": "ElementIndex",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "ee9a0af84c1d5bb767ce45a922371ec7:i:Material",
+							"name": "Material",
+							"direction": "input",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": [
+								"4d447d074e4524a2379d11a1c63d8bb2:o:DoorOverrideMaterial"
+							]
+						}
+					]
+				},
+				{
 					"guid": "f3472f694d516edc5f8c818e1ad6c031",
 					"class": "K2Node_CallFunction",
 					"title": "Set Relative Location",
@@ -5137,7 +5285,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"c4e62a2341e0460365b5bd900b3864a4:i:execute"
+							]
 						},
 						{
 							"id": "fd93423e4d615e7874560cb862fad44b:i:Door2",
@@ -5155,7 +5305,9 @@
 							"direction": "output",
 							"type": "object:/Script/Engine.StaticMeshComponent",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"c4e62a2341e0460365b5bd900b3864a4:i:self"
+							]
 						},
 						{
 							"id": "fd93423e4d615e7874560cb862fad44b:i:self",
@@ -5361,8 +5513,8 @@
 					"guid": "0318b0fc446353e334b2b282c1a20b50",
 					"class": "K2Node_Event",
 					"title": "Event ActorEndOverlap",
-					"x": 1456,
-					"y": -304,
+					"x": -336,
+					"y": 416,
 					"comment": null,
 					"pins": [
 						{
@@ -5388,6 +5540,54 @@
 							"name": "OtherActor",
 							"direction": "output",
 							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "0698c28d4da914cd92d8a492941501ee",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": -528,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0698c28d4da914cd92d8a492941501ee:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"15ccadc14394329bfdd04caeadd06b82:o:then"
+							]
+						},
+						{
+							"id": "0698c28d4da914cd92d8a492941501ee:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"47a0d904469fe4da0cb5fca2b64a3f61:o:IsSuccessful"
+							]
+						},
+						{
+							"id": "0698c28d4da914cd92d8a492941501ee:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5e7157a542f3049f534c80a79c5d83df:i:execute"
+							]
+						},
+						{
+							"id": "0698c28d4da914cd92d8a492941501ee:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
 							"defaultValue": null,
 							"links": []
 						}
@@ -5476,6 +5676,62 @@
 							"links": [
 								"df9163b64c036208213f45886f41016b:i:Reverse"
 							]
+						}
+					]
+				},
+				{
+					"guid": "15ccadc14394329bfdd04caeadd06b82",
+					"class": "K2Node_Message",
+					"title": "Interact",
+					"x": -912,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "15ccadc14394329bfdd04caeadd06b82:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d33d9c7a4889a06936bda888c319d7f4:o:then"
+							]
+						},
+						{
+							"id": "15ccadc14394329bfdd04caeadd06b82:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0698c28d4da914cd92d8a492941501ee:i:execute"
+							]
+						},
+						{
+							"id": "15ccadc14394329bfdd04caeadd06b82:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"d33d9c7a4889a06936bda888c319d7f4:o:AsBP Atlantis Interactable"
+							]
+						},
+						{
+							"id": "15ccadc14394329bfdd04caeadd06b82:i:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "15ccadc14394329bfdd04caeadd06b82:o:InteractionOccurred",
+							"name": "InteractionOccurred",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
 						}
 					]
 				},
@@ -5812,8 +6068,8 @@
 					"guid": "47469ed54d71e6ea76436d99d8285e35",
 					"class": "K2Node_CallArrayFunction",
 					"title": "Length",
-					"x": 1600,
-					"y": -173,
+					"x": -192,
+					"y": 547,
 					"comment": null,
 					"pins": [
 						{
@@ -5843,6 +6099,34 @@
 							"links": [
 								"71a769674ad9ef672a2402b19680a446:i:A"
 							]
+						}
+					]
+				},
+				{
+					"guid": "47a0d904469fe4da0cb5fca2b64a3f61",
+					"class": "K2Node_VariableGet",
+					"title": "Get IsSuccessful",
+					"x": -736,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "47a0d904469fe4da0cb5fca2b64a3f61:o:IsSuccessful",
+							"name": "IsSuccessful",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"0698c28d4da914cd92d8a492941501ee:i:Condition"
+							]
+						},
+						{
+							"id": "47a0d904469fe4da0cb5fca2b64a3f61:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -5961,8 +6245,8 @@
 					"guid": "55deb9744f7af19fe35c6da12e92070d",
 					"class": "K2Node_VariableGet",
 					"title": "Get Box",
-					"x": 1136,
-					"y": -160,
+					"x": -656,
+					"y": 560,
 					"comment": null,
 					"pins": [
 						{
@@ -6045,7 +6329,7 @@
 					"guid": "5e7157a542f3049f534c80a79c5d83df",
 					"class": "K2Node_CallFunction",
 					"title": "Open Door",
-					"x": 176,
+					"x": -272,
 					"y": 80,
 					"comment": null,
 					"pins": [
@@ -6056,7 +6340,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"ed8b35b14795d4c31ef7d79dafeb12c4:o:then"
+								"0698c28d4da914cd92d8a492941501ee:o:then"
 							]
 						},
 						{
@@ -6081,8 +6365,8 @@
 					"guid": "6ab508aa4224e2bfa1a869a1188e6b52",
 					"class": "K2Node_CallFunction",
 					"title": "Close Door",
-					"x": 2032,
-					"y": -320,
+					"x": 240,
+					"y": 400,
 					"comment": null,
 					"pins": [
 						{
@@ -6117,8 +6401,8 @@
 					"guid": "71a769674ad9ef672a2402b19680a446",
 					"class": "K2Node_PromotableOperator",
 					"title": "Equal (Integer)",
-					"x": 1824,
-					"y": -153,
+					"x": 32,
+					"y": 567,
 					"comment": null,
 					"pins": [
 						{
@@ -6519,6 +6803,72 @@
 					]
 				},
 				{
+					"guid": "d33d9c7a4889a06936bda888c319d7f4",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisInteractable",
+					"x": -1232,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d33d9c7a4889a06936bda888c319d7f4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ed8b35b14795d4c31ef7d79dafeb12c4:o:then"
+							]
+						},
+						{
+							"id": "d33d9c7a4889a06936bda888c319d7f4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"15ccadc14394329bfdd04caeadd06b82:i:execute"
+							]
+						},
+						{
+							"id": "d33d9c7a4889a06936bda888c319d7f4:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d33d9c7a4889a06936bda888c319d7f4:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"ed8b35b14795d4c31ef7d79dafeb12c4:o:OtherActor"
+							]
+						},
+						{
+							"id": "d33d9c7a4889a06936bda888c319d7f4:o:AsBP Atlantis Interactable",
+							"name": "AsBP Atlantis Interactable",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C",
+							"defaultValue": null,
+							"links": [
+								"15ccadc14394329bfdd04caeadd06b82:i:self"
+							]
+						},
+						{
+							"id": "d33d9c7a4889a06936bda888c319d7f4:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "df9163b64c036208213f45886f41016b",
 					"class": "K2Node_Timeline",
 					"title": "Door Control",
@@ -6816,7 +7166,7 @@
 					"guid": "ed8b35b14795d4c31ef7d79dafeb12c4",
 					"class": "K2Node_Event",
 					"title": "Event ActorBeginOverlap",
-					"x": -96,
+					"x": -1488,
 					"y": 96,
 					"comment": null,
 					"pins": [
@@ -6835,7 +7185,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"5e7157a542f3049f534c80a79c5d83df:i:execute"
+								"d33d9c7a4889a06936bda888c319d7f4:i:execute"
 							]
 						},
 						{
@@ -6844,7 +7194,9 @@
 							"direction": "output",
 							"type": "object:/Script/Engine.Actor",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"d33d9c7a4889a06936bda888c319d7f4:i:Object"
+							]
 						}
 					]
 				},
@@ -6852,8 +7204,8 @@
 					"guid": "edec52254f254fb7c291a8adf8e3fc5d",
 					"class": "K2Node_CallFunction",
 					"title": "Get Overlapping Actors",
-					"x": 1264,
-					"y": -192,
+					"x": -528,
+					"y": 528,
 					"comment": null,
 					"pins": [
 						{
@@ -6942,8 +7294,8 @@
 					"guid": "f92a66af466970296880e4b00bbe1cad",
 					"class": "K2Node_IfThenElse",
 					"title": "Branch",
-					"x": 1808,
-					"y": -304,
+					"x": 16,
+					"y": 416,
 					"comment": null,
 					"pins": [
 						{
@@ -7133,8 +7485,8 @@
 				{
 					"guid": "086eb65341f880c01e39c39c9acd5934",
 					"text": "Close Door if no characters are in the box area",
-					"x": 1136,
-					"y": -352,
+					"x": -656,
+					"y": 368,
 					"width": 880,
 					"height": 336
 				},
@@ -7249,6 +7601,20 @@
 			"Closed Position_0":
 			{
 				"type": "struct:/Script/CoreUObject.Vector",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"DoorOverrideMaterial":
+			{
+				"type": "object:/Script/Engine.Material",
+				"category": "Door",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"IsSuccessful":
+			{
+				"type": "bool",
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": false
@@ -7675,6 +8041,8 @@
 				"Y": 0,
 				"Z": 0
 			},
+			"DoorOverrideMaterial": null,
+			"IsSuccessful": true,
 			"PrimaryActorTick":
 			{
 				"TickGroup": "TG_PrePhysics",
@@ -7757,7 +8125,7 @@
 			"DataLayerAssets": [],
 			"ExternalDataLayerAsset": null,
 			"SpriteScale": 1,
-			"ActorLabel": "",
+			"ActorLabel": "BP_DoorFrame",
 			"FolderPath": "None",
 			"FolderGuid": "00000000000000000000000000000000",
 			"bHiddenEd": false,

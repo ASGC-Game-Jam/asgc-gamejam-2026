@@ -1,0 +1,652 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/Interactables/Refactor/AC_AtlantisInteractable",
+	"asset": "AC_AtlantisInteractable",
+	"assetClass": "Blueprint",
+	"parentClass": "ActorComponent",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "Examine",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "a6eec69340442c90e57a3699083ea112",
+					"class": "K2Node_FunctionEntry",
+					"title": "Examine",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a6eec69340442c90e57a3699083ea112:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ae3d078f4ba0e84b7a15e5b38cb91249:i:execute"
+							]
+						},
+						{
+							"id": "a6eec69340442c90e57a3699083ea112:o:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a6eec69340442c90e57a3699083ea112:o:CurrentExamineModeState",
+							"name": "CurrentExamineModeState",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ae3d078f4ba0e84b7a15e5b38cb91249",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ae3d078f4ba0e84b7a15e5b38cb91249:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a6eec69340442c90e57a3699083ea112:o:then"
+							]
+						},
+						{
+							"id": "ae3d078f4ba0e84b7a15e5b38cb91249:i:InteractionOccured",
+							"name": "InteractionOccured",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "Interact",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "794914774b47251b091cd0a64956f1f6",
+					"class": "K2Node_FunctionEntry",
+					"title": "Interact",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "794914774b47251b091cd0a64956f1f6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a68ed3c84d784b6e7c9ce286a9ac4752:i:execute"
+							]
+						},
+						{
+							"id": "794914774b47251b091cd0a64956f1f6:o:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a68ed3c84d784b6e7c9ce286a9ac4752",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a68ed3c84d784b6e7c9ce286a9ac4752:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"794914774b47251b091cd0a64956f1f6:o:then"
+							]
+						},
+						{
+							"id": "a68ed3c84d784b6e7c9ce286a9ac4752:i:InteractionOccurred",
+							"name": "InteractionOccurred",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "Talk",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "399732e147003b5d1e6c3a9191735fd7",
+					"class": "K2Node_FunctionEntry",
+					"title": "Talk",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "399732e147003b5d1e6c3a9191735fd7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"bf259eb84464dc6bd87e6f9754152b8e:i:execute"
+							]
+						},
+						{
+							"id": "399732e147003b5d1e6c3a9191735fd7:o:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_AtlantisInteractable.BP_AtlantisInteractable_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "bf259eb84464dc6bd87e6f9754152b8e",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bf259eb84464dc6bd87e6f9754152b8e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"399732e147003b5d1e6c3a9191735fd7:o:then"
+							]
+						},
+						{
+							"id": "bf259eb84464dc6bd87e6f9754152b8e:i:InteractionOccured",
+							"name": "InteractionOccured",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "04c5b31247894b6bc8eaefb343531a88",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 784,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e7181d4c4abbccf99ef4949f3aa525c2:o:then"
+							]
+						},
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Interaction Triggered",
+							"links": []
+						},
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "04c5b31247894b6bc8eaefb343531a88:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "10df331c42e40e6848c735b7c59eaae5",
+					"class": "K2Node_CustomEvent",
+					"title": "OnInteract",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "10df331c42e40e6848c735b7c59eaae5:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "10df331c42e40e6848c735b7c59eaae5:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"315ef9ad4a2f3619b64d4f9907961556:i:exec"
+							]
+						}
+					]
+				},
+				{
+					"guid": "315ef9ad4a2f3619b64d4f9907961556",
+					"class": "K2Node_MacroInstance",
+					"title": "Is Valid",
+					"x": 208,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "315ef9ad4a2f3619b64d4f9907961556:i:exec",
+							"name": "exec",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"10df331c42e40e6848c735b7c59eaae5:o:then"
+							]
+						},
+						{
+							"id": "315ef9ad4a2f3619b64d4f9907961556:i:InputObject",
+							"name": "InputObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"5a6f82744091acd3d7e4aa8bd391ae04:o:ParentPuzzleGroup"
+							]
+						},
+						{
+							"id": "315ef9ad4a2f3619b64d4f9907961556:o:Is Valid",
+							"name": "Is Valid",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e7181d4c4abbccf99ef4949f3aa525c2:i:execute"
+							]
+						},
+						{
+							"id": "315ef9ad4a2f3619b64d4f9907961556:o:Is Not Valid",
+							"name": "Is Not Valid",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "339cde144485930a8e55f4af36a77b78",
+					"class": "K2Node_VariableGet",
+					"title": "Get OutlineMaterial",
+					"x": 256,
+					"y": 544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "339cde144485930a8e55f4af36a77b78:o:OutlineMaterial",
+							"name": "OutlineMaterial",
+							"direction": "output",
+							"type": "object:/Script/Engine.MaterialInterface",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "339cde144485930a8e55f4af36a77b78:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/Refactor/AC_AtlantisInteractable.AC_AtlantisInteractable_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "5a6f82744091acd3d7e4aa8bd391ae04",
+					"class": "K2Node_VariableGet",
+					"title": "Get ParentPuzzleGroup",
+					"x": 0,
+					"y": 144,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5a6f82744091acd3d7e4aa8bd391ae04:o:ParentPuzzleGroup",
+							"name": "ParentPuzzleGroup",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": [
+								"315ef9ad4a2f3619b64d4f9907961556:i:InputObject",
+								"a3776a4748e1eac22359949148a721ab:i:InputPin"
+							]
+						},
+						{
+							"id": "5a6f82744091acd3d7e4aa8bd391ae04:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/Refactor/AC_AtlantisInteractable.AC_AtlantisInteractable_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "768a224143096a9ebccc729a14f2feb7",
+					"class": "K2Node_CustomEvent",
+					"title": "EventHighlight",
+					"x": 0,
+					"y": 384,
+					"comment": null,
+					"pins": [
+						{
+							"id": "768a224143096a9ebccc729a14f2feb7:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "768a224143096a9ebccc729a14f2feb7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e52d6f7d434ed90a01b557844241732d:i:execute"
+							]
+						},
+						{
+							"id": "768a224143096a9ebccc729a14f2feb7:o:TurnOn",
+							"name": "TurnOn",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"e52d6f7d434ed90a01b557844241732d:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a3776a4748e1eac22359949148a721ab",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 432,
+					"y": 153,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a3776a4748e1eac22359949148a721ab:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": [
+								"5a6f82744091acd3d7e4aa8bd391ae04:o:ParentPuzzleGroup"
+							]
+						},
+						{
+							"id": "a3776a4748e1eac22359949148a721ab:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": [
+								"e7181d4c4abbccf99ef4949f3aa525c2:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e52d6f7d434ed90a01b557844241732d",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 224,
+					"y": 400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e52d6f7d434ed90a01b557844241732d:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"768a224143096a9ebccc729a14f2feb7:o:then"
+							]
+						},
+						{
+							"id": "e52d6f7d434ed90a01b557844241732d:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"768a224143096a9ebccc729a14f2feb7:o:TurnOn"
+							]
+						},
+						{
+							"id": "e52d6f7d434ed90a01b557844241732d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e52d6f7d434ed90a01b557844241732d:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e7181d4c4abbccf99ef4949f3aa525c2",
+					"class": "K2Node_CallFunction",
+					"title": "EvaluateInteraction",
+					"x": 512,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e7181d4c4abbccf99ef4949f3aa525c2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"315ef9ad4a2f3619b64d4f9907961556:o:Is Valid"
+							]
+						},
+						{
+							"id": "e7181d4c4abbccf99ef4949f3aa525c2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"04c5b31247894b6bc8eaefb343531a88:i:execute"
+							]
+						},
+						{
+							"id": "e7181d4c4abbccf99ef4949f3aa525c2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": [
+								"a3776a4748e1eac22359949148a721ab:o:OutputPin"
+							]
+						},
+						{
+							"id": "e7181d4c4abbccf99ef4949f3aa525c2:i:InteractedActor",
+							"name": "InteractedActor",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"ParentPuzzleGroup":
+			{
+				"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"OutlineMaterial":
+			{
+				"type": "object:/Script/Engine.MaterialInterface",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"ParentPuzzleGroup": null,
+			"OutlineMaterial": null,
+			"PrimaryComponentTick":
+			{
+				"TickGroup": "TG_DuringPhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"ComponentTags": [],
+			"AssetUserData": [],
+			"AssetUserDataEditorOnly": [],
+			"UCSSerializationIndex": -1,
+			"bNetAddressable": false,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bReplicates": false,
+			"bAutoActivate": false,
+			"bEditableWhenInherited": true,
+			"bCanEverAffectNavigation": false,
+			"bIsEditorOnly": false,
+			"bIsVisualizationComponent": false,
+			"bNeedsUCSSerializationIndexEvaluted": false,
+			"CreationMethod": "Native"
+		}
+	}
+}

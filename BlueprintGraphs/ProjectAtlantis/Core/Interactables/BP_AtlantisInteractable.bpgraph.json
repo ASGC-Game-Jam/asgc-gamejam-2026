@@ -187,7 +187,7 @@
 					"guid": "4ccbeec14a923ecfed22e78d9ecc7d55",
 					"class": "K2Node_CallFunction",
 					"title": "Print String",
-					"x": 944,
+					"x": 1280,
 					"y": 704,
 					"comment": null,
 					"pins": [
@@ -198,7 +198,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"813d359a4510bed2ab753ab93f97f3a2:o:then"
+								"7bccc6eb4fd33682f82f03ae1ceeec45:o:then"
 							]
 						},
 						{
@@ -430,6 +430,60 @@
 					]
 				},
 				{
+					"guid": "7bccc6eb4fd33682f82f03ae1ceeec45",
+					"class": "K2Node_CallFunction",
+					"title": "Interact",
+					"x": 912,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7bccc6eb4fd33682f82f03ae1ceeec45:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"813d359a4510bed2ab753ab93f97f3a2:o:then"
+							]
+						},
+						{
+							"id": "7bccc6eb4fd33682f82f03ae1ceeec45:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"4ccbeec14a923ecfed22e78d9ecc7d55:i:execute"
+							]
+						},
+						{
+							"id": "7bccc6eb4fd33682f82f03ae1ceeec45:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7bccc6eb4fd33682f82f03ae1ceeec45:i:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7bccc6eb4fd33682f82f03ae1ceeec45:o:InteractionOccurred",
+							"name": "InteractionOccurred",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "7e5a2a8b44cbf4b5cb09d1bc06d4d029",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
@@ -514,7 +568,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"4ccbeec14a923ecfed22e78d9ecc7d55:i:execute"
+								"7bccc6eb4fd33682f82f03ae1ceeec45:i:execute"
 							]
 						},
 						{
