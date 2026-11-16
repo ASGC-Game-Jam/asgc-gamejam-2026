@@ -1,0 +1,119 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/Developers/ramiro/AC_Interactor",
+	"asset": "AC_Interactor",
+	"assetClass": "Blueprint",
+	"parentClass": "AtlantisInteractorComponent",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "79ac3a314c523fbda5ed869dd454c368",
+					"class": "K2Node_Event",
+					"title": "Event Begin Play",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "79ac3a314c523fbda5ed869dd454c368:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "79ac3a314c523fbda5ed869dd454c368:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d12a0e6d476bf11053b2a9b668a17e0e",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "d12a0e6d476bf11053b2a9b668a17e0e:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d12a0e6d476bf11053b2a9b668a17e0e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d12a0e6d476bf11053b2a9b668a17e0e:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"InteractionRange": 300,
+			"TraceRadius": 15,
+			"TraceChannel": "ECC_GameTraceChannel2",
+			"InteractAction": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Interact.IA_Interact",
+			"bDrawDebug": false,
+			"PrimaryComponentTick":
+			{
+				"TickGroup": "TG_DuringPhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": true,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"ComponentTags": [],
+			"AssetUserData": [],
+			"AssetUserDataEditorOnly": [],
+			"UCSSerializationIndex": -1,
+			"bNetAddressable": false,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bReplicates": false,
+			"bAutoActivate": false,
+			"bEditableWhenInherited": true,
+			"bCanEverAffectNavigation": false,
+			"bIsEditorOnly": false,
+			"bIsVisualizationComponent": false,
+			"bNeedsUCSSerializationIndexEvaluted": false,
+			"CreationMethod": "Native"
+		}
+	}
+}
