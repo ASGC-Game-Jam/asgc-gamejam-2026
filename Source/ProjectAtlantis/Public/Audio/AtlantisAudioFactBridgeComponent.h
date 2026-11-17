@@ -14,7 +14,7 @@ class UAtlantisOxygenComponent;
 
 /**
  * Forwards the local player's oxygen and hiding events to the audio ecosystem as facts.
- * Only translates events into facts. How a fact sounds is decided by the music axis mapping.
+ * Only translates events into facts. The bridge reports when a local player is bound or gone, and on unbind it resets the facts that listeners could otherwise get stuck on.
  * Investigations aren't per-pawn, so they're reported by UAtlantisJournalAudioBridge instead.
  */
 UCLASS(ClassGroup = (Atlantis), meta = (BlueprintSpawnableComponent))

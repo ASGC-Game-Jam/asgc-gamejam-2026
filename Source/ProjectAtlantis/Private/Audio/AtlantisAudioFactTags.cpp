@@ -20,3 +20,5 @@ UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioState_Investigation_Complete, "Audio.Sta
 
 UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_Room_Default, "Room.Default", "The player isn't inside any room volume. Sounds neutral.");
 UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Environment_Room, "Audio.Fact.Environment.Room", "TagPayload: the Room tag for the space the player is in.");
+
+UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Player_Present, "Audio.Fact.Player.Present", "BoolPayload: true while a locally controlled player pawn is bound. False when it's unpossessed or destroyed.");
