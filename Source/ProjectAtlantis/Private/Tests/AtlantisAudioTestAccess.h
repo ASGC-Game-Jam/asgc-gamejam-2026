@@ -16,6 +16,12 @@ struct FAtlantisAudioValidationTestAccess
 	{
 		return GetMutableDefault<UAtlantisAudioDeveloperSettings>()->PayloadRegistry;
 	}
+
+	/** The Music Per Map table, so tests can add their own maps. Save it before changing it and restore it after. */
+	static TMap<TSoftObjectPtr<UWorld>, TSoftObjectPtr<UMetaSoundSource>>& MusicPerMap()
+	{
+		return GetMutableDefault<UAtlantisAudioDeveloperSettings>()->MusicPerMap;
+	}
 };
 
 // Declared as a friend in AtlantisAudioSubsystem.h so tests can drive the math without playing a level.
