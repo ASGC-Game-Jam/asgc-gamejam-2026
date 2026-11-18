@@ -123,6 +123,6 @@ The rotund walrus shifts in his seat uncomfortably, and clears his throat.
 
 === finish_quest ===
 
-QUEST COMPLETE.
+QUEST COMPLETE. HAHAHA.
 
 -> END
