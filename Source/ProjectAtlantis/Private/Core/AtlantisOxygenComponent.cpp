@@ -32,6 +32,11 @@ void UAtlantisOxygenComponent::BeginPlay()
 		AllocatedOxygen = 0.f;
 
 		UpdateOxygenThresholds();
+		
+		if (!IsConsumingOxygen())
+		{
+			StartOxygenRefill();
+		}
 	}
 }
 
@@ -40,6 +45,7 @@ void UAtlantisOxygenComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	if (UWorld* World = GetWorld())
 	{
 		World->GetTimerManager().ClearTimer(OxygenConsumptionTimerHandle);
+		World->GetTimerManager().ClearTimer(OxygenRefillTimerHandle);
 	}
 
 	Super::EndPlay(EndPlayReason);
@@ -142,30 +148,59 @@ void UAtlantisOxygenComponent::SetCriticalOxygen(bool bNewCriticalOxygen)
 
 void UAtlantisOxygenComponent::SetConsumingOxygen(bool bNewConsumingOxygen)
 {
-	UWorld* World = GetWorld();
 
-	if (!HasOwnerAuthority() || !World || IsConsumingOxygen() == bNewConsumingOxygen)
+
+	if (!HasOwnerAuthority() || !GetWorld() || IsConsumingOxygen() == bNewConsumingOxygen)
 	{
 		return;
 	}
-
-	FTimerManager& TimerManager = World->GetTimerManager();
-
+	
 	if (bNewConsumingOxygen)
 	{
-		TimerManager.SetTimer(OxygenConsumptionTimerHandle, this, &UAtlantisOxygenComponent::ConsumeOxygen,
-		                      OxygenConsumptionInterval, true);
+		StartOxygenConsumption();
 	}
 	else
 	{
-		TimerManager.ClearTimer(OxygenConsumptionTimerHandle);
+		StartOxygenRefill();
 	}
+}
+
+void UAtlantisOxygenComponent::StartOxygenConsumption()
+{
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+	
+	FTimerManager& TimerManager = World->GetTimerManager();
+	TimerManager.ClearTimer(OxygenRefillTimerHandle);
+	TimerManager.SetTimer(OxygenConsumptionTimerHandle, this, &UAtlantisOxygenComponent::ConsumeOxygen, OxygenConsumptionInterval, true);
 }
 
 bool UAtlantisOxygenComponent::IsConsumingOxygen() const
 {
 	const UWorld* World = GetWorld();
 	return World && World->GetTimerManager().IsTimerActive(OxygenConsumptionTimerHandle);
+}
+
+void UAtlantisOxygenComponent::RefillOxygen()
+{
+	RestoreOxygen(OxygenRefillRate * OxygenConsumptionInterval, false);
+}
+
+void UAtlantisOxygenComponent::StartOxygenRefill()
+{
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+
+	FTimerManager& TimerManager = World->GetTimerManager();
+	TimerManager.ClearTimer(OxygenConsumptionTimerHandle);
+	TimerManager.SetTimer(OxygenRefillTimerHandle, this, &UAtlantisOxygenComponent::RefillOxygen,
+						  OxygenConsumptionInterval, true);
 }
 
 void UAtlantisOxygenComponent::ConsumeOxygen()
