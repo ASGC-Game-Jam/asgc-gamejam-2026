@@ -162,15 +162,16 @@
 			"bSetControlRotationFromPawnOrientation": true,
 			"PathFollowingComponent":
 			{
-				"_class": "PathFollowingComponent",
+				"_class": "AtlantisPathFollowingComponent",
 				"_name": "PathFollowingComponent",
+				"IntermediatePointTolerance": 30,
 				"PrimaryComponentTick":
 				{
 					"TickGroup": "TG_DuringPhysics",
 					"EndTickGroup": "TG_PrePhysics",
 					"bTickEvenWhenPaused": false,
 					"bCanEverTick": true,
-					"bStartWithTickEnabled": false,
+					"bStartWithTickEnabled": true,
 					"bAllowTickOnDedicatedServer": true,
 					"TickInterval": 0
 				},
@@ -181,7 +182,7 @@
 				"bNetAddressable": false,
 				"bReplicateUsingRegisteredSubObjectList": false,
 				"bReplicates": false,
-				"bAutoActivate": false,
+				"bAutoActivate": true,
 				"bEditableWhenInherited": true,
 				"bCanEverAffectNavigation": false,
 				"bIsEditorOnly": false,

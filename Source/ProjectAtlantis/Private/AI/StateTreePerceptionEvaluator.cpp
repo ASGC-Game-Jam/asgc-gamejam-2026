@@ -190,7 +190,7 @@ void FStateTreePerceptionEvaluator::HandleStatus(AAtlantisEnemyController& Enemy
 	}
 	
 	// Otherwise, if we're only aware of a player, we're alert.
-	if (PerceivedActors.IsEmpty() == false)
+	else if (PerceivedActors.IsEmpty() == false)
 	{
 		SetEnemyStatus(EnemyController, EMonsterStatus::Alerted);
 	}
@@ -211,6 +211,7 @@ void FStateTreePerceptionEvaluator::Tick(FStateTreeExecutionContext& Context, co
 	if (EnemyController == nullptr)
 	{
 		UE_LOG(LogStateTree, Error, TEXT("[%hs] Failed to retrieve the AI Controller! (Is it set in the element's components?)"), __FUNCTION__);
+		WriteOutputs(InstanceData, nullptr);
 		return;
 	}
 	
@@ -218,12 +219,14 @@ void FStateTreePerceptionEvaluator::Tick(FStateTreeExecutionContext& Context, co
 	if (PerceptionComponent == nullptr)
 	{
 		UE_LOG(LogStateTree, Error, TEXT("[%hs] Failed to retrieve the Perception Component! (Does the operating actor have one in its controller?)"), __FUNCTION__);
+		WriteOutputs(InstanceData, EnemyController);
 		return;
 	}
 	
 	if (SightDistanceCurve == nullptr)
 	{
 		UE_LOG(LogStateTree, Error, TEXT("[%hs] There is no Sight Distance Curve assigned! (Add one to the Perception Sys Evaluator!)"), __FUNCTION__);
+		WriteOutputs(InstanceData, EnemyController);
 		return;
 	}
 	
@@ -238,6 +241,12 @@ void FStateTreePerceptionEvaluator::Tick(FStateTreeExecutionContext& Context, co
 	}
 	
 	const AAtlantisAICharacter* EnemyPawn = EnemyController->GetPawn<AAtlantisAICharacter>();
+	// ensure only reports once per session, so a misconfigured pawn doesn't spam the log every tick.
+	if (!ensureMsgf(EnemyPawn != nullptr, TEXT("[%hs] %s's pawn is not an AtlantisAICharacter! Perception can't be processed."), __FUNCTION__, *EnemyController->GetName()))
+	{
+		WriteOutputs(InstanceData, EnemyController);
+		return;
+	}
 	
 	UE_CVLOG_CIRCLE(EnemyPawn != nullptr,
 		EnemyController,
@@ -287,4 +296,36 @@ void FStateTreePerceptionEvaluator::Tick(FStateTreeExecutionContext& Context, co
 	});
 	
 	HandleStatus(*EnemyController, PerceivedActors);
+	WriteOutputs(InstanceData, EnemyController);
+	EnemyController->SetDetection(InstanceData.Suspicion);
+}
+
+void FStateTreePerceptionEvaluator::WriteOutputs(FStateTreePerceptionEvaluatorInstanceData& InstanceData, const AAtlantisEnemyController* EnemyController) const
+{
+	InstanceData.Status = EnemyController != nullptr ? EnemyController->GetCurrentStatus() : EMonsterStatus::Idle;
+	InstanceData.SuspectActor = nullptr;
+	InstanceData.Suspicion = 0.f;
+	if (EnemyController == nullptr)
+	{
+		return;
+	}
+
+	// The player we're reacting to: anyone we're aggroed on first, otherwise the highest meter.
+	const TPair<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>* Suspect = nullptr;
+	for (const TPair<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceptionData : EnemyController->PerceivedActors)
+	{
+		if (Suspect == nullptr
+			|| (PerceptionData.Value.bIsAggroed && !Suspect->Value.bIsAggroed)
+			|| (PerceptionData.Value.bIsAggroed == Suspect->Value.bIsAggroed && PerceptionData.Value.PerceptionValue > Suspect->Value.PerceptionValue))
+		{
+			Suspect = &PerceptionData;
+		}
+	}
+
+	if (Suspect != nullptr)
+	{
+		InstanceData.SuspectActor = Suspect->Key;
+		InstanceData.LastKnownLocation = Suspect->Value.LastStimulusLocation;
+		InstanceData.Suspicion = Suspect->Value.PerceptionValue;
+	}
 }

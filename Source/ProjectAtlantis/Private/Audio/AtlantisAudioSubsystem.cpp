@@ -134,10 +134,10 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 
 	UE_LOG(LogAtlantisAudioSubsystem, Log, TEXT("World [%s] Begin Play active. Instantiating speakers and reading audio settings..."), *TrackedWorld->GetName());
 
-	USoundBase* MusicAsset = Cast<USoundBase>(UAtlantisAudioDeveloperSettings::GetMusicMetaSoundSource());
+	USoundBase* MusicAsset = Cast<USoundBase>(UAtlantisAudioDeveloperSettings::GetMusicForWorld(TrackedWorld.Get()));
 	if (!MusicAsset)
 	{
-		UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No music MetaSound Source is set. Assign one in Project Settings > Atlantis Audio Settings."));
+		TEXT("No score could be loaded for [%s]. Check its row in Project Settings > Atlantis Audio Settings > Music Per Map."), *TrackedWorld->GetName()
 		return;
 	}
 
