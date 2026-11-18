@@ -1,3 +1,5 @@
+// Copyright (c) 2026 ASGC
+
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_Environment.h"
 #include "Metasound.h"
 #include "MetasoundFrontendDocument.h"
@@ -39,7 +41,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisRoomType", "RoomType"),
-							LOCTEXT("AtlantisRoomType_Description", "Kind of space the player is in, such as small room, open plain or narrow corridor. Set by audio gameplay volumes. The ID for each room comes from the Room tag table in Project Settings > Game > Atlantis Audio Settings. Changes on volume boundaries, not every frame."),
+							LOCTEXT("AtlantisRoomType_Description", "Kind of space the player is in, set by room volumes. IDs come from DA_AtlantisRoomTypeTable."),
 							GetMetasoundDataTypeName<int32>(),
 							RoomType.Resolve(),
 							FText(),
@@ -48,7 +50,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisMaterialType", "MaterialType"),
-							LOCTEXT("AtlantisMaterialType_Description", "Surface under the player, from the physical material line trace. Matches Project Settings > Engine > Physics > Physical Surface (0 = Default). Changes when the surface changes, not every frame."),
+							LOCTEXT("AtlantisMaterialType_Description", "Surface under the player, from a physical material trace. IDs match Project Settings > Physics > Physical Surface (0 = Default)."),
 							GetMetasoundDataTypeName<int32>(),
 							MaterialType.Resolve(),
 							FText(),

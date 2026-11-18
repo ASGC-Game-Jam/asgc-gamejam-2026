@@ -8,6 +8,7 @@
 #include "StructUtils/InstancedStruct.h"
 #include "ASGC_FactListenerInterface.generated.h"
 
+/** Implement this to receive gameplay facts from the data router. */
 UINTERFACE(MinimalAPI, Blueprintable)
 class UASGC_FactListenerInterface : public UInterface
 {
@@ -19,10 +20,7 @@ class PROJECTATLANTIS_API IASGC_FactListenerInterface
     GENERATED_BODY()
 
 public:
-    /**
-     * Called when a subscribed gameplay fact is broadcasted.
-     * Overridable in C++ and Blueprint (`Event OnGameplayFactReceived`).
-     */
+    /** Called when a fact this object subscribed to is broadcast. Override it in C++, or as Event OnGameplayFactReceived in Blueprint. */
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "ASGC|PubSub")
     void OnGameplayFactReceived(FGameplayTag Tag, const FInstancedStruct& Payload);
 };

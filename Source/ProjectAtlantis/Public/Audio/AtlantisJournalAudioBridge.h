@@ -9,9 +9,8 @@
 #include "AtlantisJournalAudioBridge.generated.h"
 
 /**
- * Reports journal investigations to the music as Audio.Fact.Investigation.Status facts, for the whole level.
- * Lives on the world rather than a pawn, because the journal belongs to the game instance.
- * This way it keeps listening while no pawn is possessed, so a journal change between possessions is never missed.
+ * Sends journal investigations to the audio ecosystem as Audio.Fact.Investigation.Status facts.
+ * Lives on the world rather than a pawn, so it never misses a change between possessions.
  */
 UCLASS()
 class PROJECTATLANTIS_API UAtlantisJournalAudioBridge : public UWorldSubsystem
@@ -26,11 +25,11 @@ public:
 	virtual void Deinitialize() override;
 
 protected:
-	/** Only game and PIE worlds. Editor viewport worlds have no game instance or music. */
+	/** Only game and PIE worlds, because editor viewport worlds have no journal. */
 	virtual bool DoesSupportWorldType(const EWorldType::Type WorldType) const override;
 
 private:
-	/** Sends one investigation's state to the music, and remembers its title for when the journal clears. */
+	/** Sends one investigation's state, and remembers its title for when the journal clears. */
 	void SendInvestigationStatus(const FString& Title, EJournalInvestigationStatus Status);
 
 	UFUNCTION()
@@ -43,6 +42,6 @@ private:
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisJournalSubsystem> Journal;
 
-	/** Investigations already sent to the music. The journal has emptied itself by the time it says it cleared. */
+	/** Titles already sent. Kept because the journal is already empty by the time it reports a clear. */
 	TSet<FString> SentInvestigationTitles;
 };

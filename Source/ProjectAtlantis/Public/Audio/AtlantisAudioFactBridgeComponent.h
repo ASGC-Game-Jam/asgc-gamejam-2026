@@ -13,9 +13,8 @@ class UAtlantisHidingComponent;
 class UAtlantisOxygenComponent;
 
 /**
- * Forwards the local player's oxygen and hiding events to the audio ecosystem as facts.
- * Only translates events into facts. The bridge reports when a local player is bound or gone, and on unbind it resets the facts that listeners could otherwise get stuck on.
- * Investigations aren't per-pawn, so they're reported by UAtlantisJournalAudioBridge instead.
+ * Sends the local player's presence, oxygen and hiding to the audio ecosystem as facts.
+ * On unbind it resets those facts, so listeners never stay stuck after death or unpossession.
  */
 UCLASS(ClassGroup = (Atlantis), meta = (BlueprintSpawnableComponent))
 class PROJECTATLANTIS_API UAtlantisAudioFactBridgeComponent : public UActorComponent
@@ -27,15 +26,16 @@ protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 private:
-	/** Binds to the sources once the owner is locally controlled. Waits a limited number of ticks for the player state. Safe to call more than once. */
+	/** Binds to oxygen and hiding once the owner is locally controlled, retrying for a few ticks until the player state arrives. Safe to call more than once. */
 	void TryBindSources();
 
-	/** Stops listening to every source and cancels any pending retry. Called on end play, and before rebinding when the controller changes. */
+	/** Sends the reset facts, stops listening to every source and cancels any pending retry. Runs on end play and when the controller changes. */
 	void UnbindSources();
 
-	/** Sends each fact's current value once, so the music is right from the start. */
+	/** Sends each fact's current value once, so listeners are right from the start. */
 	void SendInitialFacts();
 
+	/** Sends available oxygen as a 0-1 fraction of capacity. */
 	void SendOxygenLevel();
 
 	UFUNCTION()
@@ -62,6 +62,7 @@ private:
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisHidingComponent> HidingComponent;
 
+	/** True while bound to a local player. Guards against sending reset facts twice. */
 	bool bSourcesBound = false;
 
 	/** Ticks spent waiting for an Atlantis player state. Reset whenever binding starts over. */

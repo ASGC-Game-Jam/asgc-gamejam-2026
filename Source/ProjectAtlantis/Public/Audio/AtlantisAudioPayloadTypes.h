@@ -7,8 +7,7 @@
 
 #include "AtlantisAudioPayloadTypes.generated.h"
 
-// Generic payload shapes for audio facts. The fact tag gives the data its meaning; each tag's struct is
-// registered in Project Settings > Game > Atlantis Audio Settings > Atlantis Audio Validation.
+// Generic payload shapes for audio facts. The fact tag gives the data its meaning, and each tag's struct is registered in Atlantis Audio Validation.
 
 /** A single number. The tag defines its meaning and range (e.g. Audio.Fact.Oxygen.Level is a 0-1 fraction). */
 USTRUCT(BlueprintType)
@@ -38,7 +37,7 @@ struct PROJECTATLANTIS_API FAtlantisAudioKeyedStatePayload
 {
 	GENERATED_BODY()
 
-	/** Which instance this is about. Leave empty to use the actor calling the node. Set it yourself when reporting on something else, like an investigation's title or another actor. */
+	/** Which instance this is about, such as an enemy's name or an investigation's title. Leave it empty to use the calling actor's name. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Atlantis Audio|Payloads")
 	FName Key;
 
