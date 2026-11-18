@@ -1,0 +1,70 @@
+#include "Inkpot/InkpotLibrary.h"
+#include "Inkpot/Inkpot.h"
+#include "Inkpot/InkpotStory.h"
+#include "Asset/InkpotStoryAsset.h"
+#include "Utility/InkpotLog.h"
+#include "Engine/Engine.h"
+
+FString UInkpotLibrary::GetTagWithPrefixAndStrip(UInkpotStory* InStory, const FString& InTagPrefix)
+{
+	FString rval;
+	if (IsValid(InStory))
+	{
+		const TArray<FString> &tags = InStory->GetCurrentTags();
+		for (const FString& tag : tags)
+		{
+			if (tag.StartsWith(InTagPrefix))
+			{
+				rval = tag.Right( tag.Len() - InTagPrefix.Len() );
+				break;
+			}
+		}
+	}
+	else
+	{
+		INKPOT_ERROR("Story is not set");
+	}
+	return rval;
+}
+
+TMap<FName, FString> UInkpotLibrary::MapCurrentTagsWithDelimiter(UInkpotStory* InStory, const FString& InTagDelimiter = ": ")
+{
+	TMap<FName, FString> rval;
+	if (IsValid(InStory))
+	{
+		const TArray<FString>& tags = InStory->GetCurrentTags();
+		for (const FString& tag : tags)
+		{
+			FString LeftKey, RightVal;
+			if (tag.Split(InTagDelimiter, &LeftKey, &RightVal))
+			{
+				rval.Add(*LeftKey, *RightVal);
+			}
+		}
+	}
+	else
+	{
+		INKPOT_ERROR("Story is not set");
+	}
+	return rval;
+}
+
+UAssetUserData* UInkpotLibrary::GetStoryAssetUserData(UInkpotStory* InStory, TSubclassOf<UAssetUserData> InClass)
+{
+	if (!IsValid(InStory))
+	{
+		INKPOT_ERROR("Story is invalid");
+		return nullptr;
+	}
+
+	UInkpot* inkpot = GEngine->GetEngineSubsystem<UInkpot>();
+	UInkpotStoryAsset* asset = inkpot->GetStoryAsset(InStory);;
+	if (!IsValid(asset))
+	{
+		INKPOT_ERROR("Story asset is invalid");
+		return nullptr;
+	}
+	
+	return asset->GetAssetUserDataOfClass(InClass);
+}
+

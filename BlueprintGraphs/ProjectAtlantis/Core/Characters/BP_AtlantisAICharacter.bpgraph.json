@@ -8,6 +8,541 @@
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
 		{
+			"name": "SwitchFlowToPath",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "1f15d53347d990ad9c4af8b59b94fa6f",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 208,
+					"y": -48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1f15d53347d990ad9c4af8b59b94fa6f:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"39f517444505b7590e084685c655017c:i:self"
+							]
+						},
+						{
+							"id": "1f15d53347d990ad9c4af8b59b94fa6f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "39f517444505b7590e084685c655017c",
+					"class": "K2Node_CallFunction",
+					"title": "SwitchFlow",
+					"x": 384,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "39f517444505b7590e084685c655017c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6267cd7d476b40ef0d2eba9dd6a9da66:o:then"
+							]
+						},
+						{
+							"id": "39f517444505b7590e084685c655017c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3f838d9b4f68b46a4bae228f0a11e169:i:execute"
+							]
+						},
+						{
+							"id": "39f517444505b7590e084685c655017c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"1f15d53347d990ad9c4af8b59b94fa6f:o:Story"
+							]
+						},
+						{
+							"id": "39f517444505b7590e084685c655017c:i:FlowName",
+							"name": "FlowName",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"6267cd7d476b40ef0d2eba9dd6a9da66:o:Flow"
+							]
+						},
+						{
+							"id": "39f517444505b7590e084685c655017c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"3f838d9b4f68b46a4bae228f0a11e169:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3f838d9b4f68b46a4bae228f0a11e169",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 656,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3f838d9b4f68b46a4bae228f0a11e169:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"39f517444505b7590e084685c655017c:o:then"
+							]
+						},
+						{
+							"id": "3f838d9b4f68b46a4bae228f0a11e169:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"39f517444505b7590e084685c655017c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "3f838d9b4f68b46a4bae228f0a11e169:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fa69263e47b1896f6a5646b541b92c87:i:execute"
+							]
+						},
+						{
+							"id": "3f838d9b4f68b46a4bae228f0a11e169:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"451266f44d3ddfafa89c148ae1f786eb:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "451266f44d3ddfafa89c148ae1f786eb",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 848,
+					"y": 64,
+					"comment": null,
+					"pins": [
+						{
+							"id": "451266f44d3ddfafa89c148ae1f786eb:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3f838d9b4f68b46a4bae228f0a11e169:o:else"
+							]
+						},
+						{
+							"id": "451266f44d3ddfafa89c148ae1f786eb:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"6267cd7d476b40ef0d2eba9dd6a9da66:o:Restart"
+							]
+						},
+						{
+							"id": "451266f44d3ddfafa89c148ae1f786eb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fa69263e47b1896f6a5646b541b92c87:i:execute"
+							]
+						},
+						{
+							"id": "451266f44d3ddfafa89c148ae1f786eb:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6267cd7d476b40ef0d2eba9dd6a9da66",
+					"class": "K2Node_FunctionEntry",
+					"title": "SwitchFlowToPath",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6267cd7d476b40ef0d2eba9dd6a9da66:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"39f517444505b7590e084685c655017c:i:execute"
+							]
+						},
+						{
+							"id": "6267cd7d476b40ef0d2eba9dd6a9da66:o:Flow",
+							"name": "Flow",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"39f517444505b7590e084685c655017c:i:FlowName"
+							]
+						},
+						{
+							"id": "6267cd7d476b40ef0d2eba9dd6a9da66:o:Path",
+							"name": "Path",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"d69d78b84d7f72a15b856bbe7d530f59:i:InputPin"
+							]
+						},
+						{
+							"id": "6267cd7d476b40ef0d2eba9dd6a9da66:o:Restart",
+							"name": "Restart",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"451266f44d3ddfafa89c148ae1f786eb:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7cb575244e9d5a3529e015a5c47c0073",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1024,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7cb575244e9d5a3529e015a5c47c0073:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"d69d78b84d7f72a15b856bbe7d530f59:o:OutputPin"
+							]
+						},
+						{
+							"id": "7cb575244e9d5a3529e015a5c47c0073:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"fa69263e47b1896f6a5646b541b92c87:i:Path"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b7072d264014c93277746fabdb23293e",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1280,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b7072d264014c93277746fabdb23293e:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fa69263e47b1896f6a5646b541b92c87:o:then"
+							]
+						},
+						{
+							"id": "b7072d264014c93277746fabdb23293e:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c7f205cc438e83051f9c52b67d4ebee1:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b7072d264014c93277746fabdb23293e:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d895809942e0d036401475a18850b439:i:execute"
+							]
+						},
+						{
+							"id": "b7072d264014c93277746fabdb23293e:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c7f205cc438e83051f9c52b67d4ebee1",
+					"class": "K2Node_CallFunction",
+					"title": "CanContinue",
+					"x": 1072,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c7f205cc438e83051f9c52b67d4ebee1:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"f73cea7b414e2f451d77beaf61042071:o:Story"
+							]
+						},
+						{
+							"id": "c7f205cc438e83051f9c52b67d4ebee1:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"b7072d264014c93277746fabdb23293e:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d69d78b84d7f72a15b856bbe7d530f59",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 368,
+					"y": 160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d69d78b84d7f72a15b856bbe7d530f59:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"6267cd7d476b40ef0d2eba9dd6a9da66:o:Path"
+							]
+						},
+						{
+							"id": "d69d78b84d7f72a15b856bbe7d530f59:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"7cb575244e9d5a3529e015a5c47c0073:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d895809942e0d036401475a18850b439",
+					"class": "K2Node_CallFunction",
+					"title": "Continue",
+					"x": 1520,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d895809942e0d036401475a18850b439:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b7072d264014c93277746fabdb23293e:o:then"
+							]
+						},
+						{
+							"id": "d895809942e0d036401475a18850b439:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d895809942e0d036401475a18850b439:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"f2c7a78944a0d22eeb48aa99a67a5d75:o:Story"
+							]
+						},
+						{
+							"id": "d895809942e0d036401475a18850b439:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "string",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f2c7a78944a0d22eeb48aa99a67a5d75",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 1360,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f2c7a78944a0d22eeb48aa99a67a5d75:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"d895809942e0d036401475a18850b439:i:self"
+							]
+						},
+						{
+							"id": "f2c7a78944a0d22eeb48aa99a67a5d75:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f73cea7b414e2f451d77beaf61042071",
+					"class": "K2Node_VariableGet",
+					"title": "Get Story",
+					"x": 880,
+					"y": 192,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f73cea7b414e2f451d77beaf61042071:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"c7f205cc438e83051f9c52b67d4ebee1:i:self",
+								"fa69263e47b1896f6a5646b541b92c87:i:self"
+							]
+						},
+						{
+							"id": "f73cea7b414e2f451d77beaf61042071:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "fa69263e47b1896f6a5646b541b92c87",
+					"class": "K2Node_CallFunction",
+					"title": "ChoosePath",
+					"x": 1056,
+					"y": -16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fa69263e47b1896f6a5646b541b92c87:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3f838d9b4f68b46a4bae228f0a11e169:o:then",
+								"451266f44d3ddfafa89c148ae1f786eb:o:then"
+							]
+						},
+						{
+							"id": "fa69263e47b1896f6a5646b541b92c87:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b7072d264014c93277746fabdb23293e:i:execute"
+							]
+						},
+						{
+							"id": "fa69263e47b1896f6a5646b541b92c87:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"f73cea7b414e2f451d77beaf61042071:o:Story"
+							]
+						},
+						{
+							"id": "fa69263e47b1896f6a5646b541b92c87:i:Path",
+							"name": "Path",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": null,
+							"links": [
+								"7cb575244e9d5a3529e015a5c47c0073:o:OutputPin"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
 			"name": "UserConstructionScript",
 			"type": "Function",
 			"nodes": [
@@ -37,15 +572,89 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
-					"guid": "46545aba4cc247d0823800822994bff5",
-					"class": "K2Node_Event",
-					"title": "Event BeginPlay",
-					"x": 0,
-					"y": 0,
-					"comment": "This node is disabled and will not be called.\r\nDrag off pins to build functionality.",
+					"guid": "07564eb74f8e2d670e8e6e982f0cf2eb",
+					"class": "K2Node_GetEngineSubsystem",
+					"title": "Get Inkpot",
+					"x": 336,
+					"y": 151,
+					"comment": null,
 					"pins": [
 						{
-							"id": "46545aba4cc247d0823800822994bff5:o:OutputDelegate",
+							"id": "07564eb74f8e2d670e8e6e982f0cf2eb:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"e3486fac4ff488304eaa0591244c5a48:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "33dfce7949cec3af588b73868bfd7616",
+					"class": "K2Node_VariableSet",
+					"title": "Set Main Story Box",
+					"x": 2432,
+					"y": 350,
+					"comment": null,
+					"pins": [
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ff8861343c0168606e188b8e4a08359:o:then"
+							]
+						},
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:i:Main Story Box",
+							"name": "Main Story Box",
+							"direction": "input",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": [
+								"6e7fa7494ac41e15e56431b04bf12538:o:OutputPin"
+							]
+						},
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "33dfce7949cec3af588b73868bfd7616:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "34eaacc146943ed487a0648204685861",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 48,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "34eaacc146943ed487a0648204685861:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -53,10 +662,106 @@
 							"links": []
 						},
 						{
-							"id": "46545aba4cc247d0823800822994bff5:o:then",
+							"id": "34eaacc146943ed487a0648204685861:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e3486fac4ff488304eaa0591244c5a48:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "37ac0b9546bfc394dcd0068c610ebcba",
+					"class": "K2Node_GetArrayItem",
+					"title": "Get (a copy)",
+					"x": 1312,
+					"y": 385,
+					"comment": null,
+					"pins": [
+						{
+							"id": "37ac0b9546bfc394dcd0068c610ebcba:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
+							"defaultValue": null,
+							"links": [
+								"72ac572d460921c96be3d68499035018:o:FoundWidgets"
+							]
+						},
+						{
+							"id": "37ac0b9546bfc394dcd0068c610ebcba:i:Dimension 1",
+							"name": "Dimension 1",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "37ac0b9546bfc394dcd0068c610ebcba:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:i:Display Widget"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5b35eb894a1473020b5fb49d73a3e6f8",
+					"class": "K2Node_VariableSet",
+					"title": "Set Story",
+					"x": 720,
+					"y": 350,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5b35eb894a1473020b5fb49d73a3e6f8:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fb5c4ba04a9e0080ec8a5e91f639db58:o:then"
+							]
+						},
+						{
+							"id": "5b35eb894a1473020b5fb49d73a3e6f8:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"72ac572d460921c96be3d68499035018:i:execute"
+							]
+						},
+						{
+							"id": "5b35eb894a1473020b5fb49d73a3e6f8:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"fb5c4ba04a9e0080ec8a5e91f639db58:o:Story"
+							]
+						},
+						{
+							"id": "5b35eb894a1473020b5fb49d73a3e6f8:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5b35eb894a1473020b5fb49d73a3e6f8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -97,12 +802,289 @@
 					]
 				},
 				{
+					"guid": "5ff8861343c0168606e188b8e4a08359",
+					"class": "K2Node_VariableSet",
+					"title": "Set Dialogue Text Box",
+					"x": 2128,
+					"y": 350,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:o:then"
+							]
+						},
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"33dfce7949cec3af588b73868bfd7616:i:execute"
+							]
+						},
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:i:Dialogue Text Box",
+							"name": "Dialogue Text Box",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"85d07b14478d72a53ec04bb122478c81:o:DialogueTextBox"
+							]
+						},
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5ff8861343c0168606e188b8e4a08359:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6e7fa7494ac41e15e56431b04bf12538",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2368,
+					"y": 471,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6e7fa7494ac41e15e56431b04bf12538:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": [
+								"7203ff9f4c5bc91415217781d78519f8:o:MainStoryBox"
+							]
+						},
+						{
+							"id": "6e7fa7494ac41e15e56431b04bf12538:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": [
+								"33dfce7949cec3af588b73868bfd7616:i:Main Story Box"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7203ff9f4c5bc91415217781d78519f8",
+					"class": "K2Node_VariableGet",
+					"title": "Get MainStoryBox",
+					"x": 1856,
+					"y": 462,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7203ff9f4c5bc91415217781d78519f8:o:MainStoryBox",
+							"name": "MainStoryBox",
+							"direction": "output",
+							"type": "object:/Script/UMG.HorizontalBox",
+							"defaultValue": null,
+							"links": [
+								"6e7fa7494ac41e15e56431b04bf12538:i:InputPin"
+							]
+						},
+						{
+							"id": "7203ff9f4c5bc91415217781d78519f8:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:o:Output_Get"
+							]
+						}
+					]
+				},
+				{
+					"guid": "72ac572d460921c96be3d68499035018",
+					"class": "K2Node_CallFunction",
+					"title": "Get All Widgets Of Class",
+					"x": 928,
+					"y": 334,
+					"comment": null,
+					"pins": [
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5b35eb894a1473020b5fb49d73a3e6f8:o:then"
+							]
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:i:execute"
+							]
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:o:FoundWidgets",
+							"name": "FoundWidgets",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
+							"defaultValue": null,
+							"links": [
+								"37ac0b9546bfc394dcd0068c610ebcba:i:Array"
+							]
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:WidgetClass",
+							"name": "WidgetClass",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"links": []
+						},
+						{
+							"id": "72ac572d460921c96be3d68499035018:i:TopLevelOnly",
+							"name": "TopLevelOnly",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "85d07b14478d72a53ec04bb122478c81",
+					"class": "K2Node_VariableGet",
+					"title": "Get DialogueTextBox",
+					"x": 1840,
+					"y": 388,
+					"comment": null,
+					"pins": [
+						{
+							"id": "85d07b14478d72a53ec04bb122478c81:o:DialogueTextBox",
+							"name": "DialogueTextBox",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+							"defaultValue": null,
+							"links": [
+								"5ff8861343c0168606e188b8e4a08359:i:Dialogue Text Box"
+							]
+						},
+						{
+							"id": "85d07b14478d72a53ec04bb122478c81:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"a4473fb7441e5013761b2382da0baa0c:o:Output_Get"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a4473fb7441e5013761b2382da0baa0c",
+					"class": "K2Node_VariableSet",
+					"title": "Set Display Widget",
+					"x": 1600,
+					"y": 350,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"72ac572d460921c96be3d68499035018:o:then"
+							]
+						},
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5ff8861343c0168606e188b8e4a08359:i:execute"
+							]
+						},
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:i:Display Widget",
+							"name": "Display Widget",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"37ac0b9546bfc394dcd0068c610ebcba:o:Output"
+							]
+						},
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"7203ff9f4c5bc91415217781d78519f8:i:self",
+								"85d07b14478d72a53ec04bb122478c81:i:self"
+							]
+						},
+						{
+							"id": "a4473fb7441e5013761b2382da0baa0c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisAICharacter.BP_AtlantisAICharacter_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "c419523145e62ab67d201daeb4c458a9",
 					"class": "K2Node_Event",
 					"title": "Event ActorBeginOverlap",
 					"x": 0,
 					"y": 208,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"comment": "This node is disabled and will not be called.\r\nDrag off pins to build functionality.",
 					"pins": [
 						{
 							"id": "c419523145e62ab67d201daeb4c458a9:o:OutputDelegate",
@@ -129,6 +1111,94 @@
 							"links": []
 						}
 					]
+				},
+				{
+					"guid": "e3486fac4ff488304eaa0591244c5a48",
+					"class": "K2Node_AssignDelegate",
+					"title": "Assign On Story Begin",
+					"x": 592,
+					"y": 96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e3486fac4ff488304eaa0591244c5a48:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"34eaacc146943ed487a0648204685861:o:then"
+							]
+						},
+						{
+							"id": "e3486fac4ff488304eaa0591244c5a48:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e3486fac4ff488304eaa0591244c5a48:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"07564eb74f8e2d670e8e6e982f0cf2eb:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e3486fac4ff488304eaa0591244c5a48:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"fb5c4ba04a9e0080ec8a5e91f639db58:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fb5c4ba04a9e0080ec8a5e91f639db58",
+					"class": "K2Node_CustomEvent",
+					"title": "EventOnStoryBegin_Event",
+					"x": 320,
+					"y": 320,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fb5c4ba04a9e0080ec8a5e91f639db58:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"e3486fac4ff488304eaa0591244c5a48:i:Delegate"
+							]
+						},
+						{
+							"id": "fb5c4ba04a9e0080ec8a5e91f639db58:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5b35eb894a1473020b5fb49d73a3e6f8:i:execute"
+							]
+						},
+						{
+							"id": "fb5c4ba04a9e0080ec8a5e91f639db58:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"5b35eb894a1473020b5fb49d73a3e6f8:i:Story"
+							]
+						}
+					]
 				}
 			],
 			"comments": []
@@ -138,9 +1208,37 @@
 	{
 		"variables":
 		{
-			"Never Interacted With":
+			"DialogueStarted":
 			{
 				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Story":
+			{
+				"type": "object:/Script/Inkpot.InkpotStory",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"Display Widget":
+			{
+				"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Dialogue Text Box":
+			{
+				"type": "object:/Game/ProjectAtlantis/UI/WBP_DialogueBox.WBP_DialogueBox_C",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"Main Story Box":
+			{
+				"type": "object:/Script/UMG.HorizontalBox",
 				"category": "Default",
 				"defaultValue": "",
 				"instanceEditable": false
@@ -151,7 +1249,11 @@
 		},
 		"defaults":
 		{
-			"Never Interacted With": true,
+			"DialogueStarted": false,
+			"Story": null,
+			"Display Widget": null,
+			"Dialogue Text Box": null,
+			"Main Story Box": null,
 			"Mesh":
 			{
 				"_class": "SkeletalMeshComponent",
@@ -1696,6 +2798,10 @@
 							{
 								"Channel": "Camera",
 								"Response": "ECR_Ignore"
+							},
+							{
+								"Channel": "Interact",
+								"Response": "ECR_Ignore"
 							}
 						]
 					},
@@ -2585,7 +3691,7 @@
 			"DataLayerAssets": [],
 			"ExternalDataLayerAsset": null,
 			"SpriteScale": 1,
-			"ActorLabel": "",
+			"ActorLabel": "BP_AtlantisAICharacter",
 			"FolderPath": "None",
 			"FolderGuid": "00000000000000000000000000000000",
 			"bHiddenEd": false,
