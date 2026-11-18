@@ -18,9 +18,13 @@ class PROJECTATLANTIS_API UAtlantisRoomSubsystem : public UWorldSubsystem
 	GENERATED_BODY()
 
 public:
+	/** Called by a room volume when the listener enters it. */
 	void EnterRoom(const UObject* Volume, FGameplayTag RoomTag, int32 Priority);
+
+	/** Called by a room volume when the listener leaves it, or when the volume unloads. */
 	void ExitRoom(const UObject* Volume);
 
+	/** The room that's currently winning. Invalid until the first room change. */
 	FGameplayTag GetCurrentRoom() const { return CurrentRoom; }
 
 private:

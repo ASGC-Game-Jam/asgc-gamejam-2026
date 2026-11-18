@@ -44,7 +44,7 @@ void UAtlantisJournalAudioBridge::OnWorldBeginPlay(UWorld& InWorld)
 
 void UAtlantisJournalAudioBridge::Deinitialize()
 {
-    // Nothing is withdrawn here: the music subsystem forgets every fact when the world is cleaned up.
+    // No facts are withdrawn here, because the music subsystem forgets every fact when the world is cleaned up.
     if (Journal)
     {
         Journal->OnInvestigationUpdated.RemoveDynamic(this, &ThisClass::HandleInvestigationUpdated);

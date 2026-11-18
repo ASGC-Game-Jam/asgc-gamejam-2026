@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright (c) 2026 ASGC
 
 #include "Audio/AtlantisAudioSubsystem.h"
 
@@ -93,10 +93,10 @@ void UAtlantisAudioSubsystem::HandlePostWorldInitialization(UWorld* World, const
 
 	TrackedWorld = World;
 
-	// Hook into this specific world's Begin Play
+	// Start the music when this world begins play.
 	WorldBeginPlayHandle = World->OnWorldBeginPlay.AddUObject(this, &UAtlantisAudioSubsystem::HandleWorldBeginPlay);
 
-	// Hook into the global Cleanup delegate to track when this world winds down
+	// The cleanup delegate is global, so HandleWorldCleanup checks it's this world.
 	WorldCleanupHandle = FWorldDelegates::OnWorldCleanup.AddUObject(this, &UAtlantisAudioSubsystem::HandleWorldCleanup);
 
 	// Subscribe before any actor's BeginPlay runs, because the router drops facts that have no listener.

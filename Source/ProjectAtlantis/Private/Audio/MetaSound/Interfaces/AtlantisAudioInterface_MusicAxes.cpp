@@ -1,15 +1,5 @@
-// =======================================================================================
-// PROJECT ATLANTIS - METASOUND INTERFACE TEMPLATE
-// =======================================================================================
-// DESIGN NOTE: This file intentionally uses a boilerplate/template structure. 
-// Due to Unreal Engine's static registration requirements and dependency on the 
-// preprocessor (AUDIO_PARAMETER_INTERFACE_MEMBER_DEFINE), traditional C++ abstraction 
-// and inheritance cannot be used here.
-//
-// HOW TO USE: 
-// 1. Copy this file pairs (.h/.cpp) to create a new interface.
-// 2. Follow the !!CHANGE THIS!! TODO markers to rename namespaces and define your pins.
-// =======================================================================================
+// Atlantis.Music.Axes: the music's PlayerState, Tension and Environment axes. Also the template for new interfaces.
+// To make a new interface, copy this pair and follow the !!CHANGE THIS!! markers, as README.md explains.
 
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_MusicAxes.h"
 
@@ -65,7 +55,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisPlayerState", "PlayerState"),
-							LOCTEXT("AtlantisPlayerState_Description", "Music intensity from 0 to 1. Currently unused: the music is passive and driven by Tension, so this stays at its baseline."),
+							LOCTEXT("AtlantisPlayerState_Description", "Music intensity from 0 to 1. Currently unused, so it stays at its baseline."),
 							GetMetasoundDataTypeName<float>(),
 							PlayerStateAxis.Resolve(),
 							FText(),
@@ -74,7 +64,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisTension", "Tension"),
-							LOCTEXT("AtlantisTension_Description", "Pressure from 0 to 1. Rises with tension states such as puzzles, low oxygen, low trust or hiding. Higher values bring in the passive layer."),
+							LOCTEXT("AtlantisTension_Description", "Pressure from 0 to 1, raised by states such as low oxygen or hiding. Higher values bring in the Passive layer."),
 							GetMetasoundDataTypeName<float>(),
 							TensionAxis.Resolve(),
 							FText(),
@@ -83,7 +73,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisEnvironment", "Environment"),
-							LOCTEXT("AtlantisEnvironment_Description", "Space type from 0 to 1. Shapes reverb, filtering and compression to match the room, such as underwater, open or close."),
+							LOCTEXT("AtlantisEnvironment_Description", "Space type from 0 to 1. Shapes reverb, filtering and compression to match the room."),
 							GetMetasoundDataTypeName<float>(),
 							EnvironmentAxis.Resolve(),
 							FText(),

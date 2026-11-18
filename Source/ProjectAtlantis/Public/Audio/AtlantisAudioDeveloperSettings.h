@@ -8,16 +8,12 @@
 
 #include "AtlantisAudioDeveloperSettings.generated.h"
 
-/**
- * Stores any audio dev settings
- */
-
  class UMetaSoundSource;
  class UAtlantisMusicAxisMapping;
  struct FInstancedStruct;
  class UAtlantisRoomTypeTable;
 
-
+/** Project-wide audio settings, under Project Settings > Game > Atlantis Audio Settings. */
 UCLASS(config=Game, DefaultConfig)
 class PROJECTATLANTIS_API UAtlantisAudioDeveloperSettings : public UDeveloperSettings
 {
@@ -31,13 +27,15 @@ public:
 	virtual FText GetSectionDescription() const override;
 #endif
 
+	/** True if the music subsystem should run. The atlantis.audio.musicSubsystem console variable can force it on or off. */
 	static bool DetermineIfMusicSubsystemEnabled();
 	static TObjectPtr<UMetaSoundSource> GetMusicMetaSoundSource(); 
 	static bool IsMusicPlaybackWorld(const UWorld* World);
 	
-	/** Checks Tag is registered and Payload holds the registered struct type. Fails loudly on a breach. Returns true if valid. */
+	/** True if Tag is registered and Payload holds its registered struct. Logs an error for any mismatch. */
 	static bool ValidatePayload(FGameplayTag Tag, const FInstancedStruct& Payload);
 
+	/** Loads the music axis mapping asset. Returns null if none is set. */
 	static UAtlantisMusicAxisMapping* GetMusicAxisMapping();
 
 	/** Finds the RoomType pin ID for a room tag. Logs an error and returns false if the tag or table is missing. */
@@ -48,6 +46,7 @@ protected:
 
 	friend struct FAtlantisAudioValidationTestAccess;
 	
+	/** Turns the music subsystem on or off for the whole project. */
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
 	bool bEnableMusicManagementSubsystem = true;
 

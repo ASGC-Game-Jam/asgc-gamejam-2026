@@ -1,7 +1,7 @@
-// Copyright Your Studio. All Rights Reserved.
+// Copyright (c) 2026 ASGC
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterfaceRegistration.h"
 
-// TODO: include each new interface header here as you add them
+// Include each new interface's header here.
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_MusicAxes.h"
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_Environment.h"
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_MusicLayers.h"
@@ -10,7 +10,7 @@ namespace ProjectAtlantisAudio
 {
 	void RegisterAllMetaSoundInterfaces()
 	{
-		// TODO: call each new interface's Register function here
+		// Call each new interface's Register function here.
 		RegisterMusicAxesInterface();
 		RegisterEnvironmentInterface();
 		RegisterMusicLayersInterface();
