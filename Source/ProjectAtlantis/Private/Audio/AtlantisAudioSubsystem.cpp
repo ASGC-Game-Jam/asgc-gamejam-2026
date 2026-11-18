@@ -137,7 +137,7 @@ void UAtlantisAudioSubsystem::HandleWorldBeginPlay()
 	USoundBase* MusicAsset = Cast<USoundBase>(UAtlantisAudioDeveloperSettings::GetMusicForWorld(TrackedWorld.Get()));
 	if (!MusicAsset)
 	{
-		TEXT("No score could be loaded for [%s]. Check its row in Project Settings > Atlantis Audio Settings > Music Per Map."), *TrackedWorld->GetName()
+		UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No score could be loaded for [%s]. Check its row in Project Settings > Atlantis Audio Settings > Music Per Map."), *TrackedWorld->GetName());
 		return;
 	}
 
