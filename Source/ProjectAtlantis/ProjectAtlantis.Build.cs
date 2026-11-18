@@ -27,8 +27,7 @@ public class ProjectAtlantis : ModuleRules
         			"GameplayTags",
 			  "StructUtils",
 
-                "Inkpot",
-                "InkpotEditor"
+                "Inkpot"
 			});
 
 		PrivateDependencyModuleNames.AddRange(new string[]
