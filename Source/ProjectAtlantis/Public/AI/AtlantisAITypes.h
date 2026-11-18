@@ -8,7 +8,7 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogAtlantisAI, Log, All);
 
-UENUM()
+UENUM(BlueprintType)
 enum class EMonsterStatus : uint8
 {
 	None = 0 UMETA(Hidden),

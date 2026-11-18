@@ -1,0 +1,1126 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Placeables/AI/BP_PatrolPath",
+	"asset": "BP_PatrolPath",
+	"assetClass": "Blueprint",
+	"parentClass": "AtlantisPatrolPath",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "GetPatrolSpline",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "1b2e981b43303923857a38a2b6c9d479",
+					"class": "K2Node_VariableGet",
+					"title": "Get PatrolSpline",
+					"x": 176,
+					"y": 80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1b2e981b43303923857a38a2b6c9d479:o:PatrolSpline",
+							"name": "PatrolSpline",
+							"direction": "output",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"be6a96fb4f9aabd81b1f4ea7fb1e5fce:i:PatrolSpline"
+							]
+						},
+						{
+							"id": "1b2e981b43303923857a38a2b6c9d479:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/AI/BP_PatrolPath.BP_PatrolPath_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "be6a96fb4f9aabd81b1f4ea7fb1e5fce",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 352,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "be6a96fb4f9aabd81b1f4ea7fb1e5fce:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d3977ac14124189af2f96aada119bff6:o:then"
+							]
+						},
+						{
+							"id": "be6a96fb4f9aabd81b1f4ea7fb1e5fce:i:PatrolSpline",
+							"name": "PatrolSpline",
+							"direction": "input",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"1b2e981b43303923857a38a2b6c9d479:o:PatrolSpline"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d3977ac14124189af2f96aada119bff6",
+					"class": "K2Node_FunctionEntry",
+					"title": "GetPatrolSpline",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d3977ac14124189af2f96aada119bff6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"be6a96fb4f9aabd81b1f4ea7fb1e5fce:i:execute"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "GetRouteSpline",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "1f6a2c314fe5350481c878abfef3df17",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1f6a2c314fe5350481c878abfef3df17:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9721f57c4c77164503d1d689fdcb8bde:o:then"
+							]
+						},
+						{
+							"id": "1f6a2c314fe5350481c878abfef3df17:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"bad8b12d41dd4f02ee9cd5a6329757d3:o:PatrolSpline"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9721f57c4c77164503d1d689fdcb8bde",
+					"class": "K2Node_FunctionEntry",
+					"title": "GetRouteSpline",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9721f57c4c77164503d1d689fdcb8bde:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1f6a2c314fe5350481c878abfef3df17:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bad8b12d41dd4f02ee9cd5a6329757d3",
+					"class": "K2Node_VariableGet",
+					"title": "Get PatrolSpline",
+					"x": 48,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bad8b12d41dd4f02ee9cd5a6329757d3:o:PatrolSpline",
+							"name": "PatrolSpline",
+							"direction": "output",
+							"type": "object:/Script/Engine.SplineComponent",
+							"defaultValue": null,
+							"links": [
+								"1f6a2c314fe5350481c878abfef3df17:i:ReturnValue"
+							]
+						},
+						{
+							"id": "bad8b12d41dd4f02ee9cd5a6329757d3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/AI/BP_PatrolPath.BP_PatrolPath_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "GetWaitTimeAtPoint",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "04da14f245bc2eda18dc2aab3ee3f1f2",
+					"class": "K2Node_FunctionResult",
+					"title": "Return Node",
+					"x": 256,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "04da14f245bc2eda18dc2aab3ee3f1f2:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7e00ecb24199f4ea1137b08277dae6c7:o:then"
+							]
+						},
+						{
+							"id": "04da14f245bc2eda18dc2aab3ee3f1f2:i:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"d7aecff9444438e0abf5ebacde945d2c:o:DefaultWaitTime"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7e00ecb24199f4ea1137b08277dae6c7",
+					"class": "K2Node_FunctionEntry",
+					"title": "GetWaitTimeAtPoint",
+					"x": -128,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7e00ecb24199f4ea1137b08277dae6c7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"04da14f245bc2eda18dc2aab3ee3f1f2:i:execute"
+							]
+						},
+						{
+							"id": "7e00ecb24199f4ea1137b08277dae6c7:o:PointIndex",
+							"name": "PointIndex",
+							"direction": "output",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d7aecff9444438e0abf5ebacde945d2c",
+					"class": "K2Node_VariableGet",
+					"title": "Get DefaultWaitTime",
+					"x": 80,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d7aecff9444438e0abf5ebacde945d2c:o:DefaultWaitTime",
+							"name": "DefaultWaitTime",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"04da14f245bc2eda18dc2aab3ee3f1f2:i:ReturnValue"
+							]
+						},
+						{
+							"id": "d7aecff9444438e0abf5ebacde945d2c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisPatrolPath",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "9697af53463e7edca06de798afd72e38",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9697af53463e7edca06de798afd72e38:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "58f27de74b7878760b1d8faad0720283",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "58f27de74b7878760b1d8faad0720283:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "58f27de74b7878760b1d8faad0720283:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8b870552464e65d7b8efadb34bd988f7",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "8b870552464e65d7b8efadb34bd988f7:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8b870552464e65d7b8efadb34bd988f7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8b870552464e65d7b8efadb34bd988f7:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "dd7156fc48bf1fbd62dd178f78b971c2",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "dd7156fc48bf1fbd62dd178f78b971c2:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "dd7156fc48bf1fbd62dd178f78b971c2:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "dd7156fc48bf1fbd62dd178f78b971c2:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+			"DefaultSceneRoot":
+			{
+				"class": "SceneComponent",
+				"parent": null,
+				"properties":
+				{
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": false,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": true,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			},
+			"PatrolSpline":
+			{
+				"class": "SplineComponent",
+				"parent": "DefaultSceneRoot",
+				"properties":
+				{
+					"Spline": "SplineData SplineDataLen=2 SplineData=00\r\n",
+					"SplineCurves":
+					{
+						"Position":
+						{
+							"Points": [
+								{
+									"InVal": 0,
+									"OutVal":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0
+									},
+									"ArriveTangent":
+									{
+										"X": 100,
+										"Y": 0,
+										"Z": 0
+									},
+									"LeaveTangent":
+									{
+										"X": 100,
+										"Y": 0,
+										"Z": 0
+									},
+									"InterpMode": "CIM_CurveAuto"
+								},
+								{
+									"InVal": 1,
+									"OutVal":
+									{
+										"X": 100,
+										"Y": 0,
+										"Z": 0
+									},
+									"ArriveTangent":
+									{
+										"X": 100,
+										"Y": 0,
+										"Z": 0
+									},
+									"LeaveTangent":
+									{
+										"X": 100,
+										"Y": 0,
+										"Z": 0
+									},
+									"InterpMode": "CIM_CurveAuto"
+								}
+							],
+							"bIsLooped": false,
+							"LoopKeyOffset": 0
+						},
+						"Rotation":
+						{
+							"Points": [
+								{
+									"InVal": 0,
+									"OutVal":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0,
+										"W": 1
+									},
+									"ArriveTangent":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0,
+										"W": 1
+									},
+									"LeaveTangent":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0,
+										"W": 1
+									},
+									"InterpMode": "CIM_CurveAuto"
+								},
+								{
+									"InVal": 1,
+									"OutVal":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0,
+										"W": 1
+									},
+									"ArriveTangent":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0,
+										"W": 1
+									},
+									"LeaveTangent":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0,
+										"W": 1
+									},
+									"InterpMode": "CIM_CurveAuto"
+								}
+							],
+							"bIsLooped": false,
+							"LoopKeyOffset": 0
+						},
+						"Scale":
+						{
+							"Points": [
+								{
+									"InVal": 0,
+									"OutVal":
+									{
+										"X": 1,
+										"Y": 1,
+										"Z": 1
+									},
+									"ArriveTangent":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0
+									},
+									"LeaveTangent":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0
+									},
+									"InterpMode": "CIM_CurveAuto"
+								},
+								{
+									"InVal": 1,
+									"OutVal":
+									{
+										"X": 1,
+										"Y": 1,
+										"Z": 1
+									},
+									"ArriveTangent":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0
+									},
+									"LeaveTangent":
+									{
+										"X": 0,
+										"Y": 0,
+										"Z": 0
+									},
+									"InterpMode": "CIM_CurveAuto"
+								}
+							],
+							"bIsLooped": false,
+							"LoopKeyOffset": 0
+						},
+						"ReparamTable":
+						{
+							"Points": [
+								{
+									"InVal": 0,
+									"OutVal": 0,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 10,
+									"OutVal": 0.10000000000000001,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 20,
+									"OutVal": 0.20000000000000001,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 30,
+									"OutVal": 0.29999999999999999,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 40,
+									"OutVal": 0.40000000000000002,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 50,
+									"OutVal": 0.5,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 60,
+									"OutVal": 0.59999999999999998,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 70,
+									"OutVal": 0.69999999999999996,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 80,
+									"OutVal": 0.80000000000000004,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 90,
+									"OutVal": 0.90000000000000002,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								},
+								{
+									"InVal": 100,
+									"OutVal": 1,
+									"ArriveTangent": 0,
+									"LeaveTangent": 0,
+									"InterpMode": "CIM_Linear"
+								}
+							],
+							"bIsLooped": false,
+							"LoopKeyOffset": 0
+						}
+					},
+					"ReparamStepsPerSegment": 10,
+					"Duration": 1,
+					"bStationaryEndpoints": false,
+					"bSplineHasBeenEdited": false,
+					"bModifiedByConstructionScript": false,
+					"bInputSplinePointsToConstructionScript": false,
+					"bDrawDebug": true,
+					"bClosedLoop": false,
+					"bLoopPositionOverride": false,
+					"LoopPosition": 0,
+					"DefaultUpVector":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 1
+					},
+					"EditorUnselectedSplineSegmentColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"EditorSelectedSplineSegmentColor":
+					{
+						"R": 0.82799999999999996,
+						"G": 0.36399999999999999,
+						"B": 0.0030000000000000001,
+						"A": 1
+					},
+					"EditorTangentColor":
+					{
+						"R": 0.71799999999999997,
+						"G": 0.58899999999999997,
+						"B": 0.92100000000000004,
+						"A": 1
+					},
+					"bAllowDiscontinuousSpline": false,
+					"bAdjustTangentsOnSnap": true,
+					"bShouldVisualizeScale": false,
+					"ScaleVisualizationWidth": 30,
+					"LastAuthority": "SplineCurves",
+					"MinDrawDistance": 0,
+					"LDMaxDrawDistance": 0,
+					"CachedMaxDrawDistance": 0,
+					"DepthPriorityGroup": "SDPG_World",
+					"ViewOwnerDepthPriorityGroup": "SDPG_World",
+					"IndirectLightingCacheQuality": "ILCQ_Point",
+					"LightmapType": "Default",
+					"HLODBatchingPolicy": "None",
+					"ShadowCacheInvalidationBehavior": "Auto",
+					"bEnableAutoLODGeneration": true,
+					"bIsActorTextureStreamingBuiltData": false,
+					"bIsValidTextureStreamingBuiltData": false,
+					"bNeverDistanceCull": false,
+					"bAlwaysCreatePhysicsState": false,
+					"bGenerateOverlapEvents": true,
+					"bMultiBodyOverlap": false,
+					"bTraceComplexOnMove": false,
+					"bReturnMaterialOnMove": false,
+					"bUseViewOwnerDepthPriorityGroup": false,
+					"bAllowCullDistanceVolume": true,
+					"bVisibleInReflectionCaptures": true,
+					"bVisibleInRealTimeSkyCaptures": true,
+					"bVisibleInRayTracing": true,
+					"bRenderInMainPass": true,
+					"bRenderInDepthPass": true,
+					"bReceivesDecals": true,
+					"bHoldout": false,
+					"bOwnerNoSee": false,
+					"bOnlyOwnerSee": false,
+					"bTreatAsBackgroundForOcclusion": false,
+					"bUseAsOccluder": false,
+					"bSelectable": true,
+					"bWantsEditorEffects": false,
+					"bConsiderForActorPlacementWhenHidden": false,
+					"bForceMipStreaming": false,
+					"bHasPerInstanceHitProxies": false,
+					"CastShadow": false,
+					"bEmissiveLightSource": false,
+					"bAffectDynamicIndirectLighting": true,
+					"bAffectIndirectLightingWhileHidden": false,
+					"bAffectDistanceFieldLighting": true,
+					"bCastDynamicShadow": true,
+					"bCastStaticShadow": true,
+					"bCastVolumetricTranslucentShadow": false,
+					"bCastContactShadow": true,
+					"bSelfShadowOnly": false,
+					"bCastFarShadow": false,
+					"bCastInsetShadow": false,
+					"bCastCinematicShadow": false,
+					"bCastHiddenShadow": false,
+					"bCastShadowAsTwoSided": false,
+					"bLightAttachmentsAsGroup": false,
+					"bExcludeFromLightAttachmentGroup": false,
+					"bReceiveMobileCSMShadows": true,
+					"bSingleSampleShadowFromStationaryLights": false,
+					"bIgnoreRadialImpulse": false,
+					"bIgnoreRadialForce": false,
+					"bApplyImpulseOnDamage": true,
+					"bReplicatePhysicsToAutonomousProxy": true,
+					"bFillCollisionUnderneathForNavmesh": false,
+					"bRasterizeAsFilledConvexVolume": false,
+					"AlwaysLoadOnClient": true,
+					"AlwaysLoadOnServer": true,
+					"bUseEditorCompositing": false,
+					"bRenderCustomDepth": false,
+					"bVisibleInSceneCaptureOnly": false,
+					"bHiddenInSceneCapture": false,
+					"bRayTracingFarField": false,
+					"bLumenHeightfield": false,
+					"FirstPersonPrimitiveType": "None",
+					"bHasNoStreamableTextures": false,
+					"bStaticWhenNotMoveable": true,
+					"bHasCustomNavigableGeometry": "No",
+					"HitProxyPriority": "HPP_World",
+					"CanCharacterStepUpOn": "ECB_Yes",
+					"LightingChannels":
+					{
+						"bChannel0": true,
+						"bChannel1": false,
+						"bChannel2": false
+					},
+					"RayTracingGroupCullingPriority": "CP_4_DEFAULT",
+					"CustomDepthStencilWriteMask": "ERSM_Default",
+					"ExcludeFromHLODLevels": 0,
+					"RayTracingGroupId": -1,
+					"VisibilityId": -1,
+					"CustomDepthStencilValue": 0,
+					"CustomPrimitiveData":
+					{
+						"Data": []
+					},
+					"TranslucencySortPriority": 0,
+					"TranslucencySortDistanceOffset": 0,
+					"RuntimeVirtualTextures": [],
+					"VirtualTextureLodBias": 0,
+					"VirtualTextureCullMips": 0,
+					"VirtualTextureMinCoverage": 0,
+					"VirtualTextureRenderPassType": "Exclusive",
+					"BoundsScale": 1,
+					"BodyInstance":
+					{
+						"PositionSolverIterationCount": 8,
+						"VelocitySolverIterationCount": 2,
+						"ProjectionSolverIterationCount": 1,
+						"ObjectType": "ECC_WorldStatic",
+						"CollisionEnabled": "QueryAndPhysics",
+						"SleepFamily": "Normal",
+						"DOFMode": "Default",
+						"bUseCCD": false,
+						"bUseMACD": false,
+						"bAllowPartialIslandSleep": true,
+						"bIgnoreAnalyticCollisions": false,
+						"bNotifyRigidBodyCollision": false,
+						"bSmoothEdgeCollisions": false,
+						"bLockTranslation": true,
+						"bLockRotation": true,
+						"bLockXTranslation": false,
+						"bLockYTranslation": false,
+						"bLockZTranslation": false,
+						"bLockXRotation": false,
+						"bLockYRotation": false,
+						"bLockZRotation": false,
+						"bOverrideMaxAngularVelocity": false,
+						"bOverrideMaxDepenetrationVelocity": false,
+						"bOverrideWalkableSlopeOnInstance": false,
+						"bOverrideIterationCounts": false,
+						"bInterpolateWhenSubStepping": true,
+						"bInertiaConditioning": true,
+						"bOneWayInteraction": false,
+						"bOverrideSolverAsyncDeltaTime": false,
+						"SolverAsyncDeltaTime": 0.016666670000000001,
+						"CollisionProfileName": "BlockAll",
+						"CollisionResponses":
+						{
+							"ResponseArray": []
+						},
+						"MaxDepenetrationVelocity": 0,
+						"MassInKgOverride": 100,
+						"LinearDamping": 0.01,
+						"AngularDamping": 0,
+						"CustomDOFPlaneNormal":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0
+						},
+						"COMNudge":
+						{
+							"X": 0,
+							"Y": 0,
+							"Z": 0
+						},
+						"MassScale": 1,
+						"GravityGroupIndex": 0,
+						"InertiaTensorScale":
+						{
+							"X": 1,
+							"Y": 1,
+							"Z": 1
+						},
+						"WalkableSlopeOverride":
+						{
+							"WalkableSlopeBehavior": "WalkableSlope_Default",
+							"WalkableSlopeAngle": 0
+						},
+						"PhysMaterialOverride": null,
+						"MaxAngularVelocity": 3600,
+						"CustomSleepThresholdMultiplier": 1,
+						"StabilizationThresholdMultiplier": 1,
+						"PhysicsBlendWeight": 0,
+						"bSimulatePhysics": false,
+						"bOverrideMass": false,
+						"bEnableGravity": true,
+						"bUpdateKinematicFromSimulation": false,
+						"bGyroscopicTorqueEnabled": false,
+						"bAutoWeld": false,
+						"bStartAwake": true,
+						"bGenerateWakeEvents": false,
+						"bUpdateMassWhenScaleChanges": true
+					},
+					"AttachParent": null,
+					"AttachSocketName": "None",
+					"RelativeLocation":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"RelativeRotation":
+					{
+						"Pitch": 0,
+						"Yaw": 0,
+						"Roll": 0
+					},
+					"RelativeScale3D":
+					{
+						"X": 1,
+						"Y": 1,
+						"Z": 1
+					},
+					"ComponentVelocity":
+					{
+						"X": 0,
+						"Y": 0,
+						"Z": 0
+					},
+					"bAbsoluteLocation": false,
+					"bAbsoluteRotation": false,
+					"bAbsoluteScale": false,
+					"bVisible": true,
+					"bShouldUpdatePhysicsVolume": false,
+					"bHiddenInGame": false,
+					"bBoundsChangeTriggersStreamingDataRebuild": false,
+					"bUseAttachParentBound": false,
+					"bComputeFastLocalBounds": false,
+					"bComputeBoundsOnceForGame": false,
+					"bComputedBoundsOnceForGame": false,
+					"bIsNotRenderAttachmentRoot": false,
+					"bVisualizeComponent": false,
+					"Mobility": "Movable",
+					"DetailMode": "DM_Low",
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			}
+		},
+		"defaults":
+		{
+			"PatrolSpline": null,
+			"DefaultSceneRoot": null,
+			"DefaultWaitTime": 0,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": true,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}
