@@ -64,40 +64,13 @@ bool UAtlantisAudioDeveloperSettings::DetermineIfMusicSubsystemEnabled()
 	}
 }
 
-TObjectPtr<UMetaSoundSource> UAtlantisAudioDeveloperSettings::GetMusicMetaSoundSource()
-{
-	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
-	if (!Settings)
-	{
-		return nullptr;
-	}
-
-	if (Settings->MusicMetaSoundSource.IsNull())
-	{
-		return nullptr;
-	}
-
-	if (Settings->MusicMetaSoundSource.IsValid())
-	{
-		return Settings->MusicMetaSoundSource.Get();
-	}
-
-	return Settings->MusicMetaSoundSource.LoadSynchronous();
-}
-
 bool UAtlantisAudioDeveloperSettings::IsMusicPlaybackWorld(const UWorld* World)
 {
 	if (!World || !World->IsGameWorld() || World->GetNetMode() == NM_DedicatedServer)
 	{
 		return false;
 	}
-
-	const FString MapPackage = UWorld::RemovePIEPrefix(World->GetOutermost()->GetName());
-	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
-	return Settings->MusicPlaybackMaps.ContainsByPredicate([&MapPackage](const TSoftObjectPtr<UWorld>& Map)
-	{
-		return Map.ToSoftObjectPath().GetLongPackageName() == MapPackage;
-	});
+	return FindMusicEntry(World) != nullptr;
 }
 
 bool UAtlantisAudioDeveloperSettings::ValidatePayload(FGameplayTag Tag, const FInstancedStruct& Payload)
@@ -149,6 +122,24 @@ UAtlantisMusicAxisMapping* UAtlantisAudioDeveloperSettings::GetMusicAxisMapping(
 	return GetDefault<UAtlantisAudioDeveloperSettings>()->MusicAxisMapping.LoadSynchronous();
 }
 
+UMetaSoundSource* UAtlantisAudioDeveloperSettings::GetMusicForWorld(const UWorld* World)
+{
+	if(!IsMusicPlaybackWorld(World))
+	{
+		return nullptr;
+	}
+
+	const auto Entry = FindMusicEntry(World);
+
+	if (!Entry || Entry->IsNull())
+	{
+		UE_LOG(LogAtlantisAudioValidation, Error, TEXT("Map %s is listed but no score is set"), *World->GetOutermost()->GetName());
+		return nullptr;
+	}
+
+	return Entry->LoadSynchronous();
+}
+
 bool UAtlantisAudioDeveloperSettings::GetRoomTypeId(FGameplayTag RoomTag, int32& OutRoomTypeId)
 {
 	const UAtlantisRoomTypeTable* Table = GetDefault<UAtlantisAudioDeveloperSettings>()->RoomTypeTable.LoadSynchronous();
@@ -167,4 +158,30 @@ bool UAtlantisAudioDeveloperSettings::GetRoomTypeId(FGameplayTag RoomTag, int32&
 
 	OutRoomTypeId = *RoomTypeId;
 	return true;
+}
+
+const TSoftObjectPtr<UMetaSoundSource>* UAtlantisAudioDeveloperSettings::FindMusicEntry(const UWorld* World)
+{
+	if (!World)
+	{
+		return nullptr;
+	}
+
+	const FString MapPackage = UWorld::RemovePIEPrefix(World->GetOutermost()->GetName());
+
+	const UAtlantisAudioDeveloperSettings* Settings = GetDefault<UAtlantisAudioDeveloperSettings>();
+
+	if (!Settings)
+	{
+		return nullptr;
+	}
+	
+	for (const auto& Pair : Settings->MusicPerMap)
+	{
+		if (Pair.Key.ToSoftObjectPath().GetLongPackageName() == MapPackage)
+		{
+			return &Pair.Value;
+		}
+	}
+	return nullptr;
 }

@@ -29,7 +29,10 @@ public:
 
 	/** True if the music subsystem should run. The atlantis.audio.musicSubsystem console variable can force it on or off. */
 	static bool DetermineIfMusicSubsystemEnabled();
-	static TObjectPtr<UMetaSoundSource> GetMusicMetaSoundSource(); 
+
+	/** The score for this world's map, from Music Per Map. nullptr if this world shouldn't play music. */
+	static UMetaSoundSource* GetMusicForWorld(const UWorld* World);
+
 	static bool IsMusicPlaybackWorld(const UWorld* World);
 	
 	/** True if Tag is registered and Payload holds its registered struct. Logs an error for any mismatch. */
@@ -50,12 +53,9 @@ protected:
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
 	bool bEnableMusicManagementSubsystem = true;
 
-	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
-	TSoftObjectPtr<UMetaSoundSource> MusicMetaSoundSource;
-
-	/** Persistent maps where the subsystem owns music. Menu music is owned by the menu Blueprint. */
-	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
-	TArray<TSoftObjectPtr<UWorld>> MusicPlaybackMaps;
+	/** Each gameplay map and the score it plays. Maps not listed play no subsystem music. Menu music is owned by the menu Blueprint. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings", meta=(DisplayName="Music Per Map"))
+	TMap<TSoftObjectPtr<UWorld>, TSoftObjectPtr<UMetaSoundSource>> MusicPerMap;
 
 	/** Maps each audio fact tag to the struct type its payload must use. */
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Validation")
@@ -69,4 +69,7 @@ protected:
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Rooms")
 	TSoftObjectPtr<UAtlantisRoomTypeTable> RoomTypeTable;
 
+private:
+	/** This world's entry in Music Per Map, or nullptr if its map isn't listed. Handles PIE map names. */
+	static const TSoftObjectPtr<UMetaSoundSource>* FindMusicEntry(const UWorld* World);
 };
