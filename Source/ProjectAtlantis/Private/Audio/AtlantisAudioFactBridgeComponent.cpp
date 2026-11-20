@@ -12,6 +12,7 @@
 #include "GameFramework/Pawn.h"
 #include "StructUtils/InstancedStruct.h"
 #include "TimerManager.h"
+#include "Core/AtlantisMovementComponent.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisAudioFactBridge, Log, All);
 
@@ -113,6 +114,16 @@ void UAtlantisAudioFactBridgeComponent::TryBindSources()
 		UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("No hiding component on [%s]. Hiding facts won't reach the music."), *GetNameSafe(Pawn));
 	}
 
+	MovementComponent = Cast<UAtlantisMovementComponent>(Pawn->GetMovementComponent());
+	if (MovementComponent)
+	{
+		MovementComponent->OnUnderwaterChanged.AddDynamic(this, &ThisClass::HandleUnderwaterChanged);
+	}
+	else
+	{
+		UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("No UAtlantisMovementComponent on [%s]. Underwater facts won't reach audio."), *GetNameSafe(Pawn));
+	}
+
 	SendInitialFacts();
 }
 
@@ -126,6 +137,7 @@ void UAtlantisAudioFactBridgeComponent::UnbindSources()
 		Payload.bValue = false;
 		UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Oxygen_Critical, FInstancedStruct::Make(Payload));
 		UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Stealth_Hiding, FInstancedStruct::Make(Payload));
+		UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Player_Underwater, FInstancedStruct::Make(Payload));
 		UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Player_Present, FInstancedStruct::Make(Payload));
 	}
 
@@ -142,6 +154,12 @@ void UAtlantisAudioFactBridgeComponent::UnbindSources()
 	{
 		HidingComponent->OnHidingStateChanged.RemoveDynamic(this, &ThisClass::HandleHidingStateChanged);
 		HidingComponent = nullptr;
+	}
+
+	if (MovementComponent)
+	{
+		MovementComponent->OnUnderwaterChanged.RemoveDynamic(this, &ThisClass::HandleUnderwaterChanged);
+		MovementComponent = nullptr;
 	}
 
 	// Cancel any pending player state retry, so a new possession starts with a fresh count.
@@ -169,6 +187,11 @@ void UAtlantisAudioFactBridgeComponent::SendInitialFacts()
 	if (HidingComponent)
 	{
 		HandleHidingStateChanged(HidingComponent->IsHiding());
+	}
+
+	if (MovementComponent)
+	{
+		HandleUnderwaterChanged(MovementComponent->IsInWater());
 	}
 
 }
@@ -223,4 +246,12 @@ void UAtlantisAudioFactBridgeComponent::HandleHidingStateChanged(bool bHiding)
 	Payload.bValue = bHiding;
 
 	UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Stealth_Hiding, FInstancedStruct::Make(Payload));
+}
+
+void UAtlantisAudioFactBridgeComponent::HandleUnderwaterChanged(bool bUnderwater)
+{
+	FAtlantisAudioBoolPayload Payload;
+	Payload.bValue = bUnderwater;
+
+	UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Player_Underwater, FInstancedStruct::Make(Payload));
 }

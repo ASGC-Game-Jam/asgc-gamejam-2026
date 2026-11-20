@@ -22,3 +22,4 @@ UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_Room_Default, "Room.Default", "The player isn
 UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Environment_Room, "Audio.Fact.Environment.Room", "TagPayload: the Room tag for the space the player is in.");
 
 UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Player_Present, "Audio.Fact.Player.Present", "BoolPayload: true while a local player pawn is bound. False when it's unpossessed or destroyed.");
+UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Player_Underwater, "Audio.Fact.Player.Underwater", "BoolPayload: true while the local player is in a water volume. False on land, or when the player is unbound.");
