@@ -11,9 +11,10 @@ class AController;
 class APawn;
 class UAtlantisHidingComponent;
 class UAtlantisOxygenComponent;
+class UAtlantisMovementComponent;
 
 /**
- * Sends the local player's presence, oxygen and hiding to the audio ecosystem as facts.
+ * Sends the local player's presence, oxygen, underwater and hiding to the audio ecosystem as facts.
  * On unbind it resets those facts, so listeners never stay stuck after death or unpossession.
  */
 UCLASS(ClassGroup = (Atlantis), meta = (BlueprintSpawnableComponent))
@@ -56,11 +57,17 @@ private:
 	UFUNCTION()
 	void HandleHidingStateChanged(bool bHiding);
 
+	UFUNCTION()
+	void HandleUnderwaterChanged(bool bUnderwater);
+
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisOxygenComponent> OxygenComponent;
 
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisHidingComponent> HidingComponent;
+
+	UPROPERTY(Transient)
+	TObjectPtr<UAtlantisMovementComponent> MovementComponent;
 
 	/** True while bound to a local player. Guards against sending reset facts twice. */
 	bool bSourcesBound = false;
