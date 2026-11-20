@@ -1,0 +1,47 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Audio/Config/DT_PlayerAudio",
+	"asset": "DT_PlayerAudio",
+	"assetClass": "DataTable",
+	"parentClass": null,
+	"blueprintType": null,
+	"graphs": [],
+	"properties":
+	{
+		"rowStruct": "/Script/ProjectAtlantis.AtlantisPlayerAudioRow",
+		"rows":
+		{
+			"NewRow":
+			{
+				"Sound": "/Game/ProjectAtlantis/Characters/Common/Audio/MSS_PC_Breathing.MSS_PC_Breathing",
+				"Behaviour": "Loop",
+				"PlayWhileFact":
+				{
+					"TagName": "Audio.Fact.Player.Underwater"
+				},
+				"bUnderwaterOnly": true,
+				"ParameterFact":
+				{
+					"TagName": "Audio.Fact.Oxygen.Level"
+				},
+				"ParameterName": "Oxygen"
+			},
+			"NewRow_0":
+			{
+				"Sound": "/Game/ProjectAtlantis/Characters/Common/Audio/MSS_PC_Oxygen_CriticalAlarm.MSS_PC_Oxygen_CriticalAlarm",
+				"Behaviour": "Loop",
+				"PlayWhileFact":
+				{
+					"TagName": "Audio.Fact.Oxygen.Critical"
+				},
+				"bUnderwaterOnly": true,
+				"ParameterFact":
+				{
+					"TagName": "None"
+				},
+				"ParameterName": "None"
+			}
+		}
+	}
+}

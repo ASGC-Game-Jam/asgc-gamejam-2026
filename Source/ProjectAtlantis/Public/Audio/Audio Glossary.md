@@ -41,6 +41,7 @@ Gameplay never talks to a listener directly, and listeners never reference gamep
 : Delivers each fact to every listener subscribed to its tag. There's one per world, so subscriptions end with the level.
 - **It doesn't remember facts.** A fact with no listener is dropped, and a listener only hears facts sent after it subscribes. Subscribe before any actor's `BeginPlay`, for example in a world subsystem's `OnWorldBeginPlay`.
 - **Listeners must unsubscribe.** A listener destroyed without unsubscribing triggers an `ensure` the next time its tag is broadcast.
+- **World subsystem listeners unsubscribe in `PreDeinitialize`, not `Deinitialize`.** Unreal deinitializes world subsystems in no fixed order, so the router may already have cleared its list. `PreDeinitialize` runs on all of them first, while the router still exists.
 
 **Listener** (`IASGC_FactListenerInterface`)
 : Anything that receives facts. Implement `OnGameplayFactReceived` (`_Implementation` in C++, or the event in Blueprint), then call `Subscribe` on the router.

@@ -12,6 +12,7 @@
  class UAtlantisMusicAxisMapping;
  struct FInstancedStruct;
  class UAtlantisRoomTypeTable;
+ class UDataTable;
 
 /** Project-wide audio settings, under Project Settings > Game > Atlantis Audio Settings. */
 UCLASS(config=Game, DefaultConfig)
@@ -44,6 +45,8 @@ public:
 	/** Finds the RoomType pin ID for a room tag. Logs an error and returns false if the tag or table is missing. */
 	static bool GetRoomTypeId(FGameplayTag RoomTag, int32& OutRoomTypeId);
 
+	/** Loads the player audio table. Returns null if none is set. */
+	static UDataTable* GetPlayerAudioTable();
 
 protected:
 
@@ -68,6 +71,10 @@ protected:
 	/** The table that matches room tags to RoomType pin IDs. */
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Rooms")
 	TSoftObjectPtr<UAtlantisRoomTypeTable> RoomTypeTable;
+
+	/** The table of suit sounds the player audio subsystem plays, and the facts that drive them. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Player Audio", meta = (RequiredAssetDataTags = "RowStructure=/Script/ProjectAtlantis.AtlantisPlayerAudioRow"))
+	TSoftObjectPtr<UDataTable> PlayerAudioData;
 
 private:
 	/** This world's entry in Music Per Map, or nullptr if its map isn't listed. Handles PIE map names. */
