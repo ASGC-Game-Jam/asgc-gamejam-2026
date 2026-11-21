@@ -11,6 +11,7 @@
 class UDataTable;
 class USoundBase;
 class UAudioComponent;
+struct FAtlantisPlayerAudioRow;
 
 /**
  * Plays the player's own suit sounds, such as breathing and oxygen alarms, from audio facts.
@@ -40,10 +41,12 @@ protected:
 
 private:
 	/** Starts every Loop row's sound that isn't already playing. */
-	void StartPlayerLoops();
+	void RefreshPlayerLoops();
 
 	/** Stops every playing loop and forgets it. Safe to call when nothing is playing. */
 	void StopPlayerLoops();
+
+	bool ShouldLoopPlay(const FAtlantisPlayerAudioRow& Row) const;
 
 private:
 	/** Each fact tag this subsystem subscribed to, and its router handle for unsubscribing. */
@@ -56,4 +59,9 @@ private:
 	/** Each looping sound that's playing, and the audio component playing it. One component per sound, even when rows share it. */
 	UPROPERTY()
 	TMap<TObjectPtr<USoundBase>, TObjectPtr<UAudioComponent>> PlayingPlayerAudio;
+
+	TMap<FGameplayTag, bool> BoolFacts;
+
+	TMap<FGameplayTag, float> FloatFacts;
+
 };
