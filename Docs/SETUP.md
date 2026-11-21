@@ -1,3 +1,7 @@
+# Do NOT fork the project
+
+Forking means your changes will not be reflected in the final project since you are splitting off to make your own
+
 # Development Setup
 
 This guide walks through setting up your development environment for the
