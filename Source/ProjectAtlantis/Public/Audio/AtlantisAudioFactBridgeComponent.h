@@ -57,8 +57,15 @@ private:
 	UFUNCTION()
 	void HandleHidingStateChanged(bool bHiding);
 
+	/** Sends entering water straight away, and leaving it only after Underwater Exit Delay. Bobbing at the surface sends nothing. */
 	UFUNCTION()
 	void HandleUnderwaterChanged(bool bUnderwater);
+
+	/** Sends the underwater fact and remembers what listeners were told. */
+	void SendUnderwater(bool bUnderwater);
+
+	/** Called when the player has stayed out of the water for Underwater Exit Delay. */
+	void HandleUnderwaterExitTimer();
 
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisOxygenComponent> OxygenComponent;
@@ -75,4 +82,13 @@ private:
 	/** Ticks spent waiting for an Atlantis player state. Reset whenever binding starts over. */
 	int32 PlayerStateRetryCount = 0;
 
+	/** Counts down Underwater Exit Delay after the player leaves the water. Cancelled if they go back in first. */
+	FTimerHandle UnderwaterExitTimer;
+
+	/** Seconds the player must stay out of the water before listeners hear they've left. Stops surface bobbing from flickering the fact. */
+	UPROPERTY(EditAnywhere, Category = "Audio", meta = (ClampMin = "0.01"))
+	float UnderwaterExitDelay = 0.5f;
+
+	/** The underwater value listeners last heard. Stops repeat facts while the player bobs. */
+	bool bUnderwaterSent = false;
 };

@@ -162,7 +162,7 @@ void UAtlantisAudioFactBridgeComponent::UnbindSources()
 		MovementComponent = nullptr;
 	}
 
-	// Cancel any pending player state retry, so a new possession starts with a fresh count.
+	// Cancel any pending player state retry or underwater exit, so nothing fires after unbind.
 	// The world can already be gone if this component is being cleaned up during shutdown.
 	if (UWorld* World = GetWorld())
 	{
@@ -171,8 +171,11 @@ void UAtlantisAudioFactBridgeComponent::UnbindSources()
 
 	PlayerStateRetryCount = 0;
 
-	bSourcesBound = false;
+	// The timer was cleared above, so forget its handle too.
+	UnderwaterExitTimer.Invalidate();
 
+	bSourcesBound = false;
+	bUnderwaterSent = false;
 }
 
 
@@ -191,7 +194,8 @@ void UAtlantisAudioFactBridgeComponent::SendInitialFacts()
 
 	if (MovementComponent)
 	{
-		HandleUnderwaterChanged(MovementComponent->IsInWater());
+		// The starting value is sent straight away, without the exit delay.
+		SendUnderwater(MovementComponent->IsInWater());
 	}
 
 }
@@ -250,8 +254,48 @@ void UAtlantisAudioFactBridgeComponent::HandleHidingStateChanged(bool bHiding)
 
 void UAtlantisAudioFactBridgeComponent::HandleUnderwaterChanged(bool bUnderwater)
 {
+	// Use bUnderwater, not MovementComponent->IsInWater(). The event fires before the movement
+	// component updates its volume, so IsInWater() still gives the old answer here.
+	if (UWorld* World = GetWorld())
+	{
+		if (bUnderwater)
+		{
+			// Back in before the delay ran out, so listeners never hear the player left.
+			World->GetTimerManager().ClearTimer(UnderwaterExitTimer);
+			if (!bUnderwaterSent)
+			{
+				SendUnderwater(true);
+			}
+		}
+		else
+		{
+			// Listeners already think the player is on land.
+			if (!bUnderwaterSent)
+			{
+				return;
+			}
+
+			// Calling SetTimer again on the same handle restarts the countdown.
+			World->GetTimerManager().SetTimer(
+				UnderwaterExitTimer,
+				this,
+				&ThisClass::HandleUnderwaterExitTimer,
+				UnderwaterExitDelay,
+				false
+			);
+		}
+	}
+}
+
+void UAtlantisAudioFactBridgeComponent::SendUnderwater(bool bUnderwater)
+{
 	FAtlantisAudioBoolPayload Payload;
 	Payload.bValue = bUnderwater;
-
+	bUnderwaterSent = bUnderwater;
 	UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Player_Underwater, FInstancedStruct::Make(Payload));
+}
+
+void UAtlantisAudioFactBridgeComponent::HandleUnderwaterExitTimer()
+{
+	SendUnderwater(false);
 }
