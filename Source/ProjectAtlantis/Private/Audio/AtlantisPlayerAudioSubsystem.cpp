@@ -28,7 +28,8 @@ void UAtlantisPlayerAudioSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 	const FGameplayTag FactTags[] = {
 		TAG_AudioFact_Oxygen_Level,
 		TAG_AudioFact_Oxygen_Critical,
-		TAG_AudioFact_Player_Present};
+		TAG_AudioFact_Player_Present,
+		TAG_AudioFact_Player_Underwater};
 
 	for (const FGameplayTag& Tag : FactTags)
 	{
@@ -92,9 +93,14 @@ void UAtlantisPlayerAudioSubsystem::StartPlayerLoops()
 {
 
 	TArray<FAtlantisPlayerAudioRow*> PlayerAudioRows;
+
+	if (!PlayerAudio || !GetWorld())
+	{
+		return; 
+	}
 	PlayerAudio->GetAllRows<FAtlantisPlayerAudioRow>(TEXT("StartPlayerLoops"), PlayerAudioRows);
 
-	if(PlayerAudioRows.IsEmpty() || !GetWorld())
+	if(PlayerAudioRows.IsEmpty())
 	{
 		return;
 	}
@@ -119,7 +125,7 @@ void UAtlantisPlayerAudioSubsystem::StartPlayerLoops()
 	
 		if (!AudioComp)
 		{
-			return;
+			continue;
 		}
 
 		AudioComp->bIsUISound = true;

@@ -51,9 +51,13 @@ Gameplay never talks to a listener directly, and listeners never reference gamep
 ## Bridges (gameplay → facts)
 
 **Fact bridge** (`UAtlantisAudioFactBridgeComponent`)
-: Sits on the player pawn and sends presence, oxygen and hiding facts. It binds once the pawn is locally controlled. It retries for up to 120 ticks (about 2 seconds) for the player state, then logs an error.
+: Sits on the player pawn and sends presence, oxygen, underwater and hiding facts. It binds once the pawn is locally controlled. It retries for up to 120 ticks (about 2 seconds) for the player state, then logs an error.
 - **Initial facts:** on bind, it sends each fact's current value, so listeners are right from the start.
-- **Reset facts:** on unbind (death, unpossession, level end), it sends `Critical = false` and `Hiding = false`, then `Present = false`. Without these, listeners would keep the last value forever, and an alarm or the music's Tension would stay stuck.
+- **Reset facts:** on unbind (death, unpossession, level end), it sends `Critical = false`, `Hiding = false` and `Underwater = false`, then `Present = false`. Without these, listeners would keep the last value forever, and an alarm or the music's Tension would stay stuck.
+
+**Underwater fact** (`Audio.Fact.Player.Underwater`)
+: True while the player is in a water volume, from the movement component's `OnUnderwaterChanged`. Entering water is sent straight away. Leaving is sent only once the player has stayed out for **Underwater Exit Delay** (0.5 seconds by default, set on the bridge component), because bobbing at the surface crosses the volume's edge several times a second.
+- **Oxygen.Critical stays true on land.** Oxygen stops draining out of water but doesn't refill, so Critical only clears once something restores oxygen. Suit sounds that should stop on land need **Underwater Only** ticked in `DT_PlayerAudio`.
 
 **Presence fact** (`Audio.Fact.Player.Present`)
 : True while a local player pawn is bound, and false when it's gone. It's sent before every other fact on bind, and after every reset on unbind. Player audio starts and stops its loops from it.
