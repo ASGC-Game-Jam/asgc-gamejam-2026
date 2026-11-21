@@ -13,6 +13,8 @@
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisPlayerAudio, Log, All);
 
+static constexpr float LoopFadeOutSeconds = 0.3f;
+
 void UAtlantisPlayerAudioSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
@@ -79,7 +81,8 @@ void UAtlantisPlayerAudioSubsystem::OnGameplayFactReceived_Implementation(FGamep
 		const FAtlantisAudioBoolPayload* Ptr = Payload.GetPtr<FAtlantisAudioBoolPayload>();
 		if (Ptr && Ptr->bValue)
 		{
-			StartPlayerLoops();
+			BoolFacts.Add(Tag, Ptr->bValue);
+			RefreshPlayerLoops();
 		}
 	}
 }
@@ -89,52 +92,73 @@ bool UAtlantisPlayerAudioSubsystem::DoesSupportWorldType(const EWorldType::Type 
 	return WorldType == EWorldType::Game || WorldType == EWorldType::PIE;
 }
 
-void UAtlantisPlayerAudioSubsystem::StartPlayerLoops()
+void UAtlantisPlayerAudioSubsystem::RefreshPlayerLoops()
 {
-
-	TArray<FAtlantisPlayerAudioRow*> PlayerAudioRows;
-
 	if (!PlayerAudio || !GetWorld())
 	{
-		return; 
+		return;
 	}
-	PlayerAudio->GetAllRows<FAtlantisPlayerAudioRow>(TEXT("StartPlayerLoops"), PlayerAudioRows);
 
-	if(PlayerAudioRows.IsEmpty())
+	TArray<FAtlantisPlayerAudioRow*> PlayerAudioRows;
+	PlayerAudio->GetAllRows<FAtlantisPlayerAudioRow>(TEXT("RefreshPlayerLoops"), PlayerAudioRows);
+
+	if (PlayerAudioRows.IsEmpty())
 	{
 		return;
 	}
 
 	for (const FAtlantisPlayerAudioRow* Row : PlayerAudioRows)
 	{
-		if (!Row->Sound || Row->Behaviour != EAtlantisPlayerAudioBehaviour::Loop || PlayingPlayerAudio.Contains(Row->Sound))
+		if (!Row->Sound || Row->Behaviour != EAtlantisPlayerAudioBehaviour::Loop)
 		{
 			continue;
 		}
 
-		UAudioComponent* AudioComp = UGameplayStatics::CreateSound2D(
-			this,
-			Row->Sound,
-			1.0f,
-			1.0f,
-			0.0f,
-			nullptr,
-			false,
-			true
-		);
-	
-		if (!AudioComp)
-		{
-			continue;
-		}
+		const bool bShouldPlay = ShouldLoopPlay(*Row);
+		const bool bIsPlaying = PlayingPlayerAudio.Contains(Row->Sound);
 
-		AudioComp->bIsUISound = true;
-		AudioComp->Play();
-		PlayingPlayerAudio.Add(Row->Sound, AudioComp);
+		if (bShouldPlay && !bIsPlaying)
+		{
+			UAudioComponent* AudioComp = UGameplayStatics::CreateSound2D(
+				this,
+				Row->Sound,
+				1.0f,
+				1.0f,
+				0.0f,
+				nullptr,
+				false,
+				true
+			);
+
+			if (!AudioComp)
+			{
+				continue;
+			}
+
+			AudioComp->bIsUISound = true;
+			AudioComp->Play();
+			PlayingPlayerAudio.Add(Row->Sound, AudioComp);
+		}
+		else if (!bShouldPlay && bIsPlaying)
+		{
+			UAudioComponent* AudioComp = PlayingPlayerAudio.FindRef(Row->Sound);
+			if (IsValid(AudioComp))
+			{
+				AudioComp->FadeOut(LoopFadeOutSeconds, 0.f);
+			}
+			PlayingPlayerAudio.Remove(Row->Sound);
+		}
 	}
 }
 
 void UAtlantisPlayerAudioSubsystem::StopPlayerLoops()
 {
 	
+}
+
+bool UAtlantisPlayerAudioSubsystem::ShouldLoopPlay(const FAtlantisPlayerAudioRow& Row) const
+{
+	return BoolFacts.FindRef(TAG_AudioFact_Player_Present)
+		&& BoolFacts.FindRef(Row.PlayWhileFact)
+		&& (!Row.bUnderwaterOnly || BoolFacts.FindRef(TAG_AudioFact_Player_Underwater));
 }
