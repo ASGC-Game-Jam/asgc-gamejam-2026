@@ -48,6 +48,7 @@ private:
 
 	bool ShouldLoopPlay(const FAtlantisPlayerAudioRow& Row) const;
 
+	void ApplyParameter(const FAtlantisPlayerAudioRow& Row, UAudioComponent* AudioComp) const;
 private:
 	/** Each fact tag this subsystem subscribed to, and its router handle for unsubscribing. */
 	TMap<FGameplayTag, int32> FactSubscriptions;
