@@ -70,20 +70,22 @@ void UAtlantisPlayerAudioSubsystem::PreDeinitialize()
 
 void UAtlantisPlayerAudioSubsystem::Deinitialize()
 {
+	StopPlayerLoops();
+	BoolFacts.Reset();
+	FloatFacts.Reset();
+	
 	Super::Deinitialize();
 }
 
 void UAtlantisPlayerAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload)
 {
 	UE_LOG(LogAtlantisPlayerAudio, Log, TEXT("Received Tag [%s]."), *Tag.ToString());
-	if (Tag == TAG_AudioFact_Player_Present)
+
+	const FAtlantisAudioBoolPayload* Ptr = Payload.GetPtr<FAtlantisAudioBoolPayload>();
+	if (Ptr)
 	{
-		const FAtlantisAudioBoolPayload* Ptr = Payload.GetPtr<FAtlantisAudioBoolPayload>();
-		if (Ptr && Ptr->bValue)
-		{
-			BoolFacts.Add(Tag, Ptr->bValue);
-			RefreshPlayerLoops();
-		}
+		BoolFacts.Add(Tag, Ptr->bValue);
+		RefreshPlayerLoops();
 	}
 }
 
@@ -153,7 +155,14 @@ void UAtlantisPlayerAudioSubsystem::RefreshPlayerLoops()
 
 void UAtlantisPlayerAudioSubsystem::StopPlayerLoops()
 {
-	
+	for (const auto& Pair : PlayingPlayerAudio)
+	{
+		if (IsValid(Pair.Value))
+		{
+			Pair.Value->Stop();
+		}
+	}
+	PlayingPlayerAudio.Reset();
 }
 
 bool UAtlantisPlayerAudioSubsystem::ShouldLoopPlay(const FAtlantisPlayerAudioRow& Row) const
