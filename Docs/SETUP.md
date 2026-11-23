@@ -9,7 +9,7 @@ Install the following before cloning the repository
 
 - [Git](https://git-scm.com/install/)
 - [Git LFS](https://git-lfs.com/)
-- Unreal Engine 5.7.4
+- Unreal Engine 5.8.4
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/older-downloads/) or [Rider](https://www.jetbrains.com/rider/download/) (or another IDE configured for Unreal Engine C++ development)
   - [Setting up Visual Studio](https://dev.epicgames.com/documentation/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)
   - [Setting up Rider](https://tomlooman.com/setup-unreal-engine-cpp-rider/)
@@ -103,6 +103,27 @@ files must be explicitly added with `git add`. Commit/push using Git to retain
 locks through PR merge, or use asset-specific Check In with the patched plugin:
 editor Check In and push now retain locks regardless of **Keep Files Checked Out**.
 Release locks explicitly after merge; the plugin does not monitor PR status.
+## Refresh IDE Projects After an Engine Upgrade
+
+Rider and Visual Studio can retain generated build paths for the previous
+engine even when `ProjectAtlantis.uproject` has the correct engine association.
+After switching to Unreal 5.8, regenerate both project formats from the
+repository root using the new engine:
+
+```powershell
+$UnrealBuild = 'C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\Build.bat'
+& $UnrealBuild -projectfiles "-project=$PWD\ProjectAtlantis.uproject" -game -engine -Rider
+& $UnrealBuild -projectfiles "-project=$PWD\ProjectAtlantis.uproject" -game -engine -2022
+```
+
+Run the two generators separately. Reload the project in Rider, or close and
+reopen `ProjectAtlantis.uproject` (native Unreal project) or `ProjectAtlantis.sln`
+(MSBuild solution). Build **Development Editor / Win64**.
+
+Errors saying `BuildSettingsVersion.V7` or `EngineIncludeOrderVersion.Unreal5_8`
+do not exist indicate that the old engine's UnrealBuildTool is being invoked.
+Check that `Intermediate/ProjectFiles/UECommon.props` points to `UE_5.8`.
+The 5.8 build log uses the bundled .NET 10 SDK.
 
 ## Verify Your Setup
 
