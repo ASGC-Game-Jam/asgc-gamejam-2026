@@ -73,7 +73,7 @@ void UAtlantisPlayerAudioSubsystem::Deinitialize()
 	StopPlayerLoops();
 	BoolFacts.Reset();
 	FloatFacts.Reset();
-	
+
 	Super::Deinitialize();
 }
 
@@ -81,11 +81,41 @@ void UAtlantisPlayerAudioSubsystem::OnGameplayFactReceived_Implementation(FGamep
 {
 	UE_LOG(LogAtlantisPlayerAudio, Log, TEXT("Received Tag [%s]."), *Tag.ToString());
 
-	const FAtlantisAudioBoolPayload* Ptr = Payload.GetPtr<FAtlantisAudioBoolPayload>();
-	if (Ptr)
+	const FAtlantisAudioBoolPayload* BoolFactPtr = Payload.GetPtr<FAtlantisAudioBoolPayload>();
+	if (BoolFactPtr)
 	{
-		BoolFacts.Add(Tag, Ptr->bValue);
+		BoolFacts.Add(Tag, BoolFactPtr->bValue);
 		RefreshPlayerLoops();
+	}
+
+	const FAtlantisAudioFloatPayload* FloatFactPtr = Payload.GetPtr<FAtlantisAudioFloatPayload>();
+	if (FloatFactPtr)
+	{
+		FloatFacts.Add(Tag, FloatFactPtr->Value);
+
+		if (!PlayerAudio)
+		{
+			return;
+		}
+
+		TArray<FAtlantisPlayerAudioRow*> PlayerAudioRows;
+		PlayerAudio->GetAllRows<FAtlantisPlayerAudioRow>(TEXT("OnGameplayFactReceived"), PlayerAudioRows);
+
+		if (PlayerAudioRows.IsEmpty())
+		{
+			return;
+		}
+
+		for (const FAtlantisPlayerAudioRow* Row : PlayerAudioRows)
+		{
+			if (!Row->Sound || Row->ParameterFact != Tag)
+			{
+				continue;
+			}
+
+			UAudioComponent* AudioComp = PlayingPlayerAudio.FindRef(Row->Sound);
+			ApplyParameter(*Row, AudioComp);
+		}
 	}
 }
 
@@ -139,6 +169,7 @@ void UAtlantisPlayerAudioSubsystem::RefreshPlayerLoops()
 
 			AudioComp->bIsUISound = true;
 			AudioComp->Play();
+			ApplyParameter(*Row, AudioComp);
 			PlayingPlayerAudio.Add(Row->Sound, AudioComp);
 		}
 		else if (!bShouldPlay && bIsPlaying)
@@ -170,4 +201,21 @@ bool UAtlantisPlayerAudioSubsystem::ShouldLoopPlay(const FAtlantisPlayerAudioRow
 	return BoolFacts.FindRef(TAG_AudioFact_Player_Present)
 		&& BoolFacts.FindRef(Row.PlayWhileFact)
 		&& (!Row.bUnderwaterOnly || BoolFacts.FindRef(TAG_AudioFact_Player_Underwater));
+}
+
+void UAtlantisPlayerAudioSubsystem::ApplyParameter(const FAtlantisPlayerAudioRow& Row, UAudioComponent* AudioComp) const
+{
+	if (Row.ParameterName == NAME_None)
+	{
+		return;
+	}
+
+	const float* FactPtr = FloatFacts.Find(Row.ParameterFact);
+
+	if (!FactPtr || !IsValid(AudioComp))
+	{
+		return;
+	}
+
+	AudioComp->SetFloatParameter(Row.ParameterName, *FactPtr);
 }
