@@ -60,7 +60,7 @@ Gameplay never talks to a listener directly, and listeners never reference gamep
 - **Oxygen.Critical stays true on land.** Oxygen stops draining out of water but doesn't refill, so Critical only clears once something restores oxygen. Suit sounds that should stop on land need **Underwater Only** ticked in `DT_PlayerAudio`.
 
 **Presence fact** (`Audio.Fact.Player.Present`)
-: True while a local player pawn is bound, and false when it's gone. It's sent before every other fact on bind, and after every reset on unbind. Player audio starts and stops its loops from it.
+: True while a local player pawn is bound, and false when it's gone. It's sent before every other fact on bind, and after every reset on unbind. No player audio loop plays without it.
 
 **Journal audio bridge** (`UAtlantisJournalAudioBridge`)
 : Sends journal investigations as `Audio.Fact.Investigation.Status` keyed facts, using the investigation title as the key. It's a world subsystem rather than part of the fact bridge, because investigations belong to the game, not the pawn. So it never misses a change made while no pawn is possessed. When the journal clears, it re-sends every title it has sent as Undiscovered, because the journal is already empty by then.
@@ -115,7 +115,22 @@ Gameplay never talks to a listener directly, and listeners never reference gamep
 ## Player audio
 
 **Player audio subsystem** (`UAtlantisPlayerAudioSubsystem`, #516, in progress)
-: Plays the player's own suit sounds, such as breathing and the oxygen alarms. It's a world subsystem: it exists in every level without being placed, it outlives the pawn across respawns, and its sounds end with the level. Its loops start on `Present = true` and stop on `Present = false`. They keep playing, muffled, while the journal or pause menu pauses the game.
+: Plays the player's own suit sounds, such as breathing and the oxygen alarms, from the rows in `DT_PlayerAudio`. It's a world subsystem: it exists in every level without being placed, it outlives the pawn across respawns, and its sounds end with the level.
+- **It remembers facts.** The router doesn't, so the subsystem keeps the last value of each fact it hears. That's how a loop started later gets the current oxygen level.
+- **Loops only exist while they play.** An audio component is created when a loop starts and fades out (0.3 seconds) when it stops. Nothing sits playing silently.
+- **Loops keep playing, muffled,** while the journal or pause menu pauses the game.
+
+**Player audio table** (`DT_PlayerAudio`, set in Project Settings > Game > Atlantis Audio Settings > Atlantis Player Audio)
+: One row per sound. A **Loop** row plays while all of these are true:
+- **Present** is true.
+- Its **Play While Fact** is true, such as `Audio.Fact.Player.Underwater` for breathing, or `Audio.Fact.Oxygen.Critical` for the alarm.
+- The player is underwater, if **Underwater Only** is ticked.
+
+**Parameter Fact** and **Parameter Name** (optional)
+: Send a float fact's value to the MetaSound input with that name, on every change and as soon as the loop starts. For example, breathing sends `Audio.Fact.Oxygen.Level` to its `Oxygen` input. The name must match the input exactly, or nothing happens.
+
+**One Shot rows**
+: Not played yet. They're planned for sounds like the mask coming off.
 
 **`SC_Player`**
 : The sound class for the player's suit sounds. It's a child of `SC_SFX`, so the SFX volume slider still applies, but it's kept separate so the underwater low-pass can skip it.
