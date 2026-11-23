@@ -79,8 +79,7 @@ void UAtlantisPlayerAudioSubsystem::Deinitialize()
 
 void UAtlantisPlayerAudioSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload)
 {
-	UE_LOG(LogAtlantisPlayerAudio, Log, TEXT("Received Tag [%s]."), *Tag.ToString());
-
+	// A bool fact can start or stop a loop, so recheck them all.
 	const FAtlantisAudioBoolPayload* BoolFactPtr = Payload.GetPtr<FAtlantisAudioBoolPayload>();
 	if (BoolFactPtr)
 	{
@@ -91,6 +90,7 @@ void UAtlantisPlayerAudioSubsystem::OnGameplayFactReceived_Implementation(FGamep
 	const FAtlantisAudioFloatPayload* FloatFactPtr = Payload.GetPtr<FAtlantisAudioFloatPayload>();
 	if (FloatFactPtr)
 	{
+		// Store the value so a loop that starts later still gets it.
 		FloatFacts.Add(Tag, FloatFactPtr->Value);
 
 		if (!PlayerAudio)
@@ -113,6 +113,7 @@ void UAtlantisPlayerAudioSubsystem::OnGameplayFactReceived_Implementation(FGamep
 				continue;
 			}
 
+			// Null if the loop isn't playing. ApplyParameter skips it then.
 			UAudioComponent* AudioComp = PlayingPlayerAudio.FindRef(Row->Sound);
 			ApplyParameter(*Row, AudioComp);
 		}
@@ -167,14 +168,18 @@ void UAtlantisPlayerAudioSubsystem::RefreshPlayerLoops()
 				continue;
 			}
 
+			// Keeps playing while the journal or pause menu pauses the game.
 			AudioComp->bIsUISound = true;
 			AudioComp->Play();
+
+			// Send the current value straight away, so a re-dive doesn't start from the MetaSound's default.
 			ApplyParameter(*Row, AudioComp);
 			PlayingPlayerAudio.Add(Row->Sound, AudioComp);
 		}
 		else if (!bShouldPlay && bIsPlaying)
 		{
 			UAudioComponent* AudioComp = PlayingPlayerAudio.FindRef(Row->Sound);
+			// The component destroys itself once the fade ends.
 			if (IsValid(AudioComp))
 			{
 				AudioComp->FadeOut(LoopFadeOutSeconds, 0.f);
@@ -198,6 +203,7 @@ void UAtlantisPlayerAudioSubsystem::StopPlayerLoops()
 
 bool UAtlantisPlayerAudioSubsystem::ShouldLoopPlay(const FAtlantisPlayerAudioRow& Row) const
 {
+	// FindRef gives false for a fact that hasn't arrived yet.
 	return BoolFacts.FindRef(TAG_AudioFact_Player_Present)
 		&& BoolFacts.FindRef(Row.PlayWhileFact)
 		&& (!Row.bUnderwaterOnly || BoolFacts.FindRef(TAG_AudioFact_Player_Underwater));
@@ -210,6 +216,7 @@ void UAtlantisPlayerAudioSubsystem::ApplyParameter(const FAtlantisPlayerAudioRow
 		return;
 	}
 
+	// Null if the fact hasn't arrived yet. The MetaSound keeps its default until it does.
 	const float* FactPtr = FloatFacts.Find(Row.ParameterFact);
 
 	if (!FactPtr || !IsValid(AudioComp))
