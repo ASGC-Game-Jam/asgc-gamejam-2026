@@ -112,19 +112,19 @@ void UAtlantisInteractableComponent::SetHighlighted(bool bHighlighted)
 
 		TArray<UMeshComponent*> Meshes;
 		Owner->GetComponents<UMeshComponent>(Meshes);
-		for (UMeshComponent* Mesh : Meshes)
+		for (UMeshComponent* MeshComponent : Meshes)
 		{
-			SavedOverlayMaterials.Add(Mesh, Mesh->GetOverlayMaterial());
-			Mesh->SetOverlayMaterial(HighlightMaterial);
+			SavedOverlayMaterials.Add(MeshComponent, MeshComponent->GetOverlayMaterial());
+			MeshComponent->SetOverlayMaterial(HighlightMaterial);
 		}
 		return;
 	}
 
 	for (const TPair<TWeakObjectPtr<UMeshComponent>, TWeakObjectPtr<UMaterialInterface>>& Saved : SavedOverlayMaterials)
 	{
-		if (UMeshComponent* Mesh = Saved.Key.Get())
+		if (UMeshComponent* MeshComponent = Saved.Key.Get())
 		{
-			Mesh->SetOverlayMaterial(Saved.Value.Get());
+			MeshComponent->SetOverlayMaterial(Saved.Value.Get());
 		}
 	}
 	SavedOverlayMaterials.Reset();

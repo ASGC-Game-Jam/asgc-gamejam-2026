@@ -113,21 +113,21 @@ namespace
 		/** A cube that blocks every trace channel, so also the Interact channel. */
 		UStaticMeshComponent* AddBlockingCube(AActor* Actor) const
 		{
-			UStaticMeshComponent* Mesh = NewObject<UStaticMeshComponent>(Actor);
-			Mesh->SetStaticMesh(LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Cube.Cube")));
-			Mesh->SetCollisionProfileName(TEXT("BlockAll"));
-			Mesh->SetupAttachment(Actor->GetRootComponent());
-			Mesh->RegisterComponent();
-			return Mesh;
+			UStaticMeshComponent* MeshComponent = NewObject<UStaticMeshComponent>(Actor);
+			MeshComponent->SetStaticMesh(LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Cube.Cube")));
+			MeshComponent->SetCollisionProfileName(TEXT("BlockAll"));
+			MeshComponent->SetupAttachment(Actor->GetRootComponent());
+			MeshComponent->RegisterComponent();
+			return MeshComponent;
 		}
 
 		UAtlantisInteractableComponent* SpawnInteractable(const FVector& Location, UStaticMeshComponent** OutMesh = nullptr) const
 		{
 			AActor* Actor = SpawnActorWithRoot(Location);
-			UStaticMeshComponent* Mesh = AddBlockingCube(Actor);
+			UStaticMeshComponent* MeshComponent = AddBlockingCube(Actor);
 			if (OutMesh)
 			{
-				*OutMesh = Mesh;
+				*OutMesh = MeshComponent;
 			}
 
 			UAtlantisInteractableComponent* Interactable = NewObject<UAtlantisInteractableComponent>(Actor);
@@ -190,19 +190,19 @@ void FAtlantisInteractionSpec::Define()
 
 		It("highlights while focused and restores the previous overlay", [this]()
 		{
-			UStaticMeshComponent* Mesh = nullptr;
-			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(200.f, 0.f, 0.f), &Mesh);
+			UStaticMeshComponent* MeshComponent = nullptr;
+			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(200.f, 0.f, 0.f), &MeshComponent);
 			UMaterialInterface* Previous = UMaterial::GetDefaultMaterial(MD_PostProcess);
-			Mesh->SetOverlayMaterial(Previous);
+			MeshComponent->SetOverlayMaterial(Previous);
 
 			Fixture->Interactor->RefreshFocus();
-			TestTrue(TEXT("Highlight applied"), Mesh->GetOverlayMaterial() == Interactable->HighlightMaterial);
+			TestTrue(TEXT("Highlight applied"), MeshComponent->GetOverlayMaterial() == Interactable->HighlightMaterial);
 			TestTrue(TEXT("Reports focused"), Interactable->IsFocused());
 			TestTrue(TEXT("Focused by the player"), Interactable->IsFocusedBy(Fixture->Player));
 
 			FAtlantisInteractionFixture::TurnAround(Fixture->Player);
 			Fixture->Interactor->RefreshFocus();
-			TestTrue(TEXT("Previous overlay restored"), Mesh->GetOverlayMaterial() == Previous);
+			TestTrue(TEXT("Previous overlay restored"), MeshComponent->GetOverlayMaterial() == Previous);
 			TestFalse(TEXT("No longer focused"), Interactable->IsFocused());
 		});
 	});
@@ -211,13 +211,13 @@ void FAtlantisInteractionSpec::Define()
 	{
 		It("focuses and highlights an interactable in front within range", [this]()
 		{
-			UStaticMeshComponent* Mesh = nullptr;
-			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(200.f, 0.f, 0.f), &Mesh);
+			UStaticMeshComponent* MeshComponent = nullptr;
+			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(200.f, 0.f, 0.f), &MeshComponent);
 			Fixture->Interactor->RefreshFocus();
 			TestTrue(TEXT("Focused"), Fixture->Interactor->GetFocusedInteractable() == Interactable);
 			TestEqual(TEXT("OnFocused fired"), Fixture->Listener->FocusedCount, 1);
 			TestEqual(TEXT("OnFocusChanged fired"), Fixture->Listener->FocusChangedCount, 1);
-			TestTrue(TEXT("Highlight applied"), Mesh->GetOverlayMaterial() == Interactable->HighlightMaterial);
+			TestTrue(TEXT("Highlight applied"), MeshComponent->GetOverlayMaterial() == Interactable->HighlightMaterial);
 		});
 
 		It("interacts with the focused interactable", [this]()
@@ -259,8 +259,8 @@ void FAtlantisInteractionSpec::Define()
 
 		It("keeps the highlight until every player looks away", [this]()
 		{
-			UStaticMeshComponent* Mesh = nullptr;
-			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(200.f, 0.f, 0.f), &Mesh);
+			UStaticMeshComponent* MeshComponent = nullptr;
+			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(200.f, 0.f, 0.f), &MeshComponent);
 			APawn* SecondPlayer = Fixture->SpawnControlledPawn<APlayerController>(FVector::ZeroVector);
 			UAtlantisInteractorComponent* SecondInteractor = Fixture->AddInteractor(SecondPlayer);
 
@@ -271,12 +271,12 @@ void FAtlantisInteractionSpec::Define()
 			FAtlantisInteractionFixture::TurnAround(SecondPlayer);
 			SecondInteractor->RefreshFocus();
 			TestNull(TEXT("Second player looks away"), SecondInteractor->GetFocusedInteractable());
-			TestTrue(TEXT("Still highlighted for the first player"), Mesh->GetOverlayMaterial() == Interactable->HighlightMaterial);
+			TestTrue(TEXT("Still highlighted for the first player"), MeshComponent->GetOverlayMaterial() == Interactable->HighlightMaterial);
 			TestTrue(TEXT("Still focused"), Interactable->IsFocused());
 
 			FAtlantisInteractionFixture::TurnAround(Fixture->Player);
 			Fixture->Interactor->RefreshFocus();
-			TestNull(TEXT("Highlight removed once nobody looks"), Mesh->GetOverlayMaterial());
+			TestNull(TEXT("Highlight removed once nobody looks"), MeshComponent->GetOverlayMaterial());
 		});
 	});
 
@@ -287,12 +287,12 @@ void FAtlantisInteractionSpec::Define()
 			// AI pawn off to the side, looking at an interactable the player isn't facing.
 			APawn* Enemy = Fixture->SpawnControlledPawn<AAIController>(FVector(0.f, 1000.f, 0.f));
 			UAtlantisInteractorComponent* EnemyInteractor = Fixture->AddInteractor(Enemy);
-			UStaticMeshComponent* Mesh = nullptr;
-			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(200.f, 1000.f, 0.f), &Mesh);
+			UStaticMeshComponent* MeshComponent = nullptr;
+			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(200.f, 1000.f, 0.f), &MeshComponent);
 
 			EnemyInteractor->RefreshFocus();
 			TestTrue(TEXT("AI still knows what it's looking at"), EnemyInteractor->GetFocusedInteractable() == Interactable);
-			TestNull(TEXT("No highlight"), Mesh->GetOverlayMaterial());
+			TestNull(TEXT("No highlight"), MeshComponent->GetOverlayMaterial());
 			TestFalse(TEXT("Not reported as focused"), Interactable->IsFocused());
 			TestEqual(TEXT("OnFocused not fired"), Fixture->Listener->FocusedCount, 0);
 
@@ -303,12 +303,12 @@ void FAtlantisInteractionSpec::Define()
 		It("can use an interactable directly without looking at it", [this]()
 		{
 			APawn* Enemy = Fixture->SpawnControlledPawn<AAIController>(FVector(0.f, 1000.f, 0.f));
-			UStaticMeshComponent* Mesh = nullptr;
-			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(-500.f, -500.f, 0.f), &Mesh);
+			UStaticMeshComponent* MeshComponent = nullptr;
+			UAtlantisInteractableComponent* Interactable = Fixture->SpawnInteractable(FVector(-500.f, -500.f, 0.f), &MeshComponent);
 
 			TestTrue(TEXT("Interaction happened"), Interactable->TryInteract(Enemy));
 			TestTrue(TEXT("Enemy is the interactor"), Fixture->Listener->LastInteractor.Get() == Enemy);
-			TestNull(TEXT("No highlight"), Mesh->GetOverlayMaterial());
+			TestNull(TEXT("No highlight"), MeshComponent->GetOverlayMaterial());
 		});
 	});
 }

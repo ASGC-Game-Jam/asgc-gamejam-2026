@@ -3169,7 +3169,7 @@
 							"name": "DrawDebugType",
 							"direction": "input",
 							"type": "byte:/Script/Engine.EDrawDebugTrace",
-							"defaultValue": "ForDuration",
+							"defaultValue": "None",
 							"links": []
 						},
 						{
@@ -3367,98 +3367,6 @@
 							"links": [
 								"13e99d724ae7ddaf0bbd52a5dbc5dace:i:execute"
 							]
-						}
-					]
-				},
-				{
-					"guid": "401fb1ce4f5bfce0aa5bd198e65594a6",
-					"class": "K2Node_CallFunction",
-					"title": "Print String",
-					"x": 4864,
-					"y": 1312,
-					"comment": null,
-					"pins": [
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:i:execute",
-							"name": "execute",
-							"direction": "input",
-							"type": "exec",
-							"defaultValue": null,
-							"links": [
-								"51dfa6974ea5fa0f6ff4318558b203cb:o:then"
-							]
-						},
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Script/Engine.KismetSystemLibrary",
-							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
-							"links": []
-						},
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:i:WorldContextObject",
-							"name": "WorldContextObject",
-							"direction": "input",
-							"type": "object:/Script/CoreUObject.Object",
-							"defaultValue": null,
-							"links": []
-						},
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:i:InString",
-							"name": "InString",
-							"direction": "input",
-							"type": "string",
-							"defaultValue": "Interaction Successful",
-							"links": []
-						},
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:i:bPrintToScreen",
-							"name": "bPrintToScreen",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:i:bPrintToLog",
-							"name": "bPrintToLog",
-							"direction": "input",
-							"type": "bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:i:TextColor",
-							"name": "TextColor",
-							"direction": "input",
-							"type": "struct:/Script/CoreUObject.LinearColor",
-							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
-							"links": []
-						},
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:i:Duration",
-							"name": "Duration",
-							"direction": "input",
-							"type": "real:float",
-							"defaultValue": "2.000000",
-							"links": []
-						},
-						{
-							"id": "401fb1ce4f5bfce0aa5bd198e65594a6:i:Key",
-							"name": "Key",
-							"direction": "input",
-							"type": "name",
-							"defaultValue": "None",
-							"links": []
 						}
 					]
 				},
@@ -3670,9 +3578,7 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": [
-								"401fb1ce4f5bfce0aa5bd198e65594a6:i:execute"
-							]
+							"links": []
 						},
 						{
 							"id": "51dfa6974ea5fa0f6ff4318558b203cb:o:else",
@@ -6846,10 +6752,48 @@
 					"bNeedsUCSSerializationIndexEvaluted": false,
 					"CreationMethod": "Native"
 				}
+			},
+			"AC_Interactor":
+			{
+				"class": "AC_Interactor_C",
+				"parent": null,
+				"properties":
+				{
+					"InteractionRange": 300,
+					"TraceRadius": 15,
+					"TraceChannel": "ECC_GameTraceChannel2",
+					"InteractAction": "/Game/ProjectAtlantis/Core/Engine/Input/Actions/IA_Interact.IA_Interact",
+					"bDrawDebug": false,
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": true,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
 			}
 		},
 		"defaults":
 		{
+			"AC_Interactor": null,
 			"FirstPersonCamera": null,
 			"ThirdPersonCamera": null,
 			"CameraBoom": null,
@@ -6891,6 +6835,35 @@
 					"/Game/ProjectAtlantis/Core/Engine/Input/IMC_Default.IMC_Default",
 					"/Game/ProjectAtlantis/Core/Engine/Input/IMC_Swim.IMC_Swim"
 				],
+				"PrimaryComponentTick":
+				{
+					"TickGroup": "TG_DuringPhysics",
+					"EndTickGroup": "TG_PrePhysics",
+					"bTickEvenWhenPaused": false,
+					"bCanEverTick": false,
+					"bStartWithTickEnabled": true,
+					"bAllowTickOnDedicatedServer": true,
+					"TickInterval": 0
+				},
+				"ComponentTags": [],
+				"AssetUserData": [],
+				"AssetUserDataEditorOnly": [],
+				"UCSSerializationIndex": -1,
+				"bNetAddressable": false,
+				"bReplicateUsingRegisteredSubObjectList": false,
+				"bReplicates": false,
+				"bAutoActivate": false,
+				"bEditableWhenInherited": true,
+				"bCanEverAffectNavigation": false,
+				"bIsEditorOnly": false,
+				"bIsVisualizationComponent": false,
+				"bNeedsUCSSerializationIndexEvaluted": false,
+				"CreationMethod": "Native"
+			},
+			"AudioFactBridgeComponent":
+			{
+				"_class": "AtlantisAudioFactBridgeComponent",
+				"_name": "AudioFactBridgeComponent",
 				"PrimaryComponentTick":
 				{
 					"TickGroup": "TG_DuringPhysics",
