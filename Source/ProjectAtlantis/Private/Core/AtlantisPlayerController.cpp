@@ -10,6 +10,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
+#include "TimerManager.h"
 #include "HAL/PlatformProperties.h"
 #include "Debug/AtlantisCheatManager.h"
 #include "Debug/AtlantisDebugMenu.h"
@@ -179,12 +180,22 @@ void AAtlantisPlayerController::SetupInputComponent()
 			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this,
 			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
 		}
+		if (CycleBallastAction)
+		{
+			EnhancedInput->BindAction(CycleBallastAction, ETriggerEvent::Started, this,
+				&AAtlantisPlayerController::CycleBallastState);
+		}
+		if (CycleBallastBackAction)
+		{
+			EnhancedInput->BindAction(CycleBallastBackAction, ETriggerEvent::Started, this,
+				&AAtlantisPlayerController::CycleBallastBackState);
+		}
 	}
 	if (BallastMappingContext && !CurrentMappingContexts.Contains(BallastMappingContext))
 	{
 		AddControls(BallastMappingContext);
 	}
-	
+
 	RefreshMovementControls();
 }
 
@@ -247,7 +258,90 @@ void AAtlantisPlayerController::RequestBallastState(const FInputActionValue& Act
 {
 	if (bControlsEnabled && GetPawn())
 	{
+		GetWorldTimerManager().ClearTimer(BallastCommitTimer);
+		PendingBallastState.Reset();
 		ServerSetBallastState(NewBallastState);
+	}
+}
+
+void AAtlantisPlayerController::CycleBallastState(const FInputActionValue& ActionValue)
+{
+	if (!bControlsEnabled || !GetPawn())
+	{
+		return;
+	}
+
+	const AAtlantisPlayerState* State = GetPlayerState<AAtlantisPlayerState>();
+	if (!State)
+	{
+		return;
+	}
+
+	const EAtlantisBallastState From =
+		PendingBallastState.IsSet() ? PendingBallastState.GetValue() : State->GetBallastState();
+
+		EAtlantisBallastState Next = EAtlantisBallastState::Descend;
+	switch (From)
+	{
+	case EAtlantisBallastState::Descend:
+		Next = EAtlantisBallastState::Wander;
+		break;
+	case EAtlantisBallastState::Wander:
+		Next = EAtlantisBallastState::Ascend;
+		break;
+	default:
+		Next = EAtlantisBallastState::Descend;
+		break;
+	}
+	PendingBallastState = Next;
+
+	// Setting the timer again restarts it, so each press extends the window
+	GetWorldTimerManager().SetTimer(BallastCommitTimer, this,
+		&AAtlantisPlayerController::CommitPendingBallastState, BallastCommitDelay, false);
+}
+
+void AAtlantisPlayerController::CycleBallastBackState(const FInputActionValue& ActionValue)
+{
+	if (!bControlsEnabled || !GetPawn())
+	{
+		return;
+	}
+
+	const AAtlantisPlayerState* State = GetPlayerState<AAtlantisPlayerState>();
+	if (!State)
+	{
+		return;
+	}
+
+	const EAtlantisBallastState From =
+		PendingBallastState.IsSet() ? PendingBallastState.GetValue() : State->GetBallastState();
+
+		EAtlantisBallastState Next = EAtlantisBallastState::Wander;
+	switch (From)
+	{
+	case EAtlantisBallastState::Descend:
+		Next = EAtlantisBallastState::Ascend;
+		break;
+	case EAtlantisBallastState::Wander:
+		Next = EAtlantisBallastState::Descend;
+		break;
+	default:
+		Next = EAtlantisBallastState::Wander;
+		break;
+	}
+	PendingBallastState = Next;
+
+	GetWorldTimerManager().SetTimer(BallastCommitTimer, this,
+		&AAtlantisPlayerController::CommitPendingBallastState, BallastCommitDelay, false);
+}
+
+void AAtlantisPlayerController::CommitPendingBallastState()
+{
+	if (PendingBallastState.IsSet())
+	{
+		const EAtlantisBallastState ToApply = PendingBallastState.GetValue();
+		PendingBallastState.Reset();
+		RequestBallastState(FInputActionValue(), ToApply);
 	}
 }
 
@@ -337,6 +431,11 @@ void AAtlantisPlayerController::EnableAllControls()
 void AAtlantisPlayerController::DisableAllControls()
 {
 	bControlsEnabled = false;
+
+	// drop any half-finished ballast cycle so it can't fire while controls are off.
+	GetWorldTimerManager().ClearTimer(BallastCommitTimer);
+	PendingBallastState.Reset();
+
 	ClearMappingContexts();
 
 	OnControlsDisabled.Broadcast();

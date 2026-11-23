@@ -3,9 +3,12 @@
 
 #include "Core/AtlantisAICharacter.h"
 
+#include "Core/AtlantisMovementComponent.h"
+
 
 // Sets default values
-AAtlantisAICharacter::AAtlantisAICharacter()
+AAtlantisAICharacter::AAtlantisAICharacter(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer.SetDefaultSubobjectClass<UAtlantisMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;

@@ -23,8 +23,11 @@ public class ProjectAtlantis : ModuleRules
 				"AIModule",
 				"StateTreeModule",
 				"GameplayStateTreeModule", 
-				"GameplayDebugger", 
-				"GameplayTags"
+				"GameplayDebugger",
+        			"GameplayTags",
+			  "StructUtils",
+
+                "Inkpot"
 			});
 
 		PrivateDependencyModuleNames.AddRange(new string[]
@@ -41,7 +44,11 @@ public class ProjectAtlantis : ModuleRules
 				"Analytics",
 				"CommonUI",
 				"AudioGameplay",
-				"AudioGameplayVolume"
+				"AudioGameplayVolume",
+				// Swimming AI builds FNavigationPath for the engine's path following.
+				"NavigationSystem",
+				// State Tree property references (TStateTreePropertyRef) resolve through this module.
+				"PropertyBindingUtils"
 			});
 
 		if (Target.ProjectDefinitions.Contains("WITH_SCREENSHOT_CAPTURE=1"))

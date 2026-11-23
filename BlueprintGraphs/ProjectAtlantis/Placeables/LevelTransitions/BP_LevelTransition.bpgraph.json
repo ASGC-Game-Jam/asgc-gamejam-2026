@@ -37,15 +37,15 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
-					"guid": "11ad81b44080012582639181296607c4",
+					"guid": "001f55c94d4b1a5c370d2689ffcdc9dc",
 					"class": "K2Node_CallFunction",
-					"title": "Open Level (by Object Reference)",
-					"x": 400,
+					"title": "Load Stream Level (by Object Reference)",
+					"x": 624,
 					"y": 32,
 					"comment": null,
 					"pins": [
 						{
-							"id": "11ad81b44080012582639181296607c4:i:execute",
+							"id": "001f55c94d4b1a5c370d2689ffcdc9dc:i:execute",
 							"name": "execute",
 							"direction": "input",
 							"type": "exec",
@@ -55,15 +55,17 @@
 							]
 						},
 						{
-							"id": "11ad81b44080012582639181296607c4:o:then",
+							"id": "001f55c94d4b1a5c370d2689ffcdc9dc:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"4cc31b494196762d0ac66b97bf232ed9:i:execute"
+							]
 						},
 						{
-							"id": "11ad81b44080012582639181296607c4:i:self",
+							"id": "001f55c94d4b1a5c370d2689ffcdc9dc:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Script/Engine.GameplayStatics",
@@ -71,7 +73,7 @@
 							"links": []
 						},
 						{
-							"id": "11ad81b44080012582639181296607c4:i:WorldContextObject",
+							"id": "001f55c94d4b1a5c370d2689ffcdc9dc:i:WorldContextObject",
 							"name": "WorldContextObject",
 							"direction": "input",
 							"type": "object:/Script/CoreUObject.Object",
@@ -79,7 +81,7 @@
 							"links": []
 						},
 						{
-							"id": "11ad81b44080012582639181296607c4:i:Level",
+							"id": "001f55c94d4b1a5c370d2689ffcdc9dc:i:Level",
 							"name": "Level",
 							"direction": "input",
 							"type": "softobject:/Script/Engine.World",
@@ -89,19 +91,27 @@
 							]
 						},
 						{
-							"id": "11ad81b44080012582639181296607c4:i:bAbsolute",
-							"name": "bAbsolute",
+							"id": "001f55c94d4b1a5c370d2689ffcdc9dc:i:bMakeVisibleAfterLoad",
+							"name": "bMakeVisibleAfterLoad",
 							"direction": "input",
 							"type": "bool",
 							"defaultValue": "true",
 							"links": []
 						},
 						{
-							"id": "11ad81b44080012582639181296607c4:i:Options",
-							"name": "Options",
+							"id": "001f55c94d4b1a5c370d2689ffcdc9dc:i:bShouldBlockOnLoad",
+							"name": "bShouldBlockOnLoad",
 							"direction": "input",
-							"type": "string",
-							"defaultValue": null,
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "001f55c94d4b1a5c370d2689ffcdc9dc:i:LatentInfo",
+							"name": "LatentInfo",
+							"direction": "input",
+							"type": "struct:/Script/Engine.LatentActionInfo",
+							"defaultValue": "(Linkage=-1,UUID=-1,ExecutionFunction=\"\",CallbackTarget=None)",
 							"links": []
 						}
 					]
@@ -179,7 +189,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"11ad81b44080012582639181296607c4:i:execute"
+								"001f55c94d4b1a5c370d2689ffcdc9dc:i:execute"
 							]
 						},
 						{
@@ -188,6 +198,100 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
+							"links": [
+								"972b0e524e3e89de8d8016950b017758:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4cc31b494196762d0ac66b97bf232ed9",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 1040,
+					"y": 32,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"001f55c94d4b1a5c370d2689ffcdc9dc:o:then"
+							]
+						},
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "\"Success\"",
+							"links": []
+						},
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "4cc31b494196762d0ac66b97bf232ed9:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
 							"links": []
 						}
 					]
@@ -285,11 +389,103 @@
 					]
 				},
 				{
+					"guid": "972b0e524e3e89de8d8016950b017758",
+					"class": "K2Node_CallFunction",
+					"title": "Print String",
+					"x": 320,
+					"y": 208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"21f6158e40d7c0358b0c25b3e92207d1:o:else"
+							]
+						},
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "\"Failed to stream\"",
+							"links": []
+						},
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "972b0e524e3e89de8d8016950b017758:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "b4126ded41067993d29fdc9368d7ae60",
 					"class": "K2Node_VariableGet",
 					"title": "Get SelectedLevel",
-					"x": 400,
-					"y": 160,
+					"x": 624,
+					"y": 208,
 					"comment": null,
 					"pins": [
 						{
@@ -299,7 +495,7 @@
 							"type": "softobject:/Script/Engine.World",
 							"defaultValue": null,
 							"links": [
-								"11ad81b44080012582639181296607c4:i:Level"
+								"001f55c94d4b1a5c370d2689ffcdc9dc:i:Level"
 							]
 						},
 						{
@@ -595,6 +791,10 @@
 								{
 									"Channel": "Destructible",
 									"Response": "ECR_Overlap"
+								},
+								{
+									"Channel": "Interact",
+									"Response": "ECR_Ignore"
 								}
 							]
 						},
@@ -654,7 +854,7 @@
 					{
 						"Pitch": 0,
 						"Yaw": 0,
-						"Roll": -0
+						"Roll": 0
 					},
 					"RelativeScale3D":
 					{
