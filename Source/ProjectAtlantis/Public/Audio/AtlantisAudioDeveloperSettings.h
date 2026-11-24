@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/DeveloperSettings.h"
 #include "GameplayTagContainer.h"
+#include "Audio/AtlantisMixStateTypes.h"
 
 #include "AtlantisAudioDeveloperSettings.generated.h"
 
@@ -48,6 +49,9 @@ public:
 	/** Loads the player audio table. Returns null if none is set. */
 	static UDataTable* GetPlayerAudioTable();
 
+	/** The Mix States list. Empty if none are set. */
+	static const TArray<FAtlantisMixStateRule>& GetMixStateRules();
+
 protected:
 
 	friend struct FAtlantisAudioValidationTestAccess;
@@ -75,6 +79,10 @@ protected:
 	/** The table of suit sounds the player audio subsystem plays, and the facts that drive them. */
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Player Audio", meta = (RequiredAssetDataTags = "RowStructure=/Script/ProjectAtlantis.AtlantisPlayerAudioRow"))
 	TSoftObjectPtr<UDataTable> PlayerAudioData;
+
+	/** Each bus mix the mix state subsystem turns on, and the bool fact that turns it on. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Mix States")
+	TArray<FAtlantisMixStateRule> MixStates;
 
 private:
 	/** This world's entry in Music Per Map, or nullptr if its map isn't listed. Handles PIE map names. */

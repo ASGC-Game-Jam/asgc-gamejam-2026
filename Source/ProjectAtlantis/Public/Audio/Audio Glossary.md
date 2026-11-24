@@ -133,4 +133,22 @@ Gameplay never talks to a listener directly, and listeners never reference gamep
 : Not played yet. They're planned for sounds like the mask coming off.
 
 **`SC_Player`**
-: The sound class for the player's suit sounds. It's a child of `SC_SFX`, so the SFX volume slider still applies, but it's kept separate so the underwater low-pass can skip it.
+: The sound class for the player's suit sounds. It's a child of `SC_SFX` and has its own copy of the User Main and User SFX volume buses. It isn't wired to `CB_World_LPF`, so the underwater low-pass skips it.
+
+---
+
+## Mix states
+
+**Mix state subsystem** (`UAtlantisMixStateSubsystem`)
+: Turns control bus mixes on and off from bool facts, using **Mix States** in Project Settings > Game > Atlantis Audio Settings. Each rule's mix is on while its **While Fact** is true.
+- **Fades come from the mix.** Each stage's attack time sets how fast it comes in, and its release time sets how fast it goes out.
+- **Mixes are turned off at level end.** Mixes live on the audio device, not in the level, so without this one would carry into the next level.
+- Only bool facts drive mixes for now. Float facts, such as a value setting a bus directly, could be added as another kind of rule.
+
+**Control bus, mix and destination**
+: A **control bus** is a knob, such as `CB_World_LPF`. A **control bus mix** turns knobs to set values, with a fade. A sound class's **modulation destination** (Volume, Pitch, Highpass or Lowpass) is where a knob is wired in.
+- **Sound classes don't inherit modulation.** Each class lists its own buses, so wire a bus into every class it should affect.
+- On the LPF parameter, when two mixes set the same bus, the lower cutoff wins.
+
+**Underwater low-pass** (`CB_World_LPF`, `CBM_Underwater`, #606)
+: While `Audio.Fact.Player.Underwater` is true, `CBM_Underwater` lowers the cutoff on `SC_SFX` and `SC_Ambience`. Music, UI, dialogue and `SC_Player` aren't wired to the bus, so they stay clear.
