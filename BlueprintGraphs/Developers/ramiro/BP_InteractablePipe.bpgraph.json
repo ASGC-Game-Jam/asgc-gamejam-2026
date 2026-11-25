@@ -95,6 +95,26 @@
 					]
 				},
 				{
+					"guid": "25832932450f3af7494efbb4edfddb53",
+					"class": "K2Node_Composite",
+					"title": "Print Puzzle Group Progress",
+					"x": 912,
+					"y": 624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "25832932450f3af7494efbb4edfddb53:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c52dce3f48094c4ea77b6cb44188365a:o:then"
+							]
+						}
+					]
+				},
+				{
 					"guid": "428a0a634979f4c218647bbe54970e6e",
 					"class": "K2Node_MacroInstance",
 					"title": "Is Valid",
@@ -447,7 +467,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"25832932450f3af7494efbb4edfddb53:i:execute"
+							]
 						},
 						{
 							"id": "c52dce3f48094c4ea77b6cb44188365a:i:self",

@@ -4,9 +4,314 @@
 	"package": "/Game/Developers/ramiro/L_InteractablesTest",
 	"asset": "L_InteractablesTest",
 	"assetClass": "World",
-	"parentClass": null,
-	"blueprintType": null,
-	"graphs": [],
+	"parentClass": "LevelScriptActor",
+	"blueprintType": "BPTYPE_LevelScript",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "0042142a4c941b94093ce1b9a157a17b",
+					"class": "K2Node_AddDelegate",
+					"title": "Bind Event to On Group Completed",
+					"x": 288,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0042142a4c941b94093ce1b9a157a17b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7d07788547b0a453c212afbf649effc1:o:then"
+							]
+						},
+						{
+							"id": "0042142a4c941b94093ce1b9a157a17b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0042142a4c941b94093ce1b9a157a17b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": [
+								"dc88b6884d3f8ea37ca76bab35e3f533:o:PuzzleGroup"
+							]
+						},
+						{
+							"id": "0042142a4c941b94093ce1b9a157a17b:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"e21af4904ceb3deb2d20ee846cfaccf6:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "2a0bbb344029849248ca8ba92edd9922",
+					"class": "K2Node_Literal",
+					"title": "DoorFrame",
+					"x": 48,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2a0bbb344029849248ca8ba92edd9922:o:DoorFrame",
+							"name": "DoorFrame",
+							"direction": "output",
+							"type": "object:/Game/Developers/ramiro/BP_PuzzleDoor.BP_PuzzleDoor_C",
+							"defaultValue": null,
+							"links": [
+								"41011ce04dd5d9bef0de11a102555528:i:InputPin",
+								"a5de55d840022d3e751f59977941c569:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "41011ce04dd5d9bef0de11a102555528",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 448,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "41011ce04dd5d9bef0de11a102555528:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PuzzleDoor.BP_PuzzleDoor_C",
+							"defaultValue": null,
+							"links": [
+								"2a0bbb344029849248ca8ba92edd9922:o:DoorFrame"
+							]
+						},
+						{
+							"id": "41011ce04dd5d9bef0de11a102555528:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Game/Developers/ramiro/BP_PuzzleDoor.BP_PuzzleDoor_C",
+							"defaultValue": null,
+							"links": [
+								"c86122514197590d1bc5639f5f00488f:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7d07788547b0a453c212afbf649effc1",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": -176,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7d07788547b0a453c212afbf649effc1:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7d07788547b0a453c212afbf649effc1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0042142a4c941b94093ce1b9a157a17b:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a5de55d840022d3e751f59977941c569",
+					"class": "K2Node_CallFunction",
+					"title": "Unlock",
+					"x": 288,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a5de55d840022d3e751f59977941c569:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e21af4904ceb3deb2d20ee846cfaccf6:o:then"
+							]
+						},
+						{
+							"id": "a5de55d840022d3e751f59977941c569:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c86122514197590d1bc5639f5f00488f:i:execute"
+							]
+						},
+						{
+							"id": "a5de55d840022d3e751f59977941c569:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PuzzleDoor.BP_PuzzleDoor_C",
+							"defaultValue": null,
+							"links": [
+								"2a0bbb344029849248ca8ba92edd9922:o:DoorFrame"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ad6a9d27448fad55a7bc9bb3540b6afa",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "ad6a9d27448fad55a7bc9bb3540b6afa:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ad6a9d27448fad55a7bc9bb3540b6afa:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ad6a9d27448fad55a7bc9bb3540b6afa:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c86122514197590d1bc5639f5f00488f",
+					"class": "K2Node_CallFunction",
+					"title": "Open Door",
+					"x": 544,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c86122514197590d1bc5639f5f00488f:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a5de55d840022d3e751f59977941c569:o:then"
+							]
+						},
+						{
+							"id": "c86122514197590d1bc5639f5f00488f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c86122514197590d1bc5639f5f00488f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Placeables/Door/BP_DoorFrame.BP_DoorFrame_C",
+							"defaultValue": null,
+							"links": [
+								"41011ce04dd5d9bef0de11a102555528:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "dc88b6884d3f8ea37ca76bab35e3f533",
+					"class": "K2Node_Literal",
+					"title": "PuzzleGroup",
+					"x": 32,
+					"y": 432,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dc88b6884d3f8ea37ca76bab35e3f533:o:PuzzleGroup",
+							"name": "PuzzleGroup",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": [
+								"0042142a4c941b94093ce1b9a157a17b:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e21af4904ceb3deb2d20ee846cfaccf6",
+					"class": "K2Node_CustomEvent",
+					"title": "OnPipesSolved",
+					"x": 80,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e21af4904ceb3deb2d20ee846cfaccf6:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"0042142a4c941b94093ce1b9a157a17b:i:Delegate"
+							]
+						},
+						{
+							"id": "e21af4904ceb3deb2d20ee846cfaccf6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a5de55d840022d3e751f59977941c569:i:execute"
+							]
+						},
+						{
+							"id": "e21af4904ceb3deb2d20ee846cfaccf6:o:GroupReference",
+							"name": "GroupReference",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Interactables/BP_PuzzleGroup.BP_PuzzleGroup_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
 	"properties":
 	{
 		"worldSettings":

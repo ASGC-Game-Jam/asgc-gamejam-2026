@@ -1,0 +1,746 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/Developers/ramiro/BP_PuzzleDoor",
+	"asset": "BP_PuzzleDoor",
+	"assetClass": "Blueprint",
+	"parentClass": "BP_DoorFrame_C",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "UserConstructionScript",
+			"type": "Function",
+			"nodes": [
+				{
+					"guid": "35c690cf435406ab89d38ba3f2d2202b",
+					"class": "K2Node_FunctionEntry",
+					"title": "Construction Script",
+					"x": 0,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "35c690cf435406ab89d38ba3f2d2202b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"effb85494f112d3ffc188f8642b26337:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "effb85494f112d3ffc188f8642b26337",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: Construction Script",
+					"x": 200,
+					"y": 0,
+					"comment": null,
+					"pins": [
+						{
+							"id": "effb85494f112d3ffc188f8642b26337:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"35c690cf435406ab89d38ba3f2d2202b:o:then"
+							]
+						},
+						{
+							"id": "effb85494f112d3ffc188f8642b26337:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "effb85494f112d3ffc188f8642b26337:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		},
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "085eb0bb428a24015739159cc5968869",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "085eb0bb428a24015739159cc5968869:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "085eb0bb428a24015739159cc5968869:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "085eb0bb428a24015739159cc5968869:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1f844a7a48b962aacfaa219a78fa0867",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: BeginPlay",
+					"x": 200,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "1f844a7a48b962aacfaa219a78fa0867:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ad5e7c1f4fdf3ab58e0c02a6deb5005a:o:then"
+							]
+						},
+						{
+							"id": "1f844a7a48b962aacfaa219a78fa0867:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1f844a7a48b962aacfaa219a78fa0867:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2b50028e41b0fbd4502391952201884a",
+					"class": "K2Node_VariableSet",
+					"title": "Set bUnlocked",
+					"x": 192,
+					"y": 816,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2b50028e41b0fbd4502391952201884a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"ef5d703e4fe7853e49b3539266f84e8a:o:then"
+							]
+						},
+						{
+							"id": "2b50028e41b0fbd4502391952201884a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2b50028e41b0fbd4502391952201884a:i:bUnlocked",
+							"name": "bUnlocked",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "2b50028e41b0fbd4502391952201884a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PuzzleDoor.BP_PuzzleDoor_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "2b50028e41b0fbd4502391952201884a:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "3006b6f94ae7e0ed43198ca3bd6bbe71",
+					"class": "K2Node_VariableSet",
+					"title": "Set bUnlocked",
+					"x": 192,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3006b6f94ae7e0ed43198ca3bd6bbe71:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e1bd91c443589f244131618335588856:o:then"
+							]
+						},
+						{
+							"id": "3006b6f94ae7e0ed43198ca3bd6bbe71:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3006b6f94ae7e0ed43198ca3bd6bbe71:i:bUnlocked",
+							"name": "bUnlocked",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "3006b6f94ae7e0ed43198ca3bd6bbe71:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "3006b6f94ae7e0ed43198ca3bd6bbe71:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PuzzleDoor.BP_PuzzleDoor_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "77aa108a44e69e91272143933abe889c",
+					"class": "K2Node_CallFunction",
+					"title": "PrintString",
+					"x": 544,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "77aa108a44e69e91272143933abe889c:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d314c9154f20b3a5faa289b2b0bb7864:o:else"
+							]
+						},
+						{
+							"id": "77aa108a44e69e91272143933abe889c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "77aa108a44e69e91272143933abe889c:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "77aa108a44e69e91272143933abe889c:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "77aa108a44e69e91272143933abe889c:i:InString",
+							"name": "InString",
+							"direction": "input",
+							"type": "string",
+							"defaultValue": "Door It's locked I should look around...",
+							"links": []
+						},
+						{
+							"id": "77aa108a44e69e91272143933abe889c:i:bPrintToScreen",
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "77aa108a44e69e91272143933abe889c:i:bPrintToLog",
+							"name": "bPrintToLog",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "77aa108a44e69e91272143933abe889c:i:TextColor",
+							"name": "TextColor",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.LinearColor",
+							"defaultValue": "(R=0.000000,G=1.000000,B=0.035215,A=1.000000)",
+							"links": []
+						},
+						{
+							"id": "77aa108a44e69e91272143933abe889c:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "2.000000",
+							"links": []
+						},
+						{
+							"id": "77aa108a44e69e91272143933abe889c:i:Key",
+							"name": "Key",
+							"direction": "input",
+							"type": "name",
+							"defaultValue": "None",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "ad5e7c1f4fdf3ab58e0c02a6deb5005a",
+					"class": "K2Node_Event",
+					"title": "Event BeginPlay",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "ad5e7c1f4fdf3ab58e0c02a6deb5005a:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ad5e7c1f4fdf3ab58e0c02a6deb5005a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"1f844a7a48b962aacfaa219a78fa0867:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b0594fda4a0d5f20b9a944b1f94e4395",
+					"class": "K2Node_CallParentFunction",
+					"title": "Parent: ActorBeginOverlap",
+					"x": 528,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b0594fda4a0d5f20b9a944b1f94e4395:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d314c9154f20b3a5faa289b2b0bb7864:o:then"
+							]
+						},
+						{
+							"id": "b0594fda4a0d5f20b9a944b1f94e4395:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b0594fda4a0d5f20b9a944b1f94e4395:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b0594fda4a0d5f20b9a944b1f94e4395:i:OtherActor",
+							"name": "OtherActor",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"b6a25d9847f44e96e7f336a7fff437f1:o:OtherActor"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b6a25d9847f44e96e7f336a7fff437f1",
+					"class": "K2Node_Event",
+					"title": "Event ActorBeginOverlap",
+					"x": -16,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b6a25d9847f44e96e7f336a7fff437f1:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "b6a25d9847f44e96e7f336a7fff437f1:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d314c9154f20b3a5faa289b2b0bb7864:i:execute"
+							]
+						},
+						{
+							"id": "b6a25d9847f44e96e7f336a7fff437f1:o:OtherActor",
+							"name": "OtherActor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"b0594fda4a0d5f20b9a944b1f94e4395:i:OtherActor"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c496028940ecd588d2f5c9a308e61ff5",
+					"class": "K2Node_VariableGet",
+					"title": "Get bUnlocked",
+					"x": 160,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c496028940ecd588d2f5c9a308e61ff5:o:bUnlocked",
+							"name": "bUnlocked",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"d314c9154f20b3a5faa289b2b0bb7864:i:Condition"
+							]
+						},
+						{
+							"id": "c496028940ecd588d2f5c9a308e61ff5:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/Developers/ramiro/BP_PuzzleDoor.BP_PuzzleDoor_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d314c9154f20b3a5faa289b2b0bb7864",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 288,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d314c9154f20b3a5faa289b2b0bb7864:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b6a25d9847f44e96e7f336a7fff437f1:o:then"
+							]
+						},
+						{
+							"id": "d314c9154f20b3a5faa289b2b0bb7864:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c496028940ecd588d2f5c9a308e61ff5:o:bUnlocked"
+							]
+						},
+						{
+							"id": "d314c9154f20b3a5faa289b2b0bb7864:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"b0594fda4a0d5f20b9a944b1f94e4395:i:execute"
+							]
+						},
+						{
+							"id": "d314c9154f20b3a5faa289b2b0bb7864:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"77aa108a44e69e91272143933abe889c:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e1bd91c443589f244131618335588856",
+					"class": "K2Node_CustomEvent",
+					"title": "Lock",
+					"x": 0,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e1bd91c443589f244131618335588856:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e1bd91c443589f244131618335588856:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3006b6f94ae7e0ed43198ca3bd6bbe71:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "ef5d703e4fe7853e49b3539266f84e8a",
+					"class": "K2Node_CustomEvent",
+					"title": "Unlock",
+					"x": 0,
+					"y": 784,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ef5d703e4fe7853e49b3539266f84e8a:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "ef5d703e4fe7853e49b3539266f84e8a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"2b50028e41b0fbd4502391952201884a:i:execute"
+							]
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"bUnlocked":
+			{
+				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"Box": null,
+			"DefaultSceneRoot": null,
+			"Door_Control_NewTrack_0_9027BDA34FB8CF4858BE4191F8EB344A": 0,
+			"Door_Control__Direction_9027BDA34FB8CF4858BE4191F8EB344A": "Forward",
+			"Door Control": null,
+			"Door Size":
+			{
+				"X": 400,
+				"Y": 100,
+				"Z": 400
+			},
+			"Door Frame": true,
+			"Door Frame Scale": 1,
+			"Door": null,
+			"Closed Position":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"Door Detection Adjust":
+			{
+				"X": 100,
+				"Y": 400,
+				"Z": 0
+			},
+			"Door Thickness": 0.20000000000000001,
+			"Split Door": false,
+			"Door Frame Overide Material": null,
+			"Add Door": true,
+			"Door2": null,
+			"Closed Position_0":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"DoorOverrideMaterial": null,
+			"PrimaryActorTick":
+			{
+				"TickGroup": "TG_PrePhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"bNetTemporary": false,
+			"bOnlyRelevantToOwner": false,
+			"bAlwaysRelevant": false,
+			"bReplicateMovement": false,
+			"bCallPreReplication": true,
+			"bCallPreReplicationForReplay": true,
+			"bHidden": false,
+			"bTearOff": false,
+			"bForceNetAddressable": false,
+			"bIsMainWorldOnly": false,
+			"bNetLoadOnClient": true,
+			"bNetUseOwnerRelevancy": false,
+			"bRelevantForNetworkReplays": true,
+			"bRelevantForLevelBounds": true,
+			"bReplayRewindable": false,
+			"bAllowTickBeforeBeginPlay": false,
+			"bAutoDestroyWhenFinished": false,
+			"bCanBeDamaged": true,
+			"bBlockInput": false,
+			"bCollideWhenPlacing": false,
+			"bFindCameraComponentWhenViewTarget": true,
+			"bGenerateOverlapEventsDuringLevelStreaming": false,
+			"bIgnoresOriginShifting": false,
+			"bEnableAutoLODGeneration": true,
+			"bIsEditorOnlyActor": false,
+			"bReplicates": false,
+			"bCanBeInCluster": false,
+			"bMigratingAsset": false,
+			"bAllowReceiveTickEventOnDedicatedServer": true,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bActorEnableCollision": true,
+			"bAsyncPhysicsTickEnabled": false,
+			"UpdateOverlapsMethodDuringLevelStreaming": "UseConfigDefault",
+			"DefaultUpdateOverlapsMethodDuringLevelStreaming": "OnlyUpdateMovable",
+			"InitialLifeSpan": 0,
+			"CustomTimeDilation": 1,
+			"RayTracingGroupId": -1,
+			"RuntimeGrid": "None",
+			"ReplicatedMovement":
+			{
+				"LocationQuantizationLevel": "RoundWholeNumber",
+				"VelocityQuantizationLevel": "RoundWholeNumber",
+				"RotationQuantizationLevel": "ByteComponents"
+			},
+			"Owner": null,
+			"NetDriverName": "GameNetDriver",
+			"Role": "ROLE_Authority",
+			"NetDormancy": "DORM_Awake",
+			"SpawnCollisionHandlingMethod": "AlwaysSpawn",
+			"AutoReceiveInput": "Disabled",
+			"InputPriority": 0,
+			"NetCullDistanceSquared": 225000000,
+			"NetUpdateFrequency": 100,
+			"MinNetUpdateFrequency": 2,
+			"NetPriority": 1,
+			"PhysicsReplicationMode": "Default",
+			"Instigator": null,
+			"RootComponent": null,
+			"PivotOffset":
+			{
+				"X": 0,
+				"Y": 0,
+				"Z": 0
+			},
+			"HLODLayer": null,
+			"Layers": [],
+			"ParentComponent": null,
+			"ContentBundleGuid": "00000000000000000000000000000000",
+			"DataLayers": [],
+			"DataLayerAssets": [],
+			"ExternalDataLayerAsset": null,
+			"SpriteScale": 1,
+			"ActorLabel": "BP_DoorFrame",
+			"FolderPath": "None",
+			"FolderGuid": "00000000000000000000000000000000",
+			"bHiddenEd": false,
+			"bLockLocation": false,
+			"bActorLabelEditable": true,
+			"bEditable": true,
+			"bListedInSceneOutliner": true,
+			"bOptimizeBPComponentData": false,
+			"bCanPlayFromHere": false,
+			"bIsSpatiallyLoaded": true,
+			"Tags": [],
+			"InstanceComponents": [],
+			"BlueprintCreatedComponents": []
+		}
+	}
+}
