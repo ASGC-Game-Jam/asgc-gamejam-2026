@@ -14,7 +14,7 @@
 				{
 					"guid": "067233da4982f77c6a0629a3b8fe846a",
 					"class": "K2Node_CallFunction",
-					"title": "Get Player Controller",
+					"title": "GetPlayerController",
 					"x": 304,
 					"y": 512,
 					"comment": null,
@@ -142,9 +142,71 @@
 					]
 				},
 				{
+					"guid": "6d0ef5cb4296ccbb5ed8aeb3c4e53750",
+					"class": "K2Node_CallFunction",
+					"title": "Delay",
+					"x": 336,
+					"y": 928,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6d0ef5cb4296ccbb5ed8aeb3c4e53750:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f6dc44a74a752051547aacbb4f1802ec:o:then"
+							]
+						},
+						{
+							"id": "6d0ef5cb4296ccbb5ed8aeb3c4e53750:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"adfdee3245249006d1175dbbbe0a1126:i:execute"
+							]
+						},
+						{
+							"id": "6d0ef5cb4296ccbb5ed8aeb3c4e53750:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "6d0ef5cb4296ccbb5ed8aeb3c4e53750:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6d0ef5cb4296ccbb5ed8aeb3c4e53750:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.300000",
+							"links": []
+						},
+						{
+							"id": "6d0ef5cb4296ccbb5ed8aeb3c4e53750:i:LatentInfo",
+							"name": "LatentInfo",
+							"direction": "input",
+							"type": "struct:/Script/Engine.LatentActionInfo",
+							"defaultValue": "(Linkage=-1,UUID=-1,ExecutionFunction=\"\",CallbackTarget=None)",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "6e1dcf45404fade31c56fa87b57c1028",
 					"class": "K2Node_CallFunction",
-					"title": "Add to Viewport",
+					"title": "AddToViewport",
 					"x": 640,
 					"y": 1168,
 					"comment": null,
@@ -218,7 +280,7 @@
 				{
 					"guid": "8a6f71c642e7ec98d8bf87b89bee1187",
 					"class": "K2Node_CallFunction",
-					"title": "Get Player Controller",
+					"title": "GetPlayerController",
 					"x": 0,
 					"y": 1280,
 					"comment": null,
@@ -262,7 +324,7 @@
 				{
 					"guid": "8b32ac00414d1cd3292f7fa6f8870588",
 					"class": "K2Node_CallFunction",
-					"title": "Set Input Mode Game Only",
+					"title": "SetInputMode_GameOnly",
 					"x": 592,
 					"y": 448,
 					"comment": null,
@@ -412,8 +474,8 @@
 				{
 					"guid": "adfdee3245249006d1175dbbbe0a1126",
 					"class": "K2Node_CallFunction",
-					"title": "Quit Game",
-					"x": 288,
+					"title": "QuitGame",
+					"x": 800,
 					"y": 928,
 					"comment": null,
 					"pins": [
@@ -424,7 +486,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"f6dc44a74a752051547aacbb4f1802ec:o:then"
+								"6d0ef5cb4296ccbb5ed8aeb3c4e53750:o:then"
 							]
 						},
 						{
@@ -500,13 +562,21 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"adfdee3245249006d1175dbbbe0a1126:i:execute"
+								"6d0ef5cb4296ccbb5ed8aeb3c4e53750:i:execute"
 							]
 						}
 					]
 				}
 			],
 			"comments": [
+				{
+					"guid": "15ffadcd4276c9ad049d67aff77b85f6",
+					"text": "Audio: Delay to allow quit sound to play out",
+					"x": 268,
+					"y": 854,
+					"width": 336,
+					"height": 208
+				},
 				{
 					"guid": "ff37dc554582cb83af89139f9565e430",
 					"text": "Restoring game Input before leaving the menu",

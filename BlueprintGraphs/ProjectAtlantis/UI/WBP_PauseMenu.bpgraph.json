@@ -140,6 +140,62 @@
 					]
 				},
 				{
+					"guid": "24be787649e095f0fabf45b1f37f0640",
+					"class": "K2Node_CallFunction",
+					"title": "PlayWidgetUISound",
+					"x": 1584,
+					"y": -271,
+					"comment": null,
+					"pins": [
+						{
+							"id": "24be787649e095f0fabf45b1f37f0640:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"86b1083b4cfebb2b096d8596090d4c42:o:then"
+							]
+						},
+						{
+							"id": "24be787649e095f0fabf45b1f37f0640:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c400117b42c8e9378df581a5effffbaa:i:execute"
+							]
+						},
+						{
+							"id": "24be787649e095f0fabf45b1f37f0640:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"fd14b56347b2090e72c0c09e11a85413:o:ReturnValue"
+							]
+						},
+						{
+							"id": "24be787649e095f0fabf45b1f37f0640:i:Widget",
+							"name": "Widget",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "24be787649e095f0fabf45b1f37f0640:i:EventTag",
+							"name": "EventTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"UISound.Event.Open\")",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "2a71b5024504f6d16938bc96c0c95897",
 					"class": "K2Node_ComponentBoundEvent",
 					"title": "On Clicked (ReturnToGameButton)",
@@ -170,8 +226,8 @@
 				{
 					"guid": "3607ed7740a4e4a1643ffa97e44411bf",
 					"class": "K2Node_CallFunction",
-					"title": "Set Input Mode Game Only",
-					"x": 896,
+					"title": "SetInputMode_GameOnly",
+					"x": 1056,
 					"y": 144,
 					"comment": null,
 					"pins": [
@@ -226,7 +282,7 @@
 				{
 					"guid": "5b16f7b04f8f2f5c99db04a2b01df587",
 					"class": "K2Node_CallFunction",
-					"title": "Get Player Controller",
+					"title": "GetPlayerController",
 					"x": 368,
 					"y": -128,
 					"comment": null,
@@ -271,8 +327,8 @@
 				{
 					"guid": "5d1935a249af886148a225b7a72e30db",
 					"class": "K2Node_CallFunction",
-					"title": "Set Game Paused",
-					"x": 608,
+					"title": "SetGamePaused",
+					"x": 768,
 					"y": 144,
 					"comment": null,
 					"pins": [
@@ -334,8 +390,8 @@
 					"guid": "75b8d0514680790edf741fbcdf2e5e16",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
-					"x": 1152,
-					"y": 448,
+					"x": 1312,
+					"y": 304,
 					"comment": null,
 					"pins": [
 						{
@@ -345,7 +401,7 @@
 							"type": "object:/Script/Engine.PlayerController",
 							"defaultValue": null,
 							"links": [
-								"c004a1cb4cc491a7a5653c9ba711996c:o:OutputPin"
+								"c8a9d45c415b041172252b8417829eab:o:ReturnValue"
 							]
 						},
 						{
@@ -414,7 +470,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"24be787649e095f0fabf45b1f37f0640:i:execute"
+							]
 						},
 						{
 							"id": "86b1083b4cfebb2b096d8596090d4c42:i:bShowMouseCursor",
@@ -445,9 +503,37 @@
 					]
 				},
 				{
+					"guid": "8c4d18a647cef0f958ef37bfe49a5630",
+					"class": "K2Node_Event",
+					"title": "Event Destruct",
+					"x": 0,
+					"y": 1120,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8c4d18a647cef0f958ef37bfe49a5630:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8c4d18a647cef0f958ef37bfe49a5630:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9230d25a4b663eda8ae63daec0a1198f:i:execute"
+							]
+						}
+					]
+				},
+				{
 					"guid": "8c629a9140c8141ef28fa5ba3146ae3b",
 					"class": "K2Node_CallFunction",
-					"title": "Set Game Paused",
+					"title": "SetGamePaused",
 					"x": 384,
 					"y": -256,
 					"comment": null,
@@ -507,40 +593,122 @@
 					]
 				},
 				{
-					"guid": "c004a1cb4cc491a7a5653c9ba711996c",
-					"class": "K2Node_Knot",
-					"title": "Reroute Node",
-					"x": 880,
-					"y": 448,
+					"guid": "9230d25a4b663eda8ae63daec0a1198f",
+					"class": "K2Node_CallFunction",
+					"title": "PopUIAudioState",
+					"x": 320,
+					"y": 1105,
 					"comment": null,
 					"pins": [
 						{
-							"id": "c004a1cb4cc491a7a5653c9ba711996c:i:InputPin",
-							"name": "InputPin",
+							"id": "9230d25a4b663eda8ae63daec0a1198f:i:execute",
+							"name": "execute",
 							"direction": "input",
-							"type": "object:/Script/Engine.PlayerController",
+							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"c8a9d45c415b041172252b8417829eab:o:ReturnValue"
+								"8c4d18a647cef0f958ef37bfe49a5630:o:then"
 							]
 						},
 						{
-							"id": "c004a1cb4cc491a7a5653c9ba711996c:o:OutputPin",
-							"name": "OutputPin",
+							"id": "9230d25a4b663eda8ae63daec0a1198f:o:then",
+							"name": "then",
 							"direction": "output",
-							"type": "object:/Script/Engine.PlayerController",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "9230d25a4b663eda8ae63daec0a1198f:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
 							"defaultValue": null,
 							"links": [
-								"75b8d0514680790edf741fbcdf2e5e16:i:InputPin"
+								"92ed735141e14053e9f860b9ec51829d:o:ReturnValue"
 							]
+						},
+						{
+							"id": "9230d25a4b663eda8ae63daec0a1198f:i:StateClass",
+							"name": "StateClass",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"UISound.Class.Pause\")",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "92ed735141e14053e9f860b9ec51829d",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get SoundStyleSubsystem",
+					"x": 320,
+					"y": 1040,
+					"comment": null,
+					"pins": [
+						{
+							"id": "92ed735141e14053e9f860b9ec51829d:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"9230d25a4b663eda8ae63daec0a1198f:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c400117b42c8e9378df581a5effffbaa",
+					"class": "K2Node_CallFunction",
+					"title": "PushUIAudioState",
+					"x": 1968,
+					"y": -272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c400117b42c8e9378df581a5effffbaa:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"24be787649e095f0fabf45b1f37f0640:o:then"
+							]
+						},
+						{
+							"id": "c400117b42c8e9378df581a5effffbaa:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c400117b42c8e9378df581a5effffbaa:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"fd14b56347b2090e72c0c09e11a85413:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c400117b42c8e9378df581a5effffbaa:i:StateClass",
+							"name": "StateClass",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"UISound.Class.Pause\")",
+							"links": []
 						}
 					]
 				},
 				{
 					"guid": "c8a9d45c415b041172252b8417829eab",
 					"class": "K2Node_CallFunction",
-					"title": "Get Player Controller",
-					"x": 592,
+					"title": "GetPlayerController",
+					"x": 752,
 					"y": 272,
 					"comment": null,
 					"pins": [
@@ -576,7 +744,7 @@
 							"defaultValue": null,
 							"links": [
 								"3607ed7740a4e4a1643ffa97e44411bf:i:PlayerController",
-								"c004a1cb4cc491a7a5653c9ba711996c:i:InputPin"
+								"75b8d0514680790edf741fbcdf2e5e16:i:InputPin"
 							]
 						}
 					]
@@ -614,7 +782,7 @@
 				{
 					"guid": "e0d6d46c45f7f76ea78487b7ee4c7a3f",
 					"class": "K2Node_CallFunction",
-					"title": "Quit Game",
+					"title": "QuitGame",
 					"x": 272,
 					"y": 672,
 					"comment": null,
@@ -750,7 +918,7 @@
 				{
 					"guid": "efd72fa4476807224afe5281751d5d2c",
 					"class": "K2Node_Event",
-					"title": "Event On Initialized",
+					"title": "Event OnInitialized",
 					"x": 0,
 					"y": -256,
 					"comment": null,
@@ -778,8 +946,8 @@
 				{
 					"guid": "f735f39a49a336d1954271bb913e3287",
 					"class": "K2Node_CallFunction",
-					"title": "Remove from Parent",
-					"x": 368,
+					"title": "RemoveFromParent",
+					"x": 528,
 					"y": 128,
 					"comment": null,
 					"pins": [
@@ -817,7 +985,7 @@
 					"guid": "fcd01c9a47afd48b324d8588956ce039",
 					"class": "K2Node_VariableSet",
 					"title": "Set bShowMouseCursor",
-					"x": 1248,
+					"x": 1408,
 					"y": 160,
 					"comment": null,
 					"pins": [
@@ -866,9 +1034,55 @@
 							]
 						}
 					]
+				},
+				{
+					"guid": "fd14b56347b2090e72c0c09e11a85413",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get SoundStyleSubsystem",
+					"x": 1584,
+					"y": -336,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fd14b56347b2090e72c0c09e11a85413:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"24be787649e095f0fabf45b1f37f0640:i:self",
+								"c400117b42c8e9378df581a5effffbaa:i:self"
+							]
+						}
+					]
 				}
 			],
-			"comments": []
+			"comments": [
+				{
+					"guid": "1c4805ed40bed305f0bb00867d7d28d4",
+					"text": "Add Audio Pause State",
+					"x": 1904,
+					"y": -336,
+					"width": 345,
+					"height": 256
+				},
+				{
+					"guid": "67af2c6e428a8093cffb128d6caf38ed",
+					"text": "Remove Pause State for Audio",
+					"x": 253,
+					"y": 962,
+					"width": 352,
+					"height": 336
+				},
+				{
+					"guid": "b5f2aa0849579ebb967b4cb83e6f7226",
+					"text": "Play Custom Pause Menu Sound on Open",
+					"x": 1513,
+					"y": -443,
+					"width": 352,
+					"height": 400
+				}
+			]
 		}
 	],
 	"properties":
