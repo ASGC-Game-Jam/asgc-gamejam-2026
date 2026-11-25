@@ -1,8 +1,9 @@
 {
-	"version": 1,
+	"version": 2,
 	"generatedBy": "keystone-blueprint-export",
 	"package": "/Game/ProjectAtlantis/UI/AllLevels/WBP_MenuButton",
 	"asset": "WBP_MenuButton",
+	"assetClass": "WidgetBlueprint",
 	"parentClass": "UserWidget",
 	"blueprintType": "BPTYPE_Normal",
 	"graphs": [
@@ -87,7 +88,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"d4680c0543c3b5ca1a313c925052a184:i:execute"
+							]
 						},
 						{
 							"id": "3866806f413544e7a0cbd39c8cfd0659:i:self",
@@ -139,6 +142,34 @@
 						},
 						{
 							"id": "5347327b474946e7922f189a1ed67170:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_MenuButton.WBP_MenuButton_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "771dee0145b7ffafbb85e3ba57ba59ac",
+					"class": "K2Node_VariableGet",
+					"title": "Get SoundClasses",
+					"x": 576,
+					"y": 112,
+					"comment": null,
+					"pins": [
+						{
+							"id": "771dee0145b7ffafbb85e3ba57ba59ac:o:SoundClasses",
+							"name": "SoundClasses",
+							"direction": "output",
+							"type": "struct:/Script/GameplayTags.GameplayTagContainer",
+							"defaultValue": null,
+							"links": [
+								"d4680c0543c3b5ca1a313c925052a184:i:SoundClasses"
+							]
+						},
+						{
+							"id": "771dee0145b7ffafbb85e3ba57ba59ac:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_MenuButton.WBP_MenuButton_C",
@@ -204,9 +235,93 @@
 					]
 				},
 				{
+					"guid": "d4680c0543c3b5ca1a313c925052a184",
+					"class": "K2Node_VariableSet",
+					"title": "Set SoundClasses",
+					"x": 768,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d4680c0543c3b5ca1a313c925052a184:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"3866806f413544e7a0cbd39c8cfd0659:o:then"
+							]
+						},
+						{
+							"id": "d4680c0543c3b5ca1a313c925052a184:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d4680c0543c3b5ca1a313c925052a184:i:SoundClasses",
+							"name": "SoundClasses",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTagContainer",
+							"defaultValue": null,
+							"links": [
+								"771dee0145b7ffafbb85e3ba57ba59ac:o:SoundClasses"
+							]
+						},
+						{
+							"id": "d4680c0543c3b5ca1a313c925052a184:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
+							"defaultValue": null,
+							"links": [
+								"e99cd1b848b0e93c2895479dfb0b4682:o:Button"
+							]
+						},
+						{
+							"id": "d4680c0543c3b5ca1a313c925052a184:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "struct:/Script/GameplayTags.GameplayTagContainer",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e99cd1b848b0e93c2895479dfb0b4682",
+					"class": "K2Node_VariableGet",
+					"title": "Get Button",
+					"x": 528,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e99cd1b848b0e93c2895479dfb0b4682:o:Button",
+							"name": "Button",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
+							"defaultValue": null,
+							"links": [
+								"d4680c0543c3b5ca1a313c925052a184:i:self"
+							]
+						},
+						{
+							"id": "e99cd1b848b0e93c2895479dfb0b4682:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/AllLevels/WBP_MenuButton.WBP_MenuButton_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "f0029d0d4e6ad9a1c7bc73a2e94930a5",
 					"class": "K2Node_Event",
-					"title": "Event Pre Construct",
+					"title": "Event PreConstruct",
 					"x": 0,
 					"y": 0,
 					"comment": null,
@@ -242,5 +357,141 @@
 			],
 			"comments": []
 		}
-	]
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"OnClicked":
+			{
+				"type": "mcdelegate",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"ButtonText":
+			{
+				"type": "text",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": true
+			},
+			"SoundClasses":
+			{
+				"type": "struct:/Script/GameplayTags.GameplayTagContainer",
+				"category": "Sound Styles",
+				"defaultValue": "",
+				"instanceEditable": true
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"ButtonLabel": null,
+			"Button": null,
+			"ButtonText": "Button",
+			"SoundClasses":
+			{
+				"GameplayTags": []
+			},
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
 }
