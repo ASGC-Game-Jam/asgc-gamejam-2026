@@ -18,6 +18,7 @@
 			"bEnableWorldBoundsChecks": true,
 			"bEnableNavigationSystem": true,
 			"bEnableAISystem": true,
+			"bUseAutomaticUGCNavigation": false,
 			"bEnableWorldComposition": false,
 			"bUseClientSideLevelStreamingVolumes": false,
 			"bEnableWorldOriginRebasing": false,
@@ -29,6 +30,13 @@
 			"bHighPriorityLoadingLocal": false,
 			"bOverrideDefaultBroadphaseSettings": false,
 			"bGenerateSingleClusterForLevel": false,
+			"DynamicLoadingRangeScaling":
+			{
+				"bEnabled": false,
+				"InitialDynamicLoadingRangeScaling": 100,
+				"DynamicLoadingRangeScalingDelay": 0,
+				"DynamicLoadingRangeScalingDuration": 10
+			},
 			"bHideEnableStreamingWarning": false,
 			"bIncludeGridSizeInNameForFoliageActors": false,
 			"bIncludeGridSizeInNameForPartitionedActors": false,
@@ -44,6 +52,7 @@
 			{
 				"_class": "NavigationSystemModuleConfig",
 				"_name": "NavigationSystemModuleConfig_0",
+				"bDirtyNavDataPackageOnNavigationGenerationFinished": false,
 				"bStrictlyStatic": false,
 				"bCreateOnClient": false,
 				"bAutoSpawnMissingNavData": true,
@@ -66,7 +75,22 @@
 					"bSupportsAgent12": true,
 					"bSupportsAgent13": true,
 					"bSupportsAgent14": true,
-					"bSupportsAgent15": true
+					"bSupportsAgent15": true,
+					"bSupportsAgent16": true,
+					"bSupportsAgent17": true,
+					"bSupportsAgent18": true,
+					"bSupportsAgent19": true,
+					"bSupportsAgent20": true,
+					"bSupportsAgent21": true,
+					"bSupportsAgent22": true,
+					"bSupportsAgent23": true,
+					"bSupportsAgent24": true,
+					"bSupportsAgent25": true,
+					"bSupportsAgent26": true,
+					"bSupportsAgent27": true,
+					"bSupportsAgent28": true,
+					"bSupportsAgent29": true,
+					"bSupportsAgent30": true
 				},
 				"DefaultAgentName": "None",
 				"bIsOverriden": false
@@ -236,7 +260,8 @@
 				"LoadedEditorRegions": [],
 				"LoadedEditorLocationVolumes": [],
 				"NotLoadedDataLayers": [],
-				"LoadedDataLayers": []
+				"LoadedDataLayers": [],
+				"bForceDisableDynamicLoadingRangeScaling": false
 			},
 			"MaxNumberOfBookmarks": 10,
 			"DefaultBookmarkClass": "/Script/Engine.BookMark",
