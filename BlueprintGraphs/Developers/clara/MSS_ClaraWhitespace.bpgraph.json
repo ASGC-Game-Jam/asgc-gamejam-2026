@@ -19,7 +19,7 @@
 					"Number":
 					{
 						"Major": 1,
-						"Minor": 16
+						"Minor": 17
 					}
 				},
 				"MemberMetadata":
@@ -466,6 +466,86 @@
 									"bIsPrivate": false,
 									"bUnconnectedPinsHidden": false
 								}
+							},
+							{
+								"ID": "72D70BAC4E37CC4C5EC515A07AC57F02",
+								"ClassID": "775FD9E14062AA4EECC2B39ABDD88078",
+								"Name": "Sine",
+								"Interface":
+								{
+									"Inputs": [
+										{
+											"Name": "Enabled",
+											"TypeName": "Bool",
+											"VertexID": "44555369E826AC55E20AA99119D127D6"
+										},
+										{
+											"Name": "Bi Polar",
+											"TypeName": "Bool",
+											"VertexID": "6F08B9B982C9FA687B7C78745093507C"
+										},
+										{
+											"Name": "Frequency",
+											"TypeName": "Float",
+											"VertexID": "054892B2CF3E83141C0FAE1EC965041E"
+										},
+										{
+											"Name": "Modulation",
+											"TypeName": "Audio",
+											"VertexID": "A83FF645D920109C209EDD03A2CEFABE"
+										},
+										{
+											"Name": "Sync",
+											"TypeName": "Trigger",
+											"VertexID": "93053465BB7F2CEFA63294700220CE19"
+										},
+										{
+											"Name": "Phase Offset",
+											"TypeName": "Float",
+											"VertexID": "341FA6324CBB0F46658275666DC1D1F0"
+										},
+										{
+											"Name": "Glide",
+											"TypeName": "Float",
+											"VertexID": "24292F89BE6F08C841E725734251EEEE"
+										},
+										{
+											"Name": "Type",
+											"TypeName": "Enum:SineGenerationType",
+											"VertexID": "ED1A362CB0B5AE0DE5F7A122A6528C9D"
+										}
+									],
+									"Outputs": [
+										{
+											"Name": "Audio",
+											"TypeName": "Audio",
+											"VertexID": "B254962C980D9D774F0B4A9FD33D176A"
+										}
+									],
+									"Environment": []
+								},
+								"InputLiterals": [],
+								"Configuration": "None",
+								"ClassInterfaceOverride": "None",
+								"Style":
+								{
+									"Display":
+									{
+										"Visibility": "Visible",
+										"Locations":
+										{
+											"45B32B7A48AD41D78A76A7890407DD97":
+											{
+												"X": 480,
+												"Y": 160
+											}
+										},
+										"Comment": "",
+										"bCommentVisible": false
+									},
+									"bIsPrivate": false,
+									"bUnconnectedPinsHidden": false
+								}
 							}
 						],
 						"Edges": [
@@ -492,6 +572,12 @@
 								"FromVertexID": "C502B26ECED384DD42DA6C62718AACCD",
 								"ToNodeID": "3C79ECB34CA0B3C352A264AC82D28E14",
 								"ToVertexID": "B0126C594427C99664327AAA20CBB2DE"
+							},
+							{
+								"FromNodeID": "72D70BAC4E37CC4C5EC515A07AC57F02",
+								"FromVertexID": "B254962C980D9D774F0B4A9FD33D176A",
+								"ToNodeID": "07DBB6E2413C6B8A190D23BEFEE81BC1",
+								"ToVertexID": "1073B4F9A62848057651709D850DE57C"
 							}
 						],
 						"Variables": [],
@@ -563,7 +649,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -605,7 +691,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -645,7 +731,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -685,7 +771,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -750,7 +836,10 @@
 						"bShowName": true,
 						"bShowInputNames": true,
 						"bShowOutputNames": true,
-						"bShowLiterals": true
+						"bShowLiterals": true,
+						"StyleSet": "None",
+						"Icon": "None",
+						"Color": "None"
 					}
 				}
 			},
@@ -806,7 +895,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -871,7 +960,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -925,7 +1017,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -990,7 +1082,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -1044,7 +1139,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -1109,7 +1204,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -1167,11 +1265,436 @@
 							"bShowName": true,
 							"bShowInputNames": false,
 							"bShowOutputNames": true,
-							"bShowLiterals": false
+							"bShowLiterals": false,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
+						}
+					}
+				},
+				{
+					"ID": "775FD9E14062AA4EECC2B39ABDD88078",
+					"Metadata":
+					{
+						"ClassName":
+						{
+							"Namespace": "UE",
+							"Name": "Sine",
+							"Variant": "Audio"
+						},
+						"Version":
+						{
+							"Major": 1,
+							"Minor": 1
+						},
+						"Type": "External",
+						"DisplayName": "",
+						"Description": "",
+						"Author": "Epic Games, Inc.",
+						"Keywords": [],
+						"CategoryHierarchy": [],
+						"bIsDeprecated": false,
+						"AccessFlags": 2,
+						"bAutoUpdateManagesInterface": false,
+						"bSerializeText": false
+					},
+					"Interface":
+					{
+						"InputStyle":
+						{
+							"DefaultSortOrder": [
+								0,
+								1,
+								2,
+								3,
+								4,
+								5,
+								6,
+								7
+							],
+							"RequiredMembers":
+							{
+							}
+						},
+						"OutputStyle":
+						{
+							"DefaultSortOrder": [
+								0
+							],
+							"RequiredMembers":
+							{
+							}
+						},
+						"Inputs": [
+							{
+								"DefaultLiteral":
+								{
+									"Type": "Invalid",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "Boolean",
+											"AsNumDefault": 0,
+											"AsBoolean": [
+												true
+											],
+											"AsInteger": [],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 0,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Enabled",
+								"TypeName": "Bool",
+								"VertexID": "44555369E826AC55E20AA99119D127D6"
+							},
+							{
+								"DefaultLiteral":
+								{
+									"Type": "Invalid",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "Boolean",
+											"AsNumDefault": 0,
+											"AsBoolean": [
+												true
+											],
+											"AsInteger": [],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 1,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Bi Polar",
+								"TypeName": "Bool",
+								"VertexID": "6F08B9B982C9FA687B7C78745093507C"
+							},
+							{
+								"DefaultLiteral":
+								{
+									"Type": "Invalid",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "Float",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [],
+											"AsFloat": [
+												440
+											],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 2,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Frequency",
+								"TypeName": "Float",
+								"VertexID": "054892B2CF3E83141C0FAE1EC965041E"
+							},
+							{
+								"DefaultLiteral":
+								{
+									"Type": "Invalid",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "None",
+											"AsNumDefault": 1,
+											"AsBoolean": [],
+											"AsInteger": [],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 3,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Modulation",
+								"TypeName": "Audio",
+								"VertexID": "A83FF645D920109C209EDD03A2CEFABE"
+							},
+							{
+								"DefaultLiteral":
+								{
+									"Type": "Invalid",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "None",
+											"AsNumDefault": 1,
+											"AsBoolean": [],
+											"AsInteger": [],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 4,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Sync",
+								"TypeName": "Trigger",
+								"VertexID": "93053465BB7F2CEFA63294700220CE19"
+							},
+							{
+								"DefaultLiteral":
+								{
+									"Type": "Invalid",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "Float",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [],
+											"AsFloat": [
+												0
+											],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 5,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Phase Offset",
+								"TypeName": "Float",
+								"VertexID": "341FA6324CBB0F46658275666DC1D1F0"
+							},
+							{
+								"DefaultLiteral":
+								{
+									"Type": "Invalid",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "Float",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [],
+											"AsFloat": [
+												0
+											],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 6,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Glide",
+								"TypeName": "Float",
+								"VertexID": "24292F89BE6F08C841E725734251EEEE"
+							},
+							{
+								"DefaultLiteral":
+								{
+									"Type": "Invalid",
+									"AsNumDefault": 0,
+									"AsBoolean": [],
+									"AsInteger": [],
+									"AsFloat": [],
+									"AsString": [],
+									"AsUObject": []
+								},
+								"Defaults": [
+									{
+										"Literal":
+										{
+											"Type": "Integer",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [
+												3
+											],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										},
+										"PageID": "00000000000000000000000000000000"
+									}
+								],
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 7,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Type",
+								"TypeName": "Enum:SineGenerationType",
+								"VertexID": "ED1A362CB0B5AE0DE5F7A122A6528C9D"
+							}
+						],
+						"Outputs": [
+							{
+								"NodeID": "00000000000000000000000000000000",
+								"Metadata":
+								{
+									"DisplayName": "",
+									"Description": "",
+									"SortOrderIndex": 0,
+									"bIsAdvancedDisplay": false,
+									"bSerializeText": false
+								},
+								"AccessType": "Reference",
+								"Name": "Audio",
+								"TypeName": "Audio",
+								"VertexID": "B254962C980D9D774F0B4A9FD33D176A"
+							}
+						],
+						"Environment": []
+					},
+					"Style":
+					{
+						"Display":
+						{
+							"ImageName": "None",
+							"bShowName": true,
+							"bShowInputNames": true,
+							"bShowOutputNames": true,
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				}
 			],
+			"Template": "None",
 			"ArchetypeVersion":
 			{
 				"Name": "None",
@@ -1189,6 +1712,8 @@
 		"ReferenceAssetClassCache": [],
 		"Graph": null,
 		"OutputFormat": "Mono",
+		"ChannelAgnosticFormatChooser": "Auto",
+		"ChannelAgnosticCustomFormat": "Cat:Mono1Dot0",
 		"QualitySetting": "None",
 		"QualitySettingGuid": "00000000000000000000000000000000",
 		"BlockRateOverride":
@@ -1215,7 +1740,7 @@
 		"StreamingPriority": 0,
 		"SampleRateQuality": "Max",
 		"SoundGroup": "SOUNDGROUP_Default",
-		"bLooping": false,
+		"bLooping": true,
 		"bStreaming": false,
 		"bSeekableStreaming": false,
 		"bUseBinkAudio": false,
@@ -1331,7 +1856,7 @@
 		{
 		},
 		"Transformations": [],
-		"SoundClassObject": null,
+		"SoundClassObject": "/Game/ProjectAtlantis/Audio/System/SoundClasses/SC_SFX.SC_SFX",
 		"bDebug": false,
 		"bOverrideConcurrency": false,
 		"bEnableBusSends": true,
@@ -1340,7 +1865,7 @@
 		"bHasDelayNode": false,
 		"bHasConcatenatorNode": false,
 		"bBypassVolumeScaleForPriority": false,
-		"VirtualizationMode": "Restart",
+		"VirtualizationMode": "PlayWhenSilent",
 		"ConcurrencySet": [],
 		"ConcurrencyOverrides":
 		{
@@ -1363,16 +1888,17 @@
 			"VolumeScaleReleaseTime": 0.5,
 			"VoiceStealReleaseTime": 0
 		},
-		"Duration": 9999,
-		"MaxDistance": 2097152,
+		"Duration": 10000,
+		"MaxDistance": 4000,
 		"TotalSamples": 0,
 		"Priority": 1,
-		"AttenuationSettings": null,
+		"AttenuationSettings": "/Game/ProjectAtlantis/Audio/Config/Attenuations/ATT_Default.ATT_Default",
 		"SoundSubmixObject": null,
 		"SoundSubmixSends": [],
 		"SourceEffectChain": null,
 		"BusSends": [],
 		"PreEffectBusSends": [],
+		"PostAttenuationBusSends": [],
 		"AssetUserData": [],
 		"AudioPropertiesSheet": null,
 		"TimecodeOffset":
