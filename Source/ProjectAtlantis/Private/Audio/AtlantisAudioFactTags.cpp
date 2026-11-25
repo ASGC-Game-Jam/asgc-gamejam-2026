@@ -23,3 +23,4 @@ UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Environment_Room, "Audio.Fact.Envir
 
 UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Player_Present, "Audio.Fact.Player.Present", "BoolPayload: true while a local player pawn is bound. False when it's unpossessed or destroyed.");
 UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Player_Underwater, "Audio.Fact.Player.Underwater", "BoolPayload: true while the local player is in a water volume. False on land, or when the player is unbound.");
+UE_DEFINE_GAMEPLAY_TAG_COMMENT(TAG_AudioFact_Listener_Underwater, "Audio.Fact.Listener.Underwater", "BoolPayload: true while the local player's audio listener is in a water volume, and false on land or when unbound. Drives the underwater low-pass.");
