@@ -15,8 +15,8 @@
 					"guid": "0042142a4c941b94093ce1b9a157a17b",
 					"class": "K2Node_AddDelegate",
 					"title": "Bind Event to On Group Completed",
-					"x": 288,
-					"y": 368,
+					"x": 0,
+					"y": 384,
 					"comment": null,
 					"pins": [
 						{
@@ -35,7 +35,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"29d27fcb45d9769beb7ddca12a1f1f90:i:execute"
+							]
 						},
 						{
 							"id": "0042142a4c941b94093ce1b9a157a17b:i:self",
@@ -60,10 +62,102 @@
 					]
 				},
 				{
+					"guid": "0c6e774942690e02ae08dfb6ad6174df",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1696,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0c6e774942690e02ae08dfb6ad6174df:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"34d46518491f2f5892d0b99dc0f96865:o:OutputPin"
+							]
+						},
+						{
+							"id": "0c6e774942690e02ae08dfb6ad6174df:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"55b1d0b94e0b340ab991d99bc73a41ec:i:Story"
+							]
+						}
+					]
+				},
+				{
+					"guid": "29d27fcb45d9769beb7ddca12a1f1f90",
+					"class": "K2Node_CallFunction",
+					"title": "Delay",
+					"x": 640,
+					"y": 368,
+					"comment": null,
+					"pins": [
+						{
+							"id": "29d27fcb45d9769beb7ddca12a1f1f90:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0042142a4c941b94093ce1b9a157a17b:o:then"
+							]
+						},
+						{
+							"id": "29d27fcb45d9769beb7ddca12a1f1f90:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8b793d324c3cef4389be7aa050ee0c9b:i:execute"
+							]
+						},
+						{
+							"id": "29d27fcb45d9769beb7ddca12a1f1f90:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetSystemLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetSystemLibrary",
+							"links": []
+						},
+						{
+							"id": "29d27fcb45d9769beb7ddca12a1f1f90:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "29d27fcb45d9769beb7ddca12a1f1f90:i:Duration",
+							"name": "Duration",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": "0.2",
+							"links": []
+						},
+						{
+							"id": "29d27fcb45d9769beb7ddca12a1f1f90:i:LatentInfo",
+							"name": "LatentInfo",
+							"direction": "input",
+							"type": "struct:/Script/Engine.LatentActionInfo",
+							"defaultValue": "(Linkage=-1,UUID=-1,ExecutionFunction=\"\",CallbackTarget=None)",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "2a0bbb344029849248ca8ba92edd9922",
 					"class": "K2Node_Literal",
 					"title": "DoorFrame",
-					"x": 48,
+					"x": -192,
 					"y": 704,
 					"comment": null,
 					"pins": [
@@ -81,11 +175,41 @@
 					]
 				},
 				{
+					"guid": "34d46518491f2f5892d0b99dc0f96865",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1072,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "34d46518491f2f5892d0b99dc0f96865:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"6ca2f33549c500545560dc98442f6afb:o:Story"
+							]
+						},
+						{
+							"id": "34d46518491f2f5892d0b99dc0f96865:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"0c6e774942690e02ae08dfb6ad6174df:i:InputPin"
+							]
+						}
+					]
+				},
+				{
 					"guid": "41011ce04dd5d9bef0de11a102555528",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
-					"x": 448,
-					"y": 704,
+					"x": 160,
+					"y": 713,
 					"comment": null,
 					"pins": [
 						{
@@ -111,11 +235,225 @@
 					]
 				},
 				{
+					"guid": "55b1d0b94e0b340ab991d99bc73a41ec",
+					"class": "K2Node_CallFunction",
+					"title": "ShowStory",
+					"x": 1808,
+					"y": 544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "55b1d0b94e0b340ab991d99bc73a41ec:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7452155444bdc1139f677ebcafe4cbf7:o:then"
+							]
+						},
+						{
+							"id": "55b1d0b94e0b340ab991d99bc73a41ec:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "55b1d0b94e0b340ab991d99bc73a41ec:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.InkpotDemoWidget",
+							"defaultValue": null,
+							"links": [
+								"e700373f402bd082a99834a6f92f10de:o:Output"
+							]
+						},
+						{
+							"id": "55b1d0b94e0b340ab991d99bc73a41ec:i:Story",
+							"name": "Story",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"0c6e774942690e02ae08dfb6ad6174df:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6ca2f33549c500545560dc98442f6afb",
+					"class": "K2Node_CustomEvent",
+					"title": "EventOnStoryBegin_Event",
+					"x": 768,
+					"y": 544,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6ca2f33549c500545560dc98442f6afb:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"8b793d324c3cef4389be7aa050ee0c9b:i:Delegate"
+							]
+						},
+						{
+							"id": "6ca2f33549c500545560dc98442f6afb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7452155444bdc1139f677ebcafe4cbf7:i:execute"
+							]
+						},
+						{
+							"id": "6ca2f33549c500545560dc98442f6afb:o:Story",
+							"name": "Story",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": [
+								"34d46518491f2f5892d0b99dc0f96865:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "7452155444bdc1139f677ebcafe4cbf7",
+					"class": "K2Node_CallFunction",
+					"title": "GetAllWidgetsOfClass",
+					"x": 1056,
+					"y": 560,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7452155444bdc1139f677ebcafe4cbf7:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6ca2f33549c500545560dc98442f6afb:o:then"
+							]
+						},
+						{
+							"id": "7452155444bdc1139f677ebcafe4cbf7:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"55b1d0b94e0b340ab991d99bc73a41ec:i:execute"
+							]
+						},
+						{
+							"id": "7452155444bdc1139f677ebcafe4cbf7:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetBlueprintLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetBlueprintLibrary",
+							"links": []
+						},
+						{
+							"id": "7452155444bdc1139f677ebcafe4cbf7:i:WorldContextObject",
+							"name": "WorldContextObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7452155444bdc1139f677ebcafe4cbf7:o:FoundWidgets",
+							"name": "FoundWidgets",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
+							"defaultValue": null,
+							"links": [
+								"e700373f402bd082a99834a6f92f10de:i:Array"
+							]
+						},
+						{
+							"id": "7452155444bdc1139f677ebcafe4cbf7:i:WidgetClass",
+							"name": "WidgetClass",
+							"direction": "input",
+							"type": "class:/Script/UMG.UserWidget",
+							"defaultValue": "/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"links": []
+						},
+						{
+							"id": "7452155444bdc1139f677ebcafe4cbf7:i:TopLevelOnly",
+							"name": "TopLevelOnly",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7bfc22034150e0a0c922b3b3453d8009",
+					"class": "K2Node_CallFunction",
+					"title": "BeginStory",
+					"x": 1360,
+					"y": 256,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7bfc22034150e0a0c922b3b3453d8009:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"8b793d324c3cef4389be7aa050ee0c9b:o:then"
+							]
+						},
+						{
+							"id": "7bfc22034150e0a0c922b3b3453d8009:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "7bfc22034150e0a0c922b3b3453d8009:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"81cbbb7e4409ffd9f24bd4843475b935:o:OutputPin"
+							]
+						},
+						{
+							"id": "7bfc22034150e0a0c922b3b3453d8009:i:InkpotStoryAsset",
+							"name": "InkpotStoryAsset",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.InkpotStoryAsset",
+							"defaultValue": "/Game/InkpotDemo/Stories/AdventureDemo.AdventureDemo",
+							"links": []
+						},
+						{
+							"id": "7bfc22034150e0a0c922b3b3453d8009:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.InkpotStory",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "7d07788547b0a453c212afbf649effc1",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
-					"x": -176,
-					"y": 368,
+					"x": -560,
+					"y": 384,
 					"comment": null,
 					"pins": [
 						{
@@ -139,10 +477,111 @@
 					]
 				},
 				{
+					"guid": "81cbbb7e4409ffd9f24bd4843475b935",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1264,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "81cbbb7e4409ffd9f24bd4843475b935:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"925586ba454853c98af55faf86620855:o:ReturnValue"
+							]
+						},
+						{
+							"id": "81cbbb7e4409ffd9f24bd4843475b935:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"7bfc22034150e0a0c922b3b3453d8009:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8b793d324c3cef4389be7aa050ee0c9b",
+					"class": "K2Node_AssignDelegate",
+					"title": "Assign On Story Begin",
+					"x": 1008,
+					"y": 272,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8b793d324c3cef4389be7aa050ee0c9b:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"29d27fcb45d9769beb7ddca12a1f1f90:o:then"
+							]
+						},
+						{
+							"id": "8b793d324c3cef4389be7aa050ee0c9b:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7bfc22034150e0a0c922b3b3453d8009:i:execute"
+							]
+						},
+						{
+							"id": "8b793d324c3cef4389be7aa050ee0c9b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"925586ba454853c98af55faf86620855:o:ReturnValue"
+							]
+						},
+						{
+							"id": "8b793d324c3cef4389be7aa050ee0c9b:i:Delegate",
+							"name": "Delegate",
+							"direction": "input",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": [
+								"6ca2f33549c500545560dc98442f6afb:o:OutputDelegate"
+							]
+						}
+					]
+				},
+				{
+					"guid": "925586ba454853c98af55faf86620855",
+					"class": "K2Node_GetEngineSubsystem",
+					"title": "Get Inkpot",
+					"x": 768,
+					"y": 480,
+					"comment": null,
+					"pins": [
+						{
+							"id": "925586ba454853c98af55faf86620855:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/Inkpot.Inkpot",
+							"defaultValue": null,
+							"links": [
+								"81cbbb7e4409ffd9f24bd4843475b935:i:InputPin",
+								"8b793d324c3cef4389be7aa050ee0c9b:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "a5de55d840022d3e751f59977941c569",
 					"class": "K2Node_CallFunction",
 					"title": "Unlock",
-					"x": 288,
+					"x": 0,
 					"y": 560,
 					"comment": null,
 					"pins": [
@@ -182,8 +621,8 @@
 					"guid": "ad6a9d27448fad55a7bc9bb3540b6afa",
 					"class": "K2Node_Event",
 					"title": "Event Tick",
-					"x": 0,
-					"y": 208,
+					"x": 48,
+					"y": 128,
 					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
 					"pins": [
 						{
@@ -216,7 +655,7 @@
 					"guid": "c86122514197590d1bc5639f5f00488f",
 					"class": "K2Node_CallFunction",
 					"title": "Open Door",
-					"x": 544,
+					"x": 256,
 					"y": 560,
 					"comment": null,
 					"pins": [
@@ -254,8 +693,8 @@
 					"guid": "dc88b6884d3f8ea37ca76bab35e3f533",
 					"class": "K2Node_Literal",
 					"title": "PuzzleGroup",
-					"x": 32,
-					"y": 432,
+					"x": -208,
+					"y": 480,
 					"comment": null,
 					"pins": [
 						{
@@ -274,7 +713,7 @@
 					"guid": "e21af4904ceb3deb2d20ee846cfaccf6",
 					"class": "K2Node_CustomEvent",
 					"title": "OnPipesSolved",
-					"x": 80,
+					"x": -208,
 					"y": 560,
 					"comment": null,
 					"pins": [
@@ -307,9 +746,56 @@
 							"links": []
 						}
 					]
+				},
+				{
+					"guid": "e700373f402bd082a99834a6f92f10de",
+					"class": "K2Node_GetArrayItem",
+					"title": "Get (a copy)",
+					"x": 1488,
+					"y": 624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e700373f402bd082a99834a6f92f10de:i:Array",
+							"name": "Array",
+							"direction": "input",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C[]",
+							"defaultValue": null,
+							"links": [
+								"7452155444bdc1139f677ebcafe4cbf7:o:FoundWidgets"
+							]
+						},
+						{
+							"id": "e700373f402bd082a99834a6f92f10de:i:Dimension 1",
+							"name": "Dimension 1",
+							"direction": "input",
+							"type": "int",
+							"defaultValue": "0",
+							"links": []
+						},
+						{
+							"id": "e700373f402bd082a99834a6f92f10de:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "object:/Game/InkpotDemo/UI/WBP_Display_Adventure.WBP_Display_Adventure_C",
+							"defaultValue": null,
+							"links": [
+								"55b1d0b94e0b340ab991d99bc73a41ec:i:self"
+							]
+						}
+					]
 				}
 			],
-			"comments": []
+			"comments": [
+				{
+					"guid": "80c0969a40f48bd259e53185caf3053d",
+					"text": "Control Puzzle Group",
+					"x": -272,
+					"y": 320,
+					"width": 759,
+					"height": 459
+				}
+			]
 		}
 	],
 	"properties":

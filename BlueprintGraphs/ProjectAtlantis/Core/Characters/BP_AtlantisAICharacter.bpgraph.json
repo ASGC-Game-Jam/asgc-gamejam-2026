@@ -572,6 +572,72 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "0274dc4e40631cbf3d66dda62c45be53",
+					"class": "K2Node_DynamicCast",
+					"title": "Cast To BP_AtlantisPlayerCharacter",
+					"x": 144,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0274dc4e40631cbf3d66dda62c45be53:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"a7c457f14107905e26c567beef79aa5d:o:then"
+							]
+						},
+						{
+							"id": "0274dc4e40631cbf3d66dda62c45be53:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f9cb80764b8c19825efbf0a6df49d9cc:i:execute"
+							]
+						},
+						{
+							"id": "0274dc4e40631cbf3d66dda62c45be53:o:CastFailed",
+							"name": "CastFailed",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "0274dc4e40631cbf3d66dda62c45be53:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"a7c457f14107905e26c567beef79aa5d:o:Interactor"
+							]
+						},
+						{
+							"id": "0274dc4e40631cbf3d66dda62c45be53:o:AsBP Atlantis Player Character",
+							"name": "AsBP Atlantis Player Character",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"f9cb80764b8c19825efbf0a6df49d9cc:i:PlayerCharacter"
+							]
+						},
+						{
+							"id": "0274dc4e40631cbf3d66dda62c45be53:o:bSuccess",
+							"name": "bSuccess",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "07564eb74f8e2d670e8e6e982f0cf2eb",
 					"class": "K2Node_GetEngineSubsystem",
 					"title": "Get Inkpot",
@@ -649,8 +715,8 @@
 					"guid": "34eaacc146943ed487a0648204685861",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
-					"x": 48,
-					"y": 96,
+					"x": 240,
+					"y": 48,
 					"comment": null,
 					"pins": [
 						{
@@ -920,7 +986,7 @@
 				{
 					"guid": "72ac572d460921c96be3d68499035018",
 					"class": "K2Node_CallFunction",
-					"title": "Get All Widgets Of Class",
+					"title": "GetAllWidgetsOfClass",
 					"x": 928,
 					"y": 334,
 					"comment": null,
@@ -1079,6 +1145,64 @@
 					]
 				},
 				{
+					"guid": "a7c457f14107905e26c567beef79aa5d",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Interacted (Interactable)",
+					"x": -128,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a7c457f14107905e26c567beef79aa5d:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "a7c457f14107905e26c567beef79aa5d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0274dc4e40631cbf3d66dda62c45be53:i:execute"
+							]
+						},
+						{
+							"id": "a7c457f14107905e26c567beef79aa5d:o:Interactor",
+							"name": "Interactor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"0274dc4e40631cbf3d66dda62c45be53:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b76b36fd47dd390004e72699377963f6",
+					"class": "K2Node_Self",
+					"title": "Self-Reference",
+					"x": 320,
+					"y": 992,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b76b36fd47dd390004e72699377963f6:o:self",
+							"name": "self",
+							"direction": "output",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": [
+								"f9cb80764b8c19825efbf0a6df49d9cc:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "c419523145e62ab67d201daeb4c458a9",
 					"class": "K2Node_Event",
 					"title": "Event ActorBeginOverlap",
@@ -1161,10 +1285,66 @@
 					]
 				},
 				{
+					"guid": "f9cb80764b8c19825efbf0a6df49d9cc",
+					"class": "K2Node_Message",
+					"title": "Talk",
+					"x": 512,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f9cb80764b8c19825efbf0a6df49d9cc:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0274dc4e40631cbf3d66dda62c45be53:o:then"
+							]
+						},
+						{
+							"id": "f9cb80764b8c19825efbf0a6df49d9cc:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f9cb80764b8c19825efbf0a6df49d9cc:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"b76b36fd47dd390004e72699377963f6:o:self"
+							]
+						},
+						{
+							"id": "f9cb80764b8c19825efbf0a6df49d9cc:i:PlayerCharacter",
+							"name": "PlayerCharacter",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Core/Characters/BP_AtlantisPlayerCharacter.BP_AtlantisPlayerCharacter_C",
+							"defaultValue": null,
+							"links": [
+								"0274dc4e40631cbf3d66dda62c45be53:o:AsBP Atlantis Player Character"
+							]
+						},
+						{
+							"id": "f9cb80764b8c19825efbf0a6df49d9cc:o:Interaction Occured",
+							"name": "Interaction Occured",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "fb5c4ba04a9e0080ec8a5e91f639db58",
 					"class": "K2Node_CustomEvent",
 					"title": "EventOnStoryBegin_Event",
-					"x": 320,
+					"x": 368,
 					"y": 320,
 					"comment": null,
 					"pins": [
@@ -1246,9 +1426,47 @@
 		},
 		"components":
 		{
+			"Interactable":
+			{
+				"class": "AC_Interactable_C",
+				"parent": null,
+				"properties":
+				{
+					"PromptText": "Talk",
+					"bSingleUse": false,
+					"bHighlightWhenFocused": true,
+					"HighlightMaterial": "/Game/ProjectAtlantis/MaterialLibrary/Interactable/MI_Interactable_Outline.MI_Interactable_Outline",
+					"bEnabled": true,
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
+			}
 		},
 		"defaults":
 		{
+			"Interactable": null,
 			"DialogueStarted": false,
 			"Story": null,
 			"Display Widget": null,
@@ -1286,6 +1504,7 @@
 				"bAllowClothActors": true,
 				"bDisableClothSimulation": false,
 				"bDisableRigidBodyAnimNode": false,
+				"bDisableAnimDynamicsAnimNode": false,
 				"bAllowAnimCurveEvaluation": true,
 				"bCollideWithEnvironment": false,
 				"bCollideWithAttachedChildren": false,
@@ -1305,6 +1524,7 @@
 				"bPropagateCurvesToFollowers": false,
 				"bSkipKinematicUpdateWhenInterpolating": false,
 				"bSkipBoundsUpdateWhenInterpolating": false,
+				"bSuppressNotifyEventDispatch": false,
 				"bOverrideDefaultAnimatingRig": false,
 				"ClothBlendWeight": 1,
 				"bWaitForParallelClothTask": false,
@@ -1328,7 +1548,12 @@
 				"MinLodModel": 0,
 				"StreamingDistanceMultiplier": 1,
 				"NanitePixelProgrammableDistance": 0,
+				"WorldPositionOffsetDisableDistance": 0,
+				"bEvaluateWorldPositionOffset": true,
+				"bDisallowNanite": false,
+				"bForceDisableNanite": false,
 				"VisibilityBasedAnimTickOption": "AlwaysTickPose",
+				"bSkinWeightProfileOnRenderThread": false,
 				"bOverrideMinLod": false,
 				"bUseBoundsFromLeaderPoseComponent": false,
 				"bIncludeComponentLocationIntoBounds": false,
@@ -1377,6 +1602,7 @@
 				"bVisibleInReflectionCaptures": true,
 				"bVisibleInRealTimeSkyCaptures": true,
 				"bVisibleInRayTracing": true,
+				"bVisibleInReflections": true,
 				"bRenderInMainPass": true,
 				"bRenderInDepthPass": true,
 				"bReceivesDecals": true,
@@ -1590,6 +1816,7 @@
 					"bVisibleInReflectionCaptures": true,
 					"bVisibleInRealTimeSkyCaptures": true,
 					"bVisibleInRayTracing": true,
+					"bVisibleInReflections": true,
 					"bRenderInMainPass": true,
 					"bRenderInDepthPass": true,
 					"bReceivesDecals": true,
@@ -1893,8 +2120,20 @@
 			},
 			"CharacterMovement":
 			{
-				"_class": "CharacterMovementComponent",
+				"_class": "AtlantisMovementComponent",
 				"_name": "CharMoveComp",
+				"SwimFacingInterpolationSpeed": 8,
+				"MinSwimFacingSpeed": 1,
+				"DescendBuoyancy": 0.5,
+				"AscendBuoyancy": 1.5,
+				"SurfaceAttachDistance": 8,
+				"SurfaceDetachDistance": 20,
+				"SurfaceContactOffset": 2,
+				"MaxSurfaceNormalChangeDegrees": 60,
+				"MinSurfaceVerticalNormal": 0.10000000000000001,
+				"BlockedSurfaceReattachDelay": 0.20000000000000001,
+				"MaxSwimAcceleration": 2000,
+				"MaxVerticalSwimSpeed": 150,
 				"GravityScale": 1,
 				"MaxStepHeight": 45,
 				"JumpZVelocity": 420,
@@ -1937,7 +2176,7 @@
 				"BrakingSubStepTime": 0.030303030000000002,
 				"BrakingDecelerationWalking": 2048,
 				"BrakingDecelerationFalling": 0,
-				"BrakingDecelerationSwimming": 0,
+				"BrakingDecelerationSwimming": 250,
 				"BrakingDecelerationFlying": 0,
 				"AirControl": 0.050000000000000003,
 				"AirControlBoostMultiplier": 2,
@@ -2119,6 +2358,7 @@
 				"bImpartBaseVelocityZ": true,
 				"bImpartBaseAngularVelocity": true,
 				"bIgnoreClientMovementErrorChecksAndCorrection": false,
+				"bClientIgnoreMovementCorrections": false,
 				"bServerAcceptClientAuthoritativePosition": false,
 				"bNotifyApex": false,
 				"bCheatFlying": false,
@@ -2396,6 +2636,7 @@
 				"bVisibleInReflectionCaptures": true,
 				"bVisibleInRealTimeSkyCaptures": true,
 				"bVisibleInRayTracing": true,
+				"bVisibleInReflections": true,
 				"bRenderInMainPass": true,
 				"bRenderInDepthPass": true,
 				"bReceivesDecals": true,
@@ -2679,6 +2920,7 @@
 				"bVisibleInReflectionCaptures": true,
 				"bVisibleInRealTimeSkyCaptures": true,
 				"bVisibleInRayTracing": true,
+				"bVisibleInReflections": true,
 				"bRenderInMainPass": true,
 				"bRenderInDepthPass": true,
 				"bReceivesDecals": true,
@@ -2892,6 +3134,7 @@
 					"bVisibleInReflectionCaptures": true,
 					"bVisibleInRealTimeSkyCaptures": true,
 					"bVisibleInRayTracing": true,
+					"bVisibleInReflections": true,
 					"bRenderInMainPass": true,
 					"bRenderInDepthPass": true,
 					"bReceivesDecals": true,
@@ -3212,6 +3455,10 @@
 					"Pitch": 0,
 					"Yaw": 0,
 					"Roll": 0
+				},
+				"MovementBaseInterfaceData":
+				{
+					"PhysicsObjectOwner": null
 				}
 			},
 			"ReplicatedBasedMovement":
@@ -3233,6 +3480,10 @@
 					"Pitch": 0,
 					"Yaw": 0,
 					"Roll": 0
+				},
+				"MovementBaseInterfaceData":
+				{
+					"PhysicsObjectOwner": null
 				}
 			},
 			"ReplicatedServerLastTransformUpdateTimeStamp": 0,
@@ -3287,6 +3538,7 @@
 					"Roll": 0
 				},
 				"MovementBase": null,
+				"PhysicsObjectOwner": null,
 				"MovementBaseBoneName": "None",
 				"AuthoritativeRootMotion":
 				{
@@ -3441,6 +3693,7 @@
 				"bVisibleInReflectionCaptures": true,
 				"bVisibleInRealTimeSkyCaptures": true,
 				"bVisibleInRayTracing": true,
+				"bVisibleInReflections": true,
 				"bRenderInMainPass": true,
 				"bRenderInDepthPass": true,
 				"bReceivesDecals": true,
