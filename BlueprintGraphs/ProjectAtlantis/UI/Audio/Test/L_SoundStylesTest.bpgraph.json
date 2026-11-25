@@ -1,7 +1,7 @@
 {
 	"version": 2,
 	"generatedBy": "keystone-blueprint-export",
-	"package": "/Game/ProjectAtlantis/Audio/UI/Test/L_SoundStylesTest",
+	"package": "/Game/ProjectAtlantis/UI/Audio/Test/L_SoundStylesTest",
 	"asset": "L_SoundStylesTest",
 	"assetClass": "World",
 	"parentClass": "LevelScriptActor",
@@ -44,14 +44,14 @@
 							"name": "Class",
 							"direction": "input",
 							"type": "class:/Script/UMG.UserWidget",
-							"defaultValue": "/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": "/Game/ProjectAtlantis/UI/Audio/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
 							"links": []
 						},
 						{
 							"id": "0f612a734127113ac7864db44da757f3:o:ReturnValue",
 							"name": "ReturnValue",
 							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"type": "object:/Game/ProjectAtlantis/UI/Audio/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
 							"defaultValue": null,
 							"links": [
 								"16ba745045a994baba81ad92c3acda57:i:self",
@@ -73,7 +73,7 @@
 				{
 					"guid": "16ba745045a994baba81ad92c3acda57",
 					"class": "K2Node_CallFunction",
-					"title": "Add to Viewport",
+					"title": "AddToViewport",
 					"x": 912,
 					"y": -16,
 					"comment": null,
@@ -155,6 +155,14 @@
 							"links": []
 						},
 						{
+							"id": "23e400154e5e4b74187ebe8bd392d5c5:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
 							"id": "23e400154e5e4b74187ebe8bd392d5c5:i:self",
 							"name": "self",
 							"direction": "input",
@@ -163,14 +171,6 @@
 							"links": [
 								"c22210aa4366253d8e3f6c94f40a18bf:o:ReturnValue"
 							]
-						},
-						{
-							"id": "23e400154e5e4b74187ebe8bd392d5c5:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
-							"links": []
 						}
 					]
 				},
@@ -258,7 +258,7 @@
 							"id": "4f5cbf2a4f2852c005d684b5df8f8afc:o:WBP_SoundStylesTest",
 							"name": "WBP_SoundStylesTest",
 							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"type": "object:/Game/ProjectAtlantis/UI/Audio/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
 							"defaultValue": null,
 							"links": [
 								"2b9360ab43c5a5697eb4a5a34807cd06:i:InWidgetToFocus"
@@ -268,7 +268,7 @@
 							"id": "4f5cbf2a4f2852c005d684b5df8f8afc:i:self",
 							"name": "self",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/L_SoundStylesTest.L_SoundStylesTest_C",
+							"type": "object:/Game/ProjectAtlantis/UI/Audio/Test/L_SoundStylesTest.L_SoundStylesTest_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -306,25 +306,25 @@
 							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:i:WBP_SoundStylesTest",
 							"name": "WBP_SoundStylesTest",
 							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"type": "object:/Game/ProjectAtlantis/UI/Audio/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
 							"defaultValue": null,
 							"links": [
 								"0f612a734127113ac7864db44da757f3:o:ReturnValue"
 							]
 						},
 						{
-							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:i:self",
-							"name": "self",
-							"direction": "input",
-							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/L_SoundStylesTest.L_SoundStylesTest_C",
+							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "object:/Game/ProjectAtlantis/UI/Audio/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
 							"defaultValue": null,
 							"links": []
 						},
 						{
-							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"id": "5c178fb04211ef4ce90e85bcef7ea3b3:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/Audio/Test/L_SoundStylesTest.L_SoundStylesTest_C",
 							"defaultValue": null,
 							"links": []
 						}
@@ -333,7 +333,7 @@
 				{
 					"guid": "c22210aa4366253d8e3f6c94f40a18bf",
 					"class": "K2Node_CallFunction",
-					"title": "Get Player Controller",
+					"title": "GetPlayerController",
 					"x": -128,
 					"y": 176,
 					"comment": null,
@@ -419,6 +419,7 @@
 			"bEnableWorldBoundsChecks": true,
 			"bEnableNavigationSystem": true,
 			"bEnableAISystem": true,
+			"bUseAutomaticUGCNavigation": false,
 			"bEnableWorldComposition": false,
 			"bUseClientSideLevelStreamingVolumes": false,
 			"bEnableWorldOriginRebasing": false,
@@ -430,6 +431,13 @@
 			"bHighPriorityLoadingLocal": false,
 			"bOverrideDefaultBroadphaseSettings": false,
 			"bGenerateSingleClusterForLevel": false,
+			"DynamicLoadingRangeScaling":
+			{
+				"bEnabled": false,
+				"InitialDynamicLoadingRangeScaling": 100,
+				"DynamicLoadingRangeScalingDelay": 0,
+				"DynamicLoadingRangeScalingDuration": 10
+			},
 			"bHideEnableStreamingWarning": false,
 			"bIncludeGridSizeInNameForFoliageActors": false,
 			"bIncludeGridSizeInNameForPartitionedActors": false,
@@ -445,6 +453,7 @@
 			{
 				"_class": "NavigationSystemModuleConfig",
 				"_name": "NavigationSystemModuleConfig_0",
+				"bDirtyNavDataPackageOnNavigationGenerationFinished": false,
 				"bStrictlyStatic": false,
 				"bCreateOnClient": false,
 				"bAutoSpawnMissingNavData": true,
@@ -467,7 +476,22 @@
 					"bSupportsAgent12": true,
 					"bSupportsAgent13": true,
 					"bSupportsAgent14": true,
-					"bSupportsAgent15": true
+					"bSupportsAgent15": true,
+					"bSupportsAgent16": true,
+					"bSupportsAgent17": true,
+					"bSupportsAgent18": true,
+					"bSupportsAgent19": true,
+					"bSupportsAgent20": true,
+					"bSupportsAgent21": true,
+					"bSupportsAgent22": true,
+					"bSupportsAgent23": true,
+					"bSupportsAgent24": true,
+					"bSupportsAgent25": true,
+					"bSupportsAgent26": true,
+					"bSupportsAgent27": true,
+					"bSupportsAgent28": true,
+					"bSupportsAgent29": true,
+					"bSupportsAgent30": true
 				},
 				"DefaultAgentName": "None",
 				"bIsOverriden": false
@@ -637,7 +661,8 @@
 				"LoadedEditorRegions": [],
 				"LoadedEditorLocationVolumes": [],
 				"NotLoadedDataLayers": [],
-				"LoadedDataLayers": []
+				"LoadedDataLayers": [],
+				"bForceDisableDynamicLoadingRangeScaling": false
 			},
 			"MaxNumberOfBookmarks": 10,
 			"DefaultBookmarkClass": "/Script/Engine.BookMark",

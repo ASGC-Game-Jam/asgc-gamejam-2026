@@ -139,7 +139,7 @@ For anything that fails, note:
 
 ## Appendix: the test kit
 
-Everything is under `/Game/ProjectAtlantis/Audio/UI/Test/`:
+Everything is under `/Game/ProjectAtlantis/UI/Audio/Test/`:
 
 | Asset | What it is |
 |---|---|
