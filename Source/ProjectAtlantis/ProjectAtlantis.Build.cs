@@ -40,16 +40,16 @@ public class ProjectAtlantis : ModuleRules
 				"AudioExtensions",
 				"HarmonixMetasound",
 				"Harmonix",
-				"AudioGameplay",
-				"AudioGameplayVolume",
 				"AudioModulation",
 				"SmartObjectsModule",
 				"Analytics",
 				"CommonUI",
+				"AudioGameplay",
+				"AudioGameplayVolume",
 				// Swimming AI builds FNavigationPath for the engine's path following.
 				"NavigationSystem",
 				// State Tree property references (TStateTreePropertyRef) resolve through this module.
-				"PropertyBindingUtils",
+				"PropertyBindingUtils"
 			});
 
 		if (Target.ProjectDefinitions.Contains("WITH_SCREENSHOT_CAPTURE=1"))
