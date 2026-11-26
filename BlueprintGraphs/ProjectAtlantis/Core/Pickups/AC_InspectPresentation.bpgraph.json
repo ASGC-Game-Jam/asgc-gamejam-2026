@@ -1,0 +1,131 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Core/Pickups/AC_InspectPresentation",
+	"asset": "AC_InspectPresentation",
+	"assetClass": "Blueprint",
+	"parentClass": "AtlantisInspectPresentationComponent",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "10923e3747ec4e9d9d6097a258d15c9d",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "10923e3747ec4e9d9d6097a258d15c9d:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "10923e3747ec4e9d9d6097a258d15c9d:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "10923e3747ec4e9d9d6097a258d15c9d:o:DeltaSeconds",
+							"name": "DeltaSeconds",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "8874ee6d4170a1994265f7878d610a3c",
+					"class": "K2Node_Event",
+					"title": "Event Begin Play",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "8874ee6d4170a1994265f7878d610a3c:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "8874ee6d4170a1994265f7878d610a3c:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"bEnableInspectLight": true,
+			"LightIntensity": 20,
+			"LightColor":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"LightAttenuationRadius": 400,
+			"LightOffset":
+			{
+				"X": 0,
+				"Y": 60,
+				"Z": 60
+			},
+			"bLightCastsShadows": false,
+			"PrimaryComponentTick":
+			{
+				"TickGroup": "TG_DuringPhysics",
+				"EndTickGroup": "TG_PrePhysics",
+				"bTickEvenWhenPaused": false,
+				"bCanEverTick": false,
+				"bStartWithTickEnabled": true,
+				"bAllowTickOnDedicatedServer": true,
+				"TickInterval": 0
+			},
+			"ComponentTags": [],
+			"AssetUserData": [],
+			"AssetUserDataEditorOnly": [],
+			"UCSSerializationIndex": -1,
+			"bNetAddressable": false,
+			"bReplicateUsingRegisteredSubObjectList": false,
+			"bReplicates": false,
+			"bAutoActivate": false,
+			"bEditableWhenInherited": true,
+			"bCanEverAffectNavigation": false,
+			"bIsEditorOnly": false,
+			"bIsVisualizationComponent": false,
+			"bNeedsUCSSerializationIndexEvaluted": false,
+			"CreationMethod": "Native"
+		}
+	}
+}

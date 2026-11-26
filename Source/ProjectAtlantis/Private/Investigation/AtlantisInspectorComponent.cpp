@@ -67,6 +67,7 @@ bool UAtlantisInspectorComponent::BeginInspect(UAtlantisInspectableComponent* In
 
 	UE_LOG(LogAtlantisInspector, Log, TEXT("Inspecting %s (\"%s\")"),
 		*GetNameSafe(Inspectable->GetOwner()), *Inspectable->DisplayName.ToString());
+	OnInspectStarted.Broadcast(Inspectable);
 	return true;
 }
 
@@ -76,6 +77,9 @@ void UAtlantisInspectorComponent::EndInspect()
 	{
 		return;
 	}
+
+	// First, while everything is still in place, so listeners can clean up what they added
+	OnInspectEnded.Broadcast(InspectedObject.Get());
 
 	PopInspectInput();
 	RestoreObject();
