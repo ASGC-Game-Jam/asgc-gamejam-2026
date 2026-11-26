@@ -167,6 +167,7 @@ void UAtlantisInspectorComponent::HandleZoom(const FInputActionValue& Value)
 {
 	ZoomScale = FMath::Clamp(ZoomScale - Value.Get<float>() * ZoomSpeed, MinZoomScale, MaxZoomScale);
 	ApplyObjectTransform();
+	OnInspectZoomChanged.Broadcast();
 }
 
 void UAtlantisInspectorComponent::MoveObjectIntoView(AActor* Object, const UAtlantisInspectableComponent& Inspectable, const APlayerController& PlayerController)
@@ -194,7 +195,7 @@ void UAtlantisInspectorComponent::MoveObjectIntoView(AActor* Object, const UAtla
 	FVector BoundsCenter;
 	FVector BoundsExtent;
 	Object->GetActorBounds(false, BoundsCenter, BoundsExtent);
-	const float Radius = BoundsExtent.Size();
+	ObjectRadius = BoundsExtent.Size();
 
 	// Camera
 	const APlayerCameraManager* Camera = PlayerController.PlayerCameraManager;
@@ -208,7 +209,7 @@ void UAtlantisInspectorComponent::MoveObjectIntoView(AActor* Object, const UAtla
 	TanHalfVerticalFOV = TanHalfHorizontalFOV / AspectRatio;
 
 	// Distance at which the sphere's diameter covers ScreenFillFraction of the screen height
-	FramedDistance = Radius / (ScreenFillFraction * TanHalfVerticalFOV) * Inspectable.DistanceMultiplier;
+	FramedDistance = ObjectRadius /(ScreenFillFraction * TanHalfVerticalFOV) * Inspectable.DistanceMultiplier;
 	FramedScreenOffset = ScreenOffset + Inspectable.ScreenOffsetNudge;
 
 	// Facing the camera = turned half a circle from the camera's direction, then the object's own start rotation

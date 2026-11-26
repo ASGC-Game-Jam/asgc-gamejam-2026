@@ -15,6 +15,7 @@ class UPrimitiveComponent;
 struct FInputActionValue;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAtlantisInspectChanged, UAtlantisInspectableComponent*, Inspectable);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAtlantisInspectZoomChanged);
 
 UCLASS(Blueprintable, ClassGroup=(Atlantis), meta=(DisplayName="Atlantis Inspector"))
 class PROJECTATLANTIS_API UAtlantisInspectorComponent : public UActorComponent
@@ -90,6 +91,14 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Inspection")
 	FTransform GetInspectView() const { return FTransform(ViewRotation, ViewLocation); }
 
+	/** How far in front of the camera the object's center is right now (cm, along the view direction), zoom included */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Inspection")
+	float GetInspectedObjectDistance() const { return FramedDistance * ZoomScale; }
+
+	/** Radius of the sphere around the inspected object (cm): all of it is within this distance of its center */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Inspection")
+	float GetInspectedObjectRadius() const { return ObjectRadius; }
+
 	/** After the object is in view. Presentation (light, blur, widget) hooks here */
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Inspection")
 	FOnAtlantisInspectChanged OnInspectStarted;
@@ -97,6 +106,10 @@ public:
 	/** Before the object goes back. Inspectable can be null if the object was destroyed mid-inspect */
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Inspection")
 	FOnAtlantisInspectChanged OnInspectEnded;
+
+	/** The object moved closer or farther (zoom). Read the new GetInspectedObjectDistance */
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Inspection")
+	FOnAtlantisInspectZoomChanged OnInspectZoomChanged;
 
 protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -159,6 +172,7 @@ private:
 	float TanHalfVerticalFOV = 0.f;
 	FVector2D FramedScreenOffset = FVector2D::ZeroVector;
 	float FramedDistance = 0.f;
+	float ObjectRadius = 0.f;
 	/** The object's bounds center relative to its pivot, scaled but not rotated. Used to rotate around the center */
 	FVector ScaledLocalBoundsCenter = FVector::ZeroVector;
 
