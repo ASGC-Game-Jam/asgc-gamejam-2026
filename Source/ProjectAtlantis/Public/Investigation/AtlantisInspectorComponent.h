@@ -14,6 +14,8 @@ class APlayerController;
 class UPrimitiveComponent;
 struct FInputActionValue;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAtlantisInspectChanged, UAtlantisInspectableComponent*, Inspectable);
+
 UCLASS(Blueprintable, ClassGroup=(Atlantis), meta=(DisplayName="Atlantis Inspector"))
 class PROJECTATLANTIS_API UAtlantisInspectorComponent : public UActorComponent
 {
@@ -83,6 +85,18 @@ public:
 	/** The object being inspected, or null */
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Inspection")
 	UAtlantisInspectableComponent* GetInspectedObject() const { return InspectedObject.Get(); }
+
+	/** The camera view the object was framed for. Fixed for the whole inspection, only valid while inspecting */
+	UFUNCTION(BlueprintPure, Category = "Atlantis|Inspection")
+	FTransform GetInspectView() const { return FTransform(ViewRotation, ViewLocation); }
+
+	/** After the object is in view. Presentation (light, blur, widget) hooks here */
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Inspection")
+	FOnAtlantisInspectChanged OnInspectStarted;
+
+	/** Before the object goes back. Inspectable can be null if the object was destroyed mid-inspect */
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Inspection")
+	FOnAtlantisInspectChanged OnInspectEnded;
 
 protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;

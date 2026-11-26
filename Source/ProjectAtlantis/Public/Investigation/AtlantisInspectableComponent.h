@@ -36,6 +36,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|Inspection|Framing", meta = (ClampMin = "0.01"))
 	float DistanceMultiplier = 1.f;
 
+	/** Off for objects the Inspector's light washes out or that already read well (e.g. they glow) */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|Inspection|Light")
+	bool bUseInspectLight = true;
+
 protected:
 	/** Hooks into the sibling interactable so interacting opens the inspect screen */
 	virtual void BeginPlay() override;
