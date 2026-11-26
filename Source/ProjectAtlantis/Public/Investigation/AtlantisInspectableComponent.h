@@ -24,6 +24,18 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|Inspection", meta = (MultiLine = "true"))
 	FText Description;
 
+	/** Rotation when the inspect screen opens, 0 = the +X faces the player */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|Inspection|Framing")
+	FRotator StartRotation = FRotator::ZeroRotator;
+
+	/** Added to the Inspector's ScreenOffset for this object only, in the same units, 0 should be fine for most objects */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|Inspection|Framing")
+	FVector2D ScreenOffsetNudge = FVector2D::ZeroVector;
+
+	/** Scales the automatic distance for odd shapes above 1 = farther (smaller), below 1 = closer (bigger) */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|Inspection|Framing", meta = (ClampMin = "0.01"))
+	float DistanceMultiplier = 1.f;
+
 protected:
 	/** Hooks into the sibling interactable so interacting opens the inspect screen */
 	virtual void BeginPlay() override;
