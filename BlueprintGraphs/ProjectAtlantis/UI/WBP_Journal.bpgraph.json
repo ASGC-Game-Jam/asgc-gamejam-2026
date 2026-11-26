@@ -342,7 +342,7 @@
 					"guid": "0adc55b048bccd09a635feacb2ebda43",
 					"class": "K2Node_VariableGet",
 					"title": "Get JournalWidget",
-					"x": -528,
+					"x": 272,
 					"y": 16,
 					"comment": null,
 					"pins": [
@@ -372,7 +372,7 @@
 					"guid": "0b28cf0f4274646f5dc3d3ac5749d0c4",
 					"class": "K2Node_VariableSet",
 					"title": "Set bShowMouseCursor",
-					"x": 336,
+					"x": 1136,
 					"y": -48,
 					"comment": null,
 					"pins": [
@@ -427,9 +427,9 @@
 				{
 					"guid": "1f5b4ac44a76d554d7065d90cbf8a95b",
 					"class": "K2Node_CallFunction",
-					"title": "Get Player Controller",
-					"x": -1120,
-					"y": 96,
+					"title": "GetPlayerController",
+					"x": -1200,
+					"y": 95,
 					"comment": null,
 					"pins": [
 						{
@@ -472,8 +472,8 @@
 				{
 					"guid": "39bd12f946d0c7fddec4bca65a0ab6f8",
 					"class": "K2Node_CallFunction",
-					"title": "Set Game Paused",
-					"x": 608,
+					"title": "SetGamePaused",
+					"x": 1408,
 					"y": -64,
 					"comment": null,
 					"pins": [
@@ -533,7 +533,7 @@
 					"guid": "3d7722334f84868e09b4a6af41f42cb4",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
-					"x": 256,
+					"x": 1056,
 					"y": 128,
 					"comment": null,
 					"pins": [
@@ -563,7 +563,7 @@
 					"guid": "8363692b449bb86ebf0068bee51ee484",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
-					"x": -112,
+					"x": 688,
 					"y": 128,
 					"comment": null,
 					"pins": [
@@ -594,8 +594,8 @@
 					"guid": "926f6d884f40355f5d49369a0aabbd89",
 					"class": "K2Node_FunctionEntry",
 					"title": "HideJournal",
-					"x": -1104,
-					"y": -176,
+					"x": -1680,
+					"y": -64,
 					"comment": null,
 					"pins": [
 						{
@@ -613,8 +613,8 @@
 				{
 					"guid": "bc753769445ab5c79e82e98d6b8d1246",
 					"class": "K2Node_CallFunction",
-					"title": "Set Input Mode Game Only",
-					"x": 64,
+					"title": "SetInputMode_GameOnly",
+					"x": 864,
 					"y": -64,
 					"comment": null,
 					"pins": [
@@ -670,8 +670,8 @@
 					"guid": "d2181b634a573cf23cbf9baf9cf01d7f",
 					"class": "K2Node_DynamicCast",
 					"title": "Cast To BP_AtlantisPlayerController",
-					"x": -1008,
-					"y": -63,
+					"x": -1088,
+					"y": -64,
 					"comment": null,
 					"pins": [
 						{
@@ -691,7 +691,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"f28b47cf4a146791c3c7cd983e68dee0:i:execute"
+								"e82e5a9d4ff0272517c852a4db27cf41:i:execute"
 							]
 						},
 						{
@@ -733,10 +733,86 @@
 					]
 				},
 				{
+					"guid": "dae387ab4677a1c31b46c198a7bd334e",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get SoundStyleSubsystem",
+					"x": -464,
+					"y": -160,
+					"comment": null,
+					"pins": [
+						{
+							"id": "dae387ab4677a1c31b46c198a7bd334e:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"e82e5a9d4ff0272517c852a4db27cf41:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e82e5a9d4ff0272517c852a4db27cf41",
+					"class": "K2Node_CallFunction",
+					"title": "PlayWidgetUISound",
+					"x": -464,
+					"y": -80,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e82e5a9d4ff0272517c852a4db27cf41:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"d2181b634a573cf23cbf9baf9cf01d7f:o:then"
+							]
+						},
+						{
+							"id": "e82e5a9d4ff0272517c852a4db27cf41:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f28b47cf4a146791c3c7cd983e68dee0:i:execute"
+							]
+						},
+						{
+							"id": "e82e5a9d4ff0272517c852a4db27cf41:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"dae387ab4677a1c31b46c198a7bd334e:o:ReturnValue"
+							]
+						},
+						{
+							"id": "e82e5a9d4ff0272517c852a4db27cf41:i:Widget",
+							"name": "Widget",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e82e5a9d4ff0272517c852a4db27cf41:i:EventTag",
+							"name": "EventTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"UISound.Event.Close\")",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "f28b47cf4a146791c3c7cd983e68dee0",
 					"class": "K2Node_CallFunction",
-					"title": "Remove from Parent",
-					"x": -256,
+					"title": "RemoveFromParent",
+					"x": 544,
 					"y": -80,
 					"comment": null,
 					"pins": [
@@ -747,7 +823,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"d2181b634a573cf23cbf9baf9cf01d7f:o:then"
+								"e82e5a9d4ff0272517c852a4db27cf41:o:then"
 							]
 						},
 						{
@@ -777,7 +853,7 @@
 				{
 					"guid": "1e827df7446e0160b523f7aa1de262cd",
 					"text": "make sure control is given back to the player correctly",
-					"x": 16,
+					"x": 816,
 					"y": -240,
 					"width": 864,
 					"height": 400
@@ -785,15 +861,23 @@
 				{
 					"guid": "9db923fd486ec849bd6f319c233dd318",
 					"text": "cast to the correct player controller type",
-					"x": -1184,
+					"x": -1232,
 					"y": -240,
 					"width": 512,
 					"height": 496
 				},
 				{
+					"guid": "b8943b84415a12d13f81f0b5e396f80e",
+					"text": "Audio Integration",
+					"x": -528,
+					"y": -224,
+					"width": 677,
+					"height": 376
+				},
+				{
 					"guid": "ebc2daf640922e29cd5e319ad58195b7",
 					"text": "we can then remove that widget to hide it, while still having it as a variable to use later",
-					"x": -610,
+					"x": 190,
 					"y": -246,
 					"width": 576,
 					"height": 352
@@ -1154,6 +1238,52 @@
 					]
 				},
 				{
+					"guid": "aee9b0054be5e445f8aafc9b0b156bfd",
+					"class": "K2Node_CallFunction",
+					"title": "PushUIAudioState",
+					"x": 1840,
+					"y": -126,
+					"comment": null,
+					"pins": [
+						{
+							"id": "aee9b0054be5e445f8aafc9b0b156bfd:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eef2bc1440f1ef5e3b13f6a343e6ddef:o:then"
+							]
+						},
+						{
+							"id": "aee9b0054be5e445f8aafc9b0b156bfd:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "aee9b0054be5e445f8aafc9b0b156bfd:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c9fb74df47af5b01a9fef39e5a8e1114:o:ReturnValue"
+							]
+						},
+						{
+							"id": "aee9b0054be5e445f8aafc9b0b156bfd:i:StateClass",
+							"name": "StateClass",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"UISound.Class.Journal\")",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "b82761a54545941741392db2cbc9e624",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
@@ -1186,7 +1316,7 @@
 				{
 					"guid": "bfc5d9f549b49802ff5fd8b92d4fc6fb",
 					"class": "K2Node_CallFunction",
-					"title": "Add to Viewport",
+					"title": "AddToViewport",
 					"x": -304,
 					"y": -128,
 					"comment": null,
@@ -1288,9 +1418,30 @@
 					]
 				},
 				{
+					"guid": "c9fb74df47af5b01a9fef39e5a8e1114",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get SoundStyleSubsystem",
+					"x": 1472,
+					"y": -208,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c9fb74df47af5b01a9fef39e5a8e1114:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"aee9b0054be5e445f8aafc9b0b156bfd:i:self",
+								"eef2bc1440f1ef5e3b13f6a343e6ddef:i:self"
+							]
+						}
+					]
+				},
+				{
 					"guid": "cda1cc3a4267f08d95d2b0bed65b8882",
 					"class": "K2Node_CallFunction",
-					"title": "Get Player Controller",
+					"title": "GetPlayerController",
 					"x": -1424,
 					"y": 64,
 					"comment": null,
@@ -1364,9 +1515,65 @@
 					]
 				},
 				{
+					"guid": "eef2bc1440f1ef5e3b13f6a343e6ddef",
+					"class": "K2Node_CallFunction",
+					"title": "PlayWidgetUISound",
+					"x": 1472,
+					"y": -126,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eef2bc1440f1ef5e3b13f6a343e6ddef:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f7aabdf241799f49894558b533c9f685:o:then"
+							]
+						},
+						{
+							"id": "eef2bc1440f1ef5e3b13f6a343e6ddef:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"aee9b0054be5e445f8aafc9b0b156bfd:i:execute"
+							]
+						},
+						{
+							"id": "eef2bc1440f1ef5e3b13f6a343e6ddef:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"c9fb74df47af5b01a9fef39e5a8e1114:o:ReturnValue"
+							]
+						},
+						{
+							"id": "eef2bc1440f1ef5e3b13f6a343e6ddef:i:Widget",
+							"name": "Widget",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eef2bc1440f1ef5e3b13f6a343e6ddef:i:EventTag",
+							"name": "EventTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"UISound.Event.Open\")",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "f7aabdf241799f49894558b533c9f685",
 					"class": "K2Node_CallFunction",
-					"title": "Set Game Paused",
+					"title": "SetGamePaused",
 					"x": 912,
 					"y": -111,
 					"comment": null,
@@ -1387,7 +1594,9 @@
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"eef2bc1440f1ef5e3b13f6a343e6ddef:i:execute"
+							]
 						},
 						{
 							"id": "f7aabdf241799f49894558b533c9f685:i:self",
@@ -1432,6 +1641,14 @@
 					"y": -208,
 					"width": 544,
 					"height": 288
+				},
+				{
+					"guid": "8aa91b8c413a28594217578ceb190100",
+					"text": "Audio Integration",
+					"x": 1408,
+					"y": -272,
+					"width": 723,
+					"height": 374
 				},
 				{
 					"guid": "ecbd805b4bec60b5b26e4099833afd30",
@@ -1766,7 +1983,7 @@
 							"id": "3dce527944f52110839f1f9249267ef6:o:DialogueTabButton",
 							"name": "DialogueTabButton",
 							"direction": "output",
-							"type": "object:/Script/UMG.Button",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
 							"defaultValue": null,
 							"links": [
 								"d14f13b44215a75d839e849f53486e99:i:self"
@@ -1862,7 +2079,7 @@
 							"id": "75502c744e3eeb20947cf08d5a5360b2:o:InvestigationTabButton",
 							"name": "InvestigationTabButton",
 							"direction": "output",
-							"type": "object:/Script/UMG.Button",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
 							"defaultValue": null,
 							"links": [
 								"a1d90d7b4118f428a0901697acb27986:i:self"
@@ -1890,7 +2107,7 @@
 							"id": "88a5f0cd4d317c60a9f2528f8ac8e727:o:ObjectivesTabButton",
 							"name": "ObjectivesTabButton",
 							"direction": "output",
-							"type": "object:/Script/UMG.Button",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
 							"defaultValue": null,
 							"links": [
 								"d7b05a214a26a0bd0816dd8b2fa2a011:i:self"
@@ -1937,7 +2154,7 @@
 				{
 					"guid": "a058c7794a61ec50784257856a0f3964",
 					"class": "K2Node_CallFunction",
-					"title": "Set Background Color",
+					"title": "SetBackgroundColor",
 					"x": 1808,
 					"y": 63,
 					"comment": null,
@@ -1985,7 +2202,7 @@
 				{
 					"guid": "a1d90d7b4118f428a0901697acb27986",
 					"class": "K2Node_CallFunction",
-					"title": "Set Background Color",
+					"title": "SetBackgroundColor",
 					"x": 1808,
 					"y": -256,
 					"comment": null,
@@ -2091,7 +2308,7 @@
 				{
 					"guid": "d14f13b44215a75d839e849f53486e99",
 					"class": "K2Node_CallFunction",
-					"title": "Set Background Color",
+					"title": "SetBackgroundColor",
 					"x": 1808,
 					"y": 384,
 					"comment": null,
@@ -2264,7 +2481,7 @@
 							"id": "d59477164dc03ca6f99173adc2dbe794:o:PuzzleTabButton",
 							"name": "PuzzleTabButton",
 							"direction": "output",
-							"type": "object:/Script/UMG.Button",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
 							"defaultValue": null,
 							"links": [
 								"a058c7794a61ec50784257856a0f3964:i:self"
@@ -2283,7 +2500,7 @@
 				{
 					"guid": "d7b05a214a26a0bd0816dd8b2fa2a011",
 					"class": "K2Node_CallFunction",
-					"title": "Set Background Color",
+					"title": "SetBackgroundColor",
 					"x": 1808,
 					"y": 704,
 					"comment": null,
@@ -2541,7 +2758,7 @@
 				{
 					"guid": "27b594e4405a5a9d8054cfb5340ec87f",
 					"class": "K2Node_CallFunction",
-					"title": "Set Visibility",
+					"title": "SetVisibility",
 					"x": 3152,
 					"y": 1958,
 					"comment": null,
@@ -2692,7 +2909,7 @@
 				{
 					"guid": "351d3dbb430d750640f416b0123ee156",
 					"class": "K2Node_CallFunction",
-					"title": "Set Visibility",
+					"title": "SetVisibility",
 					"x": 3152,
 					"y": 2185,
 					"comment": null,
@@ -2747,7 +2964,7 @@
 							"id": "3b1b5a534b8b193b51fce6a1579fc6d8:o:PuzzleTabButton",
 							"name": "PuzzleTabButton",
 							"direction": "output",
-							"type": "object:/Script/UMG.Button",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
 							"defaultValue": null,
 							"links": [
 								"a98220d244864096a9ae86965f92bf24:i:TabButton"
@@ -2929,7 +3146,7 @@
 							"id": "5065636d472bf2b722350bbde2cb8253:o:ObjectivesTabButton",
 							"name": "ObjectivesTabButton",
 							"direction": "output",
-							"type": "object:/Script/UMG.Button",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
 							"defaultValue": null,
 							"links": [
 								"cf1bd42c49338840c9a3c88a9ad42dae:i:TabButton"
@@ -3158,7 +3375,7 @@
 				{
 					"guid": "72b02f464693ae91c0f7879d6a38a9cd",
 					"class": "K2Node_CallFunction",
-					"title": "Set Visibility",
+					"title": "SetVisibility",
 					"x": 3152,
 					"y": 1731,
 					"comment": null,
@@ -3348,7 +3565,7 @@
 				{
 					"guid": "7bdd37b946198083cca24f8b21a4877e",
 					"class": "K2Node_CallFunction",
-					"title": "Is Valid",
+					"title": "IsValid",
 					"x": 1072,
 					"y": 1104,
 					"comment": null,
@@ -3386,7 +3603,7 @@
 				{
 					"guid": "85bac9a747c06eed031a07903270249e",
 					"class": "K2Node_CallFunction",
-					"title": "Set Visibility",
+					"title": "SetVisibility",
 					"x": 3152,
 					"y": 1504,
 					"comment": null,
@@ -3441,7 +3658,7 @@
 							"id": "8cf8502e40ba56a2d53ae5bee72b8d98:o:InvestigationTabButton",
 							"name": "InvestigationTabButton",
 							"direction": "output",
-							"type": "object:/Script/UMG.Button",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
 							"defaultValue": null,
 							"links": [
 								"632729e9444aeb23be9cdba53b84b7d2:i:TabButton"
@@ -3460,7 +3677,7 @@
 				{
 					"guid": "935de22d401758e5262eb6a8d0206b53",
 					"class": "K2Node_CallFunction",
-					"title": "Set Visibility",
+					"title": "SetVisibility",
 					"x": 1724,
 					"y": 1504,
 					"comment": null,
@@ -3538,7 +3755,7 @@
 				{
 					"guid": "9ba83f754c25d5ce62c4248827fa4199",
 					"class": "K2Node_CallFunction",
-					"title": "Set Visibility",
+					"title": "SetVisibility",
 					"x": 2098,
 					"y": 1504,
 					"comment": null,
@@ -3879,7 +4096,7 @@
 							"id": "dc497495496c68ef127c7d820eb6dc57:o:DialogueTabButton",
 							"name": "DialogueTabButton",
 							"direction": "output",
-							"type": "object:/Script/UMG.Button",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
 							"defaultValue": null,
 							"links": [
 								"cafed61249710258e8fdf68f656e872f:i:TabButton"
@@ -3984,7 +4201,7 @@
 				{
 					"guid": "ed4529a3477cc8a22c8778a6dc418e26",
 					"class": "K2Node_CallFunction",
-					"title": "Set Visibility",
+					"title": "SetVisibility",
 					"x": 976,
 					"y": 1504,
 					"comment": null,
@@ -4091,7 +4308,7 @@
 				{
 					"guid": "f6fb73c741965dab7a78029a9d26e4e1",
 					"class": "K2Node_CallFunction",
-					"title": "Set Visibility",
+					"title": "SetVisibility",
 					"x": 1350,
 					"y": 1504,
 					"comment": null,
@@ -4256,36 +4473,138 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
-					"guid": "09f36d8e4a7d8350e1daa4ac5d74b954",
-					"class": "K2Node_Event",
-					"title": "Event Pre Construct",
-					"x": 0,
-					"y": 0,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"guid": "039519264f095f440b7ad9b428df1ee8",
+					"class": "K2Node_Select",
+					"title": "Select",
+					"x": 2176,
+					"y": -544,
+					"comment": null,
 					"pins": [
 						{
-							"id": "09f36d8e4a7d8350e1daa4ac5d74b954:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
+							"id": "039519264f095f440b7ad9b428df1ee8:i:NewEnumerator0",
+							"name": "NewEnumerator0",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"365932ca4758c7a6376be0b7f9b9c419:o:InvestigationTabButton"
+							]
+						},
+						{
+							"id": "039519264f095f440b7ad9b428df1ee8:i:NewEnumerator1",
+							"name": "NewEnumerator1",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"30e829ac40b038061de448b0c0b4110b:o:PuzzleTabButton"
+							]
+						},
+						{
+							"id": "039519264f095f440b7ad9b428df1ee8:i:NewEnumerator2",
+							"name": "NewEnumerator2",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"83a1141d41f61d134e2234b3fbedc9fb:o:DialogueTabButton"
+							]
+						},
+						{
+							"id": "039519264f095f440b7ad9b428df1ee8:i:NewEnumerator3",
+							"name": "NewEnumerator3",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
 							"defaultValue": null,
 							"links": []
 						},
 						{
-							"id": "09f36d8e4a7d8350e1daa4ac5d74b954:o:then",
-							"name": "then",
-							"direction": "output",
-							"type": "exec",
+							"id": "039519264f095f440b7ad9b428df1ee8:i:NewEnumerator4",
+							"name": "NewEnumerator4",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"1df39f1741ef6d0312458ab6aaccf181:o:ObjectivesTabButton"
+							]
 						},
 						{
-							"id": "09f36d8e4a7d8350e1daa4ac5d74b954:o:IsDesignTime",
-							"name": "IsDesignTime",
+							"id": "039519264f095f440b7ad9b428df1ee8:i:Index",
+							"name": "Index",
+							"direction": "input",
+							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
+							"defaultValue": null,
+							"links": [
+								"b02679bc4067ed0e68049b9b7e380f4b:o:OutputPin"
+							]
+						},
+						{
+							"id": "039519264f095f440b7ad9b428df1ee8:o:ReturnValue",
+							"name": "ReturnValue",
 							"direction": "output",
-							"type": "bool",
-							"defaultValue": "false",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"7db7e3d1435beb43bc54c1813217e229:i:Widget"
+							]
+						}
+					]
+				},
+				{
+					"guid": "1df39f1741ef6d0312458ab6aaccf181",
+					"class": "K2Node_VariableGet",
+					"title": "Get ObjectivesTabButton",
+					"x": 1984,
+					"y": -377,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1df39f1741ef6d0312458ab6aaccf181:o:ObjectivesTabButton",
+							"name": "ObjectivesTabButton",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
+							"defaultValue": null,
+							"links": [
+								"039519264f095f440b7ad9b428df1ee8:i:NewEnumerator4"
+							]
+						},
+						{
+							"id": "1df39f1741ef6d0312458ab6aaccf181:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "229dde9b432ca5c2049b4881abf65f59",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 2832,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "229dde9b432ca5c2049b4881abf65f59:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
+							"defaultValue": null,
+							"links": [
+								"b02679bc4067ed0e68049b9b7e380f4b:o:OutputPin"
+							]
+						},
+						{
+							"id": "229dde9b432ca5c2049b4881abf65f59:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
+							"defaultValue": null,
+							"links": [
+								"6142c5de403d0596ae77f0ab6405079d:i:CurrentTabType"
+							]
 						}
 					]
 				},
@@ -4334,6 +4653,34 @@
 					]
 				},
 				{
+					"guid": "30e829ac40b038061de448b0c0b4110b",
+					"class": "K2Node_VariableGet",
+					"title": "Get PuzzleTabButton",
+					"x": 1984,
+					"y": -491,
+					"comment": null,
+					"pins": [
+						{
+							"id": "30e829ac40b038061de448b0c0b4110b:o:PuzzleTabButton",
+							"name": "PuzzleTabButton",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
+							"defaultValue": null,
+							"links": [
+								"039519264f095f440b7ad9b428df1ee8:i:NewEnumerator1"
+							]
+						},
+						{
+							"id": "30e829ac40b038061de448b0c0b4110b:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "32550bd04b6b15c6f26d8382bd0ab417",
 					"class": "K2Node_GetSubsystem",
 					"title": "Get Subsystem",
@@ -4350,6 +4697,34 @@
 							"links": [
 								"4bb4cdbb40f45fed77b82a9766668ad2:i:self"
 							]
+						}
+					]
+				},
+				{
+					"guid": "365932ca4758c7a6376be0b7f9b9c419",
+					"class": "K2Node_VariableGet",
+					"title": "Get InvestigationTabButton",
+					"x": 1984,
+					"y": -521,
+					"comment": null,
+					"pins": [
+						{
+							"id": "365932ca4758c7a6376be0b7f9b9c419:o:InvestigationTabButton",
+							"name": "InvestigationTabButton",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
+							"defaultValue": null,
+							"links": [
+								"039519264f095f440b7ad9b428df1ee8:i:NewEnumerator0"
+							]
+						},
+						{
+							"id": "365932ca4758c7a6376be0b7f9b9c419:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -4591,8 +4966,8 @@
 					"guid": "6142c5de403d0596ae77f0ab6405079d",
 					"class": "K2Node_VariableSet",
 					"title": "Set CurrentTabType",
-					"x": 1280,
-					"y": -128,
+					"x": 2976,
+					"y": -96,
 					"comment": null,
 					"pins": [
 						{
@@ -4602,7 +4977,8 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"def79fc0424347e2a78255a56341d035:o:then"
+								"7db7e3d1435beb43bc54c1813217e229:o:then",
+								"fe77fb9e4b9df6cf0f99af9c4510ea82:o:else"
 							]
 						},
 						{
@@ -4620,7 +4996,7 @@
 							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
 							"defaultValue": null,
 							"links": [
-								"b02679bc4067ed0e68049b9b7e380f4b:o:OutputPin"
+								"229dde9b432ca5c2049b4881abf65f59:o:OutputPin"
 							]
 						},
 						{
@@ -4633,6 +5009,34 @@
 						},
 						{
 							"id": "6142c5de403d0596ae77f0ab6405079d:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "6482b24c4f853cb905f67898786b79be",
+					"class": "K2Node_VariableGet",
+					"title": "Get CurrentTabType",
+					"x": 1360,
+					"y": -96,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6482b24c4f853cb905f67898786b79be:o:CurrentTabType",
+							"name": "CurrentTabType",
+							"direction": "output",
+							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
+							"defaultValue": null,
+							"links": [
+								"bf72549946f462c5446bf38459b93e85:i:A"
+							]
+						},
+						{
+							"id": "6482b24c4f853cb905f67898786b79be:i:self",
 							"name": "self",
 							"direction": "input",
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
@@ -4666,7 +5070,7 @@
 							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
 							"defaultValue": null,
 							"links": [
-								"b02679bc4067ed0e68049b9b7e380f4b:i:InputPin"
+								"ff65bce445431c527f7248a83944b122:i:InputPin"
 							]
 						}
 					]
@@ -4746,23 +5150,83 @@
 					]
 				},
 				{
-					"guid": "7cf8e2dc4798d88988f46a81d5587082",
-					"class": "K2Node_Event",
-					"title": "Event Tick",
-					"x": 0,
-					"y": 416,
-					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"guid": "7db7e3d1435beb43bc54c1813217e229",
+					"class": "K2Node_CallFunction",
+					"title": "PlayWidgetUISound",
+					"x": 2640,
+					"y": -621,
+					"comment": null,
 					"pins": [
 						{
-							"id": "7cf8e2dc4798d88988f46a81d5587082:o:OutputDelegate",
-							"name": "OutputDelegate",
-							"direction": "output",
-							"type": "delegate",
+							"id": "7db7e3d1435beb43bc54c1813217e229:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"edaa1c0a43d1194a45c8be9207626123:o:OutputPin"
+							]
 						},
 						{
-							"id": "7cf8e2dc4798d88988f46a81d5587082:o:then",
+							"id": "7db7e3d1435beb43bc54c1813217e229:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6142c5de403d0596ae77f0ab6405079d:i:execute"
+							]
+						},
+						{
+							"id": "7db7e3d1435beb43bc54c1813217e229:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"a900d49c4540fe682ad6728c334a614c:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7db7e3d1435beb43bc54c1813217e229:i:Widget",
+							"name": "Widget",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"039519264f095f440b7ad9b428df1ee8:o:ReturnValue"
+							]
+						},
+						{
+							"id": "7db7e3d1435beb43bc54c1813217e229:i:EventTag",
+							"name": "EventTag",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"UISound.Event.Select\")",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "809d10fc45a612fb191feda6e5af9314",
+					"class": "K2Node_CallFunction",
+					"title": "PopUIAudioState",
+					"x": 1152,
+					"y": -1152,
+					"comment": null,
+					"pins": [
+						{
+							"id": "809d10fc45a612fb191feda6e5af9314:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"f432a25845a59273b412ea96b2e9c8fb:o:then"
+							]
+						},
+						{
+							"id": "809d10fc45a612fb191feda6e5af9314:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
@@ -4770,19 +5234,21 @@
 							"links": []
 						},
 						{
-							"id": "7cf8e2dc4798d88988f46a81d5587082:o:MyGeometry",
-							"name": "MyGeometry",
-							"direction": "output",
-							"type": "struct:/Script/SlateCore.Geometry",
+							"id": "809d10fc45a612fb191feda6e5af9314:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"e4e1a9c748928fabaf0b898ae3e37020:o:ReturnValue"
+							]
 						},
 						{
-							"id": "7cf8e2dc4798d88988f46a81d5587082:o:InDeltaTime",
-							"name": "InDeltaTime",
-							"direction": "output",
-							"type": "real:float",
-							"defaultValue": "0.0",
+							"id": "809d10fc45a612fb191feda6e5af9314:i:StateClass",
+							"name": "StateClass",
+							"direction": "input",
+							"type": "struct:/Script/GameplayTags.GameplayTag",
+							"defaultValue": "(TagName=\"UISound.Class.Journal\")",
 							"links": []
 						}
 					]
@@ -4791,8 +5257,8 @@
 					"guid": "83942fb1496f75e0fdd59a8f8bcaec04",
 					"class": "K2Node_Event",
 					"title": "Event Construct",
-					"x": 352,
-					"y": -720,
+					"x": 672,
+					"y": -1392,
 					"comment": null,
 					"pins": [
 						{
@@ -4810,6 +5276,54 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "83a1141d41f61d134e2234b3fbedc9fb",
+					"class": "K2Node_VariableGet",
+					"title": "Get DialogueTabButton",
+					"x": 1984,
+					"y": -461,
+					"comment": null,
+					"pins": [
+						{
+							"id": "83a1141d41f61d134e2234b3fbedc9fb:o:DialogueTabButton",
+							"name": "DialogueTabButton",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleButton",
+							"defaultValue": null,
+							"links": [
+								"039519264f095f440b7ad9b428df1ee8:i:NewEnumerator2"
+							]
+						},
+						{
+							"id": "83a1141d41f61d134e2234b3fbedc9fb:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Journal.WBP_Journal_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a900d49c4540fe682ad6728c334a614c",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get SoundStyleSubsystem",
+					"x": 2352,
+					"y": -672,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a900d49c4540fe682ad6728c334a614c:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"7db7e3d1435beb43bc54c1813217e229:i:self"
+							]
 						}
 					]
 				},
@@ -4900,7 +5414,7 @@
 					"guid": "b02679bc4067ed0e68049b9b7e380f4b",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
-					"x": 1216,
+					"x": 1856,
 					"y": 16,
 					"comment": null,
 					"pins": [
@@ -4911,7 +5425,7 @@
 							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
 							"defaultValue": null,
 							"links": [
-								"6ab0e04b40455f50bf9c589e614a570c:o:OutputPin"
+								"ff65bce445431c527f7248a83944b122:o:OutputPin"
 							]
 						},
 						{
@@ -4921,7 +5435,48 @@
 							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
 							"defaultValue": null,
 							"links": [
-								"6142c5de403d0596ae77f0ab6405079d:i:CurrentTabType"
+								"039519264f095f440b7ad9b428df1ee8:i:Index",
+								"229dde9b432ca5c2049b4881abf65f59:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "bf72549946f462c5446bf38459b93e85",
+					"class": "K2Node_EnumInequality",
+					"title": "Not Equal (Enum)",
+					"x": 1472,
+					"y": -48,
+					"comment": null,
+					"pins": [
+						{
+							"id": "bf72549946f462c5446bf38459b93e85:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"fe77fb9e4b9df6cf0f99af9c4510ea82:i:Condition"
+							]
+						},
+						{
+							"id": "bf72549946f462c5446bf38459b93e85:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
+							"defaultValue": null,
+							"links": [
+								"6482b24c4f853cb905f67898786b79be:o:CurrentTabType"
+							]
+						},
+						{
+							"id": "bf72549946f462c5446bf38459b93e85:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
+							"defaultValue": null,
+							"links": [
+								"ff65bce445431c527f7248a83944b122:o:OutputPin"
 							]
 						}
 					]
@@ -4979,7 +5534,7 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": [
-								"6142c5de403d0596ae77f0ab6405079d:i:execute"
+								"fe77fb9e4b9df6cf0f99af9c4510ea82:i:execute"
 							]
 						},
 						{
@@ -4998,6 +5553,134 @@
 							"defaultValue": null,
 							"links": [
 								"fee5b9c8406c8da88af463aea6c478d1:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "e4e1a9c748928fabaf0b898ae3e37020",
+					"class": "K2Node_GetSubsystem",
+					"title": "Get SoundStyleSubsystem",
+					"x": 1152,
+					"y": -1232,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e4e1a9c748928fabaf0b898ae3e37020:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleSubsystem",
+							"defaultValue": null,
+							"links": [
+								"809d10fc45a612fb191feda6e5af9314:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "edaa1c0a43d1194a45c8be9207626123",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1952,
+					"y": -571,
+					"comment": null,
+					"pins": [
+						{
+							"id": "edaa1c0a43d1194a45c8be9207626123:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fe77fb9e4b9df6cf0f99af9c4510ea82:o:then"
+							]
+						},
+						{
+							"id": "edaa1c0a43d1194a45c8be9207626123:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"7db7e3d1435beb43bc54c1813217e229:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "f432a25845a59273b412ea96b2e9c8fb",
+					"class": "K2Node_Event",
+					"title": "Event Destruct",
+					"x": 656,
+					"y": -1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "f432a25845a59273b412ea96b2e9c8fb:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f432a25845a59273b412ea96b2e9c8fb:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"809d10fc45a612fb191feda6e5af9314:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fe77fb9e4b9df6cf0f99af9c4510ea82",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1616,
+					"y": -143,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fe77fb9e4b9df6cf0f99af9c4510ea82:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"def79fc0424347e2a78255a56341d035:o:then"
+							]
+						},
+						{
+							"id": "fe77fb9e4b9df6cf0f99af9c4510ea82:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"bf72549946f462c5446bf38459b93e85:o:ReturnValue"
+							]
+						},
+						{
+							"id": "fe77fb9e4b9df6cf0f99af9c4510ea82:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"edaa1c0a43d1194a45c8be9207626123:i:InputPin"
+							]
+						},
+						{
+							"id": "fe77fb9e4b9df6cf0f99af9c4510ea82:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6142c5de403d0596ae77f0ab6405079d:i:execute"
 							]
 						}
 					]
@@ -5031,6 +5714,37 @@
 							]
 						}
 					]
+				},
+				{
+					"guid": "ff65bce445431c527f7248a83944b122",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1264,
+					"y": 16,
+					"comment": null,
+					"pins": [
+						{
+							"id": "ff65bce445431c527f7248a83944b122:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
+							"defaultValue": null,
+							"links": [
+								"6ab0e04b40455f50bf9c589e614a570c:o:OutputPin"
+							]
+						},
+						{
+							"id": "ff65bce445431c527f7248a83944b122:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "byte:/Game/ProjectAtlantis/UI/EJournalTabType.EJournalTabType",
+							"defaultValue": null,
+							"links": [
+								"b02679bc4067ed0e68049b9b7e380f4b:i:InputPin",
+								"bf72549946f462c5446bf38459b93e85:i:B"
+							]
+						}
+					]
 				}
 			],
 			"comments": [
@@ -5047,8 +5761,8 @@
 					"text": "Update current tab whenever next tab changes",
 					"x": 592,
 					"y": -224,
-					"width": 927,
-					"height": 300
+					"width": 736,
+					"height": 304
 				},
 				{
 					"guid": "5546a4d14616afbff512fbb0f3c05ac5",
@@ -5065,6 +5779,14 @@
 					"y": -513,
 					"width": 704,
 					"height": 272
+				},
+				{
+					"guid": "a2759197415b33d8b134d79889c8fb65",
+					"text": "Clean up Audio",
+					"x": 1088,
+					"y": -1296,
+					"width": 351,
+					"height": 336
 				},
 				{
 					"guid": "a6cbee9c47813fbeb16149a47b3cc99c",
