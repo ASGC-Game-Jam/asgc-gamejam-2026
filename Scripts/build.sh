@@ -6,11 +6,19 @@ if [[ $# -gt 2 ]]; then
 	exit 1
 fi
 
-UE_PATH="${2:-${UE_PATH:-/Users/Shared/Epic Games/UE_5.8}}"
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 source "$PROJECT_ROOT/Scripts/release-version.sh"
 RELEASE_VERSION="$(release_version "${1:-}")"
 PROJECT_PATH="$PROJECT_ROOT/ProjectAtlantis.uproject"
+UE_PATH="${2:-${UE_PATH:-}}"
+if [[ -z "$UE_PATH" ]]; then
+	if ! ENGINE_VERSION="$(plutil -extract EngineAssociation raw -expect string -o - "$PROJECT_PATH")" ||
+		[[ ! "$ENGINE_VERSION" =~ ^[0-9]+\.[0-9]+$ ]]; then
+		printf 'Cannot determine the Unreal installation from %s. Pass the engine path or set UE_PATH.\n' "$PROJECT_PATH" >&2
+		exit 1
+	fi
+	UE_PATH="/Users/Shared/Epic Games/UE_$ENGINE_VERSION"
+fi
 BUILD_PATH="$PROJECT_ROOT/Builds/ProjectAtlantis-build-$RELEASE_VERSION"
 OUTPUT_PATH="$BUILD_PATH/Package"
 

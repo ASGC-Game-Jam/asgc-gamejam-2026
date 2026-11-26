@@ -70,8 +70,11 @@ Metal shaders and can take a while. For example:
 The script keeps the package, staging files, and build log together under
 `Builds/ProjectAtlantis-build-<version>/`. The Shipping app is in `Package/Mac` and
 targets both Apple Silicon and Intel through the shared Mac architecture settings
-in `Config/DefaultEngine.ini`. The engine defaults to
-`/Users/Shared/Epic Games/UE_5.8`; pass a different installation as the second argument:
+in `Config/DefaultEngine.ini`. The script reads `EngineAssociation` from
+`ProjectAtlantis.uproject` and selects the matching Launcher installation (for
+example, `/Users/Shared/Epic Games/UE_5.8`). Set `UE_PATH` or pass the engine
+path as the second argument for a custom installation. The argument takes
+precedence over the environment variable:
 
 ```sh
 ./Scripts/build.sh 1.2.0 "/path/to/Unreal Engine"
