@@ -15,6 +15,8 @@ void UASGC_DataRouterSubsystem::Deinitialize()
 {
     UE_LOG(AtlantisPubSubLogCategory, Log, TEXT("ASGC Audio Data Router Subsystem Deinitializing. Clearing %d subscription lists."), Subscriptions.Num());
     Subscriptions.Empty();
+	CachedFacts.Reset();
+
     Super::Deinitialize();
 }
 
@@ -104,6 +106,8 @@ void UASGC_DataRouterSubsystem::BroadcastFact(FGameplayTag Tag, const FInstanced
         return;
     }
 
+	CachedFacts.FindOrAdd(Tag) = Payload;
+
     // Loop over a copy, because a listener may subscribe or unsubscribe while handling the fact.
     TArray<FGameplayFactSubscriberRecord> SubscribersSnapshot = *List;
 
@@ -127,4 +131,15 @@ void UASGC_DataRouterSubsystem::BroadcastFact(FGameplayTag Tag, const FInstanced
         // Works for both C++ and Blueprint listeners.
         IASGC_FactListenerInterface::Execute_OnGameplayFactReceived(TargetObject, Tag, Payload);
     }
+}
+
+bool UASGC_DataRouterSubsystem::TryGetFact(FGameplayTag Tag, FInstancedStruct& OutPayload)
+{
+	if (const FInstancedStruct* FoundPayload = CachedFacts.Find(Tag))
+	{
+		OutPayload = *FoundPayload;
+		return true;
+	}
+
+	return false;
 }

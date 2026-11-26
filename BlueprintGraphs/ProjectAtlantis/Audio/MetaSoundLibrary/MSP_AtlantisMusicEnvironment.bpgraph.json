@@ -19,7 +19,7 @@
 					"Number":
 					{
 						"Major": 1,
-						"Minor": 16
+						"Minor": 17
 					}
 				},
 				"MemberMetadata":
@@ -362,48 +362,49 @@
 								}
 							},
 							{
-								"ID": "8EC3E1BE4128AEDAA135059332CDCC44",
-								"ClassID": "541F7F4643EBE75A43C2A39619D1A468",
-								"Name": "Biquad Filter",
+								"ID": "1A82091540B7EB3CE6D999B9DD9E8A23",
+								"ClassID": "295EE64C4A944801E86344BBC333CA69",
+								"Name": "Subtract",
 								"Interface":
 								{
 									"Inputs": [
 										{
-											"Name": "In",
-											"TypeName": "Audio",
-											"VertexID": "1346CA8DEDBCB150403FCB1E44D43EF7"
+											"Name": "PrimaryOperand",
+											"TypeName": "Int32",
+											"VertexID": "A5FB875B9F6953F3D9F655A6DED6FFCA"
 										},
 										{
-											"Name": "Cutoff Frequency",
-											"TypeName": "Float",
-											"VertexID": "FD2AF245959B90D8C1F720BC707CBE01"
-										},
-										{
-											"Name": "Bandwidth",
-											"TypeName": "Float",
-											"VertexID": "44C011C44C3DE5E9AF9117F1118B48EF"
-										},
-										{
-											"Name": "Gain",
-											"TypeName": "Float",
-											"VertexID": "F2520C3649880E71227548EB33593E48"
-										},
-										{
-											"Name": "Type",
-											"TypeName": "Enum:BiquadFilterType",
-											"VertexID": "94C2E7D52E01E35EAC6964514672D223"
+											"Name": "AdditionalOperands",
+											"TypeName": "Int32",
+											"VertexID": "6A47F87EA266AFDA7484CFE6F2D1368B"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Out",
-											"TypeName": "Audio",
-											"VertexID": "A88F113B960A0731A09EE5CF9885B330"
+											"TypeName": "Int32",
+											"VertexID": "4758F0E34D3F4EB8DC21041C3609462C"
 										}
 									],
 									"Environment": []
 								},
-								"InputLiterals": [],
+								"InputLiterals": [
+									{
+										"VertexID": "6A47F87EA266AFDA7484CFE6F2D1368B",
+										"Value":
+										{
+											"Type": "Integer",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [
+												1
+											],
+											"AsFloat": [],
+											"AsString": [],
+											"AsUObject": []
+										}
+									}
+								],
 								"Configuration": "None",
 								"ClassInterfaceOverride": "None",
 								"Style":
@@ -413,10 +414,10 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"4AF4725549BDCA990813AB93BF5D16E7":
+											"C04F881D4D950215A222699F5C5082B6":
 											{
-												"X": 1264,
-												"Y": 112
+												"X": -3460,
+												"Y": 713
 											}
 										},
 										"Comment": "",
@@ -427,8 +428,8 @@
 								}
 							},
 							{
-								"ID": "C0C75B214BEC5FF51C650DA895A20206",
-								"ClassID": "541F7F4643EBE75A43C2A39619D1A468",
+								"ID": "8EC3E1BE4128AEDAA135059332CDCC44",
+								"ClassID": "5971832E49CA59CAB13939A9997313C7",
 								"Name": "Biquad Filter",
 								"Interface":
 								{
@@ -470,16 +471,16 @@
 								},
 								"InputLiterals": [
 									{
-										"VertexID": "94C2E7D52E01E35EAC6964514672D223",
+										"VertexID": "44C011C44C3DE5E9AF9117F1118B48EF",
 										"Value":
 										{
-											"Type": "Integer",
+											"Type": "Float",
 											"AsNumDefault": 0,
 											"AsBoolean": [],
-											"AsInteger": [
-												0
+											"AsInteger": [],
+											"AsFloat": [
+												1
 											],
-											"AsFloat": [],
 											"AsString": [],
 											"AsUObject": []
 										}
@@ -494,10 +495,10 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"8977B3284B0E637DE90BAD8A2E7F1244":
+											"4AF4725549BDCA990813AB93BF5D16E7":
 											{
 												"X": 1264,
-												"Y": 528
+												"Y": 112
 											}
 										},
 										"Comment": "",
@@ -3317,42 +3318,72 @@
 								}
 							},
 							{
-								"ID": "1A82091540B7EB3CE6D999B9DD9E8A23",
-								"ClassID": "295EE64C4A944801E86344BBC333CA69",
-								"Name": "Subtract",
+								"ID": "C0C75B214BEC5FF51C650DA895A20206",
+								"ClassID": "5971832E49CA59CAB13939A9997313C7",
+								"Name": "Biquad Filter",
 								"Interface":
 								{
 									"Inputs": [
 										{
-											"Name": "PrimaryOperand",
-											"TypeName": "Int32",
-											"VertexID": "A5FB875B9F6953F3D9F655A6DED6FFCA"
+											"Name": "In",
+											"TypeName": "Audio",
+											"VertexID": "1346CA8DEDBCB150403FCB1E44D43EF7"
 										},
 										{
-											"Name": "AdditionalOperands",
-											"TypeName": "Int32",
-											"VertexID": "6A47F87EA266AFDA7484CFE6F2D1368B"
+											"Name": "Cutoff Frequency",
+											"TypeName": "Float",
+											"VertexID": "FD2AF245959B90D8C1F720BC707CBE01"
+										},
+										{
+											"Name": "Bandwidth",
+											"TypeName": "Float",
+											"VertexID": "44C011C44C3DE5E9AF9117F1118B48EF"
+										},
+										{
+											"Name": "Gain",
+											"TypeName": "Float",
+											"VertexID": "F2520C3649880E71227548EB33593E48"
+										},
+										{
+											"Name": "Type",
+											"TypeName": "Enum:BiquadFilterType",
+											"VertexID": "94C2E7D52E01E35EAC6964514672D223"
 										}
 									],
 									"Outputs": [
 										{
 											"Name": "Out",
-											"TypeName": "Int32",
-											"VertexID": "4758F0E34D3F4EB8DC21041C3609462C"
+											"TypeName": "Audio",
+											"VertexID": "A88F113B960A0731A09EE5CF9885B330"
 										}
 									],
 									"Environment": []
 								},
 								"InputLiterals": [
 									{
-										"VertexID": "6A47F87EA266AFDA7484CFE6F2D1368B",
+										"VertexID": "44C011C44C3DE5E9AF9117F1118B48EF",
+										"Value":
+										{
+											"Type": "Float",
+											"AsNumDefault": 0,
+											"AsBoolean": [],
+											"AsInteger": [],
+											"AsFloat": [
+												1
+											],
+											"AsString": [],
+											"AsUObject": []
+										}
+									},
+									{
+										"VertexID": "94C2E7D52E01E35EAC6964514672D223",
 										"Value":
 										{
 											"Type": "Integer",
 											"AsNumDefault": 0,
 											"AsBoolean": [],
 											"AsInteger": [
-												1
+												0
 											],
 											"AsFloat": [],
 											"AsString": [],
@@ -3369,10 +3400,10 @@
 										"Visibility": "Visible",
 										"Locations":
 										{
-											"C04F881D4D950215A222699F5C5082B6":
+											"8977B3284B0E637DE90BAD8A2E7F1244":
 											{
-												"X": -3460,
-												"Y": 713
+												"X": 1264,
+												"Y": 528
 											}
 										},
 										"Comment": "",
@@ -3409,16 +3440,10 @@
 								"ToVertexID": "1346CA8DEDBCB150403FCB1E44D43EF7"
 							},
 							{
-								"FromNodeID": "72529EF94E4312332FD4439753B15A4C",
-								"FromVertexID": "A88F113B960A0731A09EE5CF9885B330",
-								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
-								"ToVertexID": "1346CA8DEDBCB150403FCB1E44D43EF7"
-							},
-							{
-								"FromNodeID": "07A366194F76C5CA2F314C99318740EC",
-								"FromVertexID": "A88F113B960A0731A09EE5CF9885B330",
-								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
-								"ToVertexID": "1346CA8DEDBCB150403FCB1E44D43EF7"
+								"FromNodeID": "1A82091540B7EB3CE6D999B9DD9E8A23",
+								"FromVertexID": "4758F0E34D3F4EB8DC21041C3609462C",
+								"ToNodeID": "C877430149016F56C9FC9889B779631A",
+								"ToVertexID": "D7FD77B0B4094EB15687D3E124FCC728"
 							},
 							{
 								"FromNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
@@ -3427,10 +3452,16 @@
 								"ToVertexID": "FA310843BA3920A1C5B5D2E7AF5C0612"
 							},
 							{
-								"FromNodeID": "C0C75B214BEC5FF51C650DA895A20206",
+								"FromNodeID": "C877430149016F56C9FC9889B779631A",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "C7D9A9BA411F556882380CBF9A43ACCA",
+								"ToVertexID": "1A48B10C09E8E898BD72BCDF4D46A251"
+							},
+							{
+								"FromNodeID": "72529EF94E4312332FD4439753B15A4C",
 								"FromVertexID": "A88F113B960A0731A09EE5CF9885B330",
-								"ToNodeID": "166331BE47113DC3AC0D9F87D608A64C",
-								"ToVertexID": "9CD0876C73303A685D12A27B522A32B0"
+								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
+								"ToVertexID": "1346CA8DEDBCB150403FCB1E44D43EF7"
 							},
 							{
 								"FromNodeID": "3F772BE947616763C265B286CC04D8D3",
@@ -3457,10 +3488,10 @@
 								"ToVertexID": "1073B4F9A62848057651709D850DE57C"
 							},
 							{
-								"FromNodeID": "3DC42C174E2C3788F286BFB318912FF9",
-								"FromVertexID": "832B7B57B6D45F702C8DF746B8E71A5F",
-								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
-								"ToVertexID": "F2520C3649880E71227548EB33593E48"
+								"FromNodeID": "A49DCB134B1999EEBA88D487F453EC4D",
+								"FromVertexID": "C11858B20C855BC9B30A474C81476EF4",
+								"ToNodeID": "FB2FB18F4189A7C15BA6699822464A75",
+								"ToVertexID": "787D005B945B0736C3B8561BE5625A08"
 							},
 							{
 								"FromNodeID": "3DC56BFD420B69723C946CB6F0292B60",
@@ -3469,16 +3500,16 @@
 								"ToVertexID": "CA5E8E304DFB910B06F1449E1C9ECBE9"
 							},
 							{
-								"FromNodeID": "71C6031E479E66C3E1236C9B4198AF21",
-								"FromVertexID": "150E693445909BF86BA9E4AE0C900385",
-								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
-								"ToVertexID": "FD2AF245959B90D8C1F720BC707CBE01"
+								"FromNodeID": "0BC563334DC0177E3449779C3BDB4DB7",
+								"FromVertexID": "760F0063AF85DF6141D8B454F7977C07",
+								"ToNodeID": "1A82091540B7EB3CE6D999B9DD9E8A23",
+								"ToVertexID": "A5FB875B9F6953F3D9F655A6DED6FFCA"
 							},
 							{
-								"FromNodeID": "71C6031E479E66C3E1236C9B4198AF21",
-								"FromVertexID": "150E693445909BF86BA9E4AE0C900385",
-								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
-								"ToVertexID": "FD2AF245959B90D8C1F720BC707CBE01"
+								"FromNodeID": "13054F61440526DB90DAA9BC025904F1",
+								"FromVertexID": "A321AC6C486D5BC5D518ABB819D4CD19",
+								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
+								"ToVertexID": "94C2E7D52E01E35EAC6964514672D223"
 							},
 							{
 								"FromNodeID": "DE73D46340CC6A3E7376D6A47CA6C397",
@@ -3493,22 +3524,22 @@
 								"ToVertexID": "96B25586AE4B77633AA58FA5A847302C"
 							},
 							{
-								"FromNodeID": "04C36CBF437B86BC828F06849BAA44AE",
-								"FromVertexID": "63B59A5A3B9B2EFFC1B71EA827568ED0",
-								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
-								"ToVertexID": "44C011C44C3DE5E9AF9117F1118B48EF"
-							},
-							{
-								"FromNodeID": "04C36CBF437B86BC828F06849BAA44AE",
-								"FromVertexID": "63B59A5A3B9B2EFFC1B71EA827568ED0",
-								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
-								"ToVertexID": "44C011C44C3DE5E9AF9117F1118B48EF"
+								"FromNodeID": "FB2FB18F4189A7C15BA6699822464A75",
+								"FromVertexID": "66B4D893D689152C368DD02E5510B0CD",
+								"ToNodeID": "0BC563334DC0177E3449779C3BDB4DB7",
+								"ToVertexID": "42519D042D72D8F0E37DD54318D6B882"
 							},
 							{
 								"FromNodeID": "3DC42C174E2C3788F286BFB318912FF9",
 								"FromVertexID": "832B7B57B6D45F702C8DF746B8E71A5F",
-								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
+								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
 								"ToVertexID": "F2520C3649880E71227548EB33593E48"
+							},
+							{
+								"FromNodeID": "04C36CBF437B86BC828F06849BAA44AE",
+								"FromVertexID": "63B59A5A3B9B2EFFC1B71EA827568ED0",
+								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
+								"ToVertexID": "44C011C44C3DE5E9AF9117F1118B48EF"
 							},
 							{
 								"FromNodeID": "AF7022B249A1680BF6B7BAA87E09B781",
@@ -3529,16 +3560,16 @@
 								"ToVertexID": "930500A1433BD7DA37B62C91C22F7AB8"
 							},
 							{
-								"FromNodeID": "13054F61440526DB90DAA9BC025904F1",
-								"FromVertexID": "A321AC6C486D5BC5D518ABB819D4CD19",
-								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
-								"ToVertexID": "94C2E7D52E01E35EAC6964514672D223"
+								"FromNodeID": "C877430149016F56C9FC9889B779631A",
+								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
+								"ToNodeID": "CD66CDAE4C6C926B9BCC30A65F8876B0",
+								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
 							},
 							{
-								"FromNodeID": "13054F61440526DB90DAA9BC025904F1",
-								"FromVertexID": "A321AC6C486D5BC5D518ABB819D4CD19",
-								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
-								"ToVertexID": "94C2E7D52E01E35EAC6964514672D223"
+								"FromNodeID": "71C6031E479E66C3E1236C9B4198AF21",
+								"FromVertexID": "150E693445909BF86BA9E4AE0C900385",
+								"ToNodeID": "8EC3E1BE4128AEDAA135059332CDCC44",
+								"ToVertexID": "FD2AF245959B90D8C1F720BC707CBE01"
 							},
 							{
 								"FromNodeID": "D9DF81BE41C7D8A816648AB500C66FBA",
@@ -3841,40 +3872,40 @@
 								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
 							},
 							{
-								"FromNodeID": "C877430149016F56C9FC9889B779631A",
-								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
-								"ToNodeID": "C7D9A9BA411F556882380CBF9A43ACCA",
-								"ToVertexID": "1A48B10C09E8E898BD72BCDF4D46A251"
+								"FromNodeID": "07A366194F76C5CA2F314C99318740EC",
+								"FromVertexID": "A88F113B960A0731A09EE5CF9885B330",
+								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
+								"ToVertexID": "1346CA8DEDBCB150403FCB1E44D43EF7"
 							},
 							{
-								"FromNodeID": "C877430149016F56C9FC9889B779631A",
-								"FromVertexID": "B38EE3147A2EDFEC327A743DEC3C1F4E",
-								"ToNodeID": "CD66CDAE4C6C926B9BCC30A65F8876B0",
-								"ToVertexID": "8D079D54F8F5B6E8016A2A18F99619D8"
+								"FromNodeID": "71C6031E479E66C3E1236C9B4198AF21",
+								"FromVertexID": "150E693445909BF86BA9E4AE0C900385",
+								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
+								"ToVertexID": "FD2AF245959B90D8C1F720BC707CBE01"
 							},
 							{
-								"FromNodeID": "A49DCB134B1999EEBA88D487F453EC4D",
-								"FromVertexID": "C11858B20C855BC9B30A474C81476EF4",
-								"ToNodeID": "FB2FB18F4189A7C15BA6699822464A75",
-								"ToVertexID": "787D005B945B0736C3B8561BE5625A08"
+								"FromNodeID": "04C36CBF437B86BC828F06849BAA44AE",
+								"FromVertexID": "63B59A5A3B9B2EFFC1B71EA827568ED0",
+								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
+								"ToVertexID": "44C011C44C3DE5E9AF9117F1118B48EF"
 							},
 							{
-								"FromNodeID": "FB2FB18F4189A7C15BA6699822464A75",
-								"FromVertexID": "66B4D893D689152C368DD02E5510B0CD",
-								"ToNodeID": "0BC563334DC0177E3449779C3BDB4DB7",
-								"ToVertexID": "42519D042D72D8F0E37DD54318D6B882"
+								"FromNodeID": "3DC42C174E2C3788F286BFB318912FF9",
+								"FromVertexID": "832B7B57B6D45F702C8DF746B8E71A5F",
+								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
+								"ToVertexID": "F2520C3649880E71227548EB33593E48"
 							},
 							{
-								"FromNodeID": "0BC563334DC0177E3449779C3BDB4DB7",
-								"FromVertexID": "760F0063AF85DF6141D8B454F7977C07",
-								"ToNodeID": "1A82091540B7EB3CE6D999B9DD9E8A23",
-								"ToVertexID": "A5FB875B9F6953F3D9F655A6DED6FFCA"
+								"FromNodeID": "13054F61440526DB90DAA9BC025904F1",
+								"FromVertexID": "A321AC6C486D5BC5D518ABB819D4CD19",
+								"ToNodeID": "C0C75B214BEC5FF51C650DA895A20206",
+								"ToVertexID": "94C2E7D52E01E35EAC6964514672D223"
 							},
 							{
-								"FromNodeID": "1A82091540B7EB3CE6D999B9DD9E8A23",
-								"FromVertexID": "4758F0E34D3F4EB8DC21041C3609462C",
-								"ToNodeID": "C877430149016F56C9FC9889B779631A",
-								"ToVertexID": "D7FD77B0B4094EB15687D3E124FCC728"
+								"FromNodeID": "C0C75B214BEC5FF51C650DA895A20206",
+								"FromVertexID": "A88F113B960A0731A09EE5CF9885B330",
+								"ToNodeID": "166331BE47113DC3AC0D9F87D608A64C",
+								"ToVertexID": "9CD0876C73303A685D12A27B522A32B0"
 							}
 						],
 						"Variables": [
@@ -4100,7 +4131,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4140,7 +4171,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4180,7 +4211,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4222,7 +4253,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4264,7 +4295,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4306,7 +4337,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4346,7 +4377,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4388,7 +4419,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4430,7 +4461,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4472,7 +4503,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4514,7 +4545,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4554,7 +4585,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4594,7 +4625,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4636,7 +4667,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4676,7 +4707,7 @@
 						{
 							"DefaultLiteral":
 							{
-								"Type": "None",
+								"Type": "Invalid",
 								"AsNumDefault": 0,
 								"AsBoolean": [],
 								"AsInteger": [],
@@ -4756,7 +4787,10 @@
 						"bShowName": true,
 						"bShowInputNames": true,
 						"bShowOutputNames": true,
-						"bShowLiterals": true
+						"bShowLiterals": true,
+						"StyleSet": "None",
+						"Icon": "None",
+						"Color": "None"
 					}
 				}
 			},
@@ -4813,7 +4847,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -4853,7 +4887,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -4920,7 +4954,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -4974,7 +5011,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5039,7 +5076,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -5097,12 +5137,15 @@
 							"bShowName": true,
 							"bShowInputNames": false,
 							"bShowOutputNames": true,
-							"bShowLiterals": false
+							"bShowLiterals": false,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
 				{
-					"ID": "541F7F4643EBE75A43C2A39619D1A468",
+					"ID": "5971832E49CA59CAB13939A9997313C7",
 					"Metadata":
 					{
 						"ClassName":
@@ -5113,7 +5156,7 @@
 						},
 						"Version":
 						{
-							"Major": 1,
+							"Major": 2,
 							"Minor": 0
 						},
 						"Type": "External",
@@ -5155,7 +5198,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5195,7 +5238,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5237,7 +5280,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5254,7 +5297,7 @@
 											"AsBoolean": [],
 											"AsInteger": [],
 											"AsFloat": [
-												1
+												1.8999699999999999
 											],
 											"AsString": [],
 											"AsUObject": []
@@ -5279,7 +5322,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5321,7 +5364,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5386,7 +5429,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -5450,7 +5496,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5490,7 +5536,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5530,7 +5576,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5572,7 +5618,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5614,7 +5660,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5656,7 +5702,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5698,7 +5744,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5740,7 +5786,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5782,7 +5828,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5824,7 +5870,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -5904,7 +5950,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -5958,7 +6007,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6023,7 +6072,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -6077,7 +6129,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6142,7 +6194,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -6196,7 +6251,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6263,7 +6318,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -6317,7 +6375,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6382,7 +6440,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -6436,7 +6497,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6501,7 +6562,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -6555,7 +6619,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6620,7 +6684,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -6675,7 +6742,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6717,7 +6784,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6784,7 +6851,10 @@
 							"bShowName": false,
 							"bShowInputNames": false,
 							"bShowOutputNames": false,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -6840,7 +6910,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6880,7 +6950,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6920,7 +6990,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -6985,7 +7055,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -7039,7 +7112,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7104,7 +7177,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -7159,7 +7235,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7201,7 +7277,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7268,7 +7344,10 @@
 							"bShowName": false,
 							"bShowInputNames": false,
 							"bShowOutputNames": false,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -7322,7 +7401,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7387,7 +7466,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -7463,7 +7545,10 @@
 							"bShowName": false,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -7518,7 +7603,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7560,7 +7645,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7627,7 +7712,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -7682,7 +7770,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7762,7 +7850,10 @@
 							"bShowName": false,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -7818,7 +7909,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7858,7 +7949,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7898,7 +7989,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -7963,7 +8054,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -8017,7 +8111,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8084,7 +8178,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -8139,7 +8236,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8179,7 +8276,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8246,7 +8343,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -8322,7 +8422,10 @@
 							"bShowName": false,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -8377,7 +8480,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8457,7 +8560,10 @@
 							"bShowName": false,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -8513,7 +8619,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8553,7 +8659,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8593,7 +8699,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8658,7 +8764,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -8712,7 +8821,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8777,7 +8886,10 @@
 							"bShowName": true,
 							"bShowInputNames": true,
 							"bShowOutputNames": true,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				},
@@ -8832,7 +8944,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8874,7 +8986,7 @@
 							{
 								"DefaultLiteral":
 								{
-									"Type": "None",
+									"Type": "Invalid",
 									"AsNumDefault": 0,
 									"AsBoolean": [],
 									"AsInteger": [],
@@ -8941,11 +9053,15 @@
 							"bShowName": false,
 							"bShowInputNames": false,
 							"bShowOutputNames": false,
-							"bShowLiterals": true
+							"bShowLiterals": true,
+							"StyleSet": "None",
+							"Icon": "None",
+							"Color": "None"
 						}
 					}
 				}
 			],
+			"Template": "None",
 			"ArchetypeVersion":
 			{
 				"Name": "None",

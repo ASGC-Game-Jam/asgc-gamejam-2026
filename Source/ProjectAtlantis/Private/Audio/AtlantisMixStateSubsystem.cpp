@@ -25,48 +25,93 @@ void UAtlantisMixStateSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 	for (const FAtlantisMixStateRule& Rule : UAtlantisAudioDeveloperSettings::GetMixStateRules())
 	{
 		// Two rules can share a fact, but one subscription delivers it to both.
-		if (!Rule.WhileFact.IsValid() || FactSubscriptions.Contains(Rule.WhileFact))
+		if (!Rule.WhileFact.IsValid())
 		{
 			continue;
 		}
 
-		const int32 Handle = Router->Subscribe(Rule.WhileFact, this);
-		if (Handle != INDEX_NONE)
+		if (!FactSubscriptions.Contains(Rule.WhileFact))
 		{
-			FactSubscriptions.Add(Rule.WhileFact, Handle);
+			const int32 Handle = Router->Subscribe(Rule.WhileFact, this);
+			if (Handle != INDEX_NONE)
+			{
+				FactSubscriptions.Add(Rule.WhileFact, Handle);
+			}
+		}
+
+		bool bShouldBeActive = Rule.bStartActive;
+
+		FInstancedStruct CurrentPayload;
+		if(Router->TryGetFact(Rule.WhileFact, CurrentPayload))
+		{
+			if (const FAtlantisAudioBoolPayload* BoolFactPtr = CurrentPayload.GetPtr<FAtlantisAudioBoolPayload>())
+			{
+				bShouldBeActive = BoolFactPtr->bValue;
+			}
+		}
+		
+		if (bShouldBeActive)
+		{
+			if (USoundControlBusMix* Mix = Rule.Mix.LoadSynchronous())
+			{
+				TWeakObjectPtr<UAtlantisMixStateSubsystem> WeakThis(this);
+				TWeakObjectPtr<UWorld> WeakWorld(&InWorld);
+				TWeakObjectPtr<USoundControlBusMix> WeakMix(Mix);
+
+				InWorld.GetTimerManager().SetTimerForNextTick([WeakThis, WeakWorld, WeakMix]()
+				{
+					UAtlantisMixStateSubsystem* StrongThis = WeakThis.Get();
+					UWorld* StrongWorld = WeakWorld.Get();
+					USoundControlBusMix* StrongMix = WeakMix.Get();
+
+					if (StrongThis && StrongWorld && StrongMix)
+					{
+						UAudioModulationStatics::ActivateBusMix(StrongWorld, StrongMix);
+						UAudioModulationStatics::UpdateMixFromObject(StrongWorld, StrongMix, 0.0f);
+						StrongThis->ActiveMixes.Add(StrongMix);
+					}
+				});
+			}
 		}
 	}
 }
 
 void UAtlantisMixStateSubsystem::PreDeinitialize()
 {
-	if (UWorld* World = GetWorld())
-	{
-		if (UASGC_DataRouterSubsystem* Router = World->GetSubsystem<UASGC_DataRouterSubsystem>())
-		{
-			for (const auto& Pair : FactSubscriptions)
-			{
-				Router->Unsubscribe(Pair.Key, Pair.Value);
-			}
-		}
-	}
+    if (UWorld* World = GetWorld())
+    {
+        if (UASGC_DataRouterSubsystem* Router = World->GetSubsystem<UASGC_DataRouterSubsystem>())
+        {
+            for (const auto& Pair : FactSubscriptions)
+            {
+                Router->Unsubscribe(Pair.Key, Pair.Value);
+            }
+        }
 
-	FactSubscriptions.Reset();
+        for (USoundControlBusMix* Mix : ActiveMixes)
+        {
+            if (IsValid(Mix))
+            {
+                UAudioModulationStatics::DeactivateBusMix(World, Mix);
+            }
+        }
+    }
 
-	for (USoundControlBusMix* Mix : ActiveMixes)
-	{
-		if (IsValid(Mix))
-		{
-			UAudioModulationStatics::DeactivateBusMix(this, Mix);
-		}
-	}
-	ActiveMixes.Reset();
+    FactSubscriptions.Reset();
+    ActiveMixes.Reset();
 
-	Super::PreDeinitialize();
+    Super::PreDeinitialize();
 }
+
 
 void UAtlantisMixStateSubsystem::OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload)
 {
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+
 	// Only bool facts drive mixes for now.
 	const FAtlantisAudioBoolPayload* BoolFactPtr = Payload.GetPtr<FAtlantisAudioBoolPayload>();
 	if (!BoolFactPtr)
@@ -91,12 +136,12 @@ void UAtlantisMixStateSubsystem::OnGameplayFactReceived_Implementation(FGameplay
 		// The fade in and out comes from the mix's own attack and release times.
 		if (BoolFactPtr->bValue)
 		{
-			UAudioModulationStatics::ActivateBusMix(this, Mix);
+			UAudioModulationStatics::ActivateBusMix(World, Mix);
 			ActiveMixes.Add(Mix);
 		}
 		else
 		{
-			UAudioModulationStatics::DeactivateBusMix(this, Mix);
+			UAudioModulationStatics::DeactivateBusMix(World, Mix);
 			ActiveMixes.Remove(Mix);
 		}
 	}

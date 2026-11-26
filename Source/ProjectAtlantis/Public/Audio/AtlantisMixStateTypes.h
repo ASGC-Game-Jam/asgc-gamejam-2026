@@ -22,4 +22,8 @@ struct FAtlantisMixStateRule
 	/** The control bus mix to turn on. Its attack and release times set the fade. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Mix")
 	TSoftObjectPtr<USoundControlBusMix> Mix;
+
+	UPROPERTY(EditAnywhere, Config, Category = "Mix Rules")
+	bool bStartActive = false;
+
 };

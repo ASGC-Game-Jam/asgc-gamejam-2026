@@ -45,8 +45,15 @@ public:
     UFUNCTION(BlueprintCallable, Category = "PubSub Router")
     void BroadcastFact(FGameplayTag Tag, const FInstancedStruct& Payload);
 
+	/** Retrieves the most recently broadcast payload for Tag, if one exists. */
+	UFUNCTION(BlueprintCallable, Category = "PubSub Router")
+	bool TryGetFact(FGameplayTag Tag, FInstancedStruct& OutPayload);
+
 private:
     TMap<FGameplayTag, TArray<FGameplayFactSubscriberRecord>> Subscriptions;
+
+	/** Stores the latest payload broadcast for each tag. */
+	TMap<FGameplayTag, FInstancedStruct> CachedFacts;
 
     int32 NextHandleID = 0;
 };
