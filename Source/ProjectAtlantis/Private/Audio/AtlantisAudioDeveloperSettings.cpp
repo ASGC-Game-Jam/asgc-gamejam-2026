@@ -191,3 +191,8 @@ UDataTable* UAtlantisAudioDeveloperSettings::GetPlayerAudioTable()
 {
 	return GetDefault<UAtlantisAudioDeveloperSettings>()->PlayerAudioData.LoadSynchronous();
 }
+
+const TArray<FAtlantisMixStateRule>& UAtlantisAudioDeveloperSettings::GetMixStateRules()
+{
+	return GetDefault<UAtlantisAudioDeveloperSettings>()->MixStates;
+}

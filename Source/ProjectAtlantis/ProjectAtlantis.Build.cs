@@ -39,6 +39,7 @@ public class ProjectAtlantis : ModuleRules
 				"AudioExtensions",
 				"HarmonixMetasound",
 				"Harmonix",
+				"AudioModulation",
 				"SmartObjectsModule",
 				"Analytics",
 				"CommonUI",

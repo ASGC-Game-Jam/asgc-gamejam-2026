@@ -13,6 +13,8 @@
 #include "StructUtils/InstancedStruct.h"
 #include "TimerManager.h"
 #include "Core/AtlantisMovementComponent.h"
+#include "GameFramework/PlayerController.h"
+#include "GameFramework/PhysicsVolume.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisAudioFactBridge, Log, All);
 
@@ -118,6 +120,9 @@ void UAtlantisAudioFactBridgeComponent::TryBindSources()
 	if (MovementComponent)
 	{
 		MovementComponent->OnUnderwaterChanged.AddDynamic(this, &ThisClass::HandleUnderwaterChanged);
+
+		// The listener has no event for moving, so check it on a repeating timer.
+		GetWorld()->GetTimerManager().SetTimer(ListenerCheckTimer, this, &ThisClass::HandleListenerCheckTimer, ListenerCheckInterval, true);
 	}
 	else
 	{
@@ -138,6 +143,7 @@ void UAtlantisAudioFactBridgeComponent::UnbindSources()
 		UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Oxygen_Critical, FInstancedStruct::Make(Payload));
 		UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Stealth_Hiding, FInstancedStruct::Make(Payload));
 		UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Player_Underwater, FInstancedStruct::Make(Payload));
+		UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Listener_Underwater, FInstancedStruct::Make(Payload));
 		UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Player_Present, FInstancedStruct::Make(Payload));
 	}
 
@@ -171,11 +177,14 @@ void UAtlantisAudioFactBridgeComponent::UnbindSources()
 
 	PlayerStateRetryCount = 0;
 
-	// The timer was cleared above, so forget its handle too.
+	// The timers were cleared above, so forget their handles too.
 	UnderwaterExitTimer.Invalidate();
+	ListenerCheckTimer.Invalidate();
 
 	bSourcesBound = false;
 	bUnderwaterSent = false;
+	bListenerUnderwaterSent = false;
+	ListenerChangeHeldTime = 0.f;
 }
 
 
@@ -194,8 +203,9 @@ void UAtlantisAudioFactBridgeComponent::SendInitialFacts()
 
 	if (MovementComponent)
 	{
-		// The starting value is sent straight away, without the exit delay.
+		// The starting values are sent straight away, without either delay.
 		SendUnderwater(MovementComponent->IsInWater());
+		SendListenerUnderwater(IsListenerUnderwater());
 	}
 
 }
@@ -298,4 +308,71 @@ void UAtlantisAudioFactBridgeComponent::SendUnderwater(bool bUnderwater)
 void UAtlantisAudioFactBridgeComponent::HandleUnderwaterExitTimer()
 {
 	SendUnderwater(false);
+}
+
+bool UAtlantisAudioFactBridgeComponent::IsListenerUnderwater() const
+{
+	if (!MovementComponent)
+	{
+		return false;
+	}
+
+	// Out of the water, the ears can't be in it either.
+	APhysicsVolume* Volume = MovementComponent->GetPhysicsVolume();
+
+	if (!Volume || !Volume->bWaterVolume)
+	{
+		return false;
+	}
+
+	APawn* Pawn = Cast<APawn>(GetOwner());
+
+	if (!Pawn)
+	{
+		return false;
+	}
+
+	APlayerController* Controller = Pawn->GetController<APlayerController>();
+
+	if (!Controller)
+	{
+		return false;
+	}
+
+	// Only the location is used, but the function fills in all three.
+	FVector ListenerLocation;
+	FVector ListenerFront;
+	FVector ListenerRight;
+
+	Controller->GetAudioListenerPosition(ListenerLocation, ListenerFront, ListenerRight);
+
+	return Volume->EncompassesPoint(ListenerLocation);
+}
+
+void UAtlantisAudioFactBridgeComponent::HandleListenerCheckTimer()
+{
+	const bool bListenerUnderwater = IsListenerUnderwater();
+
+	// Nothing is changing, or a bob crossed back before the delay ran out.
+	if (bListenerUnderwater == bListenerUnderwaterSent)
+	{
+		ListenerChangeHeldTime = 0.f;
+		return;
+	}
+
+	ListenerChangeHeldTime += ListenerCheckInterval;
+
+	if (ListenerChangeHeldTime >= ListenerChangeDelay)
+	{
+		SendListenerUnderwater(bListenerUnderwater);
+		ListenerChangeHeldTime = 0.f;
+	}
+}
+
+void UAtlantisAudioFactBridgeComponent::SendListenerUnderwater(bool bUnderwater)
+{
+	FAtlantisAudioBoolPayload Payload;
+	Payload.bValue = bUnderwater;
+	bListenerUnderwaterSent = bUnderwater;
+	UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Listener_Underwater, FInstancedStruct::Make(Payload));
 }

@@ -51,13 +51,19 @@ Gameplay never talks to a listener directly, and listeners never reference gamep
 ## Bridges (gameplay → facts)
 
 **Fact bridge** (`UAtlantisAudioFactBridgeComponent`)
-: Sits on the player pawn and sends presence, oxygen, underwater and hiding facts. It binds once the pawn is locally controlled. It retries for up to 120 ticks (about 2 seconds) for the player state, then logs an error.
+: Sits on the player pawn and sends presence, oxygen, underwater, listener underwater and hiding facts. It binds once the pawn is locally controlled. It retries for up to 120 ticks (about 2 seconds) for the player state, then logs an error.
 - **Initial facts:** on bind, it sends each fact's current value, so listeners are right from the start.
-- **Reset facts:** on unbind (death, unpossession, level end), it sends `Critical = false`, `Hiding = false` and `Underwater = false`, then `Present = false`. Without these, listeners would keep the last value forever, and an alarm or the music's Tension would stay stuck.
+- **Reset facts:** on unbind (death, unpossession, level end), it sends `Critical`, `Hiding`, `Underwater` and `Listener.Underwater` as false, then `Present = false`. Without these, listeners would keep the last value forever, and an alarm or the music's Tension would stay stuck.
 
 **Underwater fact** (`Audio.Fact.Player.Underwater`)
 : True while the player is in a water volume, from the movement component's `OnUnderwaterChanged`. Entering water is sent straight away. Leaving is sent only once the player has stayed out for **Underwater Exit Delay** (0.5 seconds by default, set on the bridge component), because bobbing at the surface crosses the volume's edge several times a second.
+- **It's about the body, not the ears.** Floating at the surface counts as underwater. Use **Listener underwater** for anything that should follow what the player hears.
 - **Oxygen.Critical stays true on land.** Oxygen stops draining out of water but doesn't refill, so Critical only clears once something restores oxygen. Suit sounds that should stop on land need **Underwater Only** ticked in `DT_PlayerAudio`.
+
+**Listener underwater fact** (`Audio.Fact.Listener.Underwater`)
+: True while the audio listener (the camera, unless a listener override is set) is inside the water volume the player is in. The bridge checks it every **Listener Check Interval** (0.1 s), and only sends a change once it has held for **Listener Change Delay** (0.2 s), in both directions.
+- It's always false while the player's body is out of the water.
+- It drives the underwater low-pass, so floating with the camera above the surface stays clear.
 
 **Presence fact** (`Audio.Fact.Player.Present`)
 : True while a local player pawn is bound, and false when it's gone. It's sent before every other fact on bind, and after every reset on unbind. No player audio loop plays without it.
@@ -133,4 +139,22 @@ Gameplay never talks to a listener directly, and listeners never reference gamep
 : Not played yet. They're planned for sounds like the mask coming off.
 
 **`SC_Player`**
-: The sound class for the player's suit sounds. It's a child of `SC_SFX`, so the SFX volume slider still applies, but it's kept separate so the underwater low-pass can skip it.
+: The sound class for the player's suit sounds. It's a child of `SC_SFX` and has its own copy of the User Main and User SFX volume buses. It isn't wired to `CB_World_LPF`, so the underwater low-pass skips it.
+
+---
+
+## Mix states
+
+**Mix state subsystem** (`UAtlantisMixStateSubsystem`)
+: Turns control bus mixes on and off from bool facts, using **Mix States** in Project Settings > Game > Atlantis Audio Settings. Each rule's mix is on while its **While Fact** is true.
+- **Fades come from the mix.** Each stage's attack time sets how fast it comes in, and its release time sets how fast it goes out.
+- **Mixes are turned off at level end.** Mixes live on the audio device, not in the level, so without this one would carry into the next level.
+- Only bool facts drive mixes for now. Float facts, such as a value setting a bus directly, could be added as another kind of rule.
+
+**Control bus, mix and destination**
+: A **control bus** is a knob, such as `CB_World_LPF`. A **control bus mix** turns knobs to set values, with a fade. A sound class's **modulation destination** (Volume, Pitch, Highpass or Lowpass) is where a knob is wired in.
+- **Sound classes don't inherit modulation.** Each class lists its own buses, so wire a bus into every class it should affect.
+- On the LPF parameter, when two mixes set the same bus, the lower cutoff wins.
+
+**Underwater low-pass** (`CB_World_LPF`, `CBM_Underwater`, #606)
+: While `Audio.Fact.Listener.Underwater` is true, `CBM_Underwater` lowers the cutoff on `SC_SFX` and `SC_Ambience`. Music, UI, dialogue and `SC_Player` aren't wired to the bus, so they stay clear.

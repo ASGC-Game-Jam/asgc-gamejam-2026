@@ -14,7 +14,7 @@ class UAtlantisOxygenComponent;
 class UAtlantisMovementComponent;
 
 /**
- * Sends the local player's presence, oxygen, underwater and hiding to the audio ecosystem as facts.
+ * Sends the local player's presence, oxygen, underwater, listener underwater and hiding to the audio ecosystem as facts.
  * On unbind it resets those facts, so listeners never stay stuck after death or unpossession.
  */
 UCLASS(ClassGroup = (Atlantis), meta = (BlueprintSpawnableComponent))
@@ -67,6 +67,17 @@ private:
 	/** Called when the player has stayed out of the water for Underwater Exit Delay. */
 	void HandleUnderwaterExitTimer();
 
+	/** True if the audio listener is inside the water volume the player is in. Follows a listener override if one is set. */
+	bool IsListenerUnderwater() const;
+
+	/** Runs every Listener Check Interval. Sends a change only once it has held for Listener Change Delay. */
+	void HandleListenerCheckTimer();
+
+	/** Sends the listener underwater fact and remembers what listeners were told. */
+	void SendListenerUnderwater(bool bUnderwater);
+
+private:
+
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisOxygenComponent> OxygenComponent;
 
@@ -91,4 +102,21 @@ private:
 
 	/** The underwater value listeners last heard. Stops repeat facts while the player bobs. */
 	bool bUnderwaterSent = false;
+
+	/** Seconds between checks of where the audio listener is. */
+	UPROPERTY(EditAnywhere, Category = "Audio", meta = (ClampMin = "0.01"))
+	float ListenerCheckInterval = 0.1f;
+
+	/** Seconds the listener must stay in or out of the water before listeners hear it changed. Stops surface bobbing from fluttering the low-pass. */
+	UPROPERTY(EditAnywhere, Category = "Audio", meta = (ClampMin = "0.0"))
+	float ListenerChangeDelay = 0.2f;
+
+	/** Repeats every Listener Check Interval while bound. */
+	FTimerHandle ListenerCheckTimer;
+
+	/** The listener underwater value listeners last heard. */
+	bool bListenerUnderwaterSent = false;
+
+	/** How long the listener has disagreed with what was last sent. Resets once they agree again. */
+	float ListenerChangeHeldTime = 0.f;
 };
