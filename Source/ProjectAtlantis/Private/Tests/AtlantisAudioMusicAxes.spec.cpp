@@ -121,16 +121,16 @@ void FAtlantisAudioMusicAxesSpec::Define()
 		ExpectAxes(0.5f, 0.06f);
 	});
 
-    It(TEXT("should only apply a bool rule while true"), [this]()
+	It(TEXT("should only apply a bool rule while true"), [this]()
 	{
 		SendBool(TAG_Test_MusicAxes_Bool, true);
-        ExpectAxes(0.5f, 0.6f);
+		ExpectAxes(0.5f, 0.6f);
 
-        SendBool(TAG_Test_MusicAxes_Bool, false);
+		SendBool(TAG_Test_MusicAxes_Bool, false);
 		ExpectAxes(0.5f, 0.3f);
 	});
 
-    It(TEXT("should replace an instance's previous state"), [this]()
+	It(TEXT("should replace an instance's previous state"), [this]()
 	{
 		SendKeyed(TEXT("EnemyA"), TAG_Test_MusicAxes_StateHigh);
 		SendKeyed(TEXT("EnemyA"), TAG_Test_MusicAxes_StateLow);
@@ -138,7 +138,7 @@ void FAtlantisAudioMusicAxesSpec::Define()
 		ExpectAxes(0.7f, 0.5f);
 	});
 
-    It(TEXT("should count a shared state only once"), [this]()
+	It(TEXT("should count a shared state only once"), [this]()
 	{
 		SendKeyed(TEXT("EnemyA"), TAG_Test_MusicAxes_StateLow);
 		SendKeyed(TEXT("EnemyB"), TAG_Test_MusicAxes_StateLow);
@@ -146,15 +146,15 @@ void FAtlantisAudioMusicAxesSpec::Define()
 		ExpectAxes(0.7f, 0.5f);
 	});
 
-    It(TEXT("should clamp tension to 1"), [this]()
+	It(TEXT("should clamp tension to 1"), [this]()
 	{
-        AddRule(TAG_Test_MusicAxes_Bool, EAtlantisMusicAxis::Tension, 5.f);
-        SendBool(TAG_Test_MusicAxes_Bool, true);
+		AddRule(TAG_Test_MusicAxes_Bool, EAtlantisMusicAxis::Tension, 5.f);
+		SendBool(TAG_Test_MusicAxes_Bool, true);
 
 		ExpectAxes(0.5f, 1.0f);
 	});
 
-    It(TEXT("should forget facts when tracking stops"), [this]()
+	It(TEXT("should forget facts when tracking stops"), [this]()
 	{
 		SendBool(TAG_Test_MusicAxes_Bool, true);
 		FAtlantisAudioSubsystemTestAccess::StopTracking(Subsystem.Get());

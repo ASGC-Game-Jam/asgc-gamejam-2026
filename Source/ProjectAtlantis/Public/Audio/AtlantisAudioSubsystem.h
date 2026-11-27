@@ -33,67 +33,67 @@ public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 
-    virtual void OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload) override;
+	virtual void OnGameplayFactReceived_Implementation(FGameplayTag Tag, const FInstancedStruct& Payload) override;
 
 
 private:
-    void HandlePostWorldInitialization(UWorld* World, const UWorld::InitializationValues IValues);
-    void HandleWorldBeginPlay();
-    void HandleWorldCleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources);
-    void StopTrackingWorld();
+	void HandlePostWorldInitialization(UWorld* World, const UWorld::InitializationValues IValues);
+	void HandleWorldBeginPlay();
+	void HandleWorldCleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources);
+	void StopTrackingWorld();
 
-    void UpdateAxisTestSweep();
+	void UpdateAxisTestSweep();
 
-    void SubscribeToFacts();
-    void UnsubscribeFromFacts();
+	void SubscribeToFacts();
+	void UnsubscribeFromFacts();
 
-    void UpdateMusicAxes();
-    void UpdateLayerSplits();
+	void UpdateMusicAxes();
+	void UpdateLayerSplits();
 
-    void UpdateRoomType();
+	void UpdateRoomType();
     
-    float GetRuleContribution(const FAtlantisMusicAxisRule& Rule) const;
+	float GetRuleContribution(const FAtlantisMusicAxisRule& Rule) const;
 
 #if WITH_EDITOR
-    void HandleObjectPropertyChanged(UObject* Object, FPropertyChangedEvent& Event);
-    FDelegateHandle ObjectPropertyChangedHandle;
+	void HandleObjectPropertyChanged(UObject* Object, FPropertyChangedEvent& Event);
+	FDelegateHandle ObjectPropertyChangedHandle;
 #endif
 
-    // Stored Delegate Handles
-    FDelegateHandle PostWorldInitHandle;
-    FDelegateHandle WorldBeginPlayHandle;
-    FDelegateHandle WorldCleanupHandle;
+	// Stored Delegate Handles
+	FDelegateHandle PostWorldInitHandle;
+	FDelegateHandle WorldBeginPlayHandle;
+	FDelegateHandle WorldCleanupHandle;
 
-    FTimerHandle SweepTimerHandle;
+	FTimerHandle SweepTimerHandle;
 
-    UPROPERTY()
-    TWeakObjectPtr<UWorld> TrackedWorld;
+	UPROPERTY()
+	TWeakObjectPtr<UWorld> TrackedWorld;
     
-    UPROPERTY(Transient)
+	UPROPERTY(Transient)
 	TObjectPtr<UAudioComponent> MusicAudioComponent;
 
-    UPROPERTY()
-    TObjectPtr<UMetasoundGeneratorHandle> GeneratorHandle;   
+	UPROPERTY()
+	TObjectPtr<UMetasoundGeneratorHandle> GeneratorHandle;   
 
-    UPROPERTY(Transient)
-    TObjectPtr<UAtlantisMusicAxisMapping> AxisMapping;
+	UPROPERTY(Transient)
+	TObjectPtr<UAtlantisMusicAxisMapping> AxisMapping;
 
 	bool bIsActive = true;
-    float RunningSweepTime = 0.f;
-    float SweepTimerInterval = 0.033f;
+	float RunningSweepTime = 0.f;
+	float SweepTimerInterval = 0.033f;
 
-    TMap<FGameplayTag, int32> FactSubscriptions;
+	TMap<FGameplayTag, int32> FactSubscriptions;
 
-    // Latest value of each fact, stored by payload shape and looked up by fact tag.
-    TMap<FGameplayTag, float> FloatFacts;
-    TMap<FGameplayTag, bool> BoolFacts;
-    TMap<FGameplayTag, TMap<FName, FGameplayTag>> KeyedStateFacts;
+	// Latest value of each fact, stored by payload shape and looked up by fact tag.
+	TMap<FGameplayTag, float> FloatFacts;
+	TMap<FGameplayTag, bool> BoolFacts;
+	TMap<FGameplayTag, TMap<FName, FGameplayTag>> KeyedStateFacts;
 
-    friend struct FAtlantisAudioSubsystemTestAccess;
+	friend struct FAtlantisAudioSubsystemTestAccess;
 
-    float CurrentPlayerState = 0.f;
-    float CurrentTension = 0.f;
+	float CurrentPlayerState = 0.f;
+	float CurrentTension = 0.f;
     
 
-    TMap<FGameplayTag, FGameplayTag> TagFacts;
+	TMap<FGameplayTag, FGameplayTag> TagFacts;
 };

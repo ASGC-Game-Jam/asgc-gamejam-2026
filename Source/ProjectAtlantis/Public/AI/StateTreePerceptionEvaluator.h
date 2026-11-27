@@ -88,10 +88,10 @@ struct PROJECTATLANTIS_API FStateTreePerceptionEvaluator : public FStateTreeEval
 	void SetEnemyStatus(AAtlantisEnemyController& EnemyController, EMonsterStatus NewStatus) const;
 	void ProcessSensedActor(float DeltaTime, AAtlantisEnemyController& EnemyController, AActor* SensedActor) const;
 	void ProcessUnsensedActor(float DeltaTime, const AAtlantisAICharacter* EnemyPawn,
-	                           TPair<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceptionData)
+							   TPair<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceptionData)
 	const;
 	void HandleStatus(AAtlantisEnemyController& EnemyController,
-	                  TMap<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceivedActors) const;
+					  TMap<TObjectPtr<AAtlantisPlayerCharacter>, FPlayerPerceptionData>& PerceivedActors) const;
 	/** Fills the Output properties from the controller's state (or Idle defaults when there is no controller). */
 	void WriteOutputs(FStateTreePerceptionEvaluatorInstanceData& InstanceData, const AAtlantisEnemyController* EnemyController) const;
 	virtual void Tick(FStateTreeExecutionContext& Context, const float DeltaTime) const override;

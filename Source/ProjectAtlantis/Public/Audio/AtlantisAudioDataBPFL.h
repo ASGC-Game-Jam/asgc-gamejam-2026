@@ -17,10 +17,10 @@
 UCLASS()
 class PROJECTATLANTIS_API UAtlantisAudioDataBPFL : public UBlueprintFunctionLibrary
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
 public:
 	/** Sends a gameplay fact to whoever is listening for Tag. Returns false (and logs an error) if the fact was rejected. */
-    UFUNCTION(BlueprintCallable, Category = "Atlantis Audio Ecosystem|Ingestion", meta = (WorldContext = "WorldContextObject"))
-    static bool SetAudioDataPayload(const UObject* WorldContextObject, FGameplayTag Tag, const FInstancedStruct& Payload);
+	UFUNCTION(BlueprintCallable, Category = "Atlantis Audio Ecosystem|Ingestion", meta = (WorldContext = "WorldContextObject"))
+	static bool SetAudioDataPayload(const UObject* WorldContextObject, FGameplayTag Tag, const FInstancedStruct& Payload);
 };

@@ -42,12 +42,12 @@ void FStateTreePerceptionEvaluator::ProcessSensedActor(const float DeltaTime, AA
 	if (DistanceToSensedActor < SightInstantAggroRadius)
 	{
 		UE_LOG(LogStateTree,
-		       VeryVerbose,
-		       TEXT("[%hs] Player Character %s is within %.2f units of enemy character %s. Instantly aggroing."),
-		       __FUNCTION__,
-		       *PlayerCharacter->GetName(),
-		       SightInstantAggroRadius,
-		       *EnemyPawn->GetName()
+			   VeryVerbose,
+			   TEXT("[%hs] Player Character %s is within %.2f units of enemy character %s. Instantly aggroing."),
+			   __FUNCTION__,
+			   *PlayerCharacter->GetName(),
+			   SightInstantAggroRadius,
+			   *EnemyPawn->GetName()
 		);
 			
 		PlayerPerceptionData.PerceptionValue = 1.f;
@@ -65,24 +65,24 @@ void FStateTreePerceptionEvaluator::ProcessSensedActor(const float DeltaTime, AA
 			PlayerPerceptionData.bIsAggroed = true;
 				
 			UE_LOG(LogStateTree,
-			       Verbose,
-			       TEXT("[%hs] Enemy Character %s has perception value %.2f on Player Character %s. Aggroing."),
-			       __FUNCTION__,
-			       *EnemyPawn->GetName(),
-			       PlayerPerceptionData.PerceptionValue,
-			       *PlayerCharacter->GetName()
+				   Verbose,
+				   TEXT("[%hs] Enemy Character %s has perception value %.2f on Player Character %s. Aggroing."),
+				   __FUNCTION__,
+				   *EnemyPawn->GetName(),
+				   PlayerPerceptionData.PerceptionValue,
+				   *PlayerCharacter->GetName()
 			);
 		}
 		else
 		{
 			UE_LOG(LogStateTree,
-			       Verbose,
-			       TEXT("[%hs] Enemy Character %s has perception value %.2f on Player Character %s, adding %.2f this tick."),
-			       __FUNCTION__,
-			       *EnemyPawn->GetName(),
-			       PlayerPerceptionData.PerceptionValue,
-			       *PlayerCharacter->GetName(),
-			       ScaledPerceptionValue
+				   Verbose,
+				   TEXT("[%hs] Enemy Character %s has perception value %.2f on Player Character %s, adding %.2f this tick."),
+				   __FUNCTION__,
+				   *EnemyPawn->GetName(),
+				   PlayerPerceptionData.PerceptionValue,
+				   *PlayerCharacter->GetName(),
+				   ScaledPerceptionValue
 			);
 
 			PlayerPerceptionData.PerceptionValue += ScaledPerceptionValue;
@@ -129,14 +129,14 @@ void FStateTreePerceptionEvaluator::ProcessUnsensedActor(const float DeltaTime,
 		}
 			
 		UE_LOG(LogStateTree,
-		       Verbose,
-		       TEXT("[%hs] Character: %s, Player Character: %s, Perception Value: %.2f, Hysteresis Time: %.2f. (Removed %.2f Perception this tick)"),
-		       __FUNCTION__,
-		       *EnemyPawn->GetName(),
-		       *PerceptionData.Key->GetName(),
-		       PerceptionData.Value.PerceptionValue,
-		       PerceptionData.Value.PerceptionHysteresisTime.Get(0.f),
-		       DecayedPerceptionValue
+			   Verbose,
+			   TEXT("[%hs] Character: %s, Player Character: %s, Perception Value: %.2f, Hysteresis Time: %.2f. (Removed %.2f Perception this tick)"),
+			   __FUNCTION__,
+			   *EnemyPawn->GetName(),
+			   *PerceptionData.Key->GetName(),
+			   PerceptionData.Value.PerceptionValue,
+			   PerceptionData.Value.PerceptionHysteresisTime.Get(0.f),
+			   DecayedPerceptionValue
 		);
 
 	}
@@ -146,13 +146,13 @@ void FStateTreePerceptionEvaluator::ProcessUnsensedActor(const float DeltaTime,
 		PerceptionData.Value.PerceptionHysteresisTime = InitialPerceptionHysteresisTime - DeltaTime;
 			
 		UE_LOG(LogStateTree,
-		       Verbose,
-		       TEXT("[%hs] Character: %s, Player Character: %s, Perception Value: %.2f, Hysteresis Time: %.2f."),
-		       __FUNCTION__,
-		       *EnemyPawn->GetName(),
-		       *PerceptionData.Key->GetName(),
-		       PerceptionData.Value.PerceptionValue,
-		       PerceptionData.Value.PerceptionHysteresisTime.Get(0.f)
+			   Verbose,
+			   TEXT("[%hs] Character: %s, Player Character: %s, Perception Value: %.2f, Hysteresis Time: %.2f."),
+			   __FUNCTION__,
+			   *EnemyPawn->GetName(),
+			   *PerceptionData.Key->GetName(),
+			   PerceptionData.Value.PerceptionValue,
+			   PerceptionData.Value.PerceptionHysteresisTime.Get(0.f)
 		);
 
 	}
@@ -163,13 +163,13 @@ void FStateTreePerceptionEvaluator::ProcessUnsensedActor(const float DeltaTime,
 		PerceptionData.Value.PerceptionValue -= DecayedPerceptionValue;
 			
 		UE_LOG(LogStateTree,
-		       Verbose,
-		       TEXT("[%hs] Character: %s, Player Character: %s, Perception Value: %.2f, Removed %.2f Perception this tick."),
-		       __FUNCTION__,
-		       *EnemyPawn->GetName(),
-		       *PerceptionData.Key->GetName(),
-		       PerceptionData.Value.PerceptionValue,
-		       DecayedPerceptionValue
+			   Verbose,
+			   TEXT("[%hs] Character: %s, Player Character: %s, Perception Value: %.2f, Removed %.2f Perception this tick."),
+			   __FUNCTION__,
+			   *EnemyPawn->GetName(),
+			   *PerceptionData.Key->GetName(),
+			   PerceptionData.Value.PerceptionValue,
+			   DecayedPerceptionValue
 		);
 
 	}

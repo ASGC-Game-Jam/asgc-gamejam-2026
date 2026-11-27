@@ -49,8 +49,8 @@ namespace
 
 			UGameViewportClient* ViewportClient = CaptureSubsystem->GetGameInstance()->GetGameViewportClient();
 			const TSharedPtr<SViewport> ViewportWidget = ViewportClient
-				                                             ? ViewportClient->GetGameViewportWidget()
-				                                             : nullptr;
+															 ? ViewportClient->GetGameViewportWidget()
+															 : nullptr;
 			const TSharedPtr<SWidget> FocusedWidget = SlateApp.GetUserFocusedWidget(KeyEvent.GetUserIndex());
 			if (!ViewportWidget || !FocusedWidget
 				|| SlateApp.FindWidgetWindow(ViewportWidget.ToSharedRef()) != SlateApp.FindWidgetWindow(
@@ -133,7 +133,7 @@ void UAtlantisScreenshotCaptureSubsystem::CaptureScreenshot()
 	if (FScreenshotRequest::IsScreenshotRequested() || GIsHighResScreenshot || GIsDumpingMovie)
 	{
 		UE_LOG(LogAtlantisScreenshotCapture, Warning,
-		       TEXT("Screenshot capture skipped: another screenshot is pending."));
+			   TEXT("Screenshot capture skipped: another screenshot is pending."));
 		return;
 	}
 	const bool bHdrScreenshot = ViewportClient->Viewport->GetSceneHDREnabled();
@@ -145,7 +145,7 @@ void UAtlantisScreenshotCaptureSubsystem::CaptureScreenshot()
 	// Use the same capture/save path as "shot showui", preserving our matching filenames.
 	FScreenshotRequest::RequestScreenshot(Capture.ScreenshotPath, true, false, bHdrScreenshot);
 	UE_LOG(LogAtlantisScreenshotCapture, Log, TEXT("Screenshot requested: %s | Level=%s | %s | Metadata=%s"),
-	       *Capture.ScreenshotPath, *Capture.LevelName, *Capture.Position, *Capture.MetadataPath);
+		   *Capture.ScreenshotPath, *Capture.LevelName, *Capture.Position, *Capture.MetadataPath);
 }
 
 const UGameViewportClient* UAtlantisScreenshotCaptureSubsystem::GetCaptureViewport() const
@@ -180,8 +180,8 @@ UAtlantisScreenshotCaptureSubsystem::FCaptureContext UAtlantisScreenshotCaptureS
 	const FString CaptureDirectory = FPaths::ConvertRelativePathToFull(
 		ScreenshotDirectory.IsEmpty() ? FPaths::ScreenShotDir() : ScreenshotDirectory);
 	const FString CaptureName = FString::Printf(TEXT("Screenshot_%s_%s"),
-	                                            *Capture.CaptureTime.ToString(TEXT("%Y%m%d_%H%M%S")),
-	                                            *FGuid::NewGuid().ToString(EGuidFormats::Digits));
+												*Capture.CaptureTime.ToString(TEXT("%Y%m%d_%H%M%S")),
+												*FGuid::NewGuid().ToString(EGuidFormats::Digits));
 	Capture.ScreenshotPath = CaptureDirectory / (CaptureName + (bHdrScreenshot ? TEXT(".exr") : TEXT(".png")));
 	Capture.MetadataPath = CaptureDirectory / (CaptureName + TEXT(".txt"));
 	return Capture;
@@ -193,7 +193,7 @@ bool UAtlantisScreenshotCaptureSubsystem::SaveCaptureMetadata(const FCaptureCont
 	if (!IFileManager::Get().MakeDirectory(*CaptureDirectory, true))
 	{
 		UE_LOG(LogAtlantisScreenshotCapture, Error, TEXT("Could not create screenshot capture directory: %s"),
-		       *CaptureDirectory);
+			   *CaptureDirectory);
 		return false;
 	}
 
@@ -204,12 +204,12 @@ bool UAtlantisScreenshotCaptureSubsystem::SaveCaptureMetadata(const FCaptureCont
 		*Capture.ScreenshotPath);
 
 	if (FFileHelper::SaveStringToFile(Metadata, *Capture.MetadataPath,
-	                                  FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM))
+									  FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM))
 	{
 		return true;
 	}
 
 	UE_LOG(LogAtlantisScreenshotCapture, Error, TEXT("Could not write screenshot capture metadata: %s"),
-	       *Capture.MetadataPath);
+		   *Capture.MetadataPath);
 	return false;
 }

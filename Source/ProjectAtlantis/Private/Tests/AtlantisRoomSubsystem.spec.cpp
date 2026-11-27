@@ -47,7 +47,7 @@ namespace
 				return;
 			}
 
-            World->InitializeActorsForPlay(FURL());
+			World->InitializeActorsForPlay(FURL());
 
 			VolumeA = World->SpawnActor<AActor>();
 			VolumeB = World->SpawnActor<AActor>();
@@ -89,26 +89,26 @@ namespace
 			return Payload ? Payload->Tag : FGameplayTag();
 		}
 
-        UAtlantisRoomVolumeComponent* SpawnRoomVolume(FGameplayTag RoomTag, int32 Priority)
-        {
-            AAudioGameplayVolume* Volume = World->SpawnActor<AAudioGameplayVolume>();
-            if (!Volume)
-            {
-                return nullptr;
-            }
+		UAtlantisRoomVolumeComponent* SpawnRoomVolume(FGameplayTag RoomTag, int32 Priority)
+		{
+			AAudioGameplayVolume* Volume = World->SpawnActor<AAudioGameplayVolume>();
+			if (!Volume)
+			{
+				return nullptr;
+			}
 
-            UReverbVolumeComponent* Reverb = NewObject<UReverbVolumeComponent>(Volume);
-            Reverb->SetPriority(Priority);
-            Reverb->RegisterComponent();
+			UReverbVolumeComponent* Reverb = NewObject<UReverbVolumeComponent>(Volume);
+			Reverb->SetPriority(Priority);
+			Reverb->RegisterComponent();
 
-            UAtlantisRoomVolumeComponent* Room = NewObject<UAtlantisRoomVolumeComponent>(Volume);
-            Room->RoomTag = RoomTag;
-            Room->RegisterComponent();
+			UAtlantisRoomVolumeComponent* Room = NewObject<UAtlantisRoomVolumeComponent>(Volume);
+			Room->RoomTag = RoomTag;
+			Room->RegisterComponent();
 
-            Volume->DispatchBeginPlay();
+			Volume->DispatchBeginPlay();
 
-            return Room;
-        }
+			return Room;
+		}
 	};
 }
 
@@ -228,39 +228,39 @@ void FAtlantisRoomSubsystemSpec::Define()
 		});
 	});
 
-    Describe(TEXT("Room volume component"), [this]()
+	Describe(TEXT("Room volume component"), [this]()
 	{
-        It(TEXT("should take its priority from the reverb component"), [this]()
+		It(TEXT("should take its priority from the reverb component"), [this]()
 		{
-            UAtlantisRoomVolumeComponent* SmallVolume = Fixture->SpawnRoomVolume(Small, 1);
-            UAtlantisRoomVolumeComponent* OpenVolume = Fixture->SpawnRoomVolume(Open, 0);
+			UAtlantisRoomVolumeComponent* SmallVolume = Fixture->SpawnRoomVolume(Small, 1);
+			UAtlantisRoomVolumeComponent* OpenVolume = Fixture->SpawnRoomVolume(Open, 0);
 
-            IAudioGameplayVolumeInteraction::Execute_OnListenerEnter(SmallVolume);
-            IAudioGameplayVolumeInteraction::Execute_OnListenerEnter(OpenVolume);
+			IAudioGameplayVolumeInteraction::Execute_OnListenerEnter(SmallVolume);
+			IAudioGameplayVolumeInteraction::Execute_OnListenerEnter(OpenVolume);
 
-            TestTrue(TEXT("The room is still Small"), Fixture->LastRoom() == Small);
+			TestTrue(TEXT("The room is still Small"), Fixture->LastRoom() == Small);
 		});
                 
-        It(TEXT("should log an error and send nothing without a Room Tag"), [this]()
+		It(TEXT("should log an error and send nothing without a Room Tag"), [this]()
 		{
-            AddExpectedErrorPlain(TEXT("has no Room Tag"), EAutomationExpectedErrorFlags::Contains, 1);
+			AddExpectedErrorPlain(TEXT("has no Room Tag"), EAutomationExpectedErrorFlags::Contains, 1);
 
-            UAtlantisRoomVolumeComponent* UntaggedVolume = Fixture->SpawnRoomVolume(FGameplayTag(), 0);
+			UAtlantisRoomVolumeComponent* UntaggedVolume = Fixture->SpawnRoomVolume(FGameplayTag(), 0);
 
-            IAudioGameplayVolumeInteraction::Execute_OnListenerEnter(UntaggedVolume);
+			IAudioGameplayVolumeInteraction::Execute_OnListenerEnter(UntaggedVolume);
 
-            TestEqual(TEXT("Nothing is sent"), Fixture->Count(), 0);
+			TestEqual(TEXT("Nothing is sent"), Fixture->Count(), 0);
 		});
                 
-        It(TEXT("should go back to Default when its volume is removed while inside"), [this]()
+		It(TEXT("should go back to Default when its volume is removed while inside"), [this]()
 		{
-            UAtlantisRoomVolumeComponent* SmallVolume = Fixture->SpawnRoomVolume(Small, 1);
-            IAudioGameplayVolumeInteraction::Execute_OnListenerEnter(SmallVolume);
-            SmallVolume->GetOwner()->Destroy();
+			UAtlantisRoomVolumeComponent* SmallVolume = Fixture->SpawnRoomVolume(Small, 1);
+			IAudioGameplayVolumeInteraction::Execute_OnListenerEnter(SmallVolume);
+			SmallVolume->GetOwner()->Destroy();
 
-            TestTrue(TEXT("The room is Default"), Fixture->LastRoom() == TAG_Room_Default);
+			TestTrue(TEXT("The room is Default"), Fixture->LastRoom() == TAG_Room_Default);
 		});
-    });
+	});
 }
 
 #endif
