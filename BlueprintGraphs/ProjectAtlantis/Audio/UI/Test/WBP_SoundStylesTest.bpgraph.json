@@ -1,0 +1,1060 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest",
+	"asset": "WBP_SoundStylesTest",
+	"assetClass": "WidgetBlueprint",
+	"parentClass": "UserWidget",
+	"blueprintType": "BPTYPE_Normal",
+	"graphs": [
+		{
+			"name": "EventGraph",
+			"type": "Ubergraph",
+			"nodes": [
+				{
+					"guid": "190d73794581dbb9a87d92ac2b7edbb0",
+					"class": "K2Node_Event",
+					"title": "Event Tick",
+					"x": 0,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "190d73794581dbb9a87d92ac2b7edbb0:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "190d73794581dbb9a87d92ac2b7edbb0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"94eb87ae402782932571079794d793ab:i:execute"
+							]
+						},
+						{
+							"id": "190d73794581dbb9a87d92ac2b7edbb0:o:MyGeometry",
+							"name": "MyGeometry",
+							"direction": "output",
+							"type": "struct:/Script/SlateCore.Geometry",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "190d73794581dbb9a87d92ac2b7edbb0:o:InDeltaTime",
+							"name": "InDeltaTime",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"615b4e3941a16a1ce657ef8b7e7b8ba0:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "24045b634dce6697f5ab3ba546867a61",
+					"class": "K2Node_PromotableOperator",
+					"title": "float * float",
+					"x": 368,
+					"y": 688,
+					"comment": null,
+					"pins": [
+						{
+							"id": "24045b634dce6697f5ab3ba546867a61:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"615b4e3941a16a1ce657ef8b7e7b8ba0:o:OutputPin"
+							]
+						},
+						{
+							"id": "24045b634dce6697f5ab3ba546867a61:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.250000",
+							"links": []
+						},
+						{
+							"id": "24045b634dce6697f5ab3ba546867a61:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4a390ab64e911a2f1e424981d10fcac1:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "246f66ed4c662d682ea42ea8e985fa02",
+					"class": "K2Node_VariableGet",
+					"title": "Get SoundStyleProgressBar",
+					"x": 1200,
+					"y": 352,
+					"comment": null,
+					"pins": [
+						{
+							"id": "246f66ed4c662d682ea42ea8e985fa02:o:SoundStyleProgressBar",
+							"name": "SoundStyleProgressBar",
+							"direction": "output",
+							"type": "object:/Script/SoundStyles.SoundStyleProgressBar",
+							"defaultValue": null,
+							"links": [
+								"5752193b4ba98777b6878380be47ed97:i:self"
+							]
+						},
+						{
+							"id": "246f66ed4c662d682ea42ea8e985fa02:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "4a390ab64e911a2f1e424981d10fcac1",
+					"class": "K2Node_PromotableOperator",
+					"title": "float + float",
+					"x": 560,
+					"y": 592,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4a390ab64e911a2f1e424981d10fcac1:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"b33a4c014a5e7d27f8b62eb15ad169ce:o:FillPercent"
+							]
+						},
+						{
+							"id": "4a390ab64e911a2f1e424981d10fcac1:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"24045b634dce6697f5ab3ba546867a61:o:ReturnValue"
+							]
+						},
+						{
+							"id": "4a390ab64e911a2f1e424981d10fcac1:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5a1f2e4745b08e988a6676a816634591:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5752193b4ba98777b6878380be47ed97",
+					"class": "K2Node_CallFunction",
+					"title": "SetPercentWithSound",
+					"x": 1200,
+					"y": 399,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5752193b4ba98777b6878380be47ed97:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"94eb87ae402782932571079794d793ab:o:then"
+							]
+						},
+						{
+							"id": "5752193b4ba98777b6878380be47ed97:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6dd58143457cf400f13253a2ae844ac0:i:execute"
+							]
+						},
+						{
+							"id": "5752193b4ba98777b6878380be47ed97:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/SoundStyles.SoundStyleProgressBar",
+							"defaultValue": null,
+							"links": [
+								"246f66ed4c662d682ea42ea8e985fa02:o:SoundStyleProgressBar"
+							]
+						},
+						{
+							"id": "5752193b4ba98777b6878380be47ed97:i:InPercent",
+							"name": "InPercent",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"5a1f2e4745b08e988a6676a816634591:o:ReturnValue"
+							]
+						}
+					]
+				},
+				{
+					"guid": "5a1f2e4745b08e988a6676a816634591",
+					"class": "K2Node_CommutativeAssociativeBinaryOperator",
+					"title": "Min (Float)",
+					"x": 912,
+					"y": 596,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5a1f2e4745b08e988a6676a816634591:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.KismetMathLibrary",
+							"defaultValue": "/Script/Engine.Default__KismetMathLibrary",
+							"links": []
+						},
+						{
+							"id": "5a1f2e4745b08e988a6676a816634591:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4a390ab64e911a2f1e424981d10fcac1:o:ReturnValue"
+							]
+						},
+						{
+							"id": "5a1f2e4745b08e988a6676a816634591:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "5a1f2e4745b08e988a6676a816634591:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5752193b4ba98777b6878380be47ed97:i:InPercent",
+								"95bfd62040ac9a030dd8b886af590749:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "60acf2d645cbf3a678d26a9a39b8f299",
+					"class": "K2Node_VariableGet",
+					"title": "Get FillPercent",
+					"x": 80,
+					"y": 1024,
+					"comment": null,
+					"pins": [
+						{
+							"id": "60acf2d645cbf3a678d26a9a39b8f299:o:FillPercent",
+							"name": "FillPercent",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"719a67b541f6ddf8f4c5d8beaa0635fa:i:A"
+							]
+						},
+						{
+							"id": "60acf2d645cbf3a678d26a9a39b8f299:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "615b4e3941a16a1ce657ef8b7e7b8ba0",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 288,
+					"y": 696,
+					"comment": null,
+					"pins": [
+						{
+							"id": "615b4e3941a16a1ce657ef8b7e7b8ba0:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"190d73794581dbb9a87d92ac2b7edbb0:o:InDeltaTime"
+							]
+						},
+						{
+							"id": "615b4e3941a16a1ce657ef8b7e7b8ba0:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:float",
+							"defaultValue": null,
+							"links": [
+								"24045b634dce6697f5ab3ba546867a61:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "651a6be0418db9927c88398525b65cf3",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Clicked (FillButton)",
+					"x": 0,
+					"y": 896,
+					"comment": null,
+					"pins": [
+						{
+							"id": "651a6be0418db9927c88398525b65cf3:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "651a6be0418db9927c88398525b65cf3:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c177ae1c4831ce939a9dbbb2b959b7e6:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6dd58143457cf400f13253a2ae844ac0",
+					"class": "K2Node_VariableSet",
+					"title": "Set FillPercent",
+					"x": 1536,
+					"y": 431,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6dd58143457cf400f13253a2ae844ac0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5752193b4ba98777b6878380be47ed97:o:then"
+							]
+						},
+						{
+							"id": "6dd58143457cf400f13253a2ae844ac0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"94cb05584d1b07db2fb2ad8da9883697:i:execute"
+							]
+						},
+						{
+							"id": "6dd58143457cf400f13253a2ae844ac0:i:FillPercent",
+							"name": "FillPercent",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"95bfd62040ac9a030dd8b886af590749:o:OutputPin"
+							]
+						},
+						{
+							"id": "6dd58143457cf400f13253a2ae844ac0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6dd58143457cf400f13253a2ae844ac0:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "719a67b541f6ddf8f4c5d8beaa0635fa",
+					"class": "K2Node_PromotableOperator",
+					"title": "float >= float",
+					"x": 240,
+					"y": 1025,
+					"comment": null,
+					"pins": [
+						{
+							"id": "719a67b541f6ddf8f4c5d8beaa0635fa:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"60acf2d645cbf3a678d26a9a39b8f299:o:FillPercent"
+							]
+						},
+						{
+							"id": "719a67b541f6ddf8f4c5d8beaa0635fa:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "719a67b541f6ddf8f4c5d8beaa0635fa:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c177ae1c4831ce939a9dbbb2b959b7e6:i:Condition"
+							]
+						},
+						{
+							"id": "719a67b541f6ddf8f4c5d8beaa0635fa:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "914c75d848ce832c86106eb0f78c140a",
+					"class": "K2Node_VariableSet",
+					"title": "Set bFilling",
+					"x": 2128,
+					"y": 431,
+					"comment": null,
+					"pins": [
+						{
+							"id": "914c75d848ce832c86106eb0f78c140a:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"94cb05584d1b07db2fb2ad8da9883697:o:then"
+							]
+						},
+						{
+							"id": "914c75d848ce832c86106eb0f78c140a:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "914c75d848ce832c86106eb0f78c140a:i:bFilling",
+							"name": "bFilling",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "914c75d848ce832c86106eb0f78c140a:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "914c75d848ce832c86106eb0f78c140a:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "94cb05584d1b07db2fb2ad8da9883697",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 1837,
+					"y": 415,
+					"comment": null,
+					"pins": [
+						{
+							"id": "94cb05584d1b07db2fb2ad8da9883697:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6dd58143457cf400f13253a2ae844ac0:o:then"
+							]
+						},
+						{
+							"id": "94cb05584d1b07db2fb2ad8da9883697:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c15516b24d2f0c0cc5e809a1b18a6e9b:o:ReturnValue"
+							]
+						},
+						{
+							"id": "94cb05584d1b07db2fb2ad8da9883697:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"914c75d848ce832c86106eb0f78c140a:i:execute"
+							]
+						},
+						{
+							"id": "94cb05584d1b07db2fb2ad8da9883697:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "94eb87ae402782932571079794d793ab",
+					"class": "K2Node_VariableGet",
+					"title": "Get",
+					"x": 208,
+					"y": 416,
+					"comment": null,
+					"pins": [
+						{
+							"id": "94eb87ae402782932571079794d793ab:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"190d73794581dbb9a87d92ac2b7edbb0:o:then"
+							]
+						},
+						{
+							"id": "94eb87ae402782932571079794d793ab:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5752193b4ba98777b6878380be47ed97:i:execute"
+							]
+						},
+						{
+							"id": "94eb87ae402782932571079794d793ab:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "94eb87ae402782932571079794d793ab:o:bFilling",
+							"name": "bFilling",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "94eb87ae402782932571079794d793ab:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "95bfd62040ac9a030dd8b886af590749",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1456,
+					"y": 606,
+					"comment": null,
+					"pins": [
+						{
+							"id": "95bfd62040ac9a030dd8b886af590749:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"5a1f2e4745b08e988a6676a816634591:o:ReturnValue"
+							]
+						},
+						{
+							"id": "95bfd62040ac9a030dd8b886af590749:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"6dd58143457cf400f13253a2ae844ac0:i:FillPercent",
+								"c15516b24d2f0c0cc5e809a1b18a6e9b:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "b33a4c014a5e7d27f8b62eb15ad169ce",
+					"class": "K2Node_VariableGet",
+					"title": "Get FillPercent",
+					"x": 384,
+					"y": 592,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b33a4c014a5e7d27f8b62eb15ad169ce:o:FillPercent",
+							"name": "FillPercent",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"4a390ab64e911a2f1e424981d10fcac1:i:A"
+							]
+						},
+						{
+							"id": "b33a4c014a5e7d27f8b62eb15ad169ce:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c15516b24d2f0c0cc5e809a1b18a6e9b",
+					"class": "K2Node_PromotableOperator",
+					"title": "float >= float",
+					"x": 1664,
+					"y": 597,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c15516b24d2f0c0cc5e809a1b18a6e9b:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": null,
+							"links": [
+								"95bfd62040ac9a030dd8b886af590749:o:OutputPin"
+							]
+						},
+						{
+							"id": "c15516b24d2f0c0cc5e809a1b18a6e9b:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "1.000000",
+							"links": []
+						},
+						{
+							"id": "c15516b24d2f0c0cc5e809a1b18a6e9b:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"94cb05584d1b07db2fb2ad8da9883697:i:Condition"
+							]
+						},
+						{
+							"id": "c15516b24d2f0c0cc5e809a1b18a6e9b:i:ErrorTolerance",
+							"name": "ErrorTolerance",
+							"direction": "input",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c177ae1c4831ce939a9dbbb2b959b7e6",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 448,
+					"y": 896,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c177ae1c4831ce939a9dbbb2b959b7e6:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"651a6be0418db9927c88398525b65cf3:o:then"
+							]
+						},
+						{
+							"id": "c177ae1c4831ce939a9dbbb2b959b7e6:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"719a67b541f6ddf8f4c5d8beaa0635fa:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c177ae1c4831ce939a9dbbb2b959b7e6:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e4b1e5424a2bdf68bec8e98f3964a859:i:execute"
+							]
+						},
+						{
+							"id": "c177ae1c4831ce939a9dbbb2b959b7e6:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cc41787e40717304b846f4af1a5413d0:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "cc41787e40717304b846f4af1a5413d0",
+					"class": "K2Node_VariableSet",
+					"title": "Set bFilling",
+					"x": 976,
+					"y": 944,
+					"comment": null,
+					"pins": [
+						{
+							"id": "cc41787e40717304b846f4af1a5413d0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c177ae1c4831ce939a9dbbb2b959b7e6:o:else",
+								"e4b1e5424a2bdf68bec8e98f3964a859:o:then"
+							]
+						},
+						{
+							"id": "cc41787e40717304b846f4af1a5413d0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cc41787e40717304b846f4af1a5413d0:i:bFilling",
+							"name": "bFilling",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "cc41787e40717304b846f4af1a5413d0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "cc41787e40717304b846f4af1a5413d0:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "d3084f3e45f484dac56b38bf57b9b174",
+					"class": "K2Node_Event",
+					"title": "Event Construct",
+					"x": 0,
+					"y": 208,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "d3084f3e45f484dac56b38bf57b9b174:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "d3084f3e45f484dac56b38bf57b9b174:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "e4b1e5424a2bdf68bec8e98f3964a859",
+					"class": "K2Node_VariableSet",
+					"title": "Set FillPercent",
+					"x": 720,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e4b1e5424a2bdf68bec8e98f3964a859:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c177ae1c4831ce939a9dbbb2b959b7e6:o:then"
+							]
+						},
+						{
+							"id": "e4b1e5424a2bdf68bec8e98f3964a859:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"cc41787e40717304b846f4af1a5413d0:i:execute"
+							]
+						},
+						{
+							"id": "e4b1e5424a2bdf68bec8e98f3964a859:i:FillPercent",
+							"name": "FillPercent",
+							"direction": "input",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "e4b1e5424a2bdf68bec8e98f3964a859:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/Audio/UI/Test/WBP_SoundStylesTest.WBP_SoundStylesTest_C",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e4b1e5424a2bdf68bec8e98f3964a859:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "real:double",
+							"defaultValue": "0.0",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "f9b28655420a57ae45773192f3f6bd60",
+					"class": "K2Node_Event",
+					"title": "Event Pre Construct",
+					"x": 0,
+					"y": 0,
+					"comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+					"pins": [
+						{
+							"id": "f9b28655420a57ae45773192f3f6bd60:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f9b28655420a57ae45773192f3f6bd60:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "f9b28655420a57ae45773192f3f6bd60:o:IsDesignTime",
+							"name": "IsDesignTime",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				}
+			],
+			"comments": []
+		}
+	],
+	"properties":
+	{
+		"variables":
+		{
+			"FillPercent":
+			{
+				"type": "real:double",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			},
+			"bFilling":
+			{
+				"type": "bool",
+				"category": "Default",
+				"defaultValue": "",
+				"instanceEditable": false
+			}
+		},
+		"components":
+		{
+		},
+		"defaults":
+		{
+			"SoundStyleSlider": null,
+			"SoundStyleProgressBar": null,
+			"SoundStyleCheckBox": null,
+			"SoundStyleButton": null,
+			"FillButton": null,
+			"FillPercent": 0,
+			"bFilling": false,
+			"ColorAndOpacity":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"ForegroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"Padding":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Priority": 0,
+			"bIsFocusable": false,
+			"bStopAction": false,
+			"bAutomaticallyRegisterInputOnConstruction": false,
+			"NamedSlotBindings": [],
+			"Extensions": [],
+			"DesignTimeSize":
+			{
+				"X": 100,
+				"Y": 100
+			},
+			"DesignSizeMode": "FillScreen",
+			"PaletteCategory": "User Created",
+			"PreviewBackground": null,
+			"bHasScriptImplementedTick": true,
+			"bHasScriptImplementedPaint": false,
+			"TickFrequency": "Auto",
+			"DesiredFocusWidget":
+			{
+				"WidgetName": "None"
+			},
+			"Slot": null,
+			"ToolTipText": "",
+			"ToolTipWidget": null,
+			"RenderTransform":
+			{
+				"Translation":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Scale":
+				{
+					"X": 1,
+					"Y": 1
+				},
+				"Shear":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Angle": 0
+			},
+			"RenderTransformPivot":
+			{
+				"X": 0.5,
+				"Y": 0.5
+			},
+			"FlowDirectionPreference": "Inherit",
+			"bIsVariable": true,
+			"bIsEnabled": true,
+			"bOverride_Cursor": false,
+			"bOverrideAccessibleDefaults": false,
+			"bCanChildrenBeAccessible": true,
+			"AccessibleBehavior": "NotAccessible",
+			"AccessibleSummaryBehavior": "Auto",
+			"AccessibleText": "",
+			"AccessibleSummaryText": "",
+			"bIsVolatile": false,
+			"bHiddenInDesigner": false,
+			"bExpandedInDesigner": false,
+			"bLockedInDesigner": false,
+			"Cursor": "Default",
+			"Clipping": "Inherit",
+			"Visibility": "SelfHitTestInvisible",
+			"PixelSnapping": "Inherit",
+			"RenderOpacity": 1,
+			"AccessibleWidgetData": null,
+			"Navigation": null,
+			"DisplayLabel": "",
+			"CategoryName": ""
+		}
+	}
+}
