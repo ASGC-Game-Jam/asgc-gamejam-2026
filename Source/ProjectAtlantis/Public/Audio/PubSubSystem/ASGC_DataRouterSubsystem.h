@@ -13,7 +13,7 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(AtlantisPubSubLogCategory, Log, All);
 
-// Internal record holding subscriber details for strict lifecycle tracking.
+// One subscription: who is listening, and the handle they unsubscribe with.
 struct FGameplayFactSubscriberRecord
 {
     TWeakObjectPtr<UObject> SubscriberObject = nullptr;
@@ -21,9 +21,8 @@ struct FGameplayFactSubscriberRecord
 };
 
 /**
- * UASGC_DataRouterSubsystem
- * A world-scoped subsystem responsible for fanning out gameplay facts 
- * from the front door to active consumers by flat GameplayTag.
+ * Delivers gameplay facts from the front door to every listener subscribed to their tag.
+ * One per world, so subscriptions never outlive their level.
  */
 UCLASS()
 class PROJECTATLANTIS_API UASGC_DataRouterSubsystem : public UWorldSubsystem
@@ -34,22 +33,27 @@ public:
     virtual void Initialize(FSubsystemCollectionBase& Collection) override;
     virtual void Deinitialize() override;
 
-    /**
-     * Subscribes a listener object (C++ or Blueprint implementing IASGC_FactListenerInterface) to a tag.
-     */
+    /** Subscribes a listener (C++ or Blueprint) to a tag. Returns the handle to unsubscribe with, or INDEX_NONE on failure. */
     UFUNCTION(BlueprintCallable, Category = "PubSub Router")
     int32 Subscribe(FGameplayTag Tag, UObject* Subscriber);
 
-    // Explicitly unsubscribes using the handle returned during subscription.
+    /** Unsubscribes using the handle Subscribe returned. */
     UFUNCTION(BlueprintCallable, Category = "PubSub Router")
     void Unsubscribe(FGameplayTag Tag, int32 Handle);
 
-    // Broadcasts a gameplay fact payload globally by tag to all current subscribers.
+    /** Delivers a fact to every listener subscribed to Tag. Facts with no listener are dropped. */
     UFUNCTION(BlueprintCallable, Category = "PubSub Router")
     void BroadcastFact(FGameplayTag Tag, const FInstancedStruct& Payload);
 
+	/** Retrieves the most recently broadcast payload for Tag, if one exists. */
+	UFUNCTION(BlueprintCallable, Category = "PubSub Router")
+	bool TryGetFact(FGameplayTag Tag, FInstancedStruct& OutPayload);
+
 private:
     TMap<FGameplayTag, TArray<FGameplayFactSubscriberRecord>> Subscriptions;
+
+	/** Stores the latest payload broadcast for each tag. */
+	TMap<FGameplayTag, FInstancedStruct> CachedFacts;
 
     int32 NextHandleID = 0;
 };

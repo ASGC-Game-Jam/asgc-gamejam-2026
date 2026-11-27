@@ -10,9 +10,8 @@
 #include "AtlantisAudioDataBPFL.generated.h"
 
 /**
- * Front door for gameplay facts into the Audio Ecosystem (TDD §9).
- * Validates the tag against the payload registry, then hands the payload to the router.
- * Never references a consumer.
+ * The front door for gameplay facts into the audio ecosystem (TDD §9).
+ * Validates each fact against the payload registry, then hands it to the router.
  */
 UCLASS()
 class PROJECTATLANTIS_API UAtlantisAudioDataBPFL : public UBlueprintFunctionLibrary
@@ -20,7 +19,7 @@ class PROJECTATLANTIS_API UAtlantisAudioDataBPFL : public UBlueprintFunctionLibr
     GENERATED_BODY()
 
 public:
-	/** Sends a gameplay fact to whoever is listening for Tag. Returns false (and logs an error) if the fact was rejected. */
+	/** Sends a gameplay fact to every listener subscribed to Tag. Returns false, and logs an error, if the fact is rejected. */
     UFUNCTION(BlueprintCallable, Category = "Atlantis Audio Ecosystem|Ingestion", meta = (WorldContext = "WorldContextObject"))
     static bool SetAudioDataPayload(const UObject* WorldContextObject, FGameplayTag Tag, const FInstancedStruct& Payload);
 };

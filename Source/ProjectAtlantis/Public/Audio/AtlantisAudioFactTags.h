@@ -25,3 +25,8 @@ PROJECTATLANTIS_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_AudioState_Investigation_
 // The room reported when the player isn't inside any room volume. Other Room tags live in DefaultGameplayTags.ini.
 PROJECTATLANTIS_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Room_Default);
 PROJECTATLANTIS_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_AudioFact_Environment_Room);
+
+// Sent by the fact bridge when a local player is bound or gone.
+PROJECTATLANTIS_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_AudioFact_Player_Present);
+PROJECTATLANTIS_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_AudioFact_Player_Underwater);
+PROJECTATLANTIS_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_AudioFact_Listener_Underwater);

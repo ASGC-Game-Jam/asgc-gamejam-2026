@@ -56,9 +56,11 @@
 				"LowpassModulationDestination":
 				{
 					"Value": 20000,
-					"bEnableModulation": false,
+					"bEnableModulation": true,
 					"Modulator": null,
-					"Modulators": []
+					"Modulators": [
+						"/Game/ProjectAtlantis/Audio/System/Modulation/Filters/CB_World_LPF.CB_World_LPF"
+					]
 				}
 			},
 			"OutputTarget": "Speaker",
@@ -72,7 +74,9 @@
 			},
 			"DefaultSubmix": null
 		},
-		"ChildClasses": [],
+		"ChildClasses": [
+			"/Game/ProjectAtlantis/Audio/System/SoundClasses/SC_Player.SC_Player"
+		],
 		"PassiveSoundMixModifiers": [],
 		"ParentClass": "/Game/ProjectAtlantis/Audio/System/SoundClasses/SC_Main.SC_Main",
 		"AssetUserData": []

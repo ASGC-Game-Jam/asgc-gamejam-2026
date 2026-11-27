@@ -1,10 +1,9 @@
-// Copyright Your Studio. All Rights Reserved.
+// Copyright (c) 2026 ASGC
 
 #pragma once
 
 namespace ProjectAtlantisAudio
 {
-	// Single entry point that registers every MetaSound interface in the project.
-	// Add a call inside the .cpp each time a new interface file is created.
+	// Registers every MetaSound interface in the project. Add a call in the .cpp for each new interface.
 	void RegisterAllMetaSoundInterfaces();
 }

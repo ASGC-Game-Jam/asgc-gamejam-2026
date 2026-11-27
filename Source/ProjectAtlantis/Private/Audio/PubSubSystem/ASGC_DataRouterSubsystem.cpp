@@ -15,6 +15,8 @@ void UASGC_DataRouterSubsystem::Deinitialize()
 {
     UE_LOG(AtlantisPubSubLogCategory, Log, TEXT("ASGC Audio Data Router Subsystem Deinitializing. Clearing %d subscription lists."), Subscriptions.Num());
     Subscriptions.Empty();
+	CachedFacts.Reset();
+
     Super::Deinitialize();
 }
 
@@ -34,7 +36,7 @@ int32 UASGC_DataRouterSubsystem::Subscribe(FGameplayTag Tag, UObject* Subscriber
         return INDEX_NONE;
     }
 
-    // Verify the subscriber implements our listener interface (supports both C++ and Blueprints)
+    // The subscriber must implement the listener interface, in C++ or Blueprint.
     if (!Subscriber->GetClass()->ImplementsInterface(UASGC_FactListenerInterface::StaticClass()))
     {
         ensureMsgf(false, TEXT("UASGC_DataRouterSubsystem::Subscribe: Subscriber [%s] does not implement IASGC_FactListenerInterface!"), *Subscriber->GetName());
@@ -104,7 +106,9 @@ void UASGC_DataRouterSubsystem::BroadcastFact(FGameplayTag Tag, const FInstanced
         return;
     }
 
-    // Take a snapshot copy to safely handle potential subscription modifications during callbacks
+	CachedFacts.FindOrAdd(Tag) = Payload;
+
+    // Loop over a copy, because a listener may subscribe or unsubscribe while handling the fact.
     TArray<FGameplayFactSubscriberRecord> SubscribersSnapshot = *List;
 
     for (const FGameplayFactSubscriberRecord& Record : SubscribersSnapshot)
@@ -115,7 +119,7 @@ void UASGC_DataRouterSubsystem::BroadcastFact(FGameplayTag Tag, const FInstanced
 
         if (!bIsSubscriberValid)
         {
-            // Fail loudly per requirements: leaked dead object that didn't unsubscribe
+            // Fail loudly: a listener was destroyed without unsubscribing.
             ensureMsgf(false, 
                 TEXT("UASGC_DataRouterSubsystem::BroadcastFact: Subscriber for Tag [%s] (Handle: %d) is invalid or garbage collected without explicit unsubscription! Lifecycle bug detected."), 
                 *Tag.ToString(), Record.HandleID);
@@ -124,7 +128,18 @@ void UASGC_DataRouterSubsystem::BroadcastFact(FGameplayTag Tag, const FInstanced
             continue;
         }
 
-        // Execute the interface function (works seamlessly for both C++ classes and Blueprints)
+        // Works for both C++ and Blueprint listeners.
         IASGC_FactListenerInterface::Execute_OnGameplayFactReceived(TargetObject, Tag, Payload);
     }
+}
+
+bool UASGC_DataRouterSubsystem::TryGetFact(FGameplayTag Tag, FInstancedStruct& OutPayload)
+{
+	if (const FInstancedStruct* FoundPayload = CachedFacts.Find(Tag))
+	{
+		OutPayload = *FoundPayload;
+		return true;
+	}
+
+	return false;
 }

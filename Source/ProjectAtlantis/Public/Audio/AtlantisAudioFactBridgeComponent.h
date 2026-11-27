@@ -11,11 +11,11 @@ class AController;
 class APawn;
 class UAtlantisHidingComponent;
 class UAtlantisOxygenComponent;
+class UAtlantisMovementComponent;
 
 /**
- * Forwards the local player's oxygen and hiding events to the audio ecosystem as facts.
- * Only translates events into facts. How a fact sounds is decided by the music axis mapping.
- * Investigations aren't per-pawn, so they're reported by UAtlantisJournalAudioBridge instead.
+ * Sends the local player's presence, oxygen, underwater, listener underwater and hiding to the audio ecosystem as facts.
+ * On unbind it resets those facts, so listeners never stay stuck after death or unpossession.
  */
 UCLASS(ClassGroup = (Atlantis), meta = (BlueprintSpawnableComponent))
 class PROJECTATLANTIS_API UAtlantisAudioFactBridgeComponent : public UActorComponent
@@ -27,15 +27,16 @@ protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 private:
-	/** Binds to the sources once the owner is locally controlled. Waits a limited number of ticks for the player state. Safe to call more than once. */
+	/** Binds to oxygen and hiding once the owner is locally controlled, retrying for a few ticks until the player state arrives. Safe to call more than once. */
 	void TryBindSources();
 
-	/** Stops listening to every source and cancels any pending retry. Called on end play, and before rebinding when the controller changes. */
+	/** Sends the reset facts, stops listening to every source and cancels any pending retry. Runs on end play and when the controller changes. */
 	void UnbindSources();
 
-	/** Sends each fact's current value once, so the music is right from the start. */
+	/** Sends each fact's current value once, so listeners are right from the start. */
 	void SendInitialFacts();
 
+	/** Sends available oxygen as a 0-1 fraction of capacity. */
 	void SendOxygenLevel();
 
 	UFUNCTION()
@@ -56,15 +57,66 @@ private:
 	UFUNCTION()
 	void HandleHidingStateChanged(bool bHiding);
 
+	/** Sends entering water straight away, and leaving it only after Underwater Exit Delay. Bobbing at the surface sends nothing. */
+	UFUNCTION()
+	void HandleUnderwaterChanged(bool bUnderwater);
+
+	/** Sends the underwater fact and remembers what listeners were told. */
+	void SendUnderwater(bool bUnderwater);
+
+	/** Called when the player has stayed out of the water for Underwater Exit Delay. */
+	void HandleUnderwaterExitTimer();
+
+	/** True if the audio listener is inside the water volume the player is in. Follows a listener override if one is set. */
+	bool IsListenerUnderwater() const;
+
+	/** Runs every Listener Check Interval. Sends a change only once it has held for Listener Change Delay. */
+	void HandleListenerCheckTimer();
+
+	/** Sends the listener underwater fact and remembers what listeners were told. */
+	void SendListenerUnderwater(bool bUnderwater);
+
+private:
+
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisOxygenComponent> OxygenComponent;
 
 	UPROPERTY(Transient)
 	TObjectPtr<UAtlantisHidingComponent> HidingComponent;
 
+	UPROPERTY(Transient)
+	TObjectPtr<UAtlantisMovementComponent> MovementComponent;
+
+	/** True while bound to a local player. Guards against sending reset facts twice. */
 	bool bSourcesBound = false;
 
 	/** Ticks spent waiting for an Atlantis player state. Reset whenever binding starts over. */
 	int32 PlayerStateRetryCount = 0;
 
+	/** Counts down Underwater Exit Delay after the player leaves the water. Cancelled if they go back in first. */
+	FTimerHandle UnderwaterExitTimer;
+
+	/** Seconds the player must stay out of the water before listeners hear they've left. Stops surface bobbing from flickering the fact. */
+	UPROPERTY(EditAnywhere, Category = "Audio", meta = (ClampMin = "0.01"))
+	float UnderwaterExitDelay = 0.5f;
+
+	/** The underwater value listeners last heard. Stops repeat facts while the player bobs. */
+	bool bUnderwaterSent = false;
+
+	/** Seconds between checks of where the audio listener is. */
+	UPROPERTY(EditAnywhere, Category = "Audio", meta = (ClampMin = "0.01"))
+	float ListenerCheckInterval = 0.1f;
+
+	/** Seconds the listener must stay in or out of the water before listeners hear it changed. Stops surface bobbing from fluttering the low-pass. */
+	UPROPERTY(EditAnywhere, Category = "Audio", meta = (ClampMin = "0.0"))
+	float ListenerChangeDelay = 0.2f;
+
+	/** Repeats every Listener Check Interval while bound. */
+	FTimerHandle ListenerCheckTimer;
+
+	/** The listener underwater value listeners last heard. */
+	bool bListenerUnderwaterSent = false;
+
+	/** How long the listener has disagreed with what was last sent. Resets once they agree again. */
+	float ListenerChangeHeldTime = 0.f;
 };

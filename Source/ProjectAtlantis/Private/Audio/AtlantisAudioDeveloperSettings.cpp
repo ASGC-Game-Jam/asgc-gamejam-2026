@@ -9,6 +9,7 @@
 #include "Engine/World.h"
 #include "Audio/AtlantisMusicAxisMapping.h"
 #include "Audio/AtlantisRoomTypeTable.h"
+#include "Engine/DataTable.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisAudioValidation, Log, All);
 
@@ -184,4 +185,14 @@ const TSoftObjectPtr<UMetaSoundSource>* UAtlantisAudioDeveloperSettings::FindMus
 		}
 	}
 	return nullptr;
+}
+
+UDataTable* UAtlantisAudioDeveloperSettings::GetPlayerAudioTable()
+{
+	return GetDefault<UAtlantisAudioDeveloperSettings>()->PlayerAudioData.LoadSynchronous();
+}
+
+const TArray<FAtlantisMixStateRule>& UAtlantisAudioDeveloperSettings::GetMixStateRules()
+{
+	return GetDefault<UAtlantisAudioDeveloperSettings>()->MixStates;
 }

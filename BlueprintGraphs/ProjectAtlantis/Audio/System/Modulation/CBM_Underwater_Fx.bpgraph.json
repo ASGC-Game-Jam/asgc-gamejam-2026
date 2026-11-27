@@ -1,0 +1,35 @@
+{
+	"version": 2,
+	"generatedBy": "keystone-blueprint-export",
+	"package": "/Game/ProjectAtlantis/Audio/System/Modulation/CBM_Underwater_Fx",
+	"asset": "CBM_Underwater_Fx",
+	"assetClass": "SoundControlBusMix",
+	"parentClass": null,
+	"blueprintType": null,
+	"graphs": [],
+	"properties":
+	{
+		"Duration": -1,
+		"bRetriggerOnActivation": false,
+		"MixStages": [
+			{
+				"Bus": "/Game/ProjectAtlantis/Audio/System/Modulation/Filters/CB_World_LPF.CB_World_LPF",
+				"Value":
+				{
+					"TargetValue": 0.76700999999999997,
+					"AttackTime": 0.29999999999999999,
+					"ReleaseTime": 0.5
+				}
+			},
+			{
+				"Bus": "/Game/ProjectAtlantis/Audio/Ambience/Underwater/CB_Amb_Underwater_Toggle.CB_Amb_Underwater_Toggle",
+				"Value":
+				{
+					"TargetValue": 1,
+					"AttackTime": 0.29999999999999999,
+					"ReleaseTime": 0.5
+				}
+			}
+		]
+	}
+}

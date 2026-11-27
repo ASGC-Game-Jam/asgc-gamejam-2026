@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright (c) 2026 ASGC
 
 #pragma once
 
@@ -22,7 +22,8 @@ struct FAtlantisMusicAxisRule;
 
 
 /**
- *  Manages the Music Subsystem for Project Atlantis
+ * Plays each level's music and drives its axes, layers and room type from audio facts.
+ * Lives on the game instance, so it tracks each world as it loads and unloads.
  */
 UCLASS()
 class PROJECTATLANTIS_API UAtlantisAudioSubsystem : public UGameInstanceSubsystem, public IASGC_FactListenerInterface
@@ -59,7 +60,7 @@ private:
     FDelegateHandle ObjectPropertyChangedHandle;
 #endif
 
-    // Stored Delegate Handles
+    // Handles for the world delegates, removed in StopTrackingWorld.
     FDelegateHandle PostWorldInitHandle;
     FDelegateHandle WorldBeginPlayHandle;
     FDelegateHandle WorldCleanupHandle;
