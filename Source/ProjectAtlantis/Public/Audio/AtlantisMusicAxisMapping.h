@@ -8,7 +8,7 @@
 
 #include "AtlantisMusicAxisMapping.generated.h"
 
-/** Music axes that gameplay facts can drive. Environment isn't here because room volumes will set it. */
+/** Music axes that gameplay facts can drive. Environment isn't here, because room volumes set it. */
 UENUM()
 enum class EAtlantisMusicAxis : uint8
 {
@@ -26,6 +26,7 @@ struct FAtlantisMusicAxisRule
 	UPROPERTY(EditAnywhere, Category = "Atlantis Audio", meta = (Categories = "Audio"))
 	FGameplayTag Tag;
 
+	/** The axis this rule pushes. */
 	UPROPERTY(EditAnywhere, Category = "Atlantis Audio")
 	EAtlantisMusicAxis Axis = EAtlantisMusicAxis::Tension;
 
@@ -54,6 +55,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Music Axes", meta = (ClampMin = "0", ClampMax = "1"))
 	float TensionBaseline = 0.3f;
 
+	/** How each gameplay fact pushes an axis. Tension adds every rule up, and PlayerState takes the strongest. */
 	UPROPERTY(EditAnywhere, Category = "Music Axes")
 	TArray<FAtlantisMusicAxisRule> Rules;
 

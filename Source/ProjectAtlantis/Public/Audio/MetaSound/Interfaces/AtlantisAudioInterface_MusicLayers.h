@@ -1,3 +1,4 @@
+// Copyright (c) 2026 ASGC
 // Atlantis.Music.Layers: the points where each music layer comes in.
 
 #pragma once
@@ -16,7 +17,7 @@ namespace ProjectAtlantisAudio
 		// Builds (or returns the cached) interface object that gets registered with MetaSounds.
 		Audio::FParameterInterfacePtr CreateInterface();
 
-		// The actual version data.
+		// The version data, defined in the .cpp.
 		extern const FMetasoundFrontendVersion FrontendVersion;
 
 		namespace Inputs

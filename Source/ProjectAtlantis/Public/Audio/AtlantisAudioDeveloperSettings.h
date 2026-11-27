@@ -8,16 +8,13 @@
 
 #include "AtlantisAudioDeveloperSettings.generated.h"
 
-/**
- * Stores any audio dev settings
- */
-
  class UMetaSoundSource;
  class UAtlantisMusicAxisMapping;
  struct FInstancedStruct;
  class UAtlantisRoomTypeTable;
+ class UDataTable;
 
-
+/** Project-wide audio settings, under Project Settings > Game > Atlantis Audio Settings. */
 UCLASS(config=Game, DefaultConfig)
 class PROJECTATLANTIS_API UAtlantisAudioDeveloperSettings : public UDeveloperSettings
 {
@@ -31,6 +28,7 @@ public:
 	virtual FText GetSectionDescription() const override;
 #endif
 
+	/** True if the music subsystem should run. The atlantis.audio.musicSubsystem console variable can force it on or off. */
 	static bool DetermineIfMusicSubsystemEnabled();
 
 	/** The score for this world's map, from Music Per Map. nullptr if this world shouldn't play music. */
@@ -38,19 +36,23 @@ public:
 
 	static bool IsMusicPlaybackWorld(const UWorld* World);
 	
-	/** Checks Tag is registered and Payload holds the registered struct type. Fails loudly on a breach. Returns true if valid. */
+	/** True if Tag is registered and Payload holds its registered struct. Logs an error for any mismatch. */
 	static bool ValidatePayload(FGameplayTag Tag, const FInstancedStruct& Payload);
 
+	/** Loads the music axis mapping asset. Returns null if none is set. */
 	static UAtlantisMusicAxisMapping* GetMusicAxisMapping();
 
 	/** Finds the RoomType pin ID for a room tag. Logs an error and returns false if the tag or table is missing. */
 	static bool GetRoomTypeId(FGameplayTag RoomTag, int32& OutRoomTypeId);
 
+	/** Loads the player audio table. Returns null if none is set. */
+	static UDataTable* GetPlayerAudioTable();
 
 protected:
 
 	friend struct FAtlantisAudioValidationTestAccess;
 	
+	/** Turns the music subsystem on or off for the whole project. */
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Subsystem Settings")
 	bool bEnableMusicManagementSubsystem = true;
 
@@ -69,6 +71,10 @@ protected:
 	/** The table that matches room tags to RoomType pin IDs. */
 	UPROPERTY(Config, EditAnywhere, Category="Atlantis Audio Rooms")
 	TSoftObjectPtr<UAtlantisRoomTypeTable> RoomTypeTable;
+
+	/** The table of suit sounds the player audio subsystem plays, and the facts that drive them. */
+	UPROPERTY(Config, EditAnywhere, Category="Atlantis Player Audio", meta = (RequiredAssetDataTags = "RowStructure=/Script/ProjectAtlantis.AtlantisPlayerAudioRow"))
+	TSoftObjectPtr<UDataTable> PlayerAudioData;
 
 private:
 	/** This world's entry in Music Per Map, or nullptr if its map isn't listed. Handles PIE map names. */
