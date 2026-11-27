@@ -3,19 +3,20 @@
 #include "Investigation/AtlantisInspectPresentationComponent.h"
 #include "Investigation/AtlantisInspectableComponent.h"
 #include "Investigation/AtlantisInspectorComponent.h"
+#include "UI/AtlantisInspectWidget.h"
 #include "Components/PointLightComponent.h"
 #include "Components/PostProcessComponent.h"
+#include "Components/PrimitiveComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
-#include "GameFramework/Actor.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PlayerController.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAtlantisInspectPresentation, Log, All);
 
 namespace AtlantisInspectDimParams
 {
-	// Scalar parameter names inside MPP_InspectDim
-	const FName FocusDistance(TEXT("FocusDistance"));
-	const FName FocusRadius(TEXT("FocusRadius"));
-	const FName DimFalloff(TEXT("DimFalloff"));
+	// Scalar parameter name inside MPP_InspectDim
 	const FName DimAmount(TEXT("DimAmount"));
 }
 
@@ -54,24 +55,109 @@ void UAtlantisInspectPresentationComponent::EndPlay(const EEndPlayReason::Type E
 	BoundInspector.Reset();
 	RemoveInspectLight();
 	RemoveBackgroundEffects();
+	HideInspectWidget(nullptr);
+	RestoreOtherWidgets();
 
 	Super::EndPlay(EndPlayReason);
 }
 
 void UAtlantisInspectPresentationComponent::HandleInspectStarted(UAtlantisInspectableComponent* Inspectable)
 {
-	const UAtlantisInspectorComponent* Inspector = BoundInspector.Get();
+	UAtlantisInspectorComponent* Inspector = BoundInspector.Get();
 	if (Inspectable && Inspector)
 	{
 		AddInspectLight(*Inspectable, Inspector->GetInspectView());
-		AddBackgroundEffects();
+		AddBackgroundEffects(*Inspectable);
+		// Before showing ours, so the inspect widget is never caught by it
+		HideOtherWidgets();
+		ShowInspectWidget(*Inspector, *Inspectable);
 	}
 }
 
 void UAtlantisInspectPresentationComponent::HandleInspectEnded(UAtlantisInspectableComponent* Inspectable)
 {
+	HideInspectWidget(Inspectable);
+	RestoreOtherWidgets();
 	RemoveInspectLight();
 	RemoveBackgroundEffects();
+}
+
+void UAtlantisInspectPresentationComponent::ShowInspectWidget(UAtlantisInspectorComponent& Inspector, UAtlantisInspectableComponent& Inspectable)
+{
+	if (!InspectWidgetClass)
+	{
+		return;
+	}
+
+	const APawn* Pawn = Cast<APawn>(GetOwner());
+	APlayerController* PlayerController = Pawn ? Pawn->GetController<APlayerController>() : nullptr;
+	if (!PlayerController)
+	{
+		return;
+	}
+
+	InspectWidget = CreateWidget<UAtlantisInspectWidget>(PlayerController, InspectWidgetClass);
+	if (!InspectWidget)
+	{
+		return;
+	}
+
+	InspectWidget->AddToPlayerScreen();
+	InspectWidget->StartInspect(&Inspector, &Inspectable);
+}
+
+void UAtlantisInspectPresentationComponent::HideInspectWidget(UAtlantisInspectableComponent* Inspectable)
+{
+	if (InspectWidget)
+	{
+		InspectWidget->EndInspect(Inspectable);
+		InspectWidget->RemoveFromParent();
+		InspectWidget = nullptr;
+	}
+}
+
+void UAtlantisInspectPresentationComponent::HideOtherWidgets()
+{
+	if (!bHideOtherWidgets)
+	{
+		return;
+	}
+
+	// Top level only: hiding a parent (like the HUD root) already hides everything inside it
+	TArray<UUserWidget*> OnScreenWidgets;
+	UWidgetBlueprintLibrary::GetAllWidgetsOfClass(this, OnScreenWidgets, UUserWidget::StaticClass(), true);
+
+	for (UUserWidget* Widget : OnScreenWidgets)
+	{
+		if (!Widget || Widget == InspectWidget || !Widget->IsVisible())
+		{
+			continue;
+		}
+
+		const bool bKept = WidgetsKeptVisible.ContainsByPredicate([Widget](const TSubclassOf<UUserWidget>& KeptClass)
+		{
+			return KeptClass && Widget->IsA(KeptClass);
+		});
+		if (bKept)
+		{
+			continue;
+		}
+
+		HiddenWidgets.Add(Widget, Widget->GetVisibility());
+		Widget->SetVisibility(ESlateVisibility::Collapsed);
+	}
+}
+
+void UAtlantisInspectPresentationComponent::RestoreOtherWidgets()
+{
+	for (const TPair<TWeakObjectPtr<UUserWidget>, ESlateVisibility>& Hidden : HiddenWidgets)
+	{
+		if (UUserWidget* Widget = Hidden.Key.Get())
+		{
+			Widget->SetVisibility(Hidden.Value);
+		}
+	}
+	HiddenWidgets.Reset();
 }
 
 void UAtlantisInspectPresentationComponent::AddInspectLight(const UAtlantisInspectableComponent& Inspectable, const FTransform& View)
@@ -109,10 +195,11 @@ void UAtlantisInspectPresentationComponent::RemoveInspectLight()
 	}
 }
 
-void UAtlantisInspectPresentationComponent::AddBackgroundEffects()
+void UAtlantisInspectPresentationComponent::AddBackgroundEffects(const UAtlantisInspectableComponent& Inspectable)
 {
+	const AActor* Object = Inspectable.GetOwner();
 	const bool bBlur = bEnableBackgroundBlur && BlurFstop > 0.f;
-	const bool bDim = bEnableBackgroundDim && DimMaterial && DimFalloff > 0.f;
+	const bool bDim = bEnableBackgroundDim && DimMaterial && Object;
 	if (bEnableBackgroundBlur && !bBlur)
 	{
 		UE_LOG(LogAtlantisInspectPresentation, Warning, TEXT("%s on %s: BlurFstop not set, inspecting without the blur."),
@@ -120,7 +207,7 @@ void UAtlantisInspectPresentationComponent::AddBackgroundEffects()
 	}
 	if (bEnableBackgroundDim && !bDim)
 	{
-		UE_LOG(LogAtlantisInspectPresentation, Warning, TEXT("%s on %s: DimMaterial or DimFalloff not set, inspecting without the dim."),
+		UE_LOG(LogAtlantisInspectPresentation, Warning, TEXT("%s on %s: DimMaterial not set, inspecting without the dim."),
 			*GetName(), *GetNameSafe(GetOwner()));
 	}
 	if (!bBlur && !bDim)
@@ -135,20 +222,23 @@ void UAtlantisInspectPresentationComponent::AddBackgroundEffects()
 
 	if (bBlur)
 	{
+		// The fstop itself is set by UpdateBackgroundFocus, it depends on the zoom
 		Settings.bOverride_DepthOfFieldFocalDistance = true;
 		Settings.bOverride_DepthOfFieldFstop = true;
-		Settings.DepthOfFieldFstop = BlurFstop;
 		//low values would be ignored
 		Settings.bOverride_DepthOfFieldMinFstop = true;
-		Settings.DepthOfFieldMinFstop = BlurFstop;
+		if (const UAtlantisInspectorComponent* Inspector = BoundInspector.Get())
+		{
+			BlurBaseDistance = Inspector->GetInspectedObjectDistance();
+		}
 	}
 
 	if (bDim)
 	{
 		DimMaterialInstance = UMaterialInstanceDynamic::Create(DimMaterial, this);
 		DimMaterialInstance->SetScalarParameterValue(AtlantisInspectDimParams::DimAmount, DimAmount);
-		DimMaterialInstance->SetScalarParameterValue(AtlantisInspectDimParams::DimFalloff, DimFalloff);
 		Settings.WeightedBlendables.Array.Add(FWeightedBlendable(1.f, DimMaterialInstance));
+		MaskObjectFromDim(*Object);
 	}
 
 	BackgroundPostProcess->RegisterComponent();
@@ -163,6 +253,34 @@ void UAtlantisInspectPresentationComponent::RemoveBackgroundEffects()
 		BackgroundPostProcess = nullptr;
 	}
 	DimMaterialInstance = nullptr;
+	BlurBaseDistance = 0.f;
+	UnmaskObjectFromDim();
+}
+
+void UAtlantisInspectPresentationComponent::MaskObjectFromDim(const AActor& Object)
+{
+	TArray<UPrimitiveComponent*> Primitives;
+	Object.GetComponents<UPrimitiveComponent>(Primitives);
+	for (UPrimitiveComponent* Primitive : Primitives)
+	{
+		if (Primitive && Primitive->IsVisible() && !Primitive->bRenderCustomDepth)
+		{
+			Primitive->SetRenderCustomDepth(true);
+			DimMaskedPrimitives.Add(Primitive);
+		}
+	}
+}
+
+void UAtlantisInspectPresentationComponent::UnmaskObjectFromDim()
+{
+	for (const TWeakObjectPtr<UPrimitiveComponent>& Primitive : DimMaskedPrimitives)
+	{
+		if (UPrimitiveComponent* Masked = Primitive.Get())
+		{
+			Masked->SetRenderCustomDepth(false);
+		}
+	}
+	DimMaskedPrimitives.Reset();
 }
 
 void UAtlantisInspectPresentationComponent::UpdateBackgroundFocus()
@@ -175,10 +293,14 @@ void UAtlantisInspectPresentationComponent::UpdateBackgroundFocus()
 
 	// Both measure depth along the view direction, the same way GetInspectedObjectDistance does
 	const float Distance = Inspector->GetInspectedObjectDistance();
-	BackgroundPostProcess->Settings.DepthOfFieldFocalDistance = Distance;
-	if (DimMaterialInstance)
+	FPostProcessSettings& Settings = BackgroundPostProcess->Settings;
+	Settings.DepthOfFieldFocalDistance = Distance;
+	if (Settings.bOverride_DepthOfFieldFstop && BlurBaseDistance > 0.f && Distance > 0.f)
 	{
-		DimMaterialInstance->SetScalarParameterValue(AtlantisInspectDimParams::FocusDistance, Distance);
-		DimMaterialInstance->SetScalarParameterValue(AtlantisInspectDimParams::FocusRadius, Inspector->GetInspectedObjectRadius());
+		// Background blur grows as the focus gets closer (~ 1 / (Fstop * Distance)), which makes the background
+		// look like it moves while zooming. Scaling the fstop the other way keeps it the same at every zoom
+		const float Fstop = BlurFstop * BlurBaseDistance / Distance;
+		Settings.DepthOfFieldFstop = Fstop;
+		Settings.DepthOfFieldMinFstop = Fstop;
 	}
 }

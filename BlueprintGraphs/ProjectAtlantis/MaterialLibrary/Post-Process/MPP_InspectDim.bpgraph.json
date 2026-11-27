@@ -66,7 +66,7 @@
 							"type": "materialinput:rgba",
 							"defaultValue": null,
 							"links": [
-								"5c7142b24429aa78b36ca6becd64489b:o:Output"
+								"efd25e004da68b424f7cbf860d0073b1:o:Output"
 							]
 						},
 						{
@@ -264,515 +264,15 @@
 					]
 				},
 				{
-					"guid": "0bb9c9fe43ff18475cd1e382dc968daa",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Scalar Parameter",
-					"x": -1040,
-					"y": 324,
-					"comment": null,
-					"pins": [
-						{
-							"id": "0bb9c9fe43ff18475cd1e382dc968daa:i:Default Value",
-							"name": "Default Value",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": "0.0",
-							"links": []
-						},
-						{
-							"id": "0bb9c9fe43ff18475cd1e382dc968daa:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"ca743e2c4a6f2270dd973293d031f4dc:i:B"
-							]
-						}
-					]
-				},
-				{
-					"guid": "0e8387b64a1da9508c0c5cacf944e7f2",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Scalar Parameter",
-					"x": -2340,
-					"y": 324,
-					"comment": null,
-					"pins": [
-						{
-							"id": "0e8387b64a1da9508c0c5cacf944e7f2:i:Default Value",
-							"name": "Default Value",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": "0.0",
-							"links": []
-						},
-						{
-							"id": "0e8387b64a1da9508c0c5cacf944e7f2:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"8d1662f54a19e41711cee088db28571e:i:B"
-							]
-						}
-					]
-				},
-				{
-					"guid": "195f2b2c445b23219c0c0e8987c8760c",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Saturate",
-					"x": -1040,
-					"y": 162,
-					"comment": null,
-					"pins": [
-						{
-							"id": "195f2b2c445b23219c0c0e8987c8760c:i:Input",
-							"name": "Input",
-							"direction": "input",
-							"type": "required",
-							"defaultValue": null,
-							"links": [
-								"3a094cd94708ed042b53d897ed8b3b60:o:Output"
-							]
-						},
-						{
-							"id": "195f2b2c445b23219c0c0e8987c8760c:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"ca743e2c4a6f2270dd973293d031f4dc:i:A"
-							]
-						}
-					]
-				},
-				{
-					"guid": "3a094cd94708ed042b53d897ed8b3b60",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Divide",
-					"x": -1300,
-					"y": 162,
-					"comment": null,
-					"pins": [
-						{
-							"id": "3a094cd94708ed042b53d897ed8b3b60:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"63081e3944e5a975f44851ab7fb049a1:o:Output"
-							]
-						},
-						{
-							"id": "3a094cd94708ed042b53d897ed8b3b60:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"dd3d7ae942b4b02a96b7e299a0104343:o:Output"
-							]
-						},
-						{
-							"id": "3a094cd94708ed042b53d897ed8b3b60:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"195f2b2c445b23219c0c0e8987c8760c:i:Input"
-							]
-						}
-					]
-				},
-				{
-					"guid": "5c7142b24429aa78b36ca6becd64489b",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Multiply",
-					"x": -260,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "5c7142b24429aa78b36ca6becd64489b:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"989ffa2b48cfed358595388cfd5438e0:o:Output"
-							]
-						},
-						{
-							"id": "5c7142b24429aa78b36ca6becd64489b:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"b480361b415440c66f23ec85ded2ec2e:o:Output"
-							]
-						},
-						{
-							"id": "5c7142b24429aa78b36ca6becd64489b:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"00000000000000000000000000000001:i:Emissive Color"
-							]
-						}
-					]
-				},
-				{
-					"guid": "5f4e14784feb0c92dd3b52b0f293457f",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Abs",
-					"x": -1820,
-					"y": 162,
-					"comment": null,
-					"pins": [
-						{
-							"id": "5f4e14784feb0c92dd3b52b0f293457f:i:Input",
-							"name": "Input",
-							"direction": "input",
-							"type": "required",
-							"defaultValue": null,
-							"links": [
-								"8d1662f54a19e41711cee088db28571e:o:Output"
-							]
-						},
-						{
-							"id": "5f4e14784feb0c92dd3b52b0f293457f:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"63081e3944e5a975f44851ab7fb049a1:i:A"
-							]
-						}
-					]
-				},
-				{
-					"guid": "63081e3944e5a975f44851ab7fb049a1",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Subtract",
-					"x": -1560,
-					"y": 162,
-					"comment": null,
-					"pins": [
-						{
-							"id": "63081e3944e5a975f44851ab7fb049a1:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"5f4e14784feb0c92dd3b52b0f293457f:o:Output"
-							]
-						},
-						{
-							"id": "63081e3944e5a975f44851ab7fb049a1:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"b78630b849a2c9690ead0c9eca7a1286:o:Output"
-							]
-						},
-						{
-							"id": "63081e3944e5a975f44851ab7fb049a1:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"3a094cd94708ed042b53d897ed8b3b60:i:A"
-							]
-						}
-					]
-				},
-				{
-					"guid": "8d1662f54a19e41711cee088db28571e",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Subtract",
-					"x": -2080,
-					"y": 162,
-					"comment": null,
-					"pins": [
-						{
-							"id": "8d1662f54a19e41711cee088db28571e:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"a3d6ea0d4f5a1c796e77a98f3644efb6:o:Output"
-							]
-						},
-						{
-							"id": "8d1662f54a19e41711cee088db28571e:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"0e8387b64a1da9508c0c5cacf944e7f2:o:Output"
-							]
-						},
-						{
-							"id": "8d1662f54a19e41711cee088db28571e:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"5f4e14784feb0c92dd3b52b0f293457f:i:Input"
-							]
-						}
-					]
-				},
-				{
-					"guid": "989ffa2b48cfed358595388cfd5438e0",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Component Mask",
-					"x": -520,
-					"y": 0,
-					"comment": null,
-					"pins": [
-						{
-							"id": "989ffa2b48cfed358595388cfd5438e0:i:Input",
-							"name": "Input",
-							"direction": "input",
-							"type": "required",
-							"defaultValue": null,
-							"links": [
-								"ee631c1f439123c4b8d0ab868aef9794:o:Color"
-							]
-						},
-						{
-							"id": "989ffa2b48cfed358595388cfd5438e0:i:R",
-							"name": "R",
-							"direction": "input",
-							"type": "optional:bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "989ffa2b48cfed358595388cfd5438e0:i:G",
-							"name": "G",
-							"direction": "input",
-							"type": "optional:bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "989ffa2b48cfed358595388cfd5438e0:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "optional:bool",
-							"defaultValue": "true",
-							"links": []
-						},
-						{
-							"id": "989ffa2b48cfed358595388cfd5438e0:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "optional:bool",
-							"defaultValue": "false",
-							"links": []
-						},
-						{
-							"id": "989ffa2b48cfed358595388cfd5438e0:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"5c7142b24429aa78b36ca6becd64489b:i:A"
-							]
-						}
-					]
-				},
-				{
-					"guid": "a3d6ea0d4f5a1c796e77a98f3644efb6",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Scene Depth",
-					"x": -2336,
-					"y": 144,
-					"comment": null,
-					"pins": [
-						{
-							"id": "a3d6ea0d4f5a1c796e77a98f3644efb6:i:UVs",
-							"name": "UVs",
-							"direction": "input",
-							"type": "optional:rg",
-							"defaultValue": "X=0.000 Y=0.000",
-							"links": []
-						},
-						{
-							"id": "a3d6ea0d4f5a1c796e77a98f3644efb6:i:Input Mode",
-							"name": "Input Mode",
-							"direction": "input",
-							"type": "optional:/Script/Engine.EMaterialSceneAttributeInputMode",
-							"defaultValue": "Coordinates",
-							"links": []
-						},
-						{
-							"id": "a3d6ea0d4f5a1c796e77a98f3644efb6:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "mask:red",
-							"defaultValue": null,
-							"links": [
-								"8d1662f54a19e41711cee088db28571e:i:A"
-							]
-						}
-					]
-				},
-				{
-					"guid": "b480361b415440c66f23ec85ded2ec2e",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression One Minus",
-					"x": -520,
-					"y": 162,
-					"comment": null,
-					"pins": [
-						{
-							"id": "b480361b415440c66f23ec85ded2ec2e:i:Input",
-							"name": "Input",
-							"direction": "input",
-							"type": "required",
-							"defaultValue": null,
-							"links": [
-								"ca743e2c4a6f2270dd973293d031f4dc:o:Output"
-							]
-						},
-						{
-							"id": "b480361b415440c66f23ec85ded2ec2e:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"5c7142b24429aa78b36ca6becd64489b:i:B"
-							]
-						}
-					]
-				},
-				{
-					"guid": "b78630b849a2c9690ead0c9eca7a1286",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Scalar Parameter",
-					"x": -1820,
-					"y": 324,
-					"comment": null,
-					"pins": [
-						{
-							"id": "b78630b849a2c9690ead0c9eca7a1286:i:Default Value",
-							"name": "Default Value",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": "0.0",
-							"links": []
-						},
-						{
-							"id": "b78630b849a2c9690ead0c9eca7a1286:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"63081e3944e5a975f44851ab7fb049a1:i:B"
-							]
-						}
-					]
-				},
-				{
-					"guid": "ca743e2c4a6f2270dd973293d031f4dc",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Multiply",
-					"x": -780,
-					"y": 162,
-					"comment": null,
-					"pins": [
-						{
-							"id": "ca743e2c4a6f2270dd973293d031f4dc:i:A",
-							"name": "A",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"195f2b2c445b23219c0c0e8987c8760c:o:Output"
-							]
-						},
-						{
-							"id": "ca743e2c4a6f2270dd973293d031f4dc:i:B",
-							"name": "B",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": null,
-							"links": [
-								"0bb9c9fe43ff18475cd1e382dc968daa:o:Output"
-							]
-						},
-						{
-							"id": "ca743e2c4a6f2270dd973293d031f4dc:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"b480361b415440c66f23ec85ded2ec2e:i:Input"
-							]
-						}
-					]
-				},
-				{
-					"guid": "dd3d7ae942b4b02a96b7e299a0104343",
-					"class": "MaterialGraphNode",
-					"title": "Material Expression Scalar Parameter",
-					"x": -1560,
-					"y": 324,
-					"comment": null,
-					"pins": [
-						{
-							"id": "dd3d7ae942b4b02a96b7e299a0104343:i:Default Value",
-							"name": "Default Value",
-							"direction": "input",
-							"type": "optional:red",
-							"defaultValue": "1.0",
-							"links": []
-						},
-						{
-							"id": "dd3d7ae942b4b02a96b7e299a0104343:o:Output",
-							"name": "Output",
-							"direction": "output",
-							"type": "None",
-							"defaultValue": null,
-							"links": [
-								"3a094cd94708ed042b53d897ed8b3b60:i:B"
-							]
-						}
-					]
-				},
-				{
-					"guid": "ee631c1f439123c4b8d0ab868aef9794",
+					"guid": "01c7960f47954252a3dc4597b61774bb",
 					"class": "MaterialGraphNode",
 					"title": "Material Expression Scene Texture",
-					"x": -864,
-					"y": -16,
+					"x": -1300,
+					"y": 100,
 					"comment": null,
 					"pins": [
 						{
-							"id": "ee631c1f439123c4b8d0ab868aef9794:i:UVs",
+							"id": "01c7960f47954252a3dc4597b61774bb:i:UVs",
 							"name": "UVs",
 							"direction": "input",
 							"type": "optional",
@@ -780,15 +280,15 @@
 							"links": []
 						},
 						{
-							"id": "ee631c1f439123c4b8d0ab868aef9794:i:Scene Texture Id",
+							"id": "01c7960f47954252a3dc4597b61774bb:i:Scene Texture Id",
 							"name": "Scene Texture Id",
 							"direction": "input",
 							"type": "optional:/Script/Engine.ESceneTextureId",
-							"defaultValue": "PostProcessInput0",
+							"defaultValue": "CustomDepth",
 							"links": []
 						},
 						{
-							"id": "ee631c1f439123c4b8d0ab868aef9794:i:Filtered",
+							"id": "01c7960f47954252a3dc4597b61774bb:i:Filtered",
 							"name": "Filtered",
 							"direction": "input",
 							"type": "optional:bool",
@@ -796,17 +296,17 @@
 							"links": []
 						},
 						{
-							"id": "ee631c1f439123c4b8d0ab868aef9794:o:Color",
+							"id": "01c7960f47954252a3dc4597b61774bb:o:Color",
 							"name": "Color",
 							"direction": "output",
 							"type": "mask:rgba",
 							"defaultValue": null,
 							"links": [
-								"989ffa2b48cfed358595388cfd5438e0:i:Input"
+								"393c3d594410a65f85c8c6b0f51a6440:i:Input"
 							]
 						},
 						{
-							"id": "ee631c1f439123c4b8d0ab868aef9794:o:Size",
+							"id": "01c7960f47954252a3dc4597b61774bb:o:Size",
 							"name": "Size",
 							"direction": "output",
 							"type": "None",
@@ -814,12 +314,587 @@
 							"links": []
 						},
 						{
-							"id": "ee631c1f439123c4b8d0ab868aef9794:o:InvSize",
+							"id": "01c7960f47954252a3dc4597b61774bb:o:InvSize",
 							"name": "InvSize",
 							"direction": "output",
 							"type": "None",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "1be169f44e121346973c858fbe213e99",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Scene Texture",
+					"x": -900,
+					"y": -200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "1be169f44e121346973c858fbe213e99:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1be169f44e121346973c858fbe213e99:i:Scene Texture Id",
+							"name": "Scene Texture Id",
+							"direction": "input",
+							"type": "optional:/Script/Engine.ESceneTextureId",
+							"defaultValue": "PostProcessInput0",
+							"links": []
+						},
+						{
+							"id": "1be169f44e121346973c858fbe213e99:i:Filtered",
+							"name": "Filtered",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "1be169f44e121346973c858fbe213e99:o:Color",
+							"name": "Color",
+							"direction": "output",
+							"type": "mask:rgba",
+							"defaultValue": null,
+							"links": [
+								"68dd84f0479927402d6ca29bad0cd6ab:i:Input"
+							]
+						},
+						{
+							"id": "1be169f44e121346973c858fbe213e99:o:Size",
+							"name": "Size",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "1be169f44e121346973c858fbe213e99:o:InvSize",
+							"name": "InvSize",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "35e0e7ec422208e3a2819d84951e8883",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Scene Depth",
+					"x": -1050,
+					"y": 250,
+					"comment": null,
+					"pins": [
+						{
+							"id": "35e0e7ec422208e3a2819d84951e8883:i:UVs",
+							"name": "UVs",
+							"direction": "input",
+							"type": "optional:rg",
+							"defaultValue": "X=0.000 Y=0.000",
+							"links": []
+						},
+						{
+							"id": "35e0e7ec422208e3a2819d84951e8883:i:Input Mode",
+							"name": "Input Mode",
+							"direction": "input",
+							"type": "optional:/Script/Engine.EMaterialSceneAttributeInputMode",
+							"defaultValue": "Coordinates",
+							"links": []
+						},
+						{
+							"id": "35e0e7ec422208e3a2819d84951e8883:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "mask:red",
+							"defaultValue": null,
+							"links": [
+								"72b8b4ff4df9c1e22d3d30837e3d8732:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "393c3d594410a65f85c8c6b0f51a6440",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Component Mask",
+					"x": -1050,
+					"y": 100,
+					"comment": null,
+					"pins": [
+						{
+							"id": "393c3d594410a65f85c8c6b0f51a6440:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"01c7960f47954252a3dc4597b61774bb:o:Color"
+							]
+						},
+						{
+							"id": "393c3d594410a65f85c8c6b0f51a6440:i:R",
+							"name": "R",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "393c3d594410a65f85c8c6b0f51a6440:i:G",
+							"name": "G",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "393c3d594410a65f85c8c6b0f51a6440:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "393c3d594410a65f85c8c6b0f51a6440:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "393c3d594410a65f85c8c6b0f51a6440:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"4fd9d4124c3f14c941141999e3dba1b2:i:A",
+								"72b8b4ff4df9c1e22d3d30837e3d8732:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "4fd9d4124c3f14c941141999e3dba1b2",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Subtract",
+					"x": -850,
+					"y": 350,
+					"comment": null,
+					"pins": [
+						{
+							"id": "4fd9d4124c3f14c941141999e3dba1b2:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"393c3d594410a65f85c8c6b0f51a6440:o:Output"
+							]
+						},
+						{
+							"id": "4fd9d4124c3f14c941141999e3dba1b2:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"a1d5e38a46fa1a5d6782f9a27aef68a3:o:Output"
+							]
+						},
+						{
+							"id": "4fd9d4124c3f14c941141999e3dba1b2:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"8f6575404bdb0cf9ba325c8d678ea0e9:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "653b4c46491075c8d76ff79337c64287",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Multiply",
+					"x": -400,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "653b4c46491075c8d76ff79337c64287:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"9d4e933e4fbf02e9dbf5a88fe031e1a4:o:Output"
+							]
+						},
+						{
+							"id": "653b4c46491075c8d76ff79337c64287:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"d25b4c314a6e152ebc234d96d812050c:o:Output"
+							]
+						},
+						{
+							"id": "653b4c46491075c8d76ff79337c64287:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"911add0c48c757131db699b40627a1e9:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "68dd84f0479927402d6ca29bad0cd6ab",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Component Mask",
+					"x": -650,
+					"y": -200,
+					"comment": null,
+					"pins": [
+						{
+							"id": "68dd84f0479927402d6ca29bad0cd6ab:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"1be169f44e121346973c858fbe213e99:o:Color"
+							]
+						},
+						{
+							"id": "68dd84f0479927402d6ca29bad0cd6ab:i:R",
+							"name": "R",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "68dd84f0479927402d6ca29bad0cd6ab:i:G",
+							"name": "G",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "68dd84f0479927402d6ca29bad0cd6ab:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "68dd84f0479927402d6ca29bad0cd6ab:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:bool",
+							"defaultValue": "false",
+							"links": []
+						},
+						{
+							"id": "68dd84f0479927402d6ca29bad0cd6ab:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"efd25e004da68b424f7cbf860d0073b1:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "72b8b4ff4df9c1e22d3d30837e3d8732",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Subtract",
+					"x": -850,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "72b8b4ff4df9c1e22d3d30837e3d8732:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"393c3d594410a65f85c8c6b0f51a6440:o:Output"
+							]
+						},
+						{
+							"id": "72b8b4ff4df9c1e22d3d30837e3d8732:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"35e0e7ec422208e3a2819d84951e8883:o:Output"
+							]
+						},
+						{
+							"id": "72b8b4ff4df9c1e22d3d30837e3d8732:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"78d6049049b2eaee3fa580a8ea800c9a:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "78d6049049b2eaee3fa580a8ea800c9a",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Subtract",
+					"x": -700,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "78d6049049b2eaee3fa580a8ea800c9a:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"72b8b4ff4df9c1e22d3d30837e3d8732:o:Output"
+							]
+						},
+						{
+							"id": "78d6049049b2eaee3fa580a8ea800c9a:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "1.0",
+							"links": []
+						},
+						{
+							"id": "78d6049049b2eaee3fa580a8ea800c9a:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"8f6575404bdb0cf9ba325c8d678ea0e9:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "8f6575404bdb0cf9ba325c8d678ea0e9",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Max",
+					"x": -700,
+					"y": 250,
+					"comment": null,
+					"pins": [
+						{
+							"id": "8f6575404bdb0cf9ba325c8d678ea0e9:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"78d6049049b2eaee3fa580a8ea800c9a:o:Output"
+							]
+						},
+						{
+							"id": "8f6575404bdb0cf9ba325c8d678ea0e9:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"4fd9d4124c3f14c941141999e3dba1b2:o:Output"
+							]
+						},
+						{
+							"id": "8f6575404bdb0cf9ba325c8d678ea0e9:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"9d4e933e4fbf02e9dbf5a88fe031e1a4:i:Input"
+							]
+						}
+					]
+				},
+				{
+					"guid": "911add0c48c757131db699b40627a1e9",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression One Minus",
+					"x": -250,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "911add0c48c757131db699b40627a1e9:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"653b4c46491075c8d76ff79337c64287:o:Output"
+							]
+						},
+						{
+							"id": "911add0c48c757131db699b40627a1e9:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"efd25e004da68b424f7cbf860d0073b1:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9d4e933e4fbf02e9dbf5a88fe031e1a4",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Saturate",
+					"x": -550,
+					"y": 150,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9d4e933e4fbf02e9dbf5a88fe031e1a4:i:Input",
+							"name": "Input",
+							"direction": "input",
+							"type": "required",
+							"defaultValue": null,
+							"links": [
+								"8f6575404bdb0cf9ba325c8d678ea0e9:o:Output"
+							]
+						},
+						{
+							"id": "9d4e933e4fbf02e9dbf5a88fe031e1a4:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"653b4c46491075c8d76ff79337c64287:i:A"
+							]
+						}
+					]
+				},
+				{
+					"guid": "a1d5e38a46fa1a5d6782f9a27aef68a3",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Scalar Parameter",
+					"x": -1050,
+					"y": 400,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a1d5e38a46fa1a5d6782f9a27aef68a3:i:Default Value",
+							"name": "Default Value",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "100000.0",
+							"links": []
+						},
+						{
+							"id": "a1d5e38a46fa1a5d6782f9a27aef68a3:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"4fd9d4124c3f14c941141999e3dba1b2:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "d25b4c314a6e152ebc234d96d812050c",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Scalar Parameter",
+					"x": -550,
+					"y": 300,
+					"comment": null,
+					"pins": [
+						{
+							"id": "d25b4c314a6e152ebc234d96d812050c:i:Default Value",
+							"name": "Default Value",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": "0.0",
+							"links": []
+						},
+						{
+							"id": "d25b4c314a6e152ebc234d96d812050c:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"653b4c46491075c8d76ff79337c64287:i:B"
+							]
+						}
+					]
+				},
+				{
+					"guid": "efd25e004da68b424f7cbf860d0073b1",
+					"class": "MaterialGraphNode",
+					"title": "Material Expression Multiply",
+					"x": -150,
+					"y": -100,
+					"comment": null,
+					"pins": [
+						{
+							"id": "efd25e004da68b424f7cbf860d0073b1:i:A",
+							"name": "A",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"68dd84f0479927402d6ca29bad0cd6ab:o:Output"
+							]
+						},
+						{
+							"id": "efd25e004da68b424f7cbf860d0073b1:i:B",
+							"name": "B",
+							"direction": "input",
+							"type": "optional:red",
+							"defaultValue": null,
+							"links": [
+								"911add0c48c757131db699b40627a1e9:o:Output"
+							]
+						},
+						{
+							"id": "efd25e004da68b424f7cbf860d0073b1:o:Output",
+							"name": "Output",
+							"direction": "output",
+							"type": "None",
+							"defaultValue": null,
+							"links": [
+								"00000000000000000000000000000001:i:Emissive Color"
+							]
 						}
 					]
 				}
@@ -1106,7 +1181,7 @@
 					"B": 0,
 					"A": 0
 				},
-				"Expression": "/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionMultiply_1",
+				"Expression": "/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionMultiply_6",
 				"OutputIndex": 0,
 				"InputName": "None",
 				"Mask": 0,
@@ -1319,21 +1394,21 @@
 			"ExpressionCollection":
 			{
 				"Expressions": [
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionMultiply_1",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSceneTexture_0",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionComponentMask_0",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSceneDepth_0",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionScalarParameter_0",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionScalarParameter_1",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSceneTexture_6",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionComponentMask_6",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSceneTexture_7",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionComponentMask_7",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSceneDepth_2",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSubtract_5",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSubtract_6",
 					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionScalarParameter_2",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSubtract_7",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionMax_0",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSaturate_3",
 					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionScalarParameter_3",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSubtract_0",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionAbs_0",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSubtract_1",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionDivide_0",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionSaturate_0",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionMultiply_0",
-					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionOneMinus_0"
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionMultiply_5",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionOneMinus_2",
+					"/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim:MaterialExpressionMultiply_6"
 				],
 				"EditorComments": [],
 				"ExpressionExecBegin": null,
