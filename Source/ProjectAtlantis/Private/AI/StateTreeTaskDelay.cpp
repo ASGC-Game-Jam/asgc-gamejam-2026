@@ -3,7 +3,7 @@
 #include "StateTreeExecutionContext.h"
 
 EStateTreeRunStatus FStateTreeTaskDelay::EnterState(FStateTreeExecutionContext& Context,
-                                              const FStateTreeTransitionResult& Transition) const
+											  const FStateTreeTransitionResult& Transition) const
 {
 	FStateTreeTaskDelayInstanceData& InstanceData = Context.GetInstanceData<FStateTreeTaskDelayInstanceData>(*this);
 	InstanceData.TimeLeft = DelayTime;

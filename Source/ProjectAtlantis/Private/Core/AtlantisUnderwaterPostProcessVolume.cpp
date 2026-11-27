@@ -45,8 +45,8 @@ void AAtlantisUnderwaterPostProcessVolume::TryBindToPlayerState()
 
 	const APlayerController* PlayerController = World->GetFirstPlayerController();
 	AAtlantisPlayerState* PlayerState = PlayerController
-		                                    ? PlayerController->GetPlayerState<AAtlantisPlayerState>()
-		                                    : nullptr;
+											? PlayerController->GetPlayerState<AAtlantisPlayerState>()
+											: nullptr;
 
 
 	if (!PlayerState)

@@ -9,11 +9,11 @@
 
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnOxygenCapacityChanged, float, OldOxygenCapacity, float,
-                                             NewOxygenCapacity);
+											 NewOxygenCapacity);
 
 /** Amount of Oxygen allocated changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAllocatedOxygenChanged, float, OldAllocatedOxygen, float,
-                                             NewAllocatedOxygen);
+											 NewAllocatedOxygen);
 
 /** Oxygen supply changed. Carries the previous value so listeners can compute a delta. */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCurrentOxygenChanged, float, OldCurrentOxygen, float, NewCurrentOxygen);

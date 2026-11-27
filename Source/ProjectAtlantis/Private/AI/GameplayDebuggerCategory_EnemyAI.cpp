@@ -18,7 +18,7 @@ TSharedRef<FGameplayDebuggerCategory> FGameplayDebuggerCategory_EnemyAI::MakeIns
 }
 
 void FGameplayDebuggerCategory_EnemyAI::PrintEnemyStatus(AAtlantisPlayerCharacter* PlayerCharacter,
-                                                         AController* Controller)
+														 AController* Controller)
 {
 	if (PlayerCharacter == nullptr)
 	{

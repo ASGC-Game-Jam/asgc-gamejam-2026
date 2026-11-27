@@ -13,92 +13,92 @@ DEFINE_LOG_CATEGORY_STATIC(LogAtlantisJournalAudio, Log, All);
 
 bool UAtlantisJournalAudioBridge::DoesSupportWorldType(const EWorldType::Type WorldType) const
 {
-    return WorldType == EWorldType::Game || WorldType == EWorldType::PIE;
+	return WorldType == EWorldType::Game || WorldType == EWorldType::PIE;
 }
 
 void UAtlantisJournalAudioBridge::OnWorldBeginPlay(UWorld& InWorld)
 {
-    Super::OnWorldBeginPlay(InWorld);
+	Super::OnWorldBeginPlay(InWorld);
 
-    UGameInstance* GI = InWorld.GetGameInstance();
+	UGameInstance* GI = InWorld.GetGameInstance();
 
-    Journal = GI ? GI->GetSubsystem<UAtlantisJournalSubsystem>() : nullptr;
+	Journal = GI ? GI->GetSubsystem<UAtlantisJournalSubsystem>() : nullptr;
 
-    if (Journal)
-    {
-        Journal->OnInvestigationUpdated.AddDynamic(this, &ThisClass::HandleInvestigationUpdated);
-        // Fires for both ClearInvestigations() and ClearAll().
-        Journal->OnJournalInvestigationsCleared.AddDynamic(this, &ThisClass::HandleInvestigationsCleared);
+	if (Journal)
+	{
+		Journal->OnInvestigationUpdated.AddDynamic(this, &ThisClass::HandleInvestigationUpdated);
+		// Fires for both ClearInvestigations() and ClearAll().
+		Journal->OnJournalInvestigationsCleared.AddDynamic(this, &ThisClass::HandleInvestigationsCleared);
 
-        // Investigations can already exist when the level starts, such as after level travel.
-        for (const FString& Title : Journal->GetInvestigations())
-        {
-            SendInvestigationStatus(Title, Journal->GetInvestigationStatus(Title));
-        }
-    }
+		// Investigations can already exist when the level starts, such as after level travel.
+		for (const FString& Title : Journal->GetInvestigations())
+		{
+			SendInvestigationStatus(Title, Journal->GetInvestigationStatus(Title));
+		}
+	}
 	else
 	{
-        UE_LOG(LogAtlantisJournalAudio, Error, TEXT("No Journal Subsystem found. Investigation facts won't reach the music system."));
-    }
+		UE_LOG(LogAtlantisJournalAudio, Error, TEXT("No Journal Subsystem found. Investigation facts won't reach the music system."));
+	}
 }
 
 void UAtlantisJournalAudioBridge::Deinitialize()
 {
-    // Nothing is withdrawn here: the music subsystem forgets every fact when the world is cleaned up.
-    if (Journal)
-    {
-        Journal->OnInvestigationUpdated.RemoveDynamic(this, &ThisClass::HandleInvestigationUpdated);
-        Journal->OnJournalInvestigationsCleared.RemoveDynamic(this, &ThisClass::HandleInvestigationsCleared);
-        Journal = nullptr;
-    }
-    SentInvestigationTitles.Reset();
+	// Nothing is withdrawn here: the music subsystem forgets every fact when the world is cleaned up.
+	if (Journal)
+	{
+		Journal->OnInvestigationUpdated.RemoveDynamic(this, &ThisClass::HandleInvestigationUpdated);
+		Journal->OnJournalInvestigationsCleared.RemoveDynamic(this, &ThisClass::HandleInvestigationsCleared);
+		Journal = nullptr;
+	}
+	SentInvestigationTitles.Reset();
 
-    Super::Deinitialize();
+	Super::Deinitialize();
 }
 
 
 void UAtlantisJournalAudioBridge::SendInvestigationStatus(const FString& Title, EJournalInvestigationStatus Status)
 {
-    FAtlantisAudioKeyedStatePayload Payload;
-    Payload.Key = FName(*Title);
+	FAtlantisAudioKeyedStatePayload Payload;
+	Payload.Key = FName(*Title);
 
-    switch (Status)
-    {
-        case EJournalInvestigationStatus::Undiscovered:
-            Payload.State = TAG_AudioState_Investigation_Undiscovered;
-            break;
-        case EJournalInvestigationStatus::Inprogress:
-            Payload.State = TAG_AudioState_Investigation_InProgress;
-            break;
-        case EJournalInvestigationStatus::Complete:
-            Payload.State = TAG_AudioState_Investigation_Complete;
-            break;
-        default:
-            // A new status was added to the journal without an Audio.State.Investigation tag to match.
-            UE_LOG(LogAtlantisJournalAudio, Warning, TEXT("Investigation [%s] has a status with no audio state tag. Add a tag for it in AtlantisAudioFactTags."), *Title);
-            return;
-    }
+	switch (Status)
+	{
+		case EJournalInvestigationStatus::Undiscovered:
+			Payload.State = TAG_AudioState_Investigation_Undiscovered;
+			break;
+		case EJournalInvestigationStatus::Inprogress:
+			Payload.State = TAG_AudioState_Investigation_InProgress;
+			break;
+		case EJournalInvestigationStatus::Complete:
+			Payload.State = TAG_AudioState_Investigation_Complete;
+			break;
+		default:
+			// A new status was added to the journal without an Audio.State.Investigation tag to match.
+			UE_LOG(LogAtlantisJournalAudio, Warning, TEXT("Investigation [%s] has a status with no audio state tag. Add a tag for it in AtlantisAudioFactTags."), *Title);
+			return;
+	}
 
-    SentInvestigationTitles.Add(Title);
+	SentInvestigationTitles.Add(Title);
 
-    UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Investigation_Status, FInstancedStruct::Make(Payload));
+	UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Investigation_Status, FInstancedStruct::Make(Payload));
 }
 
 void UAtlantisJournalAudioBridge::HandleInvestigationUpdated(EJournalInvestigationStatus OldStatus, EJournalInvestigationStatus Status, const FString& Title)
 {
-    SendInvestigationStatus(Title, Status);
+	SendInvestigationStatus(Title, Status);
 }
 
 void UAtlantisJournalAudioBridge::HandleInvestigationsCleared()
 {
-    // The journal is already empty, so use the titles sent so far. Loop over a copy,
-    // because SendInvestigationStatus adds each title back to the set.
-    const TSet<FString> Titles = SentInvestigationTitles;
+	// The journal is already empty, so use the titles sent so far. Loop over a copy,
+	// because SendInvestigationStatus adds each title back to the set.
+	const TSet<FString> Titles = SentInvestigationTitles;
 
-    for (const FString& Title : Titles)
-    {
-        SendInvestigationStatus(Title, EJournalInvestigationStatus::Undiscovered);
-    }
+	for (const FString& Title : Titles)
+	{
+		SendInvestigationStatus(Title, EJournalInvestigationStatus::Undiscovered);
+	}
 
-    SentInvestigationTitles.Reset();
+	SentInvestigationTitles.Reset();
 }

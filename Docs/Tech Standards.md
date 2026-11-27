@@ -8,6 +8,21 @@ This project follows **Unreal Engine's Epic C++ Coding Standard**. All C++ code 
 
 Full reference: [Epic C++ Coding Standard for Unreal Engine](https://dev.epicgames.com/documentation/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine?application_version=5.7)
 
+## Source Indentation
+
+The repository's `.editorconfig` sets tabs displayed at four columns for `.cpp`, `.h`, and `.cs` files under `Source/`. Enable EditorConfig support in your editor and reload open source files. If your editor requires manual settings, select tabs and set both the indent size and tab width to four for C++, headers, and C#.
+
+Use tabs for each full four-column step in the leading whitespace. Keep any remaining alignment spaces after the tabs. The check preserves continuation columns, block comment layout, multiline literal contents, and line endings.
+
+From the repository root, run these commands with Python 3 (use `py -3` in place of `python3` on Windows if needed).
+
+```sh
+python3 Scripts/check-source-indentation.py
+python3 Scripts/check-source-indentation.py --fix
+```
+
+The first command reports file and line numbers. The second rewrites only leading indentation on affected lines. Review the resulting diff before committing. CI runs the same check against tracked project source, including the merged result of a pull request. If your branch predates the cleanup, update it from `main`, resolve any overlapping source changes, and run the check again before pushing.
+
 # Learning & Reference
 
 Here are some amazing external references for learning: (brought to us by [@Seth](#user_mention#222119384))

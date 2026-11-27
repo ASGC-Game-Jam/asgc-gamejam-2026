@@ -3,7 +3,7 @@
 #include "StateTreeExecutionContext.h"
 
 EStateTreeRunStatus FStateTreeChooseRandomLocationTask::EnterState(FStateTreeExecutionContext& Context,
-                                                             const FStateTreeTransitionResult& Transition) const
+															 const FStateTreeTransitionResult& Transition) const
 {
 	FStateTreeTaskCommonBase::EnterState(Context, Transition);
 	

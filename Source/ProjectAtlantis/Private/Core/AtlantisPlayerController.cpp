@@ -168,17 +168,17 @@ void AAtlantisPlayerController::SetupInputComponent()
 		if (DescendBallastAction)
 		{
 			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this,
-			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Descend);
+									  &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Descend);
 		}
 		if (WanderBallastAction)
 		{
 			EnhancedInput->BindAction(WanderBallastAction, ETriggerEvent::Started, this,
-			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
+									  &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Wander);
 		}
 		if (AscendBallastAction)
 		{
 			EnhancedInput->BindAction(AscendBallastAction, ETriggerEvent::Started, this,
-			                          &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
+									  &AAtlantisPlayerController::RequestBallastState, EAtlantisBallastState::Ascend);
 		}
 		if (CycleBallastAction)
 		{
