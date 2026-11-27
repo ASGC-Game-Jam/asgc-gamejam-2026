@@ -6,6 +6,7 @@
 #include "Core/AtlantisMovementComponent.h"
 #include "Core/AtlantisPlayerState.h"
 #include "Audio/AtlantisAudioFactBridgeComponent.h"
+#include "Audio/AtlantisAudioListenerComponent.h"
 
 
 AAtlantisPlayerCharacter::AAtlantisPlayerCharacter(const FObjectInitializer& ObjectInitializer) : Super(
@@ -15,6 +16,7 @@ AAtlantisPlayerCharacter::AAtlantisPlayerCharacter(const FObjectInitializer& Obj
 	PrimaryActorTick.bCanEverTick = true;
 	HidingComponent = CreateDefaultSubobject<UAtlantisHidingComponent>(TEXT("HidingComponent"));
 	AudioFactBridgeComponent = CreateDefaultSubobject<UAtlantisAudioFactBridgeComponent>(TEXT("AudioFactBridgeComponent"));
+	AudioListenerComponent = CreateDefaultSubobject<UAtlantisAudioListenerComponent>(TEXT("AudioListenerComponent"));
 }
 
 void AAtlantisPlayerCharacter::BeginPlay()

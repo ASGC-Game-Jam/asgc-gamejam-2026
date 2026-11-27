@@ -58,8 +58,10 @@ from the project's **Packaging > List of maps to include in a packaged build** s
 
 ### Build for macOS
 
-On a Mac with Xcode 26.6 and the project's Unreal Engine version installed, run
-[Scripts/build.sh](../Scripts/build.sh). For example:
+On a Mac with the project's Unreal Engine version installed, run
+[Scripts/build.sh](../Scripts/build.sh). This checkout was built on macOS 27.0.1
+with Xcode 27.2 and Unreal Engine 5.8.4. The first cook on a machine compiles
+Metal shaders and can take a while. For example:
 
 ```sh
 ./Scripts/build.sh
@@ -68,8 +70,11 @@ On a Mac with Xcode 26.6 and the project's Unreal Engine version installed, run
 The script keeps the package, staging files, and build log together under
 `Builds/ProjectAtlantis-build-<version>/`. The Shipping app is in `Package/Mac` and
 targets both Apple Silicon and Intel through the shared Mac architecture settings
-in `Config/DefaultEngine.ini`. The engine defaults to
-`/Users/Shared/Epic Games/UE_5.7`; pass a different installation as the second argument:
+in `Config/DefaultEngine.ini`. The script reads `EngineAssociation` from
+`ProjectAtlantis.uproject` and selects the matching Launcher installation (for
+example, `/Users/Shared/Epic Games/UE_5.8`). Set `UE_PATH` or pass the engine
+path as the second argument for a custom installation. The argument takes
+precedence over the environment variable:
 
 ```sh
 ./Scripts/build.sh 1.2.0 "/path/to/Unreal Engine"

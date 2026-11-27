@@ -29,7 +29,9 @@ namespace
 FAtlantisStateTreeBeginSearchTask::FAtlantisStateTreeBeginSearchTask()
 {
 	bShouldCallTick = false;
+#if WITH_EDITORONLY_DATA
 	bConsideredForCompletion = false;
+#endif
 }
 
 EStateTreeRunStatus FAtlantisStateTreeBeginSearchTask::EnterState(FStateTreeExecutionContext& Context, const FStateTreeTransitionResult& Transition) const

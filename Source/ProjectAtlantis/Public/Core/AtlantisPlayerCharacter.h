@@ -9,6 +9,7 @@
 
 class UAtlantisHidingComponent;
 class UAtlantisAudioFactBridgeComponent;
+class UAtlantisAudioListenerComponent;
 
 
 UCLASS()
@@ -69,4 +70,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Atlantis|Audio")
 	TObjectPtr<UAtlantisAudioFactBridgeComponent> AudioFactBridgeComponent;
 
+	/** Measures sound distance from between the camera and the character. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Atlantis|Audio")
+	TObjectPtr<UAtlantisAudioListenerComponent> AudioListenerComponent;
 };

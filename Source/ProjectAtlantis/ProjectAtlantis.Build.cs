@@ -25,7 +25,6 @@ public class ProjectAtlantis : ModuleRules
 				"GameplayStateTreeModule", 
 				"GameplayDebugger",
         			"GameplayTags",
-			  "StructUtils",
 
                 "Inkpot"
 			});
