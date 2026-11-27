@@ -1,3 +1,5 @@
+// Copyright (c) 2026 ASGC
+
 #include "Audio/MetaSound/Interfaces/AtlantisAudioInterface_MusicLayers.h"
 #include "Metasound.h"
 #include "MetasoundFrontendDocument.h"
@@ -39,7 +41,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisActiveSplit", "Active Split"),
-							LOCTEXT("AtlantisActiveSplit_Description", "Set from DA_AtlantisMusicAxisMapping. The Player State value where the music switches from the Ambient layer to the Active layer. Raise it to make Active harder to reach."),
+							LOCTEXT("AtlantisActiveSplit_Description", "The PlayerState value where Ambient switches to Active. Set from DA_AtlantisMusicAxisMapping."),
 							GetMetasoundDataTypeName<float>(),
 							FAudioParameter{ ActiveSplit.Resolve(), 0.55f },
 							FText(),
@@ -48,7 +50,7 @@ namespace ProjectAtlantisAudio
 					Inputs.Add(
 						{
 							LOCTEXT("AtlantisPassiveSplit", "Passive Split"),
-							LOCTEXT("AtlantisPassiveSplit_Description", "Set from DA_AtlantisMusicAxisMapping.The Tension value where the Passive layer comes in. Raise it to make Passive harder to reach. "),
+							LOCTEXT("AtlantisPassiveSplit_Description", "The Tension value where the Passive layer comes in. Set from DA_AtlantisMusicAxisMapping."),
 							GetMetasoundDataTypeName<float>(),
 							FAudioParameter{ PassiveSplit.Resolve(), 0.5f },
 							FText(),
