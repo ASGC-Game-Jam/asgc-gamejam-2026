@@ -30,6 +30,9 @@ class PROJECTATLANTIS_API UAtlantisDebugMenuSettings : public UDeveloperSettings
 public:
 	UAtlantisDebugMenuSettings();
 
+	static bool IsAvailable();
+	static bool IsAvailable(bool bShippingBuild, const TCHAR* CommandLine);
+
 	/** None disables this shortcut. Restart the game or PIE after changing bindings. */
 	UPROPERTY(Config, EditAnywhere, Category = "Input")
 	FKey ToggleMenuKey = EKeys::F7;

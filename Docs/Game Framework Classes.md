@@ -148,6 +148,10 @@ and detachment. These queries describe ballast compatibility, not traversal avai
 
 ### Controls
 
+The [debug menu](./Debug%20Menu.md) uses separate Enhanced Input contexts.
+Shipping registers them when launched with `-debug`. The gamepad open shortcut
+uses a chord so Menu on its own remains available for the journal during play.
+
 `AAtlantisPlayerController` owns the player's Enhanced Input mapping contexts, and separates two
 ideas that are easy to conflate:
 

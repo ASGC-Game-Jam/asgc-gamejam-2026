@@ -9,6 +9,7 @@
 #include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
+#include "InputAction.h"
 #include "InputMappingContext.h"
 #include "Misc/AutomationTest.h"
 #include "UObject/StrongObjectPtr.h"
@@ -85,6 +86,26 @@ void FAtlantisDebugEnhancedInputSpec::Define()
 
 	Describe(TEXT("Context transitions"), [this]()
 	{
+		It(TEXT("should reserve the Menu button for the journal unless the debug chord is held"), [this]()
+		{
+			UInputAction* Journal = NewObject<UInputAction>(Controller);
+			UInputMappingContext* JournalContext = NewObject<UInputMappingContext>(Controller);
+			JournalContext->MapKey(Journal, EKeys::Gamepad_Special_Right);
+			FModifyContextOptions Options;
+			Options.bForceImmediately = true;
+			Subsystem->AddMappingContext(JournalContext, 0, Options);
+
+			Key(EKeys::Gamepad_Special_Right, IE_Pressed);
+			TestEqual(TEXT("Menu alone triggers journal"), EventFor(Journal), ETriggerEvent::Triggered);
+			Key(EKeys::Gamepad_Special_Right, IE_Released);
+			Key(EKeys::Gamepad_LeftThumbstick, IE_Pressed);
+			Key(EKeys::Gamepad_Special_Right, IE_Pressed);
+			TestEqual(TEXT("Chord triggers debug toggle"), EventFor(Mappings.GamepadToggle), ETriggerEvent::Triggered);
+			TestNotEqual(TEXT("Chord suppresses the journal"), EventFor(Journal), ETriggerEvent::Triggered);
+
+			Subsystem->RemoveMappingContext(JournalContext, Options);
+		});
+
 		It(TEXT("should keep keyboard and gamepad toggles working across a menu transition"), [this]()
 		{
 			Key(EKeys::Gamepad_Special_Right, IE_Pressed);

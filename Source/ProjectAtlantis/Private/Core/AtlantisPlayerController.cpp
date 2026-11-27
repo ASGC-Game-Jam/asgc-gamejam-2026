@@ -30,13 +30,22 @@ void AAtlantisPlayerController::AddCheats(bool bForce)
 	{
 		CheatClass = UAtlantisCheatManager::StaticClass();
 	}
+#if UE_BUILD_SHIPPING
+	// The engine skips creating a cheat manager in Shipping, even when forced.
+	if (bForce && UAtlantisDebugMenuSettings::IsAvailable() && IsLocalController()
+		&& !CheatManager && CheatClass && CheatClass->IsChildOf(UAtlantisCheatManager::StaticClass()))
+	{
+		CheatManager = NewObject<UCheatManager>(this, CheatClass);
+		CheatManager->InitCheatManager();
+	}
+#else
 	Super::AddCheats(bForce);
+#endif
 }
 
 void AAtlantisPlayerController::ToggleDebugMenu()
 {
-#if !UE_BUILD_SHIPPING
-	if (!IsLocalController())
+	if (!UAtlantisDebugMenuSettings::IsAvailable() || !IsLocalController())
 	{
 		return;
 	}
@@ -57,7 +66,11 @@ void AAtlantisPlayerController::ToggleDebugMenu()
 	{
 		return;
 	}
+#if UE_BUILD_SHIPPING
+	AddCheats(true);
+#else
 	EnableCheats();
+#endif
 	if (!Cast<UAtlantisCheatManager>(CheatManager))
 	{
 		return;
@@ -82,20 +95,17 @@ void AAtlantisPlayerController::ToggleDebugMenu()
 	Mode.SetHideCursorDuringCapture(false);
 	SetInputMode(Mode);
 	DebugMenu->FocusFirstAction();
-#endif
 }
 
 void AAtlantisPlayerController::RequestDebugRestart()
 {
-#if !UE_BUILD_SHIPPING
-	if (!IsLocalController() || GetNetMode() != NM_Standalone
+	if (!UAtlantisDebugMenuSettings::IsAvailable() || !IsLocalController() || GetNetMode() != NM_Standalone
 		|| (!DebugMenu && (!bControlsEnabled || bShowMouseCursor)))
 	{
 		return;
 	}
 	CloseDebugMenu();
 	UGameplayStatics::OpenLevel(this, FName(*UGameplayStatics::GetCurrentLevelName(this, true)));
-#endif
 }
 
 void AAtlantisPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -155,16 +165,17 @@ void AAtlantisPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
 	{
-#if !UE_BUILD_SHIPPING
 		const FAtlantisDebugInputMappings DebugInput = GetDefault<UAtlantisDebugMenuSettings>()->CreateInputMappings(this);
-		DebugGameplayMappingContext = DebugInput.Gameplay;
-		DebugMenuMappingContext = DebugInput.Menu;
-		EnhancedInput->BindAction(DebugInput.Toggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
-		EnhancedInput->BindAction(DebugInput.GamepadToggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
-		EnhancedInput->BindAction(DebugInput.Reset, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::RequestDebugRestart);
-		EnhancedInput->BindAction(DebugInput.Close, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::CloseDebugMenu);
-		RefreshDebugInputContext();
-#endif
+		if (DebugInput.Gameplay)
+		{
+			DebugGameplayMappingContext = DebugInput.Gameplay;
+			DebugMenuMappingContext = DebugInput.Menu;
+			EnhancedInput->BindAction(DebugInput.Toggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
+			EnhancedInput->BindAction(DebugInput.GamepadToggle, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::ToggleDebugMenu);
+			EnhancedInput->BindAction(DebugInput.Reset, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::RequestDebugRestart);
+			EnhancedInput->BindAction(DebugInput.Close, ETriggerEvent::Triggered, this, &AAtlantisPlayerController::CloseDebugMenu);
+			RefreshDebugInputContext();
+		}
 		if (DescendBallastAction)
 		{
 			EnhancedInput->BindAction(DescendBallastAction, ETriggerEvent::Started, this,
@@ -201,7 +212,6 @@ void AAtlantisPlayerController::SetupInputComponent()
 
 void AAtlantisPlayerController::RefreshDebugInputContext()
 {
-#if !UE_BUILD_SHIPPING
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = GetEnhancedInputSubsystem();
 	if (!Subsystem || !DebugGameplayMappingContext || !DebugMenuMappingContext)
 	{
@@ -211,7 +221,6 @@ void AAtlantisPlayerController::RefreshDebugInputContext()
 	Subsystem->RemoveMappingContext(DebugGameplayMappingContext, Options);
 	Subsystem->RemoveMappingContext(DebugMenuMappingContext, Options);
 	Subsystem->AddMappingContext(DebugMenu ? DebugMenuMappingContext : DebugGameplayMappingContext, 1000, Options);
-#endif
 }
 
 void AAtlantisPlayerController::CloseDebugMenu()
