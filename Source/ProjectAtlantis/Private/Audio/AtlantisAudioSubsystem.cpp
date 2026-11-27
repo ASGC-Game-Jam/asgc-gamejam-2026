@@ -270,15 +270,15 @@ void UAtlantisAudioSubsystem::SubscribeToFacts()
 	if (!TrackedWorld.Get())
 	{
 		UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("TrackedWorld unavailable when subscribing to facts!"));
-        return;
+		return;
 	}
 
 	UASGC_DataRouterSubsystem* Router = TrackedWorld->GetSubsystem<UASGC_DataRouterSubsystem>();
-    if (!Router)
-    {
-        UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No Data Router in world [%s]. Music won't react to gameplay facts."), *TrackedWorld->GetName());
-        return;
-    }
+	if (!Router)
+	{
+		UE_LOG(LogAtlantisAudioSubsystem, Error, TEXT("No Data Router in world [%s]. Music won't react to gameplay facts."), *TrackedWorld->GetName());
+		return;
+	}
 
 	const FGameplayTag FactTags[] = {
 		TAG_AudioFact_Oxygen_Level,
@@ -306,11 +306,11 @@ void UAtlantisAudioSubsystem::UnsubscribeFromFacts()
 
 
 	UASGC_DataRouterSubsystem* Router = TrackedWorld->GetSubsystem<UASGC_DataRouterSubsystem>();
-    if (!Router)
-    {
+	if (!Router)
+	{
 		FactSubscriptions.Reset();
 		return;
-    }
+	}
 
 	for (const TPair<FGameplayTag, int32>& Subscription : FactSubscriptions)
 	{

@@ -25,11 +25,11 @@ namespace
 
 void UAtlantisAudioFactBridgeComponent::BeginPlay()
 {
-    Super::BeginPlay();
+	Super::BeginPlay();
 
-    APawn* Pawn = Cast<APawn>(GetOwner());
-    if (!Pawn)
-    {
+	APawn* Pawn = Cast<APawn>(GetOwner());
+	if (!Pawn)
+	{
 		UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("Fact bridge on [%s] must be on a pawn. No gameplay facts will reach the music."), *GetNameSafe(GetOwner()));
 		return;
 	}
@@ -41,71 +41,71 @@ void UAtlantisAudioFactBridgeComponent::BeginPlay()
 
 void UAtlantisAudioFactBridgeComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-    if (APawn* Pawn = Cast<APawn>(GetOwner()))
-    {
-        Pawn->ReceiveControllerChangedDelegate.RemoveDynamic(this, &ThisClass::HandleControllerChanged);
-    }
+	if (APawn* Pawn = Cast<APawn>(GetOwner()))
+	{
+		Pawn->ReceiveControllerChangedDelegate.RemoveDynamic(this, &ThisClass::HandleControllerChanged);
+	}
 
-    // Also cancels any pending player state retry.
-    UnbindSources();
+	// Also cancels any pending player state retry.
+	UnbindSources();
 
-    Super::EndPlay(EndPlayReason);
+	Super::EndPlay(EndPlayReason);
 
 }
 
 
 void UAtlantisAudioFactBridgeComponent::TryBindSources()
 {
-    if (bSourcesBound)
-    {
-        return;
-    }
+	if (bSourcesBound)
+	{
+		return;
+	}
 
-    APawn* Pawn = Cast<APawn>(GetOwner());
-    if (!Pawn || !Pawn->IsLocallyControlled())
-    {
-        return;
-    }
+	APawn* Pawn = Cast<APawn>(GetOwner());
+	if (!Pawn || !Pawn->IsLocallyControlled())
+	{
+		return;
+	}
 
-    AAtlantisPlayerState* PlayerState = Pawn->GetPlayerState<AAtlantisPlayerState>();
-    if (!PlayerState)
-    {
-        // The player state can arrive a few ticks after possession. If it never does, the game
-        // mode is probably using a different player state class, so stop retrying and say so.
-        if (PlayerStateRetryCount >= MaxPlayerStateRetries)
-        {
-            UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("No AAtlantisPlayerState on [%s] after %d ticks (found [%s]). Oxygen and hiding facts won't reach the music."),
-                *GetNameSafe(Pawn), MaxPlayerStateRetries, *GetNameSafe(Pawn->GetPlayerState()));
-            return;
-        }
+	AAtlantisPlayerState* PlayerState = Pawn->GetPlayerState<AAtlantisPlayerState>();
+	if (!PlayerState)
+	{
+		// The player state can arrive a few ticks after possession. If it never does, the game
+		// mode is probably using a different player state class, so stop retrying and say so.
+		if (PlayerStateRetryCount >= MaxPlayerStateRetries)
+		{
+			UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("No AAtlantisPlayerState on [%s] after %d ticks (found [%s]). Oxygen and hiding facts won't reach the music."),
+				*GetNameSafe(Pawn), MaxPlayerStateRetries, *GetNameSafe(Pawn->GetPlayerState()));
+			return;
+		}
 
-        ++PlayerStateRetryCount;
-        GetWorld()->GetTimerManager().SetTimerForNextTick(this, &ThisClass::TryBindSources);
-        return;
-    }
+		++PlayerStateRetryCount;
+		GetWorld()->GetTimerManager().SetTimerForNextTick(this, &ThisClass::TryBindSources);
+		return;
+	}
 
-    bSourcesBound = true;
-    PlayerStateRetryCount = 0;
+	bSourcesBound = true;
+	PlayerStateRetryCount = 0;
 
-    OxygenComponent = PlayerState->GetOxygenComponent();
-    if (OxygenComponent)
-    {
-        OxygenComponent->OnCurrentOxygenChanged.AddDynamic(this, &ThisClass::HandleCurrentOxygenChanged);
-        OxygenComponent->OnCriticalOxygenChanged.AddDynamic(this, &ThisClass::HandleCriticalOxygenChanged);
-        OxygenComponent->OnAllocatedOxygenChanged.AddDynamic(this, &ThisClass::HandleAllocatedOxygenChanged);
+	OxygenComponent = PlayerState->GetOxygenComponent();
+	if (OxygenComponent)
+	{
+		OxygenComponent->OnCurrentOxygenChanged.AddDynamic(this, &ThisClass::HandleCurrentOxygenChanged);
+		OxygenComponent->OnCriticalOxygenChanged.AddDynamic(this, &ThisClass::HandleCriticalOxygenChanged);
+		OxygenComponent->OnAllocatedOxygenChanged.AddDynamic(this, &ThisClass::HandleAllocatedOxygenChanged);
 		OxygenComponent->OnOxygenCapacityChanged.AddDynamic(this, &ThisClass::HandleOxygenCapacityChanged);
-    }
-    else
-    {
+	}
+	else
+	{
 		UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("No oxygen component on [%s]. Oxygen facts won't reach the music."), *GetNameSafe(PlayerState));
 	}
 
-    HidingComponent = Pawn->FindComponentByClass<UAtlantisHidingComponent>();
-    if (HidingComponent)
-    {
-        HidingComponent->OnHidingStateChanged.AddDynamic(this, &ThisClass::HandleHidingStateChanged);
-    }
-    else
+	HidingComponent = Pawn->FindComponentByClass<UAtlantisHidingComponent>();
+	if (HidingComponent)
+	{
+		HidingComponent->OnHidingStateChanged.AddDynamic(this, &ThisClass::HandleHidingStateChanged);
+	}
+	else
 	{
 		UE_LOG(LogAtlantisAudioFactBridge, Error, TEXT("No hiding component on [%s]. Hiding facts won't reach the music."), *GetNameSafe(Pawn));
 	}
@@ -115,98 +115,98 @@ void UAtlantisAudioFactBridgeComponent::TryBindSources()
 
 void UAtlantisAudioFactBridgeComponent::UnbindSources()
 {
-    if (OxygenComponent)
-    {
-        OxygenComponent->OnCurrentOxygenChanged.RemoveDynamic(this, &ThisClass::HandleCurrentOxygenChanged);
-        OxygenComponent->OnCriticalOxygenChanged.RemoveDynamic(this, &ThisClass::HandleCriticalOxygenChanged);
-        OxygenComponent->OnAllocatedOxygenChanged.RemoveDynamic(this, &ThisClass::HandleAllocatedOxygenChanged);
+	if (OxygenComponent)
+	{
+		OxygenComponent->OnCurrentOxygenChanged.RemoveDynamic(this, &ThisClass::HandleCurrentOxygenChanged);
+		OxygenComponent->OnCriticalOxygenChanged.RemoveDynamic(this, &ThisClass::HandleCriticalOxygenChanged);
+		OxygenComponent->OnAllocatedOxygenChanged.RemoveDynamic(this, &ThisClass::HandleAllocatedOxygenChanged);
 		OxygenComponent->OnOxygenCapacityChanged.RemoveDynamic(this, &ThisClass::HandleOxygenCapacityChanged);
-        OxygenComponent = nullptr;
-    }
+		OxygenComponent = nullptr;
+	}
 
-    if (HidingComponent)
-    {
-        HidingComponent->OnHidingStateChanged.RemoveDynamic(this, &ThisClass::HandleHidingStateChanged);
-        HidingComponent = nullptr;
-    }
+	if (HidingComponent)
+	{
+		HidingComponent->OnHidingStateChanged.RemoveDynamic(this, &ThisClass::HandleHidingStateChanged);
+		HidingComponent = nullptr;
+	}
 
-    // Cancel any pending player state retry, so a new possession starts with a fresh count.
-    // The world can already be gone if this component is being cleaned up during shutdown.
-    if (UWorld* World = GetWorld())
-    {
-        World->GetTimerManager().ClearAllTimersForObject(this);
-    }
-    PlayerStateRetryCount = 0;
+	// Cancel any pending player state retry, so a new possession starts with a fresh count.
+	// The world can already be gone if this component is being cleaned up during shutdown.
+	if (UWorld* World = GetWorld())
+	{
+		World->GetTimerManager().ClearAllTimersForObject(this);
+	}
+	PlayerStateRetryCount = 0;
 
-    bSourcesBound = false;
+	bSourcesBound = false;
 
 }
 
 
 void UAtlantisAudioFactBridgeComponent::SendInitialFacts()
 {
-    if (OxygenComponent)
-    {
-        SendOxygenLevel();
-        HandleCriticalOxygenChanged(OxygenComponent->IsCriticalOxygen());
-    }
+	if (OxygenComponent)
+	{
+		SendOxygenLevel();
+		HandleCriticalOxygenChanged(OxygenComponent->IsCriticalOxygen());
+	}
 
-    if (HidingComponent)
-    {
-        HandleHidingStateChanged(HidingComponent->IsHiding());
-    }
+	if (HidingComponent)
+	{
+		HandleHidingStateChanged(HidingComponent->IsHiding());
+	}
 
 }
 
 void UAtlantisAudioFactBridgeComponent::SendOxygenLevel()
 {
-    if (!OxygenComponent)
-    {
-        return;
-    }
+	if (!OxygenComponent)
+	{
+		return;
+	}
 
-    const float Capacity = OxygenComponent->GetOxygenCapacity();
+	const float Capacity = OxygenComponent->GetOxygenCapacity();
 
-    FAtlantisAudioFloatPayload Payload;
-    Payload.Value = Capacity > 0.f ? FMath::Clamp(OxygenComponent->GetAvailableOxygen() / Capacity, 0.f, 1.f) : 0.f;
+	FAtlantisAudioFloatPayload Payload;
+	Payload.Value = Capacity > 0.f ? FMath::Clamp(OxygenComponent->GetAvailableOxygen() / Capacity, 0.f, 1.f) : 0.f;
 
-    UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Oxygen_Level, FInstancedStruct::Make(Payload));
+	UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Oxygen_Level, FInstancedStruct::Make(Payload));
 
 }
 
 void UAtlantisAudioFactBridgeComponent::HandleControllerChanged(APawn* Pawn, AController* OldController, AController* NewController)
 {
-    UnbindSources();
-    TryBindSources();
+	UnbindSources();
+	TryBindSources();
 }
 
 void UAtlantisAudioFactBridgeComponent::HandleCurrentOxygenChanged(float OldCurrentOxygen, float NewCurrentOxygen)
 {
-    SendOxygenLevel();
+	SendOxygenLevel();
 }
 
 void UAtlantisAudioFactBridgeComponent::HandleCriticalOxygenChanged(bool bCriticalOxygen)
 {
-    FAtlantisAudioBoolPayload Payload;
-    Payload.bValue = bCriticalOxygen;
+	FAtlantisAudioBoolPayload Payload;
+	Payload.bValue = bCriticalOxygen;
 
-    UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Oxygen_Critical, FInstancedStruct::Make(Payload));
+	UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Oxygen_Critical, FInstancedStruct::Make(Payload));
 }
 
 void UAtlantisAudioFactBridgeComponent::HandleAllocatedOxygenChanged(float OldAllocatedOxygen, float NewAllocatedOxygen)
 {
-    SendOxygenLevel();
+	SendOxygenLevel();
 }
 
 void UAtlantisAudioFactBridgeComponent::HandleOxygenCapacityChanged(float OldOxygenCapacity, float NewOxygenCapacity)
 {
-    SendOxygenLevel();
+	SendOxygenLevel();
 }
 
 void UAtlantisAudioFactBridgeComponent::HandleHidingStateChanged(bool bHiding)
 {
-    FAtlantisAudioBoolPayload Payload;
-    Payload.bValue = bHiding;
+	FAtlantisAudioBoolPayload Payload;
+	Payload.bValue = bHiding;
 
-    UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Stealth_Hiding, FInstancedStruct::Make(Payload));
+	UAtlantisAudioDataBPFL::SetAudioDataPayload(this, TAG_AudioFact_Stealth_Hiding, FInstancedStruct::Make(Payload));
 }

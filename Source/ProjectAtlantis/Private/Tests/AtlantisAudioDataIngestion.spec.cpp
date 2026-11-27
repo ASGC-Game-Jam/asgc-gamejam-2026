@@ -99,46 +99,46 @@ void FAtlantisAudioDataIngestionSpec::Define()
 
 	Describe(TEXT("Rejected facts"), [this]()
 	{
-        It(TEXT("should reject and not route an unregistered tag"), [this]()
-        {
-            AddExpectedErrorPlain(TEXT("is not registered"), EAutomationExpectedErrorFlags::Contains, 0);
+		It(TEXT("should reject and not route an unregistered tag"), [this]()
+		{
+			AddExpectedErrorPlain(TEXT("is not registered"), EAutomationExpectedErrorFlags::Contains, 0);
 
-            const bool bAccepted = UAtlantisAudioDataBPFL::SetAudioDataPayload(World.Get(), TAG_Test_AudioIngestion_Unregistered, FInstancedStruct::Make(FVector::ZeroVector));
+			const bool bAccepted = UAtlantisAudioDataBPFL::SetAudioDataPayload(World.Get(), TAG_Test_AudioIngestion_Unregistered, FInstancedStruct::Make(FVector::ZeroVector));
 
-            TestFalse(TEXT("Unregistered tag is rejected"), bAccepted);
-            TestEqual(TEXT("Subscriber received nothing"), Listener->ReceivedCount, 0);
-        });
+			TestFalse(TEXT("Unregistered tag is rejected"), bAccepted);
+			TestEqual(TEXT("Subscriber received nothing"), Listener->ReceivedCount, 0);
+		});
 
-        It(TEXT("should reject and not route a payload holding the wrong struct"), [this]()
-        {
-            AddExpectedErrorPlain(TEXT("but the registry expects"), EAutomationExpectedErrorFlags::Contains, 0);
+		It(TEXT("should reject and not route a payload holding the wrong struct"), [this]()
+		{
+			AddExpectedErrorPlain(TEXT("but the registry expects"), EAutomationExpectedErrorFlags::Contains, 0);
 
-            const bool bAccepted = UAtlantisAudioDataBPFL::SetAudioDataPayload(World.Get(), TAG_Test_AudioIngestion_Vector, FInstancedStruct::Make(FRotator::ZeroRotator));
+			const bool bAccepted = UAtlantisAudioDataBPFL::SetAudioDataPayload(World.Get(), TAG_Test_AudioIngestion_Vector, FInstancedStruct::Make(FRotator::ZeroRotator));
 
-            TestFalse(TEXT("Mismatched payload is rejected"), bAccepted);
-            TestEqual(TEXT("Subscriber received nothing"), Listener->ReceivedCount, 0);
-        });
+			TestFalse(TEXT("Mismatched payload is rejected"), bAccepted);
+			TestEqual(TEXT("Subscriber received nothing"), Listener->ReceivedCount, 0);
+		});
 
-        It(TEXT("should reject a null world context"), [this]()
-        {
-            AddExpectedErrorPlain(TEXT("has no valid world"), EAutomationExpectedErrorFlags::Contains, 0);
-            AddExpectedErrorPlain(TEXT("null object was passed as a world context"), EAutomationExpectedErrorFlags::Contains, 1);
+		It(TEXT("should reject a null world context"), [this]()
+		{
+			AddExpectedErrorPlain(TEXT("has no valid world"), EAutomationExpectedErrorFlags::Contains, 0);
+			AddExpectedErrorPlain(TEXT("null object was passed as a world context"), EAutomationExpectedErrorFlags::Contains, 1);
 
-            const bool bAccepted = UAtlantisAudioDataBPFL::SetAudioDataPayload(nullptr, TAG_Test_AudioIngestion_Vector, FInstancedStruct::Make(FVector::ZeroVector));
+			const bool bAccepted = UAtlantisAudioDataBPFL::SetAudioDataPayload(nullptr, TAG_Test_AudioIngestion_Vector, FInstancedStruct::Make(FVector::ZeroVector));
 
-            TestFalse(TEXT("Null World is rejected"), bAccepted);
-            TestEqual(TEXT("Subscriber received nothing"), Listener->ReceivedCount, 0);
-        });
+			TestFalse(TEXT("Null World is rejected"), bAccepted);
+			TestEqual(TEXT("Subscriber received nothing"), Listener->ReceivedCount, 0);
+		});
 
 	});
 
-    It(TEXT("should accept a registered tag that has no subscribers"), [this]()
-    {
-        const bool bAccepted = UAtlantisAudioDataBPFL::SetAudioDataPayload(World.Get(), TAG_Test_AudioIngestion_NoSubscribers, FInstancedStruct::Make(FVector::ZeroVector));
+	It(TEXT("should accept a registered tag that has no subscribers"), [this]()
+	{
+		const bool bAccepted = UAtlantisAudioDataBPFL::SetAudioDataPayload(World.Get(), TAG_Test_AudioIngestion_NoSubscribers, FInstancedStruct::Make(FVector::ZeroVector));
 
-        TestTrue(TEXT("Fact with no subscribers is accepted"), bAccepted);
-        TestEqual(TEXT("Subscriber received nothing"), Listener->ReceivedCount, 0);
-    });
+		TestTrue(TEXT("Fact with no subscribers is accepted"), bAccepted);
+		TestEqual(TEXT("Subscriber received nothing"), Listener->ReceivedCount, 0);
+	});
 
 	Describe(TEXT("Keyed payload Key"), [this]()
 	{

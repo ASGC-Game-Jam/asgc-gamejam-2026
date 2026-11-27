@@ -144,7 +144,7 @@ void AAtlantisPlayerState::SetBallastState(const EAtlantisBallastState NewBallas
 	if (RequiredAllocation < 0.f)
 	{
 		UE_LOG(LogAtlantisPlayerState, Fatal, TEXT("Ballast state %d has an invalid oxygen allocation: %f"),
-		       static_cast<uint8>(NewBallastState), RequiredAllocation);
+			   static_cast<uint8>(NewBallastState), RequiredAllocation);
 		return;
 	}
 	float Allocation = RequiredAllocation;
@@ -254,7 +254,7 @@ float AAtlantisPlayerState::GetRequiredBallastAllocation(const EAtlantisBallastS
 	default:
 		{
 			UE_LOG(LogAtlantisPlayerState, Fatal, TEXT("Invalid ballast state: %d"),
-			       static_cast<uint8>(RequiredBallastState));
+				   static_cast<uint8>(RequiredBallastState));
 			return -1.f;
 		}
 	}

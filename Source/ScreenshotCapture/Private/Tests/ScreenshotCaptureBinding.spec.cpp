@@ -43,7 +43,7 @@ namespace
 }
 
 BEGIN_DEFINE_SPEC(FAtlantisScreenshotCaptureBindingSpec, "Atlantis.ScreenshotCapture.ConfiguredBinding",
-                  EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+				  EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 	TUniquePtr<FAtlantisScreenshotCaptureBindingFixture> Fixture;
 END_DEFINE_SPEC(FAtlantisScreenshotCaptureBindingSpec)
 

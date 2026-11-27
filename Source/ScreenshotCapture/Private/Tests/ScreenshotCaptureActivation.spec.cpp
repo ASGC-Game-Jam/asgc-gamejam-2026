@@ -6,7 +6,7 @@
 #include "Misc/AutomationTest.h"
 
 BEGIN_DEFINE_SPEC(FAtlantisScreenshotCaptureActivationSpec, "Atlantis.ScreenshotCapture.Activation",
-                  EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+				  EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 END_DEFINE_SPEC(FAtlantisScreenshotCaptureActivationSpec)
 
 void FAtlantisScreenshotCaptureActivationSpec::Define()
@@ -16,7 +16,7 @@ void FAtlantisScreenshotCaptureActivationSpec::Define()
 		It(TEXT("should enable capture without launch options"), [this]()
 		{
 			TestTrue(TEXT("Non-Shipping capture is enabled without launch options"),
-			         ProjectAtlantis::ScreenshotCapture::IsEnabled(false, TEXT("")));
+					 ProjectAtlantis::ScreenshotCapture::IsEnabled(false, TEXT("")));
 		});
 	});
 
@@ -25,37 +25,37 @@ void FAtlantisScreenshotCaptureActivationSpec::Define()
 		It(TEXT("should leave capture inactive without launch options"), [this]()
 		{
 			TestFalse(TEXT("Shipping capture is inactive without launch options"),
-			          ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("")));
+					  ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("")));
 		});
 
 		It(TEXT("should enable capture with the debug launch option"), [this]()
 		{
 			TestTrue(TEXT("Steam's debug launch option enables Shipping capture"),
-			         ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-debug")));
+					 ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-debug")));
 		});
 
 		It(TEXT("should accept debug alongside other launch options"), [this]()
 		{
 			TestTrue(TEXT("Debug can appear alongside other launch options"),
-			         ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-windowed -debug -ResX=1280")));
+					 ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-windowed -debug -ResX=1280")));
 		});
 
 		It(TEXT("should match the debug option case insensitively"), [this]()
 		{
 			TestTrue(TEXT("Debug option is case insensitive"),
-			         ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-DEBUG")));
+					 ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-DEBUG")));
 		});
 
 		It(TEXT("should reject other debug-prefixed options"), [this]()
 		{
 			TestFalse(TEXT("Other debug-prefixed options do not enable capture"),
-			          ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-debugger")));
+					  ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-debugger")));
 		});
 
 		It(TEXT("should reject a negative debug option"), [this]()
 		{
 			TestFalse(TEXT("A negative debug option does not enable capture"),
-			          ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-nodebug")));
+					  ProjectAtlantis::ScreenshotCapture::IsEnabled(true, TEXT("-nodebug")));
 		});
 	});
 }

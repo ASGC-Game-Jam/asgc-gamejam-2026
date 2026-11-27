@@ -44,6 +44,6 @@ public:
 
 IMPLEMENT_PRIMARY_GAME_MODULE(
 	FProjectAtlantisModule,
-    ProjectAtlantis,
-    "ProjectAtlantis"
+	ProjectAtlantis,
+	"ProjectAtlantis"
 );
