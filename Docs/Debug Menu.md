@@ -2,8 +2,10 @@
 
 Available automatically with the Atlantis Player Controller in PIE, standalone,
 and Debug / DebugGame / Development / Test builds, including packaged Steam QA builds.
-Shipping production builds have no menu contents, shortcuts, or functional debug
-commands.
+In Shipping, launch with `-debug` to enable the menu, shortcuts, and restart.
+For Steam, open **Properties > General > Launch Options**, enter `-debug`, and
+restart the game. For a standalone Windows build, run `ProjectAtlantis.exe -debug`.
+Remove the option and relaunch to disable the menu and restart shortcuts.
 
 | Action | Keyboard | Gamepad |
 | --- | --- | --- |
@@ -30,8 +32,9 @@ The debug menu does not open while another menu is showing the mouse cursor or
 gameplay controls are disabled; close that menu first. There is no custom Slate
 input processor or pressed-key tracking.
 
-Click **Restart Game** for the same action, or enter `RestartGame` in the Unreal
-console. This uses Unreal's built-in level restart in standalone play / PIE,
+Click **Restart Game** to restart without a shortcut. In builds with the
+Unreal console, you can also enter `RestartGame`. In standalone play and
+standalone PIE, restart uses Unreal's level travel,
 closing the menu and reloading the current level. A fresh player and PlayerState
 restore oxygen, ballast, position, and other level-owned state through normal
 game initialization. GameInstance and saved data are not cleared. Network
@@ -43,15 +46,24 @@ Implement a no-argument `Exec` command on `UAtlantisCheatManager` (or an Unreal
 `UCheatManagerExtension`) and append a label / console command to `DebugActions`.
 For Blueprint features, derive an Atlantis Cheat Manager, configure the controller's
 `CheatClass`, and edit the array or override `GetDebugActions`.
-The menu builds its buttons from this list whenever opened. Keep all new cheat
-implementations behind `!UE_BUILD_SHIPPING`, including any server RPC body.
+The menu builds its buttons from this list whenever opened. Check
+`UAtlantisDebugMenuSettings::IsAvailable()` at any command entry point meant
+to work with `-debug`. Keep development-only commands behind their existing
+build guards.
 
-## Production and Steam QA packaging
+## Packaged Shipping smoke test
 
-Package Development for the Steam `qa` branch so the debug menu is available.
-Use Shipping for production, where the menu and cheats are disabled. Follow the
-existing [Release Process](./RELEASES.md) to build and upload each package.
+Use a Shipping package from the [Release Process](./RELEASES.md). Enter a
+playable level for each run.
 
-Steam branch selection does not change a compiled executable's capabilities.
-Upload the QA package only to `qa`; build a separate Shipping package for
-production. Never promote the QA artifact to `default`.
+1. Launch with no options. F7 and the left-stick click + Menu chord should
+   leave the debug menu closed, and F10 should leave the level running.
+   Check that Menu alone still opens the journal.
+2. Relaunch with `-debug`. Open and close with F7, then open with the controller
+   chord and close with Menu. Check that movement and journal input resume.
+   Open another UI such as the journal and check that F7 leaves it in control.
+3. Reopen the menu for each restart method and try F10, **Restart Game**,
+   and right-stick click. Each should reload the level and restore the player
+   to the starting state. Right-stick click outside the menu should keep its
+   normal gameplay behavior.
+4. Repeat both launch configurations in Steam using **Launch Options**.

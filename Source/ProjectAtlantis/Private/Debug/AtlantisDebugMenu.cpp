@@ -24,13 +24,17 @@
 UAtlantisDebugMenu::UAtlantisDebugMenu(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	// UI-only input first focuses our SObjectWidget before selecting the initial button.
+	// Game-and-UI input first focuses our SObjectWidget before selecting the initial button.
 	SetIsFocusable(true);
 }
 
 TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 {
-#if !UE_BUILD_SHIPPING
+	if (!UAtlantisDebugMenuSettings::IsAvailable())
+	{
+		return SNullWidget::NullWidget;
+	}
+
 	const FSlateFontInfo TitleFont = FCoreStyle::GetDefaultFontStyle("Bold", 32);
 	const FSlateFontInfo ActionFont = FCoreStyle::GetDefaultFontStyle("Regular", 24);
 	const UAtlantisDebugMenuSettings* Settings = GetDefault<UAtlantisDebugMenuSettings>();
@@ -89,7 +93,15 @@ TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 				{
 					if (AAtlantisPlayerController* Player = WeakController.Get())
 					{
-						Player->ConsoleCommand(Command, false);
+						// Shipping does not expose the normal Unreal cheat console.
+						if (Command.Equals(TEXT("RestartGame"), ESearchCase::IgnoreCase))
+						{
+							Player->RequestDebugRestart();
+						}
+						else
+						{
+							Player->ConsoleCommand(Command, false);
+						}
 					}
 					return FReply::Handled();
 				})
@@ -139,9 +151,6 @@ TSharedRef<SWidget> UAtlantisDebugMenu::RebuildWidget()
 			]
 		]
 	];
-#else
-	return SNullWidget::NullWidget;
-#endif
 }
 
 void UAtlantisDebugMenu::FocusFirstAction()

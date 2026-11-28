@@ -19,7 +19,7 @@ struct FAtlantisDebugAction
 	FString Command;
 };
 
-/** Development cheats; Unreal does not instantiate this manager in Shipping. */
+/** Debug commands for builds where the Atlantis debug menu is available. */
 UCLASS()
 class PROJECTATLANTIS_API UAtlantisCheatManager : public UCheatManager
 {

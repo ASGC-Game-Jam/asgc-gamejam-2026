@@ -4,6 +4,8 @@
 #include "InputAction.h"
 #include "InputMappingContext.h"
 #include "InputTriggers.h"
+#include "Misc/CommandLine.h"
+#include "Misc/Parse.h"
 
 UAtlantisDebugMenuSettings::UAtlantisDebugMenuSettings()
 {
@@ -11,10 +13,24 @@ UAtlantisDebugMenuSettings::UAtlantisDebugMenuSettings()
 	SectionName = TEXT("DebugMenu");
 }
 
+bool UAtlantisDebugMenuSettings::IsAvailable()
+{
+	return IsAvailable(UE_BUILD_SHIPPING, FCommandLine::Get());
+}
+
+bool UAtlantisDebugMenuSettings::IsAvailable(bool bShippingBuild, const TCHAR* CommandLine)
+{
+	return !bShippingBuild || FParse::Param(CommandLine, TEXT("debug"));
+}
+
 FAtlantisDebugInputMappings UAtlantisDebugMenuSettings::CreateInputMappings(UObject* Outer) const
 {
 	FAtlantisDebugInputMappings Mappings;
-#if !UE_BUILD_SHIPPING
+	if (!IsAvailable())
+	{
+		return Mappings;
+	}
+
 	Mappings.Gameplay = NewObject<UInputMappingContext>(Outer, TEXT("IMC_DebugGameplay"), RF_Transient);
 	Mappings.Menu = NewObject<UInputMappingContext>(Outer, TEXT("IMC_DebugMenu"), RF_Transient);
 	auto PressAction = [Outer](const FName Name)
@@ -61,6 +77,5 @@ FAtlantisDebugInputMappings UAtlantisDebugMenuSettings::CreateInputMappings(UObj
 	MapKey(Mappings.Menu, Mappings.Close, EKeys::Gamepad_FaceButton_Right);
 	MapKey(Mappings.Menu, Mappings.Reset, ResetPlayerKey);
 	MapKey(Mappings.Menu, Mappings.Reset, ResetPlayerGamepadKey);
-#endif
 	return Mappings;
 }
