@@ -37,6 +37,75 @@
 			"type": "Ubergraph",
 			"nodes": [
 				{
+					"guid": "00c8931e4f0a04c63301358158755361",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1104,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "00c8931e4f0a04c63301358158755361:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"b3f2881f4f93149a13b549a7066a6232:o:OutputPin"
+							]
+						},
+						{
+							"id": "00c8931e4f0a04c63301358158755361:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"63e98b2e4f38c2066a4266803800ff17:i:self",
+								"aac00f8f4917aebc96074cbc643e6625:i:self"
+							]
+						}
+					]
+				},
+				{
+					"guid": "0646641044aea197995bfbb5779daabf",
+					"class": "K2Node_Composite",
+					"title": "Toggle Examine On",
+					"x": 1760,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "0646641044aea197995bfbb5779daabf:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"63e98b2e4f38c2066a4266803800ff17:o:then"
+							]
+						},
+						{
+							"id": "0646641044aea197995bfbb5779daabf:i:TurnOn",
+							"name": "TurnOn",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": "true",
+							"links": []
+						},
+						{
+							"id": "0646641044aea197995bfbb5779daabf:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"aa59aff2405f2b81db08e1a7a51f5271:o:OutputPin"
+							]
+						}
+					]
+				},
+				{
 					"guid": "1a4e4281471992be447a83812f10e003",
 					"class": "K2Node_Event",
 					"title": "Event ActorBeginOverlap",
@@ -71,6 +140,46 @@
 					]
 				},
 				{
+					"guid": "319bc2db4b90b487608fdb844c350c32",
+					"class": "K2Node_CallFunction",
+					"title": "Get Component by Class",
+					"x": 304,
+					"y": 704,
+					"comment": null,
+					"pins": [
+						{
+							"id": "319bc2db4b90b487608fdb844c350c32:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"7554fbd04fcfe7d35f60b7a8c722a138:o:OutputPin"
+							]
+						},
+						{
+							"id": "319bc2db4b90b487608fdb844c350c32:i:ComponentClass",
+							"name": "ComponentClass",
+							"direction": "input",
+							"type": "class:/Script/Engine.ActorComponent",
+							"defaultValue": "/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"links": []
+						},
+						{
+							"id": "319bc2db4b90b487608fdb844c350c32:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"79ba775b42be0c68aa190f9dd1b75fe8:i:InputObject",
+								"a8b86cf448213d9d85de2e9c270dc3e2:i:self",
+								"b3f2881f4f93149a13b549a7066a6232:i:InputPin"
+							]
+						}
+					]
+				},
+				{
 					"guid": "44d0cacc4ed11459d6e42eb842d81f0c",
 					"class": "K2Node_Event",
 					"title": "Event BeginPlay",
@@ -93,6 +202,382 @@
 							"type": "exec",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "532c1b3b4bcfd375c49e1b8589f98907",
+					"class": "K2Node_Self",
+					"title": "Self-Reference",
+					"x": 1088,
+					"y": 912,
+					"comment": null,
+					"pins": [
+						{
+							"id": "532c1b3b4bcfd375c49e1b8589f98907:o:self",
+							"name": "self",
+							"direction": "output",
+							"type": "object:self",
+							"defaultValue": null,
+							"links": [
+								"63e98b2e4f38c2066a4266803800ff17:i:HidingSpot"
+							]
+						}
+					]
+				},
+				{
+					"guid": "56acd25c447c994dd2507dad6008b3fc",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 288,
+					"y": 976,
+					"comment": null,
+					"pins": [
+						{
+							"id": "56acd25c447c994dd2507dad6008b3fc:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"7554fbd04fcfe7d35f60b7a8c722a138:o:OutputPin"
+							]
+						},
+						{
+							"id": "56acd25c447c994dd2507dad6008b3fc:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"aa59aff2405f2b81db08e1a7a51f5271:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "63e98b2e4f38c2066a4266803800ff17",
+					"class": "K2Node_CallFunction",
+					"title": "EnterHidingSpot",
+					"x": 1264,
+					"y": 768,
+					"comment": null,
+					"pins": [
+						{
+							"id": "63e98b2e4f38c2066a4266803800ff17:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c1f0749641d4b84d1f4a06943c4f78d4:o:else"
+							]
+						},
+						{
+							"id": "63e98b2e4f38c2066a4266803800ff17:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"0646641044aea197995bfbb5779daabf:i:execute"
+							]
+						},
+						{
+							"id": "63e98b2e4f38c2066a4266803800ff17:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"00c8931e4f0a04c63301358158755361:o:OutputPin"
+							]
+						},
+						{
+							"id": "63e98b2e4f38c2066a4266803800ff17:i:HidingSpot",
+							"name": "HidingSpot",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"532c1b3b4bcfd375c49e1b8589f98907:o:self"
+							]
+						},
+						{
+							"id": "63e98b2e4f38c2066a4266803800ff17:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "7554fbd04fcfe7d35f60b7a8c722a138",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 192,
+					"y": 752,
+					"comment": null,
+					"pins": [
+						{
+							"id": "7554fbd04fcfe7d35f60b7a8c722a138:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"eee1baec4f8356d66d85b0b3f965ce7f:o:Interactor"
+							]
+						},
+						{
+							"id": "7554fbd04fcfe7d35f60b7a8c722a138:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"319bc2db4b90b487608fdb844c350c32:i:self",
+								"56acd25c447c994dd2507dad6008b3fc:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "79ba775b42be0c68aa190f9dd1b75fe8",
+					"class": "K2Node_MacroInstance",
+					"title": "Is Valid",
+					"x": 656,
+					"y": 624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "79ba775b42be0c68aa190f9dd1b75fe8:i:exec",
+							"name": "exec",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"eee1baec4f8356d66d85b0b3f965ce7f:o:then"
+							]
+						},
+						{
+							"id": "79ba775b42be0c68aa190f9dd1b75fe8:i:InputObject",
+							"name": "InputObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"319bc2db4b90b487608fdb844c350c32:o:ReturnValue"
+							]
+						},
+						{
+							"id": "79ba775b42be0c68aa190f9dd1b75fe8:o:Is Valid",
+							"name": "Is Valid",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c1f0749641d4b84d1f4a06943c4f78d4:i:execute"
+							]
+						},
+						{
+							"id": "79ba775b42be0c68aa190f9dd1b75fe8:o:Is Not Valid",
+							"name": "Is Not Valid",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "a8b86cf448213d9d85de2e9c270dc3e2",
+					"class": "K2Node_CallFunction",
+					"title": "IsHiding",
+					"x": 656,
+					"y": 736,
+					"comment": null,
+					"pins": [
+						{
+							"id": "a8b86cf448213d9d85de2e9c270dc3e2:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"319bc2db4b90b487608fdb844c350c32:o:ReturnValue"
+							]
+						},
+						{
+							"id": "a8b86cf448213d9d85de2e9c270dc3e2:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"c1f0749641d4b84d1f4a06943c4f78d4:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "aa59aff2405f2b81db08e1a7a51f5271",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 1536,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "aa59aff2405f2b81db08e1a7a51f5271:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"56acd25c447c994dd2507dad6008b3fc:o:OutputPin"
+							]
+						},
+						{
+							"id": "aa59aff2405f2b81db08e1a7a51f5271:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"0646641044aea197995bfbb5779daabf:i:Object",
+								"fa41f7b7449f315b7ff24a884e72bddc:i:Object"
+							]
+						}
+					]
+				},
+				{
+					"guid": "aac00f8f4917aebc96074cbc643e6625",
+					"class": "K2Node_CallFunction",
+					"title": "ExitHidingSpot",
+					"x": 1264,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "aac00f8f4917aebc96074cbc643e6625:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c1f0749641d4b84d1f4a06943c4f78d4:o:then"
+							]
+						},
+						{
+							"id": "aac00f8f4917aebc96074cbc643e6625:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"fa41f7b7449f315b7ff24a884e72bddc:i:execute"
+							]
+						},
+						{
+							"id": "aac00f8f4917aebc96074cbc643e6625:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"00c8931e4f0a04c63301358158755361:o:OutputPin"
+							]
+						},
+						{
+							"id": "aac00f8f4917aebc96074cbc643e6625:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": "false",
+							"links": []
+						}
+					]
+				},
+				{
+					"guid": "b3f2881f4f93149a13b549a7066a6232",
+					"class": "K2Node_Knot",
+					"title": "Reroute Node",
+					"x": 656,
+					"y": 848,
+					"comment": null,
+					"pins": [
+						{
+							"id": "b3f2881f4f93149a13b549a7066a6232:i:InputPin",
+							"name": "InputPin",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"319bc2db4b90b487608fdb844c350c32:o:ReturnValue"
+							]
+						},
+						{
+							"id": "b3f2881f4f93149a13b549a7066a6232:o:OutputPin",
+							"name": "OutputPin",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisHidingComponent",
+							"defaultValue": null,
+							"links": [
+								"00c8931e4f0a04c63301358158755361:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "c1f0749641d4b84d1f4a06943c4f78d4",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 992,
+					"y": 624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c1f0749641d4b84d1f4a06943c4f78d4:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"79ba775b42be0c68aa190f9dd1b75fe8:o:Is Valid"
+							]
+						},
+						{
+							"id": "c1f0749641d4b84d1f4a06943c4f78d4:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"a8b86cf448213d9d85de2e9c270dc3e2:o:ReturnValue"
+							]
+						},
+						{
+							"id": "c1f0749641d4b84d1f4a06943c4f78d4:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"aac00f8f4917aebc96074cbc643e6625:i:execute"
+							]
+						},
+						{
+							"id": "c1f0749641d4b84d1f4a06943c4f78d4:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"63e98b2e4f38c2066a4266803800ff17:i:execute"
+							]
 						}
 					]
 				},
@@ -127,6 +612,82 @@
 							"type": "real:float",
 							"defaultValue": "0.0",
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "eee1baec4f8356d66d85b0b3f965ce7f",
+					"class": "K2Node_ComponentBoundEvent",
+					"title": "On Interacted (AC_Interactable)",
+					"x": -96,
+					"y": 624,
+					"comment": null,
+					"pins": [
+						{
+							"id": "eee1baec4f8356d66d85b0b3f965ce7f:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "eee1baec4f8356d66d85b0b3f965ce7f:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"79ba775b42be0c68aa190f9dd1b75fe8:i:exec"
+							]
+						},
+						{
+							"id": "eee1baec4f8356d66d85b0b3f965ce7f:o:Interactor",
+							"name": "Interactor",
+							"direction": "output",
+							"type": "object:/Script/Engine.Actor",
+							"defaultValue": null,
+							"links": [
+								"7554fbd04fcfe7d35f60b7a8c722a138:i:InputPin"
+							]
+						}
+					]
+				},
+				{
+					"guid": "fa41f7b7449f315b7ff24a884e72bddc",
+					"class": "K2Node_Composite",
+					"title": "Toggle Examine Off",
+					"x": 1760,
+					"y": 608,
+					"comment": null,
+					"pins": [
+						{
+							"id": "fa41f7b7449f315b7ff24a884e72bddc:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"aac00f8f4917aebc96074cbc643e6625:o:then"
+							]
+						},
+						{
+							"id": "fa41f7b7449f315b7ff24a884e72bddc:i:TurnOn",
+							"name": "TurnOn",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "fa41f7b7449f315b7ff24a884e72bddc:i:Object",
+							"name": "Object",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"aa59aff2405f2b81db08e1a7a51f5271:o:OutputPin"
+							]
 						}
 					]
 				}
@@ -603,10 +1164,48 @@
 					"bNeedsUCSSerializationIndexEvaluted": false,
 					"CreationMethod": "Native"
 				}
+			},
+			"AC_Interactable":
+			{
+				"class": "AC_Interactable_C",
+				"parent": null,
+				"properties":
+				{
+					"PromptText": "Hide",
+					"bSingleUse": false,
+					"bHighlightWhenFocused": false,
+					"HighlightMaterial": "/Game/ProjectAtlantis/MaterialLibrary/Interactable/MI_Interactable_Outline.MI_Interactable_Outline",
+					"bEnabled": true,
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": false,
+						"bStartWithTickEnabled": true,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
 			}
 		},
 		"defaults":
 		{
+			"AC_Interactable": null,
 			"Sphere": null,
 			"HidingSpot": null,
 			"DefaultSceneRoot": null,
