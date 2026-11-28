@@ -161,6 +161,7 @@ void UAtlantisInspectorComponent::HandleRotate(const FInputActionValue& Value)
 	const FQuat Pitch(ViewRotation.GetRightVector(), FMath::DegreesToRadians(Delta.Y * RotationSpeed));
 	ObjectRotation = (Yaw * Pitch * ObjectRotation).GetNormalized();
 	ApplyObjectTransform();
+	OnInspectRotated.Broadcast();
 }
 
 void UAtlantisInspectorComponent::HandleZoom(const FInputActionValue& Value)
@@ -195,7 +196,7 @@ void UAtlantisInspectorComponent::MoveObjectIntoView(AActor* Object, const UAtla
 	FVector BoundsCenter;
 	FVector BoundsExtent;
 	Object->GetActorBounds(false, BoundsCenter, BoundsExtent);
-	ObjectRadius = BoundsExtent.Size();
+	const float ObjectRadius = BoundsExtent.Size();
 
 	// Camera
 	const APlayerCameraManager* Camera = PlayerController.PlayerCameraManager;
@@ -209,7 +210,7 @@ void UAtlantisInspectorComponent::MoveObjectIntoView(AActor* Object, const UAtla
 	TanHalfVerticalFOV = TanHalfHorizontalFOV / AspectRatio;
 
 	// Distance at which the sphere's diameter covers ScreenFillFraction of the screen height
-	FramedDistance = ObjectRadius /(ScreenFillFraction * TanHalfVerticalFOV) * Inspectable.DistanceMultiplier;
+	FramedDistance = ObjectRadius / (ScreenFillFraction * TanHalfVerticalFOV) * Inspectable.DistanceMultiplier;
 	FramedScreenOffset = ScreenOffset + Inspectable.ScreenOffsetNudge;
 
 	// Facing the camera = turned half a circle from the camera's direction, then the object's own start rotation
@@ -229,15 +230,18 @@ void UAtlantisInspectorComponent::ApplyObjectTransform()
 		return;
 	}
 
+	const FVector Location = GetInspectedObjectCenter() - ObjectRotation.RotateVector(ScaledLocalBoundsCenter);
+	Object->SetActorLocationAndRotation(Location, ObjectRotation, false, nullptr, ETeleportType::TeleportPhysics);
+}
+
+FVector UAtlantisInspectorComponent::GetInspectedObjectCenter() const
+{
 	// The screen offset is recomputed at the zoomed distance, so zooming keeps the object at the same spot on screen
 	const float Distance = FramedDistance * ZoomScale;
-	const FVector TargetCenter = ViewLocation
+	return ViewLocation
 		+ ViewRotation.GetForwardVector() * Distance
 		+ ViewRotation.GetRightVector() * (FramedScreenOffset.X * Distance * TanHalfHorizontalFOV)
 		+ ViewRotation.GetUpVector() * (FramedScreenOffset.Y * Distance * TanHalfVerticalFOV);
-	
-	const FVector Location = TargetCenter - ObjectRotation.RotateVector(ScaledLocalBoundsCenter);
-	Object->SetActorLocationAndRotation(Location, ObjectRotation, false, nullptr, ETeleportType::TeleportPhysics);
 }
 
 void UAtlantisInspectorComponent::RestoreObject()

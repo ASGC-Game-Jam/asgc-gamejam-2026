@@ -36,7 +36,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|Inspection|Framing", meta = (ClampMin = "0.01"))
 	float DistanceMultiplier = 1.f;
 
-	/** Off for objects the Inspector's light washes out or that already read well (e.g. they glow) */
+	/** Off for objects the inspect light (Atlantis Inspect Presentation) washes out or that already read well (e.g. they glow) */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Atlantis|Inspection|Light")
 	bool bUseInspectLight = true;
 

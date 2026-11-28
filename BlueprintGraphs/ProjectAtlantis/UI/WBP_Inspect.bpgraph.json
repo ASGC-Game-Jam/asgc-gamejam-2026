@@ -42,15 +42,15 @@
 					]
 				},
 				{
-					"guid": "1e66cf1b4bf6888a7539fbb5b3176ecf",
+					"guid": "28ab8e494bfd1eac5648f6808e81d1d6",
 					"class": "K2Node_Event",
 					"title": "Event Tick",
-					"x": 0,
-					"y": 416,
-					"comment": "This node is disabled and will not be called.\r\nDrag off pins to build functionality.",
+					"x": -80,
+					"y": 1280,
+					"comment": null,
 					"pins": [
 						{
-							"id": "1e66cf1b4bf6888a7539fbb5b3176ecf:o:OutputDelegate",
+							"id": "28ab8e494bfd1eac5648f6808e81d1d6:o:OutputDelegate",
 							"name": "OutputDelegate",
 							"direction": "output",
 							"type": "delegate",
@@ -58,15 +58,17 @@
 							"links": []
 						},
 						{
-							"id": "1e66cf1b4bf6888a7539fbb5b3176ecf:o:then",
+							"id": "28ab8e494bfd1eac5648f6808e81d1d6:o:then",
 							"name": "then",
 							"direction": "output",
 							"type": "exec",
 							"defaultValue": null,
-							"links": []
+							"links": [
+								"936dc9c84ed5414f709ee18643a10d79:i:execute"
+							]
 						},
 						{
-							"id": "1e66cf1b4bf6888a7539fbb5b3176ecf:o:MyGeometry",
+							"id": "28ab8e494bfd1eac5648f6808e81d1d6:o:MyGeometry",
 							"name": "MyGeometry",
 							"direction": "output",
 							"type": "struct:/Script/SlateCore.Geometry",
@@ -74,12 +76,50 @@
 							"links": []
 						},
 						{
-							"id": "1e66cf1b4bf6888a7539fbb5b3176ecf:o:InDeltaTime",
+							"id": "28ab8e494bfd1eac5648f6808e81d1d6:o:InDeltaTime",
 							"name": "InDeltaTime",
 							"direction": "output",
 							"type": "real:float",
 							"defaultValue": "0.0",
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "2f2a9c724055cdad6193c5a3a9bd1e66",
+					"class": "K2Node_CallFunction",
+					"title": "SlotAsCanvasSlot",
+					"x": 80,
+					"y": 1552,
+					"comment": null,
+					"pins": [
+						{
+							"id": "2f2a9c724055cdad6193c5a3a9bd1e66:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.WidgetLayoutLibrary",
+							"defaultValue": "/Script/UMG.Default__WidgetLayoutLibrary",
+							"links": []
+						},
+						{
+							"id": "2f2a9c724055cdad6193c5a3a9bd1e66:i:Widget",
+							"name": "Widget",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"3a53fcd340e19185f81c0ca4b1ccdccf:o:PartPrompt"
+							]
+						},
+						{
+							"id": "2f2a9c724055cdad6193c5a3a9bd1e66:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "object:/Script/UMG.CanvasPanelSlot",
+							"defaultValue": null,
+							"links": [
+								"6b3b4f2545568ca85030deba8aefe2f0:i:self"
+							]
 						}
 					]
 				},
@@ -110,6 +150,72 @@
 							"links": [
 								"d8e7aec24f83ab6126004bbb17ac0e70:o:OutputPin"
 							]
+						}
+					]
+				},
+				{
+					"guid": "3691a3074e61af41a25a3e9a1be5d174",
+					"class": "K2Node_CallFunction",
+					"title": "GetFocusedPartScreenPosition",
+					"x": -208,
+					"y": 1440,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3691a3074e61af41a25a3e9a1be5d174:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/ProjectAtlantis.AtlantisInspectWidget",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "3691a3074e61af41a25a3e9a1be5d174:o:ScreenPosition",
+							"name": "ScreenPosition",
+							"direction": "output",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"6b3b4f2545568ca85030deba8aefe2f0:i:InPosition"
+							]
+						},
+						{
+							"id": "3691a3074e61af41a25a3e9a1be5d174:o:ReturnValue",
+							"name": "ReturnValue",
+							"direction": "output",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"936dc9c84ed5414f709ee18643a10d79:i:Condition"
+							]
+						}
+					]
+				},
+				{
+					"guid": "3a53fcd340e19185f81c0ca4b1ccdccf",
+					"class": "K2Node_VariableGet",
+					"title": "Get PartPrompt",
+					"x": -112,
+					"y": 1575,
+					"comment": null,
+					"pins": [
+						{
+							"id": "3a53fcd340e19185f81c0ca4b1ccdccf:o:PartPrompt",
+							"name": "PartPrompt",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"2f2a9c724055cdad6193c5a3a9bd1e66:i:Widget"
+							]
+						},
+						{
+							"id": "3a53fcd340e19185f81c0ca4b1ccdccf:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Inspect.WBP_Inspect_C",
+							"defaultValue": null,
+							"links": []
 						}
 					]
 				},
@@ -178,6 +284,14 @@
 							]
 						},
 						{
+							"id": "47a33bfa49dc64e03b0b0daabe0d991d:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
+						},
+						{
 							"id": "47a33bfa49dc64e03b0b0daabe0d991d:i:self",
 							"name": "self",
 							"direction": "input",
@@ -186,14 +300,6 @@
 							"links": [
 								"3a55efe74e2227fa89ded0b89e867734:o:DescriptionText"
 							]
-						},
-						{
-							"id": "47a33bfa49dc64e03b0b0daabe0d991d:o:Output_Get",
-							"name": "Output_Get",
-							"direction": "output",
-							"type": "text",
-							"defaultValue": null,
-							"links": []
 						}
 					]
 				},
@@ -228,6 +334,52 @@
 					]
 				},
 				{
+					"guid": "5efddba440d45f9310695ca7685c46f0",
+					"class": "K2Node_CallFunction",
+					"title": "SetVisibility",
+					"x": 528,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "5efddba440d45f9310695ca7685c46f0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9572539845cd76d120e94db2c2c7e6f1:o:Is Not Valid"
+							]
+						},
+						{
+							"id": "5efddba440d45f9310695ca7685c46f0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "5efddba440d45f9310695ca7685c46f0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"9c26635f45262614ea4188ade981c164:o:PartPrompt"
+							]
+						},
+						{
+							"id": "5efddba440d45f9310695ca7685c46f0:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Collapsed",
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "6045e65940de43f402fc8fa996781784",
 					"class": "K2Node_Knot",
 					"title": "Reroute Node",
@@ -253,6 +405,54 @@
 							"defaultValue": null,
 							"links": [
 								"7a3e40b74cf725b359c53b906319bbe9:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "6b3b4f2545568ca85030deba8aefe2f0",
+					"class": "K2Node_CallFunction",
+					"title": "SetPosition",
+					"x": 336,
+					"y": 1376,
+					"comment": null,
+					"pins": [
+						{
+							"id": "6b3b4f2545568ca85030deba8aefe2f0:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"936dc9c84ed5414f709ee18643a10d79:o:then"
+							]
+						},
+						{
+							"id": "6b3b4f2545568ca85030deba8aefe2f0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "6b3b4f2545568ca85030deba8aefe2f0:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.CanvasPanelSlot",
+							"defaultValue": null,
+							"links": [
+								"2f2a9c724055cdad6193c5a3a9bd1e66:o:ReturnValue"
+							]
+						},
+						{
+							"id": "6b3b4f2545568ca85030deba8aefe2f0:i:InPosition",
+							"name": "InPosition",
+							"direction": "input",
+							"type": "struct:/Script/CoreUObject.Vector2D",
+							"defaultValue": null,
+							"links": [
+								"3691a3074e61af41a25a3e9a1be5d174:o:ScreenPosition"
 							]
 						}
 					]
@@ -289,11 +489,19 @@
 							"id": "7a3e40b74cf725b359c53b906319bbe9:i:Text",
 							"name": "Text",
 							"direction": "input",
-							"type": "Text",
+							"type": "text",
 							"defaultValue": null,
 							"links": [
 								"34361deb4c01b589379b56b8ac0ac405:o:DisplayName"
 							]
+						},
+						{
+							"id": "7a3e40b74cf725b359c53b906319bbe9:o:Output_Get",
+							"name": "Output_Get",
+							"direction": "output",
+							"type": "text",
+							"defaultValue": null,
+							"links": []
 						},
 						{
 							"id": "7a3e40b74cf725b359c53b906319bbe9:i:self",
@@ -304,12 +512,52 @@
 							"links": [
 								"afb421fc40ee69f3015da8aff75e769f:o:NameText"
 							]
+						}
+					]
+				},
+				{
+					"guid": "936dc9c84ed5414f709ee18643a10d79",
+					"class": "K2Node_IfThenElse",
+					"title": "Branch",
+					"x": 112,
+					"y": 1360,
+					"comment": null,
+					"pins": [
+						{
+							"id": "936dc9c84ed5414f709ee18643a10d79:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"28ab8e494bfd1eac5648f6808e81d1d6:o:then"
+							]
 						},
 						{
-							"id": "7a3e40b74cf725b359c53b906319bbe9:o:Output_Get",
-							"name": "Output_Get",
+							"id": "936dc9c84ed5414f709ee18643a10d79:i:Condition",
+							"name": "Condition",
+							"direction": "input",
+							"type": "bool",
+							"defaultValue": null,
+							"links": [
+								"3691a3074e61af41a25a3e9a1be5d174:o:ReturnValue"
+							]
+						},
+						{
+							"id": "936dc9c84ed5414f709ee18643a10d79:o:then",
+							"name": "then",
 							"direction": "output",
-							"type": "Text",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"6b3b4f2545568ca85030deba8aefe2f0:i:execute"
+							]
+						},
+						{
+							"id": "936dc9c84ed5414f709ee18643a10d79:o:else",
+							"name": "else",
+							"direction": "output",
+							"type": "exec",
 							"defaultValue": null,
 							"links": []
 						}
@@ -350,6 +598,85 @@
 					]
 				},
 				{
+					"guid": "9572539845cd76d120e94db2c2c7e6f1",
+					"class": "K2Node_MacroInstance",
+					"title": "Is Valid",
+					"x": 192,
+					"y": 992,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9572539845cd76d120e94db2c2c7e6f1:i:exec",
+							"name": "exec",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"c3f6e97747645b7702fca8a4fc81e5e0:o:then"
+							]
+						},
+						{
+							"id": "9572539845cd76d120e94db2c2c7e6f1:i:InputObject",
+							"name": "InputObject",
+							"direction": "input",
+							"type": "object:/Script/CoreUObject.Object",
+							"defaultValue": null,
+							"links": [
+								"c3f6e97747645b7702fca8a4fc81e5e0:o:Part"
+							]
+						},
+						{
+							"id": "9572539845cd76d120e94db2c2c7e6f1:o:Is Valid",
+							"name": "Is Valid",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"e586fecb429a6933e48cfbb24e015155:i:execute"
+							]
+						},
+						{
+							"id": "9572539845cd76d120e94db2c2c7e6f1:o:Is Not Valid",
+							"name": "Is Not Valid",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"5efddba440d45f9310695ca7685c46f0:i:execute"
+							]
+						}
+					]
+				},
+				{
+					"guid": "9c26635f45262614ea4188ade981c164",
+					"class": "K2Node_VariableGet",
+					"title": "Get PartPrompt",
+					"x": 272,
+					"y": 1136,
+					"comment": null,
+					"pins": [
+						{
+							"id": "9c26635f45262614ea4188ade981c164:o:PartPrompt",
+							"name": "PartPrompt",
+							"direction": "output",
+							"type": "object:/Script/UMG.TextBlock",
+							"defaultValue": null,
+							"links": [
+								"5efddba440d45f9310695ca7685c46f0:i:self",
+								"e586fecb429a6933e48cfbb24e015155:i:self"
+							]
+						},
+						{
+							"id": "9c26635f45262614ea4188ade981c164:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Game/ProjectAtlantis/UI/WBP_Inspect.WBP_Inspect_C",
+							"defaultValue": null,
+							"links": []
+						}
+					]
+				},
+				{
 					"guid": "afb421fc40ee69f3015da8aff75e769f",
 					"class": "K2Node_VariableGet",
 					"title": "Get NameText",
@@ -374,6 +701,44 @@
 							"type": "object:/Game/ProjectAtlantis/UI/WBP_Inspect.WBP_Inspect_C",
 							"defaultValue": null,
 							"links": []
+						}
+					]
+				},
+				{
+					"guid": "c3f6e97747645b7702fca8a4fc81e5e0",
+					"class": "K2Node_Event",
+					"title": "Event OnPartFocusChanged",
+					"x": -96,
+					"y": 992,
+					"comment": null,
+					"pins": [
+						{
+							"id": "c3f6e97747645b7702fca8a4fc81e5e0:o:OutputDelegate",
+							"name": "OutputDelegate",
+							"direction": "output",
+							"type": "delegate",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "c3f6e97747645b7702fca8a4fc81e5e0:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9572539845cd76d120e94db2c2c7e6f1:i:exec"
+							]
+						},
+						{
+							"id": "c3f6e97747645b7702fca8a4fc81e5e0:o:Part",
+							"name": "Part",
+							"direction": "output",
+							"type": "object:/Script/ProjectAtlantis.AtlantisInspectPartComponent",
+							"defaultValue": null,
+							"links": [
+								"9572539845cd76d120e94db2c2c7e6f1:i:InputObject"
+							]
 						}
 					]
 				},
@@ -471,6 +836,52 @@
 							]
 						}
 					]
+				},
+				{
+					"guid": "e586fecb429a6933e48cfbb24e015155",
+					"class": "K2Node_CallFunction",
+					"title": "SetVisibility",
+					"x": 528,
+					"y": 960,
+					"comment": null,
+					"pins": [
+						{
+							"id": "e586fecb429a6933e48cfbb24e015155:i:execute",
+							"name": "execute",
+							"direction": "input",
+							"type": "exec",
+							"defaultValue": null,
+							"links": [
+								"9572539845cd76d120e94db2c2c7e6f1:o:Is Valid"
+							]
+						},
+						{
+							"id": "e586fecb429a6933e48cfbb24e015155:o:then",
+							"name": "then",
+							"direction": "output",
+							"type": "exec",
+							"defaultValue": null,
+							"links": []
+						},
+						{
+							"id": "e586fecb429a6933e48cfbb24e015155:i:self",
+							"name": "self",
+							"direction": "input",
+							"type": "object:/Script/UMG.Widget",
+							"defaultValue": null,
+							"links": [
+								"9c26635f45262614ea4188ade981c164:o:PartPrompt"
+							]
+						},
+						{
+							"id": "e586fecb429a6933e48cfbb24e015155:i:InVisibility",
+							"name": "InVisibility",
+							"direction": "input",
+							"type": "byte:/Script/UMG.ESlateVisibility",
+							"defaultValue": "Visible",
+							"links": []
+						}
+					]
 				}
 			],
 			"comments": []
@@ -486,6 +897,7 @@
 		},
 		"defaults":
 		{
+			"PartPrompt": null,
 			"NameText": null,
 			"Divider": null,
 			"DescriptionText": null,
@@ -529,7 +941,7 @@
 			"DesignSizeMode": "FillScreen",
 			"PaletteCategory": "User Created",
 			"PreviewBackground": null,
-			"bHasScriptImplementedTick": false,
+			"bHasScriptImplementedTick": true,
 			"bHasScriptImplementedPaint": false,
 			"TickFrequency": "Auto",
 			"DesiredFocusWidget":

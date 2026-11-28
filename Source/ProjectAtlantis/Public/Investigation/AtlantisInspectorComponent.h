@@ -16,6 +16,7 @@ struct FInputActionValue;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAtlantisInspectChanged, UAtlantisInspectableComponent*, Inspectable);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAtlantisInspectZoomChanged);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAtlantisInspectRotated);
 
 UCLASS(Blueprintable, ClassGroup=(Atlantis), meta=(DisplayName="Atlantis Inspector"))
 class PROJECTATLANTIS_API UAtlantisInspectorComponent : public UActorComponent
@@ -95,9 +96,9 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Inspection")
 	float GetInspectedObjectDistance() const { return FramedDistance * ZoomScale; }
 
-	/** Radius of the sphere around the inspected object (cm): all of it is within this distance of its center */
+	/** Where the inspected object's bounds center is right now (world), zoom included. Only valid while inspecting */
 	UFUNCTION(BlueprintPure, Category = "Atlantis|Inspection")
-	float GetInspectedObjectRadius() const { return ObjectRadius; }
+	FVector GetInspectedObjectCenter() const;
 
 	/** After the object is in view. Presentation (light, blur, widget) hooks here */
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Inspection")
@@ -110,6 +111,10 @@ public:
 	/** The object moved closer or farther (zoom). Read the new GetInspectedObjectDistance */
 	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Inspection")
 	FOnAtlantisInspectZoomChanged OnInspectZoomChanged;
+
+	/** The player turned the object. Part focus hooks here */
+	UPROPERTY(BlueprintAssignable, Category = "Atlantis|Inspection")
+	FOnAtlantisInspectRotated OnInspectRotated;
 
 protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -172,7 +177,6 @@ private:
 	float TanHalfVerticalFOV = 0.f;
 	FVector2D FramedScreenOffset = FVector2D::ZeroVector;
 	float FramedDistance = 0.f;
-	float ObjectRadius = 0.f;
 	/** The object's bounds center relative to its pivot, scaled but not rotated. Used to rotate around the center */
 	FVector ScaledLocalBoundsCenter = FVector::ZeroVector;
 

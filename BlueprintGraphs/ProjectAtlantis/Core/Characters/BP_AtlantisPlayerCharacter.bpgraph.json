@@ -5700,7 +5700,6 @@
 					"DimMaterial": "/Game/ProjectAtlantis/MaterialLibrary/Post-Process/MPP_InspectDim.MPP_InspectDim",
 					"DimAmount": 0.59999999999999998,
 					"InspectWidgetClass": "/Game/ProjectAtlantis/UI/WBP_Inspect.WBP_Inspect_C",
-					"WidgetZOrder": 0,
 					"bHideOtherWidgets": true,
 					"WidgetsKeptVisible": [],
 					"PrimaryComponentTick":
@@ -5728,10 +5727,47 @@
 					"bNeedsUCSSerializationIndexEvaluted": false,
 					"CreationMethod": "Native"
 				}
+			},
+			"AC_InspectPartFocus":
+			{
+				"class": "AC_InspectPartFocus_C",
+				"parent": null,
+				"properties":
+				{
+					"PartFocusAngle": 30,
+					"PartFocusHysteresis": 5,
+					"bDrawPartDebug": true,
+					"PartDebugRadius": 3,
+					"PrimaryComponentTick":
+					{
+						"TickGroup": "TG_DuringPhysics",
+						"EndTickGroup": "TG_PrePhysics",
+						"bTickEvenWhenPaused": false,
+						"bCanEverTick": true,
+						"bStartWithTickEnabled": false,
+						"bAllowTickOnDedicatedServer": true,
+						"TickInterval": 0
+					},
+					"ComponentTags": [],
+					"AssetUserData": [],
+					"AssetUserDataEditorOnly": [],
+					"UCSSerializationIndex": -1,
+					"bNetAddressable": false,
+					"bReplicateUsingRegisteredSubObjectList": false,
+					"bReplicates": false,
+					"bAutoActivate": false,
+					"bEditableWhenInherited": true,
+					"bCanEverAffectNavigation": false,
+					"bIsEditorOnly": false,
+					"bIsVisualizationComponent": false,
+					"bNeedsUCSSerializationIndexEvaluted": false,
+					"CreationMethod": "Native"
+				}
 			}
 		},
 		"defaults":
 		{
+			"AC_InspectPartFocus": null,
 			"AC_InspectPresentation": null,
 			"AC_Inspector": null,
 			"AC_Interactor": null,

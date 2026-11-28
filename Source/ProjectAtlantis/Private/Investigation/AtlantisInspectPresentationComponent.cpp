@@ -225,7 +225,6 @@ void UAtlantisInspectPresentationComponent::AddBackgroundEffects(const UAtlantis
 		// The fstop itself is set by UpdateBackgroundFocus, it depends on the zoom
 		Settings.bOverride_DepthOfFieldFocalDistance = true;
 		Settings.bOverride_DepthOfFieldFstop = true;
-		//low values would be ignored
 		Settings.bOverride_DepthOfFieldMinFstop = true;
 		if (const UAtlantisInspectorComponent* Inspector = BoundInspector.Get())
 		{
@@ -291,7 +290,7 @@ void UAtlantisInspectPresentationComponent::UpdateBackgroundFocus()
 		return;
 	}
 
-	// Both measure depth along the view direction, the same way GetInspectedObjectDistance does
+	// Depth of field measures focus along the view direction, the same way GetInspectedObjectDistance does
 	const float Distance = Inspector->GetInspectedObjectDistance();
 	FPostProcessSettings& Settings = BackgroundPostProcess->Settings;
 	Settings.DepthOfFieldFocalDistance = Distance;
@@ -301,6 +300,7 @@ void UAtlantisInspectPresentationComponent::UpdateBackgroundFocus()
 		// look like it moves while zooming. Scaling the fstop the other way keeps it the same at every zoom
 		const float Fstop = BlurFstop * BlurBaseDistance / Distance;
 		Settings.DepthOfFieldFstop = Fstop;
+		// The lens's widest aperture: an Fstop below it would be clamped up to it, so lower it with the Fstop
 		Settings.DepthOfFieldMinFstop = Fstop;
 	}
 }
